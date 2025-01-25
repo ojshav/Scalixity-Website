@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 5%;
+    --foreground: 40 30% 95%;
+    --card: 220 20% 10%;
+    --card-foreground: 40 30% 95%;
+    --popover: 220 20% 10%;
+    --popover-foreground: 40 30% 95%;
+    --primary: 40 100% 50%;
+    --primary-foreground: 220 20% 5%;
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 40 30% 95%;
+    --muted: 220 20% 15%;
+    --muted-foreground: 40 30% 70%;
+    --accent: 40 80% 60%;
+    --accent-foreground: 220 20% 5%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 40 30% 95%;
+    --border: 220 20% 15%;
+    --input: 220 20% 15%;
+    --ring: 40 100% 50%;
+  }
+}
+body {
+  @apply bg-background text-foreground antialiased;
+}
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  @apply antialiased;
+}
+
+@layer base {
+  body {
+   
+    @apply bg-background text-foreground antialiased;
+    
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply text-foreground/80 hover:text-primary transition-colors;
+  }
+
+  .nav-dropdown {
+    @apply absolute top-full left-0 hidden group-hover:block bg-card border border-border rounded-lg p-4 w-64 shadow-xl;
+  }
+
+  .nav-dropdown-item {
+    @apply block py-2 px-3 text-foreground/80 hover:text-primary hover:bg-secondary rounded-md transition-colors;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--primary))];
+  }
+  
+
+  .button-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:bg-accent transition-colors transform hover:scale-105 shadow-lg;
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-muted transition-colors transform hover:scale-105 shadow-lg border border-primary/20;
+  }
+
+  .diagonal-lines {
+    background-image: linear-gradient(45deg, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .ai-bg-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFD700;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFC000;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom selection color */
+::selection {
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffffff;
+}
+
+/* Improved focus styles for accessibility */
+:focus {
+  outline: 2px solid #FFD700;
+  outline-offset: 2px;
+}
+
+/* Add a subtle text shadow to headings */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Enhance link interactions */
+a {
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Improve button interactions */
+button, .button-primary, .button-secondary {
+  transition: all 0.3s ease;
+}
+
+button:active, .button-primary:active, .button-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Add a subtle glow effect to important elements */
+.glow-effect {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+/* Enhance form input styles */
+input, textarea, select {
+  @apply bg-card border border-border rounded-md px-4 py-2 text-foreground;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  @apply border-primary;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+}
+
+/* Add a subtle animation to icons */
+.icon-hover {
+  transition: transform 0.3s ease;
+}
+
+.icon-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* Improve card styles */
+.card {
+  @apply bg-card rounded-lg p-6 shadow-lg;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Add a subtle gradient overlay to images */
+.image-overlay {
+  position: relative;
+}
+
+.image-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom right, rgba(255, 215, 0, 0.2), rgba(218, 165, 32, 0.2));
+  pointer-events: none;
+}
+
