@@ -1,6 +1,8 @@
 import Image from 'next/image'
+type TechItem = { name: string; logo?: string }
+type Technologies = Record<string, (TechItem | string)[]>
 
-const technologies = {
+const technologies: Technologies = {
   "DL Frameworks": [
     { name: "MXNet", logo: "/tech/mxnet.svg" },
     { name: "PyTorch", logo: "/tech/pytorch.svg" },
@@ -16,31 +18,10 @@ const technologies = {
     { name: "GPT-3.5 Turbo", logo: "/tech/gpt3-5.svg" },
     { name: "Lamda", logo: "/tech/lamda.svg" }
   ],
-  "Libraries": [
-    "OpenNN",
-    "Neuroph",
-    "Sonnet",
-    "TensorFlow",
-    "Tensor2Tensor",
-    "tf-slim"
-  ],
-  "Algorithms": [
-    "Clustering",
-    "Metric Learning",
-    "Fewshot Learning",
-    "Supervised/Unsupervised Learning"
-  ],
-  "Neural Networks": [
-    "CNN",
-    "Representation Learning",
-    "RNN",
-    "Variational Autoencoders",
-    "Manifold Learning",
-    "Bayesian Network",
-    "Variational autoencoders"
-  ]
-}
-
+  "Libraries": ["OpenNN", "Neuroph", "Sonnet", "TensorFlow", "Tensor2Tensor", "tf-slim"],
+  "Algorithms": ["Clustering", "Metric Learning", "Fewshot Learning", "Supervised/Unsupervised Learning"],
+  "Neural Networks": ["CNN", "Representation Learning", "RNN", "Variational Autoencoders", "Manifold Learning", "Bayesian Network"]
+};
 export function ToolsAndTechnology() {
   return (
     <section className="bg-[#080B16] py-20">
@@ -62,18 +43,16 @@ export function ToolsAndTechnology() {
               <div key={index} className="border border-gray-800 rounded-lg p-6">
                 <h3 className="text-white font-semibold mb-6">{category}</h3>
                 <div className="grid grid-cols-3 gap-4">
-                  {Array.isArray(items) && items.map((item: any, idx) => (
-                    <div key={idx} className="flex flex-col items-center">
-                      <Image
-                        src={item.logo}
-                        alt={item.name}
-                        width={40}
-                        height={40}
-                        className="mb-2"
-                      />
-                      <span className="text-gray-400 text-sm text-center">{item.name}</span>
-                    </div>
-                  ))}
+                {Array.isArray(items) &&
+  items.map((item, idx) =>
+    typeof item === "object" ? (
+      <div key={idx} className="flex flex-col items-center">
+        <Image src={item.logo!} alt={item.name} width={40} height={40} className="mb-2" />
+        <span className="text-gray-400 text-sm text-center">{item.name}</span>
+      </div>
+    ) : null
+  )
+}
                 </div>
               </div>
             ))}
@@ -84,14 +63,13 @@ export function ToolsAndTechnology() {
               <div key={index} className="border border-gray-800 rounded-lg p-6">
                 <h3 className="text-white font-semibold mb-6">{category}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {typeof items === 'object' && items.map((item, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 bg-[#1A1B26] text-gray-400 rounded-full text-sm"
-                    >
-                      {item}
-                    </span>
-                  ))}
+                {typeof items === "object" &&
+  items.map((item, idx) => (
+    <span key={idx} className="px-3 py-1 bg-[#1A1B26] text-gray-400 rounded-full text-sm">
+      {typeof item === "string" ? item : item.name}
+    </span>
+  ))
+}
                 </div>
               </div>
             ))}

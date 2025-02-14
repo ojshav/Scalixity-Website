@@ -1,3 +1,6 @@
+import { Link } from "lucide-react";
+import { NavigationMenuLink } from "./ui/navigation-menu";
+
 <NavigationMenuLink asChild>
   <Link
     href="/services/generative-ai/generative-ai-development"

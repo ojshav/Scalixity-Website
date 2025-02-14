@@ -2,9 +2,9 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { cn } from "../../../lib/utils"
+// import { cn } from "../../../lib/utils"
 import { Button } from "@/src/app/components/ui/button"
-import { Brain, Sparkles, LinkIcon, Smartphone, Globe, Code, Cloud, Paintbrush, Stethoscope, ShoppingBag, DollarSign, BarChart } from 'lucide-react'
+import { Brain, Sparkles, LinkIcon, Smartphone, Stethoscope, ShoppingBag, DollarSign, BarChart } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const services = [

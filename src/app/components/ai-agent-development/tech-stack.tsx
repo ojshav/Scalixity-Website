@@ -30,18 +30,19 @@ export function TechStack() {
             <div key={index} className="border border-gray-800 rounded-lg p-6">
               <h3 className="text-white font-semibold mb-6">{category}</h3>
               <div className="grid grid-cols-3 gap-4">
-                {Array.isArray(items) && items.map((item: any, idx) => (
-                  <div key={idx} className="flex flex-col items-center">
-                    <Image
-                      src={item.logo}
-                      alt={item.name}
-                      width={40}
-                      height={40}
-                      className="mb-2"
-                    />
-                    <span className="text-gray-400 text-sm text-center">{item.name}</span>
-                  </div>
-                ))}
+              {Array.isArray(items) && items.map((item: { name: string; logo: string }, idx) => (
+  <div key={idx} className="flex flex-col items-center">
+    <Image
+      src={item.logo}
+      alt={item.name}
+      width={40}
+      height={40}
+      className="mb-2"
+    />
+    <span className="text-gray-400 text-sm text-center">{item.name}</span>
+  </div>
+))}
+
               </div>
             </div>
           ))}

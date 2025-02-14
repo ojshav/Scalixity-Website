@@ -8,80 +8,89 @@ export function AgentHero() {
   const canvasRef = useCallback((node: HTMLCanvasElement | null) => {
     if (node !== null) {
       const ctx = node.getContext('2d')
-      if (ctx) {
-        node.width = 600
-        node.height = 600
-
-        const centerX = node.width / 2
-        const centerY = node.height / 2
-
-        function drawInfographic() {
+      if (!ctx) return // 👈 Exit if ctx is null
+  
+      node.width = 600
+      node.height = 600
+  
+      const centerX = node.width / 2
+      const centerY = node.height / 2
+  
+      function drawInfographic() {
+        if (!ctx) return // 👈 Ensure ctx is not null
+  
+        if (node) {
           ctx.clearRect(0, 0, node.width, node.height)
-
-          // Draw central circle
+        }
+  
+        // Draw central circle
+        ctx.beginPath()
+        ctx.arc(centerX, centerY, 80, 0, Math.PI * 2)
+        ctx.fillStyle = '#7C3AED'
+        ctx.fill()
+  
+        // Draw "Foundation Model" text
+        ctx.fillStyle = 'white'
+        ctx.font = 'bold 16px Inter'
+        ctx.textAlign = 'center'
+        ctx.fillText('Foundation', centerX, centerY - 10)
+        ctx.fillText('Model', centerX, centerY + 10)
+  
+        // Draw connecting lines and data type boxes
+        const dataTypes = [
+          { label: 'Text', x: centerX - 150, y: centerY - 150 },
+          { label: 'Image', x: centerX + 150, y: centerY - 150 },
+          { label: 'Speech', x: centerX - 150, y: centerY + 150 },
+          { label: 'Structural', x: centerX + 150, y: centerY + 150 },
+          { label: '3D Signal', x: centerX, y: centerY - 200 }
+        ]
+  
+        dataTypes.forEach(type => {
+          if (!ctx) return // 👈 Ensure ctx is not null inside loop
+  
+          // Draw connection line
           ctx.beginPath()
-          ctx.arc(centerX, centerY, 80, 0, Math.PI * 2)
-          ctx.fillStyle = '#7C3AED'
-          ctx.fill()
-
-          // Draw "Foundation Model" text
+          ctx.moveTo(centerX, centerY)
+          ctx.lineTo(type.x, type.y)
+          ctx.strokeStyle = '#4B5563'
+          ctx.stroke()
+  
+          // Draw box
+          ctx.fillStyle = '#1F2937'
+          ctx.fillRect(type.x - 50, type.y - 20, 100, 40)
+          ctx.strokeStyle = '#6B7280'
+          ctx.strokeRect(type.x - 50, type.y - 20, 100, 40)
+  
+          // Draw text
           ctx.fillStyle = 'white'
-          ctx.font = 'bold 16px Inter'
+          ctx.font = '14px Inter'
           ctx.textAlign = 'center'
-          ctx.fillText('Foundation', centerX, centerY - 10)
-          ctx.fillText('Model', centerX, centerY + 10)
-
-          // Draw connecting lines and data type boxes
-          const dataTypes = [
-            { label: 'Text', x: centerX - 150, y: centerY - 150 },
-            { label: 'Image', x: centerX + 150, y: centerY - 150 },
-            { label: 'Speech', x: centerX - 150, y: centerY + 150 },
-            { label: 'Structural', x: centerX + 150, y: centerY + 150 },
-            { label: '3D Signal', x: centerX, y: centerY - 200 }
-          ]
-
-          dataTypes.forEach(type => {
-            // Draw connection line
-            ctx.beginPath()
-            ctx.moveTo(centerX, centerY)
-            ctx.lineTo(type.x, type.y)
-            ctx.strokeStyle = '#4B5563'
-            ctx.stroke()
-
-            // Draw box
-            ctx.fillStyle = '#1F2937'
-            ctx.fillRect(type.x - 50, type.y - 20, 100, 40)
-            ctx.strokeStyle = '#6B7280'
-            ctx.strokeRect(type.x - 50, type.y - 20, 100, 40)
-
-            // Draw text
-            ctx.fillStyle = 'white'
-            ctx.font = '14px Inter'
-            ctx.textAlign = 'center'
-            ctx.fillText(type.label, type.x, type.y + 5)
-          })
-        }
-
-        drawInfographic()
-
-        // Animation loop
-        let rotation = 0
-        function animate() {
-          rotation += 0.005
-          ctx.save()
-          ctx.translate(centerX, centerY)
-          ctx.rotate(rotation)
-          ctx.translate(-centerX, -centerY)
-          drawInfographic()
-          ctx.restore()
-          requestAnimationFrame(animate)
-        }
-
-        animate()
+          ctx.fillText(type.label, type.x, type.y + 5)
+        })
       }
+  
+      drawInfographic()
+  
+      // Animation loop
+      let rotation = 0
+      function animate() {
+        if (!ctx) return // 👈 Ensure ctx is not null before drawing
+  
+        rotation += 0.005
+        ctx.save()
+        ctx.translate(centerX, centerY)
+        ctx.rotate(rotation)
+        ctx.translate(-centerX, -centerY)
+        drawInfographic()
+        ctx.restore()
+        requestAnimationFrame(animate)
+      }
+  
+      animate()
     }
-  }, [])
-
+  }
+  , [])
+  
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#080B16] py-20">
       <div className="container mx-auto px-4">

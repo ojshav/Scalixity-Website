@@ -22,13 +22,13 @@ export function Testimonials() {
         <div className="text-center mb-20">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">What Our Clients Say</h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Hear from businesses we've helped transform with our AI and blockchain solutions
+            Hear from businesses we&aposve helped transform with our AI and blockchain solutions
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="bg-[#1A1B26] p-8 rounded-xl">
-              <p className="text-gray-300 text-lg mb-6 italic">"{testimonial.quote}"</p>
+              <p className="text-gray-300 text-lg mb-6 italic">&quot{testimonial.quote}&quot</p>
               <div className="flex items-center">
                 <Image src={testimonial.image} alt={testimonial.author} width={64} height={64} className="rounded-full mr-4" />
                 <div>

@@ -1,4 +1,5 @@
-import { ArrowRight } from 'lucide-react'
+// Remove this import statement
+// import { ArrowRight } from 'lucide-react';
 
 const benefits = [
   {
@@ -25,13 +26,15 @@ const benefits = [
     title: "Risk Mitigation",
     description: "Ensure compliance and reduce risks with properly implemented AI solutions."
   }
-]
+];
 
 export function Benefits() {
   return (
     <section className="bg-[#0A0B14] py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">Benefits of Our Consulting Services</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+          Benefits of Our Consulting Services
+        </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
             <div key={index} className="bg-[#0F1629] p-6 rounded-lg border border-gray-800">
@@ -42,6 +45,5 @@ export function Benefits() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

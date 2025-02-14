@@ -34,13 +34,14 @@ export function CaseStudies() {
                 <p className="text-gray-400">Reduction in Order Handling</p>
               </div>
               <blockquote className="bg-[#1A1B26] p-6 rounded-lg mb-8">
-                <p className="text-gray-300 italic mb-4">
-                  "We were particularly impressed by the quality and precision of DeVoice. Its implementation not only streamlined our operations but also significantly elevated our customer service levels, making it a game-changer for our business."
-                </p>
-                <footer className="text-white font-medium">
-                  - Doughlus, CTO, DeVoice
-                </footer>
-              </blockquote>
+  <p className="text-gray-300 italic mb-4">
+    &ldquo;We were particularly impressed by the quality and precision of DeVoice. Its implementation not only streamlined our operations but also significantly elevated our customer service levels, making it a game-changer for our business.&rdquo;
+  </p>
+  <footer className="text-white font-medium">
+    - Doughlus, CTO, DeVoice
+  </footer>
+</blockquote>
+
               <Link 
                 href="/case-studies/devoice"
                 className="inline-flex items-center text-purple-500 hover:text-purple-400 font-medium"

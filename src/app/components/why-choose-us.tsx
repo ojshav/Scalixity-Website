@@ -31,7 +31,7 @@ export function WhyChooseUs() {
           <div className="bg-[#1A1B26] p-8 rounded-xl">
             <h3 className="text-2xl font-bold text-white mb-6">Our Commitment</h3>
             <p className="text-gray-400 mb-6">
-              At Markovate, we're committed to delivering exceptional AI and blockchain solutions that drive real business value. Our team of experts combines deep technical knowledge with industry insights to create innovative, scalable, and secure solutions tailored to your unique needs.
+              At Markovate, we&aposre committed to delivering exceptional AI and blockchain solutions that drive real business value. Our team of experts combines deep technical knowledge with industry insights to create innovative, scalable, and secure solutions tailored to your unique needs.
             </p>
             <p className="text-gray-400">
               We believe in building long-term partnerships with our clients, providing ongoing support and guidance to ensure the continued success of your AI and blockchain initiatives.

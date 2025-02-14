@@ -31,8 +31,9 @@ export function Process() {
             Our Generative AI-driven consultation process
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Collaboration between human intuition and AI skills is the foundation of our process. We create strategies that are original, efficient, and effective by fusing your professional understanding with our AI's extensive data analysis and creativity.
-          </p>
+  Collaboration between human intuition and AI skills is the foundation of our process. We create strategies that are original, efficient, and effective by fusing your professional understanding with our AI&apos;s extensive data analysis and creativity.
+</p>
+
         </div>
 
         <div className="relative max-w-4xl mx-auto">

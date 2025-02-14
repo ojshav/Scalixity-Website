@@ -35,7 +35,7 @@ export function SuccessStories() {
             Success Stories
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            See how we've helped businesses transform with Generative AI
+          See how we&apos;ve helped businesses transform with Generative AI
           </p>
         </div>
 

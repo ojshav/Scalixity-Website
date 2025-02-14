@@ -51,6 +51,7 @@ const techCategories = {
     "Cluster"
   ]
 }
+type TechItem = { name: string; logo: string } | string;
 
 export function TechStack() {
   return (
@@ -79,9 +80,9 @@ export function TechStack() {
               <h3 className="text-lg font-semibold text-foreground mb-6">{category}</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                 {Array.isArray(items) ? (
-                  items.map((item: any, idx) => (
+                  items.map((item: TechItem, idx) => (
                     <div key={idx} className="flex flex-col items-center justify-center">
-                      {item.logo ? (
+                      {typeof item === 'object' && item.logo ? (
                         <>
                           <div className="w-16 h-16 relative mb-2">
                             <Image
@@ -95,19 +96,19 @@ export function TechStack() {
                         </>
                       ) : (
                         <span className="text-sm text-muted-foreground text-center px-3 py-2 bg-muted rounded-full">
-                          {item}
+                          {typeof item === 'string' ? item : item.name}
                         </span>
                       )}
                     </div>
                   ))
                 ) : (
                   <div className="col-span-full flex flex-wrap gap-2">
-                    {items.map((item: string, idx) => (
+                    {(items as TechItem[]).map((item, idx) => (
                       <span
                         key={idx}
                         className="text-sm text-muted-foreground px-3 py-2 bg-muted rounded-full"
                       >
-                        {item}
+                        {typeof item === 'string' ? item : item.name}
                       </span>
                     ))}
                   </div>
@@ -118,6 +119,5 @@ export function TechStack() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

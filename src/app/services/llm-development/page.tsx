@@ -1,4 +1,4 @@
-import { Hero } from "@/src/app/components/llm-development/hero"
+// import { Hero } from "@/src/app/components/llm-development/hero"
 import { Benefits } from "@/src/app/components/llm-development/benefits"
 import { UseCases } from "@/src/app/components/llm-development/use-cases"
 import { Process } from "@/src/app/components/llm-development/process"
@@ -10,7 +10,7 @@ import { CTA } from "@/src/app/components/cta"
 export default function LLMDevelopmentPage() {
 return (
   <main className="bg-background">
-    <Hero />
+    {/* <Hero /> */}
     <Benefits />
     <UseCases />
     <Process />

@@ -39,7 +39,7 @@ export function WhatWeOffer() {
             Our Generative AI consulting services
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We provide businesses a competitive edge. We're here to assist you in leveraging the power
+            We provide businesses a competitive edge. We&aposre here to assist you in leveraging the power
             of AI in a way that makes sense for your company, from inspiration through implementation.
           </p>
         </div>

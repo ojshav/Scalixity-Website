@@ -35,7 +35,7 @@ export function Hero() {
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
 
-    let particles: { x: number; y: number; radius: number; color: string; velocity: { x: number; y: number } }[] = []
+    const particles: { x: number; y: number; radius: number; color: string; velocity: { x: number; y: number } }[] = []
 
     const createParticles = () => {
       for (let i = 0; i < 150; i++) {
