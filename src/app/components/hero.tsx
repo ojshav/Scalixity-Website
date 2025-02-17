@@ -113,9 +113,9 @@ export function Hero() {
             animate={controls}
             custom={0}
           >
-            Elevate Your Business with{" "}
+            Elevate Your Business with 
             <span className="gradient-text">
-              Regal AI Solutions
+              Scalixity
             </span>
           </motion.h1>
           <motion.p 
