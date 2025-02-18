@@ -34,7 +34,7 @@ export function WhyUs() {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">How do we build a Generative AI solution for businesses?</h2>
         <p className="text-center text-gray-400 mb-12 max-w-3xl mx-auto">
-          Markovate leverages advanced algorithms and data-driven insights to deliver unparalleled
+        Scalixity leverages advanced algorithms and data-driven insights to deliver unparalleled
           accuracy and relevance. With a keen focus on data security, model architecture, model
           evaluation, data quality and MLOps management, we can develop highly competitive
           Generative AI applications for our clients.

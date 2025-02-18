@@ -170,7 +170,7 @@ export function Footer() {
           </div>
           <div className="flex items-center space-x-4">
             <a
-              href="https://linkedin.com/company/markovate"
+              href="https://linkedin.com/company/Scalixityi"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"

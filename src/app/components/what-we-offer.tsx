@@ -12,7 +12,7 @@ const offerings = [
   },
   {
     title: "Enhance Decision-Making with AI",
-    description: "We harness AI to transform business decision-making by arming our clients with deep analytical insights, automation, and optimized operations. Markovate's experts help predict future trends, equipping businesses to innovate proactively and make data-driven decisions.",
+    description: "We harness AI to transform business decision-making by arming our clients with deep analytical insights, automation, and optimized operations. Scalixity's experts help predict future trends, equipping businesses to innovate proactively and make data-driven decisions.",
     link: "/services/ai-analytics",
     icon: ChartBar
   },
@@ -24,7 +24,7 @@ const offerings = [
   },
   {
     title: "Enhance Customer Interaction",
-    description: "At Markovate, we specialize in creating custom chatbots tailored to the specific data, needs, and business contexts of our clients. Our approach ensures that each chatbot delivers seamless, personalized interactions, enhancing customer engagement and satisfaction.",
+    description: "At Scalixity, we specialize in creating custom chatbots tailored to the specific data, needs, and business contexts of our clients. Our approach ensures that each chatbot delivers seamless, personalized interactions, enhancing customer engagement and satisfaction.",
     link: "/services/chatbots",
     icon: MessageSquare
   },
@@ -46,7 +46,7 @@ export function WhatWeOffer() {
             Transforming Businesses with AI Solutions
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Markovate brings together industry specialists, strategic thinkers, and advanced technology to
+           Scalixity brings together industry specialists, strategic thinkers, and advanced technology to
             drive data-driven success and scale value.
           </p>
         </div>

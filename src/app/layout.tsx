@@ -11,14 +11,14 @@ const inter = Inter({
 })
 
 export const metadata = {
-  title: 'Markovate - AI Solutions for Data-Driven Companies',
+  title: 'Scalixity- AI Solutions for Data-Driven Companies',
   description: 'We help data-driven companies build measurable generative AI solutions',
   keywords: 'AI, artificial intelligence, machine learning, data science, consulting',
   openGraph: {
-    title: 'Markovate - AI Solutions for Data-Driven Companies',
+    title: 'Scalixity - AI Solutions for Data-Driven Companies',
     description: 'We help data-driven companies build measurable generative AI solutions',
-    url: 'https://markovate.com',
-    siteName: 'Markovate',
+    url: 'https://Scalixity.com',
+    siteName: 'Scalixity',
     images: [
       {
         url: '/og-image.jpg',

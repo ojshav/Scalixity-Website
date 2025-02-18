@@ -5,7 +5,7 @@ const features = [
   {
     icon: Layers,
     title: "Unmatched Expertise",
-    description: "With over 15 years of industry leadership, Markovate brings unparalleled experience and knowledge to every project. Our team of seasoned professionals leverages cutting-edge advancements and best practices to deliver innovative solutions tailored to your business needs."
+    description: "With over 15 years of industry leadership, Scalixity brings unparalleled experience and knowledge to every project. Our team of seasoned professionals leverages cutting-edge advancements and best practices to deliver innovative solutions tailored to your business needs."
   },
   {
     icon: Target,
@@ -15,12 +15,12 @@ const features = [
   {
     icon: Cpu,
     title: "Leading-Edge Technology",
-    description: "At Markovate, we harness the latest advancements in AI, ML, and data science to empower your business. Our commitment to technological innovation ensures you stay ahead of the curve, leveraging powerful tools to transform your operations and achieve a competitive advantage."
+    description: "At Scalixity, we harness the latest advancements in AI, ML, and data science to empower your business. Our commitment to technological innovation ensures you stay ahead of the curve, leveraging powerful tools to transform your operations and achieve a competitive advantage."
   },
   {
     icon: Cog,
     title: "Comprehensive End-to-End Support",
-    description: "From initial strategy to full implementation and ongoing optimization, Markovate offers comprehensive support at every stage of our client's digital journey. Our dedicated team works closely with the client to ensure seamless execution and maximize the value of the technology investments."
+    description: "From initial strategy to full implementation and ongoing optimization, Scalixity offers comprehensive support at every stage of our client's digital journey. Our dedicated team works closely with the client to ensure seamless execution and maximize the value of the technology investments."
   }
 ]
 
