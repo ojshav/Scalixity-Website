@@ -14,11 +14,11 @@ export function Hero() {
           className="text-center"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Mobile App Design Services
+            Web Design Services
           </h1>
           <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-            Elevate your app with intuitive, high-performance UI/UX designs that drive engagement and user satisfaction. 
-            Our mobile app design services focus on creating seamless, visually appealing, and user-friendly experiences.
+            Elevate your online presence with stunning, user-friendly web designs. Our team creates visually appealing and highly functional 
+            websites tailored to your brand identity and business goals. Let us craft a digital experience that captivates and converts.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
@@ -36,4 +36,3 @@ export function Hero() {
 }
 
 export default Hero;
-
