@@ -5,30 +5,30 @@ import Image from 'next/image'
 
 const enterpriseUseCases = [
   {
-    title: "Enterprise Cloud Solutions",
-    description: "Deploy secure, scalable, and compliant cloud solutions tailored for enterprise needs.",
-    image: "/tech/enterprise-cloud.svg",
+    title: "Scalable Enterprise Applications",
+    description: "Develop and deploy robust, scalable enterprise applications tailored to complex business operations.",
+    image: "/tech/enterprise-app.svg",
     stats: [
       { value: "99.99%", label: "Uptime Guarantee" },
-      { value: "30%", label: "Cost Reduction in IT Infrastructure" }
+      { value: "5x", label: "Improved Operational Efficiency" }
     ]
   },
   {
-    title: "AI-Driven Business Intelligence",
-    description: "Leverage AI and machine learning to drive strategic insights and operational efficiency.",
-    image: "/tech/enterprise-ai.svg",
+    title: "AI & Automation for Enterprises",
+    description: "Leverage AI-driven automation to enhance workflows, reduce costs, and improve decision-making.",
+    image: "/tech/ai-enterprise.svg",
     stats: [
-      { value: "50%", label: "Increase in Decision-Making Speed" },
-      { value: "40%", label: "Reduction in Data Processing Costs" }
+      { value: "70%", label: "Faster Business Processes" },
+      { value: "50%", label: "Reduction in Manual Tasks" }
     ]
   },
   {
-    title: "Enterprise Security & Compliance",
-    description: "Implement robust security frameworks to protect sensitive enterprise data and ensure compliance.",
-    image: "/tech/enterprise-security.svg",
+    title: "Enterprise Data Analytics & Insights",
+    description: "Utilize data analytics solutions for real-time insights, predictive analytics, and better business intelligence.",
+    image: "/tech/enterprise-analytics.svg",
     stats: [
-      { value: "95%", label: "Threat Mitigation Rate" },
-      { value: "100%", label: "Regulatory Compliance Assurance" }
+      { value: "10x", label: "Faster Report Generation" },
+      { value: "40%", label: "Increase in Data Accuracy" }
     ]
   }
 ]
@@ -42,7 +42,7 @@ export function UseCases() {
             Enterprise Use Cases
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Discover how our enterprise solutions drive business transformation and efficiency.
+            Discover how our enterprise solutions drive efficiency, innovation, and business growth.
           </p>
         </div>
 
