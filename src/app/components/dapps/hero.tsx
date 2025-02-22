@@ -13,17 +13,17 @@ export function Hero() {
           className="text-center"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6"> {/* White text */}
-            Smart Contracts Development
+            Decentralized Applications (dApps) Development
           </h1>
           <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto"> {/* Light gray text */}
-            Our Smart Contract Development services empower businesses with secure, automated, and transparent blockchain solutions. We provide end-to-end services, from conceptualization to deployment, ensuring that your smart contracts are meticulously designed, thoroughly tested, and seamlessly integrated into your existing ecosystem. Whether you need customized smart contracts for DeFi, NFTs, or enterprise applications, our expert team ensures they are robust, efficient, and aligned with your business objectives, fostering trust and decentralization in your operations.
+            We specialize in building secure, scalable, and efficient decentralized applications (dApps) on blockchain networks. Our services encompass the entire development lifecycle, from ideation and smart contract creation to front-end development and blockchain integration. By leveraging cutting-edge technologies and best practices, we ensure seamless deployment, optimal performance, and robust security. Whether you're launching a DeFi platform, NFT marketplace, or enterprise blockchain solution, our team is dedicated to delivering innovative and future-ready solutions tailored to your needs.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-purple-600 text-white font-medium text-lg hover:bg-purple-700 transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-blue-600 text-white font-medium text-lg hover:bg-blue-700 transition-colors w-full sm:w-auto"
             >
-              Contact Us
+              Get Started
             </Link>
           </div>
         </motion.div>
@@ -33,3 +33,4 @@ export function Hero() {
   )
 }
 export default Hero;
+

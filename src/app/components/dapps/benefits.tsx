@@ -5,28 +5,28 @@ import { CheckCircle } from "lucide-react";
 
 const benefits = [
   {
-    title: "Trust & Transparency",
-    description: "Smart contracts ensure immutable and transparent transactions, eliminating the need for intermediaries."
+    title: "Decentralization & Trust",
+    description: "dApps operate on decentralized networks, eliminating single points of failure and ensuring transparent, trustless interactions."
   },
   {
-    title: "Automation & Efficiency",
-    description: "Automate complex processes and agreements, reducing manual effort and increasing operational efficiency."
+    title: "Security & Immutability",
+    description: "Built on blockchain, dApps benefit from enhanced security, data integrity, and resistance to tampering."
   },
   {
-    title: "Security & Fraud Prevention",
-    description: "Built on blockchain technology, smart contracts offer high security, preventing fraud and unauthorized alterations."
-  },
-  {
-    title: "Cost Reduction",
-    description: "Eliminate third-party involvement, lowering costs associated with transaction verification and contract execution."
-  },
-  {
-    title: "Speed & Accuracy",
-    description: "Execute agreements instantly and precisely, minimizing errors and ensuring seamless transactions."
+    title: "Smart Contract Automation",
+    description: "Automate transactions and processes securely using smart contracts, reducing the need for intermediaries."
   },
   {
     title: "Interoperability & Flexibility",
-    description: "Integrate smart contracts with multiple blockchain platforms for diverse business applications."
+    description: "Our dApps seamlessly integrate across multiple blockchain networks, offering flexibility for diverse applications."
+  },
+  {
+    title: "Scalability & Performance",
+    description: "Designed for high-performance use cases, our dApps scale efficiently while maintaining optimal speed and efficiency."
+  },
+  {
+    title: "Tokenization & Monetization",
+    description: "Enable innovative economic models through tokenization, allowing for new revenue streams and incentives."
   }
 ];
 
@@ -38,13 +38,13 @@ export function Benefits() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">
-            SMART CONTRACT BENEFITS
+            BENEFITS OF DAPPS DEVELOPMENT
           </span>
           <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
-            Why Choose Smart Contract Development
+            Why Build Decentralized Applications (dApps)?
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Enhance business security, automation, and efficiency with our cutting-edge smart contract solutions.
+            Unlock the full potential of blockchain technology with decentralized applications that ensure security, scalability, and trustless operations.
           </p>
         </div>
 

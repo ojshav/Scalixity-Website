@@ -13,17 +13,17 @@ export function Hero() {
           className="text-center"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6"> {/* White text */}
-            Smart Contracts Development
+            NFT Marketplace Development
           </h1>
           <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto"> {/* Light gray text */}
-            Our Smart Contract Development services empower businesses with secure, automated, and transparent blockchain solutions. We provide end-to-end services, from conceptualization to deployment, ensuring that your smart contracts are meticulously designed, thoroughly tested, and seamlessly integrated into your existing ecosystem. Whether you need customized smart contracts for DeFi, NFTs, or enterprise applications, our expert team ensures they are robust, efficient, and aligned with your business objectives, fostering trust and decentralization in your operations.
+            Launch and scale your NFT marketplace with our cutting-edge blockchain solutions. We provide secure, scalable, and feature-rich platforms to empower creators, collectors, and businesses in the digital asset ecosystem.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-purple-600 text-white font-medium text-lg hover:bg-purple-700 transition-colors w-full sm:w-auto"
             >
-              Contact Us
+              Get Started
             </Link>
           </div>
         </motion.div>

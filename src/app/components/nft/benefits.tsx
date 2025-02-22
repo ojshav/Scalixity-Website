@@ -5,28 +5,28 @@ import { CheckCircle } from "lucide-react";
 
 const benefits = [
   {
-    title: "Trust & Transparency",
-    description: "Smart contracts ensure immutable and transparent transactions, eliminating the need for intermediaries."
+    title: "Empowering Creators & Collectors",
+    description: "Our NFT marketplace solutions provide seamless experiences for artists, collectors, and traders to buy, sell, and showcase digital assets."
   },
   {
-    title: "Automation & Efficiency",
-    description: "Automate complex processes and agreements, reducing manual effort and increasing operational efficiency."
+    title: "Scalable & Customizable Platforms",
+    description: "We develop highly scalable and fully customizable NFT marketplaces tailored to your business needs, ensuring flexibility and growth."
   },
   {
-    title: "Security & Fraud Prevention",
-    description: "Built on blockchain technology, smart contracts offer high security, preventing fraud and unauthorized alterations."
+    title: "Secure & Transparent Transactions",
+    description: "Built on blockchain technology, our NFT marketplaces ensure secure, immutable, and transparent transactions for a trustworthy digital asset exchange."
   },
   {
-    title: "Cost Reduction",
-    description: "Eliminate third-party involvement, lowering costs associated with transaction verification and contract execution."
+    title: "Multi-Blockchain Support",
+    description: "Support for multiple blockchain networks, including Ethereum, Polygon, and Solana, providing versatility and accessibility for users."
   },
   {
-    title: "Speed & Accuracy",
-    description: "Execute agreements instantly and precisely, minimizing errors and ensuring seamless transactions."
+    title: "Smart Contract Automation",
+    description: "Automate royalty distributions, ownership transfers, and other transactions with self-executing smart contracts, reducing operational complexities."
   },
   {
-    title: "Interoperability & Flexibility",
-    description: "Integrate smart contracts with multiple blockchain platforms for diverse business applications."
+    title: "Seamless Payment Integrations",
+    description: "Enable crypto and fiat payment options, ensuring a smooth checkout experience for users worldwide."
   }
 ];
 
@@ -38,13 +38,13 @@ export function Benefits() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">
-            SMART CONTRACT BENEFITS
+            NFT MARKETPLACE BENEFITS
           </span>
           <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
-            Why Choose Smart Contract Development
+            Why Choose NFT Marketplace Development
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Enhance business security, automation, and efficiency with our cutting-edge smart contract solutions.
+            Build a feature-rich, secure, and scalable NFT marketplace to unlock the full potential of digital assets and blockchain commerce.
           </p>
         </div>
 
