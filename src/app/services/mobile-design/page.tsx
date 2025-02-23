@@ -7,6 +7,7 @@ import { FeaturedWork }from "@/src/app/components/mobile-design/featured-work"
 
 import { Industries } from "@/src/app/components/mobile-design/industries"
 import { FAQ } from "@/src/app/components/mobile-design/faq"
+import { CTA } from "@/src/app/components/mobile-design/CTA"
 export default function DesignPage() {
   return (
     <main className="bg-[#080B16]">
@@ -20,6 +21,7 @@ export default function DesignPage() {
      
       <Industries />
       <FAQ />
+      < CTA />
       
     </main>
   )}

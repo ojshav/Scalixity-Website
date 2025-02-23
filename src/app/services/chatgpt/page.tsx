@@ -6,6 +6,7 @@ import { Expertise } from "@/src/app/components/chatgpt/expertise"
 import { ToolsAndTechnology} from  "@/src/app/components/chatgpt/tools-and-technology"
 import { Industries} from "@/src/app/components/chatgpt/industries"
 import { FAQ } from "@/src/app/components/chatgpt/faq" 
+import { CTA } from "@/src/app/components/chatgpt/CTA"
 export default function Enterprisegenaidev() {
   return (
     <main className="bg-[#080B16]">
@@ -17,6 +18,7 @@ export default function Enterprisegenaidev() {
       <ToolsAndTechnology />
       <Industries />
       <FAQ />
+      < CTA />
       
       
     </main>

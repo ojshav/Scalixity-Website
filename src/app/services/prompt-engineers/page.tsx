@@ -6,7 +6,7 @@ import { Expertise } from "@/src/app/components/prompt-engineers/expertise"
 import { ToolsAndTechnology} from  "@/src/app/components/prompt-engineers/tools-and-technology"
 import { Industries} from "@/src/app/components/prompt-engineers/industries"
 import { FAQ } from "@/src/app/components/prompt-engineers/faq"
-
+import  { CTA} from "@/src/app/components/prompt-engineers/CTA"
 export default function Enterprisegenaidev() {
   return (
     <main className="bg-[#080B16]">
@@ -18,6 +18,6 @@ export default function Enterprisegenaidev() {
       <ToolsAndTechnology />
       <Industries />
       <FAQ />
-      
+      < CTA/>
     </main>
   )}

@@ -8,6 +8,7 @@ import { TechStack} from "@/src/app/components/dapps/tech=stack"
 import { Expertise } from "@/src/app/components/dapps/expertise"
 import { Industries } from "@/src/app/components/dapps/industries"
 import { FAQ } from "@/src/app/components/dapps/faq"
+import { CTA } from "@/src/app/components/dapps/CTA"
 export default function BlockchainDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
@@ -21,6 +22,7 @@ export default function BlockchainDevelopmentPage() {
       < Expertise />
       < Industries />
       <FAQ />
+      < CTA />
       
     </main>
   )}

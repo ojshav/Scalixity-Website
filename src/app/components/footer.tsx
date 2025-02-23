@@ -106,7 +106,7 @@ export function Footer() {
           {/* Main Links Column */}
           <div>
             <Link href="/" className="inline-block mb-8">
-              <span className="text-2xl font-bold text-white">Markovate</span>
+              <span className="text-2xl font-bold text-white">Scalixity</span>
             </Link>
             <div className="space-y-4">
               {mainLinks.map((link) => (

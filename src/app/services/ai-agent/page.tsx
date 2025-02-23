@@ -6,6 +6,7 @@ import { Industries } from "@/src/app/components/ai-agent/industries"
 import { Process } from "@/src/app/components/ai-agent/process"
 import { ToolsAndTechnology} from "@/src/app/components/ai-agent/tools-and-technology"
 import { FAQ } from "@/src/app/components/ai-agent/faq"
+import { CTA } from "@/src/app/components/ai-agent/CTA" 
 
 export default function Enterprisegenaidev() {
   return (
@@ -18,6 +19,7 @@ export default function Enterprisegenaidev() {
       <Process />
       <ToolsAndTechnology /> 
       <FAQ />
+      < CTA /> 
       
     </main>
   )}

@@ -6,6 +6,7 @@ import { Expertise } from "@/src/app/components/midjourney/expertise"
 
 import { Industries} from "@/src/app/components/midjourney/industries"
 import { FAQ } from "@/src/app/components/midjourney/faq"
+import { CTA } from "../../components/midjourney/CTA"
 export default function Enterprisegenaidev() {
   return (
     <main className="bg-[#080B16]">
@@ -16,7 +17,7 @@ export default function Enterprisegenaidev() {
       <Expertise />
       <Industries />
       <FAQ />
-      
+      <CTA />
       
     </main>
   )}

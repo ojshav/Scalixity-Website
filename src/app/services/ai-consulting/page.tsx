@@ -10,6 +10,7 @@ import { ToolsAndTechnology} from "@/src/app/components/ai-consulting/tools-and-
 import { Expertise } from "@/src/app/components/ai-consulting/expertise"
 import { Industries } from "@/src/app/components/ai-consulting/industries"
 import { FAQ } from "@/src/app/components/ai-consulting/faq"
+import { CTA } from "@/src/app/components/ai-consulting/CTA"
 export default function AIDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
@@ -25,6 +26,6 @@ export default function AIDevelopmentPage() {
       < Expertise />
       <Industries />
       <FAQ />
-      
+      < CTA />
     </main>
   )}

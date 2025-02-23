@@ -9,6 +9,7 @@ import { TechStack} from "@/src/app/components/hedera/tech-stack"
 import { Expertise } from "@/src/app/components/hedera/expertise"
 import { Industries } from "@/src/app/components/hedera/industries"
 import { FAQ } from "@/src/app/components/hedera/faq"
+import { CTA } from "@/src/app/components/hedera/CTA"
 export default function BlockchainDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
@@ -23,6 +24,7 @@ export default function BlockchainDevelopmentPage() {
       < Expertise />
       < Industries />
       <FAQ />
+      < CTA />
       
     </main>
   )}

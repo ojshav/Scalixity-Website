@@ -8,6 +8,7 @@ import { TechStack} from "@/src/app/components/cardano/tech-stack"
 import { Expertise } from "@/src/app/components/cardano/expertise"
 import { Industries } from "@/src/app/components/cardano/industries"
 import { FAQ } from "@/src/app/components/cardano/faq"
+import { CTA  } from "@/src/app/components/cardano/CTA"
 export default function BlockchainDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
@@ -21,6 +22,7 @@ export default function BlockchainDevelopmentPage() {
       < Expertise />
       < Industries />
       <FAQ />
+      < CTA />
       
     </main>
   )}

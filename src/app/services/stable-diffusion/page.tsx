@@ -6,6 +6,7 @@ import { Expertise } from "@/src/app/components/stable-diffusion/expertise"
 import { ToolsAndTechnology } from "@/src/app/components/stable-diffusion/tools-and-technology"
 import { Industries } from "@/src/app/components/stable-diffusion/industries"
 import { FAQ } from "@/src/app/components/stable-diffusion/faq"
+import { CTA } from "../../components/stable-diffusion/CTA"
 export default function Enterprisegenaidev() {
   return (
     <main className="bg-[#080B16]">
@@ -17,7 +18,7 @@ export default function Enterprisegenaidev() {
       <ToolsAndTechnology />
       <Industries />
        <FAQ />
-      
+      <CTA/>
       
     </main>
   )}

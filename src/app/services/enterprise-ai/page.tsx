@@ -9,6 +9,7 @@ import { Industries } from "@/src/app/components/enterprise-ai/industries"
 import { Expertise } from "@/src/app/components/enterprise-ai/expertise"
 import { ToolsAndTechnology } from "@/src/app/components/enterprise-ai/tools-and-technology"
 import { FAQ } from "@/src/app/components/enterprise-ai/faq"
+import { CTA } from "@/src/app/components/enterprise-ai/CT"
 export default function Enterpriseaidev() {
   return (
     <main className="bg-[#080B16]">
@@ -23,6 +24,7 @@ export default function Enterpriseaidev() {
       < Expertise />
       <ToolsAndTechnology />
       <FAQ />
+      < CTA />
       
     </main>
   )}

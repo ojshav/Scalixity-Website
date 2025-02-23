@@ -10,7 +10,7 @@ import { ProductDevelopmentExpertise } from "@/src/app/components/product/expert
 import { IndustriesProductDevelopment } from "@/src/app/components/product/industries"
 import { SuccessStories } from "@/src/app/components/product/success-stories"
 import { ProductDevelopmentFAQ } from "@/src/app/components/product/faq"
-
+import { CTA } from "@/src/app/components/product/CTA"
 export default function SoftwareDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
@@ -26,7 +26,7 @@ export default function SoftwareDevelopmentPage() {
      < IndustriesProductDevelopment />
      < SuccessStories />
      <  ProductDevelopmentFAQ />
-
+    < CTA />
         
           </main>
         )

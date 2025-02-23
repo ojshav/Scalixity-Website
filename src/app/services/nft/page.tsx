@@ -8,6 +8,7 @@ import { ToolsAndTechnology } from "@/src/app/components/nft/ToolsAndTechnology"
 import { Expertise } from "@/src/app/components/nft/expertise"
 import { Industries } from "@/src/app/components/nft/industries"
 import { FAQ } from "@/src/app/components/nft/faq"
+import { CTA } from "@/src/app/components/nft/CTA"
 export default function BlockchainDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
@@ -21,6 +22,6 @@ export default function BlockchainDevelopmentPage() {
       < Expertise />
       < Industries />
       <FAQ />
-      
+      <CTA />
     </main>
   )}

@@ -6,6 +6,7 @@ import { ToolsAndTechnology } from "@/src/app/components/gen-ai-integration/tool
 import { Industries } from "@/src/app/components/gen-ai-integration/industries"
 import { WhyChooseUs } from "@/src/app/components/gen-ai-integration/why-choose-us"
 import { FAQ } from "@/src/app/components/gen-ai-integration/faq"
+import { CTA } from "../../components/gen-ai-integration/CTA"
 export default function AIAgentDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
@@ -17,7 +18,9 @@ export default function AIAgentDevelopmentPage() {
       <Industries />
       <WhyChooseUs />
       <FAQ />
+      < CTA />
     </main>
+
   )
 }
 

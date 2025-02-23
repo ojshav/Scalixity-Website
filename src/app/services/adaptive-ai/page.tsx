@@ -6,6 +6,7 @@ import { Expertise } from "@/src/app/components/adaptive-ai/expertise"
 import { ToolsAndTechnology} from "@/src/app/components/adaptive-ai/tools-and-tachnology"
 import { Industries} from "@/src/app/components/adaptive-ai/industries"
 import { FAQ } from "@/src/app/components/adaptive-ai/faq"
+import { CTA } from "@/src/app/components/adaptive-ai/CTA"
 export default function Enterprisegenaidev() {
   return (
     <main className="bg-[#080B16]">
@@ -17,6 +18,7 @@ export default function Enterprisegenaidev() {
       <ToolsAndTechnology />
       <Industries />
       <FAQ />
+      < CTA /> 
       
     </main>
   )}

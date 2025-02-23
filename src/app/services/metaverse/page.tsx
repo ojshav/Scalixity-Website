@@ -9,6 +9,7 @@ import { TechStack} from "@/src/app/components/metaverse/tech-stack"
 import { Expertise } from "@/src/app/components/metaverse/expertise"
 import { Industries } from "@/src/app/components/metaverse/industries"
 import { FAQ } from "@/src/app/components/metaverse/faq"
+import { CTA } from "@/src/app/components/metaverse/CTA"
 export default function BlockchainDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
@@ -23,6 +24,7 @@ export default function BlockchainDevelopmentPage() {
       < Expertise />
       < Industries />
       <FAQ />
+      <CTA />
       
     </main>
   )}

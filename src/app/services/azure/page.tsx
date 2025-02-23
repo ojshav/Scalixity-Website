@@ -2,7 +2,7 @@
 import { WhyChooseUs } from "@/src/app/components/azure/why-choose-us"
 
 import { TechStack } from "@/src/app/components/azure/tech-stack"
-
+import { CTA } from "@/src/app/components/azure/CTA"
 
 
 export default function CloudDevelopmentPage() {
@@ -12,7 +12,7 @@ export default function CloudDevelopmentPage() {
       <WhyChooseUs />
     
       <TechStack /> /
-      
+    < CTA />  
       
    
       

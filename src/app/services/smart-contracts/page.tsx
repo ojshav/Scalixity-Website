@@ -8,6 +8,7 @@ import { TechStack} from "@/src/app/components/smart-contracts/tech-stack"
 import { Expertise } from "@/src/app/components/smart-contracts/expertise"
 import { Industries } from "@/src/app/components/smart-contracts/industries"
 import { FAQ } from "@/src/app/components/smart-contracts/faq"
+import { CTA } from "../../components/smart-contracts/CTA"
 export default function BlockchainDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
@@ -21,6 +22,6 @@ export default function BlockchainDevelopmentPage() {
       < Expertise />
       < Industries />
       <FAQ />
-      
+      <CTA/>
     </main>
   )}

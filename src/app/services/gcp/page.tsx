@@ -1,7 +1,7 @@
 import { WhyChooseUs } from "@/src/app/components/gcp/why-choose-us"
 
 import { TechStack } from "@/src/app/components/gcp/tech-stack"
-
+import { CTA } from "@/src/app/components/gcp/CTA"
 
 
 export default function CloudDevelopmentPage() {
@@ -11,6 +11,7 @@ export default function CloudDevelopmentPage() {
       <WhyChooseUs />
     
       <TechStack /> /
+      <CTA/>
       
      
       

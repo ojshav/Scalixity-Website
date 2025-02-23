@@ -5,7 +5,7 @@ import { Benefits } from "@/src/app/components/chatbot/benefits"
 import { Capabilities } from "@/src/app/components/chatbot/capabilities"
 import { Process } from "@/src/app/components/chatbot/process"
 import { FeaturedWork }from "@/src/app/components/chatbot/featured-work"
-
+import { CTA } from "@/src/app/components/chatbot/CTA"
 
 
 export default function AIDevelopmentPage() {
@@ -18,6 +18,6 @@ export default function AIDevelopmentPage() {
       < Capabilities />
       <Process />
       < FeaturedWork />
-      
+      < CTA />
     </main>
   )}

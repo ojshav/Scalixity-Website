@@ -5,6 +5,7 @@ import { ToolsAndTechnology} from "@/src/app/components/enterprise-gen-ai/tools-
 import { WhyChooseUs } from "@/src/app/components/enterprise-gen-ai/why-choose-us"
 import { Industries } from "@/src/app/components/enterprise-gen-ai/industries"
 import { FAQ } from "@/src/app/components/enterprise-gen-ai/faq"
+import { CTA } from "@/src/app/components/enterprise-gen-ai/CTA"
 export default function Enterprisegenaidev() {
   return (
     <main className="bg-[#080B16]">
@@ -15,6 +16,7 @@ export default function Enterprisegenaidev() {
       <WhyChooseUs />
       <Industries />
       <FAQ />
+      < CTA />
       
     </main>
   )}

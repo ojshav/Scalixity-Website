@@ -10,6 +10,7 @@ import { EnterpriseAppExpertise } from "@/src/app/components/enterprise/expertis
 import { IndustriesEnterpriseAppDevelopment } from "@/src/app/components/enterprise/industries"
 import { SuccessStories } from "@/src/app/components/enterprise/success-stories"
 import { EnterpriseAppDevelopmentFAQ } from "@/src/app/components/enterprise/faq"
+import { CTA } from "@/src/app/components/enterprise/CTA"
 export default function SoftwareDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
@@ -25,6 +26,7 @@ export default function SoftwareDevelopmentPage() {
       < IndustriesEnterpriseAppDevelopment />
       < SuccessStories />
       <EnterpriseAppDevelopmentFAQ />
+      < CTA/> 
       
     </main>
   )}
