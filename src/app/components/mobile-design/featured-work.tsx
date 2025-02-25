@@ -28,10 +28,10 @@ const featuredProjects = [
 
 export function FeaturedWork() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-gradient-to-b from-[#080B16] to-[#121826] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">FEATURED WORK</span>
+          <span className="text-sm text-primary/70 uppercase tracking-wider">FEATURED WORK</span>
           <h2 className="text-4xl font-bold text-white mt-4 mb-6">Our Mobile App Designs</h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Discover our latest mobile app designs that combine aesthetics, functionality, and user experience.
@@ -46,7 +46,7 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-xl overflow-hidden border border-border hover:border-primary/50 transition-colors"
+              className="relative rounded-xl overflow-hidden border border-primary/20 bg-gradient-to-r from-[#1e293b] to-[#334155] hover:from-primary/30 hover:to-primary/50 transition-all duration-500 shadow-lg hover:scale-105"
             >
               <Image
                 src={project.image}
@@ -56,9 +56,10 @@ export function FeaturedWork() {
                 className="w-full h-64 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-gray-400">{project.description}</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                <p className="text-gray-300">{project.description}</p>
               </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 opacity-0 hover:opacity-100 transition-all duration-500"></div>
             </motion.div>
           ))}
         </div>
@@ -68,3 +69,6 @@ export function FeaturedWork() {
 }
 
 export default FeaturedWork;
+
+
+

@@ -7,49 +7,49 @@ const reasons = [
   {
     icon: Smartphone,
     title: "User-Centric Design",
-    description: "We create intuitive and engaging mobile app experiences tailored for seamless user interaction."
+    description: "We don't just design apps — we craft seamless, intuitive experiences that captivate users and drive engagement."
   },
   {
     icon: Palette,
     title: "Custom UI/UX Solutions",
-    description: "Our designs are aesthetically pleasing, brand-aligned, and optimized for maximum usability."
+    description: "Bold, beautiful, and brand-aligned. Our UI/UX designs ensure your app stands out and shines."
   },
   {
     icon: Layers,
     title: "End-to-End Development",
-    description: "From wireframing to prototyping, we handle the full design journey for your mobile app."
+    description: "From concept sketches to high-fidelity prototypes, we guide your app’s journey every step of the way."
   },
   {
     icon: Star,
     title: "Industry-Leading Expertise",
-    description: "Our team has extensive experience in designing top-tier mobile applications across industries."
+    description: "Backed by experience, fueled by creativity — we design apps that set new standards in every industry."
   },
   {
     icon: ShieldCheck,
     title: "Security & Compliance",
-    description: "We ensure our designs adhere to security best practices and industry standards."
+    description: "We embed security into our designs, ensuring your app is both beautiful and bulletproof."
   },
   {
     icon: Users,
     title: "User Testing & Iteration",
-    description: "We refine designs through continuous feedback, ensuring optimal user experience."
+    description: "Real feedback, real results. We fine-tune designs through constant iteration for flawless user experiences."
   }
 ];
 
 export function WhyChooseUs() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-gradient-to-br from-[#1A1B26] to-[#080B16] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-5xl font-extrabold text-white mb-6 tracking-tight">
             Why Choose Us for Mobile App Design
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Our expert design team delivers innovative and visually stunning mobile experiences, ensuring user engagement and business success.
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            We create more than just designs — we build digital experiences that inspire, engage, and deliver results.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {reasons.map((reason, index) => (
             <motion.div
               key={index}
@@ -57,11 +57,13 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#0F1629] p-10 rounded-2xl border border-[#2A2D3A] hover:border-purple-500 shadow-lg hover:shadow-purple-500/50 transition-all"
             >
-              <reason.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-foreground mb-4">{reason.title}</h3>
-              <p className="text-muted-foreground">{reason.description}</p>
+              <div className="flex items-center justify-center w-16 h-16 bg-purple-500/20 rounded-full mb-6">
+                <reason.icon className="w-10 h-10 text-purple-500" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">{reason.title}</h3>
+              <p className="text-gray-400">{reason.description}</p>
             </motion.div>
           ))}
         </div>

@@ -16,13 +16,13 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-gradient-to-r from-[#0f172a] to-[#1e293b] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-4xl font-bold text-white mt-4 mb-6">Industries We Serve</h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Our expert mobile app design services cater to a wide range of industries, ensuring intuitive and user-friendly experiences.
+          <span className="text-sm text-primary uppercase tracking-wider">INDUSTRIES</span>
+          <h2 className="text-5xl font-bold text-white mt-4 mb-6">Industries We Serve</h2>
+          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+            Explore the diverse industries we revolutionize through data-driven mobile app designs.
           </p>
         </div>
 
@@ -34,12 +34,13 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center text-center"
+              whileHover={{ scale: 1.1, rotate: 3 }}
+              className="bg-gradient-to-br from-[#1e293b] to-[#334155] p-8 rounded-2xl shadow-lg border border-primary/50 cursor-pointer transition-transform hover:shadow-primary/50"
             >
-              <div className="bg-card p-6 rounded-full mb-4 border border-border">
-                <Image src={industry.icon} alt={industry.name} width={48} height={48} className="w-12 h-12" />
+              <div className="flex flex-col items-center">
+                <Image src={industry.icon} alt={industry.name} width={64} height={64} className="mb-4" />
+                <h3 className="text-xl font-semibold text-white">{industry.name}</h3>
               </div>
-              <h3 className="text-lg font-semibold text-white">{industry.name}</h3>
             </motion.div>
           ))}
         </div>
@@ -49,3 +50,8 @@ export function Industries() {
 }
 
 export default Industries;
+
+
+
+
+
