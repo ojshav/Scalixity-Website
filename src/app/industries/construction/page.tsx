@@ -1,4 +1,5 @@
 import { Hero } from "@/src/app/components/industries/construction/hero"
+import {GetStarted } from "@/src/app/components/industries/construction/GetStarted"
 import { AIApplications } from "@/src/app/components/industries/construction/ai-application"
 import { UseCases } from "@/src/app/components/industries/construction/use-case"
 import { AIBenefits } from "@/src/app/components/industries/construction/benefits"
@@ -11,6 +12,7 @@ export default function FintechPage() {
   return (
     <main className="bg-background">
       <Hero />
+      <GetStarted />
       <AIApplications />
       <UseCases />
       <AIBenefits />
