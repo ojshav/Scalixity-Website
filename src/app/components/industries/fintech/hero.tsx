@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black py-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-r from-purple-900 to-black py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -13,7 +13,7 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-600">
             AI Solutions for Fintech Innovation
           </h1>
           <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
@@ -29,7 +29,10 @@ export function Hero() {
           </div>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
+      <div className="absolute inset-0">
+        <div className="w-full h-full bg-black opacity-30 animate-pulse"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent to-purple-800 mix-blend-overlay" />
+      </div>
     </section>
   );
 }

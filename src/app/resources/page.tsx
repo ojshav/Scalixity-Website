@@ -21,6 +21,12 @@ export default function ResourcesPage() {
       type: "Webinar",
       link: "/resources/intro-to-generative-ai"
     },
+    { 
+      title: "Building AI-Powered Chatbots",
+      description: "Discover how to create intelligent chatbots using AI technologies.",
+      type: "Workshop",
+      link: "/resources/ai-powered-chatbots"
+    },
   ]
 
   return (

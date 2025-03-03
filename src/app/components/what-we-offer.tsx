@@ -38,14 +38,14 @@ const offerings = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#0c1220] py-32">
+    <section className="bg-[#9FA8DA] py-32">
       <div className="container mx-auto px-4">
         <div className="text-center mb-20">
-          <span className="text-sm text-blue-400 uppercase tracking-wider font-semibold">WHAT WE OFFER</span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mt-4 mb-6">
+          <span className="text-md text-blue-600 uppercase tracking-wider font-semibold">WHAT WE OFFER</span>
+          <h2 className="text-4xl md:text-6xl font-bold text-white mt-4 mb-6">
             Transforming Businesses with AI Solutions
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
            Scalixity brings together industry specialists, strategic thinkers, and advanced technology to
             drive data-driven success and scale value.
           </p>
@@ -57,7 +57,7 @@ export function WhatWeOffer() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#0F1629] rounded-xl p-8 hover:bg-[#1A1B26] transition-colors shadow-lg"
+              className="bg-white rounded-xl p-8 hover:bg-[#f4f4f4] transition-colors shadow-lg"
             >
               <motion.div
                 className="text-blue-500 mb-4"
@@ -67,11 +67,11 @@ export function WhatWeOffer() {
               >
                 <offering.icon size={40} />
               </motion.div>
-              <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
+              <h3 className="text-3xl font-bold text-black mb-4 flex items-center">
                 {offering.title}
                 <ArrowRight className="ml-2 h-5 w-5 text-blue-500" />
               </h3>
-              <p className="text-gray-400 mb-6">{offering.description}</p>
+              <p className="text-gray-600 mb-6">{offering.description}</p>
               <Link 
                 href={offering.link} 
                 className="inline-flex items-center text-blue-500 hover:text-blue-400 font-medium"
@@ -85,4 +85,3 @@ export function WhatWeOffer() {
     </section>
   )
 }
-

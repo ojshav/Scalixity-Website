@@ -38,14 +38,14 @@ const applications = [
 
 export function AIApplications() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-gradient-to-r from-indigo-600 to-purple-600 py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">AI APPLICATIONS</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-gray-200 uppercase tracking-wider">AI APPLICATIONS</span>
+          <h2 className="text-5xl font-extrabold text-white mt-4 mb-6">
             Revolutionizing Fintech with AI
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-gray-100 max-w-3xl mx-auto">
             Explore how our AI-powered solutions are transforming the fintech landscape by enhancing security, optimizing investments, personalizing customer experiences, and driving operational efficiency. Our innovative AI technologies empower financial institutions to make data-backed decisions, mitigate risks proactively, and deliver tailored financial solutions that cater to the evolving needs of their clients.
           </p>
         </div>
@@ -58,11 +58,11 @@ export function AIApplications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="p-8 rounded-xl bg-white shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow"
             >
-              <app.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-foreground mb-4">{app.title}</h3>
-              <p className="text-muted-foreground">{app.description}</p>
+              <app.icon className="w-12 h-12 text-indigo-600 mb-6" />
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">{app.title}</h3>
+              <p className="text-gray-600">{app.description}</p>
             </motion.div>
           ))}
         </div>

@@ -2,81 +2,61 @@
 
 import { motion } from 'framer-motion';
 
-const useCases = [
+const manufacturingUseCases = [
   {
-    number: "01",
     title: "Predictive Maintenance",
-    description: "Leverage AI algorithms to foresee equipment failures, minimizing downtime and reducing maintenance costs."
+    description: "Harness AI to foresee equipment failures before they happen, slashing downtime and saving costs. Stay a step ahead of breakdowns!"
   },
   {
-    number: "02",
-    title: "Quality Control Automation",
-    description: "Use AI-powered image recognition to detect defects and ensure high product quality in real-time."
+    title: "Smart Quality Control",
+    description: "Let AI-powered vision systems catch even the tiniest defects in real-time. Flawless products, happy customers — every time."
   },
   {
-    number: "03",
-    title: "Supply Chain Optimization",
-    description: "Employ AI to predict demand, optimize inventory levels, and streamline logistics for better efficiency."
+    title: "Supply Chain Supercharging",
+    description: "Predict demand, streamline logistics, and optimize inventory with AI. No more stockouts or surplus — just seamless operations."
   },
   {
-    number: "04",
-    title: "Production Line Automation",
-    description: "Integrate AI and robotics to automate repetitive tasks, boosting speed and precision."
+    title: "Intelligent Production Lines",
+    description: "Automate repetitive tasks with AI and robotics, cranking up speed and accuracy. More output, less hassle."
   },
   {
-    number: "05",
-    title: "Energy Management",
-    description: "Utilize AI to monitor and optimize energy consumption, reducing operational costs and environmental impact."
+    title: "Energy Efficiency Mastery",
+    description: "AI keeps an eye on your energy consumption, fine-tuning it for peak efficiency. Save the planet and your budget."
   },
   {
-    number: "06",
-    title: "Custom Product Design",
-    description: "Implement AI-driven design tools to create personalized products based on customer preferences and data insights."
+    title: "Bespoke Product Design",
+    description: "Craft personalized products using AI insights. Tailor designs to your customers’ desires and watch satisfaction soar."
   }
 ];
 
 export function UseCases() {
   return (
-    <section className="bg-background py-24">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
-            AI Use Cases in Manufacturing
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Discover how AI transforms manufacturing processes, enhancing efficiency and innovation.
-          </p>
-        </div>
-
-        <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-primary/20 md:left-1/2 md:-translate-x-px" />
-
-          <div className="space-y-12">
-            {useCases.map((useCase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="relative pl-12 md:pl-0"
-              >
-                <div className={`md:flex items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                  <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-primary rounded-full flex items-center justify-center md:relative md:left-auto md:top-auto md:mx-8">
-                    <div className="w-2 h-2 bg-background rounded-full" />
-                  </div>
-                  
-                  <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:text-right' : ''}`}>
-                    <div className="bg-card p-6 rounded-xl border border-border">
-                      <div className="text-primary text-sm font-bold mb-2">USE CASE {useCase.number}</div>
-                      <h3 className="text-xl font-bold text-foreground mb-4">{useCase.title}</h3>
-                      <p className="text-muted-foreground">{useCase.description}</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+    <section className="bg-gradient-to-br from-indigo-900 via-purple-800 to-blue-900 py-24">
+      <div className="container mx-auto px-4 text-center">
+        <h2 className="text-5xl font-extrabold text-white mb-12">
+          AI-Powered Innovations in Manufacturing
+        </h2>
+        <p className="text-xl text-white text-opacity-80 max-w-3xl mx-auto mb-16">
+          Supercharge your manufacturing processes with cutting-edge AI solutions. From predictive maintenance to smart quality control, let innovation drive your success.
+        </p>
+        <div className="flex flex-wrap justify-center gap-12">
+          {manufacturingUseCases.map((useCase, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 50, rotate: index % 2 === 0 ? -8 : 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="bg-purple-600 p-6 rounded-lg shadow-lg text-left w-full sm:w-2/5 md:w-1/3 lg:w-1/4 transform"
+            >
+              <h3 className="text-2xl font-bold text-white mb-4">
+                {useCase.title}
+              </h3>
+              <p className="text-white text-opacity-80 leading-relaxed">
+                {useCase.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -84,5 +64,3 @@ export function UseCases() {
 }
 
 export default UseCases;
-
-

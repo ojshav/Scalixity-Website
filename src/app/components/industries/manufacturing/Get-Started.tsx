@@ -29,7 +29,7 @@ export function GetStarted() {
             transition={{ duration: 0.3 }}
             className="bg-black hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-full shadow-xl transition-transform transform hover:scale-110"
           >
-            🏭 Get Started Now
+             Get Started Now
           </motion.button>
           <motion.button 
             initial={{ scale: 0.8 }}

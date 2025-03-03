@@ -23,12 +23,9 @@ export function Hero() {
           Embrace AI to boost operational efficiency, enhance product quality, and streamline your manufacturing processes. Leverage predictive analytics to foresee equipment failures before they happen, optimize supply chains with real-time data insights, and drive innovation through smart automation. AI empowers manufacturers to reduce downtime, cut operational costs, and deliver high-quality products at scale — ensuring a competitive edge in today’s fast-paced market.
         </motion.p>
         <motion.button 
-          initial={{ scale: 0.8 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.3 }}
-          className="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg shadow-lg"
+          
         >
-          Get Started
+          
         </motion.button>
       </div>
     </section>
