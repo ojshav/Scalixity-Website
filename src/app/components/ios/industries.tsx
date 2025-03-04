@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const industries = [
-  { name: "E-commerce & Retail", icon: "/icons/ecommerce.svg" },
-  { name: "Media & Entertainment", icon: "/icons/media.svg" },
-  { name: "Healthcare & Telemedicine", icon: "/icons/healthcare.svg" },
-  { name: "Travel & Hospitality", icon: "/icons/travel.svg" },
+  { name: "E-Commerce", icon: "/icons/ecommerce.svg" },
+  { name: "Healthcare", icon: "/icons/healthcare.svg" },
   { name: "Finance & Banking", icon: "/icons/finance.svg" },
   { name: "Education & E-Learning", icon: "/icons/education.svg" },
-  { name: "Real Estate", icon: "/icons/real-estate.svg" },
-  { name: "Logistics & Supply Chain", icon: "/icons/logistics.svg" }
+  { name: "Fitness & Wellness", icon: "/icons/fitness.svg" },
+  { name: "Travel & Hospitality", icon: "/icons/travel.svg" },
+  { name: "Media & Entertainment", icon: "/icons/media.svg" },
+  { name: "On-Demand Services", icon: "/icons/ondemand.svg" }
 ];
 
 export function Industries() {
@@ -21,10 +21,10 @@ export function Industries() {
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
           <h2 className="text-4xl font-bold text-white mt-4 mb-6">
-            Native App Development for Diverse Industries
+            iOS App Development Across Key Industries
           </h2>
           <p className="text-xl text-white max-w-3xl mx-auto">
-            Empowering businesses with high-performance, custom-built native applications designed to address unique industry challenges.
+            Crafting high-performance iOS apps tailored to transform businesses across diverse industries.
           </p>
         </div>
 

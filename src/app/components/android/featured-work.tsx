@@ -1,42 +1,41 @@
-"use client";
-
+"use client"
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const projects = [
   {
-    company: "AppFusion",
-    title: "Cross-Platform E-Commerce App",
-    description: "We partnered with AppFusion to build a hybrid e-commerce app that seamlessly works on both iOS and Android. The app delivers a native-like experience while leveraging a single codebase.",
+    company: "AppFlow Solutions",
+    title: "E-Commerce Android App",
+    description: "We developed a seamless, high-performance Android app for AppFlow Solutions, offering intuitive navigation, real-time tracking, and secure payment integrations.",
     image: "/placeholder.svg?height=600&width=800",
     features: [
-      "Unified codebase with React Native",
-      "Fast load times with optimized APIs",
-      "Push notifications for real-time updates",
-      "Offline functionality using local storage"
+      "Kotlin-powered native development",
+      "Firebase integration for real-time database",
+      "Secure payment gateways with Stripe",
+      "Optimized UI for various screen sizes"
     ]
   },
   {
-    company: "TechWave",
-    title: "Hybrid Healthcare App",
-    description: "For TechWave, we developed a hybrid healthcare app that allows patients to book appointments, chat with doctors, and receive real-time notifications—all from one platform.",
+    company: "HealthTrack",
+    title: "Fitness & Wellness App",
+    description: "For HealthTrack, we built a feature-rich Android app to monitor health metrics, provide personalized fitness plans, and sync with wearables.",
     image: "/placeholder.svg?height=600&width=800",
     features: [
-      "Cross-platform compatibility",
-      "Integrated live chat using WebSockets",
-      "Secure data storage with encryption",
-      "Smooth UI animations with Framer Motion"
+      "Bluetooth connectivity with fitness devices",
+      "Real-time health data visualization",
+      "Push notifications for workout reminders",
+      "Interactive user dashboards"
     ]
   }
 ];
 
 export function FeaturedWork() {
   return (
-    <section className="bg-[#6510A9] py-24 text-white">
+    <section className="bg-gradient-to-r from-[#6a0dad] to-[#4c1d95] py-24 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold">Our Hybrid App Development Showcase</h2>
-          <p className="text-lg mt-4 max-w-2xl mx-auto">Explore how we've built powerful cross-platform applications, delivering seamless experiences across iOS and Android.</p>
+          <h2 className="text-4xl font-bold">Our Android App Development Showcase</h2>
+          <p className="text-lg mt-4 max-w-2xl mx-auto">Explore how we've crafted cutting-edge Android applications, delivering outstanding performance, design, and user engagement.</p>
         </div>
 
         <div className="space-y-16">

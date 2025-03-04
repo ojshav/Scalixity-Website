@@ -6,24 +6,24 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const faqs = [
   {
-    question: "What is hybrid app development?",
-    answer: "Hybrid app development combines elements of both native and web applications, allowing apps to run on multiple platforms using a single codebase." 
+    question: "What is native Android app development?",
+    answer: "Native Android app development involves building applications specifically for the Android platform using programming languages like Kotlin or Java, ensuring optimal performance and seamless user experience."
   },
   {
-    question: "How do hybrid apps work?",
-    answer: "Hybrid apps are built using web technologies like HTML, CSS, and JavaScript, and then wrapped in a native shell, enabling them to be deployed across iOS and Android." 
+    question: "Why choose native development over cross-platform?",
+    answer: "Native development offers superior performance, better access to device features, and smoother UI/UX tailored to the Android ecosystem compared to cross-platform solutions."
   },
   {
-    question: "What are the benefits of hybrid apps?",
-    answer: "Hybrid apps offer faster development, cross-platform compatibility, cost-effectiveness, and easy maintenance compared to building separate native apps." 
+    question: "What industries benefit from native Android apps?",
+    answer: "Industries like eCommerce, healthcare, finance, gaming, and social media benefit from native Android apps due to their speed, reliability, and enhanced functionality."
   },
   {
-    question: "Can hybrid apps access device features?",
-    answer: "Yes! Using plugins and frameworks like Capacitor or Cordova, hybrid apps can access device features such as camera, GPS, and push notifications." 
+    question: "Can native apps work offline?",
+    answer: "Yes! Native Android apps can leverage local storage and databases, allowing users to access certain features and data without an internet connection."
   },
   {
-    question: "Are hybrid apps as fast as native apps?",
-    answer: "While hybrid apps can be highly performant, complex and graphics-heavy apps may benefit more from native development. However, modern frameworks have significantly closed this gap." 
+    question: "How do you ensure app security?",
+    answer: "We implement secure coding practices, encrypt data, use OAuth for authentication, and follow Google’s security best practices to protect your app from vulnerabilities."
   }
 ];
 
@@ -36,10 +36,10 @@ export function FAQ() {
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">FAQ</span>
           <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
-            Hybrid App Development FAQ
+            Android App Development FAQ
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Uncover the essentials of hybrid app development and how it bridges the gap between web and native apps.
+            Get answers to common questions about native Android app development and how it can elevate your business.
           </p>
         </div>
 

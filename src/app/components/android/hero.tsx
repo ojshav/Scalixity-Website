@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export function Hero() {
   return (
-    <section className="bg-gradient-to-r from-[#0f172a] to-[#1e293b] text-white py-24 relative overflow-hidden">
+    <section className="bg-gradient-to-r from-[#6a0dad] to-[#4c1d95] text-white py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 text-center">
         <motion.h1 
           initial={{ opacity: 0, y: -20 }} 
@@ -14,15 +14,15 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="text-5xl font-bold mb-6 drop-shadow-lg"
         >
-          Build Next-Gen Experiences with Native App Development
+          Build Next-Level Android Apps with Scalixity
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl text-gray-300 max-w-3xl mx-auto mb-8"
+          className="text-xl text-gray-200 max-w-3xl mx-auto mb-8"
         >
-          Create high-performance, secure, and engaging native mobile apps tailored for iOS and Android. Deliver seamless user experiences and drive your business forward.
+          Empower your business with powerful, user-centric Android applications designed for speed, security, and scalability.
         </motion.p>
         <motion.div 
           initial={{ opacity: 0 }} 
@@ -45,8 +45,8 @@ export function Hero() {
         className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[800px] opacity-70"
       >
         <Image 
-          src="/native-app-illustration.png" 
-          alt="Native App Development Illustration" 
+          src="/android-illustration.png" 
+          alt="Android App Development Illustration" 
           width={800} 
           height={400} 
           className="mx-auto"

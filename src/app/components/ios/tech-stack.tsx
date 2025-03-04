@@ -4,51 +4,42 @@ import { motion } from "framer-motion";
 
 const techStack = [
   {
-    category: "Core Technologies",
+    category: "Programming Languages",
     items: [
-      { name: "JavaScript", logo: "/tech/javascript.svg" },
-      { name: "TypeScript", logo: "/tech/typescript.svg" },
-      { name: "HTML5", logo: "/tech/html5.svg" }
+      { name: "Swift", logo: "/tech/swift.svg" },
+      { name: "Objective-C", logo: "/tech/objectivec.svg" }
     ]
   },
   {
     category: "Frameworks & Libraries",
     items: [
-      { name: "React Native", logo: "/tech/react-native.svg" },
-      { name: "Flutter", logo: "/tech/flutter.svg" },
-      { name: "Ionic", logo: "/tech/ionic.svg" }
+      { name: "SwiftUI", logo: "/tech/swiftui.svg" },
+      { name: "UIKit", logo: "/tech/uikit.svg" },
+      { name: "Combine", logo: "/tech/combine.svg" }
     ]
   },
   {
-    category: "State Management",
+    category: "Backend & Databases",
     items: [
-      { name: "Redux", logo: "/tech/redux.svg" },
-      { name: "MobX", logo: "/tech/mobx.svg" },
-      { name: "Context API", logo: "/tech/context-api.svg" }
+      { name: "Firebase", logo: "/tech/firebase.svg" },
+      { name: "CoreData", logo: "/tech/coredata.svg" },
+      { name: "Realm", logo: "/tech/realm.svg" }
     ]
   },
   {
     category: "Testing & Debugging",
     items: [
-      { name: "Jest", logo: "/tech/jest.svg" },
-      { name: "Detox", logo: "/tech/detox.svg" },
-      { name: "Appium", logo: "/tech/appium.svg" }
-    ]
-  },
-  {
-    category: "APIs & Backend",
-    items: [
-      { name: "Firebase", logo: "/tech/firebase.svg" },
-      { name: "GraphQL", logo: "/tech/graphql.svg" },
-      { name: "REST API", logo: "/tech/rest-api.svg" }
+      { name: "XCTest", logo: "/tech/xctest.svg" },
+      { name: "TestFlight", logo: "/tech/testflight.svg" },
+      { name: "Postman", logo: "/tech/postman.svg" }
     ]
   },
   {
     category: "Deployment & CI/CD",
     items: [
-      { name: "App Store", logo: "/tech/app-store.svg" },
-      { name: "Google Play", logo: "/tech/google-play.svg" },
-      { name: "Fastlane", logo: "/tech/fastlane.svg" }
+      { name: "App Store Connect", logo: "/tech/appstore.svg" },
+      { name: "Fastlane", logo: "/tech/fastlane.svg" },
+      { name: "Bitrise", logo: "/tech/bitrise.svg" }
     ]
   }
 ];
@@ -62,10 +53,10 @@ export function TechStack() {
             TECHNOLOGY STACK
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-            Hybrid App Development Tech Stack
+            iOS App Development Tech Stack
           </h2>
           <p className="text-xl text-white max-w-3xl mx-auto">
-            Leveraging modern frameworks and technologies to build seamless cross-platform mobile applications.
+            Discover the cutting-edge technologies we use to build high-performance, scalable iOS applications.
           </p>
         </div>
 

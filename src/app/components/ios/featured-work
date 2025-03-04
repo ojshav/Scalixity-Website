@@ -1,33 +1,33 @@
 "use client";
-
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const projects = [
   {
-    company: "AppFusion",
-    title: "Cross-Platform E-Commerce App",
-    description: "We partnered with AppFusion to build a hybrid e-commerce app that seamlessly works on both iOS and Android. The app delivers a native-like experience while leveraging a single codebase.",
+    company: "SwiftTech Solutions",
+    title: "FinTech Mobile App",
+    description:
+      "We developed a high-performance iOS FinTech application using Swift and SwiftUI, ensuring smooth transactions and real-time financial insights.",
     image: "/placeholder.svg?height=600&width=800",
     features: [
-      "Unified codebase with React Native",
-      "Fast load times with optimized APIs",
-      "Push notifications for real-time updates",
-      "Offline functionality using local storage"
-    ]
+      "Seamless Apple Pay integration",
+      "Face ID & Touch ID authentication",
+      "Live financial data visualization",
+      "Optimized for iOS 17+ with SwiftUI",
+    ],
   },
   {
-    company: "TechWave",
-    title: "Hybrid Healthcare App",
-    description: "For TechWave, we developed a hybrid healthcare app that allows patients to book appointments, chat with doctors, and receive real-time notifications—all from one platform.",
+    company: "HealthSync",
+    title: "AI-Powered Fitness App",
+    description:
+      "A feature-rich iOS fitness app leveraging AI to provide personalized workout plans and health tracking, enhancing user engagement.",
     image: "/placeholder.svg?height=600&width=800",
     features: [
-      "Cross-platform compatibility",
-      "Integrated live chat using WebSockets",
-      "Secure data storage with encryption",
-      "Smooth UI animations with Framer Motion"
-    ]
-  }
+      "Real-time motion tracking with Core Motion",
+      "AI-driven workout recommendations",
+      "HealthKit integration for fitness tracking",
+      "Gamified UI for better user engagement",
+    ],
+  },
 ];
 
 export function FeaturedWork() {
@@ -35,8 +35,10 @@ export function FeaturedWork() {
     <section className="bg-[#6510A9] py-24 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold">Our Hybrid App Development Showcase</h2>
-          <p className="text-lg mt-4 max-w-2xl mx-auto">Explore how we've built powerful cross-platform applications, delivering seamless experiences across iOS and Android.</p>
+          <h2 className="text-4xl font-bold">Our iOS App Development Showcase</h2>
+          <p className="text-lg mt-4 max-w-2xl mx-auto">
+            Explore our innovative iOS applications, built with Swift and SwiftUI, delivering seamless performance and an exceptional user experience.
+          </p>
         </div>
 
         <div className="space-y-16">

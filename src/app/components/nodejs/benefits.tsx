@@ -1,71 +1,71 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Rocket, Server, Code, Zap, ShieldCheck, Layers, Cpu, Plug, Database, RefreshCw } from 'lucide-react';
+import { Rocket, Layers, Cloud, Zap, Lock, Server, Code, TrendingUp, ShieldCheck, Globe } from 'lucide-react';
 
 const benefits = [
   {
     icon: Rocket,
-    title: "High-Performance App Development",
-    description: "Leverage Node.js for building fast, scalable, and event-driven applications with non-blocking I/O operations."
-  },
-  {
-    icon: Server,
-    title: "Real-Time Data Processing",
-    description: "Create real-time applications like chat apps, live updates, and streaming services with WebSockets and Node.js."
-  },
-  {
-    icon: Code,
-    title: "Efficient API Development",
-    description: "Build RESTful and GraphQL APIs that seamlessly integrate your frontend and backend for smooth data exchange."
-  },
-  {
-    icon: Zap,
-    title: "Lightning-Fast Execution",
-    description: "Boost app speed with Node.js's V8 engine, ensuring rapid execution of server-side logic and minimal latency."
-  },
-  {
-    icon: ShieldCheck,
-    title: "Robust Security Implementations",
-    description: "Implement security best practices with JWT authentication, data encryption, and protection against common web attacks."
+    title: "High Performance & Speed",
+    description: "Leverage Node.js's V8 engine to execute JavaScript at lightning speed, ensuring fast, seamless experiences."
   },
   {
     icon: Layers,
+    title: "Scalability & Flexibility",
+    description: "Easily scale your applications horizontally and vertically to handle increasing user loads with Node.js’s event-driven architecture."
+  },
+  {
+    icon: Cloud,
+    title: "Real-Time Capabilities",
+    description: "Build dynamic, real-time applications like chat apps, gaming platforms, and live streaming services."
+  },
+  {
+    icon: Zap,
+    title: "Cross-Platform Development",
+    description: "Use JavaScript for both frontend and backend, streamlining development and reducing time-to-market."
+  },
+  {
+    icon: Lock,
+    title: "Enhanced Security",
+    description: "Implement robust authentication, data encryption, and secure API integrations to safeguard user data."
+  },
+  {
+    icon: Server,
+    title: "Robust Ecosystem",
+    description: "Access thousands of open-source libraries through npm, accelerating feature development and innovation."
+  },
+  {
+    icon: Code,
     title: "Microservices Architecture",
-    description: "Design flexible and scalable microservices using Node.js, ensuring seamless deployment and maintenance."
+    description: "Build modular, independent services that enhance maintainability and allow rapid updates."
   },
   {
-    icon: Cpu,
-    title: "Scalable Server-Side Solutions",
-    description: "Handle high traffic loads and concurrent requests efficiently with Node.js’s event-driven architecture."
+    icon: TrendingUp,
+    title: "Cost-Effective Solutions",
+    description: "Reduce infrastructure and development costs by using a single language across the entire tech stack."
   },
   {
-    icon: Plug,
-    title: "Seamless Third-Party Integrations",
-    description: "Connect your apps with databases, cloud services, payment gateways, and more using Node.js’s vast ecosystem."
+    icon: ShieldCheck,
+    title: "Cloud Compatibility",
+    description: "Seamlessly integrate Node.js apps with cloud platforms like AWS, Google Cloud, and Azure for fast deployment."
   },
   {
-    icon: Database,
-    title: "Database Connectivity",
-    description: "Integrate with both SQL and NoSQL databases like MongoDB, PostgreSQL, and Redis for smooth data management."
-  },
-  {
-    icon: RefreshCw,
-    title: "Continuous Deployment & Monitoring",
-    description: "Ensure peak performance with CI/CD pipelines, error tracking, and real-time monitoring for Node.js apps."
+    icon: Globe,
+    title: "SEO Optimization",
+    description: "Ensure your apps are search engine-friendly, boosting visibility and organic reach."
   }
 ];
 
 export function Benefits() {
   return (
-    <section className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-24">
+    <section className="bg-gradient-to-r from-[#6a0dad] to-[#4c1d95] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Why Choose Scalixity for Node.js App Development
+            Why Choose Scalixity for Node.js Development
           </h2>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Empower your backend with Node.js — build high-performance, real-time apps that scale effortlessly with Scalixity.
+            Supercharge your backend with fast, scalable Node.js solutions — tailored for modern web and mobile apps.
           </p>
         </div>
 

@@ -4,24 +4,24 @@ import { motion } from 'framer-motion';
 
 const processSteps = [
   {
-    title: "Discovery & Strategy",
-    description: "We start by understanding your business goals, target audience, and app requirements to craft a strategic roadmap."
+    title: "Concept & Strategy",
+    description: "We start by understanding your vision, defining goals, and crafting a tailored strategy for your iOS app."
   },
   {
     title: "UI/UX Design",
-    description: "Our design team creates intuitive, user-centric interfaces that ensure seamless experiences across iOS and Android platforms."
+    description: "Our designers create sleek, user-centric interfaces ensuring seamless experiences across all Apple devices."
   },
   {
     title: "App Development",
-    description: "We build high-performance native apps using Swift, Kotlin, or React Native, tailored to your app's functionality and scalability."
+    description: "We leverage Swift and Objective-C to build high-performance, feature-rich iOS applications."
   },
   {
-    title: "Testing & QA",
-    description: "Rigorous testing is conducted to identify and resolve bugs, ensuring your app is stable, secure, and user-friendly."
+    title: "Testing & Quality Assurance",
+    description: "Comprehensive testing guarantees your app is bug-free, secure, and optimized for the App Store."
   },
   {
-    title: "Deployment & Support",
-    description: "We launch your app on App Store and Google Play, with ongoing support to enhance performance and user engagement."
+    title: "Launch & Support",
+    description: "We ensure a smooth App Store launch and provide ongoing support to keep your app updated and competitive."
   }
 ];
 
@@ -32,10 +32,10 @@ export function Process() {
         <div className="text-center mb-16">
           <span className="text-sm text-white uppercase tracking-wider">PROCESS</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-            Our Native App Development Process
+            Our iOS App Development Process
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto">
-            From idea to app store, we build user-focused native apps that drive engagement and growth.
+            From idea to launch, we follow a streamlined process to create high-impact iOS applications tailored for your business.
           </p>
         </div>
 
