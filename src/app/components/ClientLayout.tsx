@@ -24,7 +24,19 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     "/dashboard/settings"
   ].includes(pathname);
 
-  // Page visit tracking
+  // Function to detect device type
+  const getDeviceType = () => {
+    const userAgent = navigator.userAgent.toLowerCase();
+
+    if (/mobile|android|iphone|ipod|blackberry|windows phone/.test(userAgent)) {
+      return "Mobile";
+    } else if (/ipad|tablet|kindle|playbook/.test(userAgent)) {
+      return "Tablet";
+    } else {
+      return "Desktop";
+    }
+  };
+
   useEffect(() => {
     let visitorId = localStorage.getItem("visitorId");
 
@@ -33,29 +45,45 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       localStorage.setItem("visitorId", visitorId);
     }
 
-    const eventData = {
-      visitorId,
-      page: pathname,
-      timestamp: new Date().toISOString(),
-      event: "page_visit",
+    const deviceType = getDeviceType();
+
+    const sendEvent = (eventType: "page_visit" | "exit") => {
+      const eventData = {
+        visitorId,
+        page: pathname,
+        timestamp: new Date().toISOString(),
+        event: eventType,
+        deviceType, // Include device info
+      };
+
+      console.log(`Sending ${eventType} event:`, eventData);
+
+      fetch("http://localhost:5000/api/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(eventData),
+      })
+      .then(async (response) => {
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error}`);
+        }
+        return response.json();
+      })
+      .then(data => console.log(`${eventType} event successful:`, data))
+      .catch((err) => console.error(`${eventType} event failed:`, err));
     };
 
-    console.log("Sending tracking data:", eventData); // Debug log
+    // Send page visit event
+    sendEvent("page_visit");
 
-    fetch("http://localhost:5000/api/track", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(eventData),
-    })
-    .then(async (response) => {
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error}`);
-      }
-      return response.json();
-    })
-    .then(data => console.log("Tracking successful:", data))
-    .catch((err) => console.error("Tracking failed:", err));
+    // Send exit event when user leaves
+    const handleExit = () => sendEvent("exit");
+    window.addEventListener("beforeunload", handleExit);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleExit);
+    };
   }, [pathname]);
 
   return (

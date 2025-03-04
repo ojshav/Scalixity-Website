@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   LineChart, Line, BarChart, Bar, 
   XAxis, YAxis, CartesianGrid, Tooltip, 
@@ -8,86 +8,104 @@ import {
   Cell, AreaChart, Area, ComposedChart
 } from 'recharts';
 
+interface SessionDataType {
+  duration: number;
+  pages: number;
+  rate: number;
+  period: string;
+  bounceRate: string;
+}
+
+interface PageDataType {
+  page: string;
+  views: number;
+  avgTime: number;
+  bounceRate: number;
+}
+
+interface DeviceDataType {
+  name: string;
+  value: number;
+}
+
 export default function EngagementMetrics() {
-  // Dummy data for session duration over time
-  const sessionDurationData = [
-    { period: 'Jan 1-7', duration: 3.2, previous: 2.9 },
-    { period: 'Jan 8-14', duration: 3.5, previous: 3.0 },
-    { period: 'Jan 15-21', duration: 3.8, previous: 3.2 },
-    { period: 'Jan 22-28', duration: 3.4, previous: 3.3 },
-    { period: 'Jan 29-Feb 4', duration: 3.9, previous: 3.4 },
-    { period: 'Feb 5-11', duration: 4.1, previous: 3.5 },
-    { period: 'Feb 12-18', duration: 4.3, previous: 3.7 },
-    { period: 'Feb 19-25', duration: 4.2, previous: 3.8 },
-  ];
+  // State for API data
+  const [sessionData, setSessionData] = useState<SessionDataType[]>([]);
+  const [mostVisitedPagesData, setMostVisitedPagesData] = useState<PageDataType[]>([]);
+  const [deviceData, setDeviceData] = useState<DeviceDataType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Dummy data for pages per session
-  const pagesPerSessionData = [
-    { period: 'Jan 1-7', pages: 2.8, previous: 2.5 },
-    { period: 'Jan 8-14', pages: 3.0, previous: 2.6 },
-    { period: 'Jan 15-21', pages: 3.2, previous: 2.7 },
-    { period: 'Jan 22-28', pages: 2.9, previous: 2.7 },
-    { period: 'Jan 29-Feb 4', pages: 3.3, previous: 2.8 },
-    { period: 'Feb 5-11', pages: 3.4, previous: 2.9 },
-    { period: 'Feb 12-18', pages: 3.6, previous: 3.0 },
-    { period: 'Feb 19-25', pages: 3.5, previous: 3.1 },
-  ];
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [engagementRes, pagesRes, deviceRes] = await Promise.all([
+          fetch('http://localhost:5000/api/engagement'),
+          fetch('http://localhost:5000/api/most-visited'),
+          fetch('http://localhost:5000/api/device-distribution')
+        ]);
 
-  // Dummy data for bounce rate
-  const bounceRateData = [
-    { period: 'Jan 1-7', rate: 45.2, previous: 48.5 },
-    { period: 'Jan 8-14', rate: 43.8, previous: 47.9 },
-    { period: 'Jan 15-21', rate: 42.5, previous: 47.1 },
-    { period: 'Jan 22-28', rate: 43.1, previous: 46.8 },
-    { period: 'Jan 29-Feb 4', rate: 41.7, previous: 46.3 },
-    { period: 'Feb 5-11', rate: 40.2, previous: 45.8 },
-    { period: 'Feb 12-18', rate: 38.9, previous: 45.2 },
-    { period: 'Feb 19-25', rate: 39.5, previous: 44.7 },
-  ];
+        const engagementData = await engagementRes.json();
+        const pagesData = await pagesRes.json();
+        const deviceDistribution = await deviceRes.json();
 
-  // Dummy data for most visited pages
-  const mostVisitedPagesData = [
-    { page: 'Home Page', views: 145200, avgTime: 2.3, bounceRate: 39.2 },
-    { page: 'Product Listing', views: 98400, avgTime: 3.8, bounceRate: 28.7 },
-    { page: 'Blog Section', views: 76500, avgTime: 4.5, bounceRate: 35.4 },
-    { page: 'About Us', views: 42700, avgTime: 2.1, bounceRate: 51.2 },
-    { page: 'Contact Page', views: 38900, avgTime: 1.8, bounceRate: 48.6 },
-    { page: 'Pricing Page', views: 35600, avgTime: 3.2, bounceRate: 32.1 },
-    { page: 'Login Page', views: 29800, avgTime: 1.2, bounceRate: 22.5 },
-    { page: 'FAQ Section', views: 25400, avgTime: 3.9, bounceRate: 30.8 },
-  ].sort((a, b) => b.views - a.views);
+        // Transform engagement data for charts
+        const transformedEngagement = engagementData.map((week: { duration: string; pages: string; bounceRate: string; }) => ({
+          ...week,
+          duration: parseFloat(week.duration),
+          pages: parseFloat(week.pages),
+          rate: parseFloat(week.bounceRate)
+        }));
 
-  // Device distribution data
-  const deviceData = [
-    { name: 'Mobile', value: 62 },
-    { name: 'Desktop', value: 31 },
-    { name: 'Tablet', value: 7 },
-  ];
+        setSessionData(transformedEngagement);
+        setMostVisitedPagesData(pagesData);
+        setDeviceData(deviceDistribution);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  // Summary metrics
-  const summaryMetrics = {
-    avgSessionDuration: 4.2,
-    avgPagesPerSession: 3.5, 
-    avgBounceRate: 39.5,
-    totalPageViews: 492500,
-    previousAvgSessionDuration: 3.8,
-    previousAvgPagesPerSession: 3.1,
-    previousAvgBounceRate: 44.7,
-  };
+    fetchData();
+  }, []);
 
-  const durationChange = ((summaryMetrics.avgSessionDuration - summaryMetrics.previousAvgSessionDuration) / summaryMetrics.previousAvgSessionDuration * 100);
-const pagesChange = ((summaryMetrics.avgPagesPerSession - summaryMetrics.previousAvgPagesPerSession) / summaryMetrics.previousAvgPagesPerSession * 100);
-const bounceChange = ((summaryMetrics.avgBounceRate - summaryMetrics.previousAvgBounceRate) / summaryMetrics.previousAvgBounceRate * 100);
+  // Calculate summary metrics from the latest data
+  const summaryMetrics = React.useMemo(() => {
+    if (sessionData.length === 0) return null;
+    const latest = sessionData[sessionData.length - 1];
+    const previous = sessionData[sessionData.length - 2];
+
+    return {
+      avgSessionDuration: latest.duration,
+      avgPagesPerSession: latest.pages,
+      avgBounceRate: latest.rate,
+      previousAvgSessionDuration: previous?.duration || 0,
+      previousAvgPagesPerSession: previous?.pages || 0,
+      previousAvgBounceRate: previous?.rate || 0,
+    };
+  }, [sessionData]);
+
   // Colors for charts
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D', '#FFC658', '#FF6B6B'];
 
   // Define valid sort keys type
-  type SortKey = 'views' | 'avgTime' | 'bounceRate';
+  type SortKey = keyof Pick<PageDataType, 'views' | 'avgTime' | 'bounceRate'>;
   
   // For sorting most visited pages
   const [sortBy, setSortBy] = useState<SortKey>('views');
-  const sortedPages = [...mostVisitedPagesData].sort((a, b) => b[sortBy] - a[sortBy]);
+  const sortedPages = mostVisitedPagesData.length > 0 
+  ? [...mostVisitedPagesData].sort((a, b) => b[sortBy] - a[sortBy]) : [];
   
+  if (isLoading || !summaryMetrics) {
+    return <div className="p-6">Loading...</div>;
+  }
+
+  // Calculate percentage changes
+  const durationChange = ((summaryMetrics.avgSessionDuration - summaryMetrics.previousAvgSessionDuration) / summaryMetrics.previousAvgSessionDuration * 100);
+  const pagesChange = ((summaryMetrics.avgPagesPerSession - summaryMetrics.previousAvgPagesPerSession) / summaryMetrics.previousAvgPagesPerSession * 100);
+  const bounceChange = ((summaryMetrics.avgBounceRate - summaryMetrics.previousAvgBounceRate) / summaryMetrics.previousAvgBounceRate * 100);
+
   return (
     <div className="p-6 space-y-8 bg-card-50">
       <div>
@@ -138,14 +156,13 @@ const bounceChange = ((summaryMetrics.avgBounceRate - summaryMetrics.previousAvg
         <div className="bg-card p-4 rounded-lg shadow">
           <h2 className=" text-xl font-semibold mb-4">Average Session Duration</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <AreaChart data={sessionDurationData}>
+            <AreaChart data={sessionData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="period" />
               <YAxis />
               <Tooltip formatter={(value) => [`${value} min`, 'Duration']} />
               <Legend />
-              <Area type="monotone" dataKey="duration" name="Current Period" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
-              <Area type="monotone" dataKey="previous" name="Previous Period" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.3} />
+              <Area type="monotone" dataKey="duration" name="Session Duration" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -154,14 +171,13 @@ const bounceChange = ((summaryMetrics.avgBounceRate - summaryMetrics.previousAvg
         <div className="bg-card p-4 rounded-lg shadow">
           <h2 className="text-xl font-semibold mb-4">Pages Per Session</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <AreaChart data={pagesPerSessionData}>
+            <AreaChart data={sessionData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="period" />
               <YAxis />
               <Tooltip formatter={(value) => [`${value} pages`, 'Pages']} />
               <Legend />
-              <Area type="monotone" dataKey="pages" name="Current Period" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
-              <Area type="monotone" dataKey="previous" name="Previous Period" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.3} />
+              <Area type="monotone" dataKey="pages" name="Pages Per Session" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -170,14 +186,13 @@ const bounceChange = ((summaryMetrics.avgBounceRate - summaryMetrics.previousAvg
         <div className="bg-card p-4 rounded-lg shadow">
           <h2 className="text-xl font-semibold mb-4">Bounce Rate</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={bounceRateData}>
+            <LineChart data={sessionData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="period" />
-              <YAxis domain={[35, 50]} />
+              <YAxis />
               <Tooltip formatter={(value) => [`${value}%`, 'Bounce Rate']} />
               <Legend />
-              <Line type="monotone" dataKey="rate" name="Current Period" stroke="#ff7300" strokeWidth={2} dot={{ r: 4 }} />
-              <Line type="monotone" dataKey="previous" name="Previous Period" stroke="#82ca9d" strokeWidth={2} dot={{ r: 4 }} strokeDasharray="5 5" />
+              <Line type="monotone" dataKey="rate" name="Bounce Rate" stroke="#ff7300" strokeWidth={2} dot={{ r: 4 }} />
             </LineChart>
           </ResponsiveContainer>
         </div>

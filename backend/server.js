@@ -6,7 +6,7 @@ const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const analyticsRoutes = require("./routes/analytics");
-
+const engagementRoutes  = require('./routes/engagement');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -19,7 +19,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Database connection
+// Create database pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
@@ -28,6 +28,20 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
+});
+
+// Make pool available globally
+app.locals.pool = pool;
+
+// Test database connection
+app.get('/api/test-db', async (req, res) => {
+  try {
+    const [result] = await pool.query('SELECT 1');
+    res.json({ message: 'Database connection successful', result });
+  } catch (error) {
+    console.error('Database connection test failed:', error);
+    res.status(500).json({ error: 'Database connection failed' });
+  }
 });
 
 // Database setup function
@@ -86,6 +100,13 @@ if (rows.length === 0) {
 const adminRoutes = require('./routes/admin');
 app.use('/api/admin', adminRoutes);
 app.use("/api", analyticsRoutes);
+app.use("/api",engagementRoutes);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Global error:', err);
+  res.status(500).json({ error: 'Something broke!' });
+});
 
 // Start server
 (async () => {
@@ -93,8 +114,10 @@ app.use("/api", analyticsRoutes);
     await setupDatabase();
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
+      console.log('Database pool initialized');
     });
   } catch (error) {
     console.error('Server startup error:', error);
+    process.exit(1);
   }
 })();

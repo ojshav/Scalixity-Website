@@ -14,14 +14,14 @@ const getDateRange = (days) => {
 router.post("/track", async (req, res) => {
   try {
     console.log("Received tracking data:", req.body);
-    const { visitorId, page, timestamp, event } = req.body;
+    const { visitorId, page, timestamp, event, deviceType } = req.body;
     if (!pool) {
       console.error("Database pool is undefined");
       return res.status(500).json({ error: "Database connection not available" });
     }
     const mysqlTimestamp = new Date(timestamp).toISOString().slice(0, 19).replace("T", " ");
-    const query = "INSERT INTO user_activity (visitorId, page, timestamp, event) VALUES (?, ?, ?, ?)";
-    const [result] = await pool.execute(query, [visitorId, page, mysqlTimestamp, event]);
+    const query = "INSERT INTO user_activity (visitorId, page, timestamp, event, deviceType) VALUES (?, ?, ?, ?,?)";
+    const [result] = await pool.execute(query, [visitorId, page, mysqlTimestamp, event, deviceType]);
     console.log("Data inserted successfully:", result);
     res.status(200).json({ message: "User activity tracked successfully" });
   } catch (err) {
