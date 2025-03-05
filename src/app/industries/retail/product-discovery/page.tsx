@@ -6,7 +6,7 @@ import {CTA } from "@/src/app/components/industries/retail/product-discovery/CTA
 import {Process} from "@/src/app/components/industries/retail/product-discovery/process"
 import {FAQ}  from "@/src/app/components/industries/retail/product-discovery/faq"
  
-export default function HealthcarePage() {
+export default function RetailPage() {
     return (
       <main className="bg-[#080B16]">
         <Hero />

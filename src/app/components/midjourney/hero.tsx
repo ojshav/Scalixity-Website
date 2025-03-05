@@ -16,7 +16,7 @@ export function Hero() {
             Expert Midjourney Developers
           </h1>
           <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-            Unlock the full potential of AI-driven creativity with our Midjourney development services. Whether it's generating hyper-realistic visuals, designing unique AI-generated artwork, or integrating Midjourney into your creative workflows, we deliver solutions that bring ideas to life with unmatched precision and detail.
+            Unlock the full potential of AI-driven creativity with our Midjourney development services. Whether it&apos;s generating hyper-realistic visuals, designing unique AI-generated artwork, or integrating Midjourney into your creative workflows, we deliver solutions that bring ideas to life with unmatched precision and detail.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link

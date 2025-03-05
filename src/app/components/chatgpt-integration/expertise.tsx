@@ -1,6 +1,6 @@
 "use client";
 
-import { Cloud, Database, LayoutDashboard, LineChart, MessageCircle, Settings } from 'lucide-react';
+import { Cloud,  LayoutDashboard, LineChart, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const processSteps = [

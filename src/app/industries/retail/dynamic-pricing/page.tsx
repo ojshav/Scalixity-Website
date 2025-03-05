@@ -6,7 +6,7 @@ import {CTA } from "@/src/app/components/industries/retail/dynamic-pricing/CTA"
 import {Process} from "@/src/app/components/industries/retail/dynamic-pricing/process"
 import {FAQ}  from "@/src/app/components/industries/retail/dynamic-pricing/faq"
  
-export default function HealthcarePage() {
+export default function RetailPage() {
     return (
       <main className="bg-[#080B16]">
         <Hero />

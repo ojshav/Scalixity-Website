@@ -35,7 +35,8 @@ export function SuccessStories() {
             GCP Success Stories
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            See how businesses are transforming with Google Cloud Platform's powerful solutions.
+          See how businesses are transforming with Google Cloud Platform&apos;s powerful solutions.
+
           </p>
         </div>
 

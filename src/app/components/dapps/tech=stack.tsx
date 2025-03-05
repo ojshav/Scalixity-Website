@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+
 
 const techStack = {
   "Blockchain Platforms": [

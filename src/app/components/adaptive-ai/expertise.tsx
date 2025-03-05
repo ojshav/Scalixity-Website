@@ -1,4 +1,4 @@
-import { Cloud, Database, LayoutDashboard, LineChart, MessageCircle, Settings } from 'lucide-react'
+import { Cloud,  LayoutDashboard, LineChart, MessageCircle} from 'lucide-react'
 
 const expertiseAreas = [
   {

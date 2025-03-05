@@ -45,7 +45,7 @@ export function Benefits() {
             Benefits of AI in Medical Imaging
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Unlock AI's potential in medical imaging — from accurate diagnostics to faster processing and secure data management.
+            Unlock AI&apos;s potential in medical imaging — from accurate diagnostics to faster processing and secure data management.
           </p>
         </div>
 

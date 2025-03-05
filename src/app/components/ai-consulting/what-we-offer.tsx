@@ -39,7 +39,8 @@ export function WhatWeOffer() {
             Our AI Consulting Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We help businesses harness AI's full potential, from strategy and development to deployment and optimization.
+          We help businesses harness the full potential of AI, from strategy and development to deployment and optimization.
+
           </p>
         </div>
 

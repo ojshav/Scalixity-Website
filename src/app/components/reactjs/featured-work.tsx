@@ -1,5 +1,4 @@
 "use client"
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const projects = [
@@ -35,7 +34,7 @@ export function FeaturedWork() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold">Our React.js Development Showcase</h2>
-          <p className="text-lg mt-4 max-w-2xl mx-auto">Explore how we've crafted modern web applications using React.js, delivering outstanding UI/UX and robust functionality.</p>
+          <p className="text-lg mt-4 max-w-2xl mx-auto">Explore how We&apos;ve crafted modern web applications using React.js, delivering outstanding UI/UX and robust functionality.</p>
         </div>
 
         <div className="space-y-16">

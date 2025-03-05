@@ -46,7 +46,7 @@ export function AIApplications() {
             Revolutionizing Healthcare with AI
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore how Scalixity's AI-driven solutions are transforming healthcare by enhancing precision, efficiency, and patient outcomes.
+            Explore how Scalixity&apos;s AI-driven solutions are transforming healthcare by enhancing precision, efficiency, and patient outcomes.
           </p>
         </div>
 

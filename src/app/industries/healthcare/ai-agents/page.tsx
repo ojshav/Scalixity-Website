@@ -8,7 +8,7 @@ import{TechStack }from "@/src/app/components/industries/healthcare/ai-agents/tec
 import {Industries } from "@/src/app/components/industries/healthcare/ai-agents/industries"
 import {FAQ}  from "@/src/app/components/industries/healthcare/ai-agents/faq"
  
-export default function DesignPage() {
+export default function HealthcarePage() {
     return (
       <main className="bg-[#080B16]">
         <Hero />

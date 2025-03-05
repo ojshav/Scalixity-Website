@@ -36,7 +36,7 @@ export function WhatWeOffer() {
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">WHAT WE OFFER</span>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
-            Hedra's AI Solutions & Services
+          Hedra&apos;s  AI Solutions & Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Unlock the potential of AI with Hedra. Our cutting-edge solutions empower businesses to innovate, optimize, and grow.

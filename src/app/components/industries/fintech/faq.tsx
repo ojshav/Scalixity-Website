@@ -39,7 +39,7 @@ export function FAQ() {
             Fintech AI Solutions — FAQs
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore answers to common questions about AI's impact on the fintech industry.
+            Explore answers to common questions about AI&apos;s impact on the fintech industry.
           </p>
         </div>
 

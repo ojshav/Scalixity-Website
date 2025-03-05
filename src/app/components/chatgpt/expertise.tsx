@@ -1,4 +1,4 @@
-import { Brain, Code, Database, Shield, Users, Zap } from 'lucide-react'
+import { Brain, Code, Database, Shield } from 'lucide-react'
 
 const expertiseAreas = [
   {

@@ -7,7 +7,7 @@ import {Process} from "@/src/app/components/industries/retail/ai-agents/process"
 import {Industries } from "@/src/app/components/industries/retail/ai-agents/industries"
 import {FAQ}  from "@/src/app/components/industries/retail/ai-agents/faq"
  
-export default function HealthcarePage() {
+export default function RetailPage() {
     return (
       <main className="bg-[#080B16]">
         <Hero />
@@ -15,7 +15,6 @@ export default function HealthcarePage() {
         <AIApplications/>
         <Benefits />
        <Process />
-       
        <Industries/>
        <CTA />
        <FAQ />

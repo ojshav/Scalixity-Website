@@ -5,40 +5,54 @@ import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section
-      className="relative flex flex-col items-center justify-center h-screen text-center text-white bg-[#9FA8DA] overflow-hidden"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
+    <section className="flex flex-col items-center justify-center h-screen text-center text-[#2C2C2C] bg-gradient-to-br from-[#F4ECE6] to-[#ECE7DE] p-8 space-y-8">
+      <motion.h1 
+        initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="max-w-4xl mx-auto"
+        className="text-5xl font-light leading-tight font-serif"
       >
-        <h1 className="text-6xl font-bold leading-tight">
-          Elevate Your Business with <span className="text-black">Scalixity</span>
-        </h1>
-        <p className="mt-4 text-lg text-[#E3E5F5] max-w-3xl mx-auto">
-          We craft bespoke, cutting-edge AI solutions that empower data-driven companies to achieve unparalleled innovation, optimize operations, and unlock new opportunities for growth and scalability.
-        </p>
-      </motion.div>
+        Empowering Data-Driven Futures <br /> with <span className="text-black">Scalixity</span>
+      </motion.h1>
 
-      <motion.div
+      <motion.p 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
+        className="text-lg max-w-3xl leading-relaxed"
+      >
+        At Scalixity, we redefine innovation by crafting AI solutions tailored to elevate businesses.
+        Our approach merges data intelligence and automation, unlocking new realms of growth and efficiency.
+        From streamlining operations to uncovering hidden opportunities, we empower companies to embrace
+        the future with confidence and creativity.
+      </motion.p>
+
+      <motion.img 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        className="mt-8 flex space-x-4"
+        transition={{ delay: 1, duration: 1 }}
+        src="/images/ai-innovation.png" 
+        alt="AI Innovation" 
+        className="w-2/3 md:w-1/2 rounded-lg shadow-lg"
+      />
+
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="flex space-x-4 mt-4"
       >
         <a
           href="/contact"
           className="px-6 py-3 text-white bg-black rounded-full hover:opacity-80 transition"
         >
-          Embark on Your AI Journey
+          Start Your AI Journey
         </a>
         <a
           href="/services"
           className="px-6 py-3 text-white bg-black rounded-full hover:opacity-80 transition"
         >
-          Discover Our Royal Services
+          Explore Our Services
         </a>
       </motion.div>
     </section>
@@ -46,5 +60,3 @@ export function Hero() {
 }
 
 export default Hero;
-
-

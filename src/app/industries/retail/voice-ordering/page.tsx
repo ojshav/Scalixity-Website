@@ -6,7 +6,7 @@ import {CTA } from "@/src/app/components/industries/retail/voice-ordering/CTA"
 import {Process} from "@/src/app/components/industries/retail/voice-ordering/process"
 import {FAQ}  from "@/src/app/components/industries/retail/voice-ordering/faq"
  
-export default function HealthcarePage() {
+export default function RetailPage() {
     return (
       <main className="bg-[#080B16]">
         <Hero />

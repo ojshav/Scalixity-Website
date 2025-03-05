@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { Stethoscope, AlertCircle, BarChart, CheckCircle } from 'lucide-react'
+import {  AlertCircle, BarChart, CheckCircle } from 'lucide-react'
 
 const clinicalSupportFeatures = [
   {

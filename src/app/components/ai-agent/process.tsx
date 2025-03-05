@@ -40,7 +40,8 @@ export function Process() {
           </h2>
           <p className="text-gray-400 mt-4 max-w-3xl mx-auto">
             Our AI agents are built to automate decision-making, enhance productivity, and adapt
-            intelligently to evolving business needs. Here's how we engineer them for maximum impact.
+            intelligently to evolving business needs. Here&apos;s how we engineer them for maximum impact.
+
           </p>
         </div>
 

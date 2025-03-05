@@ -32,7 +32,8 @@ export function WhyChooseUs() {
             Why choose Hedra for AI Solutions
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Partner with Hedra to harness AI's full potential. Our expertise, innovation, and ethical approach empower your business for a smarter tomorrow. We don't just build AI systems — we create intelligent solutions tailored to transform your operations and future-proof your success.
+            Partner with Hedra to harness AI&apos;s full potential. Our expertise, innovation, and ethical approach empower your business for a smarter tomorrow. We don&apos;t just build AI systems — we create intelligent solutions tailored to transform your operations and future-proof your success.
+
           </p>
         </div>
 

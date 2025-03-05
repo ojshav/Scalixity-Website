@@ -6,7 +6,7 @@ import {CTA } from "@/src/app/components/industries/retail/sentiment-analysis/CT
 import {Process} from "@/src/app/components/industries/retail/sentiment-analysis/process"
 import {FAQ}  from "@/src/app/components/industries/retail/sentiment-analysis/faq"
  
-export default function HealthcarePage() {
+export default function RetailPage() {
     return (
       <main className="bg-[#080B16]">
         <Hero />
