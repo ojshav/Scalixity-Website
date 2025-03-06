@@ -27,15 +27,6 @@ export function Hero() {
         the future with confidence and creativity.
       </motion.p>
 
-      <motion.img 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        src="/images/ai-innovation.png" 
-        alt="AI Innovation" 
-        className="w-2/3 md:w-1/2 rounded-lg shadow-lg"
-      />
-
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -60,3 +51,4 @@ export function Hero() {
 }
 
 export default Hero;
+

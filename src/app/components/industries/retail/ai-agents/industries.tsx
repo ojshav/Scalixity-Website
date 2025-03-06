@@ -16,15 +16,15 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-[#5b0bb5] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
-            AI Agents Revolutionizing the Retail Landscape
+          <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
+            AI Agents Transforming Industries
           </h2>
-          <p className="text-xl text-white max-w-3xl mx-auto">
-            Empower your retail business with AI-driven solutions — enhancing customer experiences, streamlining operations, and boosting sales across key sectors.
+          <p className="text-xl text-black max-w-3xl mx-auto">
+            Empower your business with AI solutions — enhancing experiences, streamlining operations, and boosting growth across diverse sectors.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export function Industries() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="bg-white p-6 rounded-full mb-4">
+              <div className="bg-white p-6 rounded-full mb-4 shadow-md">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
@@ -47,7 +47,7 @@ export function Industries() {
                   className="w-12 h-12"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-white text-center">{industry.name}</h3>
+              <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
             </motion.div>
           ))}
         </div>

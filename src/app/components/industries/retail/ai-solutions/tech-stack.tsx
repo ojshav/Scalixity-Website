@@ -55,16 +55,16 @@ const techStack = [
 
 export function TechStack() {
   return (
-    <section className="bg-[#5B1DAF] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-white uppercase tracking-wider">
+          <span className="text-sm text-black uppercase tracking-wider">
             TECHNOLOGY STACK
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
             AI Solutions Tech Stack for Retail
           </h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Discover the cutting-edge AI technologies we use to build intelligent, data-driven retail solutions — from personalized recommendations to predictive analytics.
           </p>
         </div>
@@ -77,9 +77,9 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-xl shadow-lg"
+              className="bg-[#F3F1EB] p-8 rounded-xl shadow-lg"
             >
-              <h3 className="text-2xl font-bold text-[#5B1DAF] mb-6">{stack.category}</h3>
+              <h3 className="text-2xl font-bold text-black mb-6">{stack.category}</h3>
               <div className="flex flex-wrap gap-4">
                 {stack.items.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center w-[100px]">
