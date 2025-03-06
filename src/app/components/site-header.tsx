@@ -218,7 +218,7 @@ export function SiteHeader() {
             Company
           </Link>
           <Link href="/blog" className="text-foreground hover:text-primary transition-colors">
-            Insights
+            Blog
           </Link>
           <Link href="/resources" className="text-foreground hover:text-primary transition-colors">
             Resources

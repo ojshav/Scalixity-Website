@@ -2,13 +2,13 @@ import Image from 'next/image'
 
 const testimonials = [
   {
-    quote: "Markovate's AI solutions have transformed our business operations, leading to a 30% increase in efficiency.",
+    quote: "Scalixity's AI solutions have transformed our business operations, leading to a 30% increase in efficiency.",
     author: "John Doe",
     position: "CEO, TechCorp",
     image: "/images/testimonial-1.jpg"
   },
   {
-    quote: "The team at Markovate delivered beyond our expectations. Their AI-powered analytics have given us invaluable insights.",
+    quote: "The team at Scalixity delivered beyond our expectations. Their AI-powered analytics have given us invaluable insights.",
     author: "Jane Smith",
     position: "CTO, DataDrive",
     image: "/images/testimonial-2.jpg"
