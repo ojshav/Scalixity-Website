@@ -6,7 +6,7 @@
 const services = [
   {
     title: "Experiment with Generative AI",
-    description: "Markovate offers Generative AI development services to help you boost innovation and creativity within your business. By automating the creation of text, video, graphics, and other media, Generative AI can streamline production processes and enhance the quality and innovation of the outputs."
+    description: "Scalixity offers Generative AI development services to help you boost innovation and creativity within your business. By automating the creation of text, video, graphics, and other media, Generative AI can streamline production processes and enhance the quality and innovation of the outputs."
   },
   {
     title: "Chatbots and Virtual Assistance",

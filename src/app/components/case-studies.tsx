@@ -5,81 +5,103 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export function CaseStudies() {
+  const caseStudies = [
+    {
+      title: "Transformed Voice Ordering System at a Major Restaurant",
+      description: "DeVoice transforms voice ordering systems at major restaurants by leveraging Generative AI and advanced voice technology.",
+      result: "57% Reduction in Order Handling",
+      quote: "We were particularly impressed by the quality and precision of DeVoice. Its implementation not only streamlined our operations but also significantly elevated our customer service levels.",
+      author: "Doughlus, CTO, DeVoice",
+      link: "/case-studies/devoice",
+      image: "/images/ai-voice-ordering.svg"
+    },
+    {
+      title: "AI-Powered Chatbot for E-Commerce",
+      description: "Built an AI chatbot that handles 70% of customer queries, providing instant responses and boosting sales.",
+      result: "70% Query Automation",
+      quote: "The AI chatbot has drastically reduced our response time and increased customer satisfaction. It's like having a 24/7 support agent.",
+      author: "Sarah, CEO, ShopSmart",
+      link: "/case-studies/ai-chatbot",
+      image: "/images/ai-chatbot.svg"
+    },
+    {
+      title: "Predictive Analytics for Healthcare",
+      description: "Implemented predictive models to forecast patient readmission rates, helping hospitals optimize resources.",
+      result: "40% Improved Forecasting Accuracy",
+      quote: "The predictive models provided insights that reshaped our resource allocation strategy, enhancing patient care.",
+      author: "Dr. Lee, Head of Data, MedixCare",
+      link: "/case-studies/healthcare-analytics",
+      image: "/images/healthcare-analytics.svg"
+    }
+  ]
+
   return (
-    <section className="bg-[#080B16] py-32">
+    <section className="bg-white py-32">
       <div className="container mx-auto px-4">
-        <span className="block text-sm text-gray-400 uppercase tracking-wider mb-4">
-          CASE STUDY
+        <span className="block text-sm text-[#9FA8DA] uppercase tracking-wider mb-4">
+          CASE STUDIES
         </span>
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-12">
+        <h2 className="text-3xl md:text-5xl font-bold text-black mb-12">
           AI Solutions we have built for our clients
         </h2>
-        <div className="relative bg-[#0F1629] rounded-xl overflow-hidden">
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div 
-              className="p-12"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h3 className="text-3xl font-bold text-white mb-4">
-                Transformed Voice Ordering System at a Major Restaurant
-              </h3>
-              <p className="text-gray-400 mb-8">
-                DeVoice transforms voice ordering systems at major restaurants by leveraging Generative AI and
-                advanced voice technology.
-              </p>
-              <div className="mb-8">
-                <div className="text-6xl font-bold text-white mb-2">57%</div>
-                <p className="text-gray-400">Reduction in Order Handling</p>
-              </div>
-              <blockquote className="bg-[#1A1B26] p-6 rounded-lg mb-8">
-  <p className="text-gray-300 italic mb-4">
-    &ldquo;We were particularly impressed by the quality and precision of DeVoice. Its implementation not only streamlined our operations but also significantly elevated our customer service levels, making it a game-changer for our business.&rdquo;
-  </p>
-  <footer className="text-white font-medium">
-    - Doughlus, CTO, DeVoice
-  </footer>
-</blockquote>
-
-              <Link 
-                href="/case-studies/devoice"
-                className="inline-flex items-center text-purple-500 hover:text-purple-400 font-medium"
+        {caseStudies.map((study, index) => (
+          <div key={index} className="relative bg-[#9FA8DA] rounded-xl overflow-hidden mb-12">
+            <div className="grid md:grid-cols-2 gap-8">
+              <motion.div 
+                className="p-12"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
-                View case study <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </motion.div>
-            <motion.div 
-              className="relative h-full min-h-[300px]"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Image
-                src="/images/ai-voice-ordering.svg"
-                alt="DeVoice App Interface"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
+                <h3 className="text-3xl font-bold text-black mb-4">
+                  {study.title}
+                </h3>
+                <p className="text-black mb-8">
+                  {study.description}
+                </p>
+                <div className="mb-8">
+                  <div className="text-6xl font-bold text-black mb-2">{study.result.split(' ')[0]}</div>
+                  <p className="text-black">{study.result.split(' ').slice(1).join(' ')}</p>
+                </div>
+                <blockquote className="bg-white p-6 rounded-lg mb-8">
+                  <p className="text-black italic mb-4">
+                    &ldquo;{study.quote}&rdquo;
+                  </p>
+                  <footer className="text-black font-medium">
+                    - {study.author}
+                  </footer>
+                </blockquote>
+                <Link 
+                  href={study.link}
+                  className="inline-flex items-center text-purple-500 hover:text-purple-400 font-medium"
+                >
+                  View case study <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </motion.div>
+              <motion.div 
+                className="relative h-full min-h-[300px]"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Image
+                  src={study.image}
+                  alt={study.title}
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+            </div>
           </div>
-        </div>
+        ))}
         <div className="flex justify-center mt-12">
           <Link
             href="/work"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#1A1B26] text-white hover:bg-[#2A2B36] transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#9FA8DA] text-black hover:bg-[#7F8BD2] transition-colors"
           >
             Know more about our work
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
-        </div>
-        <div className="absolute top-1/2 -translate-y-1/2 flex justify-between w-full px-4 pointer-events-none">
-          <button className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center text-white pointer-events-auto hover:bg-black/70 transition-colors">
-            <ArrowLeft className="h-6 w-6" />
-          </button>
-          <button className="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-white pointer-events-auto hover:bg-purple-700 transition-colors">
-            <ArrowRight className="h-6 w-6" />
-          </button>
         </div>
       </div>
     </section>

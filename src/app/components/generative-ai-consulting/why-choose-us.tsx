@@ -6,11 +6,11 @@ import { CheckCircle } from 'lucide-react'
 const reasons = [
   {
     title: "Mastery in Generative AI",
-    description: "Focusing on inventiveness and personalization, Markovate excels in crafting resilient Generative AI solutions custom-built to meet distinct needs. Our services bring about a competitive advantage that stimulates growth, spurs creativity, and sets the stage for triumph."
+    description: "Focusing on inventiveness and personalization, Scalixity excels in crafting resilient Generative AI solutions custom-built to meet distinct needs. Our services bring about a competitive advantage that stimulates growth, spurs creativity, and sets the stage for triumph."
   },
   {
     title: "Personalized Solutions",
-    description: "Since each company has different requirements, Markovate distinguishes itself by providing AI solutions that are specifically crafted to support business goals and overcome particular obstacles. We increase the effectiveness and reach of Generative AI by carefully tailoring our services to meet particular needs."
+    description: "Since each company has different requirements, Scalixity distinguishes itself by providing AI solutions that are specifically crafted to support business goals and overcome particular obstacles. We increase the effectiveness and reach of Generative AI by carefully tailoring our services to meet particular needs."
   },
   {
     title: "Support Throughout the Lifecycle",
@@ -29,10 +29,10 @@ export function WhyChooseUs() {
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">WHY US</span>
           <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
-            Why choose Markovate for Generative AI consulting
+            Why choose Scalixity for Generative AI consulting
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Since Markovate combines cutting-edge AI technology with a thorough understanding of
+            Since Scalixity combines cutting-edge AI technology with a thorough understanding of
             business dynamics. We are your strategic partners in creating a smart, agile, and sustainable
             future.
           </p>
