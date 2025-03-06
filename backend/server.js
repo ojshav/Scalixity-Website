@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const analyticsRoutes = require("./routes/analytics");
 const engagementRoutes  = require('./routes/engagement');
+const demographicRoutes = require('./routes/demographic');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -73,6 +74,16 @@ async function setupDatabase() {
   event VARCHAR(50)
 )
     `);
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS inquiries (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  visitor_id VARCHAR(255) NOT NULL,
+  activity_id INT,
+  inquiry_type VARCHAR(50),
+  timestamp DATETIME NOT NULL,
+  FOREIGN KEY (activity_id) REFERENCES user_activity(id) ON DELETE SET NULL
+);`
+    );
     
     // Check if default admin exists, if not create one
 const [rows] = await connection.execute('SELECT * FROM admin_users WHERE username = ?', [process.env.ADMIN_USERNAME]);
@@ -101,6 +112,7 @@ const adminRoutes = require('./routes/admin');
 app.use('/api/admin', adminRoutes);
 app.use("/api", analyticsRoutes);
 app.use("/api",engagementRoutes);
+app.use("/api",demographicRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
