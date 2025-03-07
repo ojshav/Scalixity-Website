@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { motion } from "framer-motion";
 
 const capabilities = [
@@ -36,13 +36,13 @@ const capabilities = [
 
 export function Capabilities() {
   return (
-    <section className="bg-[#080B16] py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
             AI Capabilities for Businesses
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Unlock the power of AI with intelligent automation, analytics, and decision-making tools designed to transform businesses.
           </p>
         </div>
@@ -54,10 +54,10 @@ export function Capabilities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-[#0F1629] p-6 rounded-lg border border-gray-800 shadow-lg hover:shadow-xl transition-all"
+              className="bg-[#F3F1EB] p-6 rounded-lg border border-[#A8B2E7] shadow-lg hover:shadow-xl transition-all"
             >
-              <h3 className="text-xl font-bold text-white mb-4">{capability.title}</h3>
-              <p className="text-gray-400">{capability.description}</p>
+              <h3 className="text-xl font-bold text-black mb-4">{capability.title}</h3>
+              <p className="text-gray-800">{capability.description}</p>
             </motion.div>
           ))}
         </div>
@@ -65,3 +65,6 @@ export function Capabilities() {
     </section>
   );
 }
+
+export default Capabilities;
+

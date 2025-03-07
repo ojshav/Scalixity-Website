@@ -1,4 +1,4 @@
-import { Cloud,  LayoutDashboard, LineChart, MessageCircle} from 'lucide-react'
+import { Cloud, LayoutDashboard, LineChart, MessageCircle } from 'lucide-react'
 
 const expertiseAreas = [
   {
@@ -25,13 +25,13 @@ const expertiseAreas = [
 
 export function Expertise() {
   return (
-    <section className="bg-[#080B16] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Core Expertise
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Our core expertise in adaptive AI systems development
           </p>
         </div>
@@ -40,11 +40,11 @@ export function Expertise() {
           {expertiseAreas.map((area, index) => (
             <div 
               key={index}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-black transition-colors"
             >
-              <area.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-white mb-4">{area.title}</h3>
-              <p className="text-gray-400">{area.description}</p>
+              <area.icon className="w-12 h-12 text-black mb-6" />
+              <h3 className="text-xl font-bold text-black mb-4">{area.title}</h3>
+              <p className="text-black">{area.description}</p>
             </div>
           ))}
         </div>
@@ -52,3 +52,5 @@ export function Expertise() {
     </section>
   )
 }
+
+export default Expertise;

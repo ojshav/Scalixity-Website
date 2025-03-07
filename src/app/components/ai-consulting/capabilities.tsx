@@ -29,21 +29,21 @@ const capabilities = [
 
 export function Capabilities() {
   return (
-    <section className="bg-[#080B16] py-20">
+    <section className="bg-[#F3F1EB] py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
             AI Consulting Capabilities
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             We provide expert AI consulting services to help businesses implement and scale AI solutions effectively.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((capability, index) => (
-            <div key={index} className="bg-[#0F1629] p-6 rounded-lg border border-gray-800">
-              <h3 className="text-xl font-bold text-white mb-4">{capability.title}</h3>
-              <p className="text-gray-400">{capability.description}</p>
+            <div key={index} className="bg-[#A8B2E7] p-6 rounded-lg">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{capability.title}</h3>
+              <p className="text-gray-800">{capability.description}</p>
             </div>
           ))}
         </div>

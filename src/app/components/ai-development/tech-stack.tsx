@@ -23,14 +23,14 @@ const technologies = {
 
 export function TechStack() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#F3F1EB] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Our AI Development Tech Stack
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We leverage cutting-edge technologies to deliver robust and efficient AI solutions
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+            We leverage cutting-edge technologies to deliver robust and efficient AI solutions.
           </p>
         </div>
 
@@ -42,9 +42,9 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-xl border border-border p-6"
+              className="bg-[#A8B2E7] rounded-xl border border-gray-500 p-8 shadow-md hover:border-black transition-colors"
             >
-              <h3 className="text-lg font-semibold text-foreground mb-6">{category}</h3>
+              <h3 className="text-lg font-semibold text-black mb-6">{category}</h3>
               <div className="grid grid-cols-3 gap-6">
                 {items.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center justify-center">
@@ -56,7 +56,7 @@ export function TechStack() {
                         className="object-contain"
                       />
                     </div>
-                    <span className="text-sm text-muted-foreground text-center">{item.name}</span>
+                    <span className="text-sm text-gray-900 text-center">{item.name}</span>
                   </div>
                 ))}
               </div>
@@ -67,4 +67,5 @@ export function TechStack() {
     </section>
   )
 }
+
 

@@ -37,20 +37,20 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#F3F1EB] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Our AI Development Process
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
             A systematic approach to delivering high-quality AI solutions
           </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-primary/20 md:left-1/2 md:-translate-x-px" />
+          {/* Vertical timeline line */}
+          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-gray-400 md:left-1/2 md:-translate-x-px" />
 
           <div className="space-y-12">
             {steps.map((step, index) => (
@@ -64,15 +64,15 @@ export function Process() {
               >
                 <div className={`md:flex items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                   {/* Timeline dot */}
-                  <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-primary rounded-full flex items-center justify-center md:relative md:left-auto md:top-auto md:mx-8">
-                    <div className="w-2 h-2 bg-background rounded-full" />
+                  <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center md:relative md:left-auto md:top-auto md:mx-8">
+                    <div className="w-2 h-2 bg-[#F3F1EB] rounded-full" />
                   </div>
                   
                   <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:text-right' : ''}`}>
-                    <div className="bg-card p-6 rounded-xl border border-border">
-                      <div className="text-primary text-sm font-bold mb-2">STEP {step.number}</div>
-                      <h3 className="text-xl font-bold text-foreground mb-4">{step.title}</h3>
-                      <p className="text-muted-foreground">{step.description}</p>
+                    <div className="bg-[#A8B2E7] p-6 rounded-xl border border-gray-500 shadow-md">
+                      <div className="text-black text-sm font-bold mb-2">STEP {step.number}</div>
+                      <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
+                      <p className="text-gray-900">{step.description}</p>
                     </div>
                   </div>
                 </div>

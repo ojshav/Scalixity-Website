@@ -1,5 +1,5 @@
-"use client"
-import { motion } from 'framer-motion';
+"use client";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -31,14 +31,14 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-black py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-gray-400 uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">WHAT WE OFFER</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
             Our AI Agent Development Services
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             We empower businesses with intelligent AI agents designed to automate tasks, enhance decision-making, and deliver seamless customer interactions while ensuring security and compliance.
           </p>
         </div>
@@ -51,10 +51,10 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-900 p-8 rounded-xl border border-gray-700 hover:border-purple-500 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-[#A8B2E7] hover:border-black transition-colors"
             >
-              <h3 className="text-xl font-bold text-white mb-4">{service.title}</h3>
-              <p className="text-gray-400 leading-relaxed">{service.description}</p>
+              <h3 className="text-xl font-bold text-black mb-4">{service.title}</h3>
+              <p className="text-gray-800 leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { motion } from 'framer-motion';
 
 const services = [
@@ -31,14 +31,14 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-black py-24">
+    <section className="py-24" style={{ backgroundColor: '#A8B2E7' }}> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-gray-400 uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">WHAT WE OFFER</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
             Our Adaptive AI Development Services
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             We build resilient AI applications that incorporate adaptive AI features, enabling self-directed learning to adapt to evolving circumstances and yield exceptional outcomes. Explore more with our Adaptive AI development services.
           </p>
         </div>
@@ -51,10 +51,11 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-900 p-8 rounded-xl border border-gray-700 hover:border-purple-500 transition-colors"
+              className="p-8 rounded-xl border border-white hover:border-black transition-colors"
+              style={{ backgroundColor: '#F3F1EB' }} // Beige boxes
             >
-              <h3 className="text-xl font-bold text-white mb-4">{service.title}</h3>
-              <p className="text-gray-400 leading-relaxed">{service.description}</p>
+              <h3 className="text-xl font-bold text-black mb-4">{service.title}</h3>
+              <p className="text-gray-700 leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>

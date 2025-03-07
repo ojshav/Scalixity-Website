@@ -34,35 +34,35 @@ export function Process() {
   const [openStep, setOpenStep] = useState<number | null>(0)
 
   return (
-    <section className="bg-[#080B16] py-20">
+    <section className="bg-[#F3F1EB] py-20"> {/* Soft, warm beige background */}
       <div className="container mx-auto px-4">
         <div className="mb-12">
-          <span className="text-sm text-gray-400 uppercase tracking-wider">PROCESS</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
+          <span className="text-sm text-gray-600 uppercase tracking-wider">PROCESS</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">
             What is our process for building Generative AI solutions
           </h2>
         </div>
         
         <div className="space-y-4 max-w-3xl">
           {processSteps.map((step, index) => (
-            <div key={index} className="border border-gray-800 rounded-lg overflow-hidden">
+            <div key={index} className="border border-[#A8B2E7] rounded-lg overflow-hidden"> {/* Lavender border */}
               <button
-                className="w-full flex items-center justify-between p-4 text-left bg-[#0F1629] hover:bg-[#1A1B26] transition-colors"
+                className="w-full flex items-center justify-between p-4 text-left bg-[#A8B2E7] hover:bg-[#9CA6D6] transition-colors" /* Lavender card background */
                 onClick={() => setOpenStep(openStep === index ? null : index)}
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-2 h-2 bg-purple-600 rounded-full" />
-                  <span className="text-white font-medium">{step.title}</span>
+                  <div className="w-2 h-2 bg-black rounded-full" />
+                  <span className="text-black font-medium">{step.title}</span>
                 </div>
                 {openStep === index ? (
-                  <ChevronUp className="h-5 w-5 text-gray-400" />
+                  <ChevronUp className="h-5 w-5 text-black" />
                 ) : (
-                  <ChevronDown className="h-5 w-5 text-gray-400" />
+                  <ChevronDown className="h-5 w-5 text-black" />
                 )}
               </button>
               {openStep === index && (
-                <div className="p-4 bg-[#0F1629]">
-                  <p className="text-gray-400">{step.content}</p>
+                <div className="p-4 bg-[#EAE8E2]"> {/* Slightly lighter beige for content background */}
+                  <p className="text-black">{step.content}</p>
                 </div>
               )}
             </div>
@@ -73,3 +73,4 @@ export function Process() {
   )
 }
 
+export default Process;

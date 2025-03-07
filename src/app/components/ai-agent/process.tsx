@@ -29,28 +29,27 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="bg-[#0A0B14] py-20">
+    <section className="bg-[#F3F1EB] py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <span className="text-sm text-gray-400 uppercase tracking-wider">
+          <span className="text-sm text-black uppercase tracking-wider">
             How AI Agents We Engineer Work
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">
             Our Development Process
           </h2>
-          <p className="text-gray-400 mt-4 max-w-3xl mx-auto">
+          <p className="text-black mt-4 max-w-3xl mx-auto">
             Our AI agents are built to automate decision-making, enhance productivity, and adapt
             intelligently to evolving business needs. Here&apos;s how we engineer them for maximum impact.
-
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {steps.map((step, index) => (
-            <div key={index} className="bg-[#0F1629] p-6 rounded-lg border border-gray-800">
-              <div className="text-purple-500 text-2xl font-bold mb-4">{index + 1}</div>
-              <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-              <p className="text-gray-400">{step.description}</p>
+            <div key={index} className="bg-[#A8B2E7] p-6 rounded-lg border border-[#F3F1EB] shadow-lg">
+              <div className="text-black text-2xl font-bold mb-4">{index + 1}</div>
+              <h3 className="text-xl font-bold text-black mb-2">{step.title}</h3>
+              <p className="text-black">{step.description}</p>
             </div>
           ))}
         </div>
@@ -58,3 +57,5 @@ export function Process() {
     </section>
   );
 }
+
+export default Process;

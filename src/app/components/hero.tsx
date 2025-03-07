@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section className="flex flex-col items-center justify-center h-screen text-center text-[#2C2C2C] bg-gradient-to-br from-[#F4ECE6] to-[#ECE7DE] p-8 space-y-8">
+    <section className="flex flex-col items-center justify-center h-screen text-center text-[#2C2C2C] bg-[#F3F1EB] p-8 space-y-8">
       <motion.h1 
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}

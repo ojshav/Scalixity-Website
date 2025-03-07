@@ -38,14 +38,14 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#F3F1EB] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-gray-600 uppercase tracking-wider">WHAT WE OFFER</span>
+          <h2 className="text-4xl font-semibold text-black mt-4 mb-6">
             Our Generative AI Development Services
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             We leverage our proficiency in deep learning, machine learning, NLP, computer vision, reinforcement learning, and more to provide tailored AI solutions.
           </p>
         </div>
@@ -58,11 +58,11 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#A8B2E7] p-8 rounded-xl border-2 border-black hover:border-opacity-70 transition-colors"
             >
-              <service.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-foreground mb-4">{service.title}</h3>
-              <p className="text-muted-foreground">{service.description}</p>
+              <service.icon className="w-12 h-12 text-black mb-6" />
+              <h3 className="text-xl font-semibold text-black mb-4">{service.title}</h3>
+              <p className="text-gray-800">{service.description}</p>
             </motion.div>
           ))}
         </div>
@@ -70,3 +70,4 @@ export function WhatWeOffer() {
     </section>
   )
 }
+

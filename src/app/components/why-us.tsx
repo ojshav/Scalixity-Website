@@ -31,7 +31,7 @@ export function WhyUs() {
         <span className="block text-center text-sm text-gray-800 uppercase tracking-wider mb-4">
           WHY US
         </span>
-        <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-6">
+        <h2 className="text-3xl md:text-5xl font-bold text-black text-center mb-6">
           Building technology solutions for digital businesses since 2014
         </h2>
         <p className="text-xl text-gray-800 text-center max-w-3xl mx-auto mb-20">
@@ -41,7 +41,7 @@ export function WhyUs() {
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {features.map((feature, index) => (
-            <div key={index} className="bg-white p-8 rounded-lg shadow-md">
+            <div key={index} className="bg-white p-8 rounded-lg shadow-md border border-gray-400">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-blue-100 mb-6">
                 <feature.icon className="h-8 w-8 text-blue-500" />
               </div>
@@ -53,7 +53,7 @@ export function WhyUs() {
         <div className="text-center mt-16">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white hover:bg-gray-900 transition-colors"
           >
             Contact Us
           </Link>

@@ -23,7 +23,7 @@ const processSteps = [
 
 export function Process() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#F3F1EB] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">PROCESS</span>
@@ -31,13 +31,11 @@ export function Process() {
             Our Generative AI-driven consultation process
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-  Collaboration between human intuition and AI skills is the foundation of our process. We create strategies that are original, efficient, and effective by fusing your professional understanding with our AI&apos;s extensive data analysis and creativity.
-</p>
-
+            Collaboration between human intuition and AI skills is the foundation of our process. We create strategies that are original, efficient, and effective by fusing your professional understanding with our AI&apos;s extensive data analysis and creativity.
+          </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          {/* Vertical line */}
           <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-primary/20" />
 
           <div className="space-y-12">
@@ -50,12 +48,11 @@ export function Process() {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 className="relative pl-12"
               >
-                {/* Timeline dot */}
                 <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-primary rounded-full flex items-center justify-center">
-                  <div className="w-2 h-2 bg-background rounded-full" />
+                  <div className="w-2 h-2 bg-[#F3F1EB] rounded-full" />
                 </div>
                 
-                <div className="bg-card p-8 rounded-xl border border-border">
+                <div className="bg-[#A8B2E7] p-8 rounded-xl">
                   <h3 className="text-xl font-bold text-foreground mb-4">{step.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
@@ -67,4 +64,5 @@ export function Process() {
     </section>
   )
 }
+
 

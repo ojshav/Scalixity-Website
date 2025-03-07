@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import {  ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export function CaseStudies() {
@@ -38,14 +38,14 @@ export function CaseStudies() {
   return (
     <section className="bg-white py-32">
       <div className="container mx-auto px-4">
-        <span className="block text-sm text-[#9FA8DA] uppercase tracking-wider mb-4">
+        <span className="block text-sm text-black uppercase tracking-wider mb-4">
           CASE STUDIES
         </span>
         <h2 className="text-3xl md:text-5xl font-bold text-black mb-12">
           AI Solutions we have built for our clients
         </h2>
         {caseStudies.map((study, index) => (
-          <div key={index} className="relative bg-[#9FA8DA] rounded-xl overflow-hidden mb-12">
+          <div key={index} className="relative bg-[#9FA8DA] border border-black rounded-xl overflow-hidden mb-12">
             <div className="grid md:grid-cols-2 gap-8">
               <motion.div 
                 className="p-12"
@@ -63,7 +63,7 @@ export function CaseStudies() {
                   <div className="text-6xl font-bold text-black mb-2">{study.result.split(' ')[0]}</div>
                   <p className="text-black">{study.result.split(' ').slice(1).join(' ')}</p>
                 </div>
-                <blockquote className="bg-white p-6 rounded-lg mb-8">
+                <blockquote className="bg-white p-6 rounded-lg border border-black mb-8">
                   <p className="text-black italic mb-4">
                     &ldquo;{study.quote}&rdquo;
                   </p>
@@ -73,7 +73,7 @@ export function CaseStudies() {
                 </blockquote>
                 <Link 
                   href={study.link}
-                  className="inline-flex items-center text-purple-500 hover:text-purple-400 font-medium"
+                  className="inline-flex items-center text-black hover:text-gray-800 font-medium px-4 py-2"
                 >
                   View case study <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -97,7 +97,7 @@ export function CaseStudies() {
         <div className="flex justify-center mt-12">
           <Link
             href="/work"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#9FA8DA] text-black hover:bg-[#7F8BD2] transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
           >
             Know more about our work
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -107,4 +107,5 @@ export function CaseStudies() {
     </section>
   )
 }
+
 
