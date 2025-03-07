@@ -8,36 +8,22 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [country, setCountry] = useState<string | null>(null); // Store user's country
+  const [country, setCountry] = useState<string | null>(null);
 
-  // List of pages where layout (header/footer) should be hidden
   const hideLayout = [
-    "/login",
-    "/dashboard",
-    "/dashboard/data",
-    "/dashboard/useranalytics",
-    "/dashboard/demographic",
-    "/dashboard/technicalmetric",
-    "/dashboard/AcquistionMatrix",
-    "/dashboard/engagementmetrices",
-    "/dashboard/home",
-    "/dashboard/profile",
+    "/login", "/dashboard", "/dashboard/data", "/dashboard/useranalytics",
+    "/dashboard/demographic", "/dashboard/technicalmetric", "/dashboard/AcquistionMatrix",
+    "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
     "/dashboard/settings",
   ].includes(pathname);
 
-  // Function to detect device type
   const getDeviceType = () => {
     const userAgent = navigator.userAgent.toLowerCase();
-    if (/mobile|android|iphone|ipod|blackberry|windows phone/.test(userAgent)) {
-      return "Mobile";
-    } else if (/ipad|tablet|kindle|playbook/.test(userAgent)) {
-      return "Tablet";
-    } else {
-      return "Desktop";
-    }
+    if (/mobile|android|iphone|ipod|blackberry|windows phone/.test(userAgent)) return "Mobile";
+    if (/ipad|tablet|kindle|playbook/.test(userAgent)) return "Tablet";
+    return "Desktop";
   };
 
-  // Fetch country data using a geolocation API (e.g., ipapi.co)
   const fetchCountry = async () => {
     try {
       const response = await fetch("https://ipapi.co/json/");
@@ -50,7 +36,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   };
 
   useEffect(() => {
-    // Fetch country on initial load
     fetchCountry();
 
     let visitorId = localStorage.getItem("visitorId");
@@ -71,8 +56,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         timestamp: new Date().toISOString(),
         event: eventType,
         deviceType,
-        country: country || "Pending", // Include country, fallback to "Pending" until fetched
-        ...additionalData, // For inquiries or other data
+        country: country || "Pending",
+        ...additionalData,
       };
 
       console.log(`Sending ${eventType} event:`, eventData);
@@ -93,42 +78,72 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         .catch((err) => console.error(`${eventType} event failed:`, err));
     };
 
-    // Send page visit event once country is available
     if (country) {
       sendEvent("page_visit");
     }
 
-    // Send exit event when user leaves
     const handleExit = () => country && sendEvent("exit");
     window.addEventListener("beforeunload", handleExit);
 
-    // Example: Track inquiries (e.g., form submission or button click)
-    const handleInquiry = (inquiryType: string) => {
-      if (country) {
-        sendEvent("inquiry", { inquiryType });
-      }
-    };
-
-    // Attach inquiry tracking to a button or form (example)
-    const inquiryButton = document.querySelector("#inquiry-button");
-    if (inquiryButton) {
-      inquiryButton.addEventListener("click", () => handleInquiry("Contact Form"));
-    }
-
     return () => {
       window.removeEventListener("beforeunload", handleExit);
-      if (inquiryButton) {
-        inquiryButton.removeEventListener("click", () => handleInquiry("Contact Form"));
-      }
     };
-  }, [pathname, country]); // Re-run when pathname or country changes
+  }, [pathname, country]);
+
+  /** 🟢 Performance Metrics Tracking Logic */
+  useEffect(() => {
+    const deviceType = getDeviceType();
+    let visitorId = localStorage.getItem("visitorId");
+    
+    const observer = new PerformanceObserver((list) => {
+      const perfEntries = list.getEntries();
+
+      let metrics: Record<string, any> = {
+        visitorId: visitorId,
+        page: pathname,
+        deviceType: deviceType,
+        country: country || "Unknown"
+      };
+
+      for (const entry of perfEntries) {
+        if (entry.name === "first-contentful-paint") {
+          metrics.FCP = entry.startTime;
+        } else if (entry.entryType === "largest-contentful-paint") {
+          metrics.LCP = entry.startTime;
+        }
+      }
+
+      metrics.TTI = performance.timing.domInteractive - performance.timing.navigationStart;
+      metrics.loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+
+      console.log("Performance Metrics:", metrics);
+
+      // Store and aggregate metrics in localStorage
+      const storedData = JSON.parse(localStorage.getItem("performanceMetrics") || "[]");
+      storedData.push({ ...metrics, timestamp: new Date().toISOString() });
+      localStorage.setItem("performanceMetrics", JSON.stringify(storedData));
+
+      fetch("http://localhost:5000/api/track-metrics", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(metrics),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log("Performance metrics sent successfully:", data))
+        .catch((err) => console.error("Failed to send performance metrics:", err));
+    });
+
+    observer.observe({ type: "paint", buffered: true });
+    observer.observe({ type: "largest-contentful-paint", buffered: true });
+
+    return () => observer.disconnect();
+  }, [pathname, country]);
 
   return (
     <>
       {!hideLayout && <SiteHeader />}
       <main className="flex-1">
         {children}
-        {/* Example button for inquiry tracking */}
         {!hideLayout && (
           <button id="inquiry-button" className="p-2 bg-blue-500 text-white">
             Submit Inquiry (Test)
