@@ -1,84 +1,152 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/src/app/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/src/app/components/ui/tabs';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { AlertCircle, Clock, Laptop, Smartphone, LineChart as LineChartIcon } from 'lucide-react';
+import { AlertCircle, Clock, Laptop, Smartphone } from 'lucide-react';
 
 export default function TechnicalMetrics() {
   const [activeTab, setActiveTab] = useState('performance');
+  
+  interface PerformanceData {
+    name: string;
+    loadTime: number;
+    page: string;
+  }
+  
+  interface PagePerformance {
+    page: string | null;
+    avg_fcp: string | number;
+    avg_lcp: string | number;
+    avg_tti: string | number;
+    avg_loadTime: string | number;
+    total_records: number;
+  }
+  
+  const [performanceData, setPerformanceData] = useState<PerformanceData[]>([]);
+  const [deviceData, setDeviceData] = useState([]);
+  const [hourlyPerformance, setHourlyPerformance] = useState([]);
+  const [pagePerformance, setPagePerformance] = useState<PagePerformance[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Mock data for load time performance
-  const performanceData = [
-    { name: 'Jan', homepage: 2.3, dashboard: 3.4, checkout: 2.8 },
-    { name: 'Feb', homepage: 2.1, dashboard: 3.2, checkout: 2.6 },
-    { name: 'Mar', homepage: 1.9, dashboard: 3.0, checkout: 2.4 },
-    { name: 'Apr', homepage: 1.8, dashboard: 2.8, checkout: 2.3 },
-    { name: 'May', homepage: 1.6, dashboard: 2.6, checkout: 2.1 },
-    { name: 'Jun', homepage: 1.5, dashboard: 2.5, checkout: 2.0 },
-    { name: 'Jul', homepage: 1.4, dashboard: 2.4, checkout: 1.9 },
-  ];
+  // Generate a unique color for each page
+  const generatePageColor = (index: number) => {
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A28DFF'];
+    return COLORS[index % COLORS.length];
+  };
 
-  // Mock data for device breakdown
-  const deviceData = [
-    { name: 'Mobile', value: 65 },
-    { name: 'Desktop', value: 30 },
-    { name: 'Tablet', value: 5 },
-  ];
+  // Helper function to calculate overall average across all pages
+  const calculateOverallAverage = (metricKey: 'avg_fcp' | 'avg_lcp' | 'avg_tti' | 'avg_loadTime') => {
+    if (!pagePerformance.length) return 0;
+    
+    let totalWeightedValue = 0;
+    let totalRecords = 0;
+    
+    pagePerformance.forEach(page => {
+      // Ensure the value is a proper number and convert if necessary
+      const metricValue = typeof page[metricKey] === 'string' 
+        ? parseFloat(page[metricKey]) 
+        : page[metricKey];
+        
+      if (metricValue && !isNaN(metricValue) && page.total_records) {
+        // Make sure the value is positive
+        const positiveValue = Math.abs(metricValue);
+        totalWeightedValue += positiveValue * page.total_records;
+        totalRecords += page.total_records;
+      }
+    });
+    
+    return totalRecords > 0 ? totalWeightedValue / totalRecords : 0;
+  };
 
-  // Mock data for browser breakdown
-  const browserData = [
-    { name: 'Chrome', value: 58 },
-    { name: 'Safari', value: 20 },
-    { name: 'Firefox', value: 12 },
-    { name: 'Edge', value: 8 },
-    { name: 'Other', value: 2 },
-  ];
+  // Fetch data from the API
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
 
-  // Mock data for error tracking
-  const errorData = [
-    { name: '404', value: 35 },
-    { name: '500', value: 12 },
-    { name: '403', value: 8 },
-    { name: '400', value: 15 },
-    { name: 'Other', value: 5 },
-  ];
+      try {
+        // Fetch aggregated performance data with web vitals
+        const performanceRes = await fetch('http://localhost:5000/api/technical-metrics/aggregate');
+        if (!performanceRes.ok) throw new Error('Failed to fetch performance data');
+        
+        const performanceJson = await performanceRes.json();
+        
+        // Ensure all numeric values are properly parsed and positive
+        const cleanedData = performanceJson.data.map((item: PagePerformance) => ({
+          ...item,
+          avg_fcp: Math.abs(parseFloat(String(item.avg_fcp)) || 0),
+          avg_lcp: Math.abs(parseFloat(String(item.avg_lcp)) || 0),
+          avg_tti: Math.abs(parseFloat(String(item.avg_tti)) || 0),
+          avg_loadTime: Math.abs(parseFloat(String(item.avg_loadTime)) || 0),
+          page: item.page || 'Home'
+        }));
+        
+        setPagePerformance(cleanedData);
+        
+        // Format data for page load time chart - dynamic based on pages from API
+        const formattedPerformance = cleanedData.map((item: PagePerformance) => ({
+          name: item.page || 'Home',
+          loadTime: item.avg_loadTime,
+          page: item.page || 'Home'
+        }));
+        
+        setPerformanceData(formattedPerformance);
 
-  // Error logs mock data
-  const errorLogs = [
-    { id: 1, path: '/products/123', errorCode: 404, count: 12, lastOccurrence: '2025-02-26T14:23:00' },
-    { id: 2, path: '/api/users', errorCode: 500, count: 8, lastOccurrence: '2025-02-26T16:45:00' },
-    { id: 3, path: '/checkout', errorCode: 400, count: 5, lastOccurrence: '2025-02-26T10:12:00' },
-    { id: 4, path: '/admin/settings', errorCode: 403, count: 4, lastOccurrence: '2025-02-25T22:30:00' },
-    { id: 5, path: '/search?q=test', errorCode: 404, count: 7, lastOccurrence: '2025-02-26T09:15:00' },
-  ];
+        // Fetch device breakdown
+        const deviceRes = await fetch('http://localhost:5000/api/technical-metrics?groupBy=deviceType');
+        if (!deviceRes.ok) throw new Error('Failed to fetch device data');
+        const deviceJson = await deviceRes.json();
+        const formattedDevice = deviceJson.data.reduce((acc: { name: any; value: any; }[], curr: { deviceType: any; count: any; }) => {
+          acc.push({ name: curr.deviceType || 'Unknown', value: curr.count });
+          return acc;
+        }, []);
+        setDeviceData(formattedDevice);
 
-  // Performance by hour mock data
-  const hourlyPerformance = [
-    { hour: '00:00', loadTime: 1.2, users: 120 },
-    { hour: '02:00', loadTime: 1.1, users: 80 },
-    { hour: '04:00', loadTime: 1.0, users: 60 },
-    { hour: '06:00', loadTime: 1.2, users: 90 },
-    { hour: '08:00', loadTime: 1.8, users: 220 },
-    { hour: '10:00', loadTime: 2.1, users: 380 },
-    { hour: '12:00', loadTime: 2.3, users: 420 },
-    { hour: '14:00', loadTime: 2.4, users: 450 },
-    { hour: '16:00', loadTime: 2.2, users: 400 },
-    { hour: '18:00', loadTime: 2.0, users: 350 },
-    { hour: '20:00', loadTime: 1.8, users: 300 },
-    { hour: '22:00', loadTime: 1.5, users: 200 },
-  ];
+        // Fetch hourly performance data
+        const hourlyRes = await fetch('http://localhost:5000/api/technical-metrics?groupBy=hour');
+        if (!hourlyRes.ok) throw new Error('Failed to fetch hourly performance data');
+        const hourlyJson = await hourlyRes.json();
+        const formattedHourly = hourlyJson.data.map((item: { hour: any; avg_loadTime: any; userCount: any; }) => ({
+          hour: item.hour,
+          loadTime: Math.abs(parseFloat(item.avg_loadTime) || 0), // Ensure positive values
+          users: item.userCount || 0,
+        }));
+        setHourlyPerformance(formattedHourly);
+
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Helper function to format milliseconds to seconds with one decimal place
+  const msToSeconds = (ms: number) => (ms / 1000).toFixed(1);
 
   // Colors for the charts
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A28DFF'];
+
+  // Loading and error states
+  if (loading) return <div className="p-4 text-center">Loading technical metrics...</div>;
+  if (error) return <div className="p-4 text-center text-red-500">Error: {error}</div>;
+
+  // Calculate overall averages for core web vitals
+  const avgFCP = calculateOverallAverage('avg_fcp');
+  const avgLCP = calculateOverallAverage('avg_lcp');
+  const avgTTI = calculateOverallAverage('avg_tti');
+  const avgLoadTime = calculateOverallAverage('avg_loadTime');
 
   return (
     <div className="p-4 max-w-6xl mx-auto">
       <div className="flex flex-col gap-6">
         <div>
-          <h1 className="text-3xl font-bold mb-2">Technical Metrics</h1>
-          <p className="text-lg text-gray-500 mb-6">System performance and technical analytics.</p>
         </div>
         
         <Tabs defaultValue="performance" className="w-full" onValueChange={setActiveTab}>
@@ -107,11 +175,19 @@ export default function TechnicalMetrics() {
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
                         <YAxis />
-                        <Tooltip />
+                        <Tooltip formatter={(value) => [`${msToSeconds(Number(value))}s`, 'Load Time']} />
                         <Legend />
-                        <Line type="monotone" dataKey="homepage" stroke="#0088FE" strokeWidth={2} />
-                        <Line type="monotone" dataKey="dashboard" stroke="#00C49F" strokeWidth={2} />
-                        <Line type="monotone" dataKey="checkout" stroke="#FFBB28" strokeWidth={2} />
+                        {performanceData.map((entry, index) => (
+                          <Line 
+                            key={entry.page}
+                            type="monotone" 
+                            dataKey="loadTime" 
+                            name={entry.page} 
+                            stroke={generatePageColor(index)} 
+                            strokeWidth={2}
+                            data={[entry]}
+                          />
+                        ))}
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
@@ -130,7 +206,10 @@ export default function TechnicalMetrics() {
                         <XAxis dataKey="hour" />
                         <YAxis yAxisId="left" />
                         <YAxis yAxisId="right" orientation="right" />
-                        <Tooltip />
+                        <Tooltip formatter={(value, name) => [
+                          name === 'loadTime' ? `${msToSeconds(Number(value))}s` : value,
+                          name === 'loadTime' ? 'Load Time' : 'Users'
+                        ]} />
                         <Legend />
                         <Area yAxisId="left" type="monotone" dataKey="loadTime" fill="#8884d8" stroke="#8884d8" />
                         <Line yAxisId="right" type="monotone" dataKey="users" stroke="#82ca9d" />
@@ -148,23 +227,23 @@ export default function TechnicalMetrics() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="p-4 bg-blue-50 rounded-lg">
                       <p className="text-sm text-blue-600">Avg. Load Time</p>
-                      <p className="text-3xl font-bold">1.8s</p>
-                      <p className="text-sm text-green-600">↓ 12% from last month</p>
+                      <p className="text-3xl font-bold text-gray-500">{msToSeconds(avgLoadTime)}s</p>
+                      <p className="text-sm text-green-600">Overall average</p>
                     </div>
                     <div className="p-4 bg-green-50 rounded-lg">
                       <p className="text-sm text-green-600">Time to Interactive</p>
-                      <p className="text-3xl font-bold">2.4s</p>
-                      <p className="text-sm text-green-600">↓ 8% from last month</p>
+                      <p className="text-3xl font-bold text-gray-500">{msToSeconds(avgTTI)}s</p>
+                      <p className="text-sm text-gray-600">Average TTI</p>
                     </div>
                     <div className="p-4 bg-yellow-50 rounded-lg">
                       <p className="text-sm text-yellow-600">First Contentful Paint</p>
-                      <p className="text-3xl font-bold">0.9s</p>
-                      <p className="text-sm text-green-600">↓ 15% from last month</p>
+                      <p className="text-3xl font-bold text-gray-500">{msToSeconds(avgFCP)}s</p>
+                      <p className="text-sm text-gray-600">Average FCP</p>
                     </div>
                     <div className="p-4 bg-purple-50 rounded-lg">
                       <p className="text-sm text-purple-600">Largest Contentful Paint</p>
-                      <p className="text-3xl font-bold">1.5s</p>
-                      <p className="text-sm text-green-600">↓ 10% from last month</p>
+                      <p className="text-3xl font-bold text-gray-500">{msToSeconds(avgLCP)}s</p>
+                      <p className="text-sm text-gray-600">Average LCP</p>
                     </div>
                   </div>
                 </CardContent>
@@ -213,7 +292,13 @@ export default function TechnicalMetrics() {
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
-                          data={browserData}
+                          data={[
+                            { name: 'Chrome', value: 58 },
+                            { name: 'Safari', value: 20 },
+                            { name: 'Firefox', value: 12 },
+                            { name: 'Edge', value: 8 },
+                            { name: 'Other', value: 2 },
+                          ]}
                           cx="50%"
                           cy="50%"
                           labelLine={false}
@@ -222,7 +307,7 @@ export default function TechnicalMetrics() {
                           dataKey="value"
                           label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                         >
-                          {browserData.map((entry, index) => (
+                          {deviceData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                           ))}
                         </Pie>
@@ -277,7 +362,13 @@ export default function TechnicalMetrics() {
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
-                          data={errorData}
+                          data={[
+                            { name: '404', value: 35 },
+                            { name: '500', value: 12 },
+                            { name: '403', value: 8 },
+                            { name: '400', value: 15 },
+                            { name: 'Other', value: 5 },
+                          ]}
                           cx="50%"
                           cy="50%"
                           labelLine={false}
@@ -286,7 +377,7 @@ export default function TechnicalMetrics() {
                           dataKey="value"
                           label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
                         >
-                          {errorData.map((entry, index) => (
+                          {deviceData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                           ))}
                         </Pie>
@@ -346,14 +437,16 @@ export default function TechnicalMetrics() {
                         </tr>
                       </thead>
                       <tbody>
-                        {errorLogs.map((log) => (
+                        {[
+                          { id: 1, path: '/products/123', errorCode: 404, count: 12, lastOccurrence: '2025-02-26T14:23:00' },
+                          { id: 2, path: '/api/users', errorCode: 500, count: 8, lastOccurrence: '2025-02-26T16:45:00' },
+                        ].map((log) => (
                           <tr key={log.id} className="border-b hover:bg-gray-50">
                             <td className="py-3 px-4">{log.path}</td>
                             <td className="py-3 px-4">
                               <span className={`inline-block px-2 py-1 rounded text-xs ${
                                 log.errorCode === 404 ? 'bg-orange-100 text-orange-800' :
                                 log.errorCode === 500 ? 'bg-red-100 text-red-800' :
-                                log.errorCode === 403 ? 'bg-yellow-100 text-yellow-800' :
                                 'bg-blue-100 text-blue-800'
                               }`}>
                                 {log.errorCode}
