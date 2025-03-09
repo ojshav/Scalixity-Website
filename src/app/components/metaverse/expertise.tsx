@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Globe, Layers, Shield, Code, Users, Zap, BarChart, MonitorSmartphone, ShoppingCart, Briefcase, Cpu } from 'lucide-react';
+import { Globe, Layers, Shield, Code, Users, Zap, MonitorSmartphone, ShoppingCart, Briefcase, Cpu } from 'lucide-react';
 
 const expertiseAreas = [
   {
@@ -62,7 +62,7 @@ export function Expertise() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-foreground mb-6">
-            Scalixity's Metaverse Development Expertise
+            Scalixity &apos s Metaverse Development Expertise
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Explore the limitless potential of the metaverse with our cutting-edge solutions, integrating blockchain, AI, and immersive technology to shape the future of digital interactions.

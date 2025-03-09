@@ -1,5 +1,6 @@
-"use client"
-import { motion } from 'framer-motion';
+"use client";
+
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -31,15 +32,29 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-black py-24">
+    <section className="py-24" style={{ backgroundColor: "#A8B2E7" }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-gray-400 uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+          <span
+            className="text-sm uppercase tracking-wider"
+            style={{ color: "#000000" }}
+          >
+            WHAT WE OFFER
+          </span>
+          <h2
+            className="text-4xl md:text-5xl font-bold mt-4 mb-6"
+            style={{ color: "#000000" }}
+          >
             Our MidJourney AI Services
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Unlock the power of AI-driven creativity with our MidJourney services. From custom AI-generated visuals to seamless API integrations, we help businesses and creators harness the full potential of AI-powered design and artwork generation.
+          <p
+            className="text-xl max-w-3xl mx-auto"
+            style={{ color: "#000000" }}
+          >
+            Unlock the power of AI-driven creativity with our MidJourney services. From
+            custom AI-generated visuals to seamless API integrations, we help businesses
+            and creators harness the full potential of AI-powered design and artwork
+            generation.
           </p>
         </div>
 
@@ -51,10 +66,18 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-900 p-8 rounded-xl border border-gray-700 hover:border-purple-500 transition-colors"
+              className="p-8 rounded-xl hover:border-black transition-colors"
+              style={{
+                backgroundColor: "#F3F1EB",
+                border: "2px solid transparent",
+              }}
             >
-              <h3 className="text-xl font-bold text-white mb-4">{service.title}</h3>
-              <p className="text-gray-400 leading-relaxed">{service.description}</p>
+              <h3 className="text-xl font-bold mb-4" style={{ color: "#000000" }}>
+                {service.title}
+              </h3>
+              <p className="leading-relaxed" style={{ color: "#000000" }}>
+                {service.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -64,3 +87,4 @@ export function WhatWeOffer() {
 }
 
 export default WhatWeOffer;
+

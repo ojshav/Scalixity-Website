@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqs = [
   {
     question: "How will Generative AI integrate with our existing Enterprise systems and workflows?",
-    answer: "Generative AI integrates with existing systems and workflows by leveraging APIs and middleware for seamless data exchange. It complements current processes through machine learning and automation, enhancing efficiency without disrupting established operations. This allows Generative AI to provide insights and augment decision-making while fitting into the existing technological ecosystem."
+    answer: "Generative AI integrates with existing systems and workflows by leveraging APIs and middleware for seamless data exchange. It complements current processes through machine learning and automation, enhancing efficiency without disrupting established operations."
   },
   {
     question: "What approach do you use for model validation, testing, and performance evaluation?",
@@ -34,7 +34,7 @@ const faqs = [
   },
   {
     question: "What are the best tools for ChatGPT Development?",
-    answer: "Some of the tools that our ChatGPT developers use are Google Dialogflow, Microsoft BotFramework, Amazon Lex, BotMap, Botsify, Rasa, and Wit.ai."
+    answer: "Some of the tools that our ChatGPT developers use are Google Dialogflow, Microsoft BotFramework, Amazon Lex, and Rasa."
   },
   {
     question: "What are the names of the ChatGPT models?",
@@ -44,32 +44,36 @@ const faqs = [
     question: "How much does it cost to develop a Chatbot?",
     answer: "The cost of developing a chatbot depends on factors like functionality, integrations, and AI capabilities. Basic chatbots can start from a few thousand dollars, while advanced AI-powered chatbots may require a larger investment. We provide customized estimates based on your specific requirements."
   }
-]
+];
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#080B16] py-20">
+    <section className="bg-[#A8B2E7] py-20">
+      {" "}
+      {/* Lavender background */}
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">Frequently Asked Questions</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-12">
+          Frequently Asked Questions
+        </h2>
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, index) => (
             <div key={index} className="mb-4">
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-[#0F1629] rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg border border-gray-500 shadow-md"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="text-white font-semibold">{faq.question}</span>
+                <span className="text-black font-semibold">{faq.question}</span>
                 {openIndex === index ? (
-                  <ChevronUp className="text-purple-500" />
+                  <ChevronUp className="text-gray-700" />
                 ) : (
-                  <ChevronDown className="text-purple-500" />
+                  <ChevronDown className="text-gray-700" />
                 )}
               </button>
               {openIndex === index && (
-                <div className="p-4 bg-[#0F1629] mt-1 rounded-lg">
-                  <p className="text-gray-400">{faq.answer}</p>
+                <div className="p-4 bg-[#F3F1EB] mt-1 rounded-lg border border-gray-500">
+                  <p className="text-gray-800">{faq.answer}</p>
                 </div>
               )}
             </div>
@@ -77,5 +81,5 @@ export function FAQ() {
         </div>
       </div>
     </section>
-  )
+  );
 }

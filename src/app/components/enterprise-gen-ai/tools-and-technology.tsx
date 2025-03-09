@@ -25,7 +25,7 @@ const technologies: Technologies = {
 
 export function ToolsAndTechnology() {
   return (
-    <section className="bg-[#080B16] py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
         <div className="mb-12">
           <span className="text-sm text-gray-400 uppercase tracking-wider">TOOL & TECHNOLOGY</span>
@@ -40,8 +40,8 @@ export function ToolsAndTechnology() {
         <div className="grid gap-8">
           <div className="grid md:grid-cols-3 gap-8">
             {Object.entries(technologies).slice(0, 3).map(([category, items], index) => (
-              <div key={index} className="border border-gray-800 rounded-lg p-6">
-                <h3 className="text-white font-semibold mb-6">{category}</h3>
+              <div key={index} className="border border-gray-800 rounded-lg p-6 bg-[#F3F1EB]">
+                <h3 className="text-black font-semibold mb-6">{category}</h3>
                 <div className="grid grid-cols-3 gap-4">
                   {Array.isArray(items) &&
                     items.map((item, idx) =>
@@ -54,7 +54,7 @@ export function ToolsAndTechnology() {
                             height={40}
                             className="mb-2"
                           />
-                          <span className="text-gray-400 text-sm text-center">{item.name}</span>
+                          <span className="text-black text-sm text-center">{item.name}</span>
                         </div>
                       ) : null
                     )}
@@ -65,8 +65,8 @@ export function ToolsAndTechnology() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {Object.entries(technologies).slice(3).map(([category, items], index) => (
-              <div key={index} className="border border-gray-800 rounded-lg p-6">
-                <h3 className="text-white font-semibold mb-6">{category}</h3>
+              <div key={index} className="border border-gray-800 rounded-lg p-6 bg-[#F3F1EB]">
+                <h3 className="text-black font-semibold mb-6">{category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {typeof items === "object" &&
                     items.map((item, idx) => (
@@ -86,3 +86,4 @@ export function ToolsAndTechnology() {
     </section>
   );
 }
+

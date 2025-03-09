@@ -7,7 +7,7 @@ import { Process } from "@/src/app/components/industries/fitness/process"
 import { TechStack } from "@/src/app/components/industries/fitness/tech-stack"
 import { CTA } from "@/src/app/components/industries/fitness/CTA"
 import { FAQ} from "@/src/app/components/industries/fitness/faq"
-export default function FintechPage() {
+export default function FitnessPage() {
   return (
     <main className="bg-background">
       <Hero />

@@ -45,7 +45,7 @@ const projects = [
 
 export function FeaturedWork() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-16">
           <div>
@@ -94,7 +94,7 @@ export function FeaturedWork() {
                 </Link>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
+                <div className="relative h-[400px] rounded-xl overflow-hidden bg-[#F3F1EB]">
                   <Image
                     src={project.image}
                     alt={project.title}

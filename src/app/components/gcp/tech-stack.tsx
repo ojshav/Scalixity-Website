@@ -43,7 +43,7 @@ export function TechStack() {
             GCP Tech Stack for Cloud Development
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            We leverage Google Cloud's robust technology stack to create scalable, secure, and efficient cloud solutions.
+          We leverage Google Cloud&apos;s robust technology stack to create scalable, secure, and efficient cloud solutions.
           </p>
         </div>
 

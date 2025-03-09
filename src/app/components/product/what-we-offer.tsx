@@ -39,7 +39,7 @@ export function ProductDevelopmentServices() {
             Product Development Solutions
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Build innovative, scalable, and secure digital products designed for success in today's competitive market.
+            Build innovative, scalable, and secure digital products designed for success in today&apos;scompetitive market.
           </p>
         </div>
 

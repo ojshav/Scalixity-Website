@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
 const processSteps = [
   {
@@ -23,25 +23,25 @@ const processSteps = [
     title: "Deployment & Maintenance",
     description: "Post-deployment, we provide continuous monitoring, performance optimizations, and necessary updates to keep the AI solution reliable and efficient."
   }
-]
+];
 
 export function Process() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">PROCESS</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">PROCESS</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
             Our ChatGPT Development Process
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Our ChatGPT developers undertake a meticulous approach to understand your company’s objectives
             and create an engaging, user-friendly, and smooth OpenAI solution for your target audience.
           </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-primary/20" />
+          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-gray-500" /> {/* Dark gray line */}
 
           <div className="space-y-12">
             {processSteps.map((step, index) => (
@@ -53,13 +53,13 @@ export function Process() {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 className="relative pl-12"
               >
-                <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-primary rounded-full flex items-center justify-center">
-                  <div className="w-2 h-2 bg-background rounded-full" />
+                <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center"> {/* Black circle */}
+                  <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" /> {/* Lavender dot inside */}
                 </div>
                 
-                <div className="bg-card p-8 rounded-xl border border-border">
-                  <h3 className="text-xl font-bold text-foreground mb-4">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                <div className="bg-[#F3F1EB] p-8 rounded-xl border border-gray-300 hover:border-gray-500 transition-colors">
+                  <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
+                  <p className="text-black leading-relaxed">{step.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -67,6 +67,6 @@ export function Process() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 

@@ -33,7 +33,7 @@ const Profile = () => {
     // Fetch admin data from your backend API
     const fetchAdminData = async () => {
       const token = localStorage.getItem('adminToken');
-      const username = localStorage.getItem('adminUsername');
+      // const username = localStorage.getItem('adminUsername');
       
       try {
         const response = await fetch('http://localhost:5000/api/admin/profile', {

@@ -60,7 +60,7 @@ export function TechStack() {
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">TOOLS & TECHNOLOGIES</span>
           <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
-            Technology Stack for Hedra's AI Solutions
+            Technology Stack for Hedra&apos;s AI Solutions
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Discover the powerful AI technologies we use to build intelligent, efficient, and scalable solutions for your business.

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { CheckCircle } from 'lucide-react';
 
 const successStories = [
   {

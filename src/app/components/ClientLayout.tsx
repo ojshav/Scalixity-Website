@@ -19,9 +19,27 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   const getDeviceType = () => {
     const userAgent = navigator.userAgent.toLowerCase();
-    if (/mobile|android|iphone|ipod|blackberry|windows phone/.test(userAgent)) return "Mobile";
-    if (/ipad|tablet|kindle|playbook/.test(userAgent)) return "Tablet";
-    return "Desktop";
+    let browser = "Unknown";
+
+    if (userAgent.includes("chrome") && !userAgent.includes("edge") && !userAgent.includes("opr")) {
+      browser = "Chrome";
+    } else if (userAgent.includes("firefox")) {
+      browser = "Firefox";
+    } else if (userAgent.includes("safari") && !userAgent.includes("chrome")) {
+      browser = "Safari";
+    } else if (userAgent.includes("edge")) {
+      browser = "Edge";
+    } else if (userAgent.includes("opr") || userAgent.includes("opera")) {
+      browser = "Opera";
+    } else if (userAgent.includes("msie") || userAgent.includes("trident")) {
+      browser = "Internet Explorer";
+    }
+
+    let deviceType = "Desktop";
+    if (/mobile|android|iphone|ipod|blackberry|windows phone/.test(userAgent)) deviceType = "Mobile";
+    if (/ipad|tablet|kindle|playbook/.test(userAgent)) deviceType = "Tablet";
+
+    return { deviceType, browser };
   };
 
   // Utility function for retrying failed requests
@@ -65,11 +83,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       localStorage.setItem("visitorId", visitorId);
     }
 
-    const deviceType = getDeviceType();
+    const { deviceType, browser } = getDeviceType();
 
     const sendEvent = (
-      eventType: "page_visit" | "exit" | "inquiry",
-      additionalData: Record<string, any> = {}
+      eventType: "page_visit" | "exit" | "inquiry" | "error",
+      additionalData: Record<string, unknown> = {}
     ) => {
       const eventData = {
         visitorId,
@@ -77,6 +95,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         timestamp: new Date().toISOString(),
         event: eventType,
         deviceType,
+        browser,
         country: country || "Pending",
         ...additionalData,
       };
@@ -91,12 +110,19 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         .then(async (response) => {
           if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error}`);
+            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error || "Unknown"}`);
           }
           return response.json();
         })
         .then((data) => console.log(`${eventType} event successful:`, data))
-        .catch((err) => console.error(`${eventType} event failed:`, err));
+        .catch((err) => {
+          console.error(`${eventType} event failed:`, err);
+          sendEvent("error", {
+            errorCode: err.message.match(/\d{3}/)?.[0] || "Unknown",
+            errorMessage: err.message,
+            source: "fetch",
+          });
+        });
     };
 
     if (country) {
@@ -111,19 +137,97 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     };
   }, [pathname, country]);
 
-  /** 🟢 Performance Metrics Tracking Logic */
+  /** 🟢 Performance Metrics and Real-Time Error Tracking Logic */
   useEffect(() => {
-    const deviceType = getDeviceType();
-    let visitorId = localStorage.getItem("visitorId");
-    
+    const { deviceType, browser } = getDeviceType();
+    const visitorId = localStorage.getItem("visitorId");
+
+    // Initialize error tracking structures
+    const errorTypes: Record<string, number> = {};
+    const errorsOverTime: Record<string, Record<string, number>> = {};
+    const recentErrorLogs: { path: string; errorCode: string; count: number; lastOccurrence: string }[] = [];
+
+    const sendErrorData = (data: Record<string, unknown>) => {
+      fetch(`http://localhost:5000/api/track-error-logs`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          ...data, 
+          visitorId, 
+          page: pathname, 
+          timestamp: new Date().toISOString(),
+          deviceType,
+          browser,
+          country: country || "Unknown"
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(`Error data sent successfully:`, data))
+        .catch((err) => console.error(`Failed to send error data:`, err));
+    };
+
+    let lastErrorTime = 0;
+    const ERROR_THRESHOLD = 10000; // 10 seconds
+
+    const updateErrorTracking = (errorCode: string, errorMessage: string, source: string) => {
+      const currentTime = Date.now();
+      if (currentTime - lastErrorTime < ERROR_THRESHOLD) {
+        console.warn("Too many errors in a short period, skipping logging.");
+        return;
+      }
+
+      lastErrorTime = currentTime;
+      const dateKey = new Date().toLocaleDateString("en-US", { weekday: "short" });
+
+      // Update error types
+      errorTypes[errorCode] = (errorTypes[errorCode] || 0) + 1;
+
+      // Update errors over time
+      if (!errorsOverTime[dateKey]) errorsOverTime[dateKey] = {};
+      errorsOverTime[dateKey][errorCode] = (errorsOverTime[dateKey][errorCode] || 0) + 1;
+
+      // Update recent error logs
+      const existingLog = recentErrorLogs.find((log) => log.path === pathname && log.errorCode === errorCode);
+      if (existingLog) {
+        existingLog.count += 1;
+        existingLog.lastOccurrence = new Date().toISOString();
+      } else {
+        recentErrorLogs.push({
+          path: pathname,
+          errorCode,
+          count: 1,
+          lastOccurrence: new Date().toISOString(),
+        });
+      }
+
+      // Send all error data through single endpoint
+      sendErrorData({ 
+        recentErrorLogs,
+        errorTypes,
+        errorsOverTime,
+        errorMessage,
+        source
+      });
+
+      // Store in localStorage
+      localStorage.setItem("errorTypes", JSON.stringify(errorTypes));
+      localStorage.setItem("errorsOverTime", JSON.stringify(errorsOverTime));
+      localStorage.setItem("recentErrorLogs", JSON.stringify(recentErrorLogs));
+
+      console.log("Error tracked:", { errorCode, errorMessage, source });
+    };
+
+    // Performance observer for metrics
     const observer = new PerformanceObserver((list) => {
       const perfEntries = list.getEntries();
 
-      let metrics: Record<string, any> = {
-        visitorId: visitorId,
+      const metrics: Record<string, unknown> = {
+        visitorId,
         page: pathname,
-        deviceType: deviceType,
-        country: country || "Unknown"
+        deviceType,
+        browser,
+        country: country || "Unknown",
+        timestamp: new Date().toISOString(), // Added for consistency
       };
 
       for (const entry of perfEntries) {
@@ -139,6 +243,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
       console.log("Performance Metrics:", metrics);
 
+<<<<<<< HEAD
       const handleMetrics = async () => {
         if (process.env.NODE_ENV !== 'production') {
           console.log('Metrics tracking disabled in development');
@@ -173,12 +278,100 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       };
 
       handleMetrics();
+=======
+      // Send performance metrics to /track-metrics endpoint
+      fetch("http://localhost:5000/api/track-metrics", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(metrics),
+      })
+        .then(async (response) => {
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error || "Unknown"}`);
+          }
+          return response.json();
+        })
+        .then((data) => console.log("Performance metrics sent successfully:", data))
+        .catch((err) => {
+          console.error("Failed to send performance metrics:", err);
+          updateErrorTracking(
+            err.message.match(/\d{3}/)?.[0] || "Unknown",
+            err.message,
+            "fetch-metrics"
+          );
+        });
+>>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
     });
 
     observer.observe({ type: "paint", buffered: true });
     observer.observe({ type: "largest-contentful-paint", buffered: true });
 
-    return () => observer.disconnect();
+    // Resource error tracking (e.g., failed images, scripts)
+    const resourceObserver = new PerformanceObserver((list) => {
+      list.getEntries().forEach((entry) => {
+        const resourceEntry = entry as unknown as { responseStatus: number; name: string };
+        if (resourceEntry.responseStatus >= 400) {
+          updateErrorTracking(
+            resourceEntry.responseStatus.toString(),
+            `Resource failed to load: ${resourceEntry.name}`,
+            "resource"
+          );
+        }
+      });
+    });
+    resourceObserver.observe({ type: "resource", buffered: true });
+
+    // Global JS error handler
+    const handleError = (event: ErrorEvent) => {
+      updateErrorTracking(
+        "Unknown",
+        event.message || "Unknown JS error",
+        "javascript"
+      );
+    };
+    window.addEventListener("error", handleError);
+
+    // Unhandled promise rejection handler
+    const handleRejection = (event: PromiseRejectionEvent) => {
+      updateErrorTracking(
+        "Unknown",
+        event.reason?.message || "Unhandled promise rejection",
+        "promise"
+      );
+    };
+    window.addEventListener("unhandledrejection", handleRejection);
+
+    // Intercept fetch errors globally
+    const originalFetch = window.fetch;
+    window.fetch = async (...args) => {
+      try {
+        const response = await originalFetch(...args);
+        if (!response.ok) {
+          updateErrorTracking(
+            response.status.toString(),
+            `Fetch failed: ${response.statusText}`,
+            "fetch"
+          );
+        }
+        return response;
+      } catch (error) {
+        updateErrorTracking(
+          "Network",
+          error instanceof Error ? error.message : "Network error",
+          "fetch"
+        );
+        throw error;
+      }
+    };
+
+    return () => {
+      observer.disconnect();
+      resourceObserver.disconnect();
+      window.removeEventListener("error", handleError);
+      window.removeEventListener("unhandledrejection", handleRejection);
+      window.fetch = originalFetch; // Restore original fetch
+    };
   }, [pathname, country]);
 
   return (

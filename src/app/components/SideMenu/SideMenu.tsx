@@ -57,10 +57,11 @@ const menuListTranslations = [
 ];
 
 const menuListIcons = [
-  <HomeIcon />,
-  <Person2Icon />,
-  <SettingsIcon />,
+  <HomeIcon key="home" />,
+  <Person2Icon key="person" />,
+  <SettingsIcon key="settings" />,
 ];
+
 
 const SideMenu = () => {
   const theme = useTheme();

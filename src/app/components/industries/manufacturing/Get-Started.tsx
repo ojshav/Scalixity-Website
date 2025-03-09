@@ -12,7 +12,7 @@ export function GetStarted() {
           transition={{ duration: 0.8 }}
           className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-bounce"
         >
-          Let's Kickstart Your AI-Powered Manufacturing Journey! 
+          Let&apos;s Kickstart Your AI-Powered Manufacturing Journey! 
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
@@ -20,7 +20,7 @@ export function GetStarted() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-xl md:text-2xl text-white max-w-4xl mx-auto mb-8"
         >
-          Step into the future of manufacturing, where artificial intelligence drives innovation. Say goodbye to inefficiencies and manual bottlenecks — and welcome a world of data-driven production lines, predictive maintenance, and optimized supply chains. Embrace AI to minimize downtime, enhance product quality, and streamline operations. Together, let's redefine manufacturing excellence — making your processes smarter, faster, and more cost-effective.
+          Step into the future of manufacturing, where artificial intelligence drives innovation. Say goodbye to inefficiencies and manual bottlenecks — and welcome a world of data-driven production lines, predictive maintenance, and optimized supply chains. Embrace AI to minimize downtime, enhance product quality, and streamline operations. Together, let&apos;sredefine manufacturing excellence — making your processes smarter, faster, and more cost-effective.
         </motion.p>
         <div className="flex justify-center space-x-4">
           <motion.button 

@@ -37,7 +37,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-foreground mb-6">
@@ -49,7 +49,6 @@ export function Process() {
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          {/* Vertical line */}
           <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-primary/20 md:left-1/2 md:-translate-x-px" />
 
           <div className="space-y-12">
@@ -63,13 +62,12 @@ export function Process() {
                 className="relative pl-12 md:pl-0"
               >
                 <div className={`md:flex items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                  {/* Timeline dot */}
                   <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-primary rounded-full flex items-center justify-center md:relative md:left-auto md:top-auto md:mx-8">
-                    <div className="w-2 h-2 bg-background rounded-full" />
+                    <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" />
                   </div>
                   
                   <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:text-right' : ''}`}>
-                    <div className="bg-card p-6 rounded-xl border border-border">
+                    <div className="bg-[#F3F1EB] p-6 rounded-xl border-2 border-black">
                       <div className="text-primary text-sm font-bold mb-2">STEP {step.number}</div>
                       <h3 className="text-xl font-bold text-foreground mb-4">{step.title}</h3>
                       <p className="text-muted-foreground">{step.description}</p>
@@ -84,3 +82,4 @@ export function Process() {
     </section>
   )
 }
+

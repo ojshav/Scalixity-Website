@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const projects = [
@@ -36,7 +35,7 @@ export function FeaturedWork() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold">Our Hybrid App Development Showcase</h2>
-          <p className="text-lg mt-4 max-w-2xl mx-auto">Explore how we've built powerful cross-platform applications, delivering seamless experiences across iOS and Android.</p>
+          <p className="text-lg mt-4 max-w-2xl mx-auto">Explore how we&apos;ve built powerful cross-platform applications, delivering seamless experiences across iOS and Android.</p>
         </div>
 
         <div className="space-y-16">

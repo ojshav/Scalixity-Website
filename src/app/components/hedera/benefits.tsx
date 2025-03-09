@@ -35,7 +35,7 @@ export function Benefits() {
           Benefits of Hedera App Development
         </h2>
         <p className="text-lg text-gray-400 text-center max-w-2xl mx-auto mb-16">
-          Unlock the full potential of blockchain technology with Hedera — delivering fast, secure, and cost-effective solutions tailored for modern businesses. Whether you're developing a decentralized application or integrating blockchain into existing systems, Hedera empowers innovation with confidence.
+          Unlock the full potential of blockchain technology with Hedera — delivering fast, secure, and cost-effective solutions tailored for modern businesses. Whether You&apos;re developing a decentralized application or integrating blockchain into existing systems, Hedera empowers innovation with confidence.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (

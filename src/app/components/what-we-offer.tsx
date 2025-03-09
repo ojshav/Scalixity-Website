@@ -30,7 +30,7 @@ const offerings = [
   },
   {
     title: "Streamline Your AI Operations",
-    description: "Our MLOps team focuses on efficient AI implementation and measurable impact. We assist clients through the development, deployment, and monitoring of AI systems, aiming for operational excellence. By supporting businesses with continuous performance evaluations, we ensure that their AI investments yield tangible results",
+    description: "Our MLOps team focuses on efficient AI implementation and measurable impact. We assist clients through the development, deployment, and monitoring of AI systems, aiming for operational excellence. By supporting businesses with continuous performance evaluations, we ensure that their AI investments yield tangible results.",
     link: "/services/mlops",
     icon: Cog
   }
@@ -41,12 +41,12 @@ export function WhatWeOffer() {
     <section className="bg-[#9FA8DA] py-32">
       <div className="container mx-auto px-4">
         <div className="text-center mb-20">
-          <span className="text-md text-blue-600 uppercase tracking-wider font-semibold">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-6xl font-bold text-white mt-4 mb-6">
+          <span className="text-md text-black uppercase tracking-wider font-semibold">WHAT WE OFFER</span>
+          <h2 className="text-4xl md:text-6xl font-bold text-black mt-4 mb-6">
             Transforming Businesses with AI Solutions
           </h2>
-          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
-           Scalixity brings together industry specialists, strategic thinkers, and advanced technology to
+          <p className="text-xl text-black max-w-3xl mx-auto">
+            Scalixity brings together industry specialists, strategic thinkers, and advanced technology to
             drive data-driven success and scale value.
           </p>
         </div>
@@ -57,7 +57,7 @@ export function WhatWeOffer() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-xl p-8 hover:bg-[#f4f4f4] transition-colors shadow-lg"
+              className="bg-white rounded-xl p-8 border border-gray-400 hover:bg-[#f4f4f4] transition-colors shadow-lg"
             >
               <motion.div
                 className="text-blue-500 mb-4"

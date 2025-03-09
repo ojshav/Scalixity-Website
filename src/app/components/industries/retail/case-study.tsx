@@ -31,20 +31,20 @@ const caseStudies = [
 
 export function CaseStudy() {
   return (
-    <section className="bg-[#080B16] py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">Our AI-Powered Retail Solutions</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">Our AI-Powered Retail Solutions</h2>
         {caseStudies.map((study, index) => (
-          <div key={index} className="bg-[#0F1629] rounded-lg overflow-hidden border border-gray-800 mb-8">
+          <div key={index} className="bg-[#F3F1EB] rounded-lg overflow-hidden border border-gray-800 mb-8">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-4">{study.title}</h3>
-                <p className="text-gray-400 mb-6">{study.description}</p>
+                <h3 className="text-2xl font-bold text-foreground mb-4">{study.title}</h3>
+                <p className="text-muted-foreground mb-6">{study.description}</p>
                 <ul className="space-y-2">
                   {study.highlights.map((highlight, idx) => (
                     <li key={idx} className="flex items-start">
-                      <span className="text-purple-500 mr-2">•</span>
-                      <span className="text-gray-400">{highlight}</span>
+                      <span className="text-primary mr-2">•</span>
+                      <span className="text-muted-foreground">{highlight}</span>
                     </li>
                   ))}
                 </ul>
@@ -61,3 +61,4 @@ export function CaseStudy() {
 }
 
 export default CaseStudy;
+

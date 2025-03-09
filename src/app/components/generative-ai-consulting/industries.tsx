@@ -16,7 +16,7 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
@@ -38,7 +38,7 @@ export function Industries() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="bg-card p-6 rounded-full mb-4">
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
@@ -55,4 +55,3 @@ export function Industries() {
     </section>
   )
 }
-

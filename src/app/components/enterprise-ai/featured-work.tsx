@@ -22,21 +22,21 @@ const featuredWorks = [
 
 export function FeaturedWork() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#F3F1EB] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white">Featured Work</h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold text-black">Featured Work</h2>
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Explore how our AI solutions are transforming enterprises.
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {featuredWorks.map((work, index) => (
-            <div key={index} className="bg-card p-6 rounded-xl border border-border">
+            <div key={index} className="bg-[#A8B2E7] p-6 rounded-xl border border-gray-400">
               <Image src={work.image} alt={work.title} width={400} height={300} className="rounded-lg mb-4" />
-              <h3 className="text-xl font-semibold text-white">{work.title}</h3>
-              <p className="text-gray-400 mt-2">{work.description}</p>
+              <h3 className="text-xl font-semibold text-black">{work.title}</h3>
+              <p className="text-black mt-2">{work.description}</p>
             </div>
           ))}
         </div>

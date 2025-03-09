@@ -9,20 +9,6 @@ const inter = Inter({
 });
 
 export const metadata = {
-<<<<<<< HEAD
-
-  title: 'Scalixity- AI Solutions for Data-Driven Companies',
-  description: 'We help data-driven companies build measurable generative AI solutions',
-  keywords: 'AI, artificial intelligence, machine learning, data science, consulting',
-  openGraph: {
-    title: 'Scalixity - AI Solutions for Data-Driven Companies',
-    description: 'We help data-driven companies build measurable generative AI solutions',
-    url: 'https://Scalixity.com',
-    siteName: 'Scalixity',
-
-  
-
-=======
   title: "Scalixity - AI Solutions for Data-Driven Companies",
   description: "We help data-driven companies build measurable generative AI solutions",
   keywords: "AI, artificial intelligence, machine learning, data science, consulting",
@@ -31,7 +17,6 @@ export const metadata = {
     description: "We help data-driven companies build measurable generative AI solutions",
     url: "https://Scalixity.com",
     siteName: "Scalixity",
->>>>>>> 8b55d41 (Added some Photos in Services section)
     images: [
       {
         url: "/og-image.jpg",
@@ -56,12 +41,7 @@ export const metadata = {
   icons: {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
-<<<<<<< HEAD
   },
-
-=======
-  }
->>>>>>> 8b55d41 (Added some Photos in Services section)
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

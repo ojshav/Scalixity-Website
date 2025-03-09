@@ -1,9 +1,5 @@
 "use client";
-
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-
+import { motion,  } from 'framer-motion';
 const projects = [
   {
     company: "MetaCity",

@@ -7,7 +7,7 @@ const faqs = [
   {
     question: "What is ChatGPT integration service?",
     answer:
-      "ChatGPT integration service is a service that enables businesses and individuals to integrate the powerful language model of ChatGPT into their applications, websites, and other software platforms. This allows them to create conversational interfaces, chatbots, and virtual assistants that can understand and respond to natural language inputs.",
+      "ChatGPT integration service enables businesses to integrate ChatGPT into their applications, websites, and software platforms. This allows them to create conversational interfaces, chatbots, and virtual assistants that understand and respond to natural language inputs.",
   },
   {
     question: "How does ChatGPT integration work?",
@@ -27,11 +27,11 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#080B16] py-20">
+    <section className="bg-[#A8B2E7] py-20"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <span className="text-sm text-gray-400 uppercase tracking-wider">FAQs</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
+          <span className="text-sm text-black uppercase tracking-wider">FAQs</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">
             ChatGPT Integration Services
           </h2>
         </div>
@@ -40,19 +40,19 @@ export function FAQ() {
           {faqs.map((faq, index) => (
             <div key={index} className="mb-4">
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-[#0F1629] rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg border border-black"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="text-white font-semibold">{faq.question}</span>
+                <span className="text-black font-semibold">{faq.question}</span>
                 {openIndex === index ? (
-                  <ChevronUp className="text-purple-500" />
+                  <ChevronUp className="text-black" />
                 ) : (
-                  <ChevronDown className="text-purple-500" />
+                  <ChevronDown className="text-black" />
                 )}
               </button>
               {openIndex === index && (
-                <div className="p-4 bg-[#0F1629] mt-1 rounded-lg">
-                  <p className="text-gray-400">{faq.answer}</p>
+                <div className="p-4 bg-[#F3F1EB] mt-1 rounded-lg border border-black">
+                  <p className="text-black">{faq.answer}</p>
                 </div>
               )}
             </div>

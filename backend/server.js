@@ -71,7 +71,10 @@ async function setupDatabase() {
         visitorId VARCHAR(255),
         page VARCHAR(255),
         timestamp DATETIME,
-        event VARCHAR(50)
+        event VARCHAR(50),
+        deviceType VARCHAR(50),
+        country VARCHAR(50),
+        browser VARCHAR(100)
       )
     `);
 
@@ -103,6 +106,25 @@ async function setupDatabase() {
         FOREIGN KEY (visitorId) REFERENCES user_activity(visitorId) ON DELETE CASCADE
       )
     `);
+
+    // Create error_logs table if it doesn't exist
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS error_logs (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        visitorId VARCHAR(255),
+        page VARCHAR(255),
+        errorCode VARCHAR(50),
+        errorMessage TEXT,
+        source VARCHAR(50),  -- e.g., 'fetch', 'javascript', 'resource', 'promise'
+        count INT DEFAULT 1,
+        firstOccurrence DATETIME,
+        lastOccurrence DATETIME,
+        timestamp DATETIME NOT NULL,
+        deviceType VARCHAR(50),
+        browser VARCHAR(100),
+        country VARCHAR(100)
+      )
+    `);
     
     // Check if default admin exists, if not create one
     const [rows] = await connection.execute('SELECT * FROM admin_users WHERE username = ?', [process.env.ADMIN_USERNAME]);
@@ -131,7 +153,7 @@ app.use('/api/admin', adminRoutes);
 app.use("/api", analyticsRoutes);
 app.use("/api", engagementRoutes);
 app.use("/api", demographicRoutes);
-app.use("/api",technicalRoutes);
+app.use("/api", technicalRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
