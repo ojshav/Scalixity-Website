@@ -17,6 +17,7 @@ router.post('/track', async (req, res) => {
       visitorId, 
       country, 
       deviceType, 
+      browser,
       page, 
       event = 'demographic',
       timestamp = new Date().toISOString()
@@ -27,8 +28,9 @@ router.post('/track', async (req, res) => {
     // Insert into user_activity table
     const mysqlTimestamp = new Date(timestamp).toISOString().slice(0, 19).replace('T', ' ');
     const [activityResult] = await pool.execute(
-      'INSERT INTO user_activity (visitorId, page, timestamp, event, deviceType, country) VALUES (?, ?, ?, ?, ?, ?)',
-      [visitorId, page, mysqlTimestamp, event, deviceType, country]
+      `INSERT INTO user_activity (visitorId, page, timestamp, event, deviceType, country, browser) 
+       VALUES (?, ?, NOW(), ?, ?, ?, ?)`,
+      [visitorId, page, event, deviceType, country, browser]
     );
 
     // Insert into inquiries table

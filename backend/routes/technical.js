@@ -29,6 +29,72 @@ router.post('/track-metrics', async (req, res) => {
   }
 });
 
+// Function to convert ISO 8601 datetime string to MySQL compatible format (YYYY-MM-DD HH:MM:SS)
+const convertToMySQLDate = (isoDate) => {
+  if (!isoDate) return null;
+  const date = new Date(isoDate);
+  return date.toISOString().slice(0, 19).replace('T', ' ');  // Converts to 'YYYY-MM-DD HH:MM:SS'
+};
+
+router.post('/track-error-logs', async (req, res) => {
+  try {
+    const pool = getPool(req);
+    const { recentErrorLogs, visitorId, page, timestamp, deviceType, browser, country } = req.body;
+
+    if (!visitorId || !recentErrorLogs) {
+      return res.status(400).json({ error: 'visitorId and recentErrorLogs are required' });
+    }
+
+    const connection = await pool.getConnection();
+    await connection.beginTransaction();
+
+    try {
+      for (const log of recentErrorLogs) {
+        const { path, errorCode, count, lastOccurrence, errorMessage, source } = log;
+        
+        const formattedFirstOccurrence = convertToMySQLDate(lastOccurrence || timestamp);
+        const formattedLastOccurrence = convertToMySQLDate(lastOccurrence || timestamp);
+        const formattedTimestamp = convertToMySQLDate(timestamp);
+
+        await connection.execute(`
+          INSERT INTO error_logs 
+          (visitorId, page, errorCode, errorMessage, source, count, firstOccurrence, lastOccurrence, timestamp, deviceType, browser, country)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          ON DUPLICATE KEY UPDATE 
+            count = VALUES(count), 
+            lastOccurrence = VALUES(lastOccurrence),
+            errorMessage = VALUES(errorMessage),
+            source = VALUES(source);
+        `, [
+          visitorId, 
+          path || page, 
+          errorCode, 
+          errorMessage || null, 
+          source || null, 
+          count || 1, 
+          formattedFirstOccurrence,  
+          formattedLastOccurrence,   
+          formattedTimestamp,        
+          deviceType || null, 
+          browser || null, 
+          country || null
+        ]);
+      }
+
+      await connection.commit();
+      connection.release();
+      res.json({ message: 'Error logs recorded successfully' });
+    } catch (error) {
+      await connection.rollback();
+      connection.release();
+      throw error;
+    }
+  } catch (error) {
+    console.error('Error saving error logs:', error);
+    res.status(500).json({ error: 'Failed to save error logs' });
+  }
+});
+
 // GET route to retrieve performance metrics with grouping options
 router.get('/technical-metrics', async (req, res) => {
   try {
@@ -37,13 +103,20 @@ router.get('/technical-metrics', async (req, res) => {
 
     if (groupBy === 'deviceType') {
       const [rows] = await pool.execute(
-        `SELECT deviceType, COUNT(*) as count 
+        `SELECT 
+          CASE 
+            WHEN deviceType LIKE '{%' THEN 
+              JSON_UNQUOTE(JSON_EXTRACT(deviceType, '$.deviceType'))
+            ELSE deviceType
+          END as deviceType,
+          COUNT(*) as count 
          FROM performance_metrics 
          WHERE 1=1 
          ${visitorId ? 'AND visitorId = ?' : ''} 
          ${startDate ? 'AND timestamp >= ?' : ''} 
          ${endDate ? 'AND timestamp <= ?' : ''} 
-         GROUP BY deviceType`,
+         GROUP BY deviceType
+         ORDER BY count DESC`,
         [visitorId, startDate, endDate].filter(Boolean)
       );
       return res.json({ message: 'Device breakdown retrieved', data: rows });
@@ -89,6 +162,141 @@ router.get('/technical-metrics', async (req, res) => {
   }
 });
 
+// GET route to retrieve error types
+router.get('/error-types', async (req, res) => {
+  try {
+    const pool = getPool(req);
+    const { startDate, endDate, page } = req.query;
+
+    let query = `
+      SELECT 
+        errorCode as name, 
+        SUM(count) as value 
+      FROM error_logs 
+      WHERE 1=1
+    `;
+    const queryParams = [];
+
+    if (startDate) { query += ' AND timestamp >= ?'; queryParams.push(startDate); }
+    if (endDate) { query += ' AND timestamp <= ?'; queryParams.push(endDate); }
+    if (page) { query += ' AND page = ?'; queryParams.push(page); }
+
+    query += ' GROUP BY errorCode ORDER BY value DESC';
+
+    const [rows] = await pool.execute(query, queryParams);
+    res.json({ message: 'Error types retrieved successfully', data: rows });
+  } catch (error) {
+    console.error('Error retrieving error types:', error);
+    res.status(500).json({ error: 'Failed to retrieve error types' });
+  }
+});
+
+// GET route to retrieve errors over time
+router.get('/errors-over-time', async (req, res) => {
+  try {
+    const pool = getPool(req);
+    const { startDate, endDate, page } = req.query;
+
+    let query = `
+      SELECT 
+        DATE_FORMAT(timestamp, '%a') AS date,
+        SUM(CASE WHEN errorCode = '404' THEN count ELSE 0 END) AS '404',
+        SUM(CASE WHEN errorCode = '500' THEN count ELSE 0 END) AS '500',
+        SUM(CASE WHEN errorCode = '403' THEN count ELSE 0 END) AS '403',
+        SUM(CASE WHEN errorCode = '400' THEN count ELSE 0 END) AS '400',
+        SUM(CASE WHEN errorCode NOT IN ('404', '500', '403', '400') THEN count ELSE 0 END) AS 'Other'
+      FROM error_logs
+      WHERE 1=1
+    `;
+
+    const queryParams = [];
+
+    if (startDate) {
+      query += ' AND timestamp >= ?';
+      queryParams.push(startDate);
+    }
+    if (endDate) {
+      query += ' AND timestamp <= ?';
+      queryParams.push(endDate);
+    }
+    if (page) {
+      query += ' AND page = ?';
+      queryParams.push(page);
+    }
+
+    query += ` GROUP BY DATE_FORMAT(timestamp, '%a') ORDER BY DATE_FORMAT(timestamp, '%a')`;
+
+    const [rows] = await pool.execute(query, queryParams);
+    res.json({ message: 'Errors over time retrieved successfully', data: rows });
+  } catch (error) {
+    console.error('Error retrieving errors over time:', error);
+    res.status(500).json({ error: 'Failed to retrieve errors over time' });
+  }
+});
+
+
+// GET route to retrieve recent error logs
+router.get('/recent-error-logs', async (req, res) => {
+  try {
+    const pool = getPool(req);
+    const { startDate, endDate, page, limit = 10 } = req.query;
+
+    let query = `
+      SELECT 
+        page as path,
+        errorCode,
+        SUM(count) as count,
+        MAX(lastOccurrence) as lastOccurrence
+      FROM error_logs 
+      WHERE 1=1
+    `;
+    const queryParams = [];
+
+    if (startDate) { query += ' AND timestamp >= ?'; queryParams.push(startDate); }
+    if (endDate) { query += ' AND timestamp <= ?'; queryParams.push(endDate); }
+    if (page) { query += ' AND page = ?'; queryParams.push(page); }
+
+    query += ' GROUP BY page, errorCode ORDER BY lastOccurrence DESC';
+    query += ` LIMIT ${parseInt(limit, 10)}`; // Insert the limit directly
+
+    const [rows] = await pool.execute(query, queryParams);
+    res.json({ message: 'Recent error logs retrieved successfully', data: rows });
+  } catch (error) {
+    console.error('Error retrieving recent error logs:', error);
+    res.status(500).json({ error: 'Failed to retrieve recent error logs' });
+  }
+});
+
+
+// GET route for device performance
+router.get('/device-performance', async (req, res) => {
+  try {
+    const pool = getPool(req);
+
+    const [rows] = await pool.execute(
+      `SELECT 
+         CASE 
+           WHEN deviceType LIKE '{%' THEN 
+             JSON_UNQUOTE(JSON_EXTRACT(deviceType, '$.deviceType'))
+           ELSE deviceType
+         END as deviceType,
+         COUNT(*) as count,
+         AVG(fcp) as avg_fcp,
+         AVG(lcp) as avg_lcp,
+         AVG(tti) as avg_tti,
+         AVG(loadTime) as avg_loadTime
+       FROM performance_metrics
+       GROUP BY deviceType
+       ORDER BY avg_loadTime DESC`
+    );
+
+    res.json({ message: 'Device performance metrics retrieved successfully', data: rows });
+  } catch (error) {
+    console.error('Error retrieving device performance metrics:', error);
+    res.status(500).json({ error: 'Failed to retrieve device performance metrics' });
+  }
+});
+
 // GET route for aggregated metrics
 router.get('/technical-metrics/aggregate', async (req, res) => {
   try {
@@ -114,6 +322,25 @@ router.get('/technical-metrics/aggregate', async (req, res) => {
   } catch (error) {
     console.error('Error retrieving aggregated metrics:', error);
     res.status(500).json({ error: 'Failed to retrieve aggregated metrics' });
+  }
+});
+
+// GET route to retrieve browser usage statistics from user_activity table
+router.get('/browser-stats', async (req, res) => {
+  try {
+    const pool = getPool(req);
+    
+    const [rows] = await pool.execute(
+      `SELECT browser, COUNT(*) as count 
+       FROM user_activity 
+       GROUP BY browser 
+       ORDER BY count DESC`
+    );
+
+    res.json({ message: 'Browser usage statistics retrieved successfully', data: rows });
+  } catch (error) {
+    console.error('Error retrieving browser usage statistics:', error);
+    res.status(500).json({ error: 'Failed to retrieve browser usage statistics' });
   }
 });
 

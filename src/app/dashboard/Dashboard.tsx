@@ -4,7 +4,7 @@ import UserAnalytics from "../components/dashboard/useranalytics/page";
 import TechnicalMetrics from "../components/dashboard/technicalmetric/page";
 import Demographics from "../components/dashboard/demographic/page";
 import EngagementMetrics from "../components/dashboard/engagementmetrices/page";
-import AcquisitionMatrix from "../components/dashboard/AcquistionMatrix/page";
+// import AcquisitionMatrix from "../components/dashboard/AcquistionMatrix/page";
 
 const Dashboard = () => {
   // State to track which component is selected
@@ -20,8 +20,8 @@ const Dashboard = () => {
     switch (selectedComponent) {
       case "userAnalytics":
         return <UserAnalytics />;
-      case "acquisitionMatrix":
-        return <AcquisitionMatrix />;
+      // case "acquisitionMatrix":
+      //   return <AcquisitionMatrix />;
       case "engagementMetrics":
         return <EngagementMetrics />;
       case "technicalMetrics":
@@ -46,7 +46,7 @@ const Dashboard = () => {
           onChange={handleChange}
         >
           <MenuItem value="userAnalytics">User Analytics</MenuItem>
-          <MenuItem value="acquisitionMatrix">Acquisition Matrix</MenuItem>
+          {/* <MenuItem value="acquisitionMatrix">Acquisition Matrix</MenuItem> */}
           <MenuItem value="engagementMetrics">Engagement Metrics</MenuItem>
           <MenuItem value="technicalMetrics">Technical Metrics</MenuItem>
           <MenuItem value="demographics">Demographics</MenuItem>
