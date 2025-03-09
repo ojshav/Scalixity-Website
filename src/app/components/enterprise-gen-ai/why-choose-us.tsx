@@ -38,13 +38,13 @@ const reasons = [
 
 export function WhyChooseUs() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Why Choose Us for Enterprise Generative AI Development
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Partner with us to leverage our expertise and drive innovation in your enterprise through powerful Generative AI solutions.
           </p>
         </div>
@@ -57,11 +57,11 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-gray-800 hover:border-[#1A1B26] transition-colors"
             >
-              <reason.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-foreground mb-4">{reason.title}</h3>
-              <p className="text-muted-foreground">{reason.description}</p>
+              <reason.icon className="w-12 h-12 text-[#1A1B26] mb-6" />
+              <h3 className="text-xl font-bold text-black mb-4">{reason.title}</h3>
+              <p className="text-gray-700">{reason.description}</p>
             </motion.div>
           ))}
         </div>

@@ -1,0 +1,66 @@
+"use client";
+
+import { motion } from 'framer-motion';
+
+const services = [
+  {
+    title: "Automated Document Parsing",
+    description: "Leverage AI to automatically extract key information from invoices, contracts, and reports with precision and speed."
+  },
+  {
+    title: "Intelligent Data Extraction",
+    description: "Our AI models identify and capture relevant data points from unstructured text, ensuring accuracy and efficiency."
+  },
+  {
+    title: "Smart Document Classification",
+    description: "AI-driven categorization of documents based on content, streamlining document management workflows."
+  },
+  {
+    title: "Real-time Document Insights",
+    description: "Gain instant insights with AI-powered analytics, helping you make data-driven decisions faster."
+  },
+  {
+    title: "Customizable AI Pipelines",
+    description: "Tailor AI solutions to fit your document processing needs, integrating seamlessly into existing systems."
+  },
+  {
+    title: "Enhanced Document Security",
+    description: "Implement AI safeguards to detect anomalies, prevent fraud, and protect sensitive information."
+  }
+];
+
+export function WhatWeOffer() {
+  return (
+    <section className="bg-gradient-to-r from-green-900 to-blue-800 text-white py-32">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <span className="text-sm text-white uppercase tracking-wider">WHAT WE OFFER</span>
+          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
+            AI Solutions for Documentation Intelligence
+          </h2>
+          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+            Transform how you handle documents with AI-powered automation. From parsing to security, optimize every step of your document workflow.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-white p-8 rounded-xl text-green-900 border border-green-700 hover:border-blue-500 transition-colors"
+            >
+              <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{service.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default WhatWeOffer;

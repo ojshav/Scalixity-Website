@@ -1,8 +1,5 @@
 "use client"
 
-// import { ArrowRight } from 'lucide-react'
-// import Link from 'next/link'
-
 const services = [
   {
     title: "Experiment with Generative AI",
@@ -28,14 +25,14 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#080B16] py-24">
+    <section className="bg-[#F3F1EB] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-gray-400 uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">WHAT WE OFFER</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Our Generative AI development services
           </h2>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+          <p className="text-lg text-black max-w-3xl mx-auto">
             We leverage our proficiency in various AI technologies, such as deep learning, machine
             learning, computer vision, reinforcement learning, and natural language processing.
           </p>
@@ -45,10 +42,10 @@ export function WhatWeOffer() {
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="bg-[#0F1629] p-8 rounded-lg border border-gray-800"
+              className="bg-[#A8B2E7] p-8 rounded-lg border border-black"
             >
-              <h3 className="text-xl font-bold text-white mb-4">{service.title}</h3>
-              <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
+              <h3 className="text-xl font-bold text-black mb-4">{service.title}</h3>
+              <p className="text-black mb-6 leading-relaxed">{service.description}</p>
             </div>
           ))}
         </div>

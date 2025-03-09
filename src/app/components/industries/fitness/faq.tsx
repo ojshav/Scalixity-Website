@@ -39,7 +39,7 @@ export function FAQ() {
             AI-Powered Fitness — FAQs
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get answers to common questions about AI's role in transforming your fitness journey.
+            Get answers to common questions about AI&apos;s role in transforming your fitness journey.
           </p>
         </div>
 

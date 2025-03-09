@@ -16,24 +16,89 @@ const industries = [
       "Medical Claims Processing",
       "Virtual Health Assistants"
     ]
+  },
+  { 
+    name: "Finance", 
+    icon: "/icons/finance.svg",
+    useCases: [
+      "Fraud Detection",
+      "Risk Assessment",
+      "Algorithmic Trading",
+      "Customer Insights",
+      "Predictive Analytics",
+      "Automated Report Generation",
+      "Personalized Banking"
+    ]
+  },
+  { 
+    name: "Retail", 
+    icon: "/icons/retail.svg",
+    useCases: [
+      "Customer Behavior Analysis",
+      "Inventory Management",
+      "Price Optimization",
+      "Product Recommendation",
+      "Sales Forecasting",
+      "Chatbot Assistants",
+      "Visual Search AI"
+    ]
+  },
+  { 
+    name: "Manufacturing", 
+    icon: "/icons/manufacturing.svg",
+    useCases: [
+      "Predictive Maintenance",
+      "Supply Chain Optimization",
+      "Quality Control",
+      "Production Planning",
+      "Inventory Forecasting",
+      "Robotic Process Automation",
+      "Fault Detection"
+    ]
+  },
+  { 
+    name: "Education", 
+    icon: "/icons/education.svg",
+    useCases: [
+      "Adaptive Learning Platforms",
+      "Automated Grading",
+      "Student Performance Analytics",
+      "Chatbot Tutors",
+      "Course Recommendation",
+      "Content Personalization",
+      "Plagiarism Detection"
+    ]
+  },
+  { 
+    name: "Logistics", 
+    icon: "/icons/logistics.svg",
+    useCases: [
+      "Route Optimization",
+      "Demand Forecasting",
+      "Warehouse Automation",
+      "Fleet Management",
+      "Real-time Tracking",
+      "Supply Chain Analytics",
+      "Shipment Prediction"
+    ]
   }
 ]
 
 export function Industries() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Developing effective Generative AI solutions for every industry
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Our expertise spans across various sectors, enabling us to deliver tailored Generative AI solutions that address industry-specific challenges and opportunities.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {industries.map((industry, index) => (
             <motion.div
               key={index}
@@ -41,23 +106,23 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center"
+              className="border-2 border-black bg-[#F3F1EB] p-6 rounded-xl hover:shadow-lg transition-shadow"
             >
-              <div className="bg-card p-6 rounded-full mb-4">
+              <div className="flex flex-col items-center mb-4">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
                   width={48}
                   height={48}
-                  className="w-12 h-12"
+                  className="w-12 h-12 mb-4"
                 />
+                <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
               </div>
-              <h3 className="text-lg font-semibold text-foreground text-center">{industry.name}</h3>
-              <div className="mt-4 text-center">
+              <ul className="text-center text-black">
                 {industry.useCases.map((useCase, idx) => (
-                  <p key={idx} className="text-gray-400 text-sm mb-2">{useCase}</p>
+                  <li key={idx} className="text-sm mb-2">{useCase}</li>
                 ))}
-              </div>
+              </ul>
             </motion.div>
           ))}
         </div>
@@ -65,4 +130,5 @@ export function Industries() {
     </section>
   )
 }
+
 

@@ -8,7 +8,7 @@ import { Process } from "@/src/app/components/industries/insurance/process"
 import { TechStack } from "@/src/app/components/industries/insurance/tech-stack"
 import { FAQ } from "@/src/app/components/industries/insurance/faq"
 import { CTA } from "@/src/app/components/industries/insurance/CTA"
-export default function FintechPage() {
+export default function InsurancePage() {
   return (
     <main className="bg-background">
       <Hero />

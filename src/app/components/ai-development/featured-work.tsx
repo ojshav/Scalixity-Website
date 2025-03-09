@@ -28,14 +28,14 @@ const projects = [
 
 export function FeaturedWork() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#F3F1EB] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Featured AI Projects
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore some of our successful AI implementations across various industries
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+            Explore some of our successful AI implementations across various industries.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-xl overflow-hidden border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#A8B2E7] rounded-xl overflow-hidden border border-gray-500 hover:border-black transition-colors shadow-md"
             >
               <div className="relative h-48">
                 <Image
@@ -58,11 +58,11 @@ export function FeaturedWork() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-4">{project.title}</h3>
-                <p className="text-muted-foreground mb-6">{project.description}</p>
+                <h3 className="text-xl font-bold text-black mb-4">{project.title}</h3>
+                <p className="text-gray-900 mb-6">{project.description}</p>
                 <Link
                   href={project.link}
-                  className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                  className="inline-flex items-center text-black hover:text-gray-800 transition-colors font-medium"
                 >
                   Read case study <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

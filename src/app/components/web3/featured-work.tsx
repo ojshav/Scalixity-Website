@@ -1,5 +1,4 @@
 "use client"
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const projects = [
@@ -35,7 +34,7 @@ export function FeaturedWork() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold">Our Web3 App Development Showcase</h2>
-          <p className="text-lg mt-4 max-w-2xl mx-auto">Explore how we've transformed ideas into decentralized solutions using blockchain, AI, and smart contracts.</p>
+          <p className="text-lg mt-4 max-w-2xl mx-auto">Explore how We&apos;ve transformed ideas into decentralized solutions using blockchain, AI, and smart contracts.</p>
         </div>
 
         <div className="space-y-16">

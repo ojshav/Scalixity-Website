@@ -8,7 +8,7 @@ import { Process } from "@/src/app/components/industries/construction/process"
 import { TechStack } from "@/src/app/components/industries/construction/tech-stack"
 import { CTA } from "@/src/app/components/industries/construction/CTA"
 import { FAQ } from "@/src/app/components/industries/construction/faq"
-export default function FintechPage() {
+export default function ConstructionPage() {
   return (
     <main className="bg-background">
       <Hero />

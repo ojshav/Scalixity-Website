@@ -10,7 +10,7 @@ export function LetsBuildYourApp() {
           <span className="text-purple-500">Limitless Possibilities.</span>
         </h2>
         <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
-          Let’s design an app that doesn’t just look stunning — but works 
+        Let&apos;s design an app that doesn&rsquo;t just look stunning — but works 
           effortlessly. From wireframes to wow-moments, we build experiences that captivate.
         </p>
         <button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-4 px-12 rounded-full text-lg font-semibold transition-all shadow-lg transform hover:scale-105">

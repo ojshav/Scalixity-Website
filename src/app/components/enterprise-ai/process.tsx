@@ -27,19 +27,19 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white">Our AI Development Process</h2>
+          <h2 className="text-4xl font-bold text-black">Our AI Development Process</h2>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
-            <div key={index} className="bg-card p-6 rounded-xl border border-border flex items-start gap-4">
-              <step.icon className="text-primary w-10 h-10" />
+            <div key={index} className="bg-[#F3F1EB] p-6 rounded-xl shadow-lg flex items-start gap-4">
+              <step.icon className="text-black w-10 h-10" />
               <div>
-                <h3 className="text-xl font-semibold text-white">{step.title}</h3>
-                <p className="text-gray-400 mt-2">{step.description}</p>
+                <h3 className="text-xl font-semibold text-black">{step.title}</h3>
+                <p className="text-black mt-2">{step.description}</p>
               </div>
             </div>
           ))}

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Globe, Layers, Shield, Code, Users, Zap, BarChart, MonitorSmartphone, ShoppingCart, Briefcase, Cpu } from 'lucide-react';
+import { Globe, Layers, Shield, Code, Users, Zap, MonitorSmartphone, ShoppingCart, Briefcase, Cpu } from 'lucide-react';
 
 const benefits = [
   {

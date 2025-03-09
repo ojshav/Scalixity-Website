@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const useCases = [
   {
@@ -29,18 +29,18 @@ const useCases = [
       { value: "35%", label: "Reduction in Development Costs" }
     ]
   }
-]
+];
 
 export function UseCases() {
   return (
-    <section className="bg-[#0A0B14] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-5xl font-bold text-black mb-6">
             Generative AI Use Cases
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Discover how our Generative AI solutions can transform different aspects of your business
+          <p className="text-xl text-black max-w-3xl mx-auto">
+            Discover how our Generative AI solutions can transform different aspects of your business.
           </p>
         </div>
 
@@ -55,19 +55,19 @@ export function UseCases() {
               className="grid md:grid-cols-2 gap-8 items-center"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <h3 className="text-2xl font-bold text-white mb-4">{useCase.title}</h3>
-                <p className="text-gray-400 mb-8">{useCase.description}</p>
+                <h3 className="text-3xl font-bold text-black mb-4">{useCase.title}</h3>
+                <p className="text-lg text-black mb-8">{useCase.description}</p>
                 <div className="grid grid-cols-2 gap-8">
                   {useCase.stats.map((stat, idx) => (
                     <div key={idx}>
-                      <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-                      <div className="text-sm text-gray-400">{stat.label}</div>
+                      <div className="text-4xl font-bold text-[#0A0B14] mb-2">{stat.value}</div>
+                      <div className="text-md text-black">{stat.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[300px] rounded-xl overflow-hidden">
+                <div className="relative h-[300px] rounded-2xl overflow-hidden shadow-lg">
                   <Image
                     src={useCase.image}
                     alt={useCase.title}
@@ -81,6 +81,7 @@ export function UseCases() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
+export default UseCases;

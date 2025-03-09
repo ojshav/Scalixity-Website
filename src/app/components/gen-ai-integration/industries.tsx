@@ -4,19 +4,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const industries = [
-  {
-    name: "Healthcare",
-    icon: "/icons/healthcare.svg",
-    description: "We specialize in crafting tailored AI solutions for healthcare organizations aiming to adopt or enhance AI capabilities. Our expert team develops impactful integrations to advance diagnostics and streamline operations, ensuring each solution meets unique client needs.",
-    solutions: [
-      "Healthcare AI Agents",
-      "Documentation Intelligence",
-      "Medical Imaging Intelligence",
-      "Personalized Treatment",
-      "Medical Claims Processing",
-      "Virtual Health Assistants"
-    ]
-  },
   { name: "Finance", icon: "/icons/finance.svg" },
   { name: "E-commerce", icon: "/icons/ecommerce.svg" },
   { name: "Education", icon: "/icons/education.svg" },
@@ -28,14 +15,14 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#F3F1EB] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Developing effective Generative AI solutions for every industry
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Our expertise spans across various sectors, enabling us to deliver tailored Generative AI solutions that address industry-specific challenges and opportunities.
           </p>
         </div>
@@ -48,9 +35,9 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center bg-[#A8B2E7] p-6 rounded-xl border border-black"
             >
-              <div className="bg-card p-6 rounded-full mb-4">
+              <div className="bg-[#F3F1EB] p-4 rounded-full mb-4">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
@@ -59,17 +46,7 @@ export function Industries() {
                   className="w-12 h-12"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-foreground text-center">{industry.name}</h3>
-              {industry.description && (
-                <p className="text-sm text-muted-foreground mt-2 text-center">{industry.description}</p>
-              )}
-              {industry.solutions && (
-                <ul className="text-sm text-muted-foreground mt-2 list-disc pl-5">
-                  {industry.solutions.map((solution, idx) => (
-                    <li key={idx}>{solution}</li>
-                  ))}
-                </ul>
-              )}
+              <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
             </motion.div>
           ))}
         </div>

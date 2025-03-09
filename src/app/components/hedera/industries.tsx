@@ -21,10 +21,10 @@ export function Industries() {
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
           <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
-            Transforming Industries with Hedra's Decentralized Solutions
+            Transforming Industries with Hedra&apos;s Decentralized Solutions
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Hedra’s innovative decentralized ledger technology empowers diverse industries by offering secure, transparent, and scalable solutions. From healthcare to finance, we redefine how businesses operate, fostering trust and enhancing digital ecosystems. Partner with us to leverage Hedra's technology for seamless digital transformation.
+          Hedra&apos;s innovative decentralized ledger technology empowers diverse industries by offering secure, transparent, and scalable solutions. From healthcare to finance, we redefine how businesses operate, fostering trust and enhancing digital ecosystems. Partner with us to leverage Hedra&apos;s technology for seamless digital transformation.
           </p>
         </div>
 

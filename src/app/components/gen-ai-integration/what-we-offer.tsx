@@ -23,7 +23,7 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">WHAT WE OFFER</span>
@@ -43,7 +43,7 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-primary/50 transition-colors"
             >
               <h3 className="text-xl font-bold text-foreground mb-4">{service.title}</h3>
               <p className="text-muted-foreground leading-relaxed">{service.description}</p>
@@ -54,4 +54,5 @@ export function WhatWeOffer() {
     </section>
   )
 }
+
 

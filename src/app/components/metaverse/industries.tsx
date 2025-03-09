@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 
 const industries = [
   { name: "Virtual Real Estate", icon: "/icons/virtual-real-estate.svg" },

@@ -16,7 +16,8 @@ export function Hero() {
             Decentralized Applications (dApps) Development
           </h1>
           <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto"> {/* Light gray text */}
-            We specialize in building secure, scalable, and efficient decentralized applications (dApps) on blockchain networks. Our services encompass the entire development lifecycle, from ideation and smart contract creation to front-end development and blockchain integration. By leveraging cutting-edge technologies and best practices, we ensure seamless deployment, optimal performance, and robust security. Whether you're launching a DeFi platform, NFT marketplace, or enterprise blockchain solution, our team is dedicated to delivering innovative and future-ready solutions tailored to your needs.
+          We specialize in building secure, scalable, and efficient decentralized applications (dApps) on blockchain networks. Our services encompass the entire development lifecycle, from ideation and smart contract creation to front-end development and blockchain integration. By leveraging cutting-edge technologies and best practices, we ensure seamless deployment, optimal performance, and robust security. Whether you&apos;re launching a DeFi platform, NFT marketplace, or enterprise blockchain solution, our team is dedicated to delivering innovative and future-ready solutions tailored to your needs.
+
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
