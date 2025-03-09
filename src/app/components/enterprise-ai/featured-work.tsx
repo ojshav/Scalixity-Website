@@ -6,17 +6,17 @@ const featuredWorks = [
   {
     title: "AI-Powered Customer Support",
     description: "Developed an AI chatbot that reduced response time by 60% and improved customer satisfaction.",
-    image: "/work/ai-customer-support.jpg",
+    image: "/work/ai-customer-support.svg",
   },
   {
     title: "Predictive Analytics for Sales",
     description: "Implemented AI-driven forecasting models that increased revenue by 25% through predictive insights.",
-    image: "/work/predictive-analytics.jpg",
+    image: "/work/predictive-analytics.svg",
   },
   {
     title: "Automated Document Processing",
     description: "Designed an AI solution that automated data extraction and processing, reducing manual workload by 80%.",
-    image: "/work/document-automation.jpg",
+    image: "/work/document-automation.svg",
   },
 ];
 

@@ -7,32 +7,32 @@ const useCases = [
 {
   title: "Content Generation",
   description: "Create high-quality, contextually relevant content at scale for various business needs.",
-  image: "/placeholder.svg?height=300&width=400"
+  image: "/images/use-cases/Code Generation.svg"
 },
 {
   title: "Customer Support",
   description: "Implement intelligent chatbots and virtual assistants for 24/7 customer service.",
-  image: "/placeholder.svg?height=300&width=400"
+  image: "/images/use-cases/Customer Support.svg"
 },
 {
   title: "Data Analysis",
   description: "Extract valuable insights from large volumes of unstructured text data.",
-  image: "/placeholder.svg?height=300&width=400"
+  image: "/images/use-cases/Data Analysis.svg"
 },
 {
   title: "Code Generation",
   description: "Accelerate development with AI-powered code suggestions and automation.",
-  image: "/placeholder.svg?height=300&width=400"
+  image: "/images/use-cases/Code Generation.svg"
 },
 {
   title: "Document Processing",
   description: "Automate the analysis and processing of complex documents and contracts.",
-  image: "/placeholder.svg?height=300&width=400"
+  image: "/images/use-cases/Document Processing.svg"
 },
 {
   title: "Knowledge Management",
   description: "Build intelligent knowledge bases and information retrieval systems.",
-  image: "/placeholder.svg?height=300&width=400"
+  image: "/images/use-cases/Knowledge Management.svg"
 }
 ]
 

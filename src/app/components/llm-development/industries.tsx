@@ -1,14 +1,14 @@
 import Image from 'next/image'
 
 const industries = [
-  { name: "Healthcare", icon: "/icons/healthcare.svg" },
-  { name: "Finance", icon: "/icons/finance.svg" },
-  { name: "E-commerce", icon: "/icons/ecommerce.svg" },
-  { name: "Education", icon: "/icons/education.svg" },
-  { name: "Legal", icon: "/icons/legal.svg" },
-  { name: "Manufacturing", icon: "/icons/manufacturing.svg" },
-  { name: "Customer Service", icon: "/icons/customer-service.svg" },
-  { name: "Media & Entertainment", icon: "/icons/media.svg" }
+  { name: "Healthcare", icon: "/images/icons/healthcare.svg" },
+  { name: "Finance", icon: "/images/icons/finance.svg" },
+  { name: "E-commerce", icon: "/images/icons/ecommerce.svg" },
+  { name: "Education", icon: "/images/icons/education.svg" },
+  { name: "Legal", icon: "/images/icons/legal.svg" },
+  { name: "Manufacturing", icon: "/images/icons/manufacturing.svg" },
+  { name: "Customer Service", icon: "/images/icons/Customer Service.svg" },
+  { name: "Media & Entertainment", icon: "/images/icons/media.svg" }
 ]
 
 export function Industries() {

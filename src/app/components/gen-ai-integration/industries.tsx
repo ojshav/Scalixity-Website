@@ -6,7 +6,7 @@ import Image from 'next/image'
 const industries = [
   {
     name: "Healthcare",
-    icon: "/icons/healthcare.svg",
+    icon: "/images/icons/healthcare.svg",
     description: "We specialize in crafting tailored AI solutions for healthcare organizations aiming to adopt or enhance AI capabilities. Our expert team develops impactful integrations to advance diagnostics and streamline operations, ensuring each solution meets unique client needs.",
     solutions: [
       "Healthcare AI Agents",
@@ -17,13 +17,13 @@ const industries = [
       "Virtual Health Assistants"
     ]
   },
-  { name: "Finance", icon: "/icons/finance.svg" },
-  { name: "E-commerce", icon: "/icons/ecommerce.svg" },
-  { name: "Education", icon: "/icons/education.svg" },
-  { name: "Manufacturing", icon: "/icons/manufacturing.svg" },
-  { name: "Retail", icon: "/icons/retail.svg" },
-  { name: "Technology", icon: "/icons/technology.svg" },
-  { name: "Energy", icon: "/icons/energy.svg" }
+  { name: "Finance", icon: "/images/icons/finance.svg" },
+  { name: "E-commerce", icon: "/images/icons/ecommerce.svg" },
+  { name: "Education", icon: "/images/icons/education.svg" },
+  { name: "Manufacturing", icon: "/images/icons/manufacturing.svg" },
+  { name: "Retail", icon: "/images/icons/retail.svg" },
+  { name: "Technology", icon: "/images/icons/technology.svg" },
+  { name: "Energy", icon: "/images/icons/energy.svg" }
 ]
 
 export function Industries() {

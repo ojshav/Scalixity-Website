@@ -4,35 +4,35 @@ import { motion } from 'framer-motion';
 
 const techStack = {
   "Blockchain Platforms": [
-    { name: "Ethereum", logo: "/tech/ethereum.svg" },
-    { name: "Binance Smart Chain", logo: "/tech/bsc.svg" },
-    { name: "Polygon", logo: "/tech/polygon.svg" },
-    { name: "Solana", logo: "/tech/solana.svg" }
+    { name: "Ethereum", logo: "/images/tech/ethereum.svg" },
+    { name: "Binance Smart Chain", logo: "/images/tech/bsc.svg" },
+    { name: "Polygon", logo: "/images/tech/polygon.svg" },
+    { name: "Solana", logo: "/images/tech/solana.svg" }
   ],
   "Smart Contract Languages": [
-    { name: "Solidity", logo: "/tech/solidity.svg" },
-    { name: "Rust", logo: "/tech/rust.svg" },
-    { name: "Vyper", logo: "/tech/vyper.svg" }
+    { name: "Solidity", logo: "/images/tech/solidity.svg" },
+    { name: "Rust", logo: "/images/tech/rust.svg" },
+    { name: "Vyper", logo: "/images/tech/vyper.svg" }
   ],
   "Development Frameworks": [
-    { name: "Hardhat", logo: "/tech/hardhat.svg" },
-    { name: "Truffle", logo: "/tech/truffle.svg" },
-    { name: "Brownie", logo: "/tech/brownie.svg" }
+    { name: "Hardhat", logo: "/images/tech/hardhat.svg" },
+    { name: "Truffle", logo: "/images/tech/truffle.svg" },
+    { name: "Brownie", logo: "/images/tech/brownie.svg" }
   ],
   "Frontend Technologies": [
-    { name: "React", logo: "/tech/react.svg" },
-    { name: "Next.js", logo: "/tech/nextjs.svg" },
-    { name: "Vue.js", logo: "/tech/vue.svg" }
+    { name: "React", logo: "/images/tech/react.svg" },
+    { name: "Next.js", logo: "/images/tech/nextjs.svg" },
+    { name: "Vue.js", logo: "/images/tech/vue.svg" }
   ],
   "Wallet & Authentication": [
-    { name: "MetaMask", logo: "/tech/metamask.svg" },
-    { name: "WalletConnect", logo: "/tech/walletconnect.svg" },
-    { name: "Web3Auth", logo: "/tech/web3auth.svg" }
+    { name: "MetaMask", logo: "/images/tech/metamask.svg" },
+    { name: "WalletConnect", logo: "/images/tech/walletconnect.svg" },
+    { name: "Web3Auth", logo: "/images/tech/web3auth.svg" }
   ],
   "Storage Solutions": [
-    { name: "IPFS", logo: "/tech/ipfs.svg" },
-    { name: "Filecoin", logo: "/tech/filecoin.svg" },
-    { name: "Arweave", logo: "/tech/arweave.svg" }
+    { name: "IPFS", logo: "/images/tech/ipfs.svg" },
+    { name: "Filecoin", logo: "/images/tech/filecoin.svg" },
+    { name: "Arweave", logo: "/images/tech/arweave.svg" }
   ]
 };
 

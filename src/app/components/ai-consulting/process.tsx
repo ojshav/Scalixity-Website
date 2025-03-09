@@ -35,7 +35,7 @@ const featuredProjects = [
   {
     title: "Redefining Restaurant Ordering with a Voice Ordering Solution",
     description: "We built DeVoice, an AI-based voice agent designed specifically for restaurants and other businesses, integrating state-of-the-art voice recognition and natural language understanding.",
-    image: "/images/devoice-project.jpg",
+    image: "/images/Redefining Restaurant Ordering with a Voice Ordering Solution.svg",
     features: [
       "Futuristic Generative AI Solution for the Food & Beverage industry",
       "State-of-the-art voice recognition",

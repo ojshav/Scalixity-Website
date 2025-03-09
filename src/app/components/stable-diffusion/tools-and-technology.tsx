@@ -7,34 +7,34 @@ type Technologies = Record<string, (TechItem | string)[]>;
 
 const technologies: Technologies = {
   "Stable Diffusion Models": [
-    { name: "Stable Diffusion v1.5", logo: "/tech/sd-v1-5.svg" },
-    { name: "Stable Diffusion XL (SDXL)", logo: "/tech/sdxl.svg" },
-    { name: "Stable Diffusion 2.1", logo: "/tech/sd-2-1.svg" }
+    { name: "Stable Diffusion v1.5", logo: "/images/tech/sd-v1-5.svg" },
+    { name: "Stable Diffusion XL (SDXL)", logo: "/images/tech/sdxl.svg" },
+    { name: "Stable Diffusion 2.1", logo: "/images/tech/sd-2-1.svg" }
   ],
   "Image Generation Frameworks": [
-    { name: "Automatic1111 WebUI", logo: "/tech/automatic1111.svg" },
-    { name: "InvokeAI", logo: "/tech/invokeai.svg" },
-    { name: "ComfyUI", logo: "/tech/comfyui.svg" }
+    { name: "Automatic1111 WebUI", logo: "/images/tech/automatic1111.svg" },
+    { name: "InvokeAI", logo: "/images/tech/invokeai.svg" },
+    { name: "ComfyUI", logo: "/images/tech/comfyui.svg" }
   ],
   "Cloud & GPU Services": [
-    { name: "RunPod", logo: "/tech/runpod.svg" },
-    { name: "Lambda Labs", logo: "/tech/lambdalabs.svg" },
-    { name: "Google Colab Pro", logo: "/tech/colab.svg" }
+    { name: "RunPod", logo: "/images/tech/runpod.svg" },
+    { name: "Lambda Labs", logo: "/images/tech/lambdalabs.svg" },
+    { name: "Google Colab Pro", logo: "/images/tech/colab.svg" }
   ],
   "Model Fine-Tuning": [
-    { name: "DreamBooth", logo: "/tech/dreambooth.svg" },
-    { name: "LoRA (Low-Rank Adaptation)", logo: "/tech/lora.svg" },
-    { name: "Textual Inversion", logo: "/tech/textual-inversion.svg" }
+    { name: "DreamBooth", logo: "/images/tech/dreambooth.svg" },
+    { name: "LoRA (Low-Rank Adaptation)", logo: "/images/tech/lora.svg" },
+    { name: "Textual Inversion", logo: "/images/tech/textual-inversion.svg" }
   ],
   "API & Deployment": [
-    { name: "Stable Diffusion API", logo: "/tech/sd-api.svg" },
-    { name: "Replicate AI", logo: "/tech/replicate.svg" },
-    { name: "Hugging Face Spaces", logo: "/tech/huggingface.svg" }
+    { name: "Stable Diffusion API", logo: "/images/tech/sd-api.svg" },
+    { name: "Replicate AI", logo: "/images/tech/replicate.svg" },
+    { name: "Hugging Face Spaces", logo: "/images/tech/huggingface.svg" }
   ],
   "Programming Languages": [
-    { name: "Python", logo: "/tech/python.svg" },
-    { name: "JavaScript", logo: "/tech/javascript.svg" },
-    { name: "TypeScript", logo: "/tech/typescript.svg" }
+    { name: "Python", logo: "/images/tech/python.svg" },
+    { name: "JavaScript", logo: "/images/tech/javascript.svg" },
+    { name: "TypeScript", logo: "/images/tech/typescript.svg" }
   ]
 };
 

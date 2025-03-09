@@ -4,19 +4,19 @@ type Technologies = Record<string, (TechItem | string)[]>
 
 const technologies: Technologies = {
   "DL Frameworks": [
-    { name: "MXNet", logo: "/tech/mxnet.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "Keras", logo: "/tech/keras.svg" }
+    { name: "MXNet", logo: "/images/tech/mxnet.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "Keras", logo: "/images/tech/keras.svg" }
   ],
   "Cloud Platform": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Generative AI Models": [
-    { name: "GPT-3", logo: "/tech/gpt3.svg" },
-    { name: "GPT-3.5 Turbo", logo: "/tech/gpt3-5.svg" },
-    { name: "Lamda", logo: "/tech/lamda.svg" }
+    { name: "GPT-3", logo: "/images/ai-chatbot.svg" },
+    { name: "GPT-3.5 Turbo", logo: "/images/ai-powered-maintenance.svg" },
+    { name: "Lamda", logo: "/images/ai-voice-ordering.svg" }
   ],
   "Libraries": ["OpenNN", "Neuroph", "Sonnet", "TensorFlow", "Tensor2Tensor", "tf-slim"],
   "Algorithms": ["Clustering", "Metric Learning", "Fewshot Learning", "Supervised/Unsupervised Learning"],

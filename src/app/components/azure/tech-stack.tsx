@@ -5,29 +5,29 @@ import Image from 'next/image'
 
 const azureTechCategories = {
   "Compute Services": [
-    { name: "Virtual Machines", logo: "/tech/azure-vm.svg" },
-    { name: "Functions", logo: "/tech/azure-functions.svg" },
-    { name: "App Services", logo: "/tech/azure-appservice.svg" }
+    { name: "Virtual Machines", logo: "/images/tech/azure-vm.svg" },
+    { name: "Functions", logo: "/images/tech/azure-functions.svg" },
+    { name: "App Services", logo: "/images/tech/azure-appservice.svg" }
   ],
   "Storage & Databases": [
-    { name: "Blob Storage", logo: "/tech/azure-blob.svg" },
-    { name: "Cosmos DB", logo: "/tech/azure-cosmosdb.svg" },
-    { name: "SQL Database", logo: "/tech/azure-sqldb.svg" }
+    { name: "Blob Storage", logo: "/images/tech/azure-blob.svg" },
+    { name: "Cosmos DB", logo: "/images/tech/azure-cosmosdb.svg" },
+    { name: "SQL Database", logo: "/images/tech/azure-sqldb.svg" }
   ],
   "AI & ML Services": [
-    { name: "Machine Learning", logo: "/tech/azure-ml.svg" },
-    { name: "Cognitive Services", logo: "/tech/azure-cognitive.svg" },
-    { name: "Bot Services", logo: "/tech/azure-bot.svg" }
+    { name: "Machine Learning", logo: "/images/tech/azure-ml.svg" },
+    { name: "Cognitive Services", logo: "/images/tech/azure-cognitive.svg" },
+    { name: "Bot Services", logo: "/images/tech/azure-bot.svg" }
   ],
   "Networking & Security": [
-    { name: "Virtual Network", logo: "/tech/azure-vnet.svg" },
-    { name: "Azure DNS", logo: "/tech/azure-dns.svg" },
-    { name: "Active Directory", logo: "/tech/azure-ad.svg" }
+    { name: "Virtual Network", logo: "/images/tech/azure-vnet.svg" },
+    { name: "Azure DNS", logo: "/images/tech/azure-dns.svg" },
+    { name: "Active Directory", logo: "/images/tech/azure-ad.svg" }
   ],
   "Serverless & DevOps": [
-    { name: "API Management", logo: "/tech/azure-apim.svg" },
-    { name: "Azure DevOps", logo: "/tech/azure-devops.svg" },
-    { name: "Terraform on Azure", logo: "/tech/azure-terraform.svg" }
+    { name: "API Management", logo: "/images/tech/azure-apim.svg" },
+    { name: "Azure DevOps", logo: "/images/tech/azure-devops.svg" },
+    { name: "Terraform on Azure", logo: "/images/tech/azure-terraform.svg" }
   ]
 }
 

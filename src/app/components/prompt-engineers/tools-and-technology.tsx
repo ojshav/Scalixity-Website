@@ -5,41 +5,41 @@ type Technologies = Record<string, (TechItem | string)[]>
 
 const technologies: Technologies = {
   "DL Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "Keras", logo: "/tech/keras.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "Keras", logo: "/images/tech/keras.svg" }
   ],
   "Data Storage": [
-    { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-    { name: "MongoDB", logo: "/tech/mongodb.svg" },
-    { name: "MySQL", logo: "/tech/mysql.svg" },
-    { name: "Firebase", logo: "/tech/firebase.svg" },
-    { name: "Redis", logo: "/tech/redis.svg" }
+    { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+    { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+    { name: "MySQL", logo: "/images/tech/mysql.svg" },
+    { name: "Firebase", logo: "/images/tech/firebase.svg" },
+    { name: "Redis", logo: "/images/tech/redis.svg" }
   ],
   "Data Processing": [
-    { name: "Apache Spark", logo: "/tech/spark.svg" },
-    { name: "Hadoop", logo: "/tech/hadoop.svg" }
+    { name: "Apache Spark", logo: "/images/tech/spark.svg" },
+    { name: "Hadoop", logo: "/images/tech/hadoop.svg" }
   ],
   "Machine Learning": [
-    { name: "Scikit-learn", logo: "/tech/sklearn.svg" },
-    { name: "XGBoost", logo: "/tech/xgboost.svg" }
+    { name: "Scikit-learn", logo: "/images/tech/sklearn.svg" },
+    { name: "XGBoost", logo: "/images/tech/xgboost.svg" }
   ],
   "Model Deployment": [
-    { name: "TensorFlow Serving", logo: "/tech/tf-serving.svg" },
-    { name: "MLflow", logo: "/tech/mlflow.svg" }
+    { name: "TensorFlow Serving", logo: "/images/tech/tf-serving.svg" },
+    { name: "MLflow", logo: "/images/tech/mlflow.svg" }
   ],
   "API Development": [
-    { name: "FastAPI", logo: "/tech/fastapi.svg" },
-    { name: "Flask", logo: "/tech/flask.svg" }
+    { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
+    { name: "Flask", logo: "/images/tech/flask.svg" }
   ],
   "Cloud Platforms": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Frontend": [
-    { name: "React", logo: "/tech/react.svg" },
-    { name: "Next.js", logo: "/tech/nextjs.svg" }
+    { name: "React", logo: "/images/tech/react.svg" },
+    { name: "Next.js", logo: "/images/tech/nextjs.svg" }
   ]
 };
 

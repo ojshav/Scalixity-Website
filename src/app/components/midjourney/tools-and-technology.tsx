@@ -7,29 +7,29 @@ type Technologies = Record<string, (TechItem | string)[]>;
 
 const technologies: Technologies = {
   "AI Models": [
-    { name: "Stable Diffusion", logo: "/tech/stable-diffusion.svg" },
-    { name: "DALL·E", logo: "/tech/dalle.svg" },
-    { name: "MidJourney AI", logo: "/tech/midjourney.svg" }
+    { name: "Stable Diffusion", logo: "/images/tech/stable-diffusion.svg" },
+    { name: "DALL·E", logo: "/images/tech/dalle.svg" },
+    { name: "MidJourney AI", logo: "/images/tech/midjourney.svg" }
   ],
   "Cloud Computing": [
-    { name: "AWS EC2", logo: "/tech/aws-ec2.svg" },
-    { name: "Google Cloud AI", logo: "/tech/google-cloud-ai.svg" },
-    { name: "Azure AI", logo: "/tech/azure-ai.svg" }
+    { name: "AWS EC2", logo: "/images/tech/aws-ec2.svg" },
+    { name: "Google Cloud AI", logo: "/images/tech/google-cloud-ai.svg" },
+    { name: "Azure AI", logo: "/images/tech/azure-ai.svg" }
   ],
   "Deep Learning Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "Keras", logo: "/tech/keras.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "Keras", logo: "/images/tech/keras.svg" }
   ],
   "Image Processing": [
-    { name: "OpenCV", logo: "/tech/opencv.svg" },
-    { name: "Pillow", logo: "/tech/pillow.svg" },
-    { name: "TorchVision", logo: "/tech/torchvision.svg" }
+    { name: "OpenCV", logo: "/images/tech/opencv.svg" },
+    { name: "Pillow", logo: "/images/tech/pillow.svg" },
+    { name: "TorchVision", logo: "/images/tech/torchvision.svg" }
   ],
   "API Development": [
-    { name: "FastAPI", logo: "/tech/fastapi.svg" },
-    { name: "Flask", logo: "/tech/flask.svg" },
-    { name: "Express.js", logo: "/tech/express.svg" }
+    { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
+    { name: "Flask", logo: "/images/tech/flask.svg" },
+    { name: "Express.js", logo: "/images/tech/express.svg" }
   ]
 };
 

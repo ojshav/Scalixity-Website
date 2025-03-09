@@ -5,25 +5,25 @@ import Image from 'next/image'
 
 const techCategories = {
   "DL Frameworks": [
-    { name: "Caffe2", logo: "/tech/caffe2.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "NVCAFFE", logo: "/tech/nvcaffe.svg" },
-    { name: "Chainer", logo: "/tech/chainer.svg" },
-    { name: "Theano", logo: "/tech/theano.svg" },
-    { name: "Keras", logo: "/tech/keras.svg" }
+    { name: "Caffe2", logo: "/images/tech/caffe2.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "NVCAFFE", logo: "/images/tech/nvcaffe.svg" },
+    { name: "Chainer", logo: "/images/tech/chainer.svg" },
+    { name: "Theano", logo: "/images/tech/theano.svg" },
+    { name: "Keras", logo: "/images/tech/keras.svg" }
   ],
   "Modules/Toolkits": [
-    { name: "Kurento", logo: "/tech/kurento.svg" },
-    { name: "ONNX", logo: "/tech/onnx.svg" },
-    { name: "Core ML", logo: "/tech/coreml.svg" }
+    { name: "Kurento", logo: "/images/tech/kurento.svg" },
+    { name: "ONNX", logo: "/images/tech/onnx.svg" },
+    { name: "Core ML", logo: "/images/tech/coreml.svg" }
   ],
   "Libraries": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "Tensor2Tensor", logo: "/tech/tensor2tensor.svg" },
-    { name: "tf-slim", logo: "/tech/tf-slim.svg" },
-    { name: "Opennn", logo: "/tech/opennn.svg" },
-    { name: "Sonnet", logo: "/tech/sonnet.svg" },
-    { name: "Neuroph", logo: "/tech/neuroph.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "Tensor2Tensor", logo: "/images/tech/tensor2tensor.svg" },
+    { name: "tf-slim", logo: "/images/tech/tf-slim.svg" },
+    { name: "Opennn", logo: "/images/tech/opennn.svg" },
+    { name: "Sonnet", logo: "/images/tech/sonnet.svg" },
+    { name: "Neuroph", logo: "/images/tech/neuroph.svg" }
   ],
   "Image Classification Models": [
     "VGG-16",

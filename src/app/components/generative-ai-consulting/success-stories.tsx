@@ -6,7 +6,7 @@ const successStories = [
     company: "TechCorp Solutions",
     title: "AI-Powered Content Generation Platform",
     description: "Implemented a Generative AI solution that automated content creation, resulting in 3x faster production and 45% cost reduction.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/AI-Powered Content Generation.svg",
     results: [
       "300% increase in content output",
       "45% reduction in content production costs",
@@ -55,6 +55,11 @@ export function SuccessStories() {
                   alt={story.company}
                   fill
                   className="object-cover"
+                  onError={(e) => {
+                    console.error(`Error loading image: ${story.image}`);
+                    e.currentTarget.src = '/placeholder.svg'; // fallback image
+                  }}
+                  priority
                 />
               </div>
               <div className="p-8">

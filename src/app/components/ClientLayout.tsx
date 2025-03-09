@@ -24,9 +24,30 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     return "Desktop";
   };
 
+  // Utility function for retrying failed requests
+  const fetchWithRetry = async (url: string, options: RequestInit, retries = 3) => {
+    for (let i = 0; i < retries; i++) {
+      try {
+        const response = await fetch(url, {
+          ...options,
+          signal: AbortSignal.timeout(5000)
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response;
+      } catch (error) {
+        if (i === retries - 1) throw error;
+        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1))); // Exponential backoff
+      }
+    }
+  };
+
   const fetchCountry = async () => {
     try {
-      const response = await fetch("https://ipapi.co/json/");
+      const response = await fetchWithRetry("https://ipapi.co/json/", {
+        cache: 'force-cache'
+      });
       const data = await response.json();
       setCountry(data.country_name || "Unknown");
     } catch (error) {
@@ -118,19 +139,40 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
       console.log("Performance Metrics:", metrics);
 
-      // Store and aggregate metrics in localStorage
-      const storedData = JSON.parse(localStorage.getItem("performanceMetrics") || "[]");
-      storedData.push({ ...metrics, timestamp: new Date().toISOString() });
-      localStorage.setItem("performanceMetrics", JSON.stringify(storedData));
+      const handleMetrics = async () => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('Metrics tracking disabled in development');
+          return;
+        }
 
-      fetch("http://localhost:5000/api/track-metrics", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(metrics),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log("Performance metrics sent successfully:", data))
-        .catch((err) => console.error("Failed to send performance metrics:", err));
+        const metricsData = {
+          ...metrics,
+          timestamp: new Date().toISOString()
+        };
+
+        const storedData = JSON.parse(localStorage.getItem("performanceMetrics") || "[]");
+        storedData.push(metricsData);
+        localStorage.setItem("performanceMetrics", JSON.stringify(storedData));
+
+        try {
+          await fetchWithRetry(
+            process.env.NEXT_PUBLIC_METRICS_API || "http://localhost:5000/api/track-metrics",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(metricsData),
+            }
+          );
+        } catch (error) {
+          console.error("Failed to send metrics:", error);
+          // Store failed requests
+          const failedRequests = JSON.parse(localStorage.getItem("failedMetrics") || "[]");
+          failedRequests.push(metricsData);
+          localStorage.setItem("failedMetrics", JSON.stringify(failedRequests));
+        }
+      };
+
+      handleMetrics();
     });
 
     observer.observe({ type: "paint", buffered: true });

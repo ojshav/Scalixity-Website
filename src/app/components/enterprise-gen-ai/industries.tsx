@@ -6,7 +6,7 @@ import Image from 'next/image'
 const industries = [
   { 
     name: "Healthcare", 
-    icon: "/icons/healthcare.svg",
+    icon: "/images/icons/healthcare.svg",
     useCases: [
       "Healthcare AI Solutions",
       "Healthcare AI Agents",

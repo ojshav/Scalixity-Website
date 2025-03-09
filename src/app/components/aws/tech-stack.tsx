@@ -5,29 +5,29 @@ import Image from 'next/image'
 
 const awsTechCategories = {
   "Compute Services": [
-    { name: "EC2", logo: "/tech/aws-ec2.svg" },
-    { name: "Lambda", logo: "/tech/aws-lambda.svg" },
-    { name: "Elastic Beanstalk", logo: "/tech/aws-eb.svg" }
+    { name: "EC2", logo: "/images/tech/aws-ec2.svg" },
+    { name: "Lambda", logo: "/images/tech/aws-lambda.svg" },
+    { name: "Elastic Beanstalk", logo: "/images/tech/aws-eb.svg" }
   ],
   "Storage & Databases": [
-    { name: "S3", logo: "/tech/aws-s3.svg" },
-    { name: "DynamoDB", logo: "/tech/aws-dynamodb.svg" },
-    { name: "RDS", logo: "/tech/aws-rds.svg" }
+    { name: "S3", logo: "/images/tech/aws-s3.svg" },
+    { name: "DynamoDB", logo: "/images/tech/aws-dynamodb.svg" },
+    { name: "RDS", logo: "/images/tech/aws-rds.svg" }
   ],
   "AI & ML Services": [
-    { name: "SageMaker", logo: "/tech/aws-sagemaker.svg" },
-    { name: "Comprehend", logo: "/tech/aws-comprehend.svg" },
-    { name: "Rekognition", logo: "/tech/aws-rekognition.svg" }
+    { name: "SageMaker", logo: "/images/tech/aws-sagemaker.svg" },
+    { name: "Comprehend", logo: "/images/tech/aws-comprehend.svg" },
+    { name: "Rekognition", logo: "/images/tech/aws-rekognition.svg" }
   ],
   "Networking & Security": [
-    { name: "VPC", logo: "/tech/aws-vpc.svg" },
-    { name: "Route 53", logo: "/tech/aws-route53.svg" },
-    { name: "IAM", logo: "/tech/aws-iam.svg" }
+    { name: "VPC", logo: "/images/tech/aws-vpc.svg" },
+    { name: "Route 53", logo: "/images/tech/aws-route53.svg" },
+    { name: "IAM", logo: "/images/tech/aws-iam.svg" }
   ],
   "Serverless & DevOps": [
-    { name: "API Gateway", logo: "/tech/aws-apigateway.svg" },
-    { name: "CloudFormation", logo: "/tech/aws-cloudformation.svg" },
-    { name: "CodePipeline", logo: "/tech/aws-codepipeline.svg" }
+    { name: "API Gateway", logo: "/images/tech/aws-apigateway.svg" },
+    { name: "CloudFormation", logo: "/images/tech/aws-cloudformation.svg" },
+    { name: "CodePipeline", logo: "/images/tech/aws-codepipeline.svg" }
   ]
 }
 
