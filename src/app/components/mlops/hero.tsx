@@ -21,7 +21,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xl max-w-3xl mx-auto mb-8"
         >
-          Streamline your AI workflows with Scalixity's MLOps solutions — integrating model training, deployment, and monitoring for continuous innovation.
+          Streamline your AI workflows with Scalixity&apos;s  MLOps solutions — integrating model training, deployment, and monitoring for continuous innovation.
         </motion.p>
         <motion.div
           initial={{ opacity: 0 }}

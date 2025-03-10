@@ -38,7 +38,7 @@ export function TechStack() {
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">OUR TECHNOLOGY STACK</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
-            Scalixity's Cutting-Edge Tech Tools
+            Scalixity&apos;s  Cutting-Edge Tech Tools
           </h2>
           <p className="text-lg text-black max-w-3xl mx-auto">
             Leveraging advanced technologies to deliver data-driven solutions for your business.

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/src/app/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/src/app/components/ui/tabs';
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Users, TrendingUp, MousePointer, Filter } from 'lucide-react';
+import { Users, TrendingUp, MousePointer } from 'lucide-react';
 
 export default function AcquisitionMatrix() {
   const [period, setPeriod] = useState('30days');

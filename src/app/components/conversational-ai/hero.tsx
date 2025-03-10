@@ -20,7 +20,7 @@ export function Hero() {
             Revolutionize customer interactions with AI-powered conversational solutions. 
             From intelligent chatbots to virtual assistants, we design and deploy systems that 
             understand, process, and respond to human language in real time. 
-            Enhance user experiences and streamline support with Scalixity's expertise.
+            Enhance user experiences and streamline support with Scalixity&apos;s  expertise.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
