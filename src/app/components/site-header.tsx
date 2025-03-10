@@ -132,6 +132,15 @@ const industries = [
     ]
   }
 ]
+export function ContactButton() {
+  return (
+    <Link href="/contact">
+      <Button className="bg-primary hover:bg-accent text-primary-foreground">
+        Contact Us
+      </Button>
+    </Link>
+  )
+}
 
 export function SiteHeader() {
   return (
@@ -229,7 +238,7 @@ export function SiteHeader() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button className="bg-primary hover:bg-accent text-primary-foreground">Contact Us</Button>
+           <ContactButton />
           </motion.div>
         </div>
       </div>

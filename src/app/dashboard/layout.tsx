@@ -39,7 +39,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </Head>
 
       {/* Main Layout Container */}
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <Box sx={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        height: '100vh',
+        bgcolor: theme.palette.background.default
+      }}>
         <Header isDarkMode={isDarkMode} onThemeToggle={handleThemeToggle} />
         
         {/* Main Content */}
@@ -47,7 +52,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <SideMenu />
           
           {/* Content Area */}
-          <Box sx={{ flexGrow: 1, p: 3, overflowY: 'auto' }}>
+          <Box sx={{ 
+            flexGrow: 1, 
+            p: 3, 
+            overflowY: 'auto',
+            bgcolor: theme.palette.background.paper
+          }}>
             {children}
           </Box>
         </Box>

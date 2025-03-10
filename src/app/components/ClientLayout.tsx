@@ -14,7 +14,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     "/login", "/dashboard", "/dashboard/data", "/dashboard/useranalytics",
     "/dashboard/demographic", "/dashboard/technicalmetric", "/dashboard/AcquistionMatrix",
     "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
-    "/dashboard/settings",
+    "/dashboard/settings","/dashboard/work","/dashboard/contact"
   ].includes(pathname);
 
   const getDeviceType = () => {
@@ -321,11 +321,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       {!hideLayout && <SiteHeader />}
       <main className="flex-1">
         {children}
-        {!hideLayout && (
-          <button id="inquiry-button" className="p-2 bg-blue-500 text-white">
-            Submit Inquiry (Test)
-          </button>
-        )}
+       
       </main>
       {!hideLayout && <Footer />}
     </>
