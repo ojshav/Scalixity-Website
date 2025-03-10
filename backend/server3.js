@@ -1,30 +1,33 @@
+// server.js
 require('dotenv').config({ path: './backend/.env' });
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const analyticsRoutes = require("./routes/analytics");
 const engagementRoutes = require('./routes/engagement');
 const demographicRoutes = require('./routes/demographic');
 const technicalRoutes = require('./routes/technical');
-const workRoutes = require('./routes/work');
 const contactRoutes = require('./routes/contact');
+const workRoutes = require('./routes/work');
+const adminRoutes = require('./routes/admin');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Apply body-parser middleware globally with increased limits
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+
+// CORS middleware
 app.use(cors({
   origin: ["http://localhost:3000"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
-app.use(express.json());
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
-
 
 // Create database pool
 const pool = mysql.createPool({
@@ -37,7 +40,6 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
-// Make pool available globally
 app.locals.pool = pool;
 
 // Test database connection
@@ -51,12 +53,11 @@ app.get('/api/test-db', async (req, res) => {
   }
 });
 
-// Database setup function
 async function setupDatabase() {
   try {
     const connection = await pool.getConnection();
     
-    // Create admin users table if it doesn't exist
+    // Create admin_users table
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS admin_users (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -69,7 +70,6 @@ async function setupDatabase() {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
     `);
-    
     // Create user_activity table if it doesn't exist
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS user_activity (
@@ -131,10 +131,22 @@ async function setupDatabase() {
         country VARCHAR(100)
       )
     `);
-    
-    // Check if default admin exists, if not create one
-    const [rows] = await connection.execute('SELECT * FROM admin_users WHERE username = ?', [process.env.ADMIN_USERNAME]);
 
+    // Create projects table
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS projects (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(100) NOT NULL,
+        description TEXT NOT NULL,
+        image VARCHAR(255) NOT NULL,
+        live_url VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Check if default admin exists
+    const [rows] = await connection.execute('SELECT * FROM admin_users WHERE username = ?', [process.env.ADMIN_USERNAME]);
     if (rows.length === 0) {
       const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
       await connection.execute(
@@ -152,9 +164,7 @@ async function setupDatabase() {
   }
 }
 
-
 // Routes
-const adminRoutes = require('./routes/admin');
 app.use('/api/admin', adminRoutes);
 app.use("/api", analyticsRoutes);
 app.use("/api", engagementRoutes);
@@ -163,11 +173,13 @@ app.use("/api", technicalRoutes);
 app.use("/api", contactRoutes);
 app.use("/api/work", workRoutes);
 
-
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error('Global error:', err);
-  res.status(500).json({ error: 'Something broke!' });
+  if (err.name === 'PayloadTooLargeError') {
+    return res.status(413).json({ error: 'Payload too large. Maximum size is 10MB.' });
+  }
+  res.status(500).json({ error: 'Internal server error' });
 });
 
 // Start server
