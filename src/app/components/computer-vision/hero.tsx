@@ -19,7 +19,7 @@ export function Hero() {
           <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
             Empower your business with AI-driven computer vision solutions. 
             From image recognition to real-time video analytics, our cutting-edge models help automate processes, enhance decision-making, 
-            and unlock new insights. Transform visual data into actionable intelligence with Scalixity's expertise.
+            and unlock new insights. Transform visual data into actionable intelligence with Scalixity&apos;s  expertise.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
