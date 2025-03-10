@@ -10,7 +10,7 @@ const projects = [
     company: "ArtVisions",
     title: "Revolutionizing Digital Art Creation with MidJourney AI",
     description: "We assisted ArtVisions in integrating MidJourney AI to automate and enhance their creative workflows, enabling artists to generate high-quality visuals with minimal effort.",
-    image: "/midjourney/artvisions.jpg",
+    image: "/midjourney/artvisions.webp",
     features: [
       "AI-assisted artwork generation",
       "Customizable artistic styles",
@@ -22,7 +22,7 @@ const projects = [
     company: "AdCreativePro",
     title: "Enhancing Ad Creativity with MidJourney AI-Generated Visuals",
     description: "Using MidJourney AI, we empowered AdCreativePro to generate stunning, campaign-ready visual assets, reducing design turnaround time and improving ad performance.",
-    image: "/midjourney/adcreativepro.jpg",
+    image: "/midjourney/adcreativepro.webp",
     features: [
       "Automated ad image generation",
       "Adaptive creative suggestions",
@@ -34,7 +34,7 @@ const projects = [
     company: "BookCoverGen",
     title: "Transforming Book Cover Designs with AI-Generated Art",
     description: "We leveraged MidJourney AI to help BookCoverGen create unique, eye-catching book covers tailored to different genres, saving authors time and money.",
-    image: "/midjourney/bookcovergen.jpg",
+    image: "/midjourney/bookcovergen.webp",
     features: [
       "Genre-specific AI-generated covers",
       "High-resolution and print-ready designs",

@@ -6,7 +6,7 @@ import Image from 'next/image'
 const industries = [
   {
     name: "Finance",
-    icon: "/icons/finance.svg",
+    icon: "/images/icons/finance.svg",
     description: "We provide secure and scalable decentralized finance (DeFi) solutions, enabling users to access financial services without intermediaries.",
     solutions: [
       "DeFi Lending & Borrowing",
@@ -17,7 +17,7 @@ const industries = [
   },
   {
     name: "Healthcare",
-    icon: "/icons/healthcare.svg",
+    icon: "/images/icons/healthcare.svg",
     description: "Blockchain-powered healthcare solutions improve security, privacy, and interoperability in patient data management and clinical research.",
     solutions: [
       "Medical Records on Blockchain",
@@ -28,7 +28,7 @@ const industries = [
   },
   {
     name: "Supply Chain",
-    icon: "/icons/supply-chain.svg",
+    icon: "/images/icons/publishing.svg",
     description: "Enhancing transparency and efficiency in global supply chains through blockchain-based tracking and authentication.",
     solutions: [
       "Immutable Product Tracking",
@@ -39,7 +39,7 @@ const industries = [
   },
   {
     name: "Gaming & NFTs",
-    icon: "/icons/gaming.svg",
+    icon: "/images/icons/gaming.webp",
     description: "Revolutionizing the gaming industry with NFT-based ownership and blockchain-backed in-game assets.",
     solutions: [
       "Play-to-Earn Games",

@@ -5,20 +5,20 @@ import Image from 'next/image'
 
 const techStack = {
   "Stellar Smart Contract Development": [
-    { name: "Soroban", logo: "/tech/soroban.svg" }
+    { name: "Soroban", logo: "/images/tech/soroban.svg" }
   ],
   "Blockchain Frameworks": [
-    { name: "Stellar Core", logo: "/tech/stellar-core.svg" },
-    { name: "Stellar SDK", logo: "/tech/stellar-sdk.svg" }
+    { name: "Stellar Core", logo: "/images/tech/stellar-core.webp" },
+    { name: "Stellar SDK", logo: "/images/tech/stellar-sdk.webp" }
   ],
   "Decentralized Application (DApp) Development": [
-    { name: "JavaScript", logo: "/tech/javascript.svg" },
-    { name: "TypeScript", logo: "/tech/typescript.svg" },
-    { name: "Python", logo: "/tech/python.svg" }
+    { name: "JavaScript", logo: "/images/tech/javascript.svg" },
+    { name: "TypeScript", logo: "/images/tech/typescript.svg" },
+    { name: "Python", logo: "/images/tech/python.svg" }
   ],
   "Wallet & API Integrations": [
-    { name: "Stellar Horizon API", logo: "/tech/horizon-api.svg" },
-    { name: "Stellar Wallet SDK", logo: "/tech/stellar-wallet.svg" }
+    { name: "Stellar Horizon API", logo: "/images/tech/horizon-api.webp" },
+    { name: "Stellar Wallet SDK", logo: "/images/tech/stellar-wallet.svg" }
   ]
 }
 

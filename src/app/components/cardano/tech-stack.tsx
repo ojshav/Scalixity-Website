@@ -5,21 +5,21 @@ import Image from 'next/image'
 
 const techStack = {
   "Cardano Smart Contract Development": [
-    { name: "Plutus", logo: "/tech/plutus.svg" },
-    { name: "Marlowe", logo: "/tech/marlowe.svg" }
+    { name: "Plutus", logo: "/images/tech/plutus.svg" },
+    { name: "Marlowe", logo: "/images/tech/marlowe.svg" }
   ],
   "Blockchain Frameworks": [
-    { name: "Cardano Node", logo: "/tech/cardano-node.svg" },
-    { name: "Cardano CLI", logo: "/tech/cardano-cli.svg" }
+    { name: "Cardano Node", logo: "/images/tech/cardano-node.svg" },
+    { name: "Cardano CLI", logo: "/images/tech/cardano-cli.svg" }
   ],
   "Decentralized Application (DApp) Development": [
-    { name: "Haskell", logo: "/tech/haskell.svg" },
-    { name: "JavaScript", logo: "/tech/javascript.svg" },
-    { name: "TypeScript", logo: "/tech/typescript.svg" }
+    { name: "Haskell", logo: "/images/tech/haskell.svg" },
+    { name: "JavaScript", logo: "/images/tech/javascript.svg" },
+    { name: "TypeScript", logo: "/images/tech/typescript.svg" }
   ],
   "Wallet & API Integrations": [
-    { name: "Cardano Wallet API", logo: "/tech/cardano-wallet.svg" },
-    { name: "Blockfrost API", logo: "/tech/blockfrost.svg" }
+    { name: "Cardano Wallet API", logo: "/images/tech/cardano-wallet.svg" },
+    { name: "Blockfrost API", logo: "/images/tech/blockfrost.svg" }
   ]
 }
 

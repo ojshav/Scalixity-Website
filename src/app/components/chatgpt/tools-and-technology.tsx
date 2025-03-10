@@ -14,7 +14,6 @@ const technologies: Technologies = {
     { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
     { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
-<<<<<<< HEAD
   "Integration & Development Tools": [
     { name: "Google Dialogflow", logo: "/images/tech/dialogflow.svg" },
     { name: "Microsoft BotFramework", logo: "/images/tech/botframework.svg" },
@@ -26,12 +25,6 @@ const technologies: Technologies = {
     { name: "Docker", logo: "/images/tech/docker.svg" },
     { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" },
     { name: "Ansible", logo: "/images/tech/ansible.svg" }
-=======
-  "Integration & Dev Tools": [
-    { name: "Google Dialogflow", logo: "/tech/dialogflow.svg" },
-    { name: "Microsoft BotFramework", logo: "/tech/botframework.svg" },
-    { name: "Rasa", logo: "/tech/rasa.svg" }
->>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
   ],
   "OpenAI Models": [
     { name: "GPT-3", logo: "/images/tech/gpt3.svg" },
@@ -39,7 +32,6 @@ const technologies: Technologies = {
     { name: "GPT-4", logo: "/images/tech/gpt4.svg" }
   ],
   "Programming Languages": [
-<<<<<<< HEAD
     { name: "Python", logo: "/images/tech/python.svg" },
     { name: "JavaScript", logo: "/images/tech/javascript.svg" },
     { name: "TypeScript", logo: "/images/tech/typescript.svg" },
@@ -52,17 +44,6 @@ const technologies: Technologies = {
     { name: "MySQL", logo: "/images/tech/mysql.svg" },
     { name: "Firebase", logo: "/images/tech/firebase.svg" },
     { name: "Redis", logo: "/images/tech/redis.svg" }
-=======
-    { name: "Python", logo: "/tech/python.svg" },
-    { name: "JavaScript", logo: "/tech/javascript.svg" },
-    { name: "TypeScript", logo: "/tech/typescript.svg" },
-    { name: "Java", logo: "/tech/java.svg" }
-  ],
-  "Databases": [
-    { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-    { name: "MongoDB", logo: "/tech/mongodb.svg" },
-    { name: "MySQL", logo: "/tech/mysql.svg" }
->>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
   ]
 };
 

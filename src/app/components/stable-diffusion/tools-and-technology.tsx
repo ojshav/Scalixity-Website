@@ -3,38 +3,49 @@
 import Image from "next/image";
 
 type TechItem = { name: string; logo?: string };
-type Technologies = Record<string, (TechItem | string)[]>;
+type Technologies = Record<string, TechItem[]>;
 
 const technologies: Technologies = {
-  "Stable Diffusion Models": [
-    { name: "Stable Diffusion v1.5", logo: "/images/tech/sd-v1-5.svg" },
-    { name: "Stable Diffusion XL (SDXL)", logo: "/images/tech/sdxl.svg" },
-    { name: "Stable Diffusion 2.1", logo: "/images/tech/sd-2-1.svg" }
+  "AI Frameworks": [
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "Keras", logo: "/images/tech/keras.svg" }
   ],
-  "Image Generation Frameworks": [
-    { name: "Automatic1111 WebUI", logo: "/images/tech/automatic1111.svg" },
-    { name: "InvokeAI", logo: "/images/tech/invokeai.svg" },
-    { name: "ComfyUI", logo: "/images/tech/comfyui.svg" }
+  "Cloud Platforms": [
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
-  "Cloud & GPU Services": [
-    { name: "RunPod", logo: "/images/tech/runpod.svg" },
-    { name: "Lambda Labs", logo: "/images/tech/lambdalabs.svg" },
-    { name: "Google Colab Pro", logo: "/images/tech/colab.svg" }
+  "Integration & Development Tools": [
+    { name: "Google Dialogflow", logo: "/images/tech/dialogflow.svg" },
+    { name: "Microsoft BotFramework", logo: "/images/tech/botframework.svg" },
+    { name: "Amazon Lex", logo: "/images/tech/amazonlex.svg" },
+    { name: "BotMap", logo: "/images/tech/botmap.svg" },
+    { name: "Botsify", logo: "/images/tech/botsify.svg" },
+    { name: "Rasa", logo: "/images/tech/rasa.svg" },
+    { name: "Wit.ai", logo: "/images/tech/witai.svg" },
+    { name: "Docker", logo: "/images/tech/docker.svg" },
+    { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" },
+    { name: "Ansible", logo: "/images/tech/ansible.svg" }
   ],
-  "Model Fine-Tuning": [
-    { name: "DreamBooth", logo: "/images/tech/dreambooth.svg" },
-    { name: "LoRA (Low-Rank Adaptation)", logo: "/images/tech/lora.svg" },
-    { name: "Textual Inversion", logo: "/images/tech/textual-inversion.svg" }
-  ],
-  "API & Deployment": [
-    { name: "Stable Diffusion API", logo: "/images/tech/sd-api.svg" },
-    { name: "Replicate AI", logo: "/images/tech/replicate.svg" },
-    { name: "Hugging Face Spaces", logo: "/images/tech/huggingface.svg" }
+  "OpenAI Models": [
+    { name: "GPT-3", logo: "/images/tech/gpt3.svg" },
+    { name: "GPT-3.5 Turbo", logo: "/images/tech/gpt3-5.svg" },
+    { name: "GPT-4", logo: "/images/tech/gpt4.svg" }
   ],
   "Programming Languages": [
     { name: "Python", logo: "/images/tech/python.svg" },
     { name: "JavaScript", logo: "/images/tech/javascript.svg" },
-    { name: "TypeScript", logo: "/images/tech/typescript.svg" }
+    { name: "TypeScript", logo: "/images/tech/typescript.svg" },
+    { name: "Java", logo: "/images/tech/java.svg" },
+    { name: "C++", logo: "/images/tech/cpp.svg" }
+  ],
+  "Databases": [
+    { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+    { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+    { name: "MySQL", logo: "/images/tech/mysql.svg" },
+    { name: "Firebase", logo: "/images/tech/firebase.svg" },
+    { name: "Redis", logo: "/images/tech/redis.svg" }
   ]
 };
 

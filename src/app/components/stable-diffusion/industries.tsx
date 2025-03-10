@@ -5,10 +5,10 @@ import Image from "next/image";
 
 const industries = [
   { name: "Advertising & Marketing", icon: "/images/icons/marketing.svg" },
-  { name: "Gaming & Entertainment", icon: "/images/icons/gaming.svg" },
+  { name: "Gaming & Entertainment", icon: "/images/icons/gaming.webp" },
   { name: "E-commerce", icon: "/images/icons/ecommerce.svg" },
-  { name: "Fashion & Apparel", icon: "/images/icons/fashion.svg" },
-  { name: "Film & Animation", icon: "/images/icons/film.svg" },
+  { name: "Fashion & Apparel", icon: "/images/icons/fashion.webp" },
+  { name: "Film & Animation", icon: "/images/icons/film.webp" },
   { name: "Publishing", icon: "/images/icons/publishing.svg" },
   { name: "Education", icon: "/images/icons/education.svg" },
   { name: "Healthcare", icon: "/images/icons/healthcare.svg" },

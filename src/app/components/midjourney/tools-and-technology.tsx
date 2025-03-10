@@ -6,98 +6,58 @@ type TechItem = { name: string; logo?: string };
 type Technologies = Record<string, (TechItem | string)[]>;
 
 const technologies: Technologies = {
-  "AI Models": [
-<<<<<<< HEAD
+  "Image Generation Models": [
+    { name: "MidJourney", logo: "/images/tech/midjourney.svg" },
     { name: "Stable Diffusion", logo: "/images/tech/stable-diffusion.svg" },
-    { name: "DALL·E", logo: "/images/tech/dalle.svg" },
-    { name: "MidJourney AI", logo: "/images/tech/midjourney.svg" }
+    { name: "DALL-E", logo: "/images/tech/dalle.svg" }
   ],
-  "Cloud Computing": [
-    { name: "AWS EC2", logo: "/images/tech/aws-ec2.svg" },
-    { name: "Google Cloud AI", logo: "/images/tech/google-cloud-ai.svg" },
-    { name: "Azure AI", logo: "/images/tech/azure-ai.svg" }
-  ],
-  "Deep Learning Frameworks": [
-    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
-    { name: "Keras", logo: "/images/tech/keras.svg" }
+  "Cloud Infrastructure": [
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Image Processing": [
     { name: "OpenCV", logo: "/images/tech/opencv.svg" },
-    { name: "Pillow", logo: "/images/tech/pillow.svg" },
-    { name: "TorchVision", logo: "/images/tech/torchvision.svg" }
+    { name: "PIL", logo: "/images/tech/pillow.svg" },
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" }
   ],
-  "API Development": [
-    { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
-    { name: "Flask", logo: "/images/tech/flask.svg" },
-    { name: "Express.js", logo: "/images/tech/express.svg" }
+  "Development Tools": [
+    { name: "Docker", logo: "/images/tech/docker.svg" },
+    { name: "Git", logo: "/images/tech/git.svg" },
+    { name: "VS Code", logo: "/images/tech/vscode.svg" }
+  ],
+  "Programming Languages": [
+    { name: "Python", logo: "/images/tech/python.svg" },
+    { name: "JavaScript", logo: "/images/tech/javascript.svg" },
+    { name: "TypeScript", logo: "/images/tech/typescript.svg" }
+  ],
+  "APIs & Integration": [
+    { name: "REST API", logo: "/images/tech/rest-api.svg" },
+    { name: "GraphQL", logo: "/images/tech/graphql.svg" },
+    { name: "WebSocket", logo: "/images/tech/websocket.svg" }
   ]
-=======
-    { name: "Stable Diffusion", logo: "/tech/stable-diffusion.svg" },
-    { name: "DALL·E", logo: "/tech/dalle.svg" },
-    { name: "MidJourney AI", logo: "/tech/midjourney.svg" },
-  ],
-  "Cloud Computing": [
-    { name: "AWS EC2", logo: "/tech/aws-ec2.svg" },
-    { name: "Google Cloud AI", logo: "/tech/google-cloud-ai.svg" },
-    { name: "Azure AI", logo: "/tech/azure-ai.svg" },
-  ],
-  "Deep Learning Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "Keras", logo: "/tech/keras.svg" },
-  ],
-  "Image Processing": [
-    { name: "OpenCV", logo: "/tech/opencv.svg" },
-    { name: "Pillow", logo: "/tech/pillow.svg" },
-    { name: "TorchVision", logo: "/tech/torchvision.svg" },
-  ],
-  "API Development": [
-    { name: "FastAPI", logo: "/tech/fastapi.svg" },
-    { name: "Flask", logo: "/tech/flask.svg" },
-    { name: "Express.js", logo: "/tech/express.svg" },
-  ],
->>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
 };
 
-export function ToolsAndTechnologyMidJourney() {
+export function ToolsAndTechnology() {
   return (
-    <section className="py-20" style={{ backgroundColor: "#A8B2E7" }}>
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
-          <span
-            className="text-sm uppercase tracking-wider"
-            style={{ color: "#000000" }}
-          >
+          <span className="text-sm text-black uppercase tracking-wider">
             TOOL & TECHNOLOGY
           </span>
-          <h2
-            className="text-3xl md:text-4xl font-bold mt-2"
-            style={{ color: "#000000" }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">
             Technology Stack Powering MidJourney AI
           </h2>
-          <p
-            className="mt-4 max-w-3xl mx-auto"
-            style={{ color: "#000000" }}
-          >
-            We utilize cutting-edge tools and technologies for AI-driven image
-            generation. Our stack includes top AI models, deep learning
-            frameworks, and cloud computing services to deliver stunning
-            visuals.
+          <p className="text-black mt-4 max-w-3xl mx-auto">
+            Our MidJourney developers leverage cutting-edge technologies to create powerful image generation solutions. We combine advanced AI models with robust infrastructure to deliver exceptional results.
           </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
           {Object.entries(technologies).map(([category, items], index) => (
-            <div
-              key={index}
-              className="rounded-lg p-6"
-              style={{ backgroundColor: "#F3F1EB" }}
-            >
-              <h3 className="font-semibold mb-6" style={{ color: "#000000" }}>
-                {category}
-              </h3>
+            <div key={index} className="bg-[#F3F1EB] border border-black rounded-lg p-6">
+              <h3 className="text-black font-semibold mb-6">{category}</h3>
               <div className="grid grid-cols-3 gap-4">
                 {items.map((item, idx) =>
                   typeof item === "object" ? (
@@ -109,10 +69,7 @@ export function ToolsAndTechnologyMidJourney() {
                         height={40}
                         className="mb-2"
                       />
-                      <span
-                        className="text-sm text-center"
-                        style={{ color: "#000000" }}
-                      >
+                      <span className="text-black text-sm text-center">
                         {item.name}
                       </span>
                     </div>
@@ -127,4 +84,4 @@ export function ToolsAndTechnologyMidJourney() {
   );
 }
 
-export default ToolsAndTechnologyMidJourney;
+export default ToolsAndTechnology;

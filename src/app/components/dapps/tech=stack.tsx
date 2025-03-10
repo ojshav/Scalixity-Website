@@ -4,35 +4,35 @@
 
 const techStack = {
   "Blockchain Platforms": [
-    { name: "Ethereum", logo: "/images/tech/ethereum.svg" },
-    { name: "Binance Smart Chain", logo: "/images/tech/bsc.svg" },
-    { name: "Polygon", logo: "/images/tech/polygon.svg" },
-    { name: "Solana", logo: "/images/tech/solana.svg" }
+    { name: "Ethereum", logo: "/images/tech/ethereum.webp" },
+    { name: "Binance Smart Chain", logo: "/images/tech/bert.svg" },
+    { name: "Polygon", logo: "/images/tech/polygon.webp" },
+    { name: "Solana", logo: "/images/tech/solana.webp" }
   ],
   "Smart Contract Languages": [
-    { name: "Solidity", logo: "/images/tech/solidity.svg" },
-    { name: "Rust", logo: "/images/tech/rust.svg" },
-    { name: "Vyper", logo: "/images/tech/vyper.svg" }
+    { name: "Solidity", logo: "/images/tech/solidity.webp" },
+    { name: "Rust", logo: "/images/tech/rust.webp" },
+    { name: "Vyper", logo: "/images/tech/vyper.webp" }
   ],
   "Development Frameworks": [
-    { name: "Hardhat", logo: "/images/tech/hardhat.svg" },
-    { name: "Truffle", logo: "/images/tech/truffle.svg" },
-    { name: "Brownie", logo: "/images/tech/brownie.svg" }
+    { name: "Hardhat", logo: "/images/tech/hardhat.webp" },
+    { name: "Truffle", logo: "/images/tech/truffle.webp" },
+    { name: "Brownie", logo: "/images/tech/brownie.webp" }
   ],
   "Frontend Technologies": [
-    { name: "React", logo: "/images/tech/react.svg" },
+    { name: "React", logo: "/images/tech/react.webp" },
     { name: "Next.js", logo: "/images/tech/nextjs.svg" },
-    { name: "Vue.js", logo: "/images/tech/vue.svg" }
+    { name: "Vue.js", logo: "/images/tech/botmap.svg" }
   ],
   "Wallet & Authentication": [
-    { name: "MetaMask", logo: "/images/tech/metamask.svg" },
-    { name: "WalletConnect", logo: "/images/tech/walletconnect.svg" },
-    { name: "Web3Auth", logo: "/images/tech/web3auth.svg" }
+    { name: "MetaMask", logo: "/images/tech/metamask.webp" },
+    { name: "WalletConnect", logo: "/images/tech/walletconnect.webp" },
+    { name: "Web3Auth", logo: "/images/tech/web3auth.webp" }
   ],
   "Storage Solutions": [
-    { name: "IPFS", logo: "/images/tech/ipfs.svg" },
-    { name: "Filecoin", logo: "/images/tech/filecoin.svg" },
-    { name: "Arweave", logo: "/images/tech/arweave.svg" }
+    { name: "IPFS", logo: "/images/tech/ipfs.webp" },
+    { name: "Filecoin", logo: "/images/tech/filecoin.webp" },
+    { name: "Arweave", logo: "/images/tech/arweave.webp" }
   ]
 };
 

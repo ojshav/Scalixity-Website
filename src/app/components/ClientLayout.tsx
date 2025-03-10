@@ -243,65 +243,30 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
       console.log("Performance Metrics:", metrics);
 
-<<<<<<< HEAD
+      // Unified metrics handling function
       const handleMetrics = async () => {
         if (process.env.NODE_ENV !== 'production') {
           console.log('Metrics tracking disabled in development');
           return;
         }
 
-        const metricsData = {
-          ...metrics,
-          timestamp: new Date().toISOString()
-        };
-
-        const storedData = JSON.parse(localStorage.getItem("performanceMetrics") || "[]");
-        storedData.push(metricsData);
-        localStorage.setItem("performanceMetrics", JSON.stringify(storedData));
-
-        try {
-          await fetchWithRetry(
-            process.env.NEXT_PUBLIC_METRICS_API || "http://localhost:5000/api/track-metrics",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(metricsData),
-            }
-          );
-        } catch (error) {
-          console.error("Failed to send metrics:", error);
-          // Store failed requests
-          const failedRequests = JSON.parse(localStorage.getItem("failedMetrics") || "[]");
-          failedRequests.push(metricsData);
-          localStorage.setItem("failedMetrics", JSON.stringify(failedRequests));
-        }
-      };
-
-      handleMetrics();
-=======
-      // Send performance metrics to /track-metrics endpoint
-      fetch("http://localhost:5000/api/track-metrics", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(metrics),
-      })
-        .then(async (response) => {
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error || "Unknown"}`);
-          }
-          return response.json();
-        })
-        .then((data) => console.log("Performance metrics sent successfully:", data))
-        .catch((err) => {
-          console.error("Failed to send performance metrics:", err);
-          updateErrorTracking(
-            err.message.match(/\d{3}/)?.[0] || "Unknown",
-            err.message,
+        // Send performance metrics to /track-metrics endpoint
+        fetch("http://localhost:5000/api/track-metrics", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(metrics),
+        }).catch((error) => {
+          console.error(
+            "Error sending performance metrics:",
+            error,
             "fetch-metrics"
           );
         });
->>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
+      };
+
+      handleMetrics();
     });
 
     observer.observe({ type: "paint", buffered: true });

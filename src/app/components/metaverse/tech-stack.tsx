@@ -7,36 +7,36 @@ const techStack = [
   {
     category: "Metaverse Development Frameworks",
     technologies: [
-      { name: "Three.js", logo: "/tech/threejs.svg" },
-      { name: "Babylon.js", logo: "/tech/babylonjs.svg" },
-      { name: "Unity", logo: "/tech/unity.svg" },
-      { name: "Unreal Engine", logo: "/tech/unreal.svg" }
+      { name: "Three.js", logo: "/images/tech/threejs.webp" },
+      { name: "Babylon.js", logo: "/images/tech/babylons.webp" },
+      { name: "Unity", logo: "/images/tech/unity.webp" },
+      { name: "Unreal Engine", logo: "/images/tech/unreal.webp" }
     ]
   },
   {
     category: "Blockchain & Web3 Tools",
     technologies: [
-      { name: "Ethereum", logo: "/tech/ethereum.svg" },
-      { name: "Solidity", logo: "/tech/solidity.svg" },
-      { name: "Polygon", logo: "/tech/polygon.svg" },
-      { name: "IPFS", logo: "/tech/ipfs.svg" }
+      { name: "Ethereum", logo: "/images/tech/ethereum.webp" },
+      { name: "Solidity", logo: "/images/tech/solidity.webp" },
+      { name: "Polygon", logo: "/images/tech/polygon.webp" },
+      { name: "IPFS", logo: "/images/tech/ipfs.webp" }
     ]
   },
   {
     category: "AI & ML Integration",
     technologies: [
-      { name: "OpenAI GPT", logo: "/tech/openai.svg" },
-      { name: "Stable Diffusion", logo: "/tech/stablediffusion.svg" },
-      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-      { name: "PyTorch", logo: "/tech/pytorch.svg" }
+      { name: "OpenAI GPT", logo: "/images/tech/gpt3.svg" },
+      { name: "Stable Diffusion", logo: "/images/tech/gpt-4-turbo.svg" },
+      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+      { name: "PyTorch", logo: "/images/tech/pytorch.svg" }
     ]
   },
   {
     category: "3D Asset Creation & Rendering",
     technologies: [
-      { name: "Blender", logo: "/tech/blender.svg" },
-      { name: "Maya", logo: "/tech/maya.svg" },
-      { name: "Cinema 4D", logo: "/tech/cinema4d.svg" }
+      { name: "Blender", logo: "/images/tech/blender.webp" },
+      { name: "Maya", logo: "/images/tech/maya.webp" },
+      { name: "Cinema 4D", logo: "/images/tech/cinema4d.webp" }
     ]
   }
 ];

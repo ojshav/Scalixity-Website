@@ -7,39 +7,39 @@ type Technologies = Record<string, (TechItem | string)[]>
 
 const technologies: Technologies = {
   "NFT Standards": [
-    { name: "ERC-721", logo: "/images/tech/erc721.svg" },
-    { name: "ERC-1155", logo: "/images/tech/erc1155.svg" },
-    { name: "BEP-721", logo: "/images/tech/bep721.svg" }
+    { name: "ERC-721", logo: "/images/tech/erc721.webp" },
+    { name: "ERC-1155", logo: "/images/tech/erc1155.webp" },
+    { name: "BEP-721", logo: "/images/tech/bep721.webp" }
   ],
   "Blockchain Platforms": [
-    { name: "Ethereum", logo: "/images/tech/ethereum.svg" },
-    { name: "Polygon", logo: "/images/tech/polygon.svg" },
-    { name: "Binance Smart Chain", logo: "/images/tech/bsc.svg" }
+    { name: "Ethereum", logo: "/images/tech/ethereum.webp" },
+    { name: "Polygon", logo: "/images/tech/polygon.webp" },
+    { name: "Binance Smart Chain", logo: "/images/tech/bert.svg" }
   ],
   "Smart Contract Development": [
-    { name: "Solidity", logo: "/images/tech/solidity.svg" },
-    { name: "Rust", logo: "/images/tech/rust.svg" },
-    { name: "Vyper", logo: "/images/tech/vyper.svg" }
+    { name: "Solidity", logo: "/images/tech/solidity.webp" },
+    { name: "Rust", logo: "/images/tech/rust.webp" },
+    { name: "Vyper", logo: "/images/tech/vyper.webp" }
   ],
   "Marketplaces & Integration": [
-    { name: "OpenSea", logo: "/images/tech/opensea.svg" },
-    { name: "Rarible", logo: "/images/tech/rarible.svg" },
-    { name: "SuperRare", logo: "/images/tech/superrare.svg" }
+    { name: "OpenSea", logo: "/images/tech/opensea.webp" },
+    { name: "Rarible", logo: "/images/tech/rarible.webp" },
+    { name: "SuperRare", logo: "/images/tech/superrare.webp" }
   ],
   "Wallets & Payments": [
-    { name: "MetaMask", logo: "/images/tech/metamask.svg" },
-    { name: "Trust Wallet", logo: "/images/tech/trustwallet.svg" },
-    { name: "WalletConnect", logo: "/images/tech/walletconnect.svg" }
+    { name: "MetaMask", logo: "/images/tech/metamask.webp" },
+    { name: "Trust Wallet", logo: "/images/tech/trustwallet.webp" },
+    { name: "WalletConnect", logo: "/images/tech/walletconnect.webp" }
   ],
   "Testing & Security": [
-    { name: "Truffle", logo: "/images/tech/truffle.svg" },
-    { name: "Hardhat", logo: "/images/tech/hardhat.svg" },
-    { name: "MythX", logo: "/images/tech/mythx.svg" }
+    { name: "Truffle", logo: "/images/tech/truffle.webp" },
+    { name: "Hardhat", logo: "/images/tech/hardhat.webp" },
+    { name: "MythX", logo: "/images/tech/mythx.webp" }
   ],
   "IPFS & Storage": [
-    { name: "IPFS", logo: "/images/tech/ipfs.svg" },
-    { name: "Pinata", logo: "/images/tech/pinata.svg" },
-    { name: "Arweave", logo: "/images/tech/arweave.svg" }
+    { name: "IPFS", logo: "/images/tech/ipfs.webp" },
+    { name: "Pinata", logo: "/images/tech/pinata.webp" },
+    { name: "Arweave", logo: "/images/tech/arweave.webp" }
   ],
   "Project Management": [
     "Jira",

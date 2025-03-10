@@ -50,19 +50,14 @@ const technologies: Technologies = {
 
 export function ToolsAndTechnology() {
   return (
-    <section className="bg-[#A8B2E7] py-20"> {/* Lavender background */}
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
           <span className="text-sm text-black uppercase tracking-wider">
             TOOL & TECHNOLOGY
           </span>
-<<<<<<< HEAD
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
-            GPT Integrated Solutions
-=======
           <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">
             Technology Stack We Use to Build ChatGPT Integrated Solutions
->>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
           </h2>
           <p className="text-black mt-4 max-w-3xl mx-auto">
             Our ChatGPT Developers recommend the best technology stack to develop AI solutions for businesses. We utilize cutting-edge tools in AI development, web services, cloud platforms, and API development to ensure seamless integration.
@@ -71,7 +66,7 @@ export function ToolsAndTechnology() {
 
         <div className="grid gap-8 md:grid-cols-3">
           {Object.entries(technologies).map(([category, items], index) => (
-            <div key={index} className="bg-[#F3F1EB] border border-black rounded-lg p-6"> {/* Beige card with black border */}
+            <div key={index} className="bg-[#F3F1EB] border border-black rounded-lg p-6">
               <h3 className="text-black font-semibold mb-6">{category}</h3>
               <div className="grid grid-cols-3 gap-4">
                 {items.map((item, idx) =>

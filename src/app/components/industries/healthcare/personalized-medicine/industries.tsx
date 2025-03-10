@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const industries = [
-  { name: "Hospitals & Clinics", icon: "/icons/hospital.svg" },
-  { name: "Pharmaceutical Companies", icon: "/icons/pharma.svg" },
-  { name: "Health Insurance Providers", icon: "/icons/insurance.svg" },
-  { name: "Genomics Research Centers", icon: "/icons/genomics.svg" },
-  { name: "Biotechnology Firms", icon: "/icons/biotech.svg" },
-  { name: "Telemedicine Platforms", icon: "/icons/telemedicine.svg" },
-  { name: "Diagnostics & Labs", icon: "/icons/labs.svg" },
-  { name: "Public Health Organizations", icon: "/icons/public-health.svg" }
+  { name: "Hospitals & Clinics", icon: "/images/icons/healthcare.svg" },
+  { name: "Pharmaceutical Companies", icon: "/images/icons/construction.svg" },
+  { name: "Health Insurance Providers", icon: "/images/icons/legal.svg" },
+  { name: "Genomics Research Centers", icon: "/images/icons/marketing.svg" },
+  { name: "Biotechnology Firms", icon: "/images/icons/marketing.svg" },
+  { name: "Telemedicine Platforms", icon: "/images/icons/marketing.svg" },
+  { name: "Diagnostics & Labs", icon: "/images/icons/marketing.svg" },
+  { name: "Public Health Organizations", icon: "/images/icons/marketing.svg" }
 ];
 
 export function Industries() {
