@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import { CheckCircle } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { CheckCircle } from 'lucide-react';
 
 const reasons = [
   {
@@ -28,18 +28,18 @@ const reasons = [
     title: "Enterprise Blockchain Solutions",
     description: "Implement enterprise-grade blockchain solutions using Cardano's decentralized and energy-efficient infrastructure."
   }
-]
+];
 
 export function WhyChooseUs() {
   return (
-    <section className="bg-background py-24">
+    <section className="py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">WHY US</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm uppercase tracking-wider text-black">WHY US</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Why Choose Us for Cardano App Development
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Our expertise in Cardano blockchain development ensures secure, scalable, and efficient solutions tailored to your business needs.
           </p>
         </div>
@@ -52,21 +52,27 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="p-8 rounded-xl border-2 border-black hover:border-gray-700 transition-colors bg-white text-black"
             >
               <div className="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <CheckCircle className="w-6 h-6 text-black flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{reason.title}</h3>
-                  <p className="text-muted-foreground">{reason.description}</p>
+                  <h3 className="text-xl font-bold mb-2">{reason.title}</h3>
+                  <p>{reason.description}</p>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        <div className="text-center mt-12">
+          <button className="px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition">
+            Get Started
+          </button>
+        </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default WhyChooseUs;

@@ -32,7 +32,7 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         
         {/* Section Header */}
@@ -57,13 +57,13 @@ export function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-primary/50 transition-colors"
             >
               <div className="flex items-start gap-4">
                 <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{benefit.title}</h3>
-                  <p className="text-muted-foreground">{benefit.description}</p>
+                  <h3 className="text-xl font-bold text-black mb-2">{benefit.title}</h3>
+                  <p className="text-black">{benefit.description}</p>
                 </div>
               </div>
             </motion.div>
