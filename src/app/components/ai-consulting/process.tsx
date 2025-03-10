@@ -31,8 +31,8 @@ const processSteps = [
   },
   {
     title: "Prompt Engineering",
-<<<<<<< HEAD
-    content: "We optimize and fine-tune prompts to ensure the AI model produces accurate, relevant, and contextually appropriate outputs for your specific use case."
+    content:
+      "We optimize and fine-tune prompts to ensure the AI model produces accurate, relevant, and contextually appropriate outputs for your specific use case.",
   }
 ]
 
@@ -50,12 +50,6 @@ const featuredProjects = [
     ]
   }
 ]
-=======
-    content:
-      "We optimize and fine-tune prompts to ensure the AI model produces accurate, relevant, and contextually appropriate outputs for your specific use case.",
-  },
-];
->>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
 
 export function Process() {
   const [openStep, setOpenStep] = useState<number | null>(0);

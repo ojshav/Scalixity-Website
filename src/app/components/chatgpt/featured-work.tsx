@@ -8,17 +8,11 @@ import { ArrowRight } from "lucide-react";
 const projects = [
   {
     company: "Trapeze",
-<<<<<<< HEAD
-    title: "Helped Trapeze Group, Revolutionize Mobility with a Paratransit Solution",
-    description: "Using geospatial technology, we supported Trapeze in innovating their existing paratransit transportation system. Our forward-thinking solutions have reduced customer wait times and improved safety features",
-    image: "/images/Helped Trapeze Group, Revolutionize Mobility with a Paratransit Solution.svg",
-=======
     title:
       "Helped Trapeze Group, Revolutionize Mobility with a Paratransit Solution",
     description:
       "Using geospatial technology, we supported Trapeze in innovating their existing paratransit transportation system. Our forward-thinking solutions have reduced customer wait times and improved safety features.",
     image: "/placeholder.svg?height=600&width=800",
->>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
     features: [
       "Real-time vehicle tracking",
       "Advanced algorithms for efficient route planning",
@@ -29,14 +23,9 @@ const projects = [
   {
     company: "LegalAlly",
     title: "Reimagine Legal Support Driven by in-Depth Legal Research",
-<<<<<<< HEAD
-    description: "We leveraged Generative AI to fasten legal document analysis and drafting for a medium-sized law firm in Chicago.",
-    image: "/images/Reimagine Legal Support Driven by in-Depth Legal Research.svg",
-=======
     description:
       "We leveraged Generative AI to fasten legal document analysis and drafting for a medium-sized law firm in Chicago.",
     image: "/placeholder.svg?height=600&width=800",
->>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
     features: [
       "Legal Chatbot Assistant",
       "Improved Communication Efficiency",
@@ -46,14 +35,9 @@ const projects = [
   {
     company: "DeVoice",
     title: "Redefining Restaurant Ordering with a Voice Ordering Solution",
-<<<<<<< HEAD
-    description: "We built DeVoice, which is an AI based voice agent designed specifically for restaurants and other businesses, integrating state-of-the-art voice recognition and natural language understanding.",
-    image: "/images/Redefining Restaurant Ordering with a Voice Ordering Solution.svg",
-=======
     description:
       "We built DeVoice, which is an AI-based voice agent designed specifically for restaurants and other businesses, integrating state-of-the-art voice recognition and natural language understanding.",
     image: "/placeholder.svg?height=600&width=800",
->>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
     features: [
       "State-of-the-art voice recognition",
       "Provides natural dialogues and verbal responses",

@@ -4,28 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const industries = [
-<<<<<<< HEAD
-  {
-    name: "Healthcare",
-    icon: "/images/icons/healthcare.svg",
-    description: "We specialize in crafting tailored AI solutions for healthcare organizations aiming to adopt or enhance AI capabilities. Our expert team develops impactful integrations to advance diagnostics and streamline operations, ensuring each solution meets unique client needs.",
-    solutions: [
-      "Healthcare AI Agents",
-      "Documentation Intelligence",
-      "Medical Imaging Intelligence",
-      "Personalized Treatment",
-      "Medical Claims Processing",
-      "Virtual Health Assistants"
-    ]
-  },
-  { name: "Finance", icon: "/images/icons/finance.svg" },
-  { name: "E-commerce", icon: "/images/icons/ecommerce.svg" },
-  { name: "Education", icon: "/images/icons/education.svg" },
-  { name: "Manufacturing", icon: "/images/icons/manufacturing.svg" },
-  { name: "Retail", icon: "/images/icons/retail.svg" },
-  { name: "Technology", icon: "/images/icons/technology.svg" },
-  { name: "Energy", icon: "/images/icons/energy.svg" }
-=======
+  { name: "Healthcare", icon: "/icons/healthcare.svg" },
   { name: "Finance", icon: "/icons/finance.svg" },
   { name: "E-commerce", icon: "/icons/ecommerce.svg" },
   { name: "Education", icon: "/icons/education.svg" },
@@ -33,7 +12,6 @@ const industries = [
   { name: "Retail", icon: "/icons/retail.svg" },
   { name: "Technology", icon: "/icons/technology.svg" },
   { name: "Energy", icon: "/icons/energy.svg" }
->>>>>>> cf22335b95972e647b0e9b14c04c6071b2cdcc49
 ]
 
 export function Industries() {

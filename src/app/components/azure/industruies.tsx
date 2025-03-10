@@ -14,16 +14,16 @@ const industries = [
   { name: "Energy", icon: "/icons/energy.svg" }
 ]
 
-export function IndustriesAzure() {
+export function Industries() {
   return (
-    <section className="bg-background py-24">
+    <section className="py-24" style={{ backgroundColor: '#A8B2E7' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm uppercase tracking-wider text-black">INDUSTRIES</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Azure Solutions Tailored for Every Industry
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Microsoft Azure delivers scalable, secure, and intelligent cloud solutions, empowering businesses across industries to drive digital transformation and operational excellence.
           </p>
         </div>
@@ -38,7 +38,10 @@ export function IndustriesAzure() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="bg-card p-6 rounded-full mb-4">
+              <div 
+                className="p-6 rounded-full mb-4 border-2 border-black" 
+                style={{ backgroundColor: '#F3F1EB' }}
+              >
                 <Image
                   src={industry.icon}
                   alt={industry.name}
@@ -47,7 +50,7 @@ export function IndustriesAzure() {
                   className="w-12 h-12"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-foreground text-center">{industry.name}</h3>
+              <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
             </motion.div>
           ))}
         </div>

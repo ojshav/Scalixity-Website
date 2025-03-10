@@ -14,16 +14,16 @@ const industries = [
   { name: "Energy", icon: "/icons/energy.svg" }
 ]
 
-export function IndustriesAWS() {
+export function Industries() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             AWS Solutions Tailored for Every Industry
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Our AWS cloud expertise spans multiple industries, providing specialized solutions to optimize operations, enhance security, and drive innovation.
           </p>
         </div>
@@ -38,7 +38,7 @@ export function IndustriesAWS() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="bg-card p-6 rounded-full mb-4">
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4 border border-black">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
@@ -47,7 +47,7 @@ export function IndustriesAWS() {
                   className="w-12 h-12"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-foreground text-center">{industry.name}</h3>
+              <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
             </motion.div>
           ))}
         </div>

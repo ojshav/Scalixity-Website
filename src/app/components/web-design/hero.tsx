@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black py-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F3F1EB] py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -13,17 +13,19 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-black mb-6">
             Web Design Services
           </h1>
-          <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-            Elevate your online presence with stunning, user-friendly web designs. Our team creates visually appealing and highly functional 
-            websites tailored to your brand identity and business goals. Let us craft a digital experience that captivates and converts.
+          <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
+            Elevate your online presence with stunning, user-friendly web designs. 
+            Our team creates visually appealing and highly functional websites 
+            tailored to your brand identity and business goals. 
+            Let us craft a digital experience that captivates and converts.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-purple-600 text-white font-medium text-lg hover:bg-purple-700 transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors w-full sm:w-auto"
             >
               Get Started
             </Link>
@@ -36,3 +38,4 @@ export function Hero() {
 }
 
 export default Hero;
+

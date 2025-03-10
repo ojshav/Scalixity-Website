@@ -29,17 +29,17 @@ const processSteps = [
 
 export function Process() {
   return (
-    <section className="bg-[#080B16] py-20 text-white">
+    <section className="bg-[#A8B2E7] py-20 text-black">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-4xl font-bold mb-6">AI Chatbot Development Process</h2>
-        <p className="text-lg text-gray-400 mb-12">
+        <p className="text-lg text-black mb-12">
           Our structured approach ensures seamless AI chatbot development from ideation to deployment.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {processSteps.map((step, index) => (
-            <div key={index} className="bg-[#0F1629] p-6 rounded-lg border border-gray-800">
+            <div key={index} className="bg-[#F3F1EB] p-6 rounded-lg border border-black">
               <h3 className="text-xl font-semibold mb-2">{step.step}</h3>
-              <p className="text-gray-400">{step.description}</p>
+              <p className="text-black">{step.description}</p>
             </div>
           ))}
         </div>

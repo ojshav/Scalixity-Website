@@ -12,6 +12,7 @@ export const metadata = {
   title: "Scalixity - AI Solutions for Data-Driven Companies",
   description: "We help data-driven companies build measurable generative AI solutions",
   keywords: "AI, artificial intelligence, machine learning, data science, consulting",
+  
   openGraph: {
     title: "Scalixity - AI Solutions for Data-Driven Companies",
     description: "We help data-driven companies build measurable generative AI solutions",
@@ -27,6 +28,7 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+
   robots: {
     index: true,
     follow: true,
@@ -38,6 +40,7 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
+
   icons: {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -46,11 +49,10 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en">
       <body className="min-h-screen flex flex-col bg-gradient-to-b from-[#080B16] to-[#0F1629]">
         <ClientLayout>{children}</ClientLayout>
-        
       </body>
     </html>
   );
-};
+}
