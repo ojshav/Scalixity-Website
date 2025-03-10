@@ -11,22 +11,41 @@ const getDateRange = (days) => {
 };
 
 // Store user activity in MySQL
-router.post("/track", async (req, res) => {
+router.post('/track', async (req, res) => {
   try {
-    console.log("Received tracking data:", req.body);
-    const { visitorId, page, timestamp, event, deviceType } = req.body;
-    if (!pool) {
-      console.error("Database pool is undefined");
-      return res.status(500).json({ error: "Database connection not available" });
-    }
-    const mysqlTimestamp = new Date(timestamp).toISOString().slice(0, 19).replace("T", " ");
-    const query = "INSERT INTO user_activity (visitorId, page, timestamp, event, deviceType) VALUES (?, ?, ?, ?,?)";
-    const [result] = await pool.execute(query, [visitorId, page, mysqlTimestamp, event, deviceType]);
-    console.log("Data inserted successfully:", result);
-    res.status(200).json({ message: "User activity tracked successfully" });
-  } catch (err) {
-    console.error("Error inserting data:", err);
-    res.status(500).json({ error: "Database error", details: err.message });
+    const { 
+      visitorId, 
+      country, 
+      deviceType, 
+      page, 
+      event = 'demographic',
+      timestamp = new Date().toISOString()
+    } = req.body;
+
+    const pool = req.app.locals.pool;
+
+    // Insert into user_activity table
+    const mysqlTimestamp = new Date(timestamp).toISOString().slice(0, 19).replace('T', ' ');
+    const [activityResult] = await pool.execute(
+      'INSERT INTO user_activity (visitorId, page, timestamp, event, deviceType, country) VALUES (?, ?, ?, ?, ?, ?)',
+      [visitorId, page, mysqlTimestamp, event, deviceType, country]
+    );
+
+    // Insert into inquiries table
+    await pool.execute(
+      'INSERT INTO inquiries (visitor_id, activity_id, inquiry_type, timestamp) VALUES (?, ?, ?, ?)',
+      [visitorId, activityResult.insertId, event, mysqlTimestamp]
+    );
+
+    res.status(201).json({ 
+      message: 'Demographic data tracked successfully',
+      visitorId,
+      country,
+      deviceType
+    });
+  } catch (error) {
+    console.error('Error tracking demographic data:', error);
+    res.status(500).json({ error: 'Failed to track demographic data' });
   }
 });
 
