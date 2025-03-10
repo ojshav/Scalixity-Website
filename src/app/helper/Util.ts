@@ -12,18 +12,23 @@ const MONTHS = [
     "November",
     "December",
   ];
+
+  interface MonthConfig {
+    count?: number;
+    section?: number;
+  }
   
-  export const months = (config: any) => {
-    const cfg = config || {};
-    const count = cfg.count || 12;
-    const section = cfg.section;
-    const values = [];
-    let i, value;
-  
-    for (i = 0; i < count; ++i) {
-      value = MONTHS[Math.ceil(i) % 12];
-      values.push(value.substring(0, section));
-    }
-  
-    return values;
-  };
+  export function months(config: MonthConfig) {
+  const cfg = config || {};
+  const count = cfg.count || 12;
+  const section = cfg.section;
+  const values = [];
+  let i, value;
+
+  for (i = 0; i < count; ++i) {
+    value = MONTHS[Math.ceil(i) % 12];
+    values.push(value.substring(0, section));
+  }
+
+  return values;
+}

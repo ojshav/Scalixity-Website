@@ -42,7 +42,7 @@ export default function UserAnalytics() {
         const formattedActiveUsers = Array.isArray(activeUsers[0]) ? activeUsers[0] : activeUsers;
         
         // Fix growth rate data structure
-        const formattedGrowthRate = growthRate.map((item: { month: any; rate: string | null; }) => ({
+        const formattedGrowthRate = growthRate.map((item: { month: string; rate: string | null; }) => ({
           month: item.month,
           rate: item.rate === null ? 0 : parseFloat(item.rate)
         }));

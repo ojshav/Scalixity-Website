@@ -1,9 +1,10 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { CTA } from "@/src/app/components/cta"
+
 
 interface Project {
   id: string;
@@ -42,11 +43,6 @@ export default function WorkPage() {
   }, [])
 
   return (
-    <div className="pt-20">
-      <div className="container mx-auto px-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-center py-12">Our Work</h1>
-        <p className="text-xl text-center text-gray-400 mb-12">Discover how we&apos;ve helped businesses transform with AI</p>
-      </div>
       
       <section className="bg-white py-32">
         <div className="container mx-auto px-4">
@@ -106,10 +102,21 @@ export default function WorkPage() {
               </motion.div>
             ))
           )}
+          
+          <div className="flex justify-center mt-12">
+          <Link
+            href="/work"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+          >
+            Know more about our work
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </div>
+        </div>
+      
       </section>
       
-      <CTA />
-    </div>
+      
+
   )
 }

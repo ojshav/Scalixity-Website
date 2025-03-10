@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/src/app/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/src/app/components/ui/tabs';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { AlertCircle, Clock, Laptop, Smartphone } from 'lucide-react';
+import { AlertCircle, Clock, Laptop } from 'lucide-react';
 
 export default function TechnicalMetrics() {
   const [activeTab, setActiveTab] = useState('performance');
@@ -23,11 +23,59 @@ export default function TechnicalMetrics() {
     avg_loadTime: string | number;
     total_records: number;
   }
+
+  interface BrowserData {
+    name: string;
+    value: number;
+  }
+  
+  interface DevicePerformance {
+    deviceType: string;
+    count: number;
+    avg_fcp: number;
+    avg_lcp: number;
+    avg_tti: number;
+    avg_loadTime: number;
+  }
+  
+  interface ErrorType {
+    name: string;
+    value: number;
+  }
+  
+  interface ErrorOverTime {
+    date: string;
+    [key: string]: string | number | boolean;
+  }
+  
+  
+  interface ErrorLog {
+    id: number;
+    path: string;
+    errorCode: number;
+    count: number;
+    lastOccurrence: string;
+  }
   
   const [performanceData, setPerformanceData] = useState<PerformanceData[]>([]);
-  const [deviceData, setDeviceData] = useState([]);
-  const [hourlyPerformance, setHourlyPerformance] = useState([]);
+  interface DeviceData {
+    name: string;
+    value: number;
+  }
+  
+  const [deviceData, setDeviceData] = useState<DeviceData[]>([]);
+  const [browserData, setBrowserData] = useState<BrowserData[]>([]);
+  interface HourlyPerformanceData {
+    hour: string | number;
+    loadTime: number;
+    users: number;
+  }
+  const [hourlyPerformance, setHourlyPerformance] = useState<HourlyPerformanceData[]>([]);
   const [pagePerformance, setPagePerformance] = useState<PagePerformance[]>([]);
+  const [devicePerformance, setDevicePerformance] = useState<DevicePerformance[]>([]);
+  const [errorTypes, setErrorTypes] = useState<ErrorType[]>([]);
+  const [errorsOverTime, setErrorsOverTime] = useState<ErrorOverTime[]>([]);
+  const [recentErrorLogs, setRecentErrorLogs] = useState<ErrorLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -61,9 +109,43 @@ export default function TechnicalMetrics() {
     return totalRecords > 0 ? totalWeightedValue / totalRecords : 0;
   };
 
+  // Process device performance data to ensure valid values
+  const processDevicePerformanceData = (data: DevicePerformance[]) => {
+    return data.map(item => ({
+      ...item,
+      // Ensure all metrics are positive and reasonable values (under 60,000ms/60sec)
+      avg_fcp: item.avg_fcp && !isNaN(item.avg_fcp) && item.avg_fcp > 0 && item.avg_fcp < 60000 ? item.avg_fcp : 0,
+      avg_lcp: item.avg_lcp && !isNaN(item.avg_lcp) && item.avg_lcp > 0 && item.avg_lcp < 60000 ? item.avg_lcp : 0,
+      avg_tti: item.avg_tti && !isNaN(item.avg_tti) && item.avg_tti > 0 && item.avg_tti < 60000 ? item.avg_tti : 0,
+      avg_loadTime: item.avg_loadTime && !isNaN(item.avg_loadTime) && item.avg_loadTime > 0 && item.avg_loadTime < 60000 
+        ? item.avg_loadTime 
+        : Math.max(item.avg_fcp, item.avg_lcp, item.avg_tti, 0), // Use maximum of other metrics if load time is invalid
+      // Ensure device type is never empty
+      deviceType: item.deviceType || 'Unknown'
+    }));
+  };
+
+  // Format device performance data for the bar chart
+  const formatDevicePerformanceForChart = (data: DevicePerformance[]) => {
+    // Convert to format needed for the chart
+    const result = data.map(item => {
+      const deviceName = `${item.deviceType}`;
+      return {
+        name: deviceName,
+        loadTime: item.avg_loadTime / 1000, // Convert to seconds
+        fcp: item.avg_fcp / 1000,
+        lcp: item.avg_lcp / 1000,
+        tti: item.avg_tti / 1000,
+        count: item.count
+      };
+    });
+    
+    return result;
+  };
+
   // Fetch data from the API
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (): Promise<void> => {
       setLoading(true);
       setError(null);
 
@@ -96,25 +178,94 @@ export default function TechnicalMetrics() {
         setPerformanceData(formattedPerformance);
 
         // Fetch device breakdown
+        interface DeviceMetric {
+          deviceType: string | null; // Nullable if the API might return null
+          count: number;
+        }
+        
+        interface FormattedDevice {
+          name: string;
+          value: number;
+        }
+        
         const deviceRes = await fetch('http://localhost:5000/api/technical-metrics?groupBy=deviceType');
         if (!deviceRes.ok) throw new Error('Failed to fetch device data');
-        const deviceJson = await deviceRes.json();
-        const formattedDevice = deviceJson.data.reduce((acc: { name: any; value: any; }[], curr: { deviceType: any; count: any; }) => {
-          acc.push({ name: curr.deviceType || 'Unknown', value: curr.count });
-          return acc;
-        }, []);
+        
+        const deviceJson: { data: DeviceMetric[] } = await deviceRes.json();
+        
+        const formattedDevice: FormattedDevice[] = deviceJson.data.map((curr) => ({
+          name: curr.deviceType || 'Unknown',
+          value: curr.count,
+        }));
+        
         setDeviceData(formattedDevice);
+        
+
+        // Fetch device performance data from API
+        const devicePerfRes = await fetch('http://localhost:5000/api/device-performance');
+        if (!devicePerfRes.ok) throw new Error('Failed to fetch device performance data');
+        const devicePerfJson = await devicePerfRes.json();
+        
+        // Clean and process device performance data
+        const processedDevicePerf = processDevicePerformanceData(devicePerfJson.data);
+        setDevicePerformance(processedDevicePerf);
+
+        // Fetch browser usage data from the browser-stats API
+        const browserRes = await fetch('http://localhost:5000/api/browser-stats');
+        if (!browserRes.ok) throw new Error('Failed to fetch browser data');
+        const browserJson = await browserRes.json();
+        const formattedBrowser = browserJson.data.map((item: { browser: string; count: number }) => ({
+          name: item.browser || 'Unknown',
+          value: item.count || 0
+        }));
+        setBrowserData(formattedBrowser);
 
         // Fetch hourly performance data
-        const hourlyRes = await fetch('http://localhost:5000/api/technical-metrics?groupBy=hour');
-        if (!hourlyRes.ok) throw new Error('Failed to fetch hourly performance data');
-        const hourlyJson = await hourlyRes.json();
-        const formattedHourly = hourlyJson.data.map((item: { hour: any; avg_loadTime: any; userCount: any; }) => ({
-          hour: item.hour,
-          loadTime: Math.abs(parseFloat(item.avg_loadTime) || 0), // Ensure positive values
-          users: item.userCount || 0,
+        interface HourlyMetric {
+  hour: string | number;
+  avg_loadTime: string | number;
+  userCount: number;
+}
+
+interface FormattedHourlyMetric {
+  hour: string | number;
+  loadTime: number;
+  users: number;
+}
+
+const hourlyRes = await fetch('http://localhost:5000/api/technical-metrics?groupBy=hour');
+if (!hourlyRes.ok) throw new Error('Failed to fetch hourly performance data');
+
+const hourlyJson: { data: HourlyMetric[] } = await hourlyRes.json();
+
+const formattedHourly: FormattedHourlyMetric[] = hourlyJson.data.map((item) => ({
+  hour: item.hour,
+  loadTime: Math.abs(parseFloat(String(item.avg_loadTime)) || 0), // Ensure positive values
+  users: item.userCount || 0,
+}));
+
+setHourlyPerformance(formattedHourly);
+
+
+        // Fetch error tracking data
+        const errorTypesRes = await fetch('http://localhost:5000/api/error-types');
+        if (!errorTypesRes.ok) throw new Error('Failed to fetch error types data');
+        const errorTypesJson = await errorTypesRes.json();
+        const formattedErrorTypes = errorTypesJson.data.map((item: { name: string; value: string }) => ({
+          name: item.name || 'Unknown',
+          value: parseInt(item.value) || 0  // Convert string value to number
         }));
-        setHourlyPerformance(formattedHourly);
+        setErrorTypes(formattedErrorTypes);
+
+        const errorsOverTimeRes = await fetch('http://localhost:5000/api/errors-over-time');
+        if (!errorsOverTimeRes.ok) throw new Error('Failed to fetch errors over time data');
+        const errorsOverTimeJson = await errorsOverTimeRes.json();
+        setErrorsOverTime(errorsOverTimeJson.data as ErrorOverTime[]);
+
+        const recentErrorLogsRes = await fetch('http://localhost:5000/api/recent-error-logs');
+        if (!recentErrorLogsRes.ok) throw new Error('Failed to fetch recent error logs');
+        const recentErrorLogsJson = await recentErrorLogsRes.json();
+        setRecentErrorLogs(recentErrorLogsJson.data as ErrorLog[]);
 
       } catch (err) {
         console.error('Error fetching data:', err);
@@ -132,6 +283,14 @@ export default function TechnicalMetrics() {
 
   // Colors for the charts
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A28DFF'];
+  
+  // Error status colors
+  const getErrorStatusColor = (errorCode: number) => {
+    if (errorCode >= 500) return 'bg-red-100 text-red-800';
+    if (errorCode >= 400) return 'bg-orange-100 text-orange-800';
+    if (errorCode >= 300) return 'bg-yellow-100 text-yellow-800';
+    return 'bg-blue-100 text-blue-800';
+  };
 
   // Loading and error states
   if (loading) return <div className="p-4 text-center">Loading technical metrics...</div>;
@@ -143,13 +302,16 @@ export default function TechnicalMetrics() {
   const avgTTI = calculateOverallAverage('avg_tti');
   const avgLoadTime = calculateOverallAverage('avg_loadTime');
 
+  // Format device performance data for the chart
+  const devicePerformanceChartData = formatDevicePerformanceForChart(devicePerformance);
+
   return (
     <div className="p-4 max-w-6xl mx-auto">
       <div className="flex flex-col gap-6">
         <div>
         </div>
         
-        <Tabs defaultValue="performance" className="w-full" onValueChange={setActiveTab}>
+        <Tabs defaultValue={activeTab} className="w-full" onValueChange={setActiveTab}>
           <TabsList className="grid grid-cols-3 mb-4">
             <TabsTrigger value="performance" className="flex items-center gap-2">
               <Clock size={16} /> Performance
@@ -292,13 +454,7 @@ export default function TechnicalMetrics() {
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
-                          data={[
-                            { name: 'Chrome', value: 58 },
-                            { name: 'Safari', value: 20 },
-                            { name: 'Firefox', value: 12 },
-                            { name: 'Edge', value: 8 },
-                            { name: 'Other', value: 2 },
-                          ]}
+                          data={browserData}
                           cx="50%"
                           cy="50%"
                           labelLine={false}
@@ -307,7 +463,7 @@ export default function TechnicalMetrics() {
                           dataKey="value"
                           label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                         >
-                          {deviceData.map((entry, index) => (
+                          {browserData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                           ))}
                         </Pie>
@@ -328,21 +484,32 @@ export default function TechnicalMetrics() {
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart
                         layout="vertical"
-                        data={[
-                          { name: 'iPhone', value: 1.6 },
-                          { name: 'Android', value: 1.9 },
-                          { name: 'iPad', value: 1.7 },
-                          { name: 'Desktop (Chrome)', value: 1.3 },
-                          { name: 'Desktop (Firefox)', value: 1.4 },
-                          { name: 'Desktop (Safari)', value: 1.5 },
-                        ]}
+                        data={devicePerformanceChartData}
                         margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis type="number" domain={[0, 'dataMax + 0.5']} label={{ value: 'Load time (seconds)', position: 'insideBottom', offset: -5 }} />
+                        <XAxis 
+                          type="number" 
+                          domain={[0, 'dataMax + 1']} 
+                          label={{ value: 'Time (seconds)', position: 'insideBottom', offset: -5 }} 
+                        />
                         <YAxis type="category" dataKey="name" />
-                        <Tooltip />
-                        <Bar dataKey="value" fill="#8884d8" />
+                        <Tooltip 
+                          formatter={(value, name) => {
+                            const labelMap: Record<string, string> = {
+                              loadTime: 'Load Time',
+                              fcp: 'First Contentful Paint',
+                              lcp: 'Largest Contentful Paint',
+                              tti: 'Time to Interactive'
+                            };
+                            return [`${typeof value === 'number' ? value.toFixed(1) : value}s`, labelMap[name as string] || name];
+                          }} 
+                        />
+                        <Legend />
+                        <Bar dataKey="loadTime" name="Load Time" fill="#8884d8" />
+                        <Bar dataKey="fcp" name="First Contentful Paint" fill="#82ca9d" />
+                        <Bar dataKey="lcp" name="Largest Contentful Paint" fill="#ffc658" />
+                        <Bar dataKey="tti" name="Time to Interactive" fill="#ff8042" />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
@@ -362,13 +529,7 @@ export default function TechnicalMetrics() {
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
-                          data={[
-                            { name: '404', value: 35 },
-                            { name: '500', value: 12 },
-                            { name: '403', value: 8 },
-                            { name: '400', value: 15 },
-                            { name: 'Other', value: 5 },
-                          ]}
+                          data={errorTypes}
                           cx="50%"
                           cy="50%"
                           labelLine={false}
@@ -377,7 +538,7 @@ export default function TechnicalMetrics() {
                           dataKey="value"
                           label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
                         >
-                          {deviceData.map((entry, index) => (
+                          {errorTypes.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                           ))}
                         </Pie>
@@ -396,25 +557,25 @@ export default function TechnicalMetrics() {
                 <CardContent>
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
-                      <LineChart
-                        data={[
-                          { date: 'Mon', '404': 8, '500': 2, '403': 1 },
-                          { date: 'Tue', '404': 10, '500': 3, '403': 2 },
-                          { date: 'Wed', '404': 7, '500': 4, '403': 1 },
-                          { date: 'Thu', '404': 5, '500': 2, '403': 3 },
-                          { date: 'Fri', '404': 12, '500': 3, '403': 1 },
-                          { date: 'Sat', '404': 6, '500': 1, '403': 0 },
-                          { date: 'Sun', '404': 4, '500': 1, '403': 0 },
-                        ]}
-                      >
+                      <LineChart data={errorsOverTime}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="date" />
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Line type="monotone" dataKey="404" stroke="#FF8042" strokeWidth={2} />
-                        <Line type="monotone" dataKey="500" stroke="#FF0000" strokeWidth={2} />
-                        <Line type="monotone" dataKey="403" stroke="#FFBB28" strokeWidth={2} />
+                        {errorsOverTime.length > 0 && 
+                          Object.keys(errorsOverTime[0])
+                            .filter(key => key !== 'date')
+                            .map((key, index) => (
+                              <Line 
+                                key={key}
+                                type="monotone" 
+                                dataKey={key} 
+                                stroke={COLORS[index % COLORS.length]} 
+                                strokeWidth={2} 
+                              />
+                            ))
+                        }
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
@@ -437,18 +598,11 @@ export default function TechnicalMetrics() {
                         </tr>
                       </thead>
                       <tbody>
-                        {[
-                          { id: 1, path: '/products/123', errorCode: 404, count: 12, lastOccurrence: '2025-02-26T14:23:00' },
-                          { id: 2, path: '/api/users', errorCode: 500, count: 8, lastOccurrence: '2025-02-26T16:45:00' },
-                        ].map((log) => (
+                        {recentErrorLogs.map((log) => (
                           <tr key={log.id} className="border-b hover:bg-gray-50">
                             <td className="py-3 px-4">{log.path}</td>
                             <td className="py-3 px-4">
-                              <span className={`inline-block px-2 py-1 rounded text-xs ${
-                                log.errorCode === 404 ? 'bg-orange-100 text-orange-800' :
-                                log.errorCode === 500 ? 'bg-red-100 text-red-800' :
-                                'bg-blue-100 text-blue-800'
-                              }`}>
+                              <span className={`inline-block px-2 py-1 rounded text-xs ${getErrorStatusColor(log.errorCode)}`}>
                                 {log.errorCode}
                               </span>
                             </td>
