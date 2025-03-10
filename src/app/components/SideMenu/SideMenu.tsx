@@ -6,6 +6,8 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HomeIcon from "@mui/icons-material/Home";
 import Person2Icon from "@mui/icons-material/Person2";
 import SettingsIcon from "@mui/icons-material/Settings";
+import WorkIcon from "@mui/icons-material/Work"; 
+import ContactPageIcon from '@mui/icons-material/ContactPage';
 import NextLink from "next/link";
 import scss from "@/styles/SideMenu.module.scss";
 import {
@@ -48,19 +50,26 @@ const menuRouteList = [
   "/dashboard/home",
   "/dashboard/profile",
   "/dashboard/settings",
+  "/dashboard/work", 
+  "/dashboard/contact",
 ];
 
 const menuListTranslations = [
   "Home",
   "Profile",
   "Settings",
+  "Work", 
+  "Contact",
 ];
 
 const menuListIcons = [
-  <HomeIcon />,
-  <Person2Icon />,
-  <SettingsIcon />,
+  <HomeIcon key="home" />,
+  <Person2Icon key="person" />,
+  <SettingsIcon key="settings" />,
+  <WorkIcon key="work" />, // Added work icon
+  <ContactPageIcon key="contact" />,
 ];
+
 
 const SideMenu = () => {
   const theme = useTheme();

@@ -33,14 +33,14 @@ export default function PortfolioMetrics() {
         const demographicData = await demographicResponse.json();
 
         // Transform country distribution data
-        const transformedCountryData: CountryData[] = demographicData.countryDistribution.map((country: any) => ({
+        const transformedCountryData: CountryData[] = demographicData.countryDistribution.map((country: { country: string, visitor_count: number }) => ({
           id: getCountryCode(country.country),
           country: country.country,
           total_visitors: country.visitor_count
         })).slice(0, 5); // Limit to top 5 countries
 
         // Transform page engagement data
-        const transformedEngagementData: EngagementData[] = demographicData.pageEngagement.map((page: any) => ({
+        const transformedEngagementData: EngagementData[] = demographicData.pageEngagement.map((page: { page: string, visits: number, unique_visitors: number }) => ({
           page: page.page,
           visits: page.visits,
           unique_visitors: page.unique_visitors
