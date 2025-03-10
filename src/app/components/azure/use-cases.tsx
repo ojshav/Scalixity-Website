@@ -35,13 +35,13 @@ const azureUseCases = [
 
 export function UseCases() {
   return (
-    <section className="bg-[#0A0B14] py-24">
+    <section className="py-24" style={{ backgroundColor: '#A8B2E7' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Azure Use Cases
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Discover how Azure cloud solutions enhance scalability, security, and intelligence.
           </p>
         </div>
@@ -57,19 +57,22 @@ export function UseCases() {
               className="grid md:grid-cols-2 gap-8 items-center"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <h3 className="text-2xl font-bold text-white mb-4">{useCase.title}</h3>
-                <p className="text-gray-400 mb-8">{useCase.description}</p>
+                <h3 className="text-2xl font-bold text-black mb-4">{useCase.title}</h3>
+                <p className="text-black mb-8">{useCase.description}</p>
                 <div className="grid grid-cols-2 gap-8">
                   {useCase.stats.map((stat, idx) => (
                     <div key={idx}>
-                      <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-                      <div className="text-sm text-gray-400">{stat.label}</div>
+                      <div className="text-3xl font-bold text-black mb-2">{stat.value}</div>
+                      <div className="text-sm text-black">{stat.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[300px] rounded-xl overflow-hidden">
+                <div 
+                  className="relative h-[300px] rounded-xl overflow-hidden border-2 border-black"
+                  style={{ backgroundColor: '#F3F1EB' }}
+                >
                   <Image
                     src={useCase.image}
                     alt={useCase.title}

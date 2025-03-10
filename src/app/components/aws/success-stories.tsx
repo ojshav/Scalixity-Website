@@ -28,13 +28,13 @@ const successStories = [
 
 export function SuccessStories() {
   return (
-    <section className="bg-[#080B16] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             AWS Success Stories
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
           Discover how businesses leverage AWS for scalable, secure, and high-performance applications.
           </p>
         </div>
@@ -47,7 +47,7 @@ export function SuccessStories() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-card rounded-xl overflow-hidden"
+              className="bg-white rounded-xl overflow-hidden shadow-lg"
             >
               <div className="relative h-[240px]">
                 <Image
@@ -58,13 +58,13 @@ export function SuccessStories() {
                 />
               </div>
               <div className="p-8">
-                <div className="text-primary font-medium mb-2">{story.company}</div>
-                <h3 className="text-2xl font-bold text-white mb-4">{story.title}</h3>
-                <p className="text-gray-400 mb-6">{story.description}</p>
+                <div className="text-black font-medium mb-2">{story.company}</div>
+                <h3 className="text-2xl font-bold text-black mb-4">{story.title}</h3>
+                <p className="text-black mb-6">{story.description}</p>
                 <div className="space-y-3">
                   {story.results.map((result, idx) => (
-                    <div key={idx} className="flex items-center text-gray-300">
-                      <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
+                    <div key={idx} className="flex items-center text-black">
+                      <span className="w-2 h-2 bg-black rounded-full mr-3"></span>
                       {result}
                     </div>
                   ))}
@@ -77,3 +77,4 @@ export function SuccessStories() {
     </section>
   )
 }
+

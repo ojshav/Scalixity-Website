@@ -35,29 +35,29 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#080B16] py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white">Web Design FAQs</h2>
+          <h2 className="text-4xl font-bold text-black">Web Design FAQs</h2>
         </div>
 
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, index) => (
             <div key={index} className="mb-4">
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-[#0F1629] rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] border border-black rounded-lg"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="text-white font-semibold">{faq.question}</span>
+                <span className="text-black font-semibold">{faq.question}</span>
                 {openIndex === index ? (
-                  <ChevronUp className="text-purple-500" />
+                  <ChevronUp className="text-black" />
                 ) : (
-                  <ChevronDown className="text-purple-500" />
+                  <ChevronDown className="text-black" />
                 )}
               </button>
               {openIndex === index && (
-                <div className="p-4 bg-[#0F1629] mt-1 rounded-lg">
-                  <p className="text-gray-400">{faq.answer}</p>
+                <div className="p-4 bg-[#F3F1EB] mt-1 border border-black rounded-lg">
+                  <p className="text-black">{faq.answer}</p>
                 </div>
               )}
             </div>

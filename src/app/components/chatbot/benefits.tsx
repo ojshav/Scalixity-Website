@@ -31,20 +31,29 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-[#080B16] py-20 text-white">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold mb-6">Key Benefits of AI Chatbots</h2>
-        <p className="text-lg text-gray-400 mb-12">
+        <h2 className="text-4xl font-bold text-black mb-6">Key Benefits of AI Chatbots</h2>
+        <p className="text-lg text-black mb-12">
           Discover how AI-powered chatbots can revolutionize customer interactions and business efficiency.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <div key={index} className="bg-[#0F1629] p-6 rounded-lg border border-gray-800">
-              <CheckCircle className="text-green-400 w-8 h-8 mb-4" />
+            <div
+              key={index}
+              className="p-6 rounded-lg border-2 border-black bg-white text-black hover:border-gray-700 transition"
+            >
+              <CheckCircle className="text-black w-8 h-8 mb-4" />
               <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-              <p className="text-gray-400">{benefit.description}</p>
+              <p>{benefit.description}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12">
+          <button className="px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition">
+            Get Started
+          </button>
         </div>
       </div>
     </section>
