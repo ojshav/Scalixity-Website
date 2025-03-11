@@ -2,19 +2,19 @@ import Image from 'next/image'
 
 const technologies = {
   "Frameworks": [
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "Hugging Face", logo: "/tech/huggingface.svg" }
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "Hugging Face", logo: "/images/tech/huggingface.svg" }
   ],
   "Cloud Platforms": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Tools": [
-    { name: "MLflow", logo: "/tech/mlflow.svg" },
-    { name: "Weights & Biases", logo: "/tech/wandb.svg" },
-    { name: "Docker", logo: "/tech/docker.svg" }
+    { name: "MLflow", logo: "/images/tech/mlflow.svg" },
+    { name: "Weights & Biases", logo: "/images/tech/wandb.svg" },
+    { name: "Docker", logo: "/images/tech/docker.svg" }
   ]
 }
 

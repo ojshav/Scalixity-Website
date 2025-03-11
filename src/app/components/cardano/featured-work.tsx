@@ -10,7 +10,7 @@ const projects = [
     company: "CardanoDeFi",
     title: "Revolutionizing DeFi with Cardano",
     description: "We built a decentralized finance platform leveraging Cardano's secure and scalable blockchain to enable seamless transactions and staking.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/nft-development.svg",
     features: [
       "Smart contract development with Plutus",
       "Decentralized staking and yield farming",
@@ -22,7 +22,7 @@ const projects = [
     company: "CardanoNFT",
     title: "Next-Gen NFT Marketplace on Cardano",
     description: "A high-performance NFT marketplace enabling artists and collectors to mint, trade, and showcase digital assets securely on Cardano.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/nft-art.svg",
     features: [
       "Smart contract-based NFT minting",
       "Secure and verifiable ownership",
@@ -34,7 +34,7 @@ const projects = [
     company: "CardanoIdentity",
     title: "Decentralized Identity Solutions",
     description: "We developed a blockchain-powered identity verification system that enhances privacy, security, and trust in digital interactions.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/nft-collectibles.svg",
     features: [
       "Self-sovereign identity management",
       "Tamper-proof verification records",

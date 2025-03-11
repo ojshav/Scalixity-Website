@@ -5,7 +5,7 @@ const projects = [
     company: "MetaCity",
     title: "Building the Future of Virtual Real Estate",
     description: "We collaborated with MetaCity to develop a blockchain-powered virtual real estate platform. Our advanced metaverse solutions enabled users to buy, sell, and trade virtual properties securely, with immersive 3D interactions and seamless digital asset management.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/metaverse-estate.svg",
     features: [
       "Decentralized real estate marketplace powered by blockchain",
       "High-fidelity 3D environments for immersive experiences",
@@ -17,7 +17,7 @@ const projects = [
     company: "MetaEvents",
     title: "Transforming Virtual Gatherings with Immersive Metaverse Events",
     description: "We developed an innovative platform for MetaEvents, allowing users to host and attend virtual conferences, concerts, and meetups in the metaverse. Our solutions enhanced user engagement with interactive avatars, spatial audio, and real-time networking tools.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/metaverse-events.svg",
     features: [
       "Fully immersive event spaces with customizable environments",
       "AI-driven networking and matchmaking for attendees",
@@ -29,7 +29,7 @@ const projects = [
     company: "MetaCommerce",
     title: "Redefining E-Commerce in the Metaverse",
     description: "We built a next-generation e-commerce platform for MetaCommerce, integrating virtual shopping experiences with AR and VR technologies. Customers can explore digital stores, try on products virtually, and complete purchases using cryptocurrencies and smart contracts.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/metaverse-ecommerce.svg",
     features: [
       "AI-powered virtual shopping assistants",
       "Augmented reality try-ons for fashion and accessories",

@@ -6,7 +6,7 @@ import Image from 'next/image'
 const industries = [
   {
     name: "Art & Collectibles",
-    icon: "/icons/art.svg",
+    icon: "/images/nft-art.svg",
     description: "Empower artists and creators by enabling seamless minting, trading, and showcasing of unique digital assets. Our NFT solutions enhance visibility and monetization opportunities.",
     solutions: [
       "NFT Art Platforms",
@@ -17,7 +17,7 @@ const industries = [
   },
   {
     name: "Gaming",
-    icon: "/icons/gaming.svg",
+    icon: "/images/icons/gaming.webp",
     description: "Revolutionize in-game economies by tokenizing assets, creating play-to-earn models, and offering secure marketplaces for buying, selling, and trading game items.",
     solutions: [
       "In-Game Asset Tokenization",
@@ -28,7 +28,7 @@ const industries = [
   },
   {
     name: "Real Estate",
-    icon: "/icons/realestate.svg",
+    icon: "/images/icons/construction.svg",
     description: "Introduce transparency and liquidity in real estate by tokenizing property assets, enabling fractional ownership, and streamlining property sales.",
     solutions: [
       "Real Estate Tokenization",
@@ -39,7 +39,7 @@ const industries = [
   },
   {
     name: "Music & Media",
-    icon: "/icons/music.svg",
+    icon: "/images/icons/film.webp",
     description: "Empower artists by tokenizing music and media content, ensuring secure royalty distribution, and fostering direct engagement with fans.",
     solutions: [
       "Music NFT Platforms",

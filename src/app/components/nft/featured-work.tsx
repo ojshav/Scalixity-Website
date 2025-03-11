@@ -10,7 +10,7 @@ const projects = [
     company: "NFTGenius",
     title: "Next-Gen NFT Marketplace Development",
     description: "A high-performance NFT marketplace enabling artists and collectors to mint, trade, and showcase digital assets with advanced smart contract integration.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/nft-development.svg",
     features: [
       "Smart contract-based NFT minting",
       "Seamless multi-chain support",
@@ -22,7 +22,7 @@ const projects = [
     company: "Artify",
     title: "Empowering Creators with Decentralized Art Galleries",
     description: "We developed an intuitive platform for artists to create verifiable digital art collections, ensuring secure ownership and global reach.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/nft-art.svg",
     features: [
       "NFT-backed digital art exhibitions",
       "Gas fee optimization strategies",
@@ -34,7 +34,7 @@ const projects = [
     company: "MetaCollect",
     title: "Revolutionizing NFT Collectibles",
     description: "A dynamic NFT collectibles platform with gamification elements, allowing users to trade, stake, and earn rewards through on-chain activities.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/nft-collectibles.svg",
     features: [
       "Gamified NFT staking system",
       "Cross-chain marketplace support",

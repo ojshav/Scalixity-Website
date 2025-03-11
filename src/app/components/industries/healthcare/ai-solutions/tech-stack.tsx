@@ -6,49 +6,49 @@ const techStack = [
   {
     category: "AI & Machine Learning",
     items: [
-      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-      { name: "PyTorch", logo: "/tech/pytorch.svg" },
-      { name: "Keras", logo: "/tech/keras.svg" }
+      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+      { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+      { name: "Keras", logo: "/images/tech/keras.svg" }
     ]
   },
   {
     category: "Natural Language Processing",
     items: [
-      { name: "spaCy", logo: "/tech/spacy.svg" },
-      { name: "Hugging Face", logo: "/tech/huggingface.svg" },
-      { name: "BERT", logo: "/tech/bert.svg" }
+      { name: "spaCy", logo: "/images/tech/spacy.svg" },
+      { name: "Hugging Face", logo: "/images/tech/huggingface.svg" },
+      { name: "BERT", logo: "/images/tech/bert.svg" }
     ]
   },
   {
     category: "Medical Data Processing",
     items: [
-      { name: "Pandas", logo: "/tech/pandas.svg" },
-      { name: "NumPy", logo: "/tech/numpy.svg" },
-      { name: "FHIR", logo: "/tech/fhir.svg" }
+      { name: "Pandas", logo: "/images/tech/pandas.svg" },
+      { name: "NumPy", logo: "/images/tech/numpy.svg" },
+      { name: "FHIR", logo: "/images/tech/fhir.webp" }
     ]
   },
   {
     category: "Healthcare APIs & Integration",
     items: [
-      { name: "Google Health API", logo: "/tech/googlehealth.svg" },
-      { name: "AWS HealthLake", logo: "/tech/healthlake.svg" },
-      { name: "HL7", logo: "/tech/hl7.svg" }
+      { name: "Google Health API", logo: "/images/tech/googlecloud.svg" },
+      { name: "AWS HealthLake", logo: "/images/tech/aws.svg" },
+      { name: "HL7", logo: "/images/tech/azure.svg" }
     ]
   },
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS", logo: "/tech/aws.svg" },
-      { name: "Google Cloud", logo: "/tech/gcp.svg" },
-      { name: "Azure", logo: "/tech/azure.svg" }
+      { name: "AWS", logo: "/images/tech/aws.svg" },
+      { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+      { name: "Azure", logo: "/images/tech/azure.svg" }
     ]
   },
   {
     category: "Security & Compliance",
     items: [
-      { name: "HIPAA Compliance", logo: "/tech/hipaa.svg" },
-      { name: "OAuth", logo: "/tech/oauth.svg" },
-      { name: "JWT", logo: "/tech/jwt.svg" }
+      { name: "HIPAA Compliance", logo: "/images/tech/hippa.webp" },
+      { name: "OAuth", logo: "/images/tech/oauth.webp" },
+      { name: "JWT", logo: "/images/tech/jwt.webp" }
     ]
   }
 ];

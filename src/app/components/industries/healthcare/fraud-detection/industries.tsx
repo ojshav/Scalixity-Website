@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const industries = [
-  { name: "Finance & Banking", icon: "/icons/finance.svg" },
-  { name: "E-commerce & Retail", icon: "/icons/ecommerce.svg" },
-  { name: "Healthcare & Insurance", icon: "/icons/healthcare.svg" },
-  { name: "Telecommunications", icon: "/icons/telecom.svg" },
-  { name: "Real Estate & Property Management", icon: "/icons/real-estate.svg" },
-  { name: "Gaming & Online Platforms", icon: "/icons/gaming.svg" },
-  { name: "Supply Chain & Logistics", icon: "/icons/logistics.svg" },
-  { name: "Travel & Hospitality", icon: "/icons/travel.svg" }
+  { name: "Finance & Banking", icon: "/images/icons/finance.svg" },
+  { name: "E-commerce & Retail", icon: "/images/icons/ecommerce.svg" },
+  { name: "Healthcare & Insurance", icon: "/images/icons/healthcare.svg" },
+  { name: "Telecommunications", icon: "/images/icons/media.svg" },
+  { name: "Real Estate & Property Management", icon: "/images/icons/construction.svg" },
+  { name: "Gaming & Online Platforms", icon: "/images/icons/gaming.webp" },
+  { name: "Supply Chain & Logistics", icon: "/images/icons/manufacturing.svg" },
+  { name: "Travel & Hospitality", icon: "/images/icons/travel.svg" }
 ];
 
 export function Industries() {

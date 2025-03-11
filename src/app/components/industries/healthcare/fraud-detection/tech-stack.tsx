@@ -6,49 +6,49 @@ const techStack = [
   {
     category: "AI & Machine Learning",
     items: [
-      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-      { name: "Scikit-Learn", logo: "/tech/scikit-learn.svg" },
-      { name: "XGBoost", logo: "/tech/xgboost.svg" }
+      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+      { name: "Scikit-Learn", logo: "/images/tech/scikit-learn.svg" },
+      { name: "XGBoost", logo: "/images/tech/xgboost.svg" }
     ]
   },
   {
     category: "Anomaly Detection",
     items: [
-      { name: "Isolation Forest", logo: "/tech/isolation-forest.svg" },
-      { name: "AutoEncoder", logo: "/tech/autoencoder.svg" },
-      { name: "One-Class SVM", logo: "/tech/one-class-svm.svg" }
+      { name: "Isolation Forest", logo: "/images/tech/isolation-forest.webp" },
+      { name: "AutoEncoder", logo: "/images/tech/autoencoder.webp" },
+      { name: "One-Class SVM", logo: "/images/tech/one-class-svm.webp" }
     ]
   },
   {
     category: "Data Processing & Storage",
     items: [
-      { name: "Apache Kafka", logo: "/tech/kafka.svg" },
-      { name: "Hadoop", logo: "/tech/hadoop.svg" },
-      { name: "MongoDB", logo: "/tech/mongodb.svg" }
+      { name: "Apache Kafka", logo: "/images/tech/kafka.svg" },
+      { name: "Hadoop", logo: "/images/tech/hadoop.svg" },
+      { name: "MongoDB", logo: "/images/tech/mongodb.svg" }
     ]
   },
   {
     category: "Real-Time Monitoring",
     items: [
-      { name: "Prometheus", logo: "/tech/prometheus.svg" },
-      { name: "Grafana", logo: "/tech/grafana.svg" },
-      { name: "ELK Stack", logo: "/tech/elk.svg" }
+      { name: "Prometheus", logo: "/images/tech/unet.webp" },
+      { name: "Grafana", logo: "/images/tech/resnet.webp" },
+      { name: "ELK Stack", logo: "/images/tech/vggnet.webp" }
     ]
   },
   {
     category: "Cloud & Security",
     items: [
-      { name: "AWS Shield", logo: "/tech/aws-shield.svg" },
-      { name: "Google Cloud Security", logo: "/tech/gcp-security.svg" },
-      { name: "Azure Sentinel", logo: "/tech/azure-sentinel.svg" }
+      { name: "AWS Shield", logo: "/images/tech/aws.svg" },
+      { name: "Google Cloud Security", logo: "/images/tech/google-cloud.svg" },
+      { name: "Azure Sentinel", logo: "/images/tech/azure.svg" }
     ]
   },
   {
     category: "Model Deployment & Integration",
     items: [
-      { name: "FastAPI", logo: "/tech/fastapi.svg" },
-      { name: "Docker", logo: "/tech/docker.svg" },
-      { name: "Kubernetes", logo: "/tech/kubernetes.svg" }
+      { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
+      { name: "Docker", logo: "/images/tech/docker.svg" },
+      { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" }
     ]
   }
 ];

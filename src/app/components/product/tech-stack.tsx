@@ -5,29 +5,29 @@ import Image from 'next/image'
 
 const productTechStack = {
   "Frontend Development": [
-    { name: "React", logo: "/tech/react.svg" },
-    { name: "Next.js", logo: "/tech/nextjs.svg" },
-    { name: "Tailwind CSS", logo: "/tech/tailwind.svg" }
+    { name: "React", logo: "/images/tech/react.svg" },
+    { name: "Next.js", logo: "/images/tech/nextjs.svg" },
+    { name: "Tailwind CSS", logo: "/images/tech/tailwind.svg" }
   ],
   "Backend & API": [
-    { name: "Node.js", logo: "/tech/nodejs.svg" },
-    { name: "NestJS", logo: "/tech/nestjs.svg" },
-    { name: "GraphQL", logo: "/tech/graphql.svg" }
+    { name: "Node.js", logo: "/images/tech/nodejs.svg" },
+    { name: "NestJS", logo: "/images/tech/nestjs.svg" },
+    { name: "GraphQL", logo: "/images/tech/graphql.svg" }
   ],
   "Databases & Storage": [
-    { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-    { name: "MongoDB", logo: "/tech/mongodb.svg" },
-    { name: "Redis", logo: "/tech/redis.svg" }
+    { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+    { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+    { name: "Redis", logo: "/images/tech/redis.svg" }
   ],
   "Cloud & DevOps": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Docker", logo: "/tech/docker.svg" },
-    { name: "Kubernetes", logo: "/tech/kubernetes.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Docker", logo: "/images/tech/docker.svg" },
+    { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" }
   ],
   "AI & Machine Learning": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "OpenAI API", logo: "/tech/openai.svg" },
-    { name: "LangChain", logo: "/tech/langchain.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "OpenAI API", logo: "/images/tech/openai.svg" },
+    { name: "LangChain", logo: "/images/tech/langchain.svg" }
   ]
 }
 

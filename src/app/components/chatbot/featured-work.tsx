@@ -10,7 +10,7 @@ const projects = [
     company: "RetailBot",
     title: "Enhancing E-Commerce Engagement with AI Chatbots",
     description: "We developed a smart AI chatbot for an e-commerce brand, improving customer interactions and boosting conversions through personalized recommendations.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Enhancing E-Commerce Engagement with AI Chatbots.svg",
     features: [
       "Personalized shopping recommendations",
       "Seamless order tracking and support",
@@ -22,7 +22,7 @@ const projects = [
     company: "MediAssist AI",
     title: "Revolutionizing Patient Support with AI-Powered Chatbots",
     description: "We implemented an AI chatbot for a healthcare provider, enabling instant appointment booking and symptom assessment while ensuring compliance with medical regulations.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Revolutionizing Patient Support with AI-Powered Chatbots.svg",
     features: [
       "Instant appointment scheduling",
       "HIPAA-compliant patient support",
@@ -34,7 +34,7 @@ const projects = [
     company: "BankWise AI",
     title: "Automating Banking Services with Conversational AI",
     description: "Our AI chatbot solution transformed customer engagement for a financial institution, streamlining account management and fraud detection assistance.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Automating Banking Services with Conversational AI.svg",
     features: [
       "Secure AI-driven banking assistant",
       "Fraud detection alerts & prevention",

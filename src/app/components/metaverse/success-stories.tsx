@@ -7,7 +7,7 @@ const successStories = [
     company: "Meta Platforms Inc.",
     title: "Advanced AI-Powered Content Personalization",
     description: "Developed a state-of-the-art AI content personalization engine that dynamically adjusts user feeds, increasing engagement and ad revenue.",
-    image: "/meta_ai_content.svg",
+    image: "/images/ai-voice-ordering.svg",
     results: [
       "65% increase in user engagement",
       "40% boost in ad click-through rates",
@@ -18,7 +18,7 @@ const successStories = [
     company: "Meta Reality Labs",
     title: "AI-Powered Virtual Reality Experience",
     description: "Integrated AI-driven environment generation into Meta's VR platforms, enabling seamless world-building and enhanced immersive experiences.",
-    image: "/meta_vr_ai.svg",
+    image: "/images/ai.svg",
     results: [
       "Real-time adaptive VR content generation",
       "50% improvement in user immersion and satisfaction",
@@ -29,7 +29,7 @@ const successStories = [
     company: "Meta AI Research",
     title: "Generative AI for Real-Time Translation",
     description: "Developed an AI-powered real-time translation system, improving accessibility and global connectivity across Meta's platforms.",
-    image: "/meta_translation_ai.svg",
+    image: "/images/ai-powered-maintenance.svg",
     results: [
       "98% translation accuracy across multiple languages",
       "30% faster conversation processing",

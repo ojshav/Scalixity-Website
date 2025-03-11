@@ -5,7 +5,7 @@ const blogPosts = [
   {
     title: "The Future of Generative AI in Business",
     excerpt: "Explore how generative AI is reshaping industries and creating new opportunities for innovation.",
-    image: "/images/blog-generative-ai.jpg",
+    image: "/images/generativeai.svg",
     category: "Artificial Intelligence",
     date: "May 15, 2023",
     link: "/blog/future-of-generative-ai"
@@ -13,7 +13,7 @@ const blogPosts = [
   {
     title: "Blockchain in Supply Chain: A Game Changer",
     excerpt: "Discover how blockchain technology is revolutionizing supply chain management and increasing transparency.",
-    image: "/images/blog-blockchain-supply-chain.jpg",
+    image: "/images/blockchain.svg",
     category: "Blockchain",
     date: "June 2, 2023",
     link: "/blog/blockchain-in-supply-chain"
@@ -21,7 +21,7 @@ const blogPosts = [
   {
     title: "AI-Driven Predictive Maintenance in Manufacturing",
     excerpt: "Learn how AI is transforming equipment maintenance, reducing downtime, and cutting costs in the manufacturing sector.",
-    image: "/images/blog-predictive-maintenance.jpg",
+    image: "/images/ai.svg",
     category: "AI in Manufacturing",
     date: "June 20, 2023",
     link: "/blog/ai-predictive-maintenance"

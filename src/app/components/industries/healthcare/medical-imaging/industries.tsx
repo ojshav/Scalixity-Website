@@ -4,14 +4,14 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const industries = [
-  { name: "Radiology & Imaging Centers", icon: "/icons/radiology.svg" },
-  { name: "Oncology Diagnostics", icon: "/icons/oncology.svg" },
-  { name: "Cardiology Imaging", icon: "/icons/cardiology.svg" },
-  { name: "Neurology Analysis", icon: "/icons/neurology.svg" },
-  { name: "Pathology Labs", icon: "/icons/pathology.svg" },
-  { name: "Orthopedics & Musculoskeletal Imaging", icon: "/icons/orthopedics.svg" },
-  { name: "Emergency Care & Trauma Imaging", icon: "/icons/emergency.svg" },
-  { name: "Medical Research & AI Development", icon: "/icons/research.svg" }
+  { name: "Radiology & Imaging Centers", icon: "/images/icons/radiology.svg" },
+  { name: "Oncology Diagnostics", icon: "/images/icons/oncology.svg" },
+  { name: "Cardiology Imaging", icon: "/images/icons/cardiology.svg" },
+  { name: "Neurology Analysis", icon: "/images/icons/neurology.svg" },
+  { name: "Pathology Labs", icon: "/images/icons/pathology.svg" },
+  { name: "Orthopedics & Musculoskeletal Imaging", icon: "/images/icons/orthopedics.svg" },
+  { name: "Emergency Care & Trauma Imaging", icon: "/images/icons/emergency.svg" },
+  { name: "Medical Research & AI Development", icon: "/images/icons/research.svg" }
 ]
 
 export function Industries() {
