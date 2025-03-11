@@ -1,7 +1,7 @@
 import { Hero } from "@/src/app/components/hero"
 import { WhatWeOffer } from "@/src/app/components/what-we-offer"
 import { WhyUs } from "@/src/app/components/why-us"
-// import { CaseStudies } from "@/src/app/components/case-studies"
+import { CaseStudies } from "@/src/app/components/case-studies"
 import { OurProcess } from "@/src/app/components/our-process"
 import { Testimonials } from "@/src/app/components/testimonials"
 import { BlogPosts } from "@/src/app/components/blog-posts"
@@ -14,7 +14,7 @@ export default function Home() {
       <Hero />
       <WhatWeOffer />
       <WhyUs />
-      {/* <CaseStudies /> */}
+      <CaseStudies />
       <Work />
       <OurProcess />
       <Testimonials />
