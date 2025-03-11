@@ -1,221 +1,480 @@
 'use client'
-import React, { useState, useEffect } from "react";
-import Paper from "@mui/material/Paper";
+import React, { useState, useEffect } from 'react';
 import {
-  Avatar,
   Box,
   Button,
-  Checkbox,
-  FormControlLabel,
-  Grid,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   TextField,
   Typography,
-} from "@mui/material";
+  IconButton,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Alert,
+  Snackbar,
+  CircularProgress,
+  FormControlLabel,
+  Checkbox,
+  Chip,
+  SelectChangeEvent
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 
-const Profile = () => {
-  const [adminData, setAdminData] = useState({
+const AdminUsers = () => {
+  interface User {
+    id: string;
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    role: string;
+    last_login: string;
+    receive_emails: boolean;
+  }
+  
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [notification, setNotification] = useState<{
+    open: boolean;
+    message: string;
+    severity: 'error' | 'warning' | 'info' | 'success';
+  }>({
+    open: false,
+    message: '',
+    severity: 'success'
+  });
+
+  const [newUser, setNewUser] = useState({
     username: '',
     email: '',
+    password: '',
+    confirmPassword: '',
     firstName: '',
     lastName: '',
-  });
-  
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: "",
-    confirmPassword: "",
-    receiveEmails: false,
+    role: 'admin',
+    receiveEmails: false
   });
 
   useEffect(() => {
-    // Fetch admin data from your backend API
-    const fetchAdminData = async () => {
-      const token = localStorage.getItem('adminToken');
-      // const username = localStorage.getItem('adminUsername');
-      
-      try {
-        const response = await fetch('http://localhost:5000/api/admin/profile', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setAdminData(data);
-          // Initialize form data with fetched values
-          setFormData(prev => ({
-            ...prev,
-            firstName: data.firstName || '',
-            lastName: data.lastName || '',
-            email: data.email || '',
-          }));
-        }
-      } catch (error) {
-        console.error('Error fetching admin data:', error);
-      }
-    };
-
-    fetchAdminData();
+    fetchAdminUsers();
   }, []);
 
-  const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, checked, type } = event.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
+  const fetchAdminUsers = async () => {
+    setLoading(true);
+    try {
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('http://localhost:5000/api/admin/users', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          setUsers(data.data);
+        } else {
+          showNotification(data.message || 'Failed to load users', 'error');
+        }
+      } else {
+        const errorData = await response.json();
+        if (errorData.expired) {
+          // Session expired, redirect to login
+          localStorage.removeItem('adminToken');
+          window.location.href = '/login';
+        } else {
+          showNotification(errorData.message || 'Failed to load users', 'error');
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching admin users:', error);
+      showNotification('Network error while loading users', 'error');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords don't match!");
+  const handleAddUser = async () => {
+    // Validate form
+    if (!newUser.username || !newUser.email || !newUser.password) {
+      showNotification('Username, email, and password are required', 'error');
       return;
     }
 
+    if (newUser.password !== newUser.confirmPassword) {
+      showNotification("Passwords don't match", 'error');
+      return;
+    }
+
+    setSubmitting(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await fetch('http://localhost:5000/api/admin/profile', {
-        method: 'PUT',
+      const response = await fetch('http://localhost:5000/api/admin/users', {
+        method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          password: formData.password,
-          receiveEmails: formData.receiveEmails
+          username: newUser.username,
+          email: newUser.email,
+          password: newUser.password,
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          role: newUser.role,
+          receiveEmails: newUser.receiveEmails
         }),
       });
 
-      if (response.ok) {
-        alert('Profile updated successfully!');
-        // Update local storage if username changed
-        if (formData.firstName && formData.lastName) {
-          localStorage.setItem('adminUsername', `${formData.firstName} ${formData.lastName}`);
-        }
+      const data = await response.json();
+      if (response.ok && data.success) {
+        showNotification('Admin user created successfully', 'success');
+        setIsAddDialogOpen(false);
+        // Reset form
+        setNewUser({
+          username: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+          firstName: '',
+          lastName: '',
+          role: 'admin',
+          receiveEmails: false
+        });
+        // Refresh user list
+        fetchAdminUsers();
+      } else if (data.expired) {
+        // Session expired, redirect to login
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
       } else {
-        const errorData = await response.json();
-        alert(errorData.message || 'Update failed');
+        showNotification(data.message || 'Failed to create user', 'error');
       }
     } catch (error) {
-      console.error('Error updating profile:', error);
-      alert('Error updating profile');
+      console.error('Error creating admin user:', error);
+      showNotification('Network error while creating user', 'error');
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  return (
-    <>
-    
-      <Box>
-        <Typography variant={"h4"} sx={{ paddingBottom: 4 }}>
-          Hey {adminData.username || "Admin"}, welcome to your profile 👋
-        </Typography>
-        <Paper sx={{ padding: "1rem 2rem" }}>
-          <Grid container justifyContent="center">
-            <Grid item xs={12} sm={8} md={6}>
-              <Box display="flex" flexDirection="column" alignItems="center">
-                <Avatar
-                  sx={{
-                    height: 100,
-                    width: 100,
-                    marginBottom: 2,
-                  }}
-                >
-                  {adminData.username?.charAt(0)}
-                </Avatar>
-              </Box>
-              <form
-                onSubmit={handleSubmit}
-                style={{ maxWidth: 600, margin: "0 auto" }}
-              >
-                <Grid container spacing={3}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      required
-                      fullWidth
-                      label="First Name"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleFormChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      required
-                      fullWidth
-                      label="Last Name"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleFormChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      type="email"
-                      label="Email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleFormChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      type="password"
-                      label="New Password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleFormChange}
-                      helperText="Leave blank to keep current password"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      type="password"
-                      label="Confirm New Password"
-                      name="confirmPassword"
-                      value={formData.confirmPassword}
-                      onChange={handleFormChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          name="receiveEmails"
-                          checked={formData.receiveEmails}
-                          onChange={handleFormChange}
-                          color="primary"
-                        />
-                      }
-                      label="Receive sales analytics emails"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Button type="submit" variant="contained" color="primary">
-                      Save Changes
-                    </Button>
-                  </Grid>
-                </Grid>
-              </form>
-            </Grid>
-          </Grid>
-        </Paper>
+  const handleDeleteUser = async () => {
+    if (!selectedUserId) return;
+
+    setSubmitting(true);
+    try {
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch(`http://localhost:5000/api/admin/users/${selectedUserId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        showNotification('Admin user deleted successfully', 'success');
+        setIsDeleteDialogOpen(false);
+        // Refresh user list
+        fetchAdminUsers();
+      } else if (data.expired) {
+        // Session expired, redirect to login
+        localStorage.removeItem('adminToken');
+        window.location.href = '/login';
+      } else {
+        showNotification(data.message || 'Failed to delete user', 'error');
+      }
+    } catch (error) {
+      console.error('Error deleting admin user:', error);
+      showNotification('Network error while deleting user', 'error');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleOpenDeleteDialog = (userId: string) => {
+    setSelectedUserId(userId);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const handleNewUserChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>
+  ) => {
+    const { name, value } = event.target;
+    const type = (event.target as HTMLInputElement).type;
+    const checked = type === 'checkbox' ? (event.target as HTMLInputElement).checked : undefined;
+    setNewUser(prev => ({
+      ...prev,
+      [name]: checked !== undefined ? checked : value
+    }));
+  };
+
+  const showNotification = (message: string, severity: 'error' | 'warning' | 'info' | 'success' = 'success') => {
+    setNotification({
+      open: true,
+      message,
+      severity
+    });
+  };
+
+  const handleCloseNotification = () => {
+    setNotification(prev => ({
+      ...prev,
+      open: false
+    }));
+  };
+
+  const formatDate = (dateString: string | number | Date) => {
+    if (!dateString) return 'Never';
+    return new Date(dateString).toLocaleString();
+  };
+
+  if (loading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="80vh">
+        <CircularProgress />
       </Box>
-    </>
+    );
+  }
+
+  return (
+    <Box>
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
+        <Typography variant="h4">
+          Admin Users Management
+        </Typography>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          startIcon={<AddIcon />}
+          onClick={() => setIsAddDialogOpen(true)}
+        >
+          Add New Admin
+        </Button>
+      </Box>
+
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Username</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Role</TableCell>
+              <TableCell>Last Login</TableCell>
+              <TableCell>Email Notifications</TableCell>
+              <TableCell>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {users.map((user) => (
+              <TableRow key={user.id}>
+                <TableCell>{user.username}</TableCell>
+                <TableCell>
+                  {user.first_name} {user.last_name}
+                </TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>
+                  <Chip 
+                    label={user.role === 'super_admin' ? 'Super Admin' : 'Admin'} 
+                    color={user.role === 'super_admin' ? 'secondary' : 'primary'} 
+                    size="small" 
+                  />
+                </TableCell>
+                <TableCell>{formatDate(user.last_login)}</TableCell>
+                <TableCell>
+                  {user.receive_emails ? 'Enabled' : 'Disabled'}
+                </TableCell>
+                <TableCell>
+                  <IconButton 
+                    color="error" 
+                    onClick={() => handleOpenDeleteDialog(user.id)}
+                    disabled={user.role === 'super_admin'} // Prevent deleting super admins
+                    title={user.role === 'super_admin' ? "Super admins can't be deleted" : "Delete user"}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      {/* Add User Dialog */}
+      <Dialog open={isAddDialogOpen} onClose={() => setIsAddDialogOpen(false)} maxWidth="sm" fullWidth>
+        <DialogTitle>Add New Admin User</DialogTitle>
+        <DialogContent>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              value={newUser.username}
+              onChange={handleNewUserChange}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              value={newUser.email}
+              onChange={handleNewUserChange}
+            />
+            <Box display="flex" gap={2}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="firstName"
+                label="First Name"
+                id="firstName"
+                value={newUser.firstName}
+                onChange={handleNewUserChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="lastName"
+                label="Last Name"
+                id="lastName"
+                value={newUser.lastName}
+                onChange={handleNewUserChange}
+              />
+            </Box>
+            <Box display="flex" gap={2}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                value={newUser.password}
+                onChange={handleNewUserChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="confirmPassword"
+                label="Confirm Password"
+                type="password"
+                id="confirmPassword"
+                value={newUser.confirmPassword}
+                onChange={handleNewUserChange}
+              />
+            </Box>
+            <FormControl fullWidth margin="normal">
+              <InputLabel id="role-label">Role</InputLabel>
+              <Select
+                labelId="role-label"
+                id="role"
+                name="role"
+                value={newUser.role}
+                label="Role"
+                onChange={handleNewUserChange}
+              >
+                <MenuItem value="admin">Admin</MenuItem>
+                <MenuItem value="super_admin">Super Admin</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="receiveEmails"
+                  checked={newUser.receiveEmails}
+                  onChange={handleNewUserChange}
+                  color="primary"
+                />
+              }
+              label="Receive sales analytics emails"
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsAddDialogOpen(false)} disabled={submitting}>
+            Cancel
+          </Button>
+          <Button 
+            onClick={handleAddUser} 
+            variant="contained" 
+            color="primary" 
+            disabled={submitting}
+          >
+            {submitting ? <CircularProgress size={24} /> : 'Add User'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={isDeleteDialogOpen} onClose={() => setIsDeleteDialogOpen(false)}>
+        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogContent>
+          <Typography>
+            Are you sure you want to delete this admin user? This action cannot be undone.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsDeleteDialogOpen(false)} disabled={submitting}>
+            Cancel
+          </Button>
+          <Button 
+            onClick={handleDeleteUser} 
+            color="error" 
+            variant="contained"
+            disabled={submitting}
+          >
+            {submitting ? <CircularProgress size={24} /> : 'Delete'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Notification */}
+      <Snackbar 
+        open={notification.open} 
+        autoHideDuration={6000} 
+        onClose={handleCloseNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={handleCloseNotification} 
+          severity={notification.severity} 
+          sx={{ width: '100%' }}
+        >
+          {notification.message}
+        </Alert>
+      </Snackbar>
+    </Box>
   );
 };
 
-export default Profile;
+export default AdminUsers;

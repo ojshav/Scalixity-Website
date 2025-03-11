@@ -62,9 +62,13 @@ async function setupDatabase() {
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(50) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
-        email VARCHAR(100) UNIQUE,
+        email VARCHAR(100) UNIQUE NOT NULL,
+        first_name VARCHAR(50),
+        last_name VARCHAR(50),
         role VARCHAR(50) DEFAULT 'admin',
+        receive_emails BOOLEAN DEFAULT FALSE,
         last_login DATETIME,
+        last_activity DATETIME,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
@@ -133,15 +137,17 @@ async function setupDatabase() {
     `);
     
     // Check if default admin exists, if not create one
-    const [rows] = await connection.execute('SELECT * FROM admin_users WHERE username = ?', [process.env.ADMIN_USERNAME]);
+    const [rows] = await connection.execute(
+      'SELECT * FROM admin_users WHERE role = "super_admin"'
+    );
 
     if (rows.length === 0) {
       const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
       await connection.execute(
-        'INSERT INTO admin_users (username, password, email, role) VALUES (?, ?, ?, ?)',
-        [process.env.ADMIN_USERNAME, hashedPassword, process.env.ADMIN_EMAIL, process.env.ADMIN_ROLE]
+        'INSERT INTO admin_users (username, password, email, role, receive_emails) VALUES (?, ?, ?, ?, ?)',
+        [process.env.ADMIN_USERNAME, hashedPassword, process.env.ADMIN_EMAIL, 'super_admin', true]
       );
-      console.log('Default admin user created');
+      console.log('Default super admin user created');
     }
     
     connection.release();
