@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, Rocket, Layers, ShieldCheck, ChartLine, Users } from "lucide-react";
+
 
 const copilotTechStack = [
   {

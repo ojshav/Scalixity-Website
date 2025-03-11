@@ -1,7 +1,6 @@
 import { Hero } from "@/src/app/components/industries/fintech/ai-solutions/hero"
 import { WhatWeOffer } from "@/src/app/components/industries/fintech/ai-solutions/what-we-offer"
 import { Benefits } from "@/src/app/components/industries/fintech/ai-solutions/bnefits"
-import { AIApplications } from "@/src/app/components/industries/fintech/ai-solutions/ai-applications"
 import { Process } from "@/src/app/components/industries/fintech/ai-solutions/process"
 import { TechStack} from "@/src/app/components/industries/fintech/ai-solutions/tech-stack"
 import { CTA } from "@/src/app/components/cta"

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bot, BrainCircuit, BarChart3, Settings2, ShieldCheck, Workflow, Cpu, Sparkles } from "lucide-react";
+import { BrainCircuit, BarChart3, Settings2, ShieldCheck,  Cpu, Sparkles } from "lucide-react";
 
 const processSteps = [
   {
