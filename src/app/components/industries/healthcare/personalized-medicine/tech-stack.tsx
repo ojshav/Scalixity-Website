@@ -6,49 +6,49 @@ const techStack = [
   {
     category: "AI & Machine Learning",
     items: [
-      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
-      { name: "Scikit-Learn", logo: "/images/tech/scikit-learn.svg" },
-      { name: "Keras", logo: "/images/tech/keras.svg" }
+      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
+      { name: "Scikit-Learn", logo: "/tech/scikit-learn.svg" },
+      { name: "Keras", logo: "/tech/keras.svg" }
     ]
   },
   {
     category: "Genomic Data Analysis",
     items: [
-      { name: "BioPython", logo: "/images/tech/biopython.webp" },
-      { name: "GATK", logo: "/images/tech/gatk.webp" },
-      { name: "Nextflow", logo: "/images/tech/nextflow.webp" }
+      { name: "BioPython", logo: "/tech/biopython.svg" },
+      { name: "GATK", logo: "/tech/gatk.svg" },
+      { name: "Nextflow", logo: "/tech/nextflow.svg" }
     ]
   },
   {
     category: "Predictive Modeling",
     items: [
-      { name: "XGBoost", logo: "/images/tech/xgboost.webp" },
-      { name: "PyCaret", logo: "/images/tech/pycaret.webp" },
-      { name: "H2O.ai", logo: "/images/tech/h2o.webp" }
+      { name: "XGBoost", logo: "/tech/xgboost.svg" },
+      { name: "PyCaret", logo: "/tech/pycaret.svg" },
+      { name: "H2O.ai", logo: "/tech/h2o.svg" }
     ]
   },
   {
     category: "Data Processing & Storage",
     items: [
-      { name: "Pandas", logo: "/images/tech/pandas.svg" },
-      { name: "Apache Hadoop", logo: "/images/tech/hadoop.svg" },
-      { name: "MongoDB", logo: "/images/tech/mongodb.svg" }
+      { name: "Pandas", logo: "/tech/pandas.svg" },
+      { name: "Apache Hadoop", logo: "/tech/hadoop.svg" },
+      { name: "MongoDB", logo: "/tech/mongodb.svg" }
     ]
   },
   {
     category: "Cloud & Integration",
     items: [
-      { name: "AWS SageMaker", logo: "/images/tech/aws.svg" },
-      { name: "Google Cloud AI", logo: "/images/tech/google-cloud.svg" },
-      { name: "Azure AI", logo: "/images/tech/azure.svg" }
+      { name: "AWS SageMaker", logo: "/tech/sagemaker.svg" },
+      { name: "Google Cloud AI", logo: "/tech/gcp.svg" },
+      { name: "Azure AI", logo: "/tech/azure.svg" }
     ]
   },
   {
     category: "Model Deployment",
     items: [
-      { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
-      { name: "Docker", logo: "/images/tech/docker.svg" },
-      { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" }
+      { name: "FastAPI", logo: "/tech/fastapi.svg" },
+      { name: "Docker", logo: "/tech/docker.svg" },
+      { name: "Kubernetes", logo: "/tech/kubernetes.svg" }
     ]
   }
 ];

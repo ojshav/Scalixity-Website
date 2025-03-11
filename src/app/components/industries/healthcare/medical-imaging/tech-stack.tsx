@@ -6,40 +6,41 @@ const techStack = [
   {
     category: "AI & Machine Learning",
     items: [
-      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
-      { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
-      { name: "Scikit-Learn", logo: "/images/tech/scikit-learn.svg" }
+      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
+      { name: "PyTorch", logo: "/tech/pytorch.svg" },
+      { name: "Scikit-Learn", logo: "/tech/scikit-learn.svg" }
     ]
   },
   {
     category: "Medical Imaging Models",
     items: [
-      { name: "UNet", logo: "/images/tech/unet.webp" },
-      { name: "ResNet", logo: "/images/tech/resnet.webp" },
-      { name: "VGGNet", logo: "/images/tech/vggnet.webp" }
+      { name: "UNet", logo: "/tech/unet.svg" },
+      { name: "ResNet", logo: "/tech/resnet.svg" },
+      { name: "VGGNet", logo: "/tech/vggnet.svg" }
     ]
   },
   {
     category: "Data Processing & Storage",
     items: [
-      { name: "DICOM", logo: "/images/tech/d3.svg" },
-      { name: "Apache Kafka", logo: "/images/tech/kafka.svg" },
-      { name: "MongoDB", logo: "/images/tech/mongodb.svg" }
+      { name: "DICOM", logo: "/tech/dicom.svg" },
+      { name: "Apache Kafka", logo: "/tech/kafka.svg" },
+      { name: "MongoDB", logo: "/tech/mongodb.svg" }
     ]
   },
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS SageMaker", logo: "/images/tech/aws.svg" },
-      { name: "Google Cloud AI", logo: "/images/tech/google-cloud.svg" },
-      { name: "Azure AI", logo: "/images/tech/azure.svg" }
+      { name: "AWS SageMaker", logo: "/tech/sagemaker.svg" },
+      { name: "Google Cloud AI", logo: "/tech/gcp-ai.svg" },
+      { name: "Azure AI", logo: "/tech/azure-ai.svg" }
     ]
   },
   {
     category: "Visualization & Analysis",
     items: [
-      { name: "Matplotlib", logo: "/images/tech/matplotlib.svg" },
-      { name: "Seaborn", logo: "/images/tech/seaborn.svg" }
+      { name: "Matplotlib", logo: "/tech/matplotlib.svg" },
+      { name: "Seaborn", logo: "/tech/seaborn.svg" },
+      { name: "Plotly", logo: "/tech/plotly.svg" }
     ]
   }
 ];

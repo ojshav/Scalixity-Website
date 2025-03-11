@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/src/app/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/src/app/components/ui/tabs';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { AlertCircle, Clock, Laptop,  LineChart as LineChartIcon } from 'lucide-react';
+import { AlertCircle, Clock, Laptop } from 'lucide-react';
 
 export default function TechnicalMetrics() {
   const [activeTab, setActiveTab] = useState('performance');

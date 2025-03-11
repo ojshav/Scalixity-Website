@@ -2,21 +2,19 @@ import Image from 'next/image'
 
 const technologies = {
   "LLM Frameworks": [
-
-    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
-    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
-    { name: "Hugging Face", logo: "/images/tech/huggingface.svg" }
+    { name: "PyTorch", logo: "/tech/pytorch.svg" },
+    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
+    { name: "Hugging Face", logo: "/tech/huggingface.svg" }
   ],
   "Cloud Platforms": [
-    { name: "AWS", logo: "/images/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/images/tech/azure.svg" }
+    { name: "AWS", logo: "/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/tech/azure.svg" }
   ],
   "LLM Models": [
-    { name: "GPT-3", logo: "/images/tech/gpt3.svg" },
-    { name: "BERT", logo: "/images/tech/bert.svg" },
-    { name: "T5", logo: "/images/tech/t5.svg" }
-
+    { name: "GPT-3", logo: "/tech/gpt3.svg" },
+    { name: "BERT", logo: "/tech/bert.svg" },
+    { name: "T5", logo: "/tech/t5.svg" }
   ]
 }
 

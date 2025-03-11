@@ -3,14 +3,14 @@
 import Image from "next/image";
 
 const tools = [
-  { name: "TensorFlow", icon: "/images/tech/tensorflow.svg" },
-  { name: "PyTorch", icon: "/images/tech/pytorch.svg" },
-  { name: "OpenAI", icon: "/images/tech/openai.svg" },
-  { name: "Google Cloud AI", icon: "/images/tech/googlecloud.svg" },
-  { name: "AWS AI Services", icon: "/images/tech/aws.svg" },
-  { name: "Microsoft Azure AI", icon: "/images/tech/azure.svg" },
-  { name: "LangChain", icon: "/images/tech/langchain.svg" },
-  { name: "Hugging Face", icon: "/images/tech/huggingface.svg" },
+  { name: "TensorFlow", icon: "/icons/tensorflow.svg" },
+  { name: "PyTorch", icon: "/icons/pytorch.svg" },
+  { name: "OpenAI", icon: "/icons/openai.svg" },
+  { name: "Google Cloud AI", icon: "/icons/googlecloud.svg" },
+  { name: "AWS AI Services", icon: "/icons/aws.svg" },
+  { name: "Microsoft Azure AI", icon: "/icons/azure.svg" },
+  { name: "LangChain", icon: "/icons/langchain.svg" },
+  { name: "Hugging Face", icon: "/icons/huggingface.svg" },
 ];
 
 export function ToolsAndTechnology() {

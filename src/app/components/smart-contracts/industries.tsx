@@ -6,7 +6,7 @@ import Image from 'next/image'
 const industries = [
   {
     name: "Finance",
-    icon: "/images/icons/finance.svg",
+    icon: "/icons/finance.svg",
     description: "We create secure and automated smart contract solutions for the finance industry, enabling trustless transactions, loan agreements, and seamless digital asset exchanges.",
     solutions: [
       "DeFi Platforms",
@@ -18,7 +18,7 @@ const industries = [
   },
   {
     name: "Healthcare",
-    icon: "/images/icons/healthcare.svg",
+    icon: "/icons/healthcare.svg",
     description: "Smart contracts in healthcare streamline medical billing, secure patient data, and automate insurance claims, enhancing efficiency and transparency.",
     solutions: [
       "Medical Data Management",
@@ -29,7 +29,7 @@ const industries = [
   },
   {
     name: "Real Estate",
-    icon: "/images/icons/construction.svg",
+    icon: "/icons/realestate.svg",
     description: "Smart contracts simplify property transfers, rental agreements, and escrow services, ensuring secure, transparent, and automated real estate transactions.",
     solutions: [
       "Property Tokenization",
@@ -40,7 +40,7 @@ const industries = [
   },
   {
     name: "Supply Chain",
-    icon: "/images/icons/manufacturing.svg",
+    icon: "/icons/supplychain.svg",
     description: "We develop smart contracts to automate supplier agreements, track shipments, and ensure transparent supply chain management.",
     solutions: [
       "Shipment Tracking",
@@ -49,10 +49,10 @@ const industries = [
       "Product Authentication"
     ]
   },
-  { name: "Insurance", icon: "/images/icons/insurance.svg" },
-  { name: "Gaming", icon: "/images/icons/gaming.webp" },
-  { name: "E-commerce", icon: "/images/icons/ecommerce.svg" },
-  { name: "Governance", icon: "/images/icons/legal.svg" }
+  { name: "Insurance", icon: "/icons/insurance.svg" },
+  { name: "Gaming", icon: "/icons/gaming.svg" },
+  { name: "E-commerce", icon: "/icons/ecommerce.svg" },
+  { name: "Governance", icon: "/icons/governance.svg" }
 ]
 
 export function Industries() {

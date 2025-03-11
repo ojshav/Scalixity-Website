@@ -7,50 +7,50 @@ type Technologies = Record<string, (TechItem | string)[]>;
 
 const technologies: Technologies = {
   "ChatGPT Models": [
-    { name: "GPT-3.5", logo: "/images/tech/gpt-3.5.svg" },
-    { name: "GPT-4", logo: "/images/tech/gpt-4.svg" },
-    { name: "GPT-4 Turbo", logo: "/images/tech/gpt-4-turbo.svg" }
+    { name: "GPT-3.5", logo: "/tech/gpt-3.5.svg" },
+    { name: "GPT-4", logo: "/tech/gpt-4.svg" },
+    { name: "GPT-4 Turbo", logo: "/tech/gpt-4-turbo.svg" }
   ],
   "Web Services": [
-    { name: "AWS Lambda", logo: "/images/tech/aws-lambda.svg" },
-    { name: "Google Cloud Functions", logo: "/images/tech/google-cloud-functions.svg" },
-    { name: "Azure Functions", logo: "/images/tech/azure-functions.svg" }
+    { name: "AWS Lambda", logo: "/tech/aws-lambda.svg" },
+    { name: "Google Cloud Functions", logo: "/tech/google-cloud-functions.svg" },
+    { name: "Azure Functions", logo: "/tech/azure-functions.svg" }
   ],
   "Web Frameworks": [
-    { name: "Next.js", logo: "/images/tech/nextjs.svg" },
-    { name: "Django", logo: "/images/tech/django.svg" },
-    { name: "Flask", logo: "/images/tech/flask.svg" }
+    { name: "Next.js", logo: "/tech/nextjs.svg" },
+    { name: "Django", logo: "/tech/django.svg" },
+    { name: "Flask", logo: "/tech/flask.svg" }
   ],
   "Reverse Proxy": [
-    { name: "NGINX", logo: "/images/tech/nginx.svg" },
-    { name: "Traefik", logo: "/images/tech/traefik.svg" },
-    { name: "HAProxy", logo: "/images/tech/haproxy.svg" }
+    { name: "NGINX", logo: "/tech/nginx.svg" },
+    { name: "Traefik", logo: "/tech/traefik.svg" },
+    { name: "HAProxy", logo: "/tech/haproxy.svg" }
   ],
   "API Gateway": [
-    { name: "Kong", logo: "/images/tech/kong.svg" },
-    { name: "AWS API Gateway", logo: "/images/tech/aws-api-gateway.svg" },
-    { name: "Apigee", logo: "/images/tech/apigee.svg" }
+    { name: "Kong", logo: "/tech/kong.svg" },
+    { name: "AWS API Gateway", logo: "/tech/aws-api-gateway.svg" },
+    { name: "Apigee", logo: "/tech/apigee.svg" }
   ],
   "AI Frameworks": [
-    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
-    { name: "Keras", logo: "/images/tech/keras.svg" }
+    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/tech/pytorch.svg" },
+    { name: "Keras", logo: "/tech/keras.svg" }
   ],
   "Programming Languages": [
-    { name: "Python", logo: "/images/tech/python.svg" },
-    { name: "JavaScript", logo: "/images/tech/javascript.svg" },
-    { name: "TypeScript", logo: "/images/tech/typescript.svg" }
+    { name: "Python", logo: "/tech/python.svg" },
+    { name: "JavaScript", logo: "/tech/javascript.svg" },
+    { name: "TypeScript", logo: "/tech/typescript.svg" }
   ],
   "API Development": [
-    { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
-    { name: "Flask", logo: "/images/tech/flask.svg" },
-    { name: "Express.js", logo: "/images/tech/express.svg" }
+    { name: "FastAPI", logo: "/tech/fastapi.svg" },
+    { name: "Flask", logo: "/tech/flask.svg" },
+    { name: "Express.js", logo: "/tech/express.svg" }
   ]
 };
 
 export function ToolsAndTechnology() {
   return (
-    <section className="bg-[#A8B2E7] py-20">
+    <section className="bg-[#A8B2E7] py-20"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="mb-12 text-center">
           <span className="text-sm text-black uppercase tracking-wider">
@@ -66,7 +66,7 @@ export function ToolsAndTechnology() {
 
         <div className="grid gap-8 md:grid-cols-3">
           {Object.entries(technologies).map(([category, items], index) => (
-            <div key={index} className="bg-[#F3F1EB] border border-black rounded-lg p-6">
+            <div key={index} className="bg-[#F3F1EB] border border-black rounded-lg p-6"> {/* Beige card with black border */}
               <h3 className="text-black font-semibold mb-6">{category}</h3>
               <div className="grid grid-cols-3 gap-4">
                 {items.map((item, idx) =>

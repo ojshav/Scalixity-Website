@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const industries = [
-  { name: "Advertising & Marketing", icon: "/images/icons/marketing.svg" },
-  { name: "Gaming & Entertainment", icon: "/images/icons/gaming.webp" },
-  { name: "E-commerce", icon: "/images/icons/ecommerce.svg" },
-  { name: "Fashion & Apparel", icon: "/images/icons/fashion.webp" },
-  { name: "Film & Animation", icon: "/images/icons/film.webp" },
-  { name: "Publishing", icon: "/images/icons/publishing.svg" },
-  { name: "Education", icon: "/images/icons/education.svg" },
-  { name: "Healthcare", icon: "/images/icons/healthcare.svg" },
+  { name: "Advertising & Marketing", icon: "/icons/marketing.svg" },
+  { name: "Gaming & Entertainment", icon: "/icons/gaming.svg" },
+  { name: "E-commerce", icon: "/icons/ecommerce.svg" },
+  { name: "Fashion & Apparel", icon: "/icons/fashion.svg" },
+  { name: "Film & Animation", icon: "/icons/film.svg" },
+  { name: "Publishing", icon: "/icons/publishing.svg" },
+  { name: "Education", icon: "/icons/education.svg" },
+  { name: "Healthcare", icon: "/icons/healthcare.svg" },
 ];
 
 export function Industries() {

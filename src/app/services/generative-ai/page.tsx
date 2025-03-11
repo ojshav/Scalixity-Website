@@ -60,7 +60,7 @@ export default function GenerativeAIPage() {
       {
         title: "AI-Powered Content Generation",
         description: "Helped a media company automate content creation and improve engagement",
-        image: "/AI-Powered Content Generation.svg",
+        image: "/case-studies/content-gen.jpg",
         results: [
           { metric: "Increase in Content Output", value: "300%" },
           { metric: "Time Saved", value: "75%" }
@@ -69,7 +69,7 @@ export default function GenerativeAIPage() {
       {
         title: "Customer Service Automation",
         description: "Implemented AI chatbots for a retail company to enhance customer support",
-        image: "/images/ai-powered-maintenance.svg",
+        image: "/case-studies/customer-service.jpg",
         results: [
           { metric: "Response Time", value: "-80%" },
           { metric: "Customer Satisfaction", value: "+45%" }
@@ -78,7 +78,7 @@ export default function GenerativeAIPage() {
       {
         title: "Predictive Analytics Platform",
         description: "Built a custom AI solution for financial forecasting and risk assessment",
-        image: "/images/ai.svg",
+        image: "/case-studies/analytics.jpg",
         results: [
           { metric: "Prediction Accuracy", value: "95%" },
           { metric: "Cost Reduction", value: "40%" }

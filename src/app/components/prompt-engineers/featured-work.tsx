@@ -15,8 +15,10 @@ const projects = [
     image: "/placeholder.svg?height=600&width=800",
     features: [
       "Real-time vehicle tracking",
-      "Advanced algorithms for efficient route planning"
-    ]
+      "Advanced algorithms for efficient route planning",
+      "In-app communication interfaces",
+      "Strict adherence to accessibility and privacy laws",
+    ],
   },
   {
     company: "LegalAlly",
@@ -26,8 +28,9 @@ const projects = [
     image: "/placeholder.svg?height=600&width=800",
     features: [
       "Legal Chatbot Assistant",
-      "Improved Communication Efficiency"
-    ]
+      "Improved Communication Efficiency",
+      "Research Time Reduction by 64%",
+    ],
   },
   {
     company: "DeVoice",
@@ -37,9 +40,11 @@ const projects = [
     image: "/placeholder.svg?height=600&width=800",
     features: [
       "State-of-the-art voice recognition",
-      "Provides natural dialogues and verbal responses"
-    ]
-  }
+      "Provides natural dialogues and verbal responses",
+      "Multi-language support for diverse customers",
+      "Dynamic interaction for enhanced engagement",
+    ],
+  },
 ];
 
 export function FeaturedWork() {
@@ -123,6 +128,4 @@ export function FeaturedWork() {
     </section>
   );
 }
-
-export default projects;
 

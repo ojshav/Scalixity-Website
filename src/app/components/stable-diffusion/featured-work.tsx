@@ -7,19 +7,19 @@ const featuredWorks = [
     title: "AI-Generated Artwork for Marketing",
     description:
       "Developed high-quality AI-generated visuals for branding and digital marketing campaigns, enhancing engagement and user experience.",
-    image: "/work/marketing-ai-art.svg",
+    image: "/work/marketing-ai-art.jpg",
   },
   {
     title: "Custom AI Portrait Generator",
     description:
       "Built a Stable Diffusion-powered platform allowing users to create personalized AI-generated portraits with various artistic styles.",
-    image: "/work/ai-portrait-generator.svg",
+    image: "/work/ai-portrait-generator.jpg",
   },
   {
     title: "Concept Art for Game Development",
     description:
       "Generated dynamic AI-assisted concept art for game studios, expediting the design process and improving creative workflows.",
-    image: "/work/game-concept-art.svg",
+    image: "/work/game-concept-art.jpg",
   },
 ];
 

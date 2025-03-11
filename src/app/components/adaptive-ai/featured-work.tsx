@@ -11,7 +11,7 @@ const projects = [
     title: "Reimagine Legal Support Driven by in-Depth Legal Research",
     description:
       "We leveraged Generative AI to fasten legal document analysis and drafting for a medium-sized law firm in Chicago.",
-    image: "/images/Reimagine Legal Support Driven by in-Depth Legal Research.svg",
+    image: "/legalally-work-v3.jpg",
     features: [
       "Legal Chatbot Assistant",
       "Improved Communication Efficiency",
@@ -23,7 +23,7 @@ const projects = [
     title: "Reduced Inspection Times for Property Inspectors",
     description:
       "We analyzed a large dataset of NVMS property photos to detect anomalies and built a conversational AI chatbot for efficient customer service.",
-    image: "/images/Reduced Inspection Times for Property Inspectors.svg",
+    image: "/nvms-work-v3.jpg",
     features: [
       "Deep learning and computer vision driven image data extraction",
       "GPT-based NLP chatbot for enhanced customer experience",
@@ -36,7 +36,7 @@ const projects = [
     title: "Helped Trapeze Group, Revolutionize Mobility with a Paratransit Solution",
     description:
       "Using geospatial technology, we supported Trapeze in innovating their existing paratransit transportation system. Our forward-thinking solutions have reduced customer wait times and improved safety features.",
-    image: "/images/Helped Trapeze Group, Revolutionize Mobility with a Paratransit Solution.svg",
+    image: "/trapeze-work-v3-img.jpg",
     features: [
       "Real-time vehicle tracking",
       "Advanced algorithms for efficient route planning",
@@ -49,7 +49,7 @@ const projects = [
     title: "Redefining Restaurant Ordering with a Voice Ordering Solution",
     description:
       "We built DeVoice, which is an AI-based voice agent designed specifically for restaurants and other businesses, integrating state-of-the-art voice recognition and natural language understanding.",
-    image: "/images/Redefining Restaurant Ordering with a Voice Ordering Solution.svg",
+    image: "/devoice-work-v3.jpg",
     features: [
       "State-of-the-art voice recognition",
       "Provides natural dialogues and verbal responses",

@@ -10,7 +10,7 @@ const projects = [
     company: "HashPay",
     title: "Transforming Digital Payments with Hedra",
     description: "We partnered with HashPay to revolutionize their digital payment infrastructure using Hedra Hashgraph. The project focused on creating a secure, high-speed transaction platform that processes micro-transactions with finality, reducing latency and ensuring a seamless payment experience for users.",
-    image: "/images/digital-hedra.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Real-time payment processing",
       "Enhanced security with aBFT consensus",
@@ -22,7 +22,7 @@ const projects = [
     company: "SupplyTrust",
     title: "Enhancing Supply Chain Transparency through Hedra",
     description: "Our collaboration with SupplyTrust empowered their supply chain management system with immutable, transparent records. Using Hedra's distributed ledger, we ensured real-time tracking of goods, streamlined auditing processes, and minimized fraudulent activities across the supply network.",
-    image: "/images/supply-hedra.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "End-to-end supply chain visibility",
       "Tamper-proof record-keeping",
@@ -34,7 +34,7 @@ const projects = [
     company: "DeVote",
     title: "Securing Voting Systems with Hedra Technology",
     description: "We developed a decentralized voting platform, DeVote, utilizing Hedra Hashgraph's secure and fair consensus algorithm. The platform offers transparent vote counting, immutable logs, and user anonymity, establishing trust in democratic processes and corporate elections.",
-    image: "/images/de-vote-hedra.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Transparent, immutable vote logs",
       "Anonymized voter data",
