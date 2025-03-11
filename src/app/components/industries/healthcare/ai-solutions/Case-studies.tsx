@@ -7,7 +7,7 @@ const caseStudies = [
   {
     title: "AI-Driven Patient Monitoring System",
     description: "Developed a real-time AI patient monitoring solution that reduced emergency response times by 40%, ensuring critical care is delivered without delay.",
-    image: "/images/ai-patient-monitoring.svg",
+    image: "/placeholder.svg?height=400&width=600",
     results: [
       "40% faster emergency response",
       "Enhanced accuracy in vital sign monitoring",
@@ -17,7 +17,7 @@ const caseStudies = [
   {
     title: "Predictive Analytics for Disease Prevention",
     description: "Implemented AI models predicting disease outbreaks with 85% accuracy, allowing proactive measures and resource planning.",
-    image: "/images/ai-disease-prediction.svg",
+    image: "/placeholder.svg?height=400&width=600",
     results: [
       "85% prediction accuracy",
       "Optimized resource allocation",

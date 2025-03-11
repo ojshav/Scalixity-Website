@@ -6,41 +6,49 @@ const techStack = [
   {
     category: "AI Frameworks & Libraries",
     items: [
-      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
-      { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
-      { name: "Keras", logo: "/images/tech/keras.svg" }
+      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
+      { name: "PyTorch", logo: "/tech/pytorch.svg" },
+      { name: "Keras", logo: "/tech/keras.svg" }
     ]
   },
   {
     category: "Natural Language Processing",
     items: [
-      { name: "spaCy", logo: "/images/tech/spacy.svg" },
-      { name: "NLTK", logo: "/images/tech/nltk.svg" },
-      { name: "Hugging Face", logo: "/images/tech/huggingface.svg" }
+      { name: "spaCy", logo: "/tech/spacy.svg" },
+      { name: "NLTK", logo: "/tech/nltk.svg" },
+      { name: "Hugging Face", logo: "/tech/huggingface.svg" }
     ]
   },
   {
     category: "Model Deployment",
     items: [
-      { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
-      { name: "TorchServe", logo: "/images/tech/d3.svg" },
-      { name: "AWS SageMaker", logo: "/images/tech/aws.svg" }
+      { name: "FastAPI", logo: "/tech/fastapi.svg" },
+      { name: "TorchServe", logo: "/tech/torchserve.svg" },
+      { name: "AWS SageMaker", logo: "/tech/sagemaker.svg" }
     ]
   },
   {
     category: "Data Processing & Storage",
     items: [
-      { name: "Pandas", logo: "/images/tech/pandas.svg" },
-      { name: "NumPy", logo: "/images/tech/numpy.svg" },
-      { name: "MongoDB", logo: "/images/tech/mongodb.svg" }
+      { name: "Pandas", logo: "/tech/pandas.svg" },
+      { name: "NumPy", logo: "/tech/numpy.svg" },
+      { name: "MongoDB", logo: "/tech/mongodb.svg" }
     ]
   },
   {
     category: "Cloud & Integration",
     items: [
-      { name: "AWS", logo: "/images/tech/aws.svg" },
-      { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
-      { name: "Azure", logo: "/images/tech/azure.svg" }
+      { name: "AWS", logo: "/tech/aws.svg" },
+      { name: "Google Cloud", logo: "/tech/gcp.svg" },
+      { name: "Azure", logo: "/tech/azure.svg" }
+    ]
+  },
+  {
+    category: "Monitoring & Logging",
+    items: [
+      { name: "Prometheus", logo: "/tech/prometheus.svg" },
+      { name: "Grafana", logo: "/tech/grafana.svg" },
+      { name: "ELK Stack", logo: "/tech/elk.svg" }
     ]
   }
 ];

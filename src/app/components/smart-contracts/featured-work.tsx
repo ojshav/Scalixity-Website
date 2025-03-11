@@ -10,7 +10,7 @@ const projects = [
     company: "CryptoCommerce",
     title: "Revolutionizing E-commerce with Smart Contracts",
     description: "We developed a blockchain-powered e-commerce platform utilizing smart contracts to ensure transparent, secure, and automated transactions between buyers and sellers.",
-    image: "/images/Redefining Restaurant Ordering with a Voice Ordering Solution.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Automated payment processing",
       "Escrow services using smart contracts",
@@ -22,7 +22,7 @@ const projects = [
     company: "InsureChain",
     title: "Smart Contract-Based Insurance Platform",
     description: "Built a decentralized insurance platform with smart contracts to automate policy issuance, claim processing, and payouts, reducing fraud and increasing efficiency.",
-    image: "/images/ai-powered-maintenance.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Automated claim verification",
       "Real-time policy updates",
@@ -34,7 +34,7 @@ const projects = [
     company: "RealEstateChain",
     title: "Blockchain-Powered Real Estate Contracts",
     description: "Implemented smart contracts for property transactions, ensuring secure and transparent ownership transfers and automated rental agreements.",
-    image: "/images/Automating Banking Services with Conversational AI.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Tokenized property assets",
       "Smart lease agreements",

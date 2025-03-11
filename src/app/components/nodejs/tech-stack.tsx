@@ -6,49 +6,49 @@ const techStack = [
   {
     category: "Core Technologies",
     items: [
-      { name: "Node.js", logo: "/images/tech/nodejs.svg" },
-      { name: "JavaScript", logo: "/images/tech/javascript.svg" },
-      { name: "TypeScript", logo: "/images/tech/typescript.svg" }
+      { name: "Node.js", logo: "/tech/nodejs.svg" },
+      { name: "JavaScript", logo: "/tech/javascript.svg" },
+      { name: "TypeScript", logo: "/tech/typescript.svg" }
     ]
   },
   {
     category: "Frameworks & Libraries",
     items: [
-      { name: "Express.js", logo: "/images/tech/express.svg" },
-      { name: "NestJS", logo: "/images/tech/nestjs.svg" },
-      { name: "Koa", logo: "/images/tech/koa.svg" }
+      { name: "Express.js", logo: "/tech/express.svg" },
+      { name: "NestJS", logo: "/tech/nestjs.svg" },
+      { name: "Koa", logo: "/tech/koa.svg" }
     ]
   },
   {
     category: "Databases & ORMs",
     items: [
-      { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
-      { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
-      { name: "Prisma", logo: "/images/tech/prisma.svg" }
+      { name: "MongoDB", logo: "/tech/mongodb.svg" },
+      { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
+      { name: "Prisma", logo: "/tech/prisma.svg" }
     ]
   },
   {
     category: "Authentication & Security",
     items: [
-      { name: "JWT", logo: "/images/tech/jwt.svg" },
-      { name: "OAuth", logo: "/images/tech/oauth.svg" },
-      { name: "bcrypt", logo: "/images/tech/bcrypt.svg" }
+      { name: "JWT", logo: "/tech/jwt.svg" },
+      { name: "OAuth", logo: "/tech/oauth.svg" },
+      { name: "bcrypt", logo: "/tech/bcrypt.svg" }
     ]
   },
   {
     category: "Testing & Debugging",
     items: [
-      { name: "Jest", logo: "/images/tech/jest.svg" },
-      { name: "Mocha", logo: "/images/tech/mocha.svg" },
-      { name: "Postman", logo: "/images/tech/postman.svg" }
+      { name: "Jest", logo: "/tech/jest.svg" },
+      { name: "Mocha", logo: "/tech/mocha.svg" },
+      { name: "Postman", logo: "/tech/postman.svg" }
     ]
   },
   {
     category: "Deployment & Cloud",
     items: [
-      { name: "AWS", logo: "/images/tech/aws.svg" },
-      { name: "Heroku", logo: "/images/tech/heroku.svg" },
-      { name: "Vercel", logo: "/images/tech/vercel.svg" }
+      { name: "AWS", logo: "/tech/aws.svg" },
+      { name: "Heroku", logo: "/tech/heroku.svg" },
+      { name: "Vercel", logo: "/tech/vercel.svg" }
     ]
   }
 ];

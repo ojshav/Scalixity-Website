@@ -4,19 +4,19 @@ import Image from "next/image";
 
 const technologies = {
   "Design Tools": [
-    { name: "Figma", logo: "/images/tech/figma.svg" },
-    { name: "Adobe XD", logo: "/images/tech/adobe-xd.svg" },
-    { name: "Sketch", logo: "/images/tech/sketch.svg" }
+    { name: "Figma", logo: "/tech/figma.svg" },
+    { name: "Adobe XD", logo: "/tech/adobe-xd.svg" },
+    { name: "Sketch", logo: "/tech/sketch.svg" }
   ],
   "Prototyping & Wireframing": [
-    { name: "InVision", logo: "/images/tech/invision.svg" },
-    { name: "Balsamiq", logo: "/images/tech/balsamiq.svg" },
-    { name: "Axure RP", logo: "/images/tech/axure.svg" }
+    { name: "InVision", logo: "/tech/invision.svg" },
+    { name: "Balsamiq", logo: "/tech/balsamiq.svg" },
+    { name: "Axure RP", logo: "/tech/axure.svg" }
   ],
   "Collaboration & Handoff": [
-    { name: "Zeplin", logo: "/images/tech/zeplin.svg" },
-    { name: "Abstract", logo: "/images/tech/abstract.svg" },
-    { name: "Avocode", logo: "/images/tech/avocode.svg" }
+    { name: "Zeplin", logo: "/tech/zeplin.svg" },
+    { name: "Abstract", logo: "/tech/abstract.svg" },
+    { name: "Avocode", logo: "/tech/avocode.svg" }
   ],
   "UI Libraries & Frameworks": [
     "Material Design", "iOS Human Interface", "Tailwind UI", "Bootstrap"

@@ -5,49 +5,49 @@ const techStack = [
   {
     category: "Blockchain Platforms",
     items: [
-      { name: "Ethereum", logo: "/images/tech/ethereum.webp" },
-      { name: "Solana", logo: "/images/tech/solana.webp" },
-      { name: "Polygon", logo: "/images/tech/polygon.webp" }
+      { name: "Ethereum", logo: "/tech/ethereum.svg" },
+      { name: "Solana", logo: "/tech/solana.svg" },
+      { name: "Polygon", logo: "/tech/polygon.svg" }
     ]
   },
   {
     category: "Smart Contract Languages",
     items: [
-      { name: "Solidity", logo: "/images/tech/solidity.webp" },
-      { name: "Rust", logo: "/images/tech/rust.webp" },
-      { name: "Vyper", logo: "/images/tech/vyper.webp" }
+      { name: "Solidity", logo: "/tech/solidity.svg" },
+      { name: "Rust", logo: "/tech/rust.svg" },
+      { name: "Vyper", logo: "/tech/vyper.svg" }
     ]
   },
   {
     category: "Development Frameworks",
     items: [
-      { name: "Hardhat", logo: "/images/tech/hardhat.webp" },
-      { name: "Truffle", logo: "/images/tech/truffle.webp" },
-      { name: "Brownie", logo: "/images/tech/brownie.webp" }
+      { name: "Hardhat", logo: "/tech/hardhat.svg" },
+      { name: "Truffle", logo: "/tech/truffle.svg" },
+      { name: "Brownie", logo: "/tech/brownie.svg" }
     ]
   },
   {
     category: "Testing & Security Tools",
     items: [
-      { name: "OpenZeppelin", logo: "/images/tech/openzeppelin.webp" },
-      { name: "Echidna", logo: "/images/tech/echidna.webp" },
-      { name: "MythX", logo: "/images/tech/mythx.webp" }
+      { name: "OpenZeppelin", logo: "/tech/openzeppelin.svg" },
+      { name: "Echidna", logo: "/tech/echidna.svg" },
+      { name: "MythX", logo: "/tech/mythx.svg" }
     ]
   },
   {
     category: "Oracles & Data Feeds",
     items: [
-      { name: "Chainlink", logo: "/images/tech/chainlink.webp" },
-      { name: "Band Protocol", logo: "/images/tech/band.webp" },
-      { name: "API3", logo: "/images/tech/api3.webp" }
+      { name: "Chainlink", logo: "/tech/chainlink.svg" },
+      { name: "Band Protocol", logo: "/tech/band.svg" },
+      { name: "API3", logo: "/tech/api3.svg" }
     ]
   },
   {
     category: "Wallets & Integrations",
     items: [
-      { name: "MetaMask", logo: "/images/tech/metamask.webp" },
-      { name: "WalletConnect", logo: "/images/tech/walletconnect.webp" },
-      { name: "Ledger", logo: "/images/tech/ledger.webp" }
+      { name: "MetaMask", logo: "/tech/metamask.svg" },
+      { name: "WalletConnect", logo: "/tech/walletconnect.svg" },
+      { name: "Ledger", logo: "/tech/ledger.svg" }
     ]
   }
 ]

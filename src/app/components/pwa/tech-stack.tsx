@@ -4,49 +4,49 @@ const techStack = [
   {
     category: "Core Technologies",
     items: [
-      { name: "React", logo: "/images/tech/react.svg" },
-      { name: "Next.js", logo: "/images/tech/nextjs.svg" },
-      { name: "Vue.js", logo: "/images/tech/vue.svg" }
+      { name: "React", logo: "/tech/react.svg" },
+      { name: "Next.js", logo: "/tech/nextjs.svg" },
+      { name: "Vue.js", logo: "/tech/vue.svg" }
     ]
   },
   {
     category: "Service Workers & Caching",
     items: [
-      { name: "Workbox", logo: "/images/tech/workbox.svg" },
-      { name: "Service Worker API", logo: "/images/tech/service-worker.svg" },
-      { name: "Cache Storage API", logo: "/images/tech/cache-api.svg" }
+      { name: "Workbox", logo: "/tech/workbox.svg" },
+      { name: "Service Worker API", logo: "/tech/service-worker.svg" },
+      { name: "Cache Storage API", logo: "/tech/cache-api.svg" }
     ]
   },
   {
     category: "App Manifest & Icons",
     items: [
-      { name: "Web App Manifest", logo: "/images/tech/manifest.svg" },
-      { name: "Favicon Generator", logo: "/images/tech/favicon.svg" },
-      { name: "PWA Asset Generator", logo: "/images/tech/pwa-asset.svg" }
+      { name: "Web App Manifest", logo: "/tech/manifest.svg" },
+      { name: "Favicon Generator", logo: "/tech/favicon.svg" },
+      { name: "PWA Asset Generator", logo: "/tech/pwa-asset.svg" }
     ]
   },
   {
     category: "UI & Styling",
     items: [
-      { name: "Tailwind CSS", logo: "/images/tech/tailwind.svg" },
-      { name: "Material UI", logo: "/images/tech/mui.svg" },
-      { name: "Bootstrap", logo: "/images/tech/bootstrap.svg" }
+      { name: "Tailwind CSS", logo: "/tech/tailwind.svg" },
+      { name: "Material UI", logo: "/tech/mui.svg" },
+      { name: "Bootstrap", logo: "/tech/bootstrap.svg" }
     ]
   },
   {
     category: "Testing & Debugging",
     items: [
-      { name: "Lighthouse", logo: "/images/tech/lighthouse.svg" },
-      { name: "Jest", logo: "/images/tech/jest.svg" },
-      { name: "Cypress", logo: "/images/tech/cypress.svg" }
+      { name: "Lighthouse", logo: "/tech/lighthouse.svg" },
+      { name: "Jest", logo: "/tech/jest.svg" },
+      { name: "Cypress", logo: "/tech/cypress.svg" }
     ]
   },
   {
     category: "Build & Deployment",
     items: [
-      { name: "Vite", logo: "/images/tech/vite.svg" },
-      { name: "Netlify", logo: "/images/tech/netlify.svg" },
-      { name: "Firebase Hosting", logo: "/images/tech/firebase.svg" }
+      { name: "Vite", logo: "/tech/vite.svg" },
+      { name: "Netlify", logo: "/tech/netlify.svg" },
+      { name: "Firebase Hosting", logo: "/tech/firebase.svg" }
     ]
   }
 ];

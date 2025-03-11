@@ -6,49 +6,49 @@ const techStack = [
   {
     category: "AI Frameworks & Libraries",
     items: [
-      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
-      { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
-      { name: "Keras", logo: "/images/tech/keras.svg" }
+      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
+      { name: "PyTorch", logo: "/tech/pytorch.svg" },
+      { name: "Keras", logo: "/tech/keras.svg" }
     ]
   },
   {
     category: "Natural Language Processing",
     items: [
-      { name: "spaCy", logo: "/images/tech/spacy.svg" },
-      { name: "NLTK", logo: "/images/tech/nltk.svg" },
-      { name: "Hugging Face", logo: "/images/tech/huggingface.svg" }
+      { name: "spaCy", logo: "/tech/spacy.svg" },
+      { name: "NLTK", logo: "/tech/nltk.svg" },
+      { name: "Hugging Face", logo: "/tech/huggingface.svg" }
     ]
   },
   {
     category: "Predictive Analytics & Forecasting",
     items: [
-      { name: "Scikit-learn", logo: "/images/tech/scikit-learn.svg" },
-      { name: "XGBoost", logo: "/images/tech/xgboost.svg" },
-      { name: "Prophet", logo: "/images/tech/prophet.svg" }
+      { name: "Scikit-learn", logo: "/tech/scikit-learn.svg" },
+      { name: "XGBoost", logo: "/tech/xgboost.svg" },
+      { name: "Prophet", logo: "/tech/prophet.svg" }
     ]
   },
   {
     category: "Data Visualization",
     items: [
-      { name: "D3.js", logo: "/images/tech/d3.svg" },
-      { name: "Matplotlib", logo: "/images/tech/matplotlib.svg" },
-      { name: "Seaborn", logo: "/images/tech/seaborn.svg" }
+      { name: "D3.js", logo: "/tech/d3.svg" },
+      { name: "Matplotlib", logo: "/tech/matplotlib.svg" },
+      { name: "Seaborn", logo: "/tech/seaborn.svg" }
     ]
   },
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS", logo: "/images/tech/aws.svg" },
-      { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
-      { name: "Azure", logo: "/images/tech/azure.svg" }
+      { name: "AWS", logo: "/tech/aws.svg" },
+      { name: "Google Cloud", logo: "/tech/gcp.svg" },
+      { name: "Azure", logo: "/tech/azure.svg" }
     ]
   },
   {
     category: "Databases & Storage",
     items: [
-      { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
-      { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
-      { name: "Redis", logo: "/images/tech/redis.svg" }
+      { name: "MongoDB", logo: "/tech/mongodb.svg" },
+      { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
+      { name: "Redis", logo: "/tech/redis.svg" }
     ]
   }
 ];

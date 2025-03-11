@@ -4,14 +4,14 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const industries = [
-  { name: "Finance", icon: "/images/icons/finance.svg" },
-  { name: "Cross-Border Payments", icon: "/images/icons/transportation.svg" },
-  { name: "Remittances", icon: "/images/icons/fintech.svg" },
-  { name: "Tokenization", icon: "/images/icons/data-security.svg" },
-  { name: "Micropayments", icon: "/images/icons/saas.svg" },
-  { name: "DeFi Solutions", icon: "/images/icons/insurance.svg" },
-  { name: "Asset Management", icon: "/images/icons/fintech.svg" },
-  { name: "E-commerce", icon: "/images/icons/ecommerce.svg" }
+  { name: "Finance", icon: "/icons/finance.svg" },
+  { name: "Cross-Border Payments", icon: "/icons/cross-border.svg" },
+  { name: "Remittances", icon: "/icons/remittances.svg" },
+  { name: "Tokenization", icon: "/icons/tokenization.svg" },
+  { name: "Micropayments", icon: "/icons/micropayments.svg" },
+  { name: "DeFi Solutions", icon: "/icons/defi.svg" },
+  { name: "Asset Management", icon: "/icons/asset-management.svg" },
+  { name: "E-commerce", icon: "/icons/ecommerce.svg" }
 ]
 
 export function Industries() {

@@ -17,7 +17,6 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 
-
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
@@ -66,14 +65,15 @@ const Header = ({ isDarkMode, onThemeToggle }: HeaderProps) => {
         <ThemeProvider theme={useTheme()}>
             <AppBar position="static">
                 <Container maxWidth="xl">
-                    <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-                        {/* Logo for desktop */}
+                    <Toolbar disableGutters>
+                      
                         <Typography
                             variant="h6"
                             noWrap
                             component="a"
                             href="/"
                             sx={{
+                                mr: 2,
                                 display: { xs: 'none', md: 'flex' },
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
@@ -84,12 +84,10 @@ const Header = ({ isDarkMode, onThemeToggle }: HeaderProps) => {
                         >
                             SCALIXITY
                         </Typography>
-
-                        {/* Mobile menu and logo */}
-                        <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
                                 size="large"
-                                aria-label="menu"
+                                aria-label="account of current user"
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
                                 onClick={handleOpenNavMenu}
@@ -97,92 +95,96 @@ const Header = ({ isDarkMode, onThemeToggle }: HeaderProps) => {
                             >
                                 <MenuIcon />
                             </IconButton>
-                            <Typography
-                                variant="h5"
-                                noWrap
-                                component="a"
-                                href=""
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorElNav}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                open={Boolean(anchorElNav)}
+                                onClose={handleCloseNavMenu}
                                 sx={{
-                                    fontFamily: 'monospace',
-                                    fontWeight: 700,
-                                    letterSpacing: '.3rem',
-                                    color: 'inherit',
-                                    textDecoration: 'none',
+                                    display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                SCALIXITY
-                            </Typography>
+                                {pages.map((page) => (
+                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                        <Typography textAlign="center">{page}</Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
                         </Box>
-
-                        {/* Desktop navigation */}
-                        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+                       
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            component="a"
+                            href=""
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'flex', md: 'none' },
+                                flexGrow: 1,
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            SCALIXITY
+                        </Typography>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
                                 <Button
                                     key={page}
                                     onClick={handleCloseNavMenu}
-                                    sx={{ color: 'white' }}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     {page}
                                 </Button>
                             ))}
                         </Box>
-
-                        {/* Right side items */}
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <Box sx={{ paddingRight: 2 }}>
                             <IconButton onClick={onThemeToggle} color="inherit">
                                 {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
                             </IconButton>
-                            
-                            <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                                <Typography>Welcome, {adminUsername || "admin"}!</Typography>
-                            </Box>
-
+                        </Box>
+                        <Box sx={{ paddingRight: 5 }}>
+                            <Typography>Welcome, {adminUsername || "admin"}!</Typography>
+                        </Box>
+                        <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open profile settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                     <Avatar alt={adminUsername || "admin"} src="/default-avatar.png" />
                                 </IconButton>
                             </Tooltip>
-                        </Box>
-
-                        {/* Mobile navigation menu */}
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{ display: { xs: 'block', md: 'none' } }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                <MenuItem onClick={handleLogout}>
+                                    <Typography textAlign="center">Logout</Typography>
                                 </MenuItem>
-                            ))}
-                            <MenuItem>
-                                <Typography>Welcome, {adminUsername || "admin"}!</Typography>
-                            </MenuItem>
-                        </Menu>
-
-                        {/* User menu */}
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            <MenuItem onClick={handleLogout}>
-                                <Typography textAlign="center">Logout</Typography>
-                            </MenuItem>
-                        </Menu>
+                            </Menu>
+                        </Box>
                     </Toolbar>
                 </Container>
             </AppBar>

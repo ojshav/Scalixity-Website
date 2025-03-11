@@ -5,29 +5,29 @@ import Image from 'next/image'
 
 const gcpTechCategories = {
   "Compute Services": [
-    { name: "Compute Engine", logo: "/images/tech/gcp-compute.svg" },
-    { name: "Cloud Functions", logo: "/images/tech/gcp-functions.svg" },
-    { name: "App Engine", logo: "/images/tech/gcp-appengine.svg" }
+    { name: "Compute Engine", logo: "/tech/gcp-compute.svg" },
+    { name: "Cloud Functions", logo: "/tech/gcp-functions.svg" },
+    { name: "App Engine", logo: "/tech/gcp-appengine.svg" }
   ],
   "Storage & Databases": [
-    { name: "Cloud Storage", logo: "/images/tech/gcp-storage.svg" },
-    { name: "BigQuery", logo: "/images/tech/gcp-bigquery.svg" },
-    { name: "Cloud SQL", logo: "/images/tech/gcp-sql.svg" }
+    { name: "Cloud Storage", logo: "/tech/gcp-storage.svg" },
+    { name: "BigQuery", logo: "/tech/gcp-bigquery.svg" },
+    { name: "Cloud SQL", logo: "/tech/gcp-sql.svg" }
   ],
   "AI & ML Services": [
-    { name: "AI Platform", logo: "/images/tech/gcp-ai.svg" },
-    { name: "Vision AI", logo: "/images/tech/gcp-vision.svg" },
-    { name: "Natural Language AI", logo: "/images/tech/gcp-nlp.svg" }
+    { name: "AI Platform", logo: "/tech/gcp-ai.svg" },
+    { name: "Vision AI", logo: "/tech/gcp-vision.svg" },
+    { name: "Natural Language AI", logo: "/tech/gcp-nlp.svg" }
   ],
   "Networking & Security": [
-    { name: "VPC", logo: "/images/tech/gcp-vpc.svg" },
-    { name: "Cloud DNS", logo: "/images/tech/gcp-dns.svg" },
-    { name: "IAM & Security", logo: "/images/tech/gcp-iam.svg" }
+    { name: "VPC", logo: "/tech/gcp-vpc.svg" },
+    { name: "Cloud DNS", logo: "/tech/gcp-dns.svg" },
+    { name: "IAM & Security", logo: "/tech/gcp-iam.svg" }
   ],
   "Serverless & DevOps": [
-    { name: "Cloud Build", logo: "/images/tech/gcp-build.svg" },
-    { name: "Kubernetes Engine", logo: "/images/tech/gcp-kubernetes.svg" },
-    { name: "Terraform on GCP", logo: "/images/tech/gcp-terraform.svg" }
+    { name: "Cloud Build", logo: "/tech/gcp-build.svg" },
+    { name: "Kubernetes Engine", logo: "/tech/gcp-kubernetes.svg" },
+    { name: "Terraform on GCP", logo: "/tech/gcp-terraform.svg" }
   ]
 }
 

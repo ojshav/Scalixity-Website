@@ -33,23 +33,8 @@ const processSteps = [
     title: "Prompt Engineering",
     content:
       "We optimize and fine-tune prompts to ensure the AI model produces accurate, relevant, and contextually appropriate outputs for your specific use case.",
-  }
-]
-
-const featuredProjects = [
-  {
-    title: "Redefining Restaurant Ordering with a Voice Ordering Solution",
-    description: "We built DeVoice, an AI-based voice agent designed specifically for restaurants and other businesses, integrating state-of-the-art voice recognition and natural language understanding.",
-    image: "/images/Redefining Restaurant Ordering with a Voice Ordering Solution.svg",
-    features: [
-      "Futuristic Generative AI Solution for the Food & Beverage industry",
-      "State-of-the-art voice recognition",
-      "Provides natural dialogues and verbal responses",
-      "Multi-language support for diverse customers",
-      "Dynamic interaction for enhanced engagement"
-    ]
-  }
-]
+  },
+];
 
 export function Process() {
   const [openStep, setOpenStep] = useState<number | null>(0);

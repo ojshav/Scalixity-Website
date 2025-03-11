@@ -6,47 +6,49 @@ const techStack = [
   {
     category: "AI & Machine Learning Frameworks",
     items: [
-      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
-      { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
-      { name: "Scikit-learn", logo: "/images/tech/scikit-learn.svg" }
+      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
+      { name: "PyTorch", logo: "/tech/pytorch.svg" },
+      { name: "Scikit-learn", logo: "/tech/scikit-learn.svg" }
     ]
   },
   {
     category: "Natural Language Processing",
     items: [
-      { name: "spaCy", logo: "/images/tech/spacy.svg" },
-      { name: "Hugging Face Transformers", logo: "/images/tech/huggingface.svg" },
-      { name: "BERT", logo: "/images/tech/bert.svg" }
+      { name: "spaCy", logo: "/tech/spacy.svg" },
+      { name: "Hugging Face Transformers", logo: "/tech/huggingface.svg" },
+      { name: "BERT", logo: "/tech/bert.svg" }
     ]
   },
   {
     category: "Data Processing & Storage",
     items: [
-      { name: "Pandas", logo: "/images/tech/pandas.svg" },
-      { name: "NumPy", logo: "/images/tech/numpy.svg" },
-      { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" }
+      { name: "Pandas", logo: "/tech/pandas.svg" },
+      { name: "NumPy", logo: "/tech/numpy.svg" },
+      { name: "PostgreSQL", logo: "/tech/postgresql.svg" }
     ]
   },
   {
     category: "Healthcare Data Standards",
     items: [
-      { name: "FHIR", logo: "/images/tech/fhir.webp" }
+      { name: "FHIR", logo: "/tech/fhir.svg" },
+      { name: "HL7", logo: "/tech/hl7.svg" },
+      { name: "DICOM", logo: "/tech/dicom.svg" }
     ]
   },
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS HealthLake", logo: "/images/tech/aws.svg" },
-      { name: "Google Healthcare API", logo: "/images/tech/google-cloud.svg" },
-      { name: "Azure Health Data Services", logo: "/images/tech/azure.svg" }
+      { name: "AWS HealthLake", logo: "/tech/aws-healthlake.svg" },
+      { name: "Google Healthcare API", logo: "/tech/gcp-healthcare.svg" },
+      { name: "Azure Health Data Services", logo: "/tech/azure-health.svg" }
     ]
   },
   {
     category: "Model Monitoring & Security",
     items: [
-      { name: "MLflow", logo: "/images/tech/mlflow.svg" },
-      { name: "Prometheus", logo: "/images/tech/resnet.webp" },
-      { name: "HIPAA Compliance", logo: "/images/tech/vggnet.webp" }
+      { name: "MLflow", logo: "/tech/mlflow.svg" },
+      { name: "Prometheus", logo: "/tech/prometheus.svg" },
+      { name: "HIPAA Compliance", logo: "/tech/hipaa.svg" }
     ]
   }
 ];

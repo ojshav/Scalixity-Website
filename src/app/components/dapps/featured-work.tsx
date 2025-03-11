@@ -10,7 +10,7 @@ const projects = [
     company: "DeFiChain",
     title: "Revolutionizing DeFi with Blockchain",
     description: "We built a decentralized finance platform leveraging blockchain technology to enable seamless transactions, staking, and yield farming.",
-    image: "/images/Automating Banking Services with Conversational AI.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Smart contract development for DeFi",
       "Decentralized staking and yield farming",
@@ -22,7 +22,7 @@ const projects = [
     company: "NFTVault",
     title: "Next-Gen NFT Marketplace",
     description: "A high-performance NFT marketplace enabling artists and collectors to mint, trade, and showcase digital assets securely on blockchain.",
-    image: "/images/blockchain.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Smart contract-based NFT minting",
       "Secure and verifiable ownership",
@@ -34,7 +34,7 @@ const projects = [
     company: "BlockID",
     title: "Decentralized Identity Solutions",
     description: "We developed a blockchain-powered identity verification system that enhances privacy, security, and trust in digital interactions.",
-    image: "/images/Data Analysis.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Self-sovereign identity management",
       "Tamper-proof verification records",

@@ -6,19 +6,19 @@ type Technologies = Record<string, (TechItem | string)[]>;
 
 const technologies: Technologies = {
   "Chatbot Frameworks": [
-    { name: "Rasa", logo: "/images/tech/rasa.svg" },
-    { name: "Dialogflow", logo: "/images/tech/dialogflow.svg" },
-    { name: "BotPress", logo: "/images/tech/botpress.svg" }
+    { name: "Rasa", logo: "/tech/rasa.svg" },
+    { name: "Dialogflow", logo: "/tech/dialogflow.svg" },
+    { name: "BotPress", logo: "/tech/botpress.svg" }
   ],
   "Cloud Platforms": [
-    { name: "AWS", logo: "/images/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/images/tech/azure.svg" }
+    { name: "AWS", logo: "/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/tech/azure.svg" }
   ],
   "NLP & AI Models": [
-    { name: "GPT-4", logo: "/images/tech/gpt4.svg" },
-    { name: "BERT", logo: "/images/tech/bert.svg" },
-    { name: "T5", logo: "/images/tech/t5.svg" }
+    { name: "GPT-4", logo: "/tech/gpt4.svg" },
+    { name: "BERT", logo: "/tech/bert.svg" },
+    { name: "T5", logo: "/tech/t5.svg" }
   ],
   "Programming Languages": ["Python", "JavaScript", "TypeScript", "Go", "Java"],
   "Databases": ["MongoDB", "PostgreSQL", "Firebase", "Redis", "MySQL"],

@@ -9,19 +9,19 @@ const projects = [
   {
     title: "AI-Powered Predictive Maintenance System",
     description: "Developed an AI solution for a manufacturing company to predict equipment failures and optimize maintenance schedules, resulting in a 30% reduction in downtime.",
-    image: "/images/ai-powered-maintenance.svg",
+    image: "/placeholder.svg?height=400&width=600",
     link: "/case-studies/predictive-maintenance"
   },
   {
     title: "Natural Language Processing for Customer Service",
     description: "Implemented an NLP-based chatbot for a large e-commerce platform, improving response times by 50% and increasing customer satisfaction scores.",
-    image: "/images/nlp-customer-service.svg",
+    image: "/placeholder.svg?height=400&width=600",
     link: "/case-studies/nlp-customer-service"
   },
   {
     title: "Computer Vision for Quality Control",
     description: "Created a computer vision system for a food processing plant to detect defects in products, increasing quality control efficiency by 40% and reducing waste.",
-    image: "/images/computer-vision-quality-control.svg",
+    image: "/placeholder.svg?height=400&width=600",
     link: "/case-studies/computer-vision-quality-control"
   }
 ]

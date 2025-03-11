@@ -6,49 +6,49 @@ const techStack = [
   {
     category: "Core Technologies",
     items: [
-      { name: "JavaScript", logo: "/images/tech/javascript.svg" },
-      { name: "TypeScript", logo: "/images/tech/typescript.svg" },
-      { name: "HTML5", logo: "/images/tech/html5.svg" }
+      { name: "JavaScript", logo: "/tech/javascript.svg" },
+      { name: "TypeScript", logo: "/tech/typescript.svg" },
+      { name: "HTML5", logo: "/tech/html5.svg" }
     ]
   },
   {
     category: "Frameworks & Libraries",
     items: [
-      { name: "React Native", logo: "/images/tech/react-native.svg" },
-      { name: "Flutter", logo: "/images/tech/flutter.svg" },
-      { name: "Ionic", logo: "/images/tech/ionic.svg" }
+      { name: "React Native", logo: "/tech/react-native.svg" },
+      { name: "Flutter", logo: "/tech/flutter.svg" },
+      { name: "Ionic", logo: "/tech/ionic.svg" }
     ]
   },
   {
     category: "State Management",
     items: [
-      { name: "Redux", logo: "/images/tech/redux.svg" },
-      { name: "MobX", logo: "/images/tech/mobx.svg" },
-      { name: "Context API", logo: "/images/tech/context-api.svg" }
+      { name: "Redux", logo: "/tech/redux.svg" },
+      { name: "MobX", logo: "/tech/mobx.svg" },
+      { name: "Context API", logo: "/tech/context-api.svg" }
     ]
   },
   {
     category: "Testing & Debugging",
     items: [
-      { name: "Jest", logo: "/images/tech/jest.svg" },
-      { name: "Detox", logo: "/images/tech/detox.svg" },
-      { name: "Appium", logo: "/images/tech/appium.svg" }
+      { name: "Jest", logo: "/tech/jest.svg" },
+      { name: "Detox", logo: "/tech/detox.svg" },
+      { name: "Appium", logo: "/tech/appium.svg" }
     ]
   },
   {
     category: "APIs & Backend",
     items: [
-      { name: "Firebase", logo: "/images/tech/firebase.svg" },
-      { name: "GraphQL", logo: "/images/tech/graphql.svg" },
-      { name: "REST API", logo: "/images/tech/rest-api.svg" }
+      { name: "Firebase", logo: "/tech/firebase.svg" },
+      { name: "GraphQL", logo: "/tech/graphql.svg" },
+      { name: "REST API", logo: "/tech/rest-api.svg" }
     ]
   },
   {
     category: "Deployment & CI/CD",
     items: [
-      { name: "App Store", logo: "/images/tech/app-store.svg" },
-      { name: "Google Play", logo: "/images/tech/google-play.svg" },
-      { name: "Fastlane", logo: "/images/tech/fastlane.svg" }
+      { name: "App Store", logo: "/tech/app-store.svg" },
+      { name: "Google Play", logo: "/tech/google-play.svg" },
+      { name: "Fastlane", logo: "/tech/fastlane.svg" }
     ]
   }
 ];

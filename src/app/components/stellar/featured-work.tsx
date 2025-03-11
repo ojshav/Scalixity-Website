@@ -10,7 +10,7 @@ const projects = [
     company: "StellarDeFi",
     title: "Empowering DeFi with Stellar Blockchain",
     description: "We developed a decentralized finance platform leveraging Stellar's fast and low-cost transactions, enabling seamless payments and asset transfers.",
-    image: "/images/Redefining Restaurant Ordering with a Voice Ordering Solution.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Lightning-fast and low-cost transactions",
       "Multi-asset support with Stellar's tokenization",
@@ -22,7 +22,7 @@ const projects = [
     company: "StellarRemit",
     title: "Revolutionizing Cross-Border Payments",
     description: "Our Stellar-based remittance solution provides fast, low-cost, and borderless financial transactions for global money transfers.",
-    image: "/images/Automating Banking Services with Conversational AI.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Instant settlement and low fees",
       "Multi-currency payment support",
@@ -34,7 +34,7 @@ const projects = [
     company: "StellarID",
     title: "Decentralized Identity Solutions on Stellar",
     description: "We built a secure identity verification system leveraging Stellar’s blockchain for privacy-focused digital identity management.",
-    image: "/images/ai-powered-maintenance.svg",
+    image: "/placeholder.svg?height=600&width=800",
     features: [
       "Self-sovereign identity management",
       "Tamper-proof authentication records",
