@@ -6,49 +6,48 @@ const techStack = [
   {
     category: "Data Processing & Analysis",
     items: [
-      { name: "Pandas", logo: "/tech/pandas.svg" },
-      { name: "NumPy", logo: "/tech/numpy.svg" },
-      { name: "Dask", logo: "/tech/dask.svg" }
+      { name: "Pandas", logo: "/images/tech/pandas.svg" },
+      { name: "NumPy", logo: "/images/tech/numpy.svg" }
     ]
   },
   {
     category: "Machine Learning & AI",
     items: [
-      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-      { name: "Scikit-learn", logo: "/tech/scikit-learn.svg" },
-      { name: "XGBoost", logo: "/tech/xgboost.svg" }
+      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+      { name: "Scikit-learn", logo: "/images/tech/scikit-learn.svg" },
+      { name: "XGBoost", logo: "/images/tech/xgboost.svg" }
     ]
   },
   {
     category: "Data Visualization",
     items: [
-      { name: "Matplotlib", logo: "/tech/matplotlib.svg" },
-      { name: "Seaborn", logo: "/tech/seaborn.svg" },
-      { name: "Plotly", logo: "/tech/plotly.svg" }
+      { name: "Matplotlib", logo: "/images/tech/matplotlib.svg" },
+      { name: "Seaborn", logo: "/images/tech/seaborn.svg" },
+      { name: "Plotly", logo: "/images/tech/vggnet.webp" },
     ]
   },
   {
     category: "Data Storage & Databases",
     items: [
-      { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-      { name: "MongoDB", logo: "/tech/mongodb.svg" },
-      { name: "BigQuery", logo: "/tech/bigquery.svg" }
+      { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+      { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+      { name: "BigQuery", logo: "/images/tech/bigquery.svg" }
     ]
   },
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS", logo: "/tech/aws.svg" },
-      { name: "Google Cloud", logo: "/tech/gcp.svg" },
-      { name: "Azure", logo: "/tech/azure.svg" }
+      { name: "AWS", logo: "/images/tech/aws.svg" },
+      { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+      { name: "Azure", logo: "/images/tech/azure.svg" }
     ]
   },
   {
     category: "Monitoring & Security",
     items: [
-      { name: "Prometheus", logo: "/tech/prometheus.svg" },
-      { name: "Grafana", logo: "/tech/grafana.svg" },
-      { name: "ELK Stack", logo: "/tech/elk.svg" }
+      { name: "Prometheus", logo: "/images/tech/unet.webp" },
+      { name: "Grafana", logo: "/images/tech/resnet.webp" },
+      { name: "ELK Stack", logo: "/images/tech/vggnet.webp" }
     ]
   }
 ];

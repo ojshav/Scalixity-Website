@@ -2,12 +2,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const industries = [
-  { name: "Healthcare", icon: "/icons/healthcare.svg", link: "/industries/healthcare" },
-  { name: "Finance", icon: "/icons/finance.svg", link: "/industries/finance" },
-  { name: "Retail", icon: "/icons/retail.svg", link: "/industries/retail" },
-  { name: "Manufacturing", icon: "/icons/manufacturing.svg", link: "/industries/manufacturing" },
-  { name: "Logistics", icon: "/icons/logistics.svg", link: "/industries/logistics" },
-  { name: "Energy", icon: "/icons/energy.svg", link: "/industries/energy" }
+  { name: "Healthcare", icon: "/images/icons/healthcare.svg", link: "/industries/healthcare" },
+  { name: "Finance", icon: "/images/icons/finance.svg", link: "/industries/finance" },
+  { name: "Retail", icon: "/images/icons/retail.svg", link: "/industries/retail" },
+  { name: "Manufacturing", icon: "/images/icons/manufacturing.svg", link: "/industries/manufacturing" },
+  { name: "Logistics", icon: "/images/icons/logistics.svg", link: "/industries/logistics" },
+  { name: "Energy", icon: "/images/icons/energy.svg", link: "/industries/energy" }
 ]
 
 export function Industries() {

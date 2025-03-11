@@ -13,9 +13,7 @@ const projects = [
     image: "/placeholder.svg?height=600&width=800",
     features: [
       "Real-time vehicle tracking",
-      "Advanced algorithms for efficient route planning",
-      "In-app communication interfaces",
-      "Strict adherence to accessibility and privacy laws"
+      "Advanced algorithms for efficient route planning"
     ]
   },
   {
@@ -25,8 +23,7 @@ const projects = [
     image: "/placeholder.svg?height=600&width=800",
     features: [
       "Legal Chatbot Assistant",
-      "Improved Communication Efficiency",
-      "Research Time Reduction by 64%"
+      "Improved Communication Efficiency"
     ]
   },
   {
@@ -36,9 +33,7 @@ const projects = [
     image: "/placeholder.svg?height=600&width=800",
     features: [
       "State-of-the-art voice recognition",
-      "Provides natural dialogues and verbal responses",
-      "Multi-language support for diverse customers",
-      "Dynamic interaction for enhanced engagement"
+      "Provides natural dialogues and verbal responses"
     ]
   }
 ];

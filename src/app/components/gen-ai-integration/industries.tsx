@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const industries = [
+  { name: "Healthcare", icon: "/icons/healthcare.svg" },
   { name: "Finance", icon: "/icons/finance.svg" },
   { name: "E-commerce", icon: "/icons/ecommerce.svg" },
   { name: "Education", icon: "/icons/education.svg" },

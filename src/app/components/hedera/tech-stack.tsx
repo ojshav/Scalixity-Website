@@ -5,23 +5,23 @@ import Image from 'next/image'
 
 const techCategories = {
   "DL Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "Keras", logo: "/tech/keras.svg" },
-    { name: "MXNet", logo: "/tech/mxnet.svg" },
-    { name: "JAX", logo: "/tech/jax.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "Keras", logo: "/images/tech/keras.svg" },
+    { name: "MXNet", logo: "/images/tech/mxnet.svg" },
+    { name: "JAX", logo: "/images/tech/jax.svg" }
   ],
   "Modules/Toolkits": [
-    { name: "Hugging Face Transformers", logo: "/tech/huggingface.svg" },
-    { name: "ONNX", logo: "/tech/onnx.svg" },
-    { name: "Core ML", logo: "/tech/coreml.svg" }
+    { name: "Hugging Face Transformers", logo: "/images/tech/huggingface.svg" },
+    { name: "ONNX", logo: "/images/tech/onnx.svg" },
+    { name: "Core ML", logo: "/images/tech/coreml.svg" }
   ],
   "Libraries": [
-    { name: "SciKit-Learn", logo: "/tech/scikit-learn.svg" },
-    { name: "Pandas", logo: "/tech/pandas.svg" },
-    { name: "NumPy", logo: "/tech/numpy.svg" },
-    { name: "Matplotlib", logo: "/tech/matplotlib.svg" },
-    { name: "Seaborn", logo: "/tech/seaborn.svg" }
+    { name: "SciKit-Learn", logo: "/images/tech/scikit-learn.svg" },
+    { name: "Pandas", logo: "/images/tech/pandas.svg" },
+    { name: "NumPy", logo: "/images/tech/numpy.svg" },
+    { name: "Matplotlib", logo: "/images/tech/matplotlib.svg" },
+    { name: "Seaborn", logo: "/images/tech/seaborn.svg" }
   ],
   "Image Classification Models": [
     "VGG-16",

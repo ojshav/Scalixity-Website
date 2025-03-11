@@ -5,35 +5,45 @@ type Technologies = Record<string, TechItem[]>;
 
 const technologies: Technologies = {
   "AI Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "Keras", logo: "/tech/keras.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "Keras", logo: "/images/tech/keras.svg" }
   ],
   "Cloud Platforms": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
-  "Integration & Dev Tools": [
-    { name: "Google Dialogflow", logo: "/tech/dialogflow.svg" },
-    { name: "Microsoft BotFramework", logo: "/tech/botframework.svg" },
-    { name: "Rasa", logo: "/tech/rasa.svg" }
+  "Integration & Development Tools": [
+    { name: "Google Dialogflow", logo: "/images/tech/dialogflow.svg" },
+    { name: "Microsoft BotFramework", logo: "/images/tech/botframework.svg" },
+    { name: "Amazon Lex", logo: "/images/tech/amazonlex.svg" },
+    { name: "BotMap", logo: "/images/tech/botmap.svg" },
+    { name: "Botsify", logo: "/images/tech/botsify.svg" },
+    { name: "Rasa", logo: "/images/tech/rasa.svg" },
+    { name: "Wit.ai", logo: "/images/tech/witai.svg" },
+    { name: "Docker", logo: "/images/tech/docker.svg" },
+    { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" },
+    { name: "Ansible", logo: "/images/tech/ansible.svg" }
   ],
   "OpenAI Models": [
-    { name: "GPT-3", logo: "/tech/gpt3.svg" },
-    { name: "GPT-3.5 Turbo", logo: "/tech/gpt3-5.svg" },
-    { name: "GPT-4", logo: "/tech/gpt4.svg" }
+    { name: "GPT-3", logo: "/images/tech/gpt3.svg" },
+    { name: "GPT-3.5 Turbo", logo: "/images/tech/gpt3-5.svg" },
+    { name: "GPT-4", logo: "/images/tech/gpt4.svg" }
   ],
   "Programming Languages": [
-    { name: "Python", logo: "/tech/python.svg" },
-    { name: "JavaScript", logo: "/tech/javascript.svg" },
-    { name: "TypeScript", logo: "/tech/typescript.svg" },
-    { name: "Java", logo: "/tech/java.svg" }
+    { name: "Python", logo: "/images/tech/python.svg" },
+    { name: "JavaScript", logo: "/images/tech/javascript.svg" },
+    { name: "TypeScript", logo: "/images/tech/typescript.svg" },
+    { name: "Java", logo: "/images/tech/java.svg" },
+    { name: "C++", logo: "/images/tech/cpp.svg" }
   ],
   "Databases": [
-    { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-    { name: "MongoDB", logo: "/tech/mongodb.svg" },
-    { name: "MySQL", logo: "/tech/mysql.svg" }
+    { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+    { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+    { name: "MySQL", logo: "/images/tech/mysql.svg" },
+    { name: "Firebase", logo: "/images/tech/firebase.svg" },
+    { name: "Redis", logo: "/images/tech/redis.svg" }
   ]
 };
 

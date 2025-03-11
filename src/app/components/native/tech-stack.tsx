@@ -6,41 +6,41 @@ const techStack = [
   {
     category: "Programming Languages",
     items: [
-      { name: "Swift", logo: "/tech/swift.svg" },
-      { name: "Kotlin", logo: "/tech/kotlin.svg" },
-      { name: "Java", logo: "/tech/java.svg" }
+      { name: "Swift", logo: "/images/tech/swift.svg" },
+      { name: "Kotlin", logo: "/images/tech/kotlin.svg" },
+      { name: "Java", logo: "/images/tech/java.svg" }
     ]
   },
   {
     category: "Frameworks & SDKs",
     items: [
-      { name: "SwiftUI", logo: "/tech/swiftui.svg" },
-      { name: "Jetpack Compose", logo: "/tech/jetpack-compose.svg" },
-      { name: "Android SDK", logo: "/tech/android-sdk.svg" }
+      { name: "SwiftUI", logo: "/images/tech/swiftui.svg" },
+      { name: "Jetpack Compose", logo: "/images/tech/jetpack-compose.svg" },
+      { name: "Android SDK", logo: "/images/tech/android-sdk.svg" }
     ]
   },
   {
     category: "Databases",
     items: [
-      { name: "Core Data", logo: "/tech/core-data.svg" },
-      { name: "Realm", logo: "/tech/realm.svg" },
-      { name: "SQLite", logo: "/tech/sqlite.svg" }
+      { name: "Core Data", logo: "/images/tech/core-data.svg" },
+      { name: "Realm", logo: "/images/tech/realm.svg" },
+      { name: "SQLite", logo: "/images/tech/sqlite.svg" }
     ]
   },
   {
     category: "Testing & Debugging",
     items: [
-      { name: "XCTest", logo: "/tech/xctest.svg" },
-      { name: "Espresso", logo: "/tech/espresso.svg" },
-      { name: "JUnit", logo: "/tech/junit.svg" }
+      { name: "XCTest", logo: "/images/tech/xctest.svg" },
+      { name: "Espresso", logo: "/images/tech/espresso.svg" },
+      { name: "JUnit", logo: "/images/tech/junit.svg" }
     ]
   },
   {
     category: "Deployment & CI/CD",
     items: [
-      { name: "App Store Connect", logo: "/tech/app-store-connect.svg" },
-      { name: "Google Play Console", logo: "/tech/google-play.svg" },
-      { name: "Fastlane", logo: "/tech/fastlane.svg" }
+      { name: "App Store Connect", logo: "/images/tech/app-store-connect.svg" },
+      { name: "Google Play Console", logo: "/images/tech/google-play.svg" },
+      { name: "Fastlane", logo: "/images/tech/fastlane.svg" }
     ]
   }
 ];

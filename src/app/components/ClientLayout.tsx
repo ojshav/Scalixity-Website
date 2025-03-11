@@ -42,9 +42,30 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     return { deviceType, browser };
   };
 
+  // Utility function for retrying failed requests
+  const fetchWithRetry = async (url: string, options: RequestInit, retries = 3) => {
+    for (let i = 0; i < retries; i++) {
+      try {
+        const response = await fetch(url, {
+          ...options,
+          signal: AbortSignal.timeout(5000)
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response;
+      } catch (error) {
+        if (i === retries - 1) throw error;
+        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1))); // Exponential backoff
+      }
+    }
+  };
+
   const fetchCountry = async () => {
     try {
-      const response = await fetch("https://ipapi.co/json/");
+      const response = await fetchWithRetry("https://ipapi.co/json/", {
+        cache: 'force-cache'
+      });
       const data = await response.json();
       setCountry(data.country_name || "Unknown");
     } catch (error) {
@@ -222,28 +243,30 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
       console.log("Performance Metrics:", metrics);
 
-      // Send performance metrics to /track-metrics endpoint
-      fetch("http://localhost:5000/api/track-metrics", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(metrics),
-      })
-        .then(async (response) => {
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error || "Unknown"}`);
-          }
-          return response.json();
-        })
-        .then((data) => console.log("Performance metrics sent successfully:", data))
-        .catch((err) => {
-          console.error("Failed to send performance metrics:", err);
-          updateErrorTracking(
-            err.message.match(/\d{3}/)?.[0] || "Unknown",
-            err.message,
+      // Unified metrics handling function
+      const handleMetrics = async () => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('Metrics tracking disabled in development');
+          return;
+        }
+
+        // Send performance metrics to /track-metrics endpoint
+        fetch("http://localhost:5000/api/track-metrics", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(metrics),
+        }).catch((error) => {
+          console.error(
+            "Error sending performance metrics:",
+            error,
             "fetch-metrics"
           );
         });
+      };
+
+      handleMetrics();
     });
 
     observer.observe({ type: "paint", buffered: true });

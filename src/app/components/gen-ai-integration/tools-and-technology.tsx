@@ -5,42 +5,42 @@ type Technologies = Record<string, (TechItem | string)[]>
 
 const technologies: Technologies = {
   "AI Frameworks": [
-    { name: "MXNet", logo: "/tech/mxnet.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "Keras", logo: "/tech/keras.svg" }
+    { name: "MXNet", logo: "/images/tech/mxnet.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "Keras", logo: "/images/tech/keras.svg" }
   ],
   "Generative AI Models": [
-    { name: "GPT-3", logo: "/tech/gpt3.svg" },
-    { name: "GPT-3.5 Turbo", logo: "/tech/gpt3-5.svg" },
-    { name: "Lamda", logo: "/tech/lamda.svg" }
+    { name: "GPT-3", logo: "/images/tech/gpt3.svg" },
+    { name: "GPT-3.5 Turbo", logo: "/images/tech/gpt3-5.svg" },
+    { name: "Lamda", logo: "/images/tech/lamda.svg" }
   ],
   "Data Processing & Management": [
-    { name: "Pandas", logo: "/tech/pandas.svg" },
-    { name: "NumPy", logo: "/tech/numpy.svg" },
-    { name: "Apache Spark", logo: "/tech/spark.svg" }
+    { name: "Pandas", logo: "/images/tech/pandas.svg" },
+    { name: "NumPy", logo: "/images/tech/numpy.svg" },
+    { name: "Apache Spark", logo: "/images/tech/spark.svg" }
   ],
   "Data Virtualization": [
-    { name: "Denodo", logo: "/tech/denodo.svg" },
-    { name: "Cisco Data Virtualization", logo: "/tech/cisco-dv.svg" }
+    { name: "Denodo", logo: "/images/tech/denodo.svg" },
+    { name: "Cisco Data Virtualization", logo: "/images/tech/cisco-dv.svg" }
   ],
   "Containerization & Deployment": [
-    { name: "Docker", logo: "/tech/docker.svg" },
-    { name: "Kubernetes", logo: "/tech/kubernetes.svg" },
-    { name: "Helm", logo: "/tech/helm.svg" }
+    { name: "Docker", logo: "/images/tech/docker.svg" },
+    { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" },
+    { name: "Helm", logo: "/images/tech/helm.svg" }
   ],
   "Cloud Platform": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Testing & Integration": [
-    { name: "JUnit", logo: "/tech/junit.svg" },
-    { name: "Mocha", logo: "/tech/mocha.svg" },
-    { name: "Jest", logo: "/tech/jest.svg" }
+    { name: "JUnit", logo: "/images/tech/junit.svg" },
+    { name: "Mocha", logo: "/images/tech/mocha.svg" },
+    { name: "Jest", logo: "/images/tech/jest.svg" }
   ],
   "API for AI Model Integration": [
-    { name: "FastAPI", logo: "/tech/fastapi.svg" },
-    { name: "Flask", logo: "/tech/flask.svg" }
+    { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
+    { name: "Flask", logo: "/images/tech/flask.svg" }
   ],
   "Various Controls": [
     "Version Control (GitHub, GitLab)",

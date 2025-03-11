@@ -6,40 +6,40 @@ const techStack = [
   {
     category: "Programming Languages",
     items: [
-      { name: "Swift", logo: "/tech/swift.svg" },
-      { name: "Objective-C", logo: "/tech/objectivec.svg" }
+      { name: "Swift", logo: "/images/tech/swift.svg" },
+      { name: "Objective-C", logo: "/images/tech/objectivec.svg" }
     ]
   },
   {
     category: "Frameworks & Libraries",
     items: [
-      { name: "SwiftUI", logo: "/tech/swiftui.svg" },
-      { name: "UIKit", logo: "/tech/uikit.svg" },
-      { name: "Combine", logo: "/tech/combine.svg" }
+      { name: "SwiftUI", logo: "/images/tech/swiftui.svg" },
+      { name: "UIKit", logo: "/images/tech/uikit.svg" },
+      { name: "Combine", logo: "/images/tech/combine.svg" }
     ]
   },
   {
     category: "Backend & Databases",
     items: [
-      { name: "Firebase", logo: "/tech/firebase.svg" },
-      { name: "CoreData", logo: "/tech/coredata.svg" },
-      { name: "Realm", logo: "/tech/realm.svg" }
+      { name: "Firebase", logo: "/images/tech/firebase.svg" },
+      { name: "CoreData", logo: "/images/tech/coredata.svg" },
+      { name: "Realm", logo: "/images/tech/realm.svg" }
     ]
   },
   {
     category: "Testing & Debugging",
     items: [
-      { name: "XCTest", logo: "/tech/xctest.svg" },
-      { name: "TestFlight", logo: "/tech/testflight.svg" },
-      { name: "Postman", logo: "/tech/postman.svg" }
+      { name: "XCTest", logo: "/images/tech/xctest.svg" },
+      { name: "TestFlight", logo: "/images/tech/testflight.svg" },
+      { name: "Postman", logo: "/images/tech/postman.svg" }
     ]
   },
   {
     category: "Deployment & CI/CD",
     items: [
-      { name: "App Store Connect", logo: "/tech/appstore.svg" },
-      { name: "Fastlane", logo: "/tech/fastlane.svg" },
-      { name: "Bitrise", logo: "/tech/bitrise.svg" }
+      { name: "App Store Connect", logo: "/images/tech/appstore.svg" },
+      { name: "Fastlane", logo: "/images/tech/fastlane.svg" },
+      { name: "Bitrise", logo: "/images/tech/bitrise.svg" }
     ]
   }
 ];
