@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 const technologies = {
   "LLM Frameworks": [
+
     { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
     { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
     { name: "Hugging Face", logo: "/images/tech/huggingface.svg" }
@@ -15,6 +16,7 @@ const technologies = {
     { name: "GPT-3", logo: "/images/tech/gpt3.svg" },
     { name: "BERT", logo: "/images/tech/bert.svg" },
     { name: "T5", logo: "/images/tech/t5.svg" }
+
   ]
 }
 

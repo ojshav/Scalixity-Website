@@ -1,12 +1,12 @@
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import ClientLayout from "@/src/app/components/ClientLayout"; // Import the new client layout
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   variable: "--font-inter",
+//   display: "swap",
+// });
 
 export const metadata = {
   title: "Scalixity - AI Solutions for Data-Driven Companies",

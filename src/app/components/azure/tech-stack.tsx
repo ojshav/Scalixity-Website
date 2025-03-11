@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-<<<<<<< HEAD
+
 const azureTechCategories = {
   "Compute Services": [
     { name: "Virtual Machines", logo: "/images/tech/azure-vm.svg" },
@@ -29,7 +29,7 @@ const azureTechCategories = {
     { name: "API Management", logo: "/images/tech/azure-apim.svg" },
     { name: "Azure DevOps", logo: "/images/tech/azure-devops.svg" },
     { name: "Terraform on Azure", logo: "/images/tech/azure-terraform.svg" }
-=======
+
 const scalixityTechCategories = {
   "Data Processing & Analytics": [
     { name: "Pandas", logo: "/tech/pandas.svg" },
@@ -51,11 +51,12 @@ const scalixityTechCategories = {
     { name: "MongoDB", logo: "/tech/mongodb.svg" },
     { name: "Redis", logo: "/tech/redis.svg" }
   ],
+
   "Cloud & DevOps": [
     { name: "AWS", logo: "/tech/aws.svg" },
     { name: "Docker", logo: "/tech/docker.svg" },
     { name: "Kubernetes", logo: "/tech/kubernetes.svg" }
->>>>>>> ab42500 (other pages added)
+
   ]
 }
 

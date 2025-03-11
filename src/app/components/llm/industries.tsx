@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 const industries = [
+
   { name: "Healthcare", icon: "/images/icons/healthcare.svg" },
   { name: "Finance", icon: "/images/icons/finance.svg" },
   { name: "E-commerce", icon: "/images/icons/ecommerce.svg" },
@@ -9,6 +10,7 @@ const industries = [
   { name: "Manufacturing", icon: "/images/icons/manufacturing.svg" },
   { name: "Customer Service", icon: "/images/icons/Customer Service.svg" },
   { name: "Media & Entertainment", icon: "/images/icons/media.svg" }
+
 ]
 
 export function Industries() {
