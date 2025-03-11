@@ -11,7 +11,7 @@ export default function CompanyPage() {
   return (
     <div className="pt-20">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-center py-12">About Scalixity</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-sky-50 py-12">About Scalixity</h1>
         <div className="text-gray-300 space-y-6 max-w-3xl mx-auto mb-12">
   <p className="text-xl">
     Scalixity is a leading AI solutions provider, dedicated to helping businesses harness the power of generative AI and data-driven technologies.

@@ -4,33 +4,35 @@
 
 @layer base {
   :root {
-    --background: 30 30% 90%; /* Soft beige */
-    --foreground: 0 0% 10%; /* Dark text */
-    --card: 30 30% 95%;
-    --card-foreground: 0 0% 10%;
-    --popover: 30 30% 95%;
-    --popover-foreground: 0 0% 10%;
-    --primary: 40 30% 40%; 
-    --primary-foreground: 30 30% 95%;
-    --secondary: 40 30% 60%;
-    --secondary-foreground: 30 30% 95%;
-    --muted: 30 30% 85%;
-    --muted-foreground: 0 0% 40%;
-    --accent: 40 30% 50%;
-    --accent-foreground: 30 30% 95%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 40 30% 95%;
-    --border: 30 30% 80%;
-    --input: 30 30% 80%;
-    --ring: 40 30% 40%;
+    --background: 30 30% 95%; /* Even lighter beige background */
+    --foreground: 240 10% 30%; /* Lighter text color */
+    --card: 40 30% 98%;
+    --card-foreground: 240 10% 30%;
+    --popover: 40 30% 98%;
+    --popover-foreground: 240 10% 30%;
+    --primary: 231 60% 74%; /* #9FA8DA - Keeping the muted lavender-blue */
+    --primary-foreground: 40 30% 98%;
+    --secondary: 231 40% 84%;
+    --secondary-foreground: 240 10% 30%;
+    --muted: 40 20% 92%; /* Lighter muted color */
+    --muted-foreground: 240 10% 40%;
+    --accent: 231 50% 70%; /* Slightly lighter accent */
+    --accent-foreground: 40 30% 98%;
+    --destructive: 0 70% 60%; /* Lighter destructive color */
+    --destructive-foreground: 40 30% 98%;
+    --border: 231 30% 85%; /* Lighter border */
+    --input: 231 30% 85%;
+    --ring: 231 60% 74%;
 
-    --logo-color: 36% 28% 89%; /* Muted beige-brown */
-    --button-color: 36% 28% 89%; /* Darker accent */
+    --logo-color: 231 60% 74%; /* #9FA8DA */
+    --button-color: 231 60% 74%; /* #9FA8DA */
   }
 }
+
 body {
   @apply bg-background text-foreground antialiased;
 }
+
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
@@ -39,12 +41,10 @@ body {
 
 @layer base {
   body {
-   
     @apply bg-background text-foreground antialiased;
-    
     background-image: 
-      radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+      radial-gradient(circle at 10% 20%, rgba(159, 168, 218, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(159, 168, 218, 0.04) 0%, transparent 50%);
     background-attachment: fixed;
   }
 }
@@ -55,46 +55,34 @@ body {
   }
 
   .nav-dropdown {
-    @apply absolute top-full left-0 bg-white border border-border rounded-lg p-4 w-64 shadow-xl;
+    @apply absolute top-full left-0 bg-white border border-border rounded-lg p-4 w-64 shadow-lg;
   }
 
   .nav-dropdown-item {
-    @apply block py-2 px-3 text-black hover:text-primary hover:bg-muted rounded-md transition-colors;
+    @apply block py-2 px-3 text-foreground hover:text-primary hover:bg-muted rounded-md transition-colors;
   }
-  
 }
 
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--logo-color))] via-[hsl(var(--accent))] to-[hsl(var(--logo-color))];
-  }
-  
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--logo-color))] via-[hsl(var(--accent))] to-[hsl(var(--logo-color))];
+}
 
-  .button-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-[hsl(var(--button-color))] text-primary-foreground font-medium hover:bg-accent transition-colors transform hover:scale-105 shadow-lg;
-  }
+.button-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-[hsl(var(--button-color))] text-primary-foreground font-medium hover:bg-accent transition-colors transform hover:scale-105 shadow-md;
+}
 
-  .button-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-muted transition-colors transform hover:scale-105 shadow-lg border border-primary/20;
-  }
+.button-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-muted transition-colors transform hover:scale-105 shadow-md border border-primary/20;
+}
 
-  .diagonal-lines {
-    background-image: linear-gradient(45deg, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-  }
+.diagonal-lines {
+  background-image: linear-gradient(45deg, rgba(159, 168, 218, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
 
-  .ai-bg-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--logo-color))] via-[hsl(var(--accent))] to-[hsl(var(--logo-color))];
-  }
-
-  .button-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-[hsl(var(--button-color))] text-primary-foreground font-medium hover:bg-accent transition-colors transform hover:scale-105 shadow-lg;
-  }
-
-
-
+.ai-bg-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239FA8DA' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
 
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
@@ -102,16 +90,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F3F1EB;
+  background: #F5F3ED; /* Lighter track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FFD700;
+  background: #9FA8DA;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #FFC000;
+  background: #AAB2E0; /* Lighter hover */
 }
 
 /* Smooth scrolling for the entire page */
@@ -121,29 +109,31 @@ html {
 
 /* Custom selection color */
 ::selection {
-  background: rgba(255, 215, 0, 0.2);
-  color: #ffffff;
+  background: rgba(159, 168, 218, 0.3);
+  color: #505050; /* Lighter text color */
 }
 
 /* Improved focus styles for accessibility */
 :focus {
-  outline: 2px solid #FFD700;
+  outline: 2px solid #9FA8DA;
   outline-offset: 2px;
 }
 
-/* Add a subtle text shadow to headings */
+/* Reduce text shadow on headings for lighter feel */
 h1, h2, h3, h4, h5, h6 {
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 
-/* Enhance link interactions */
+/* Enhance link interactions with lighter colors */
 a {
   transition: all 0.3s ease;
+  color: #9FA8DA; /* Keeping the lavender blue for links */
 }
 
 a:hover {
   text-decoration: underline;
   text-underline-offset: 2px;
+  color: #8891C9; /* Slightly darker on hover but still light */
 }
 
 /* Improve button interactions */
@@ -157,7 +147,7 @@ button:active, .button-primary:active, .button-secondary:active {
 
 /* Add a subtle glow effect to important elements */
 .glow-effect {
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 15px rgba(159, 168, 218, 0.4);
 }
 
 /* Enhance form input styles */
@@ -168,7 +158,7 @@ input, textarea, select {
 
 input:focus, textarea:focus, select:focus {
   @apply border-primary;
-  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 0 2px rgba(159, 168, 218, 0.2);
 }
 
 /* Add a subtle animation to icons */
@@ -180,15 +170,15 @@ input:focus, textarea:focus, select:focus {
   transform: translateY(-2px);
 }
 
-/* Improve card styles */
+/* Improve card styles with lighter shadows */
 .card {
-  @apply bg-card rounded-lg p-6 shadow-lg;
+  @apply bg-card rounded-lg p-6 shadow-md;
   transition: all 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.06);
 }
 
 /* Add a subtle gradient overlay to images */
@@ -203,7 +193,29 @@ input:focus, textarea:focus, select:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom right, rgba(255, 215, 0, 0.2), rgba(218, 165, 32, 0.2));
+  background: linear-gradient(to bottom right, rgba(159, 168, 218, 0.15), rgba(126, 136, 193, 0.15));
   pointer-events: none;
 }
 
+/* Additional classes for the lavender-cream color scheme */
+.accent-border {
+  border: 1px solid #B7BFE5; /* Lighter border */
+  border-left: 4px solid #9FA8DA;
+}
+
+.soft-shadow {
+  box-shadow: 0 4px 10px rgba(159, 168, 218, 0.12);
+}
+
+.lavender-tag {
+  @apply inline-block px-3 py-1 text-xs font-medium rounded-full;
+  background-color: rgb(255, 255, 255);
+  color: #8891C9; /* Lighter tag text */
+}
+
+.cream-panel {
+  background-color: #F7F5EF; /* Lighter cream */
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid rgba(159, 168, 218, 0.2);
+}

@@ -32,7 +32,7 @@ export default function ResourcesPage() {
   return (
     <div className="pt-20">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-center py-12">Resources</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-sky-50 py-12">Resources</h1>
         <p className="text-xl text-center text-gray-400 mb-12">Expand your AI knowledge with our curated resources</p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {resources.map((resource, index) => (
