@@ -16,12 +16,13 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: ["http://localhost:3000"],
+  origin: "*", // Allow all origins
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
-app.use(express.json());
+
+
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
@@ -84,7 +85,19 @@ async function setupDatabase() {
         event VARCHAR(50),
         deviceType VARCHAR(50),
         country VARCHAR(50),
-        browser VARCHAR(100)
+        browser VARCHAR(100),
+        INDEX idx_visitorId (visitorId)  -- Add this index
+      )
+    `);
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS projects (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(100) NOT NULL,
+        description TEXT NOT NULL,
+        image VARCHAR(255) NOT NULL,
+        live_url VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
     `);
 
@@ -135,7 +148,18 @@ async function setupDatabase() {
         country VARCHAR(100)
       )
     `);
-    
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS contact_us (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        phone VARCHAR(20),
+        message TEXT NOT NULL,
+        status ENUM('new', 'in_progress', 'resolved') DEFAULT 'new',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      )
+    `);
     // Check if default admin exists, if not create one
     const [rows] = await connection.execute(
       'SELECT * FROM admin_users WHERE role = "super_admin"'
