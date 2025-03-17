@@ -34,7 +34,7 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch('http://kea.mywire.org:5000/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

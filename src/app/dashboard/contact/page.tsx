@@ -27,7 +27,7 @@ export default function AdminContactDashboard() {
   useEffect(() => {
     const fetchSubmissions = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/contact', {
+        const response = await fetch('http://kea.mywire.org:5000/api/contact', {
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('adminToken')
           }

@@ -79,7 +79,7 @@ const AdminUsers = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await fetch('http://localhost:5000/api/admin/users', {
+      const response = await fetch('http://kea.mywire.org:5000/api/admin/users', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -127,7 +127,7 @@ const AdminUsers = () => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await fetch('http://localhost:5000/api/admin/users', {
+      const response = await fetch('http://kea.mywire.org:5000/api/admin/users', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -182,7 +182,7 @@ const AdminUsers = () => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await fetch(`http://localhost:5000/api/admin/users/${selectedUserId}`, {
+      const response = await fetch(`http://kea.mywire.org:5000/api/admin/users/${selectedUserId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

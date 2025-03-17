@@ -31,11 +31,11 @@ export default function UserAnalytics() {
 
   useEffect(() => {
     Promise.all([
-      fetch('http://localhost:5000/api/total-users').then((res) => res.json()),
-      fetch('http://localhost:5000/api/new-vs-returning').then((res) => res.json()),
-      fetch('http://localhost:5000/api/active-users').then((res) => res.json()),
-      fetch('http://localhost:5000/api/user-breakdown').then((res) => res.json()),
-      fetch('http://localhost:5000/api/growth-rate').then((res) => res.json()),
+      fetch('http://kea.mywire.org:5000/api/total-users').then((res) => res.json()),
+      fetch('http://kea.mywire.org:5000/api/new-vs-returning').then((res) => res.json()),
+      fetch('http://kea.mywire.org:5000/api/active-users').then((res) => res.json()),
+      fetch('http://kea.mywire.org:5000/api/user-breakdown').then((res) => res.json()),
+      fetch('http://kea.mywire.org:5000/api/growth-rate').then((res) => res.json()),
     ])
       .then(([totalUsers, newVsReturning, activeUsers, userBreakdown, growthRate]) => {
         // Fix active users data structure - flatten the nested array

@@ -81,7 +81,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
       console.log(`Sending ${eventType} event:`, eventData);
 
-      fetch("http://localhost:5000/api/track", {
+      fetch("http://kea.mywire.org:5000/api/track", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(eventData),
@@ -127,7 +127,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     const recentErrorLogs: { path: string; errorCode: string; count: number; lastOccurrence: string }[] = [];
 
     const sendErrorData = (data: Record<string, unknown>) => {
-      fetch(`http://localhost:5000/api/track-error-logs`, {
+      fetch(`http://kea.mywire.org:5000/api/track-error-logs`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -223,7 +223,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       console.log("Performance Metrics:", metrics);
 
       // Send performance metrics to /track-metrics endpoint
-      fetch("http://localhost:5000/api/track-metrics", {
+      fetch("http://kea.mywire.org:5000/api/track-metrics", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(metrics),
