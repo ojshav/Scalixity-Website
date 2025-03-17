@@ -15,7 +15,7 @@ const technologies: Technologies = {
     { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Integration & Development Tools": [
-    { name: "Google Dialogflow", logo: "/images/tech/dialogflow.svg" },
+    { name: "", logo: "/images/tech/dialogflow.svg" },
     { name: "Microsoft BotFramework", logo: "/images/tech/botframework.svg" },
     { name: "Amazon Lex", logo: "/images/tech/amazonlex.svg" },
     { name: "BotMap", logo: "/images/tech/botmap.svg" },
@@ -29,7 +29,7 @@ const technologies: Technologies = {
   "OpenAI Models": [
     { name: "GPT-3", logo: "/images/tech/gpt3.svg" },
     { name: "GPT-3.5 Turbo", logo: "/images/tech/gpt3-5.svg" },
-    { name: "GPT-4", logo: "/images/tech/gpt4.svg" }
+    { name: "GPT-4", logo: "/images/tech/gpt3.svg" }
   ],
   "Programming Languages": [
     { name: "Python", logo: "/images/tech/python.svg" },

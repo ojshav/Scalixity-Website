@@ -4,42 +4,41 @@ const techStack = [
   {
     category: "Large Language Models",
     items: [
-      { name: "OpenAI GPT", logo: "/tech/openai.svg" },
-      { name: "Anthropic Claude", logo: "/tech/anthropic.svg" },
-      { name: "Google Gemini", logo: "/tech/google-gemini.svg" },
-      { name: "Meta Llama", logo: "/tech/meta-llama.svg" },
+      { name: "OpenAI GPT", logo: "/images/tech/openai.svg" },
+      { name: "Anthropic Claude", logo: "/images/tech/gpt3.svg" },
+      { name: "Google Gemini", logo: "/images/tech/gatk.webp" },
+      { name: "Meta Llama", logo: "/images/tech/hardhat.webp" },
     ],
   },
   {
     category: "API & Backend Services",
     items: [
-      { name: "FastAPI", logo: "/tech/fastapi.svg" },
-      { name: "Flask", logo: "/tech/flask.svg" },
-      { name: "Node.js", logo: "/tech/nodejs.svg" },
+      { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
+      { name: "Flask", logo: "/images/tech/flask.svg" },
+      { name: "Node.js", logo: "/images/tech/nextjs.svg" },
     ],
   },
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS Lambda", logo: "/tech/aws-lambda.svg" },
-      { name: "Google Cloud Functions", logo: "/tech/gcp-functions.svg" },
-      { name: "Vercel", logo: "/tech/vercel.svg" },
+      { name: "AWS Lambda", logo: "/images/tech/aws-lambda.svg" },
+      { name: "Google Cloud Functions", logo: "/images/tech/google-cloud.svg" },
     ],
   },
   {
     category: "Data Processing & Storage",
     items: [
-      { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-      { name: "MongoDB", logo: "/tech/mongodb.svg" },
-      { name: "Redis", logo: "/tech/redis.svg" },
+      { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+      { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+      { name: "Redis", logo: "/images/tech/redis.svg" },
     ],
   },
   {
     category: "Monitoring & Logging",
     items: [
-      { name: "Prometheus", logo: "/tech/prometheus.svg" },
-      { name: "Datadog", logo: "/tech/datadog.svg" },
-      { name: "ELK Stack", logo: "/tech/elk.svg" },
+      { name: "Prometheus", logo: "/images/tech/prometheus.webp" },
+      { name: "Datadog", logo: "/images/tech/d3.svg" },
+      { name: "ELK Stack", logo: "/images/tech/t5.svg" },
     ],
   },
 ];
