@@ -5,20 +5,20 @@ import Image from "next/image";
 
 const techStack = {
   "Natural Language Processing (NLP)": [
-    { name: "SpaCy", logo: "/tech/spacy.svg" },
-    { name: "NLTK", logo: "/tech/nltk.svg" }
+    { name: "SpaCy", logo: "/images/tech/spacy.svg" },
+    { name: "NLTK", logo: "/images/tech/nltk.svg" }
   ],
   "AI & ML Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" }
   ],
   "Conversational AI Platforms": [
-    { name: "Dialogflow", logo: "/tech/dialogflow.svg" },
-    { name: "Rasa", logo: "/tech/rasa.svg" }
+    { name: "Dialogflow", logo: "/images/tech/dialogflow.svg" },
+    { name: "Rasa", logo: "/images/tech/rasa.svg" }
   ],
   "Deployment & Integration": [
-    { name: "AWS Lex", logo: "/tech/aws-lex.svg" },
-    { name: "Microsoft Bot Framework", logo: "/tech/ms-bot.svg" }
+    { name: "AWS Lex", logo: "/images/tech/aws.svg" },
+    { name: "Microsoft Bot Framework", logo: "/images/tech/mxnet.svg" }
   ]
 };
 

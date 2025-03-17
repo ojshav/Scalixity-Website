@@ -5,20 +5,20 @@ import Image from "next/image";
 
 const techStack = {
   "Deep Learning Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" }
   ],
   "Computer Vision Libraries": [
-    { name: "OpenCV", logo: "/tech/opencv.svg" },
-    { name: "Detectron2", logo: "/tech/detectron2.svg" }
+    { name: "OpenCV", logo: "/images/tech/openai.svg" },
+    { name: "Detectron2", logo: "/images/tech/d3.svg" }
   ],
   "Model Deployment & Optimization": [
-    { name: "ONNX", logo: "/tech/onnx.svg" },
-    { name: "TensorRT", logo: "/tech/tensorrt.svg" }
+    { name: "ONNX", logo: "/images/tech/onnx.svg" },
+    { name: "TensorRT", logo: "/images/tech/tensor2tensor.svg" }
   ],
   "Edge AI & IoT Integration": [
-    { name: "NVIDIA Jetson", logo: "/tech/jetson.svg" },
-    { name: "Intel OpenVINO", logo: "/tech/openvino.svg" }
+    { name: "NVIDIA Jetson", logo: "/images/tech/nvcaffe.svg" },
+    { name: "Intel OpenVINO", logo: "/images/tech/ipfs.webp" }
   ]
 };
 
