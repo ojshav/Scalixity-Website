@@ -10,7 +10,7 @@ const industries = [
   { name: "Education", icon: "/images/icons/education.svg" },
   { name: "Retail", icon: "/images/icons/retail.svg" },
   { name: "Travel & Hospitality", icon: "/images/icons/travel.svg" },
-  { name: "Real Estate", icon: "/images/icons/realestate.svg" },
+  { name: "Real Estate", icon: "/images/icons/construction.svg" },
   { name: "Logistics & Transportation", icon: "/images/icons/logistics.svg" }
 ];
 
