@@ -32,15 +32,7 @@ export function BlogPosts() {
   return (
     <section className="bg-[#F3F1EB] py-32">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-            Latest Insights & Articles
-          </h2>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Explore cutting-edge AI and blockchain topics, handpicked for you.
-          </p>
-        </div>
-
+        
         <div className="grid md:grid-cols-2 gap-12">
           {/* Highlighted Main Post */}
           <Link href={blogPosts[0].link} className="block group col-span-2 md:col-span-1">

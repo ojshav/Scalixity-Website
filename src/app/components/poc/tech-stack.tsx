@@ -4,41 +4,41 @@ const techStack = [
   {
     category: "Machine Learning Frameworks",
     items: [
-      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-      { name: "PyTorch", logo: "/tech/pytorch.svg" },
-      { name: "Scikit-Learn", logo: "/tech/scikit-learn.svg" }
+      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+      { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+      { name: "Scikit-Learn", logo: "/images/tech/scikit-learn.svg" }
     ]
   },
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS SageMaker", logo: "/tech/aws-sagemaker.svg" },
-      { name: "Google AI Platform", logo: "/tech/google-ai.svg" },
-      { name: "Azure Machine Learning", logo: "/tech/azure-ml.svg" }
+      { name: "AWS SageMaker", logo: "/images/tech/aws.svg" },
+      { name: "Google AI Platform", logo: "/images/tech/google-cloud.svg" },
+      { name: "Azure Machine Learning", logo: "/images/tech/azure.svg" }
     ]
   },
   {
     category: "Data Processing & Storage",
     items: [
-      { name: "Apache Spark", logo: "/tech/spark.svg" },
-      { name: "Kafka", logo: "/tech/kafka.svg" },
-      { name: "PostgreSQL", logo: "/tech/postgresql.svg" }
+      { name: "Apache Spark", logo: "/images/tech/spark.svg" },
+      { name: "Kafka", logo: "/images/tech/kafka.svg" },
+      { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" }
     ]
   },
   {
     category: "Model Deployment & APIs",
     items: [
-      { name: "FastAPI", logo: "/tech/fastapi.svg" },
-      { name: "Flask", logo: "/tech/flask.svg" },
-      { name: "TensorFlow Serving", logo: "/tech/tf-serving.svg" }
+      { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
+      { name: "Flask", logo: "/images/tech/flask.svg" },
+      { name: "TensorFlow Serving", logo: "/images/tech/tensorflow.svg" }
     ]
   },
   {
     category: "MLOps & Monitoring",
     items: [
-      { name: "MLflow", logo: "/tech/mlflow.svg" },
-      { name: "Kubeflow", logo: "/tech/kubeflow.svg" },
-      { name: "Prometheus", logo: "/tech/prometheus.svg" }
+      { name: "MLflow", logo: "/images/tech/mlflow.svg" },
+      { name: "Kubeflow", logo: "/images/tech/kubernetes.svg" },
+      { name: "Prometheus", logo: "/images/tech/prometheus.webp" }
     ]
   }
 ];

@@ -16,11 +16,15 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
+
   origin: ["http://kea.mywire.org:5700", "http://localhost:3000","http://kea.mywire.org:5000","http://localhost:5000","http://192.168.0.210:3000", "http://192.168.0.210:5700"], // No trailing slash
+
+
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
+
 
 
 
