@@ -26,7 +26,7 @@ export default function PortfolioMetrics() {
     const fetchDemographicData = async () => {
       try {
         // Fetch demographic analytics
-        const demographicResponse = await fetch('http://localhost:5000/api/demographic-analytics');
+        const demographicResponse = await fetch('http://kea.mywire.org:5000/api/demographic-analytics');
         if (!demographicResponse.ok) {
           throw new Error('Failed to fetch demographic data');
         }

@@ -151,7 +151,7 @@ export default function TechnicalMetrics() {
 
       try {
         // Fetch aggregated performance data with web vitals
-        const performanceRes = await fetch('http://localhost:5000/api/technical-metrics/aggregate');
+        const performanceRes = await fetch('http://kea.mywire.org:5000/api/technical-metrics/aggregate');
         if (!performanceRes.ok) throw new Error('Failed to fetch performance data');
         
         const performanceJson = await performanceRes.json();
@@ -188,7 +188,7 @@ export default function TechnicalMetrics() {
           value: number;
         }
         
-        const deviceRes = await fetch('http://localhost:5000/api/technical-metrics?groupBy=deviceType');
+        const deviceRes = await fetch('http://kea.mywire.org:5000/api/technical-metrics?groupBy=deviceType');
         if (!deviceRes.ok) throw new Error('Failed to fetch device data');
         
         const deviceJson: { data: DeviceMetric[] } = await deviceRes.json();
@@ -202,7 +202,7 @@ export default function TechnicalMetrics() {
         
 
         // Fetch device performance data from API
-        const devicePerfRes = await fetch('http://localhost:5000/api/device-performance');
+        const devicePerfRes = await fetch('http://kea.mywire.org:5000/api/device-performance');
         if (!devicePerfRes.ok) throw new Error('Failed to fetch device performance data');
         const devicePerfJson = await devicePerfRes.json();
         
@@ -211,7 +211,7 @@ export default function TechnicalMetrics() {
         setDevicePerformance(processedDevicePerf);
 
         // Fetch browser usage data from the browser-stats API
-        const browserRes = await fetch('http://localhost:5000/api/browser-stats');
+        const browserRes = await fetch('http://kea.mywire.org:5000/api/browser-stats');
         if (!browserRes.ok) throw new Error('Failed to fetch browser data');
         const browserJson = await browserRes.json();
         const formattedBrowser = browserJson.data.map((item: { browser: string; count: number }) => ({
@@ -233,7 +233,7 @@ interface FormattedHourlyMetric {
   users: number;
 }
 
-const hourlyRes = await fetch('http://localhost:5000/api/technical-metrics?groupBy=hour');
+const hourlyRes = await fetch('http://kea.mywire.org:5000/api/technical-metrics?groupBy=hour');
 if (!hourlyRes.ok) throw new Error('Failed to fetch hourly performance data');
 
 const hourlyJson: { data: HourlyMetric[] } = await hourlyRes.json();
@@ -248,7 +248,7 @@ setHourlyPerformance(formattedHourly);
 
 
         // Fetch error tracking data
-        const errorTypesRes = await fetch('http://localhost:5000/api/error-types');
+        const errorTypesRes = await fetch('http://kea.mywire.org:5000/api/error-types');
         if (!errorTypesRes.ok) throw new Error('Failed to fetch error types data');
         const errorTypesJson = await errorTypesRes.json();
         const formattedErrorTypes = errorTypesJson.data.map((item: { name: string; value: string }) => ({
@@ -257,12 +257,12 @@ setHourlyPerformance(formattedHourly);
         }));
         setErrorTypes(formattedErrorTypes);
 
-        const errorsOverTimeRes = await fetch('http://localhost:5000/api/errors-over-time');
+        const errorsOverTimeRes = await fetch('http://kea.mywire.org:5000/api/errors-over-time');
         if (!errorsOverTimeRes.ok) throw new Error('Failed to fetch errors over time data');
         const errorsOverTimeJson = await errorsOverTimeRes.json();
         setErrorsOverTime(errorsOverTimeJson.data as ErrorOverTime[]);
 
-        const recentErrorLogsRes = await fetch('http://localhost:5000/api/recent-error-logs');
+        const recentErrorLogsRes = await fetch('http://kea.mywire.org:5000/api/recent-error-logs');
         if (!recentErrorLogsRes.ok) throw new Error('Failed to fetch recent error logs');
         const recentErrorLogsJson = await recentErrorLogsRes.json();
         setRecentErrorLogs(recentErrorLogsJson.data as ErrorLog[]);
