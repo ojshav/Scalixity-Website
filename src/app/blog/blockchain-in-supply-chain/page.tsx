@@ -43,7 +43,7 @@ export default function BlockchainBlogPost() {
             </p>
             
             <p className="text-gray-600 leading-relaxed mb-6">
-              Traditional supply chain management systems rely heavily on paperwork and disparate digital systems that don't communicate effectively with each other. This fragmentation makes it difficult to track products from origin to destination and verify claims about product quality, authenticity, and ethical sourcing.
+              Traditional supply chain management systems rely heavily on paperwork and disparate digital systems that don&apos;t communicate effectively with each other. This fragmentation makes it difficult to track products from origin to destination and verify claims about product quality, authenticity, and ethical sourcing.
             </p>
 
             <h2 className="text-3xl font-bold text-gray-900 mt-12 mb-6">Blockchain as a Solution</h2>
