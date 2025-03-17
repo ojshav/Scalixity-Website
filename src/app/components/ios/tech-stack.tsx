@@ -37,7 +37,7 @@ const techStack = [
   {
     category: "Deployment & CI/CD",
     items: [
-      { name: "App Store Connect", logo: "/images/tech/appstore.svg" },
+      { name: "App Store Connect", logo: "/images/tech/app-store.svg" },
       { name: "Fastlane", logo: "/images/tech/fastlane.svg" },
       { name: "Bitrise", logo: "/images/tech/bitrise.svg" }
     ]
