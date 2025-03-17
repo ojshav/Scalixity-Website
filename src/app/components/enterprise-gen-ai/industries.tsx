@@ -19,7 +19,7 @@ const industries = [
   },
   { 
     name: "Finance", 
-    icon: "/icons/finance.svg",
+    icon: "/images/icons/finance.svg",
     useCases: [
       "Fraud Detection",
       "Risk Assessment",
@@ -32,7 +32,7 @@ const industries = [
   },
   { 
     name: "Retail", 
-    icon: "/icons/retail.svg",
+    icon: "/images/icons/retail.svg",
     useCases: [
       "Customer Behavior Analysis",
       "Inventory Management",
@@ -45,7 +45,7 @@ const industries = [
   },
   { 
     name: "Manufacturing", 
-    icon: "/icons/manufacturing.svg",
+    icon: "/images/icons/manufacturing.svg",
     useCases: [
       "Predictive Maintenance",
       "Supply Chain Optimization",
@@ -58,7 +58,7 @@ const industries = [
   },
   { 
     name: "Education", 
-    icon: "/icons/education.svg",
+    icon: "/images/icons/education.svg",
     useCases: [
       "Adaptive Learning Platforms",
       "Automated Grading",
@@ -71,7 +71,7 @@ const industries = [
   },
   { 
     name: "Logistics", 
-    icon: "/icons/logistics.svg",
+    icon: "/images/icons/logistics.svg",
     useCases: [
       "Route Optimization",
       "Demand Forecasting",
