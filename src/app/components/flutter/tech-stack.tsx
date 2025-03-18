@@ -2,38 +2,38 @@
 
 const techStack = {
   "Framework & Language": [
-    { name: "Flutter", logo: "/tech/flutter.svg" },
-    { name: "Dart", logo: "/tech/dart.svg" }
+    { name: "Flutter", logo: "/images/tech/flutter.svg" },
+    { name: "Dart", logo: "/images/tech/dart.svg" }
   ],
   "State Management": [
-    { name: "Provider", logo: "/tech/provider.svg" },
-    { name: "Riverpod", logo: "/tech/riverpod.svg" },
-    { name: "Bloc", logo: "/tech/bloc.svg" }
+    { name: "Provider", logo: "/images/tech/provider.svg" },
+    { name: "Riverpod", logo: "/images/tech/riverpod.svg" },
+    { name: "Bloc", logo: "/images/tech/bloc.svg" }
   ],
   "Backend & Database": [
-    { name: "Firebase", logo: "/tech/firebase.svg" },
-    { name: "Node.js", logo: "/tech/nodejs.svg" },
-    { name: "GraphQL", logo: "/tech/graphql.svg" }
+    { name: "Firebase", logo: "/images/tech/firebase.svg" },
+    { name: "Node.js", logo: "/images/tech/nodejs.svg" },
+    { name: "GraphQL", logo: "/images/tech/graphql.svg" }
   ],
   "Testing & Debugging": [
-    { name: "Flutter Test", logo: "/tech/flutter-test.svg" },
-    { name: "Mockito", logo: "/tech/mockito.svg" },
-    { name: "Integration Testing", logo: "/tech/integration-testing.svg" }
+    { name: "Flutter Test", logo: "/images/tech/flutter-test.svg" },
+    { name: "Mockito", logo: "/images/tech/mockito.svg" },
+    { name: "Integration Testing", logo: "/images/tech/integration-testing.svg" }
   ],
   "UI & Styling": [
-    { name: "Material Design", logo: "/tech/material.svg" },
-    { name: "Cupertino Widgets", logo: "/tech/cupertino.svg" },
-    { name: "Lottie", logo: "/tech/lottie.svg" }
+    { name: "Material Design", logo: "/images/tech/material.svg" },
+    { name: "Cupertino Widgets", logo: "/images/tech/cupertino.svg" },
+    { name: "Lottie", logo: "/images/tech/lottie.svg" }
   ],
   "CI/CD & DevOps": [
-    { name: "Codemagic", logo: "/tech/codemagic.svg" },
-    { name: "GitHub Actions", logo: "/tech/github-actions.svg" },
-    { name: "Fastlane", logo: "/tech/fastlane.svg" }
+    { name: "Codemagic", logo: "/images/tech/codemagic.svg" },
+    { name: "GitHub Actions", logo: "/images/tech/github-actions.svg" },
+    { name: "Fastlane", logo: "/images/tech/fastlane.svg" }
   ],
   "Platform & Deployment": [
-    { name: "iOS", logo: "/tech/ios.svg" },
-    { name: "Android", logo: "/tech/android.svg" },
-    { name: "Web", logo: "/tech/web.svg" }
+    { name: "iOS", logo: "/images/tech/ios.svg" },
+    { name: "Android", logo: "/images/tech/android.svg" },
+    { name: "Web", logo: "/images/tech/web.svg" }
   ]
 };
 

@@ -10,7 +10,7 @@ const projects = [
     company: "HealthSync",
     title: "Revolutionizing Healthcare with Flutter Apps",
     description: "Developed a HIPAA-compliant telemedicine app with real-time consultations, appointment scheduling, and secure medical record management.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Revolutionizing Healthcare with Flutter Apps.svg",
     features: [
       "Cross-platform support for iOS & Android",
       "Secure video consultations",
@@ -22,7 +22,7 @@ const projects = [
     company: "ShopEase",
     title: "Elevating E-Commerce with Flutter",
     description: "Built a dynamic e-commerce platform with a seamless UI, personalized recommendations, and real-time order tracking.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Elevating E-Commerce with Flutter.svg",
     features: [
       "Flutter UI for smooth navigation",
       "AI-powered personalized shopping",
@@ -34,7 +34,7 @@ const projects = [
     company: "EduConnect",
     title: "Empowering Education with Flutter Apps",
     description: "Developed an e-learning platform with interactive courses, live video sessions, and AI-driven performance tracking for students.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Empowering Education with Flutter Apps.svg",
     features: [
       "Real-time classroom sessions",
       "AI-driven learning analytics",

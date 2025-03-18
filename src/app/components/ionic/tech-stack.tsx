@@ -4,44 +4,44 @@ const techStack = [
   {
     category: "Framework & Core Technologies",
     items: [
-      { name: "Ionic Framework", logo: "/tech/ionic.svg" },
-      { name: "Angular", logo: "/tech/angular.svg" },
-      { name: "React", logo: "/tech/react.svg" },
-      { name: "Vue.js", logo: "/tech/vue.svg" },
+      { name: "Ionic Framework", logo: "/images/tech/ionic.svg" },
+      { name: "Angular", logo: "/images/tech/angular.svg" },
+      { name: "React", logo: "/images/tech/react.webp" },
+      { name: "Vue.js", logo: "/images/tech/vue.svg" },
     ],
   },
   {
     category: "State Management",
     items: [
-      { name: "Redux", logo: "/tech/redux.svg" },
-      { name: "NgRx", logo: "/tech/ngrx.svg" },
-      { name: "Zustand", logo: "/tech/zustand.svg" },
+      { name: "Redux", logo: "/images/tech/redux.svg" },
+      { name: "NgRx", logo: "/images/tech/nginx.svg" },
+      { name: "Zustand", logo: "/images/tech/zustand.svg" },
     ],
   },
   {
     category: "Backend & APIs",
     items: [
-      { name: "Node.js", logo: "/tech/nodejs.svg" },
-      { name: "Firebase", logo: "/tech/firebase.svg" },
-      { name: "GraphQL", logo: "/tech/graphql.svg" },
-      { name: "REST APIs", logo: "/tech/rest.svg" },
+      { name: "Node.js", logo: "/images/tech/nodejs.svg" },
+      { name: "Firebase", logo: "/images/tech/firebase.svg" },
+      { name: "GraphQL", logo: "/images/tech/graphql.svg" },
+      { name: "REST APIs", logo: "/images/tech/rest-api.svg" },
     ],
   },
   {
     category: "UI & Styling",
     items: [
-      { name: "Ionic UI Components", logo: "/tech/ionic-ui.svg" },
-      { name: "Tailwind CSS", logo: "/tech/tailwind.svg" },
-      { name: "Material UI", logo: "/tech/mui.svg" },
+      { name: "Ionic UI Components", logo: "/images/tech/ionic.svg" },
+      { name: "Tailwind CSS", logo: "/images/tech/tailwind.svg" },
+      { name: "Material UI", logo: "/images/tech/material.svg" },
     ],
   },
   {
     category: "Build & Deployment",
     items: [
-      { name: "Capacitor", logo: "/tech/capacitor.svg" },
-      { name: "Cordova", logo: "/tech/cordova.svg" },
-      { name: "Netlify", logo: "/tech/netlify.svg" },
-      { name: "Vercel", logo: "/tech/vercel.svg" },
+      { name: "Capacitor", logo: "/images/tech/capacitor.svg" },
+      { name: "Cordova", logo: "/images/tech/cordova.svg" },
+      { name: "Netlify", logo: "/images/tech/netlify.svg" },
+      { name: "Vercel", logo: "/images/tech/vercel.svg" },
     ],
   },
 ];
