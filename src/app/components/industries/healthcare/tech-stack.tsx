@@ -5,19 +5,19 @@ import Image from 'next/image'
 
 const technologies = {
   "AI Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "Keras", logo: "/tech/keras.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "Keras", logo: "/images/tech/keras.svg" }
   ],
   "Cloud Platforms": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Data Processing": [
-    { name: "Apache Spark", logo: "/tech/apache-spark.svg" },
-    { name: "Pandas", logo: "/tech/pandas.svg" },
-    { name: "NumPy", logo: "/tech/numpy.svg" }
+    { name: "Apache Spark", logo: "/images/tech/apache-spark.svg" },
+    { name: "Pandas", logo: "/images/tech/pandas.svg" },
+    { name: "NumPy", logo: "/images/tech/numpy.svg" }
   ]
 }
 

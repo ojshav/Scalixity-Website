@@ -7,7 +7,7 @@ const caseStudies = [
   {
     title: "AI-Powered Diagnostic Imaging",
     description: "Implemented an AI system that improved the accuracy of radiological diagnoses by 30%, reducing misdiagnosis rates and improving patient outcomes.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/ai-patient-monitoring.svg",
     results: [
       "30% increase in diagnostic accuracy",
       "25% reduction in diagnosis time",
@@ -17,7 +17,7 @@ const caseStudies = [
   {
     title: "Predictive Analytics for Patient Care",
     description: "Developed a machine learning model that predicts patient readmission risks, allowing hospitals to provide targeted interventions and reduce readmission rates by 22%.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/icons/healthcare.svg",
     results: [
       "22% reduction in readmission rates",
       "Significant cost savings for hospitals",

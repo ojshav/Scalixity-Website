@@ -7,62 +7,62 @@ const useCases = [
   {
     title: "AI-Powered Chatbots & Virtual Assistants",
     description: "Enhance user experience by integrating AI chatbots that provide instant support, automate workflows, and personalize interactions in real-time.",
-    image: "/images/ai-chatbots.svg"
+    image: "/images/ai-chatbot.svg"
   },
   {
     title: "Predictive Analytics & Forecasting",
     description: "Leverage AI to predict user behavior, revenue trends, and operational insights, helping you make data-driven decisions and optimize strategies.",
-    image: "/images/predictive-analytics.svg"
+    image: "/images/ai-disease-prediction.svg"
   },
   {
     title: "Intelligent Workflow Automation",
     description: "Automate repetitive tasks using AI, reducing manual errors and increasing operational efficiency across your SaaS platform.",
-    image: "/images/workflow-automation.svg"
+    image: "/images/ai.svg"
   },
   {
     title: "Customer Retention & Churn Prediction",
     description: "Identify at-risk customers with AI algorithms and implement proactive strategies to boost retention and reduce churn rates.",
-    image: "/images/churn-prediction.svg"
+    image: "/images/ai-voice-ordering.svg"
   },
   {
     title: "Personalized Recommendation Engines",
     description: "Deliver tailored product suggestions and content to users based on their preferences, driving engagement and boosting conversions.",
-    image: "/images/recommendation-engine.svg"
+    image: "/images/Customer Support.svg"
   },
   {
     title: "Fraud Detection & Risk Mitigation",
     description: "Protect your SaaS platform with AI models that detect suspicious activities, ensuring secure transactions and mitigating potential risks.",
-    image: "/images/fraud-detection.svg"
+    image: "/images/FinTech Mobile App.svg"
   },
   {
     title: "AI-Driven CRM Solutions",
     description: "Optimize customer relationships with AI-powered CRMs that offer data insights, sales forecasting, and personalized client interactions.",
-    image: "/images/ai-crm.svg"
+    image: "/images/metaverse-ecommerce.svg"
   },
   {
     title: "Automated Financial Reporting",
     description: "Integrate AI to generate accurate financial reports, track KPIs, and streamline revenue operations, saving time and reducing human error.",
-    image: "/images/financial-reporting.svg"
+    image: "/images/Helped Trapeze Group, Revolutionize Mobility with a Paratransit Solution.svg"
   },
   {
     title: "Dynamic Pricing Optimization",
     description: "Use AI algorithms to adjust pricing in real-time based on demand, competition, and user behavior, maximizing revenue potential.",
-    image: "/images/pricing-optimization.svg"
+    image: "/images/de-vote-hedra.svg"
   },
   {
     title: "AI-Powered User Behavior Analysis",
     description: "Gain insights into user interactions, track feature adoption, and enhance UX by analyzing behavioral patterns using AI models.",
-    image: "/images/user-behavior.svg"
+    image: "/images/digital-hedra.svg"
   },
   {
     title: "Content Generation & Optimization",
     description: "Automate content creation for blogs, emails, and marketing campaigns using AI tools, ensuring efficiency and audience relevance.",
-    image: "/images/content-generation.svg"
+    image: "/images/generativeai.svg"
   },
   {
     title: "Custom AI Solutions for SaaS",
     description: "We develop bespoke AI models tailored to your SaaS platform’s unique needs, ensuring seamless integration and maximum impact.",
-    image: "/images/custom-solution.svg"
+    image: "/images/nft-development.svg"
   }
 ]
 
