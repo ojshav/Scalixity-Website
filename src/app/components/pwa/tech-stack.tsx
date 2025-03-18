@@ -4,7 +4,7 @@ const techStack = [
   {
     category: "Core Technologies",
     items: [
-      { name: "React", logo: "/images/tech/react.svg" },
+      { name: "React", logo: "/images/tech/react-native.svg" },
       { name: "Next.js", logo: "/images/tech/nextjs.svg" },
       { name: "Vue.js", logo: "/images/tech/vue.svg" }
     ]
@@ -29,7 +29,7 @@ const techStack = [
     category: "UI & Styling",
     items: [
       { name: "Tailwind CSS", logo: "/images/tech/tailwind.svg" },
-      { name: "Material UI", logo: "/images/tech/mui.svg" },
+      { name: "Material UI", logo: "/images/tech/material.svg" },
       { name: "Bootstrap", logo: "/images/tech/bootstrap.svg" }
     ]
   },
