@@ -6,7 +6,7 @@ const projects = [
     company: "BlockSphere",
     title: "Decentralized Finance Solutions",
     description: "We partnered with BlockSphere to build DeFi platforms that offer secure and transparent financial services through smart contracts. Users can lend, borrow, and trade assets with ease.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/tech/bloc.svg",
     features: [
       "Smart contract-powered lending protocols",
       "Decentralized exchanges with real-time trading",
@@ -18,7 +18,7 @@ const projects = [
     company: "CryptoVault",
     title: "Next-Gen NFT Marketplace",
     description: "We developed an advanced NFT marketplace for CryptoVault, enabling artists and creators to mint, showcase, and trade their digital assets effortlessly.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/icons/marketing.svg",
     features: [
       "Gas-optimized smart contracts for minting",
       "Interactive 3D galleries for showcasing NFTs",
