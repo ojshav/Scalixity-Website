@@ -5,19 +5,19 @@ import Image from "next/image";
 
 const technologies = {
   "AI & Personalization": [
-    { name: "GPT-4", logo: "/tech/gpt-4.svg" },
-    { name: "Recommendation Engines", logo: "/tech/recommendation.svg" },
-    { name: "Sentiment Analysis", logo: "/tech/sentiment.svg" }
+    { name: "GPT-4", logo: "/images/tech/gpt-4.svg" },
+    { name: "Recommendation Engines", logo: "/images/Reimagine Legal Support Driven by in-Depth Legal Research.svg" },
+    { name: "Sentiment Analysis", logo: "/images/sentiment-analysis.svg" }
   ],
   "Cloud Infrastructure": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Travel APIs & Tools": [
-    { name: "Amadeus API", logo: "/tech/amadeus.svg" },
-    { name: "Google Maps API", logo: "/tech/google-maps.svg" },
-    { name: "Skyscanner API", logo: "/tech/skyscanner.svg" }
+    { name: "Amadeus API", logo: "/images/tech/alpaca.svg" },
+    { name: "Google Maps API", logo: "/images/tech/googlecloud.svg" },
+    { name: "Skyscanner API", logo: "/images/tech/appium.svg" }
   ]
 };
 
