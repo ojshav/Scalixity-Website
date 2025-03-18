@@ -2,39 +2,39 @@
 
 const techStack = {
   "Risk Modeling & Analytics": [
-    { name: "SAS", logo: "/tech/sas.svg" },
-    { name: "R", logo: "/tech/r.svg" },
-    { name: "Python (Scikit-learn)", logo: "/tech/python.svg" }
+    { name: "SAS", logo: "/images/tech/gpt3.svg" },
+    { name: "R", logo: "/images/tech/r.svg" },
+    { name: "Python (Scikit-learn)", logo: "/images/tech/python.svg" }
   ],
   "Machine Learning Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "XGBoost", logo: "/tech/xgboost.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "XGBoost", logo: "/images/tech/xgboost.svg" }
   ],
   "Data Visualization": [
-    { name: "Tableau", logo: "/tech/tableau.svg" },
-    { name: "Power BI", logo: "/tech/powerbi.svg" },
-    { name: "Matplotlib", logo: "/tech/matplotlib.svg" }
+    { name: "Tableau", logo: "/images/tech/tableau.svg" },
+    { name: "Power BI", logo: "/images/tech/powerbi.svg" },
+    { name: "Matplotlib", logo: "/images/tech/matplotlib.svg" }
   ],
   "Programming Languages": [
-    { name: "Python", logo: "/tech/python.svg" },
-    { name: "R", logo: "/tech/r.svg" },
-    { name: "SQL", logo: "/tech/sql.svg" }
+    { name: "Python", logo: "/images/tech/python.svg" },
+    { name: "R", logo: "/images/tech/r.svg" },
+    { name: "SQL", logo: "/images/tech/sqlite.svg" }
   ],
   "Cloud & AI Services": [
-    { name: "AWS SageMaker", logo: "/tech/aws-sagemaker.svg" },
-    { name: "Google AI", logo: "/tech/googleai.svg" },
-    { name: "Azure ML", logo: "/tech/azure.svg" }
+    { name: "AWS SageMaker", logo: "/images/tech/aws.svg" },
+    { name: "Google AI", logo: "/images/tech/googlecloud.svg" },
+    { name: "Azure ML", logo: "/images/tech/azure.svg" }
   ],
   "MLOps & Deployment": [
-    { name: "Docker", logo: "/tech/docker.svg" },
-    { name: "Kubernetes", logo: "/tech/kubernetes.svg" },
-    { name: "MLflow", logo: "/tech/mlflow.svg" }
+    { name: "Docker", logo: "/images/tech/docker.svg" },
+    { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" },
+    { name: "MLflow", logo: "/images/tech/mlflow.svg" }
   ],
   "Databases": [
-    { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-    { name: "MongoDB", logo: "/tech/mongodb.svg" },
-    { name: "BigQuery", logo: "/tech/bigquery.svg" }
+    { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+    { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+    { name: "BigQuery", logo: "/images/tech/bigquery.svg" }
   ]
 };
 
