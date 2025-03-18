@@ -7,22 +7,22 @@ const featuredProjects = [
   {
     title: "E-Commerce App",
     description: "A seamless shopping experience with an intuitive UI, personalized recommendations, and a smooth checkout process.",
-    image: "/projects/ecommerce-app.jpg",
+    image: "/images/icons/marketing.svg",
   },
   {
     title: "Healthcare App",
     description: "A telemedicine platform with real-time consultations, appointment scheduling, and secure medical records access.",
-    image: "/projects/healthcare-app.jpg",
+    image: "/images/icons/healthcare.svg",
   },
   {
     title: "Finance & Banking App",
     description: "A secure banking app with AI-powered insights, budgeting tools, and biometric authentication for enhanced security.",
-    image: "/projects/finance-app.jpg",
+    image: "/images/icons/finance.svg",
   },
   {
     title: "Fitness & Wellness App",
     description: "A fitness tracker with AI-driven workout plans, activity monitoring, and nutrition recommendations.",
-    image: "/projects/fitness-app.jpg",
+    image: "/images/icons/fitness.svg",
   },
 ];
 
