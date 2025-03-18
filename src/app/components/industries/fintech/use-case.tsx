@@ -8,19 +8,19 @@ const useCases = [
     title: "Financial AI Agent",
     description:
       "We develop AI agents for finance and banking institutions that provide personalized financial advice and proactive customer service tailored to individual client goals and risk tolerance.",
-    image: "/images/financial-ai-agent.svg",
+    image: "/images/ai-chatbot.svg",
   },
   {
     title: "Underwriting & Pricing Automation",
     description:
       "By building AI algorithms that automate underwriting, we help businesses accurately assess risk, determine optimal pricing, and improve efficiency.",
-    image: "/images/underwriting-automation.svg",
+    image: "/images/Automating Banking Services with Conversational AI.svg",
   },
   {
     title: "Financial Document Automation",
     description:
       "We streamline financial document processing using AI, automating data extraction, classification, and validation to reduce errors and ensure compliance.",
-    image: "/images/financial-document-automation.svg",
+    image: "/images/icons/finance.svg",
   },
 ];
 

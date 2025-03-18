@@ -6,7 +6,7 @@ const caseStudies = [
   {
     title: "AI-Powered Fraud Detection for Financial Security",
     description: "We partnered with a leading fintech company to build an AI-driven fraud detection system. This solution uses advanced machine learning algorithms to identify suspicious activities in real-time, preventing unauthorized transactions and securing customer data.",
-    image: "/images/fintech-fraud-detection.jpg",
+    image: "/images/Automating Banking Services with Conversational AI.svg",
     highlights: [
       "Real-time anomaly detection for transaction monitoring",
       "Reduced fraud incidents by 45% within the first quarter",
@@ -18,7 +18,7 @@ const caseStudies = [
   {
     title: "AI-Driven Credit Scoring and Risk Assessment",
     description: "Our collaboration with a fintech startup resulted in an AI-powered credit scoring model. This solution analyzes customer data, spending behavior, and market trends to accurately assess credit risk, enabling faster and fairer loan approvals.",
-    image: "/images/fintech-credit-scoring.jpg",
+    image: "/images/ai-powered-maintenance.svg",
     highlights: [
       "Data-driven risk assessment for loan applications",
       "Improved loan approval speed by 60%",

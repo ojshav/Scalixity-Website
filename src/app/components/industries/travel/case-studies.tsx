@@ -6,7 +6,7 @@ const caseStudies = [
   {
     title: "AI-Driven Dynamic Pricing for a Travel Platform",
     description: "We partnered with a leading travel agency to integrate AI algorithms that optimize ticket prices based on real-time data. By analyzing market demand, competitor pricing, and historical trends, the platform achieved smarter pricing strategies, boosting revenue and customer satisfaction.",
-    image: "/images/travel-dynamic-pricing.jpg",
+    image: "/images/customer-retention.svg",
     highlights: [
       "Implemented real-time dynamic pricing AI models",
       "Increased booking revenue by 30% within 4 months",
@@ -18,7 +18,7 @@ const caseStudies = [
   {
     title: "AI-Powered Personalized Travel Recommendations",
     description: "We helped a travel startup develop an AI recommendation engine, offering personalized travel plans based on user preferences, past bookings, and online behavior. This resulted in higher engagement rates and repeat bookings.",
-    image: "/images/travel-recommendations.jpg",
+    image: "/images/ai-travel-assistant.svg",
     highlights: [
       "AI model trained on user behavior & booking history",
       "Increased customer engagement by 45%",

@@ -5,19 +5,19 @@ import Image from "next/image";
 
 const technologies = {
   "AI Models": [
-    { name: "Pose Estimation", logo: "/tech/pose-estimation.svg" },
-    { name: "Predictive Analytics", logo: "/tech/predictive-analytics.svg" },
-    { name: "Reinforcement Learning", logo: "/tech/reinforcement-learning.svg" }
+    { name: "Pose Estimation", logo: "/images/tech/pose-estimation.svg" },
+    { name: "Predictive Analytics", logo: "/images/tech/predictive-analytics.svg" },
+    { name: "Reinforcement Learning", logo: "/images/tech/regression-models.svg" }
   ],
   "Health & Fitness APIs": [
-    { name: "Google Fit", logo: "/tech/google-fit.svg" },
-    { name: "Apple Health", logo: "/tech/apple-health.svg" },
-    { name: "Strava API", logo: "/tech/strava-api.svg" }
+    { name: "Google Fit", logo: "/images/tech/google-play.svg" },
+    { name: "Apple Health", logo: "/images/tech/app-store.svg" },
+    { name: "Strava API", logo: "/images/tech/api3.webp" }
   ],
   "Cloud & Analytics": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ]
 };
 

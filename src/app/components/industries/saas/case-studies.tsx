@@ -6,7 +6,7 @@ const caseStudies = [
   {
     title: "AI-Driven User Retention for SaaS Platform",
     description: "We partnered with a SaaS company to implement AI models that predict user churn and personalize in-app experiences. By analyzing user behavior and engagement data, we crafted tailored retention strategies, boosting user loyalty and reducing churn rates.",
-    image: "/images/saas-user-retention.jpg",
+    image: "/images/Reimagine Legal Support Driven by in-Depth Legal Research.svg",
     highlights: [
       "Predictive AI models for early churn detection",
       "Increased user retention by 35% within 3 months",
@@ -18,7 +18,7 @@ const caseStudies = [
   {
     title: "Automated Workflow Optimization with AI",
     description: "Our AI-powered automation solution streamlined business workflows for a leading SaaS platform. The AI system identified repetitive tasks, optimized resource allocation, and reduced operational inefficiencies, resulting in faster project delivery and cost savings.",
-    image: "/images/saas-workflow-automation.jpg",
+    image: "/images/Revolutionizing Patient Support with AI-Powered Chatbots.svg",
     highlights: [
       "AI-driven process optimization reducing manual tasks by 50%",
       "Improved operational efficiency by 40%",

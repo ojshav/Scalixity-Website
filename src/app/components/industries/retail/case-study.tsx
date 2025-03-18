@@ -6,7 +6,7 @@ const caseStudies = [
   {
     title: "AI-Powered Personalized Shopping Experiences",
     description: "We partnered with a major retail brand to implement AI-driven recommendation engines. This solution uses customer data and behavioral patterns to deliver hyper-personalized product suggestions, boosting engagement and sales.",
-    image: "/images/retail-personalized-shopping.jpg",
+    image: "/images/ai-powered-maintenance.svg",
     highlights: [
       "Increased customer engagement by 40% through tailored suggestions",
       "Real-time analysis of shopping behavior and preferences",
@@ -18,7 +18,7 @@ const caseStudies = [
   {
     title: "AI-Driven Demand Forecasting and Inventory Management",
     description: "We collaborated with a retail chain to develop an AI-powered inventory management system. This solution predicts demand fluctuations, optimizes stock levels, and prevents overstock and stockouts.",
-    image: "/images/retail-inventory-management.jpg",
+    image: "/images/metaverse-ecommerce.svg",
     highlights: [
       "Reduced stockouts by 50% with accurate demand forecasting",
       "Dynamic inventory adjustments based on AI predictions",
