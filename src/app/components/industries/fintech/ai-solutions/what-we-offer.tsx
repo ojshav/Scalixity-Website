@@ -6,32 +6,32 @@ const offerings = [
   {
     title: "AI-Powered Risk Assessment",
     description: "Utilize AI to analyze financial risks, detect anomalies, and enhance decision-making with predictive analytics.",
-    icon: "/icons/risk-assessment.svg"
+    icon: "/images/icons/risk-assessment.svg"
   },
   {
     title: "Automated Customer Insights",
     description: "Leverage machine learning to segment customers, predict behavior, and personalize financial services.",
-    icon: "/icons/customer-insights.svg"
+    icon: "/images/icons/customer-insights.svg"
   },
   {
     title: "Fraud Detection & Prevention",
     description: "Detect suspicious transactions in real time with AI-driven fraud detection models.",
-    icon: "/icons/fraud-detection.svg"
+    icon: "/images/icons/fraud-detection.svg"
   },
   {
     title: "Intelligent Chatbots & Virtual Assistants",
     description: "Enhance customer experience with AI-powered chatbots for automated financial support and guidance.",
-    icon: "/icons/chatbot.svg"
+    icon: "/images/icons/chatbot.svg"
   },
   {
     title: "AI-Driven Financial Forecasting",
     description: "Predict market trends, revenue, and investment risks using AI-powered forecasting models.",
-    icon: "/icons/forecasting.svg"
+    icon: "/images/icons/forecasting.svg"
   },
   {
     title: "Secure AI-Powered Transactions",
     description: "Enhance transaction security with AI-driven authentication and encryption methods.",
-    icon: "/icons/security.svg"
+    icon: "/images/icons/security.svg"
   }
 ];
 

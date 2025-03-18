@@ -6,32 +6,32 @@ const offerings = [
   {
     title: "Intelligent Customer Support Bots",
     description: "Deploy AI agents to handle customer inquiries, resolve issues, and provide financial advice in real-time.",
-    icon: "/icons/customer-support.svg"
+    icon: "/images/icons/customer-insights.svg"
   },
   {
     title: "Automated Loan Processing",
     description: "Streamline loan approvals by automating document checks, credit scoring, and risk assessments.",
-    icon: "/icons/loan-processing.svg"
+    icon: "/images/icons/risk-assessment.svg"
   },
   {
     title: "Fraud Detection & Prevention",
     description: "Use AI algorithms to detect suspicious transactions and prevent financial fraud instantly.",
-    icon: "/icons/fraud-prevention.svg"
+    icon: "/images/icons/fraud-detection.svg"
   },
   {
     title: "Predictive Financial Insights",
     description: "Enable AI agents to analyze data and provide proactive financial strategies and investment opportunities.",
-    icon: "/icons/predictive-insights.svg"
+    icon: "/images/icons/finance.svg"
   },
   {
     title: "Personalized Banking Experiences",
     description: "Deliver AI-powered recommendations tailored to individual customer financial goals and behaviors.",
-    icon: "/icons/personalized-banking.svg"
+    icon: "/images/icons/security.svg"
   },
   {
     title: "Seamless API Integrations",
     description: "Connect AI agents with existing fintech platforms through secure and scalable APIs.",
-    icon: "/icons/api-integration.svg"
+    icon: "/images/icons/chatbot.svg"
   }
 ];
 

@@ -7,32 +7,32 @@ const offerings = [
   {
     title: "AI-Powered Document Processing",
     description: "Leverage machine learning and NLP to extract, classify, and validate financial documents with high accuracy.",
-    icon: "/icons/ai-processing.svg"
+    icon: "/images/icons/chatbot.svg"
   },
   {
     title: "Automated Data Extraction",
     description: "Extract key financial data from invoices, bank statements, and contracts using intelligent OCR technology.",
-    icon: "/icons/data-extraction.svg"
+    icon: "/images/icons/data-security.svg"
   },
   {
     title: "Fraud Detection & Compliance",
     description: "Ensure regulatory compliance (AML, KYC, IFRS) and detect anomalies with AI-driven fraud detection.",
-    icon: "/icons/fraud-detection.svg"
+    icon: "/images/icons/fraud-detection.svg"
   },
   {
     title: "Smart Document Classification",
     description: "Automatically categorize financial documents based on content and metadata for efficient organization.",
-    icon: "/icons/document-classification.svg"
+    icon: "/images/icons/customer-insights.svg"
   },
   {
     title: "Seamless API Integrations",
     description: "Connect with banking, ERP, and financial systems via secure API integrations for smooth data flow.",
-    icon: "/icons/api.svg"
+    icon: "/images/icons/forecasting.svg"
   },
   {
     title: "Automated Report Generation",
     description: "Generate financial reports, audit trails, and summaries automatically to streamline compliance workflows.",
-    icon: "/icons/reporting.svg"
+    icon: "/images/icons/education.svg"
   }
 ];
 

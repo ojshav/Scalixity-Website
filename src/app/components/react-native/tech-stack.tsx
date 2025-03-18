@@ -4,49 +4,49 @@ const techStack = [
   {
     category: "Core Frameworks & Libraries",
     items: [
-      { name: "React Native", logo: "/tech/react-native.svg" },
-      { name: "Expo", logo: "/tech/expo.svg" },
-      { name: "NativeScript", logo: "/tech/nativescript.svg" }
+      { name: "React Native", logo: "/images/tech/react-native.svg" },
+      { name: "Expo", logo: "/images/tech/expo.svg" },
+      { name: "NativeScript", logo: "/images/tech/nativescript.svg" }
     ]
   },
   {
     category: "State Management",
     items: [
-      { name: "Redux", logo: "/tech/redux.svg" },
-      { name: "MobX", logo: "/tech/mobx.svg" },
-      { name: "Zustand", logo: "/tech/zustand.svg" }
+      { name: "Redux", logo: "/images/tech/redux.svg" },
+      { name: "MobX", logo: "/images/tech/mobx.svg" },
+      { name: "Zustand", logo: "/images/tech/zustand.svg" }
     ]
   },
   {
     category: "UI Libraries & Components",
     items: [
-      { name: "React Native Paper", logo: "/tech/react-native-paper.svg" },
-      { name: "NativeBase", logo: "/tech/nativebase.svg" },
-      { name: "Tailwind CSS", logo: "/tech/tailwind.svg" }
+      { name: "React Native Paper", logo: "/images/tech/react-native.svg" },
+      { name: "NativeBase", logo: "/images/tech/nativebase.svg" },
+      { name: "Tailwind CSS", logo: "/images/tech/tailwind.svg" }
     ]
   },
   {
     category: "Backend & APIs",
     items: [
-      { name: "Firebase", logo: "/tech/firebase.svg" },
-      { name: "GraphQL", logo: "/tech/graphql.svg" },
-      { name: "REST APIs", logo: "/tech/rest.svg" }
+      { name: "Firebase", logo: "/images/tech/firebase.svg" },
+      { name: "GraphQL", logo: "/images/tech/graphql.svg" },
+      { name: "REST APIs", logo: "/images/tech/rest-api.svg" }
     ]
   },
   {
     category: "Testing & Debugging",
     items: [
-      { name: "Jest", logo: "/tech/jest.svg" },
-      { name: "Detox", logo: "/tech/detox.svg" },
-      { name: "Appium", logo: "/tech/appium.svg" }
+      { name: "Jest", logo: "/images/tech/jest.svg" },
+      { name: "Detox", logo: "/images/tech/detox.svg" },
+      { name: "Appium", logo: "/images/tech/appium.svg" }
     ]
   },
   {
     category: "Build & Deployment",
     items: [
-      { name: "Fastlane", logo: "/tech/fastlane.svg" },
-      { name: "Bitrise", logo: "/tech/bitrise.svg" },
-      { name: "App Store & Google Play", logo: "/tech/app-store-google-play.svg" }
+      { name: "Fastlane", logo: "/images/tech/fastlane.svg" },
+      { name: "Bitrise", logo: "/images/tech/bitrise.svg" },
+      { name: "App Store & Google Play", logo: "/images/tech/app-store.svg" }
     ]
   }
 ];

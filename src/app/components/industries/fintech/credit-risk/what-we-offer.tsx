@@ -6,32 +6,32 @@ const offerings = [
   {
     title: "AI-Powered Credit Scoring",
     description: "Leverage machine learning models to analyze creditworthiness with real-time data insights for accurate risk assessment.",
-    icon: "/icons/credit-score.svg"
+    icon: "/images/icons/finance.svg"
   },
   {
     title: "Fraud Detection & Prevention",
     description: "Detect fraudulent activities using AI-driven anomaly detection and behavioral analysis to reduce financial risks.",
-    icon: "/icons/fraud.svg"
+    icon: "/images/icons/fraud-detection.svg"
   },
   {
     title: "Automated Risk Assessment",
     description: "Streamline credit risk evaluations with AI-powered automation, reducing manual effort and enhancing decision-making accuracy.",
-    icon: "/icons/risk.svg"
+    icon: "/images/icons/risk-assessment.svg"
   },
   {
     title: "Regulatory Compliance Solutions",
     description: "Ensure adherence to industry regulations like Basel III, IFRS 9, and GDPR with automated compliance checks.",
-    icon: "/icons/compliance.svg"
+    icon: "/images/icons/research.svg"
   },
   {
     title: "Loan Default Prediction",
     description: "Predict potential loan defaults using predictive analytics and historical data modeling to minimize financial exposure.",
-    icon: "/icons/prediction.svg"
+    icon: "/images/icons/insurance.svg"
   },
   {
     title: "Real-Time Risk Monitoring",
     description: "Continuously monitor credit portfolios with real-time AI-driven insights and alerts to mitigate emerging risks.",
-    icon: "/icons/monitoring.svg"
+    icon: "/images/icons/data-security.svg"
   }
 ];
 

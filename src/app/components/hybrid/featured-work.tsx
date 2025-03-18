@@ -7,7 +7,7 @@ const projects = [
     company: "AppFusion",
     title: "Cross-Platform E-Commerce App",
     description: "We partnered with AppFusion to build a hybrid e-commerce app that seamlessly works on both iOS and Android. The app delivers a native-like experience while leveraging a single codebase.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Cross-Platform E-Commerce App.svg",
     features: [
       "Unified codebase with React Native",
       "Fast load times with optimized APIs",
@@ -19,7 +19,7 @@ const projects = [
     company: "TechWave",
     title: "Hybrid Healthcare App",
     description: "For TechWave, we developed a hybrid healthcare app that allows patients to book appointments, chat with doctors, and receive real-time notifications—all from one platform.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Hybrid Healthcare App.svg",
     features: [
       "Cross-platform compatibility",
       "Integrated live chat using WebSockets",

@@ -55,6 +55,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "embla-carousel-react": "^8.5.2",
+    "exceljs": "^4.4.0",
     "express": "^4.21.2",
     "framer-motion": "^12.0.5",
     "input-otp": "^1.4.2",
@@ -82,8 +83,7 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^11.1.0",
-    "vaul": "^1.1.2",
-    "xlsx": "^0.18.5"
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",

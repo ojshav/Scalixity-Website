@@ -7,7 +7,7 @@ const projects = [
     title: "FinTech Mobile App",
     description:
       "We developed a high-performance iOS FinTech application using Swift and SwiftUI, ensuring smooth transactions and real-time financial insights.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/FinTech Mobile App.svg",
     features: [
       "Seamless Apple Pay integration",
       "Face ID & Touch ID authentication",
@@ -20,7 +20,7 @@ const projects = [
     title: "AI-Powered Fitness App",
     description:
       "A feature-rich iOS fitness app leveraging AI to provide personalized workout plans and health tracking, enhancing user engagement.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/AI-Powered Fitness App.svg",
     features: [
       "Real-time motion tracking with Core Motion",
       "AI-driven workout recommendations",

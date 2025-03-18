@@ -2,44 +2,44 @@
 
 const techStack = {
   "Natural Language Processing (NLP)": [
-    { name: "spaCy", logo: "/tech/spacy.svg" },
-    { name: "NLTK", logo: "/tech/nltk.svg" },
-    { name: "Transformers (Hugging Face)", logo: "/tech/transformers.svg" }
+    { name: "spaCy", logo: "/images/tech/spacy.svg" },
+    { name: "NLTK", logo: "/images/tech/nltk.svg" },
+    { name: "Transformers (Hugging Face)", logo: "/images/tech/huggingface.svg" }
   ],
   "Machine Learning Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "Keras", logo: "/tech/keras.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "Keras", logo: "/images/tech/keras.svg" }
   ],
   "Conversational AI Platforms": [
-    { name: "Rasa", logo: "/tech/rasa.svg" },
-    { name: "Google Dialogflow", logo: "/tech/dialogflow.svg" },
-    { name: "Amazon Lex", logo: "/tech/aws-lex.svg" }
+    { name: "Rasa", logo: "/images/tech/rasa.svg" },
+    { name: "Google Dialogflow", logo: "/images/tech/dialogflow.svg" },
+    { name: "Amazon Lex", logo: "/images/tech/aws.svg" }
   ],
   "Programming Languages": [
-    { name: "Python", logo: "/tech/python.svg" },
-    { name: "JavaScript", logo: "/tech/javascript.svg" },
-    { name: "Node.js", logo: "/tech/nodejs.svg" }
+    { name: "Python", logo: "/images/tech/python.svg" },
+    { name: "JavaScript", logo: "/images/tech/javascript.svg" },
+    { name: "Node.js", logo: "/images/tech/nextjs.svg" }
   ],
   "Cloud & AI Services": [
-    { name: "OpenAI GPT", logo: "/tech/openai.svg" },
-    { name: "Azure AI", logo: "/tech/azure.svg" },
-    { name: "Google AI", logo: "/tech/googleai.svg" }
+    { name: "OpenAI GPT", logo: "/images/tech/openai.svg" },
+    { name: "Azure AI", logo: "/images/tech/azure.svg" },
+    { name: "Google AI", logo: "/images/tech/googlecloud.svg" }
   ],
   "MLOps & Deployment": [
-    { name: "Docker", logo: "/tech/docker.svg" },
-    { name: "Kubernetes", logo: "/tech/kubernetes.svg" },
-    { name: "MLflow", logo: "/tech/mlflow.svg" }
+    { name: "Docker", logo: "/images/tech/docker.svg" },
+    { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" },
+    { name: "MLflow", logo: "/images/tech/mlflow.svg" }
   ],
   "Messaging & Integration": [
-    { name: "WhatsApp API", logo: "/tech/whatsapp.svg" },
-    { name: "Facebook Messenger API", logo: "/tech/messenger.svg" },
-    { name: "Slack API", logo: "/tech/slack.svg" }
+    { name: "WhatsApp API", logo: "/images/tech/whatsapp.svg" },
+    { name: "Facebook Messenger API", logo: "/images/tech/messenger.svg" },
+    { name: "Slack API", logo: "/images/tech/slack.svg" }
   ],
   "Database & Storage": [
-    { name: "MongoDB", logo: "/tech/mongodb.svg" },
-    { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-    { name: "Firebase", logo: "/tech/firebase.svg" }
+    { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+    { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+    { name: "Firebase", logo: "/images/tech/firebase.svg" }
   ]
 };
 
