@@ -6,7 +6,7 @@ const caseStudies = [
   {
     title: "AI-Driven Project Optimization for Construction",
     description: "We partnered with BuildSmart AI to integrate advanced AI models that streamline project timelines, enhance on-site safety, and optimize resource allocation. Our AI solutions create a smarter, data-driven construction process.",
-    image: "/images/construction-optimization.jpg",
+    image: "/images/ai.svg",
     highlights: [
       "25% reduction in project delays through predictive analytics",
       "Real-time safety monitoring with AI-powered sensors",
@@ -18,7 +18,7 @@ const caseStudies = [
   {
     title: "Smart Safety Solutions for Construction Sites",
     description: "We developed an AI-powered safety system that uses real-time monitoring to detect unsafe practices. This innovative solution provides instant alerts, ensuring swift action and reducing workplace accidents.",
-    image: "/images/construction-safety.jpg",
+    image: "/images/tech/haskell.svg",
     highlights: [
       "40% increase in on-site safety compliance",
       "AI-enabled hazard detection and emergency notifications",
