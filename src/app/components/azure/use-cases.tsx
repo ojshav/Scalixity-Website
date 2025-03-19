@@ -7,7 +7,7 @@ const azureUseCases = [
   {
     title: "Scalable Cloud Applications",
     description: "Deploy and manage secure, scalable applications using Azure cloud services.",
-    image: "/tech/azure-cloud-app.svg",
+    image: "/images/tech/azure.svg",
     stats: [
       { value: "99.95%", label: "Uptime SLA" },
       { value: "40%", label: "Reduction in Operational Costs" }
@@ -16,7 +16,7 @@ const azureUseCases = [
   {
     title: "AI & Machine Learning",
     description: "Leverage Azure AI services to build, train, and deploy intelligent applications.",
-    image: "/tech/azure-ai-ml.svg",
+    image: "/images/tech/AI-Powered Features.svg",
     stats: [
       { value: "60%", label: "Faster AI Model Training" },
       { value: "35%", label: "Improvement in Decision Accuracy" }
@@ -25,7 +25,7 @@ const azureUseCases = [
   {
     title: "Big Data & Analytics",
     description: "Utilize Azure's analytics and data warehousing solutions for real-time insights.",
-    image: "/tech/azure-data-analytics.svg",
+    image: "/images/tech/bigquery.svg",
     stats: [
       { value: "5x", label: "Faster Query Performance" },
       { value: "25%", label: "Cost Savings on Data Processing" }
