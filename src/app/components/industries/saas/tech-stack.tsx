@@ -5,19 +5,19 @@ import Image from "next/image";
 
 const technologies = {
   "AI Models": [
-    { name: "GPT-4", logo: "/tech/gpt-4.svg" },
-    { name: "BERT", logo: "/tech/bert.svg" },
-    { name: "Stable Diffusion", logo: "/tech/stable-diffusion.svg" }
+    { name: "GPT-4", logo: "/images/tech/gpt-4.svg" },
+    { name: "BERT", logo: "/images/tech/bert.svg" },
+    { name: "Stable Diffusion", logo: "/images/tech/stable-diffusion.svg" }
   ],
   "Cloud Infrastructure": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Development Tools": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "LangChain", logo: "/tech/langchain.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "LangChain", logo: "/images/tech/langchain.svg" }
   ]
 };
 

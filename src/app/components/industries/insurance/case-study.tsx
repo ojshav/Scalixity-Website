@@ -6,7 +6,7 @@ const caseStudies = [
   {
     title: "AI-Powered Risk Assessment for Insurance",
     description: "We collaborated with a major insurance provider to implement AI models that analyze vast amounts of customer data. These models detect potential risks and predict claim likelihood, enabling data-driven decision-making and optimized risk management strategies.",
-    image: "/images/insurance-risk-assessment.jpg",
+    image: "/images/review-analysis.svg",
     highlights: [
       "Real-time risk analysis using AI algorithms",
       "Improved claim prediction accuracy by 40%",
@@ -18,7 +18,7 @@ const caseStudies = [
   {
     title: "Fraud Detection and Prevention System",
     description: "Partnering with an insurance firm, we developed an AI-powered fraud detection system that continuously monitors transactions and policy activities. The system identifies suspicious patterns, helping insurers mitigate fraudulent claims and reduce financial losses.",
-    image: "/images/insurance-fraud-detection.jpg",
+    image: "/images/fraud-detection.svg",
     highlights: [
       "AI models trained on historical fraud data",
       "Reduced fraudulent claims by 50% in 6 months",

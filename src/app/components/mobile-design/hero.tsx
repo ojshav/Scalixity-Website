@@ -29,16 +29,16 @@ export function Hero() {
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-purple-600 text-white font-medium text-lg hover:bg-purple-700 transition-transform transform hover:scale-105 w-full sm:w-auto"
             >
-              Let’s Build Your App
+              Let's Build Your App
             </Link>
           </div>
         </motion.div>
 
         <div className="mt-16 flex flex-wrap justify-center gap-8">
-          <Image src="/logos/app1.svg" alt="App 1" width={100} height={50} />
-          <Image src="/logos/app2.svg" alt="App 2" width={100} height={50} />
-          <Image src="/logos/app3.svg" alt="App 3" width={100} height={50} />
-          <Image src="/logos/app4.svg" alt="App 4" width={100} height={50} />
+          {/* <Image src="/logos/app1.svg" alt="App 1" width={100} height={50} /> */}
+          {/* <Image src="/logos/app2.svg" alt="App 2" width={100} height={50} /> */}
+          {/* <Image src="/logos/app3.svg" alt="App 3" width={100} height={50} /> */}
+          {/* <Image src="/logos/app4.svg" alt="App 4" width={100} height={50} /> */}
         </div>
       </div>
 

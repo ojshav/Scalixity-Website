@@ -7,7 +7,7 @@ const successStories = [
     company: "Azure Innovators",
     title: "Scalable E-commerce Platform on Azure",
     description: "Built a high-performance e-commerce platform utilizing Azure services like Azure VM, Blob Storage, and Cosmos DB, leading to a 50% improvement in load times and seamless shopping experiences.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/icons/ai-model.svg",
     results: [
       "50% faster page load times",
       "99.99% uptime with Azure Autoscale",
@@ -18,7 +18,7 @@ const successStories = [
     company: "FinSecure Ltd.",
     title: "AI-Powered Fraud Detection with Azure",
     description: "Developed an AI-driven fraud detection system leveraging Azure Machine Learning and Cognitive Services, reducing fraudulent activities by 80% and enhancing security measures.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/tech/Data Analytics & Insights.svg",
     results: [
       "80% reduction in fraudulent transactions",
       "Real-time analytics with Azure Monitor",

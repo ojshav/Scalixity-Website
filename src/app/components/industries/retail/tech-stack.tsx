@@ -5,19 +5,19 @@ import Image from 'next/image'
 
 const technologies = {
   "AI Algorithms": [
-    { name: "Recommendation Engines", logo: "/tech/recommendation-engines.svg" },
-    { name: "Computer Vision", logo: "/tech/computer-vision.svg" },
-    { name: "Predictive Analytics", logo: "/tech/predictive-analytics.svg" }
+    { name: "Recommendation Engines", logo: "/images/tech/recommendation-engines.svg" },
+    { name: "Computer Vision", logo: "/images/tech/computer-vision.svg" },
+    { name: "Predictive Analytics", logo: "/images/tech/predictive-analytics.svg" }
   ],
   "Cloud Platforms": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Retail Tools": [
-    { name: "Shopify API", logo: "/tech/shopify-api.svg" },
-    { name: "Google Analytics", logo: "/tech/google-analytics.svg" },
-    { name: "BigCommerce", logo: "/tech/bigcommerce.svg" }
+    { name: "Shopify API", logo: "/images/tech/shopify-api.svg" },
+    { name: "Google Analytics", logo: "/images/tech/googlecloud.svg" },
+    { name: "BigCommerce", logo: "/images/tech/bigcommerce.svg" }
   ]
 }
 

@@ -30,7 +30,7 @@ const techStack = [
   {
     category: "Authentication & Security",
     items: [
-      { name: "JWT", logo: "/images/tech/jwt.svg" },
+      { name: "JWT", logo: "/images/tech/jwt.webp" },
       { name: "OAuth", logo: "/images/tech/oauth.svg" },
       { name: "bcrypt", logo: "/images/tech/bcrypt.svg" }
     ]

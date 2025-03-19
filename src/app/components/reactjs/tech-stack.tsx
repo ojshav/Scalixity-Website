@@ -5,49 +5,49 @@ const techStack = [
   {
     category: "Core Libraries & Frameworks",
     items: [
-      { name: "React", logo: "/tech/react.svg" },
-      { name: "Next.js", logo: "/tech/nextjs.svg" },
-      { name: "Gatsby", logo: "/tech/gatsby.svg" }
+      { name: "React", logo: "/images/tech/react-native.svg" },
+      { name: "Next.js", logo: "/images/tech/nestjs.svg" },
+      { name: "Gatsby", logo: "/images/tech/gatsby.svg" }
     ]
   },
   {
     category: "State Management",
     items: [
-      { name: "Redux", logo: "/tech/redux.svg" },
-      { name: "Zustand", logo: "/tech/zustand.svg" },
-      { name: "Recoil", logo: "/tech/recoil.svg" }
+      { name: "Redux", logo: "/images/tech/redux.svg" },
+      { name: "Zustand", logo: "/images/tech/zustand.svg" },
+      { name: "Recoil", logo: "/images/tech/recoil.svg" }
     ]
   },
   {
     category: "UI Libraries & Components",
     items: [
-      { name: "Tailwind CSS", logo: "/tech/tailwind.svg" },
-      { name: "Material UI", logo: "/tech/mui.svg" },
-      { name: "Chakra UI", logo: "/tech/chakra.svg" }
+      { name: "Tailwind CSS", logo: "/images/tech/tailwind.svg" },
+      { name: "Material UI", logo: "/images/tech/material.svg" },
+      { name: "Chakra UI", logo: "/images/tech/chakra.svg" }
     ]
   },
   {
     category: "API & Backend Integration",
     items: [
-      { name: "GraphQL", logo: "/tech/graphql.svg" },
-      { name: "REST APIs", logo: "/tech/rest.svg" },
-      { name: "Firebase", logo: "/tech/firebase.svg" }
+      { name: "GraphQL", logo: "/images/tech/graphql.svg" },
+      { name: "REST APIs", logo: "/images/tech/rest-api.svg" },
+      { name: "Firebase", logo: "/images/tech/firebase.svg" }
     ]
   },
   {
     category: "Testing & Debugging",
     items: [
-      { name: "Jest", logo: "/tech/jest.svg" },
-      { name: "Cypress", logo: "/tech/cypress.svg" },
-      { name: "React Testing Library", logo: "/tech/react-testing-library.svg" }
+      { name: "Jest", logo: "/images/tech/jest.svg" },
+      { name: "Cypress", logo: "/images/tech/cypress.svg" },
+      { name: "React Testing Library", logo: "/images/tech/react-testing-library.svg" }
     ]
   },
   {
     category: "Build & Deployment",
     items: [
-      { name: "Webpack", logo: "/tech/webpack.svg" },
-      { name: "Vite", logo: "/tech/vite.svg" },
-      { name: "Netlify", logo: "/tech/netlify.svg" }
+      { name: "Webpack", logo: "/images/tech/webpack.svg" },
+      { name: "Vite", logo: "/images/tech/vite.svg" },
+      { name: "Netlify", logo: "/images/tech/netlify.svg" }
     ]
   }
 ];

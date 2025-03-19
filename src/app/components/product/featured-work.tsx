@@ -10,7 +10,7 @@ const projects = [
     company: "InnoTech",
     title: "Revolutionizing SaaS with Scalable Solutions",
     description: "We developed a cloud-native SaaS platform that offers seamless integrations, real-time analytics, and AI-powered automation for enterprises.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/tech/Revolutionizing SaaS with Scalable Solutions.svg",
     features: [
       "Microservices architecture for scalability",
       "AI-driven automation for enhanced efficiency",
@@ -22,7 +22,7 @@ const projects = [
     company: "HealthSync",
     title: "Transforming Healthcare with a Digital Patient Platform",
     description: "We built a HIPAA-compliant digital health platform that streamlines patient management, telemedicine, and predictive diagnostics.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/tech/Transforming Healthcare with a Digital Patient Platform.svg",
     features: [
       "Telemedicine support with secure video calls",
       "AI-based diagnostics for early disease detection",
@@ -34,7 +34,7 @@ const projects = [
     company: "RetailBoost",
     title: "Enhancing E-commerce with AI-Powered Personalization",
     description: "Using machine learning and big data, we created a recommendation engine that boosts customer engagement and sales conversions.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/tech/Enhancing E-commerce with AI-Powered Personalization.svg",
     features: [
       "AI-driven product recommendations",
       "Personalized user experience with behavioral analytics",

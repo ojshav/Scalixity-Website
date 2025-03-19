@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const industries = [
-  { name: "Decentralized Finance (DeFi)", icon: "/icons/defi.svg" },
-  { name: "NFT Marketplaces", icon: "/icons/nft.svg" },
-  { name: "Blockchain Gaming", icon: "/icons/gaming.svg" },
-  { name: "Supply Chain & Logistics", icon: "/icons/supply-chain.svg" },
-  { name: "Healthcare & Pharma", icon: "/icons/healthcare.svg" },
-  { name: "Real Estate & Property Tech", icon: "/icons/real-estate.svg" },
-  { name: "Identity & Security", icon: "/icons/security.svg" },
-  { name: "Digital Content & Media", icon: "/icons/media.svg" }
+  { name: "Decentralized Finance (DeFi)", icon: "/images/icons/finance.svg" },
+  { name: "NFT Marketplaces", icon: "/images/icons/logistics.svg" },
+  { name: "Blockchain Gaming", icon: "/images/icons/gaming.webp" },
+  { name: "Supply Chain & Logistics", icon: "/images/icons/marketing.svg" },
+  { name: "Healthcare & Pharma", icon: "/images/icons/healthcare.svg" },
+  { name: "Real Estate & Property Tech", icon: "/images/icons/construction.svg" },
+  { name: "Identity & Security", icon: "/images/icons/security.svg" },
+  { name: "Digital Content & Media", icon: "/images/icons/media.svg" }
 ];
 
 export function Industries() {

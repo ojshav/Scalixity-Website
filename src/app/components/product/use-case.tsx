@@ -7,7 +7,7 @@ const productUseCases = [
   {
     title: "Scalable Web Applications",
     description: "Build and deploy high-performance web applications with modern frameworks and cloud infrastructure.",
-    image: "/tech/web-app.svg",
+    image: "/images/tech/Scalable Web Applications.svg",
     stats: [
       { value: "99.9%", label: "Uptime Guarantee" },
       { value: "3x", label: "Faster Load Times" }
@@ -16,7 +16,7 @@ const productUseCases = [
   {
     title: "AI-Powered Features",
     description: "Enhance your product with AI-driven capabilities such as chatbots, recommendation engines, and automation.",
-    image: "/tech/ai-features.svg",
+    image: "/images/tech/AI-Powered Features.svg",
     stats: [
       { value: "85%", label: "Increase in User Engagement" },
       { value: "60%", label: "Reduction in Manual Effort" }
@@ -25,7 +25,7 @@ const productUseCases = [
   {
     title: "Data Analytics & Insights",
     description: "Leverage data-driven insights to optimize performance and enhance decision-making with real-time analytics.",
-    image: "/tech/data-analytics.svg",
+    image: "/images/tech/Data Analytics & Insights.svg",
     stats: [
       { value: "5x", label: "Faster Report Generation" },
       { value: "40%", label: "Improved Operational Efficiency" }

@@ -5,19 +5,19 @@ import Image from 'next/image'
 
 const technologies = {
   "AI Algorithms": [
-    { name: "Neural Networks", logo: "/tech/neural-networks.svg" },
-    { name: "Decision Trees", logo: "/tech/decision-trees.svg" },
-    { name: "Regression Models", logo: "/tech/regression-models.svg" }
+    { name: "Neural Networks", logo: "/images/tech/neural-networks.svg" },
+    { name: "Decision Trees", logo: "/images/tech/decision-trees.svg" },
+    { name: "Regression Models", logo: "/images/tech/regression-models.svg" }
   ],
   "Cloud Platforms": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" }
   ],
   "Financial Tools": [
-    { name: "QuantLib", logo: "/tech/quantlib.svg" },
-    { name: "Bloomberg API", logo: "/tech/bloomberg-api.svg" },
-    { name: "Alpaca", logo: "/tech/alpaca.svg" }
+    { name: "QuantLib", logo: "/images/tech/quantlib.svg" },
+    { name: "Bloomberg API", logo: "/images/tech/bloomberg-api.svg" },
+    { name: "Alpaca", logo: "/images/tech/alpaca.svg" }
   ]
 }
 
