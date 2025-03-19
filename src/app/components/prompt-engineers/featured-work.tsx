@@ -72,7 +72,7 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center bg-[#A8B2E7] p-6 rounded-xl"
+              className="grid md:grid-cols-2 gap-8 items-center bg-[#A8B2E7] p-6 rounded-xl border border-black" /* Added border to the card */ 
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
                 <span className="text-black text-sm">— {project.company}</span>
@@ -97,7 +97,7 @@ export function FeaturedWork() {
                 </Link>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
+                <div className="relative h-[400px] rounded-xl overflow-hidden border border-black"> {/* Added border to the image container */}
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -124,5 +124,4 @@ export function FeaturedWork() {
   );
 }
 
-export default projects;
-
+export default FeaturedWork;

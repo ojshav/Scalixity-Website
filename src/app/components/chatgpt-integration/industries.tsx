@@ -16,7 +16,7 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-[#F3F1EB] py-24"> {/* Soft warm beige background */}
+    <section className="bg-[#A8B2E7] py-24"> {/* Entire page background: Lavender */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">
@@ -40,9 +40,9 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center p-6 rounded-lg" /* No background for cards */
             >
-              <div className="bg-[#A8B2E7] p-6 rounded-full mb-4"> {/* Lavender background */}
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4"> {/* Beige background for icon circle */}
                 <Image
                   src={industry.icon}
                   alt={industry.name}

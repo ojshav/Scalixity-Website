@@ -21,15 +21,7 @@ export function Hero() {
           <p className="text-xl mb-12 leading-relaxed max-w-3xl mx-auto" style={{ color: "#000000" }}>
             Leverage the power of Stable Diffusion for high-quality AI-generated visuals, custom fine-tuning, and seamless integration into your projects. Our developers specialize in crafting AI-powered design solutions that enhance automation, efficiency, and creativity across industries.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-lg hover:bg-gray-300 transition-colors w-full sm:w-auto"
-              style={{ backgroundColor: "#000000", color: "#FFFFFF" }} // Black Button
-            >
-              Let’s Talk
-            </Link>
-          </div>
+          
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />

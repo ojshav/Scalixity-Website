@@ -29,11 +29,11 @@ const expertiseAreas = [
 
 export function Expertise() {
   return (
-    <section className="bg-[#F3F1EB] py-24"> {/* Beige background */}
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background for entire page */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-black mb-6">CORE EXPERTISE</h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Our core expertise in AI-powered model-based solutions
           </p>
         </div>
@@ -42,11 +42,11 @@ export function Expertise() {
           {expertiseAreas.map((area, index) => (
             <div
               key={index}
-              className="bg-[#A8B2E7] p-8 rounded-xl border border-gray-700 hover:border-gray-900 transition-colors" // Light black border
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-gray-700 hover:border-gray-900 transition-colors" // Beige background behind boxes
             >
               <area.icon className="w-12 h-12 text-black mb-6" />
               <h3 className="text-xl font-bold text-black mb-4">{area.title}</h3>
-              <p className="text-gray-900">{area.description}</p>
+              <p className="text-black">{area.description}</p>
             </div>
           ))}
         </div>
@@ -54,4 +54,3 @@ export function Expertise() {
     </section>
   );
 }
-

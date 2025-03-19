@@ -25,7 +25,7 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#F3F1EB] py-24">
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">WHAT WE OFFER</span>
@@ -42,8 +42,8 @@ export function WhatWeOffer() {
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="bg-[#A8B2E7] p-8 rounded-lg border border-black"
-            >
+              className="bg-[#F3F1EB] p-8 rounded-lg border border-black"
+            > {/* Beige box with black border */}
               <h3 className="text-xl font-bold text-black mb-4">{service.title}</h3>
               <p className="text-black mb-6 leading-relaxed">{service.description}</p>
             </div>
@@ -54,3 +54,4 @@ export function WhatWeOffer() {
   )
 }
 
+export default WhatWeOffer;

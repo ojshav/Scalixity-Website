@@ -25,14 +25,7 @@ export function Hero() {
             extensive experience in fine-tuning and customizing prompts,
             enabling you to efficiently deploy generative models.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors w-full sm:w-auto"
-            >
-              Contact Us
-            </Link>
-          </div>
+          
         </motion.div>
       </div>
       {/* Subtle Pattern Overlay */}
