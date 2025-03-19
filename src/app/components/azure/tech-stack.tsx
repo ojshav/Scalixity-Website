@@ -7,30 +7,30 @@ import Image from 'next/image'
 
 const scalixityTechCategories = {
   "Data Processing & Analytics": [
-    { name: "Pandas", logo: "/tech/pandas.svg" },
-    { name: "NumPy", logo: "/tech/numpy.svg" },
-    { name: "Dask", logo: "/tech/dask.svg" }
+    { name: "Pandas", logo: "/images/tech/pandas.svg" },
+    { name: "NumPy", logo: "/images/tech/numpy.svg" },
+    { name: "Dask", logo: "/images/tech/d3.svg" }
   ],
   "Visualization & Dashboards": [
-    { name: "Matplotlib", logo: "/tech/matplotlib.svg" },
-    { name: "Seaborn", logo: "/tech/seaborn.svg" },
-    { name: "Plotly", logo: "/tech/plotly.svg" }
+    { name: "Matplotlib", logo: "/images/tech/matplotlib.svg" },
+    { name: "Seaborn", logo: "/images/tech/seaborn.svg" },
+    { name: "Plotly", logo: "/images/tech/predictive-analytics.svg" }
   ],
   "AI & Machine Learning": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" },
-    { name: "Scikit-learn", logo: "/tech/scikit-learn.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+    { name: "Scikit-learn", logo: "/images/tech/scikit-learn.svg" }
   ],
   "Databases & Storage": [
-    { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-    { name: "MongoDB", logo: "/tech/mongodb.svg" },
-    { name: "Redis", logo: "/tech/redis.svg" }
+    { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+    { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+    { name: "Redis", logo: "/images/tech/redis.svg" }
   ],
 
   "Cloud & DevOps": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Docker", logo: "/tech/docker.svg" },
-    { name: "Kubernetes", logo: "/tech/kubernetes.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Docker", logo: "/images/tech/docker.svg" },
+    { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" }
 
   ]
 }
