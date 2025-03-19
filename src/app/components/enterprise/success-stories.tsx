@@ -8,7 +8,7 @@ const successStories = [
     company: "Enterprise Solutions Inc.",
     title: "Scalable Enterprise Software Implementation",
     description: "Developed a robust enterprise application leveraging microservices architecture, enhancing system reliability and efficiency for large-scale operations.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/icons/Customer Service.svg",
     results: [
       "Improved operational efficiency by 45%",
       "99.99% uptime with cloud-based scalability",
@@ -19,7 +19,7 @@ const successStories = [
     company: "Global Finance Systems",
     title: "Next-Gen Financial Management Platform",
     description: "Engineered a secure and AI-driven enterprise financial platform, optimizing compliance and risk management for global transactions.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/icons/finance.svg",
     results: [
       "Increased fraud detection accuracy by 70%",
       "Real-time financial insights with AI-powered analytics",

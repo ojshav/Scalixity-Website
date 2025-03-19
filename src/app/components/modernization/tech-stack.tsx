@@ -4,49 +4,49 @@ const techStack = [
   {
     category: "Cloud & Infrastructure",
     items: [
-      { name: "AWS", logo: "/tech/aws.svg" },
-      { name: "Microsoft Azure", logo: "/tech/azure.svg" },
-      { name: "Google Cloud", logo: "/tech/gcp.svg" }
+      { name: "AWS", logo: "/images/tech/aws.svg" },
+      { name: "Microsoft Azure", logo: "/images/tech/azure.svg" },
+      { name: "Google Cloud", logo: "/images/tech/googlecloud.svg" }
     ]
   },
   {
     category: "Containerization & Orchestration",
     items: [
-      { name: "Docker", logo: "/tech/docker.svg" },
-      { name: "Kubernetes", logo: "/tech/kubernetes.svg" },
-      { name: "Helm", logo: "/tech/helm.svg" }
+      { name: "Docker", logo: "/images/tech/docker.svg" },
+      { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" },
+      { name: "Helm", logo: "/images/tech/helmet.svg" }
     ]
   },
   {
     category: "Microservices & APIs",
     items: [
-      { name: "Spring Boot", logo: "/tech/springboot.svg" },
-      { name: "Node.js", logo: "/tech/nodejs.svg" },
-      { name: "GraphQL", logo: "/tech/graphql.svg" }
+      { name: "Spring Boot", logo: "/images/tech/springboot.svg" },
+      { name: "Node.js", logo: "/images/tech/nodejs.svg" },
+      { name: "GraphQL", logo: "/images/tech/graphql.svg" }
     ]
   },
   {
     category: "DevOps & CI/CD",
     items: [
-      { name: "Jenkins", logo: "/tech/jenkins.svg" },
-      { name: "GitHub Actions", logo: "/tech/github-actions.svg" },
-      { name: "GitLab CI/CD", logo: "/tech/gitlab.svg" }
+      { name: "Jenkins", logo: "/images/tech/bert.svg" },
+      { name: "GitHub Actions", logo: "/images/tech/github-actions.svg" },
+      { name: "GitLab CI/CD", logo: "/images/tech/git.svg" }
     ]
   },
   {
     category: "Database Modernization",
     items: [
-      { name: "MongoDB", logo: "/tech/mongodb.svg" },
-      { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-      { name: "Amazon RDS", logo: "/tech/rds.svg" }
+      { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+      { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+      { name: "Amazon RDS", logo: "/images/tech/appium.svg" }
     ]
   },
   {
     category: "Monitoring & Security",
     items: [
-      { name: "Prometheus", logo: "/tech/prometheus.svg" },
-      { name: "Grafana", logo: "/tech/grafana.svg" },
-      { name: "SonarQube", logo: "/tech/sonarqube.svg" }
+      { name: "Prometheus", logo: "/images/tech/prometheus.webp" },
+      { name: "Grafana", logo: "/images/tech/grafana.svg" },
+      { name: "SonarQube", logo: "/images/tech/axios.svg" }
     ]
   }
 ];
