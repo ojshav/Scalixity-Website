@@ -1,40 +1,36 @@
 "use client";
 
 const techStack = {
-  "Document Processing & OCR": [
-    { name: "Adobe Acrobat API", logo: "/tech/adobe.svg" },
-    { name: "Tesseract OCR", logo: "/tech/tesseract.svg" },
-    { name: "Google Cloud Vision", logo: "/tech/google-vision.svg" }
-  ],
+  
   "Natural Language Processing (NLP)": [
-    { name: "spaCy", logo: "/tech/spacy.svg" },
-    { name: "Transformers (Hugging Face)", logo: "/tech/transformers.svg" },
-    { name: "BERT", logo: "/tech/bert.svg" }
+    { name: "spaCy", logo: "/images/tech/spacy.svg" },
+    { name: "Transformers (Hugging Face)", logo: "/images/tech/huggingface.svg" },
+    { name: "BERT", logo: "/images/tech/bert.svg" }
   ],
   "Data Extraction & Parsing": [
-    { name: "BeautifulSoup", logo: "/tech/beautifulsoup.svg" },
-    { name: "Pandas", logo: "/tech/pandas.svg" },
-    { name: "Apache PDFBox", logo: "/tech/pdfbox.svg" }
+    { name: "BeautifulSoup", logo: "/images/tech/azure.svg" },
+    { name: "Pandas", logo: "/images/tech/pandas.svg" },
+    { name: "Apache PDFBox", logo: "/images/tech/spark.svg" }
   ],
   "Programming Languages": [
-    { name: "Python", logo: "/tech/python.svg" },
-    { name: "JavaScript", logo: "/tech/javascript.svg" },
-    { name: "Java", logo: "/tech/java.svg" }
+    { name: "Python", logo: "/images/tech/python.svg" },
+    { name: "JavaScript", logo: "/images/tech/javascript.svg" },
+    { name: "Java", logo: "/images/tech/java.svg" }
   ],
   "Cloud & AI Services": [
-    { name: "AWS Textract", logo: "/tech/aws-textract.svg" },
-    { name: "Google AI", logo: "/tech/googleai.svg" },
-    { name: "Azure Cognitive Services", logo: "/tech/azure.svg" }
+    { name: "AWS Textract", logo: "/images/tech/aws.svg" },
+    { name: "Google AI", logo: "/images/tech/googlecloud.svg" },
+    { name: "Azure Cognitive Services", logo: "/images/tech/azure.svg" }
   ],
   "MLOps & Deployment": [
-    { name: "Docker", logo: "/tech/docker.svg" },
-    { name: "Kubernetes", logo: "/tech/kubernetes.svg" },
-    { name: "MLflow", logo: "/tech/mlflow.svg" }
+    { name: "Docker", logo: "/images/tech/docker.svg" },
+    { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" },
+    { name: "MLflow", logo: "/images/tech/mlflow.svg" }
   ],
   "Databases & Storage": [
-    { name: "MongoDB", logo: "/tech/mongodb.svg" },
-    { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-    { name: "Firebase", logo: "/tech/firebase.svg" }
+    { name: "MongoDB", logo: "/images/tech/mongodb.svg" },
+    { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+    { name: "Firebase", logo: "/images/tech/firebase.svg" }
   ]
 };
 
