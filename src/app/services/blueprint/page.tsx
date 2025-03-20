@@ -2,7 +2,7 @@ import { Hero} from "@/src/app/components/blueprint/hero"
 import { WhatWeOffer } from "@/src/app/components/blueprint/what-we-offer"
 import { Benefits } from "@/src/app/components/blueprint/benefits"
 import { FeaturedWork } from "@/src/app/components/blueprint/featured-work"
-import { Process } from "@/src/app/components/blueprint/process"
+
 import { Expertise } from "@/src/app/components/blueprint/expertise"
 import { WhyChooseUs } from "@/src/app/components/blueprint/why-choose-us"
 import { FAQ } from "@/src/app/components/blueprint/faq"

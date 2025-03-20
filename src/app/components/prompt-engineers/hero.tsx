@@ -1,11 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
+
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F3F1EB] py-20">
-      {/* Beige Background */}
+      
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -14,11 +14,11 @@ export function Hero() {
           className="text-center"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-black mb-6">
-            {/* Black Text */}
+           
             Hire Prompt Engineers
           </h1>
           <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
-            {/* Dark Gray Text for Readability */}
+          
             Hire prompt engineers to assist you in constructing AI models using
             cutting-edge technologies such as Midjourney, DALL-E, Stable
             Diffusion, and OpenAI. Our team of dedicated prompt engineers boasts
@@ -28,7 +28,7 @@ export function Hero() {
           
         </motion.div>
       </div>
-      {/* Subtle Pattern Overlay */}
+     
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
     </section>
   );

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ChevronUp } from 'lucide-react'
-import { SSG_FALLBACK_EXPORT_ERROR } from 'next/dist/lib/constants'
+
 
 const faqs = [
   {

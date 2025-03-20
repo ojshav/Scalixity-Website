@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+
+
+
 
 export function Hero() {
   return (
@@ -21,7 +23,6 @@ export function Hero() {
             From smart contracts to decentralized applications, we build scalable and secure solutions tailored to your needs. 
             Leverage the power of Cardano for DeFi, NFTs, and enterprise applications with our experienced team.
           </p>
-          
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />

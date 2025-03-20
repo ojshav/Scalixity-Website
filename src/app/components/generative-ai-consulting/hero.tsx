@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { useCallback } from 'react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export function ConsultingHero() {
   return (
@@ -27,7 +26,7 @@ export function ConsultingHero() {
               Contact us
             </Link>
           </motion.div>
-          
+
           <div className="grid grid-cols-2 gap-6">
             <div className="bg-[#A8B2E7] p-6 rounded-lg border border-black text-black">
               <h3 className="text-xl font-bold mb-2">AI Model Optimization</h3>
@@ -49,5 +48,5 @@ export function ConsultingHero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

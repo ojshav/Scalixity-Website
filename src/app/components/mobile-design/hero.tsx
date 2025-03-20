@@ -26,7 +26,7 @@ export function Hero() {
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-transform transform hover:scale-105 w-full sm:w-auto"
             >
-              Let's Build Your App
+             Let&apos;s Build Your App
             </Link>
           </div>
         </motion.div>

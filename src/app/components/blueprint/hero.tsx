@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 export function Hero() {
   return (
@@ -21,12 +20,9 @@ export function Hero() {
             user journey mapping, and technical planning to ensure a seamless development process. 
             Build a strong foundation for your next mobile or web application with our expert team.
           </p>
-          
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
     </section>
   );
 }
-
-export default Hero;

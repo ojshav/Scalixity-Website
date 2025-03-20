@@ -1,12 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
+
 
 export function Hero() {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden py-20"
-      style={{ backgroundColor: "#F3F1EB" }} // Soft Warm Beige Background
+      style={{ backgroundColor: "#F3F1EB" }} 
     >
       <div className="container mx-auto px-4">
         <motion.div
@@ -26,7 +26,7 @@ export function Hero() {
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
     </section>
-  );
+  )
 }
 
 export default Hero;
