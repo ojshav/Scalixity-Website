@@ -1,5 +1,4 @@
 'use client'
-
 import * as React from 'react';
 import Header from '@/src/app/components/Header/Header';
 import SideMenu from '@/src/app/components/SideMenu';
@@ -67,25 +66,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           overflow: 'hidden',
           flexDirection: { xs: 'column', sm: 'row' }
         }}>
-          {/* Side Menu - Visible on all screen sizes */}
-          <Box 
-            sx={{ 
-              display: 'flex',
-              width: { xs: '100%', sm: 'auto' },
-              height: { xs: isMobile ? (isMobileMenuOpen ? 'auto' : '0') : 'auto', sm: 'auto' },
-              overflow: { xs: 'hidden', sm: 'visible' },
-              transition: 'height 0.3s ease',
-              position: { xs: 'relative', sm: 'static' },
-              zIndex: { xs: 10, sm: 1 }
-            }}
-          >
-            <SideMenu 
-              isMobile={isMobile} 
-              isTablet={isTablet} 
-              isMobileMenuOpen={isMobileMenuOpen}
-              onMenuClose={() => setIsMobileMenuOpen(false)}
-            />
-          </Box>
+          {/* Side Menu */}
+          <SideMenu 
+            isMobile={isMobile} 
+            isTablet={isTablet} 
+            isMobileMenuOpen={isMobileMenuOpen}
+            onMenuClose={() => setIsMobileMenuOpen(false)}
+          />
           
           {/* Content Area */}
           <Box sx={{ 
@@ -94,8 +81,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             overflowY: 'auto',
             bgcolor: theme.palette.background.paper,
             width: { xs: '100%', sm: 'calc(100% - 64px)' },
-            height: { xs: isMobile ? `calc(100% - ${isMobileMenuOpen ? '200px' : '0px'})` : '100%', sm: '100%' },
-            transition: 'height 0.3s ease'
+            ml: { xs: 0, sm: '64px' },
+            transition: 'all 0.3s ease'
           }}>
             {children}
           </Box>

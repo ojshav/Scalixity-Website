@@ -12,7 +12,6 @@ import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import NextLink from "next/link";
 import scss from "@/styles/SideMenu.module.scss";
 import {
-  Box,
   Divider,
   Drawer,
   List,
@@ -21,7 +20,7 @@ import {
   ListItemIcon,
   ListItemText,
   Theme,
-  useTheme,
+ 
 } from "@mui/material";
 
 const drawerWidth = 240;
@@ -53,7 +52,7 @@ const menuRouteList = [
   "/dashboard/settings",
   "/dashboard/work", 
   "/dashboard/contact",
-  "/dashboard/inqury",
+  "/dashboard/inquiry",
 ];
 
 const menuListTranslations = [
@@ -81,13 +80,7 @@ interface SideMenuProps {
   onMenuClose: () => void;
 }
 
-const SideMenu: React.FC<SideMenuProps> = ({ 
-  isMobile, 
-  isTablet, 
-  isMobileMenuOpen, 
-  onMenuClose 
-}) => {
-  const theme = useTheme();
+const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMenuProps) => {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -98,21 +91,12 @@ const SideMenu: React.FC<SideMenuProps> = ({
     }
   };
 
-  const handleListItemButtonClick = () => {
-    if (isMobile) {
-      onMenuClose();
-    } else if (isTablet) {
-      setOpen(false);
-    }
-  };
-
-  // Drawer content component to avoid repetition
   const DrawerContent = () => (
     <>
       {!isMobile && (
         <div className={scss.drawerHeader}>
           <IconButton onClick={handleDrawerToggle}>
-            {theme.direction === "rtl" ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
       )}
@@ -122,7 +106,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
           <ListItem key={text} disablePadding sx={{ display: "block" }}>
             <NextLink className={scss.link} href={menuRouteList[index]}>
               <ListItemButton
-                onClick={handleListItemButtonClick}
+                onClick={() => (isMobile || isTablet) && onMenuClose()}
                 title={text}
                 aria-label={text}
                 sx={{
@@ -143,7 +127,6 @@ const SideMenu: React.FC<SideMenuProps> = ({
                 <ListItemText
                   primary={text}
                   sx={{
-                    color: theme.palette.text.primary,
                     opacity: isMobile || open ? 1 : 0,
                   }}
                 />
@@ -155,60 +138,50 @@ const SideMenu: React.FC<SideMenuProps> = ({
     </>
   );
 
-  // For mobile, we want to render the drawer conditionally based on isMobileMenuOpen
-  if (isMobile) {
-    return (
-      <Box sx={{ width: '100%' }}>
+  return (
+    <>
+      {/* Mobile Drawer */}
+      {isMobile && (
         <Drawer
           variant="temporary"
           open={isMobileMenuOpen}
-          onClose={onMenuClose}
+          onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile
+            keepMounted: true,
           }}
           sx={{
+            display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { 
               boxSizing: 'border-box', 
-              width: '100%',
-              position: 'relative',
-              height: 'auto'
+              width: drawerWidth,
+              top: 56,
             },
           }}
         >
           <DrawerContent />
         </Drawer>
-      </Box>
-    );
-  }
+      )}
 
-  // For tablet and desktop
-  return (
-    <Drawer
-      variant="permanent"
-      anchor="left"
-      open={open}
-      className={scss.sideMenu}
-      sx={{
-        width: open ? drawerWidth : `calc(${theme.spacing(8)} + 1px)`,
-        flexShrink: 0,
-        [`& .MuiDrawer-paper`]: {
-          position: 'relative',
-          flexShrink: 0,
-          whiteSpace: "nowrap",
-          boxSizing: "border-box",
-          ...(open && {
-            ...openedMixin(theme),
-            "& .MuiDrawer-paper": openedMixin(theme),
-          }),
-          ...(!open && {
-            ...closedMixin(theme),
-            "& .MuiDrawer-paper": closedMixin(theme),
-          }),
-        },
-      }}
-    >
-      <DrawerContent />
-    </Drawer>
+      {/* Desktop/Tablet Drawer */}
+      {!isMobile && (
+        <Drawer
+          variant="permanent"
+          open={open}
+          className={scss.sideMenu}
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+            width: open ? drawerWidth : 64,
+            '& .MuiDrawer-paper': {
+              top: 64,
+              width: open ? drawerWidth : 64,
+              ...(open ? openedMixin : closedMixin),
+            },
+          }}
+        >
+          <DrawerContent />
+        </Drawer>
+      )}
+    </>
   );
 };
 

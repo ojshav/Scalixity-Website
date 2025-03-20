@@ -1,5 +1,4 @@
 'use client'
-import '@/src/app/globals.css';
 import * as React from 'react';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -169,7 +168,7 @@ const Header = ({ isDarkMode, onThemeToggle, onMenuToggle }: HeaderProps) => {
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                     <Avatar 
                                         alt={adminUsername || "admin"} 
-                                        src="/default-avatar.png" 
+                                        src="public\S_logo.svg" 
                                         sx={{ width: isMobile ? 32 : 40, height: isMobile ? 32 : 40 }}
                                     />
                                 </IconButton>
