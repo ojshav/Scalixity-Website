@@ -26,10 +26,10 @@ export function TechStack() {
     <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Our AI Tech Stack for Retail
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Driving retail innovation with cutting-edge AI technologies and tools.
           </p>
         </div>
@@ -42,9 +42,9 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] rounded-xl border border-border p-6"
+              className="bg-[#F3F1EB] rounded-xl border border-black p-6"
             >
-              <h3 className="text-lg font-semibold text-foreground mb-6">{category}</h3>
+              <h3 className="text-lg font-semibold text-black mb-6">{category}</h3>
               <div className="grid grid-cols-3 gap-6">
                 {items.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center justify-center">
@@ -56,7 +56,7 @@ export function TechStack() {
                         className="object-contain"
                       />
                     </div>
-                    <span className="text-sm text-muted-foreground text-center">{item.name}</span>
+                    <span className="text-sm text-black text-center">{item.name}</span>
                   </div>
                 ))}
               </div>

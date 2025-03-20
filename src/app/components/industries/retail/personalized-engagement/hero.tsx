@@ -22,19 +22,6 @@ export function Hero() {
         >
           Transform customer relationships with AI-driven personalized engagement. Leverage data insights to deliver real-time, tailored experiences that foster loyalty, boost conversions, and enhance satisfaction.
         </motion.p>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row justify-center gap-4"
-        >
-          <button className="px-8 py-3 text-lg font-medium bg-black text-white rounded-lg hover:bg-gray-800 transition-all">
-            Explore AI Engagement
-          </button>
-          <button className="px-8 py-3 text-lg font-medium bg-black text-white rounded-lg hover:bg-gray-800 transition-all">
-            Request a Demo
-          </button>
-        </motion.div>
       </div>
     </section>
   );

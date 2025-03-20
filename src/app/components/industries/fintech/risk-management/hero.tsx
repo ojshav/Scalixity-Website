@@ -13,24 +13,13 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-black mb-6">
+          <h1 className="text-3xl md:text-5xl font-semibold text-black mb-8">
             AI Solutions for Risk Assessment & Management
           </h1>
           <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
             Enhance your fintech strategies with AI-driven risk assessment and management solutions. Identify, analyze, and mitigate risks effectively using cutting-edge data analytics and predictive models.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors w-full sm:w-auto"
-            >
-              Get Started
-            </Link>
-          </div>
         </motion.div>
-      </div>
-      <div className="absolute inset-0">
-        <div className="w-full h-full bg-black opacity-10 animate-pulse"></div>
       </div>
     </section>
   );

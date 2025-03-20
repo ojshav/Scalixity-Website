@@ -34,10 +34,10 @@ export function FAQ() {
     <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-semibold text-foreground mb-6">
+          <h2 className="text-4xl font-semibold text-black mb-6">
             Customer Sentiment Analysis: FAQs
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Discover how AI-powered sentiment analysis empowers retailers to uncover customer emotions, drive strategic decisions, and boost customer loyalty.
           </p>
         </div>
@@ -53,10 +53,10 @@ export function FAQ() {
               className="mb-4"
             >
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg border border-border hover:border-primary/50 transition-colors"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg border border-black hover:border-primary/50 transition-colors"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="font-semibold text-foreground">{faq.question}</span>
+                <span className="font-semibold text-black">{faq.question}</span>
                 {openIndex === index ? (
                   <ChevronUp className="w-5 h-5 text-primary" />
                 ) : (
@@ -73,7 +73,7 @@ export function FAQ() {
                     className="overflow-hidden"
                   >
                     <div className="p-4 bg-[#F3F1EB] mt-1 rounded-lg">
-                      <p className="text-muted-foreground">{faq.answer}</p>
+                      <p className="text-black">{faq.answer}</p>
                     </div>
                   </motion.div>
                 )}

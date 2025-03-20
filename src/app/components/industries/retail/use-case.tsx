@@ -102,14 +102,14 @@ export function UseCases() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB] p-8 rounded-xl shadow-md"
+              className="grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB] p-8 rounded-xl border border-black shadow-md"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
                 <h3 className="text-2xl font-bold text-black mb-4">{useCase.title}</h3>
                 <p className="text-black mb-8">{useCase.description}</p>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[300px] rounded-xl overflow-hidden">
+                <div className="relative h-[300px] rounded-xl overflow-hidden border border-black">
                   <Image
                     src={useCase.image}
                     alt={useCase.title}

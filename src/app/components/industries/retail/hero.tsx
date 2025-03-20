@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 export function Hero() {
   return (
@@ -19,14 +18,6 @@ export function Hero() {
           <p className="text-xl text-black mb-12 leading-relaxed max-w-3xl mx-auto">
             Revolutionize your retail business with AI-driven solutions. From personalized shopping experiences to predictive analytics, we help you harness the power of AI to boost sales, optimize operations, and enhance customer satisfaction.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors w-full sm:w-auto"
-            >
-              Get Started
-            </Link>
-          </div>
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
@@ -35,4 +26,3 @@ export function Hero() {
 }
 
 export default Hero;
-

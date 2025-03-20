@@ -13,24 +13,13 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-black mb-6">
+          <h1 className="text-3xl md:text-5xl font-semibold text-black mb-8">
             Seamless Regulatory Code Change Solutions
           </h1>
           <p className="text-xl text-black mb-12 leading-relaxed max-w-3xl mx-auto">
             Stay ahead of ever-evolving financial regulations with AI-powered solutions. Automate code updates, ensure compliance, and streamline risk management — all without disrupting your operations.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:opacity-80 transition-opacity w-full sm:w-auto"
-            >
-              Get Started
-            </Link>
-          </div>
         </motion.div>
-      </div>
-      <div className="absolute inset-0">
-        <div className="w-full h-full bg-black opacity-10 animate-pulse"></div>
       </div>
     </section>
   );

@@ -38,14 +38,14 @@ const applications = [
 
 export function AIApplications() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#A8B2E7] py-24 text-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">AI AGENT APPLICATIONS</span>
-          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
+          <span className="text-sm uppercase tracking-wider">AI AGENT APPLICATIONS</span>
+          <h2 className="text-4xl font-bold mt-4 mb-6">
             Transforming Retail with AI-Powered Dynamic Pricing
           </h2>
-          <p className="text-xl text-black/80 max-w-3xl mx-auto">
+          <p className="text-xl max-w-3xl mx-auto">
             Discover how AI agents revolutionize retail by driving data-driven dynamic pricing strategies — boosting sales, customer engagement, and profitability.
           </p>
         </div>
@@ -58,11 +58,11 @@ export function AIApplications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-black/20 hover:border-black/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-black/50 transition-colors"
             >
-              <app.icon className="w-12 h-12 text-black mb-6" />
-              <h3 className="text-xl font-bold text-black mb-4">{app.title}</h3>
-              <p className="text-black/80">{app.description}</p>
+              <app.icon className="w-12 h-12 mb-6" />
+              <h3 className="text-xl font-bold mb-4">{app.title}</h3>
+              <p>{app.description}</p>
             </motion.div>
           ))}
         </div>

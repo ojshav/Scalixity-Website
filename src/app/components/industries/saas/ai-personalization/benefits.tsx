@@ -38,14 +38,14 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-gradient-to-r from-[#5B1DAF] to-[#8E44AD] text-white py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm uppercase tracking-wider text-white/80">BENEFITS OF AI PERSONALIZATION FOR SAAS</span>
-          <h2 className="text-5xl font-bold text-white mt-4 mb-6">
+          <span className="text-sm uppercase tracking-wider text-black">BENEFITS OF AI PERSONALIZATION FOR SAAS</span>
+          <h2 className="text-5xl font-bold text-black mt-4 mb-6">
             Unlock the Full Potential of AI-Powered SaaS Personalization
           </h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Discover the transformative benefits of integrating AI into your SaaS platform — from boosting user engagement to making data-driven decisions in real-time.
           </p>
         </div>
@@ -58,11 +58,11 @@ export function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-xl border border-white/20 hover:border-white/50 transition-colors text-[#5B1DAF]"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black text-black"
             >
-              <benefit.icon className="w-12 h-12 mb-6" />
+              <benefit.icon className="w-12 h-12 text-black mb-6" />
               <h3 className="text-2xl font-bold mb-4">{benefit.title}</h3>
-              <p className="text-[#5B1DAF]/80">{benefit.description}</p>
+              <p>{benefit.description}</p>
             </motion.div>
           ))}
         </div>

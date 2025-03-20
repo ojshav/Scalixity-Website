@@ -57,7 +57,7 @@ export function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F5F5DC] p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F5F5DC] p-8 rounded-xl border-2 border-black hover:border-gray-700 transition-colors"
             >
               <benefit.icon className="w-12 h-12 text-black mb-6" />
               <h3 className="text-xl font-bold text-black mb-4">{benefit.title}</h3>
