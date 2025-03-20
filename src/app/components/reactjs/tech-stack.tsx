@@ -5,7 +5,7 @@ const techStack = [
     category: "Core Libraries & Frameworks",
     items: [
       { name: "React", logo: "/images/tech/react-native.svg" },
-      { name: "Next.js", logo: "/images/tech/nextjs.svg" },
+      { name: "Next.js", logo: "/images/tech/nestjs.svg" },
       { name: "Gatsby", logo: "/images/tech/gatsby.svg" }
     ]
   },

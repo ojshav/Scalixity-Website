@@ -8,7 +8,7 @@ const successStories = [
     company: "InnovateTech Solutions",
     title: "Transforming SaaS Product Development",
     description: "Built a scalable SaaS platform using cloud-native technologies, enabling seamless multi-tenant architecture and improved performance for enterprise clients.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/Transforming SaaS Product Development.svg",
     results: [
       "50% faster time-to-market",
       "99.99% uptime with cloud scalability",
@@ -19,7 +19,7 @@ const successStories = [
     company: "NextGen Manufacturing",
     title: "Smart Factory Automation",
     description: "Developed an AI-driven product lifecycle management system that optimizes production efficiency and reduces downtime using predictive analytics.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/images/Smart Factory Automation.svg",
     results: [
       "30% increase in operational efficiency",
       "Real-time insights with AI-driven analytics",

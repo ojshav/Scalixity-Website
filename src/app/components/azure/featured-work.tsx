@@ -10,7 +10,7 @@ const projects = [
     company: "AzureFinTech",
     title: "Secure and Scalable Financial Solutions with Azure",
     description: "Using Microsoft Azure, we helped AzureFinTech build a high-performance financial platform with top-tier security and compliance.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/icons/finance.svg",
     features: [
       "Azure Functions for serverless computing",
       "Azure SQL Database for scalable and secure data management",
@@ -22,7 +22,7 @@ const projects = [
     company: "MediCloud",
     title: "Revolutionizing Healthcare with Azure-Powered Solutions",
     description: "We created a HIPAA-compliant telemedicine platform leveraging Azure services for seamless patient interactions and data security.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/icons/healthcare.svg",
     features: [
       "Azure Communication Services for real-time consultations",
       "Azure Kubernetes Service for scalable infrastructure",
@@ -34,7 +34,7 @@ const projects = [
     company: "RetailSync",
     title: "Optimizing E-commerce with Azure AI and Analytics",
     description: "Using Azure AI and big data solutions, we helped RetailSync enhance customer engagement and streamline inventory management.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/icons/retail.svg",
     features: [
       "Azure Machine Learning for personalized recommendations",
       "Azure Synapse Analytics for data integration",

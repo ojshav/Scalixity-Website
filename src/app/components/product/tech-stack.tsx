@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const productTechStack = {
   "Frontend Development": [
-    { name: "React", logo: "/images/tech/react.svg" },
+    { name: "React", logo: "/images/tech/react-native.svg" },
     { name: "Next.js", logo: "/images/tech/nextjs.svg" },
     { name: "Tailwind CSS", logo: "/images/tech/tailwind.svg" }
   ],

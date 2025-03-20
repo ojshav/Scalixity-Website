@@ -5,31 +5,31 @@ import Image from "next/image";
 
 const enterpriseTechStack = {
   "Enterprise Frontend": [
-    { name: "React", logo: "/tech/react.svg" },
-    { name: "Next.js", logo: "/tech/nextjs.svg" },
-    { name: "Angular", logo: "/tech/angular.svg" },
+    { name: "React", logo: "/images/tech/react-native.svg" },
+    { name: "Next.js", logo: "/images/tech/nextjs.svg" },
+    { name: "Angular", logo: "/images/tech/angular.svg" }
   ],
   "Enterprise Backend & API": [
-    { name: "Node.js", logo: "/tech/nodejs.svg" },
-    { name: "Spring Boot", logo: "/tech/springboot.svg" },
-    { name: "GraphQL", logo: "/tech/graphql.svg" },
+    { name: "Node.js", logo: "/images/tech/nodejs.svg" },
+    { name: "Spring Boot", logo: "/images/tech/springboot.svg" },
+    { name: "GraphQL", logo: "/images/tech/graphql.svg" }
   ],
   "Enterprise Databases": [
-    { name: "Oracle DB", logo: "/tech/oracle.svg" },
-    { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-    { name: "MongoDB", logo: "/tech/mongodb.svg" },
+    { name: "Oracle DB", logo: "/images/tech/oracle.svg" },
+    { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" },
+    { name: "MongoDB", logo: "/images/tech/mongodb.svg" }
   ],
   "Enterprise Cloud & DevOps": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" },
-    { name: "Kubernetes", logo: "/tech/kubernetes.svg" },
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" },
+    { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" }
   ],
   "Enterprise AI & ML": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "IBM Watson", logo: "/tech/ibm-watson.svg" },
-    { name: "OpenAI API", logo: "/tech/openai.svg" },
-  ],
-};
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "IBM Watson", logo: "/images/tech/ibm-watson.svg" },
+    { name: "OpenAI API", logo: "/images/tech/openai.svg" }
+  ]
+}
 
 type TechItem = { name: string; logo: string } | string;
 

@@ -7,7 +7,7 @@ const enterpriseUseCases = [
   {
     title: "Scalable Enterprise Applications",
     description: "Develop and deploy robust, scalable enterprise applications tailored to complex business operations.",
-    image: "/tech/enterprise-app.svg",
+    image: "/images/ai-powered-maintenance.svg",
     stats: [
       { value: "99.99%", label: "Uptime Guarantee" },
       { value: "5x", label: "Improved Operational Efficiency" },
@@ -16,7 +16,7 @@ const enterpriseUseCases = [
   {
     title: "AI & Automation for Enterprises",
     description: "Leverage AI-driven automation to enhance workflows, reduce costs, and improve decision-making.",
-    image: "/tech/ai-enterprise.svg",
+    image: "/images/Data Analysis.svg",
     stats: [
       { value: "70%", label: "Faster Business Processes" },
       { value: "50%", label: "Reduction in Manual Tasks" },
@@ -25,7 +25,7 @@ const enterpriseUseCases = [
   {
     title: "Enterprise Data Analytics & Insights",
     description: "Utilize data analytics solutions for real-time insights, predictive analytics, and better business intelligence.",
-    image: "/tech/enterprise-analytics.svg",
+    image: "/images/Document Processing.svg",
     stats: [
       { value: "10x", label: "Faster Report Generation" },
       { value: "40%", label: "Increase in Data Accuracy" },

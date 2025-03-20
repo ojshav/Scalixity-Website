@@ -6,7 +6,7 @@ const projects = [
     company: "UI Masters",
     title: "Modern React Dashboards",
     description: "We collaborated with UI Masters to create responsive and dynamic dashboards using React.js. These dashboards deliver real-time data visualization and seamless user experiences.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/custom-solution.svg",
     features: [
       "Interactive charts and graphs with Chart.js",
       "Custom hooks for state management",
@@ -18,7 +18,7 @@ const projects = [
     company: "DevStack",
     title: "Scalable E-Commerce Platform",
     description: "For DevStack, we built a feature-rich e-commerce platform with React.js, ensuring fast loading times, dynamic routing, and smooth animations.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Cross-Platform E-Commerce App.svg",
     features: [
       "Server-side rendering with Next.js",
       "Component-based architecture",

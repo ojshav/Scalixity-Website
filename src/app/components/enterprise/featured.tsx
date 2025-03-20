@@ -9,9 +9,8 @@ const projects = [
   {
     company: "EnterpriseX",
     title: "Modernizing Enterprise Operations with Scalable Solutions",
-    description:
-      "We developed a cloud-based enterprise platform that enhances operational efficiency, security, and scalability for large businesses.",
-    image: "/placeholder.svg?height=600&width=800",
+    description: "We developed a cloud-based enterprise platform that enhances operational efficiency, security, and scalability for large businesses.",
+    image: "/images/ai-powered-maintenance.svg",
     features: [
       "Cloud-native architecture for scalability",
       "AI-powered automation for workflow optimization",
@@ -22,9 +21,8 @@ const projects = [
   {
     company: "HealthCorp",
     title: "Enterprise Healthcare Management System",
-    description:
-      "We built a secure, HIPAA-compliant enterprise solution that streamlines hospital operations, patient management, and data analytics.",
-    image: "/placeholder.svg?height=600&width=800",
+    description: "We built a secure, HIPAA-compliant enterprise solution that streamlines hospital operations, patient management, and data analytics.",
+    image: "/images/healthcare-analytics.svg",
     features: [
       "Cloud-based patient record management",
       "AI-driven diagnostics and predictive analytics",
@@ -35,9 +33,8 @@ const projects = [
   {
     company: "RetailEnterprise",
     title: "Enhancing Retail Operations with AI and Data Analytics",
-    description:
-      "Using AI and data analytics, we built a smart retail management platform that optimizes inventory, sales, and customer engagement.",
-    image: "/placeholder.svg?height=600&width=800",
+    description: "Using AI and data analytics, we built a smart retail management platform that optimizes inventory, sales, and customer engagement.",
+    image: "/images/Data Analysis.svg",
     features: [
       "AI-powered demand forecasting",
       "Personalized customer engagement tools",
