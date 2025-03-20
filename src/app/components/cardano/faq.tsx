@@ -31,14 +31,14 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="bg-[#F3F1EB] py-24"> {/* Soft beige background */}
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">FAQ</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm uppercase tracking-wider text-black">FAQ</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Cardano App Development FAQ
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Find answers to common questions about our Cardano app development services and processes.
           </p>
         </div>
@@ -54,14 +54,14 @@ export function FAQ() {
               className="mb-4"
             >
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-[#A8B2E7] rounded-lg border border-gray-500" 
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg border border-black" 
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="font-semibold text-foreground">{faq.question}</span>
+                <span className="font-semibold text-black">{faq.question}</span>
                 {openIndex === index ? (
-                  <ChevronUp className="w-5 h-5 text-primary" />
+                  <ChevronUp className="w-5 h-5 text-black" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-primary" />
+                  <ChevronDown className="w-5 h-5 text-black" />
                 )}
               </button>
               <AnimatePresence>
@@ -73,8 +73,8 @@ export function FAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 bg-[#A8B2E7] mt-1 rounded-lg border border-gray-500">
-                      <p className="text-muted-foreground">{faq.answer}</p>
+                    <div className="p-4 bg-[#F3F1EB] mt-1 rounded-lg border border-black">
+                      <p className="text-black">{faq.answer}</p>
                     </div>
                   </motion.div>
                 )}

@@ -21,16 +21,16 @@ const processSteps = [
   }
 ]
 
-export function ProcessGcpAppDev() {
+export function Process() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">PROCESS</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">PROCESS</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
             Our GCP Application Development Process
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             We implement a structured approach to GCP application development, ensuring secure, scalable, and high-performing solutions tailored to your business needs.
           </p>
         </div>
@@ -50,13 +50,13 @@ export function ProcessGcpAppDev() {
                 className="relative pl-12"
               >
                 {/* Timeline dot */}
-                <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-primary rounded-full flex items-center justify-center">
-                  <div className="w-2 h-2 bg-background rounded-full" />
+                <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center">
+                  <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" />
                 </div>
                 
-                <div className="bg-card p-8 rounded-xl border border-border">
-                  <h3 className="text-xl font-bold text-foreground mb-4">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                <div className="border border-black bg-[#F3F1EB] p-8 rounded-xl">
+                  <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
+                  <p className="text-black leading-relaxed">{step.description}</p>
                 </div>
               </motion.div>
             ))}

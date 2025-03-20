@@ -16,7 +16,7 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="py-24" style={{ backgroundColor: '#F3F1EB' }}> {/* Beige background */}
+    <section className="py-24" style={{ backgroundColor: '#A8B2E7' }}> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">
@@ -40,8 +40,8 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center p-6 rounded-xl"
-              style={{ backgroundColor: '#A8B2E7' }} // Lavender card background
+              className="flex flex-col items-center p-6"
+              style={{ backgroundColor: '#F3F1EB' }} // Beige background
             >
               <div className="p-6 rounded-full bg-white mb-4">
                 <Image
@@ -52,7 +52,7 @@ export function Industries() {
                   className="w-12 h-12"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-white text-center">
+              <h3 className="text-lg font-semibold text-black text-center">
                 {industry.name}
               </h3>
             </motion.div>
@@ -64,5 +64,3 @@ export function Industries() {
 }
 
 export default Industries;
-
-

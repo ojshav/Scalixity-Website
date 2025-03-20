@@ -51,7 +51,7 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-[#A8B2E7] hover:border-black transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border-2 border-black hover:shadow-lg transition-shadow"
             >
               <h3 className="text-xl font-bold text-black mb-4">{service.title}</h3>
               <p className="text-gray-800 leading-relaxed">{service.description}</p>

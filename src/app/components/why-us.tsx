@@ -41,7 +41,7 @@ export function WhyUs() {
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {features.map((feature, index) => (
-            <div key={index} className="bg-white p-8 rounded-lg shadow-md border border-gray-400">
+            <div key={index} className="bg-white p-8 rounded-lg shadow-md border border-black">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-blue-100 mb-6">
                 <feature.icon className="h-8 w-8 text-blue-500" />
               </div>

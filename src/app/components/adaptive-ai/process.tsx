@@ -52,11 +52,11 @@ export function Process() {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 className="relative pl-12"
               >
-                <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center">
-                  <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" />
+                <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center">
+                  <div className="w-2 h-2 bg-white rounded-full" />
                 </div>
 
-                <div className="p-8 rounded-xl border border-white" style={{ backgroundColor: '#F3F1EB' }}> {/* Beige boxes */}
+                <div className="p-8 rounded-xl border-2 border-black" style={{ backgroundColor: '#F3F1EB' }}> {/* Beige boxes with black border */}
                   <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
                   <p className="text-gray-700 leading-relaxed">{step.description}</p>
                 </div>

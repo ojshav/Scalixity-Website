@@ -11,18 +11,12 @@ export function GenerativeAIDevelopmentHero() {
           <p className="text-xl text-gray-700 mb-12 leading-relaxed"> {/* Slightly darker text for contrast */}
             We help data-driven, medium-sized companies innovate with Generative AI development services. Our team of AI/ML engineers builds custom Generative AI solutions that address specific business challenges, reduce operational costs, and create impact.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex items-center justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors"
             >
               Schedule a Free Consultation
-            </Link>
-            <Link
-              href="#case-studies"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-gray-300 text-black font-medium text-lg hover:bg-gray-400 transition-colors w-full sm:w-auto"
-            >
-              View Case Studies
             </Link>
           </div>
         </div>

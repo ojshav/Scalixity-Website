@@ -31,14 +31,14 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-gradient-to-r from-blue-900 via-indigo-800 to-purple-900 py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-gray-300 uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">WHAT WE OFFER</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
             AI-Powered Solutions for Manufacturing
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Transform your manufacturing processes with cutting-edge AI technologies. From predictive maintenance to personalized product design, we provide innovative solutions tailored to your business needs.
           </p>
         </div>
@@ -51,10 +51,10 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white bg-opacity-10 p-8 rounded-xl border border-white border-opacity-20 hover:border-blue-400 transition-colors transform hover:scale-105"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black"
             >
-              <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-              <p className="text-white text-opacity-80 leading-relaxed">{service.description}</p>
+              <h3 className="text-2xl font-bold text-black mb-4">{service.title}</h3>
+              <p className="text-black text-opacity-80 leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>

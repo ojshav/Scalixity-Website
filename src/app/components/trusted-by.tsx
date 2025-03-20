@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/image";
 
 export function TrustedBy() {
   const clients = [
@@ -11,13 +11,13 @@ export function TrustedBy() {
     { name: "NVMS", logo: "/placeholder.svg?height=48&width=120" },
     { name: "Nown", logo: "/placeholder.svg?height=48&width=120" },
     { name: "Landmark", logo: "/placeholder.svg?height=48&width=120" }
-  ]
+  ];
 
   return (
-    <section className="bg-[#080B16] py-20">
+    <section className="bg-[#A8B2E7] py-20"> {/* Lavender Background */}
       <div className="container mx-auto px-4">
-        <p className="text-center text-gray-400 mb-16 text-sm uppercase tracking-wider">
-          Trusted by data driven companies
+        <p className="text-center text-black mb-16 text-sm uppercase tracking-wider font-bold">
+          Trusted by data-driven companies
         </p>
         <div className="flex flex-wrap justify-center items-center gap-x-20 gap-y-12">
           {clients.map((client) => (
@@ -36,14 +36,15 @@ export function TrustedBy() {
         </div>
       </div>
       <div className="container mx-auto px-4 mt-20 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
-          We help businesses build custom Generative AI solutions that drive measurable growth
+        <h2 className="text-3xl md:text-5xl font-bold text-black mb-8">
+          Empowering Businesses with Custom Generative AI Solutions
         </h2>
-        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-          Our team of AI engineers and developers specializes in building custom Generative AI solutions that help businesses automate processes, reduce costs, and create new revenue streams.
+        <p className="text-xl text-black max-w-3xl mx-auto">
+          Our AI engineers specialize in developing tailored Generative AI solutions that automate processes, optimize costs, and unlock new revenue opportunities for businesses.
         </p>
       </div>
     </section>
-  )
+  );
 }
 
+export default TrustedBy;

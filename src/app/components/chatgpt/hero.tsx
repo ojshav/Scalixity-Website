@@ -1,6 +1,5 @@
 "use client"
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 
 export function Hero() {
   return (
@@ -18,14 +17,6 @@ export function Hero() {
           <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
             Scalixity is an expert in OpenAI models and AI-powered solutions. We can help you build ChatGPT custom chatbots, image bots, and language applications. Our ChatGPT developers are well-versed in Machine Learning (ML), Natural Language Processing (NLP), and Deep Learning.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors w-full sm:w-auto"
-            >
-              Contact Us
-            </Link>
-          </div>
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />

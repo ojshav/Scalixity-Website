@@ -78,10 +78,17 @@ export function Process() {
                   <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "#F3F1EB" }} />
                 </div>
 
-                {/* Process Step Box */}
-                <div className="p-8 rounded-xl" style={{ backgroundColor: "#F3F1EB" }}>
-                  <h3 className="text-xl font-bold text-foreground mb-4">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                {/* Process Step Box with Border */}
+                <div
+                  className="p-8 rounded-xl border-2 border-black"
+                  style={{ backgroundColor: "#F3F1EB" }}
+                >
+                  <h3 className="text-xl font-bold mb-4" style={{ color: "#000000" }}>
+                    {step.title}
+                  </h3>
+                  <p className="leading-relaxed" style={{ color: "#000000" }}>
+                    {step.description}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -93,4 +100,3 @@ export function Process() {
 }
 
 export default Process;
-

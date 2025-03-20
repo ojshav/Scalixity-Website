@@ -38,7 +38,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="bg-[#F3F1EB] py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-12">
           Frequently Asked Questions
@@ -47,7 +47,7 @@ export function FAQ() {
           {faqs.map((faq, index) => (
             <div key={index} className="mb-4">
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-[#A8B2E7] border-2 border-black rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] border-2 border-black rounded-lg"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <span className="text-black font-semibold">{faq.question}</span>
@@ -58,7 +58,7 @@ export function FAQ() {
                 )}
               </button>
               {openIndex === index && (
-                <div className="p-4 bg-[#A8B2E7] border-2 border-black mt-1 rounded-lg">
+                <div className="p-4 bg-[#F3F1EB] border-2 border-black mt-1 rounded-lg">
                   <p className="text-black">{faq.answer}</p>
                 </div>
               )}

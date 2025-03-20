@@ -46,9 +46,14 @@ export function WhatWeOffer() {
               key={index}
               className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
             >
-              <offer.icon className="w-12 h-12 text-primary mb-6" />
+              {/* Change icon color to black */}
+              <offer.icon className="w-12 h-12 text-black mb-6" />
               <h3 className="text-xl font-bold text-white mb-4">{offer.title}</h3>
               <p className="text-gray-400">{offer.description}</p>
+              {/* If there's a "Learn More" button, change its color */}
+              <button className="text-black hover:text-gray-500 transition-colors">
+                Learn More
+              </button>
             </div>
           ))}
         </div>

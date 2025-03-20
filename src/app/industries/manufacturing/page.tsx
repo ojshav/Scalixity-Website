@@ -1,5 +1,5 @@
 import { Hero } from "@/src/app/components/industries/manufacturing/hero"
-import {GetStarted } from "@/src/app/components/industries/manufacturing/Get-Started"
+
 import { AIApplications } from "@/src/app/components/industries/manufacturing/ai-applications"
 import { WhatWeOffer }  from "@/src/app/components/industries/manufacturing/what-we-offer"
 import { Benefits } from "@/src/app/components/industries/manufacturing/benefits"
@@ -12,7 +12,7 @@ export default function ManufacturingPage() {
   return (
     <main className="bg-background">
       <Hero />
-      <GetStarted/>
+    
       <WhatWeOffer/>
       <AIApplications />
       <Benefits />
