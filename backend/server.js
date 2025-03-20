@@ -4,7 +4,7 @@ const cors = require('cors');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const analyticsRoutes = require("./routes/analytics");
 const engagementRoutes = require('./routes/engagement');
 const demographicRoutes = require('./routes/demographic');
@@ -92,7 +92,7 @@ async function setupDatabase() {
         deviceType VARCHAR(50),
         country VARCHAR(50),
         browser VARCHAR(100),
-        INDEX idx_visitorId (visitorId)  -- Add this index
+        INDEX idx_visitorId (visitorId)
       )
     `);
     await connection.execute(`
@@ -125,10 +125,10 @@ async function setupDatabase() {
         id INT AUTO_INCREMENT PRIMARY KEY,
         visitorId VARCHAR(255) NOT NULL,
         page VARCHAR(255),
-        fcp FLOAT,          -- First Contentful Paint in milliseconds
-        lcp FLOAT,          -- Largest Contentful Paint in milliseconds
-        tti FLOAT,          -- Time to Interactive in milliseconds
-        loadTime FLOAT,     -- Full page load time in milliseconds
+        fcp FLOAT,
+        lcp FLOAT,
+        tti FLOAT,
+        loadTime FLOAT,
         timestamp DATETIME NOT NULL,
         deviceType VARCHAR(50),
         country VARCHAR(100),
@@ -144,7 +144,7 @@ async function setupDatabase() {
         page VARCHAR(255),
         errorCode VARCHAR(50),
         errorMessage TEXT,
-        source VARCHAR(50),  -- e.g., 'fetch', 'javascript', 'resource', 'promise'
+        source VARCHAR(50),
         count INT DEFAULT 1,
         firstOccurrence DATETIME,
         lastOccurrence DATETIME,
@@ -161,6 +161,18 @@ async function setupDatabase() {
         email VARCHAR(100) NOT NULL,
         phone VARCHAR(20),
         message TEXT NOT NULL,
+        status ENUM('new', 'in_progress', 'resolved') DEFAULT 'new',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      )
+    `);
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS service_inquiries (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        company_name VARCHAR(100) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        industry_name VARCHAR(100) NOT NULL,
+        service_name VARCHAR(100) NOT NULL,
         status ENUM('new', 'in_progress', 'resolved') DEFAULT 'new',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -188,7 +200,6 @@ async function setupDatabase() {
   }
 }
 
-
 // Routes
 const adminRoutes = require('./routes/admin');
 app.use('/api/admin', adminRoutes);
@@ -198,7 +209,8 @@ app.use("/api", demographicRoutes);
 app.use("/api", technicalRoutes);
 app.use("/api", contactRoutes);
 app.use("/api/work", workRoutes);
-
+app.use('/api', servicesRoutes); 
+app.use("/api", InquireRoutes);// Add this line here
 
 // Error handling middleware
 app.use((err, req, res, next) => {

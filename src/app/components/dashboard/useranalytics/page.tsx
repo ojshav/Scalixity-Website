@@ -1,5 +1,5 @@
 'use client';
-
+import '@/src/app/globals.css';
 import React, { useState, useEffect } from 'react';
 import { 
   LineChart, Line, AreaChart, Area, BarChart, Bar, 
