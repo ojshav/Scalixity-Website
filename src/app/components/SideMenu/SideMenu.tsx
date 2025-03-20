@@ -8,9 +8,11 @@ import Person2Icon from "@mui/icons-material/Person2";
 import SettingsIcon from "@mui/icons-material/Settings";
 import WorkIcon from "@mui/icons-material/Work"; 
 import ContactPageIcon from '@mui/icons-material/ContactPage';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import NextLink from "next/link";
 import scss from "@/styles/SideMenu.module.scss";
 import {
+  Box,
   Divider,
   Drawer,
   List,
@@ -19,7 +21,6 @@ import {
   ListItemIcon,
   ListItemText,
   Theme,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
 
@@ -52,6 +53,7 @@ const menuRouteList = [
   "/dashboard/settings",
   "/dashboard/work", 
   "/dashboard/contact",
+  "/dashboard/inqury",
 ];
 
 const menuListTranslations = [
@@ -60,30 +62,126 @@ const menuListTranslations = [
   "Settings",
   "Work", 
   "Contact",
+  "Inquiry"
 ];
 
 const menuListIcons = [
   <HomeIcon key="home" />,
   <Person2Icon key="person" />,
   <SettingsIcon key="settings" />,
-  <WorkIcon key="work" />, // Added work icon
+  <WorkIcon key="work" />,
   <ContactPageIcon key="contact" />,
+  <SupportAgentIcon key="inquiry" />,
 ];
 
+interface SideMenuProps {
+  isMobile: boolean;
+  isTablet: boolean;
+  isMobileMenuOpen: boolean;
+  onMenuClose: () => void;
+}
 
-const SideMenu = () => {
+const SideMenu: React.FC<SideMenuProps> = ({ 
+  isMobile, 
+  isTablet, 
+  isMobileMenuOpen, 
+  onMenuClose 
+}) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const mobileCheck = useMediaQuery("(min-width: 600px)");
 
   const handleDrawerToggle = () => {
-    setOpen(!open);
+    if (isMobile) {
+      onMenuClose();
+    } else {
+      setOpen(!open);
+    }
   };
 
   const handleListItemButtonClick = () => {
-    setOpen(false);
+    if (isMobile) {
+      onMenuClose();
+    } else if (isTablet) {
+      setOpen(false);
+    }
   };
 
+  // Drawer content component to avoid repetition
+  const DrawerContent = () => (
+    <>
+      {!isMobile && (
+        <div className={scss.drawerHeader}>
+          <IconButton onClick={handleDrawerToggle}>
+            {theme.direction === "rtl" ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </div>
+      )}
+      <Divider />
+      <List>
+        {menuListTranslations.map((text, index) => (
+          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+            <NextLink className={scss.link} href={menuRouteList[index]}>
+              <ListItemButton
+                onClick={handleListItemButtonClick}
+                title={text}
+                aria-label={text}
+                sx={{
+                  minHeight: 48,
+                  justifyContent: isMobile ? "flex-start" : open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: isMobile || open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  {menuListIcons[index]}
+                </ListItemIcon>
+                <ListItemText
+                  primary={text}
+                  sx={{
+                    color: theme.palette.text.primary,
+                    opacity: isMobile || open ? 1 : 0,
+                  }}
+                />
+              </ListItemButton>
+            </NextLink>
+          </ListItem>
+        ))}
+      </List>
+    </>
+  );
+
+  // For mobile, we want to render the drawer conditionally based on isMobileMenuOpen
+  if (isMobile) {
+    return (
+      <Box sx={{ width: '100%' }}>
+        <Drawer
+          variant="temporary"
+          open={isMobileMenuOpen}
+          onClose={onMenuClose}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile
+          }}
+          sx={{
+            '& .MuiDrawer-paper': { 
+              boxSizing: 'border-box', 
+              width: '100%',
+              position: 'relative',
+              height: 'auto'
+            },
+          }}
+        >
+          <DrawerContent />
+        </Drawer>
+      </Box>
+    );
+  }
+
+  // For tablet and desktop
   return (
     <Drawer
       variant="permanent"
@@ -91,10 +189,10 @@ const SideMenu = () => {
       open={open}
       className={scss.sideMenu}
       sx={{
-        width: drawerWidth,
+        width: open ? drawerWidth : `calc(${theme.spacing(8)} + 1px)`,
+        flexShrink: 0,
         [`& .MuiDrawer-paper`]: {
-          left: 0,
-          top: mobileCheck ? 64 : 57,
+          position: 'relative',
           flexShrink: 0,
           whiteSpace: "nowrap",
           boxSizing: "border-box",
@@ -109,47 +207,7 @@ const SideMenu = () => {
         },
       }}
     >
-      <div className={scss.drawerHeader}>
-        <IconButton onClick={handleDrawerToggle}>
-          {theme.direction === "rtl" ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-        </IconButton>
-      </div>
-      <Divider />
-      <List>
-        {menuListTranslations.map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
-            <NextLink className={scss.link} href={menuRouteList[index]}>
-              <ListItemButton
-                onClick={handleListItemButtonClick}
-                title={text}
-                aria-label={text}
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {menuListIcons[index]}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  sx={{
-                    color: theme.palette.text.primary,
-                    opacity: open ? 1 : 0,
-                  }}
-                />
-              </ListItemButton>
-            </NextLink>
-          </ListItem>
-        ))}
-      </List>
+      <DrawerContent />
     </Drawer>
   );
 };

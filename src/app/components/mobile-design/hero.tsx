@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+
 
 export function Hero() {
   return (
@@ -29,7 +29,7 @@ export function Hero() {
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-purple-600 text-white font-medium text-lg hover:bg-purple-700 transition-transform transform hover:scale-105 w-full sm:w-auto"
             >
-              Let's Build Your App
+              Let&apos;s Build Your App
             </Link>
           </div>
         </motion.div>

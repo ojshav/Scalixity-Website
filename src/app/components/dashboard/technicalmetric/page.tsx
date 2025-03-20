@@ -1,5 +1,5 @@
 'use client';
-
+import '@/src/app/globals.css';
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/src/app/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/src/app/components/ui/tabs';
@@ -326,35 +326,61 @@ setHourlyPerformance(formattedHourly);
           
           <TabsContent value="performance" className="w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="col-span-1 md:col-span-2">
-                <CardHeader>
-                  <CardTitle>Page Load Times (seconds)</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-80">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={performanceData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip formatter={(value) => [`${msToSeconds(Number(value))}s`, 'Load Time']} />
-                        <Legend />
-                        {performanceData.map((entry, index) => (
-                          <Line 
-                            key={entry.page}
-                            type="monotone" 
-                            dataKey="loadTime" 
-                            name={entry.page} 
-                            stroke={generatePageColor(index)} 
-                            strokeWidth={2}
-                            data={[entry]}
-                          />
-                        ))}
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </div>
-                </CardContent>
-              </Card>
+            <Card className="col-span-1 md:col-span-2">
+  <CardHeader>
+    <CardTitle>Page Load Times (seconds)</CardTitle>
+  </CardHeader>
+  <CardContent>
+    {/* Tag cloud with horizontal scrolling */}
+    <div className="mb-4 overflow-x-auto pb-2">
+      <div className="flex flex-nowrap gap-2 min-w-max">
+        {performanceData.map((entry, index) => (
+          <div 
+            key={entry.page} 
+            className="flex items-center gap-1 px-2 py-1 text-sm rounded-full whitespace-nowrap flex-shrink-0"
+            style={{ backgroundColor: `${generatePageColor(index)}20`, color: generatePageColor(index) }}
+          >
+            <span className="h-3 w-3 rounded-full" style={{ backgroundColor: generatePageColor(index) }}></span>
+            <span>{entry.page}</span>
+            <span className="font-medium">{msToSeconds(entry.loadTime)}s</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    {/* Chart container with fixed height */}
+    <div className="h-80 relative">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart 
+          data={performanceData}
+          margin={{ top: 20, right: 30, left: 20, bottom: 70 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis 
+            dataKey="name" 
+            angle={-45} 
+            textAnchor="end" 
+            height={70} 
+            tick={false} 
+          />
+          <YAxis 
+            label={{ value: '', angle: -90, position: 'insideLeft' }}
+          />
+          <Tooltip 
+            formatter={(value) => [`${msToSeconds(Number(value))}s`, 'Load Time']}
+            labelFormatter={(label) => `Page: ${label}`}
+          />
+          <Legend />
+          <Bar dataKey="loadTime" name="Load Time">
+            {performanceData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={generatePageColor(index)} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  </CardContent>
+</Card>
               
               <Card>
                 <CardHeader>

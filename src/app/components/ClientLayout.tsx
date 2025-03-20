@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { SiteHeader } from "@/src/app/components/site-header";
 import { Footer } from "@/src/app/components/footer";
+import Chatbot from "@/src/app/components/Chatbot";
 import { v4 as uuidv4 } from "uuid";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
@@ -14,7 +15,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     "/login", "/dashboard", "/dashboard/data", "/dashboard/useranalytics",
     "/dashboard/demographic", "/dashboard/technicalmetric", "/dashboard/AcquistionMatrix",
     "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
-    "/dashboard/settings","/dashboard/work","/dashboard/contact"
+    "/dashboard/settings","/dashboard/work","/dashboard/contact","/dashboard/inqury"
   ].includes(pathname);
 
   const getDeviceType = () => {
@@ -318,6 +319,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <>
+    <Chatbot />
       {!hideLayout && <SiteHeader />}
       <main className="flex-1">
         {children}

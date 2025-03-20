@@ -4,7 +4,7 @@ import * as React from 'react';
 import Header from '@/src/app/components/Header/Header';
 import SideMenu from '@/src/app/components/SideMenu';
 import { useState, useEffect } from 'react';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import darkTheme from '@/src/app/Themes/darktheme';
 import lightTheme from '@/src/app/Themes/lighttheme';
@@ -12,6 +12,7 @@ import Head from "next/head";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   useEffect(() => {
     const savedTheme = localStorage.getItem('themeMode');
@@ -23,10 +24,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     [isDarkMode]
   );
   
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  
   const handleThemeToggle = () => {
     const newThemeMode = !isDarkMode;
     setIsDarkMode(newThemeMode);
     localStorage.setItem('themeMode', newThemeMode ? 'dark' : 'light');
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -45,18 +53,49 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         height: '100vh',
         bgcolor: theme.palette.background.default
       }}>
-        <Header isDarkMode={isDarkMode} onThemeToggle={handleThemeToggle} />
+        <Header 
+          isDarkMode={isDarkMode} 
+          onThemeToggle={handleThemeToggle} 
+          onMenuToggle={toggleMobileMenu}
+          isMobileMenuOpen={isMobileMenuOpen}
+        />
         
         {/* Main Content */}
-        <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-          <SideMenu />
+        <Box sx={{ 
+          display: 'flex', 
+          flex: 1, 
+          overflow: 'hidden',
+          flexDirection: { xs: 'column', sm: 'row' }
+        }}>
+          {/* Side Menu - Visible on all screen sizes */}
+          <Box 
+            sx={{ 
+              display: 'flex',
+              width: { xs: '100%', sm: 'auto' },
+              height: { xs: isMobile ? (isMobileMenuOpen ? 'auto' : '0') : 'auto', sm: 'auto' },
+              overflow: { xs: 'hidden', sm: 'visible' },
+              transition: 'height 0.3s ease',
+              position: { xs: 'relative', sm: 'static' },
+              zIndex: { xs: 10, sm: 1 }
+            }}
+          >
+            <SideMenu 
+              isMobile={isMobile} 
+              isTablet={isTablet} 
+              isMobileMenuOpen={isMobileMenuOpen}
+              onMenuClose={() => setIsMobileMenuOpen(false)}
+            />
+          </Box>
           
           {/* Content Area */}
           <Box sx={{ 
             flexGrow: 1, 
-            p: 3, 
+            p: { xs: 2, sm: 3 },
             overflowY: 'auto',
-            bgcolor: theme.palette.background.paper
+            bgcolor: theme.palette.background.paper,
+            width: { xs: '100%', sm: 'calc(100% - 64px)' },
+            height: { xs: isMobile ? `calc(100% - ${isMobileMenuOpen ? '200px' : '0px'})` : '100%', sm: '100%' },
+            transition: 'height 0.3s ease'
           }}>
             {children}
           </Box>
