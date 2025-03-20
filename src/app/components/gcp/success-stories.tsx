@@ -35,8 +35,7 @@ export function SuccessStories() {
             GCP Success Stories
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-          See how businesses are transforming with Google Cloud Platform&apos;s powerful solutions.
-
+            See how businesses are transforming with Google Cloud Platform&apos;s powerful solutions.
           </p>
         </div>
 
@@ -48,14 +47,15 @@ export function SuccessStories() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-card rounded-xl overflow-hidden"
+              className="bg-card rounded-xl overflow-hidden border border-black" // added border
             >
               <div className="relative h-[240px]">
                 <Image
                   src={story.image}
                   alt={story.company}
-                  fill
-                  className="object-cover"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-t-xl" // ensures the image is rounded at the top
                 />
               </div>
               <div className="p-8">

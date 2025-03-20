@@ -35,13 +35,13 @@ const productUseCases = [
 
 export function UseCases() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Product Use Cases
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Explore how our technology solutions drive product innovation and efficiency.
           </p>
         </div>
@@ -57,19 +57,19 @@ export function UseCases() {
               className="grid md:grid-cols-2 gap-8 items-center"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <h3 className="text-2xl font-bold text-foreground mb-4">{useCase.title}</h3>
-                <p className="text-muted-foreground mb-8">{useCase.description}</p>
+                <h3 className="text-2xl font-bold text-black mb-4">{useCase.title}</h3>
+                <p className="text-black mb-8">{useCase.description}</p>
                 <div className="grid grid-cols-2 gap-8">
                   {useCase.stats.map((stat, idx) => (
                     <div key={idx}>
-                      <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                      <div className="text-3xl font-bold text-black mb-2">{stat.value}</div>
+                      <div className="text-sm text-black">{stat.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[300px] rounded-xl overflow-hidden">
+                <div className="relative h-[300px] rounded-xl overflow-hidden bg-[#F3F1EB] border border-black">
                   <Image
                     src={useCase.image}
                     alt={useCase.title}

@@ -40,13 +40,13 @@ const successStories = [
 
 export function SuccessStories() {
   return (
-    <section className="bg-[#6C4AB6] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Success Stories
           </h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+          <p className="text-xl text-black/80 max-w-3xl mx-auto">
             Discover how Meta leverages Generative AI to revolutionize user experiences and business outcomes.
           </p>
         </div>
@@ -59,7 +59,7 @@ export function SuccessStories() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-white rounded-xl overflow-hidden shadow-lg"
+              className="bg-[#F3F1EB] rounded-xl overflow-hidden shadow-lg border border-black"
             >
               <div className="relative h-[240px]">
                 <img
@@ -69,13 +69,13 @@ export function SuccessStories() {
                 />
               </div>
               <div className="p-8">
-                <div className="text-purple-700 font-medium mb-2">{story.company}</div>
+                <div className="text-black font-medium mb-2">{story.company}</div>
                 <h3 className="text-2xl font-bold text-black mb-4">{story.title}</h3>
-                <p className="text-gray-600 mb-6">{story.description}</p>
+                <p className="text-black/80 mb-6">{story.description}</p>
                 <div className="space-y-3">
                   {story.results.map((result, idx) => (
-                    <div key={idx} className="flex items-center text-gray-800">
-                      <span className="w-2 h-2 bg-purple-700 rounded-full mr-3"></span>
+                    <div key={idx} className="flex items-center text-black">
+                      <span className="w-2 h-2 bg-black rounded-full mr-3"></span>
                       {result}
                     </div>
                   ))}
@@ -90,4 +90,3 @@ export function SuccessStories() {
 }
 
 export default SuccessStories;
-

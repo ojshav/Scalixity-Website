@@ -31,14 +31,14 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#9FA8DA] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-white/80 uppercase tracking-wider">FAQ</span>
-          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
+          <span className="text-sm text-black/80 uppercase tracking-wider">FAQ</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Smart Contract Development FAQ
           </h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-black/80 max-w-3xl mx-auto">
             Find answers to common questions about our smart contract development services and how they can transform your business.
           </p>
         </div>
@@ -51,17 +51,17 @@ export function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="mb-4"
+              className="mb-4 border border-black rounded-lg"
             >
               <button
                 className="flex justify-between items-center w-full text-left p-4 bg-white rounded-lg"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="font-semibold text-[#080B16]">{faq.question}</span>
+                <span className="font-semibold text-black">{faq.question}</span>
                 {openIndex === index ? (
-                  <ChevronUp className="w-5 h-5 text-[#080B16]" />
+                  <ChevronUp className="w-5 h-5 text-black" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-[#080B16]" />
+                  <ChevronDown className="w-5 h-5 text-black" />
                 )}
               </button>
               <AnimatePresence>
@@ -74,7 +74,7 @@ export function FAQ() {
                     className="overflow-hidden"
                   >
                     <div className="p-4 bg-white mt-1 rounded-lg">
-                      <p className="text-[#080B16]/80">{faq.answer}</p>
+                      <p className="text-black/80">{faq.answer}</p>
                     </div>
                   </motion.div>
                 )}

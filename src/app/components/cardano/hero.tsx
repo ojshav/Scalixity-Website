@@ -21,14 +21,7 @@ export function Hero() {
             From smart contracts to decentralized applications, we build scalable and secure solutions tailored to your needs. 
             Leverage the power of Cardano for DeFi, NFTs, and enterprise applications with our experienced team.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors w-full sm:w-auto"
-            >
-              Get Started
-            </Link>
-          </div>
+          
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />

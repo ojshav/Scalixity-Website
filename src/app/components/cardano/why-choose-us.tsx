@@ -32,7 +32,7 @@ const reasons = [
 
 export function WhyChooseUs() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-[#A8B2E7]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm uppercase tracking-wider text-black">WHY US</span>
@@ -52,7 +52,7 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-8 rounded-xl border-2 border-black hover:border-gray-700 transition-colors bg-white text-black"
+              className="p-8 rounded-xl border-2 border-black hover:border-gray-700 transition-colors bg-[#F3F1EB] text-black"
             >
               <div className="flex items-start gap-4">
                 <CheckCircle className="w-6 h-6 text-black flex-shrink-0 mt-1" />
@@ -63,12 +63,6 @@ export function WhyChooseUs() {
               </div>
             </motion.div>
           ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <button className="px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition">
-            Get Started
-          </button>
         </div>
       </div>
     </section>
