@@ -1,7 +1,7 @@
 import { Hero } from "@/src/app/components/stable-diffusion/hero"
 import { WhatWeOffer } from "@/src/app/components/what-we-offer"
 import { FeaturedWork } from "@/src/app/components/stable-diffusion/featured-work"
-import { Process } from "@/src/app/components/process"
+import { Process } from "@/src/app/components/stable-diffusion/process"
 import { Expertise } from "@/src/app/components/stable-diffusion/expertise"
 import { ToolsAndTechnology } from "@/src/app/components/stable-diffusion/tools-and-technology"
 import { Industries } from "@/src/app/components/stable-diffusion/industries"

@@ -58,13 +58,13 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Why Choose Scalixity for React.js App Development
           </h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+          <p className="text-xl text-black/80 max-w-3xl mx-auto">
             Unlock the full potential of React.js with Scalixity. From interactive UIs to AI-powered apps, we build dynamic, future-ready solutions.
           </p>
         </div>
@@ -77,11 +77,11 @@ export function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/20 hover:border-white/50 transition-colors"
+              className="bg-[#F3F1EB] border border-black p-8 rounded-xl hover:border-black transition-colors"
             >
-              <benefit.icon className="w-12 h-12 text-white mb-6" />
-              <h3 className="text-xl font-bold text-white mb-4">{benefit.title}</h3>
-              <p className="text-gray-200">{benefit.description}</p>
+              <benefit.icon className="w-12 h-12 text-black mb-6" />
+              <h3 className="text-xl font-bold text-black mb-4">{benefit.title}</h3>
+              <p className="text-black/80">{benefit.description}</p>
             </motion.div>
           ))}
         </div>

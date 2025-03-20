@@ -57,7 +57,7 @@ export function Process() {
                   <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" /> {/* Lavender dot inside */}
                 </div>
                 
-                <div className="bg-[#F3F1EB] p-8 rounded-xl border border-gray-300 hover:border-gray-500 transition-colors">
+                <div className="bg-[#F3F1EB] p-8 rounded-xl border-2 border-black hover:border-gray-500 transition-colors">
                   <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
                   <p className="text-black leading-relaxed">{step.description}</p>
                 </div>
@@ -69,4 +69,3 @@ export function Process() {
     </section>
   );
 }
-

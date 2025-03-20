@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const industries = [
   { name: "Healthcare", icon: "/images/icons/healthcare.svg" },
@@ -11,20 +11,24 @@ const industries = [
   { name: "Manufacturing", icon: "/images/icons/manufacturing.svg" },
   { name: "Retail", icon: "/images/icons/retail.svg" },
   { name: "Technology", icon: "/images/icons/technology.svg" },
-  { name: "Energy", icon: "/images/icons/energy.svg" }
-]
+  { name: "Energy", icon: "/images/icons/energy.svg" },
+];
 
 export function Industries() {
   return (
     <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">
+            INDUSTRIES
+          </span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Developing effective Generative AI solutions for every industry
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Our expertise spans across various sectors, enabling us to deliver tailored Generative AI solutions that address industry-specific challenges and opportunities.
+          <p className="text-xl text-black max-w-3xl mx-auto">
+            Our expertise spans across various sectors, enabling us to deliver
+            tailored Generative AI solutions that address industry-specific
+            challenges and opportunities.
           </p>
         </div>
 
@@ -47,11 +51,13 @@ export function Industries() {
                   className="w-12 h-12"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-foreground text-center">{industry.name}</h3>
+              <h3 className="text-lg font-semibold text-black text-center">
+                {industry.name}
+              </h3>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

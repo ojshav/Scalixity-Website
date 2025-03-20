@@ -1,77 +1,9 @@
-"use client"
+"use client";
 
-import { useCallback } from 'react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export function ConsultingHero() {
-  const drawCircularText = (ctx: CanvasRenderingContext2D, text: string[], angle: number, centerX: number, centerY: number, radius: number) => {
-    ctx.save()
-    ctx.translate(centerX, centerY)
-    ctx.rotate(angle)
-
-    text.forEach((char, i) => {
-      ctx.save()
-      ctx.rotate(i * (Math.PI * 2) / text.length)
-      ctx.fillStyle = '#6B7280'
-      ctx.font = '12px Inter'
-      ctx.fillText(char, 0, -radius)
-      ctx.restore()
-    })
-
-    ctx.restore()
-  }
-
-  const drawInfographic = (node: HTMLCanvasElement) => {
-    const ctx = node.getContext('2d')
-    if (!ctx) return
-
-    const centerX = node.width / 2
-    const centerY = node.height / 2
-    const radius = 150
-
-    // Clear canvas
-    ctx.clearRect(0, 0, node.width, node.height)
-
-    // Outer circle
-    ctx.beginPath()
-    ctx.arc(centerX, centerY, radius, 0, Math.PI * 2)
-    ctx.strokeStyle = '#7C3AED'
-    ctx.lineWidth = 2
-    ctx.stroke()
-
-    // Center icon and text
-    ctx.fillStyle = '#7C3AED'
-    ctx.beginPath()
-    ctx.arc(centerX, centerY, 60, 0, Math.PI * 2)
-    ctx.fill()
-
-    ctx.fillStyle = 'white'
-    ctx.font = 'bold 16px Inter'
-    ctx.textAlign = 'center'
-    ctx.fillText('Generative', centerX, centerY - 10)
-    ctx.fillText('AI', centerX, centerY + 10)
-
-    const texts = [
-      'Generative Adversarial Network',
-      'Large Language Model',
-      'Transformer Based Model',
-      'Generate Content and Ideas'
-    ]
-
-    texts.forEach((text, i) => {
-      drawCircularText(ctx, text.split(''), (i * Math.PI * 2) / texts.length, centerX, centerY, radius)
-    })
-  }
-
-  const canvasRef = useCallback((node: HTMLCanvasElement | null) => {
-    if (node) {
-      node.width = 600
-      node.height = 600
-      drawInfographic(node)
-    }
-  }, [])
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F3F1EB] py-20">
       <div className="container mx-auto px-4">
@@ -94,14 +26,27 @@ export function ConsultingHero() {
               Contact us
             </Link>
           </motion.div>
-          <div className="relative">
-            <canvas
-              ref={canvasRef}
-              className="w-full max-w-[600px] mx-auto"
-            />
+
+          <div className="grid grid-cols-2 gap-6">
+            <div className="bg-[#A8B2E7] p-6 rounded-lg border border-black text-black">
+              <h3 className="text-xl font-bold mb-2">AI Model Optimization</h3>
+              <p>We fine-tune models for efficiency, reducing computational costs while maintaining high performance.</p>
+            </div>
+            <div className="bg-[#A8B2E7] p-6 rounded-lg border border-black text-black">
+              <h3 className="text-xl font-bold mb-2">Data Security & Compliance</h3>
+              <p>Ensuring safe, encrypted AI implementations while adhering to regulatory standards.</p>
+            </div>
+            <div className="bg-[#A8B2E7] p-6 rounded-lg border border-black text-black">
+              <h3 className="text-xl font-bold mb-2">Custom AI Solutions</h3>
+              <p>Tailoring Generative AI applications to fit business-specific needs and objectives.</p>
+            </div>
+            <div className="bg-[#A8B2E7] p-6 rounded-lg border border-black text-black">
+              <h3 className="text-xl font-bold mb-2">Scalable AI Infrastructure</h3>
+              <p>Deploy AI models that scale with your business, maintaining reliability and speed.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

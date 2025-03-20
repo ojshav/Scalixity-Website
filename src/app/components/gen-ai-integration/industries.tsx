@@ -16,7 +16,7 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-[#F3F1EB] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
@@ -36,7 +36,7 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center bg-[#A8B2E7] p-6 rounded-xl border border-black"
+              className="flex flex-col items-center p-6 rounded-xl"
             >
               <div className="bg-[#F3F1EB] p-4 rounded-full mb-4">
                 <Image

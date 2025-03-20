@@ -30,11 +30,11 @@ const projects = [
 
 export function FeaturedWork() {
   return (
-    <section className="bg-[#6510A9] py-24 text-white">
+    <section className="bg-[#A8B2E7] py-24 text-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold">Our React.js Development Showcase</h2>
-          <p className="text-lg mt-4 max-w-2xl mx-auto">Explore how We&apos;ve crafted modern web applications using React.js, delivering outstanding UI/UX and robust functionality.</p>
+          <h2 className="text-4xl font-bold text-black">Our React.js Development Showcase</h2>
+          <p className="text-lg mt-4 max-w-2xl mx-auto text-black">Explore how We&apos;ve crafted modern web applications using React.js, delivering outstanding UI/UX and robust functionality.</p>
         </div>
 
         <div className="space-y-16">
@@ -47,14 +47,14 @@ export function FeaturedWork() {
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className="flex flex-col md:flex-row items-center gap-8"
             >
-              <div className="flex-1">
-                <span className="text-lg text-white/70">— {project.company}</span>
-                <h3 className="text-2xl font-bold mt-2 mb-4">{project.title}</h3>
-                <p className="mb-6 text-white/80">{project.description}</p>
-                <ul className="space-y-2">
+              <div className="flex-1 bg-[#F3F1EB] border border-black p-8 rounded-lg">
+                <span className="text-lg text-black/70">— {project.company}</span>
+                <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
+                <p className="mb-6 text-black/80">{project.description}</p>
+                <ul className="space-y-2 text-black">
                   {project.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-white rounded-full" />
+                      <div className="w-2 h-2 bg-black rounded-full" />
                       {feature}
                     </li>
                   ))}

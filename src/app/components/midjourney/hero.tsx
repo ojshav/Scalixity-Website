@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
+
 
 export function Hero() {
   return (
@@ -25,15 +25,7 @@ export function Hero() {
             creative workflows, we deliver solutions that bring ideas to life with unmatched
             precision and detail.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-lg hover:bg-gray-300 transition-colors w-full sm:w-auto"
-              style={{ backgroundColor: "#000000", color: "#FFFFFF" }} // Black Button
-            >
-              Get in Touch
-            </Link>
-          </div>
+          
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />

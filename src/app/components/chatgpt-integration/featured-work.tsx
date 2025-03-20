@@ -40,7 +40,7 @@ const projects = [
 
 export function FeaturedWork() {
   return (
-    <section className="bg-[#F3F1EB] py-24"> {/* Soft warm beige background */}
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background for the entire page */}
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-16">
           <div>
@@ -68,7 +68,7 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center bg-[#A8B2E7] p-8 rounded-lg"
+              className="grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB] p-8 rounded-lg border border-black"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
                 <span className="text-black text-sm">— {project.company}</span>
@@ -93,7 +93,7 @@ export function FeaturedWork() {
                 </Link>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
+                <div className="relative h-[400px] rounded-xl overflow-hidden border-2 border-black">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -121,5 +121,3 @@ export function FeaturedWork() {
 }
 
 export default FeaturedWork;
-
-

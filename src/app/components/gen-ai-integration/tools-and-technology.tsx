@@ -56,7 +56,7 @@ const technologies: Technologies = {
 
 export function ToolsAndTechnology() {
   return (
-    <section className="bg-[#F3F1EB] py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">TOOL & TECHNOLOGY</span>
@@ -69,9 +69,10 @@ export function ToolsAndTechnology() {
         </div>
 
         <div className="grid gap-8">
+          {/* First 3 categories with boxes */}
           <div className="grid md:grid-cols-3 gap-8">
             {Object.entries(technologies).slice(0, 3).map(([category, items], index) => (
-              <div key={index} className="bg-[#A8B2E7] p-6 rounded-xl border border-black">
+              <div key={index} className="bg-[#F3F1EB] p-6 rounded-xl border border-black">
                 <h3 className="text-black font-semibold mb-6">{category}</h3>
                 <div className="grid grid-cols-3 gap-4">
                   {items.map((item, idx) =>
@@ -93,16 +94,19 @@ export function ToolsAndTechnology() {
             ))}
           </div>
 
+          {/* From Data Virtualization to Project Management with beige boxes */}
           <div className="grid md:grid-cols-3 gap-8">
             {Object.entries(technologies).slice(3).map(([category, items], index) => (
-              <div key={index} className="bg-[#A8B2E7] p-6 rounded-xl border border-black">
+              <div key={index} className="bg-[#F3F1EB] p-6 rounded-xl border border-black">
                 <h3 className="text-black font-semibold mb-6">{category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {items.map((item, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 bg-[#F3F1EB] text-black rounded-full text-sm"
+                      className="text-black text-sm flex items-center"
                     >
+                      {/* Arrow styling */}
+                      <span className="mr-2">→</span>
                       {typeof item === "string" ? item : item.name}
                     </span>
                   ))}
@@ -115,4 +119,3 @@ export function ToolsAndTechnology() {
     </section>
   );
 }
-

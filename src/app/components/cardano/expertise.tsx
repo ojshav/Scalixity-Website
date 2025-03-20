@@ -52,7 +52,7 @@ export function Expertise() {
           {expertiseAreas.map((area, index) => (
             <div 
               key={index}
-              className="p-8 rounded-xl border border-[#D6D1C4] hover:border-[#B3A999] transition-colors"
+              className="p-8 rounded-xl border border-black hover:border-[#B3A999] transition-colors"
               style={{ backgroundColor: '#F3F1EB' }}
             >
               <area.icon className="w-12 h-12 text-[#5A5A5A] mb-6" />

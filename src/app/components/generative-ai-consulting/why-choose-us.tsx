@@ -18,22 +18,22 @@ const reasons = [
   },
   {
     title: "Dedicated to Moral AI",
-    description: "We are steadfast in our commitment to developing Generative AI solutions that are moral, open, and lawful. We prioritize user security, trust, and privacy, and we know that ethical AI practises are essential to fostering confidence and ensuring long-term success."
+    description: "We are steadfast in our commitment to developing Generative AI solutions that are moral, open, and lawful. We prioritize user security, trust, and privacy, and we know that ethical AI practices are essential to fostering confidence and ensuring long-term success."
   }
 ]
 
 export function WhyChooseUs() {
   return (
-    <section className="bg-[#F3F1EB] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-gray-600 uppercase tracking-wider">WHY US</span>
+          <span className="text-sm text-black uppercase tracking-wider">WHY US</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
-            Why choose Scalixity for Generative AI consulting
+            Why Choose Scalixity for Generative AI Consulting
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Since Scalixity combines cutting-edge AI technology with a thorough understanding of
-            business dynamics. We are your strategic partners in creating a smart, agile, and sustainable
+            business dynamics, we are your strategic partners in creating a smart, agile, and sustainable
             future.
           </p>
         </div>
@@ -46,13 +46,13 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#A8B2E7] p-8 rounded-xl border border-black hover:border-black/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border-2 border-black hover:border-black transition-colors"
             >
               <div className="flex items-start gap-4">
                 <CheckCircle className="w-6 h-6 text-black flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-bold text-black mb-2">{reason.title}</h3>
-                  <p className="text-black/80">{reason.description}</p>
+                  <p className="text-black">{reason.description}</p>
                 </div>
               </div>
             </motion.div>
@@ -63,3 +63,4 @@ export function WhyChooseUs() {
   )
 }
 
+export default WhyChooseUs;

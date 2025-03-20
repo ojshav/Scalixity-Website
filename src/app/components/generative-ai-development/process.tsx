@@ -34,10 +34,10 @@ export function Process() {
   const [openStep, setOpenStep] = useState<number | null>(0)
 
   return (
-    <section className="bg-[#F3F1EB] py-20"> {/* Soft, warm beige background */}
+    <section className="bg-[#A8B2E7] py-20"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="mb-12">
-          <span className="text-sm text-gray-600 uppercase tracking-wider">PROCESS</span>
+          <span className="text-sm text-black uppercase tracking-wider">PROCESS</span>
           <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">
             What is our process for building Generative AI solutions
           </h2>
@@ -45,9 +45,9 @@ export function Process() {
         
         <div className="space-y-4 max-w-3xl">
           {processSteps.map((step, index) => (
-            <div key={index} className="border border-[#A8B2E7] rounded-lg overflow-hidden"> {/* Lavender border */}
+            <div key={index} className="border border-black rounded-lg overflow-hidden bg-[#F3F1EB]"> {/* Beige box with black border */}
               <button
-                className="w-full flex items-center justify-between p-4 text-left bg-[#A8B2E7] hover:bg-[#9CA6D6] transition-colors" /* Lavender card background */
+                className="w-full flex items-center justify-between p-4 text-left bg-[#F3F1EB] hover:bg-[#E0DCCF] transition-colors" /* Beige background */
                 onClick={() => setOpenStep(openStep === index ? null : index)}
               >
                 <div className="flex items-center gap-4">
@@ -61,7 +61,7 @@ export function Process() {
                 )}
               </button>
               {openStep === index && (
-                <div className="p-4 bg-[#EAE8E2]"> {/* Slightly lighter beige for content background */}
+                <div className="p-4 border-t border-black"> {/* Content section inside box */}
                   <p className="text-black">{step.content}</p>
                 </div>
               )}

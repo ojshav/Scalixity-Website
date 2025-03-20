@@ -46,7 +46,7 @@ export function FAQ() {
 
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, index) => (
-            <div key={index} className="mb-4">
+            <div key={index} className="mb-4 border border-black rounded-lg">
               <button
                 className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
