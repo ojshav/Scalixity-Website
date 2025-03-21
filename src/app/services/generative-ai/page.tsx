@@ -22,12 +22,12 @@ export default function GenerativeAIPage() {
       {
         title: "AI Integration Services",
         description: "Seamlessly integrate AI capabilities into your existing systems and workflows",
-        icon: "/icons/integration.svg"
+        icon: "/icons/preprocess-data.svg"
       },
       {
         title: "AI Consulting",
         description: "Expert guidance on AI strategy, implementation, and optimization",
-        icon: "/icons/consulting.svg"
+        icon: "/icons/data-security.svg"
       }
     ],
     process: [
@@ -49,18 +49,18 @@ export default function GenerativeAIPage() {
       }
     ],
     technologies: [
-      { name: "TensorFlow", icon: "/tech/tensorflow.svg" },
-      { name: "PyTorch", icon: "/tech/pytorch.svg" },
-      { name: "OpenAI", icon: "/tech/openai.svg" },
-      { name: "Hugging Face", icon: "/tech/huggingface.svg" },
-      { name: "AWS", icon: "/tech/aws.svg" },
-      { name: "Azure", icon: "/tech/azure.svg" }
+      { name: "TensorFlow", icon: "/images/tech/tensorflow.svg" },
+      { name: "PyTorch", icon: "/images/tech/pytorch.svg" },
+      { name: "OpenAI", icon: "/images/tech/openai.svg" },
+      { name: "Hugging Face", icon: "/images/tech/huggingface.svg" },
+      { name: "AWS", icon: "/images/tech/aws.svg" },
+      { name: "Azure", icon: "/images/tech/azure.svg" }
     ],
     caseStudies: [
       {
         title: "AI-Powered Content Generation",
         description: "Helped a media company automate content creation and improve engagement",
-        image: "/case-studies/content-gen.jpg",
+        image: "/images/Content Generation.svg",
         results: [
           { metric: "Increase in Content Output", value: "300%" },
           { metric: "Time Saved", value: "75%" }
@@ -69,7 +69,7 @@ export default function GenerativeAIPage() {
       {
         title: "Customer Service Automation",
         description: "Implemented AI chatbots for a retail company to enhance customer support",
-        image: "/case-studies/customer-service.jpg",
+        image: "/images/customer-retention.svg",
         results: [
           { metric: "Response Time", value: "-80%" },
           { metric: "Customer Satisfaction", value: "+45%" }
@@ -78,7 +78,7 @@ export default function GenerativeAIPage() {
       {
         title: "Predictive Analytics Platform",
         description: "Built a custom AI solution for financial forecasting and risk assessment",
-        image: "/case-studies/analytics.jpg",
+        image: "/images/Data Analysis.svg",
         results: [
           { metric: "Prediction Accuracy", value: "95%" },
           { metric: "Cost Reduction", value: "40%" }
