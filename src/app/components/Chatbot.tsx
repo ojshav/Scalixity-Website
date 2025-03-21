@@ -274,7 +274,7 @@ const Chatbot: React.FC = () => {
     
     try {
       // Call the FastAPI endpoint
-      const response = await fetch('http://localhost:8000/chat', {
+      const response = await fetch('http://localhost:5901/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -2,9 +2,7 @@ uv
 langchain
 langchain_community
 langchain_groq
-supabase
 huggingface_hub
-Pillow
 psycopg2-binary
 transformers 
 auto-gptq

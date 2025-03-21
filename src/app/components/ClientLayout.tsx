@@ -15,7 +15,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     "/login", "/dashboard", "/dashboard/data", "/dashboard/useranalytics",
     "/dashboard/demographic", "/dashboard/technicalmetric", "/dashboard/AcquistionMatrix",
     "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
-    "/dashboard/settings","/dashboard/work","/dashboard/contact","/dashboard/inqury"
+    "/dashboard/settings","/dashboard/work","/dashboard/contact","/dashboard/inquiry"
   ].includes(pathname);
 
   const getDeviceType = () => {
