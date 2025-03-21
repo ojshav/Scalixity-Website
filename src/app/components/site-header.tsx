@@ -165,20 +165,21 @@ export function SiteHeader() {
     }))
   }
 
-  return (
+   return (
     <motion.header 
       className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-fluid w-full px-0 mx-0">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center">
+          {/* Logo at the far left corner */}
+          <div className="flex items-center pl-4 sm:pl-6 lg:pl-8">
             <Link href="/" className="flex items-center">
               <motion.span 
-                className="text-xl sm:text-2xl font-bold"
-                style={{ opacity: 1, transform: 'none', paddingLeft: '10px' }}
+                className="text-xl sm:text-2xl font-bold text-black"
+                style={{ opacity: 1, transform: 'none' }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
@@ -187,72 +188,72 @@ export function SiteHeader() {
               </motion.span>
             </Link>
           </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-8">
-            {/* Services Dropdown */}
-            <div className="relative group">
-              <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors">
-                Services
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[800px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {services.map((category) => (
-                    <div key={category.category} className="space-y-2">
-                      <h3 className="font-medium text-foreground flex items-center">
-                        <category.icon className="mr-2 h-4 w-4 text-primary" />
-                        {category.category}
-                      </h3>
-                      <ul className="space-y-1">
-                        {category.items.map((item) => (
-                          <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                            <Link
-                              href={item.href}
-                              className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                            >
-                              {item.name}
-                            </Link>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
+        
+        {/* Desktop Navigation - centered */}
+        <nav className="hidden md:flex items-center justify-center space-x-1 lg:space-x-6">
+          {/* Services Dropdown */}
+          <div className="relative group">
+            <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors">
+              Services
+              <ChevronDown className="ml-1 h-4 w-4" />
+            </button>
+            <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[800px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {services.map((category) => (
+                  <div key={category.category} className="space-y-2">
+                    <h3 className="font-medium text-foreground flex items-center">
+                      <category.icon className="mr-2 h-4 w-4 text-primary" />
+                      {category.category}
+                    </h3>
+                    <ul className="space-y-1">
+                      {category.items.map((item) => (
+                        <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <Link
+                            href={item.href}
+                            className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            {item.name}
+                          </Link>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             </div>
+          </div>
 
-            {/* Industries Dropdown */}
-            <div className="relative group">
-              <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors">
-                Industries
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[600px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {industries.map((industry) => (
-                    <div key={industry.category} className="space-y-2">
-                      <h3 className="font-medium text-foreground flex items-center">
-                        <industry.icon className="mr-2 h-4 w-4 text-primary" />
-                        {industry.category}
-                      </h3>
-                      <ul className="space-y-1">
-                        {industry.items.map((item) => (
-                          <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                            <Link
-                              href={item.href}
-                              className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                            >
-                              {item.name}
-                            </Link>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
+          {/* Industries Dropdown */}
+          <div className="relative group">
+            <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors">
+              Industries
+              <ChevronDown className="ml-1 h-4 w-4" />
+            </button>
+            <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[600px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {industries.map((industry) => (
+                  <div key={industry.category} className="space-y-2">
+                    <h3 className="font-medium text-foreground flex items-center">
+                      <industry.icon className="mr-2 h-4 w-4 text-primary" />
+                      {industry.category}
+                    </h3>
+                    <ul className="space-y-1">
+                      {industry.items.map((item) => (
+                        <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <Link
+                            href={item.href}
+                            className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            {item.name}
+                          </Link>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             </div>
+          </div>
 
             <Link href="/work" className="px-2 py-1 text-foreground hover:text-primary transition-colors">
               Our Work
@@ -266,26 +267,28 @@ export function SiteHeader() {
             <Link href="/resources" className="px-2 py-1 text-foreground hover:text-primary transition-colors">
               Resources
             </Link>
+          </nav>
 
-            {/* Desktop Contact Button */}
+          {/* Right side - Contact Button and Mobile Menu Toggle */}
+          <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
             <motion.div 
               whileHover={{ scale: 1.05 }} 
               whileTap={{ scale: 0.95 }}
-              className="ml-2"
+              className="hidden md:block"
             >
               <ContactButton />
             </motion.div>
-          </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden">
-            <button
-              onClick={toggleMenu}
-              aria-label="Toggle menu"
-              className="p-2"
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            {/* Mobile Menu Button */}
+            <div className="flex items-center md:hidden">
+              <button
+                onClick={toggleMenu}
+                aria-label="Toggle menu"
+                className="p-2"
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -321,7 +324,7 @@ export function SiteHeader() {
                         onClick={() => toggleCategory(`service-${category.category}`)}
                         className="flex items-center justify-between w-full font-medium"
                       >
-                        <div className="flex items-center">
+                        <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
                           <category.icon className="mr-2 h-4 w-4 text-primary" />
                           {category.category}
                         </div>
@@ -373,7 +376,7 @@ export function SiteHeader() {
                         onClick={() => toggleCategory(`industry-${industry.category}`)}
                         className="flex items-center justify-between w-full font-medium"
                       >
-                        <div className="flex items-center">
+                        <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
                           <industry.icon className="mr-2 h-4 w-4 text-primary" />
                           {industry.category}
                         </div>
