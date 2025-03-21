@@ -1,15 +1,22 @@
 import Image from "next/image";
 
+interface Client {
+  name: string;
+  logo: string;
+}
+
 export function TrustedBy() {
-  const clients = [
-    
+  const clients: Client[] = [
+    { name: 'Client A', logo: '/path/to/logoA.png' },
+    { name: 'Client B', logo: '/path/to/logoB.png' },
+    // Add more clients here as needed
   ];
 
   return (
     <section className="bg-[#A8B2E7] py-20"> {/* Lavender Background */}
       <div className="container mx-auto px-4">
         <p className="text-center text-black mb-16 text-sm uppercase tracking-wider font-bold">
-          
+          Trusted by
         </p>
         <div className="flex flex-wrap justify-center items-center gap-x-20 gap-y-12">
           {clients.map((client) => (
@@ -20,7 +27,8 @@ export function TrustedBy() {
               <Image
                 src={client.logo}
                 alt={client.name}
-                fill
+                width={120} // Set a specific width for the image
+                height={48} // Set a specific height for the image
                 className="object-contain"
               />
             </div>
