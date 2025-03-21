@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CTA } from "@/src/app/components/cta"
+
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 
