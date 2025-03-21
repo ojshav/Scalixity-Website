@@ -19,6 +19,15 @@ export function Hero() {
           <p className="text-xl text-black leading-relaxed max-w-3xl mx-auto">
             Empower your fintech operations with AI-driven financial document automation. Reduce manual errors, accelerate processing, and enhance compliance seamlessly.
           </p>
+
+          <div className="mt-8">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

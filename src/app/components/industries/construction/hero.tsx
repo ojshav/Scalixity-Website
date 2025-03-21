@@ -11,9 +11,12 @@ export function Hero() {
           Unlock AI-powered solutions for smarter, faster, and safer construction. Let’s revolutionize how we build — from blueprint to skyline.
         </p>
         <div className="flex justify-center">
-          <button className="bg-transparent border-4 border-black text-black font-bold py-3 px-8 rounded-full">
+          <a
+            href="/contact"
+            className="bg-transparent border-4 border-black text-black font-bold py-3 px-8 rounded-full hover:bg-black hover:text-white transition-colors"
+          >
             Explore Solutions
-          </button>
+          </a>
         </div>
       </div>
     </section>

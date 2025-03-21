@@ -28,13 +28,13 @@ const caseStudies = [
 
 export function CaseStudies() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Case Studies
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Real-world examples of how our AI solutions have transformed healthcare operations and patient care.
           </p>
         </div>
@@ -50,19 +50,19 @@ export function CaseStudies() {
               className="grid md:grid-cols-2 gap-8 items-center"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <h3 className="text-2xl font-bold text-foreground mb-4">{study.title}</h3>
-                <p className="text-muted-foreground mb-6">{study.description}</p>
+                <h3 className="text-2xl font-bold text-black mb-4">{study.title}</h3>
+                <p className="text-black mb-6">{study.description}</p>
                 <ul className="space-y-2">
                   {study.results.map((result, idx) => (
-                    <li key={idx} className="flex items-center text-muted-foreground">
-                      <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                    <li key={idx} className="flex items-center text-black">
+                      <span className="w-2 h-2 bg-black rounded-full mr-2"></span>
                       {result}
                     </li>
                   ))}
                 </ul>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[300px] rounded-xl overflow-hidden">
+                <div className="relative h-[300px] rounded-xl overflow-hidden bg-[#F3F1EB] border border-black">
                   <Image
                     src={study.image}
                     alt={study.title}
@@ -78,4 +78,3 @@ export function CaseStudies() {
     </section>
   )
 }
-

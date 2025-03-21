@@ -22,6 +22,15 @@ export function Hero() {
         >
           Unlock the full potential of AI-driven automation to streamline workflows, optimize operations, and enhance decision-making in SaaS platforms.
         </motion.p>
+        <motion.a
+          href="/contact"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="inline-block bg-black text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-gray-900 transition"
+        >
+          Contact Us
+        </motion.a>
       </div>
     </section>
   );

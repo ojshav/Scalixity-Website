@@ -22,6 +22,16 @@ export function Hero() {
         >
           Maximize profits and stay competitive with AI-driven dynamic pricing. Leverage real-time data insights to adjust prices instantly — responding to demand shifts, market trends, and competitor strategies — all while boosting customer satisfaction and sales.
         </motion.p>
+        
+        <motion.a
+          href="/contact"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="inline-block bg-black text-white py-3 px-6 rounded-lg text-lg font-semibold"
+        >
+          Contact Us
+        </motion.a>
       </div>
     </section>
   );

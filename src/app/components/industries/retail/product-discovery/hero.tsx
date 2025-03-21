@@ -22,6 +22,16 @@ export function Hero() {
         >
           Enhance customer experiences and boost sales with AI-driven product discovery. Guide shoppers to what they want — using intelligent search, personalized recommendations, and real-time insights — creating seamless, engaging shopping journeys.
         </motion.p>
+        
+        <motion.a
+          href="/contact"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="inline-block bg-black text-white py-3 px-6 rounded-lg text-lg font-semibold"
+        >
+          Contact Us
+        </motion.a>
       </div>
     </section>
   );

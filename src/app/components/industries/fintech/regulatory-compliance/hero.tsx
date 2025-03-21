@@ -19,6 +19,14 @@ export function Hero() {
           <p className="text-xl text-black mb-12 leading-relaxed max-w-3xl mx-auto">
             Stay ahead of ever-evolving financial regulations with AI-powered solutions. Automate code updates, ensure compliance, and streamline risk management — all without disrupting your operations.
           </p>
+          <div className="mt-8">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>
