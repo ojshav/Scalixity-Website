@@ -20,7 +20,7 @@ const technologies: Technologies = {
   "Data Warehousing & Management": [
     { name: "BigQuery", logo: "/images/tech/bigquery.svg" },
     { name: "Snowflake", logo: "/images/tech/snowflake.svg" },
-    { name: "Redshift", logo: "/images/tech/redshift.svg" },
+    { name: "Redshift", logo: "/images/tech/google-cloud.svg" },
   ],
   "Cloud Platforms": [
     { name: "AWS", logo: "/images/tech/aws.svg" },
@@ -32,7 +32,11 @@ const technologies: Technologies = {
     { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
     { name: "Keras", logo: "/images/tech/keras.svg" },
   ],
-  "Generative AI Models": ["GPT-3.5", "Gemini", "Claude AI"],
+ "Generative AI Models": [
+    { name: "GPT-3", logo: "/images/tech/gpt3.svg" },
+    { name: "GPT-3.5 Turbo", logo: "/images/tech/gpt3-5.svg" },
+    { name: "Lamda", logo: "/images/tech/lamda.svg" }
+  ],
   "Algorithms": [
     "Clustering",
     "Metric Learning",
