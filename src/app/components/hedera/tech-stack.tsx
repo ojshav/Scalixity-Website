@@ -8,8 +8,7 @@ const techCategories = {
     { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
     { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
     { name: "Keras", logo: "/images/tech/keras.svg" },
-    { name: "MXNet", logo: "/images/tech/mxnet.svg" },
-    { name: "JAX", logo: "/images/tech/jax.svg" }
+    { name: "MXNet", logo: "/images/tech/mxnet.svg" }
   ],
   "Modules/Toolkits": [
     { name: "Hugging Face Transformers", logo: "/images/tech/huggingface.svg" },

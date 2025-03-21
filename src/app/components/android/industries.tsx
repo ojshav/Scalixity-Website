@@ -16,15 +16,15 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#5b0bb5] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
-            Android App Development Across Industries
+          <span className="text-sm text-muted-foreground uppercase tracking-wider">INDUSTRIES</span>
+          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
+            iOS App Development Across Key Industries
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
-            Power your business with robust, user-centric Android apps built to elevate your presence across industries.
+          <p className="text-xl text-white max-w-3xl mx-auto">
+            Crafting high-performance iOS apps tailored to transform businesses across diverse industries.
           </p>
         </div>
 
@@ -36,9 +36,9 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center bg-[#F3F1EB] p-6 rounded-xl border border-black hover:border-black/70 transition-colors"
+              className="flex flex-col items-center"
             >
-              <div className="bg-[#A8B2E7] p-6 rounded-full mb-4">
+              <div className="bg-white p-6 rounded-full mb-4">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
@@ -47,7 +47,7 @@ export function Industries() {
                   className="w-12 h-12"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
+              <h3 className="text-lg font-semibold text-white text-center">{industry.name}</h3>
             </motion.div>
           ))}
         </div>

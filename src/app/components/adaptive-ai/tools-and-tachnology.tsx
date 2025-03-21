@@ -35,21 +35,6 @@ const technologies: Technologies = {
     { name: "BigQuery", logo: "/images/tech/bigquery.svg" },
     { name: "Snowflake", logo: "/images/tech/snowflake.svg" },
   ],
-  "Neural Networks": [
-    "CNN",
-    "RNN",
-    "Transformer Networks",
-    "Variational Autoencoders",
-    "Bayesian Networks",
-  ],
-  "Algorithms": [
-    "Clustering",
-    "Metric Learning",
-    "Few-shot Learning",
-    "Supervised Learning",
-    "Unsupervised Learning",
-    "Reinforcement Learning",
-  ],
 };
 
 export function ToolsAndTechnology() {

@@ -44,13 +44,6 @@ export function Hero() {
         transition={{ duration: 1, delay: 0.6 }}
         className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[800px] opacity-70"
       >
-        <Image 
-          src="/ios-illustration.png" 
-          alt="iOS Development Illustration" 
-          width={800} 
-          height={400} 
-          className="mx-auto"
-        />
       </motion.div>
     </section>
   );

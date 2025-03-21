@@ -21,7 +21,7 @@ export function Industries() {
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
-            Developing effective Generative AI solutions for every industry
+            Developing effective Generative AI Integration for every industry
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
             Our expertise spans across various sectors, enabling us to deliver tailored Generative AI solutions that address industry-specific challenges and opportunities.

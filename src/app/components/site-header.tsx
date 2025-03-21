@@ -193,7 +193,7 @@ export function SiteHeader() {
         <nav className="hidden md:flex items-center justify-center space-x-1 lg:space-x-6">
           {/* Services Dropdown */}
           <div className="relative group">
-            <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors">
+            <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
               Services
               <ChevronDown className="ml-1 h-4 w-4" />
             </button>
@@ -225,7 +225,7 @@ export function SiteHeader() {
 
           {/* Industries Dropdown */}
           <div className="relative group">
-            <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors">
+            <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
               Industries
               <ChevronDown className="ml-1 h-4 w-4" />
             </button>
@@ -255,16 +255,16 @@ export function SiteHeader() {
             </div>
           </div>
 
-            <Link href="/work" className="px-2 py-1 text-foreground hover:text-primary transition-colors">
+            <Link href="/work" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
               Our Work
             </Link>
-            <Link href="/company" className="px-2 py-1 text-foreground hover:text-primary transition-colors">
+            <Link href="/company" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
               Company
             </Link>
-            <Link href="/blog" className="px-2 py-1 text-foreground hover:text-primary transition-colors">
+            <Link href="/blog" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
               Blog
             </Link>
-            <Link href="/resources" className="px-2 py-1 text-foreground hover:text-primary transition-colors">
+            <Link href="/resources" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
               Resources
             </Link>
           </nav>
@@ -307,7 +307,7 @@ export function SiteHeader() {
             <div className="space-y-3">
               <button 
                 onClick={() => toggleCategory('services')}
-                className="flex items-center justify-between w-full font-medium text-foreground"
+                className="flex items-center justify-between w-full font-medium text-foreground text-base"
               >
                 <span>Services</span>
                 {openCategories['services'] ? 
@@ -322,7 +322,7 @@ export function SiteHeader() {
                     <div key={category.category} className="space-y-2">
                       <button
                         onClick={() => toggleCategory(`service-${category.category}`)}
-                        className="flex items-center justify-between w-full font-medium"
+                        className="flex items-center justify-between w-full font-medium text-base"
                       >
                         <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
                           <category.icon className="mr-2 h-4 w-4 text-primary" />
@@ -359,7 +359,7 @@ export function SiteHeader() {
             <div className="space-y-3">
               <button 
                 onClick={() => toggleCategory('industries')}
-                className="flex items-center justify-between w-full font-medium text-foreground"
+                className="flex items-center justify-between w-full font-medium text-foreground text-base"
               >
                 <span>Industries</span>
                 {openCategories['industries'] ? 
@@ -374,7 +374,7 @@ export function SiteHeader() {
                     <div key={industry.category} className="space-y-2">
                       <button
                         onClick={() => toggleCategory(`industry-${industry.category}`)}
-                        className="flex items-center justify-between w-full font-medium"
+                        className="flex items-center justify-between w-full font-medium text-base"
                       >
                         <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
                           <industry.icon className="mr-2 h-4 w-4 text-primary" />
@@ -409,16 +409,16 @@ export function SiteHeader() {
 
             {/* Other Links */}
             <div className="space-y-3">
-              <Link href="/work" className="block py-1 text-foreground hover:text-primary" onClick={toggleMenu}>
+              <Link href="/work" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Our Work
               </Link>
-              <Link href="/company" className="block py-1 text-foreground hover:text-primary" onClick={toggleMenu}>
+              <Link href="/company" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Company
               </Link>
-              <Link href="/blog" className="block py-1 text-foreground hover:text-primary" onClick={toggleMenu}>
+              <Link href="/blog" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Blog
               </Link>
-              <Link href="/resources" className="block py-1 text-foreground hover:text-primary" onClick={toggleMenu}>
+              <Link href="/resources" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Resources
               </Link>
             </div>
