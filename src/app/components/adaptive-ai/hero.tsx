@@ -17,22 +17,6 @@ export function Hero() {
           <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
             We help businesses leverage Adaptive AI to gain a competitive advantage and enhance overall product performance. Our proficient team of AI engineers possesses expertise in machine learning, deep learning, neural networks, natural language processing (NLP), and other subsets of AI to deliver exceptional, tailor-made solutions with Adaptive AI development services.
           </p>
-          
-          {/* Stats Section */}
-          <div className="grid sm:grid-cols-3 gap-8 mt-16">
-            <div className="bg-[#A8B2E7] text-black p-6 rounded-xl">
-              <h3 className="text-3xl font-semibold mb-2">100+</h3>
-              <p className="text-lg">Successful Projects</p>
-            </div>
-            <div className="bg-[#A8B2E7] text-black p-6 rounded-xl">
-              <h3 className="text-3xl font-semibold mb-2">50+</h3>
-              <p className="text-lg">Industries Served</p>
-            </div>
-            <div className="bg-[#A8B2E7] text-black p-6 rounded-xl">
-              <h3 className="text-3xl font-semibold mb-2">200+</h3>
-              <p className="text-lg">AI Models Deployed</p>
-            </div>
-          </div>
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
