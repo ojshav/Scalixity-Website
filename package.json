@@ -102,6 +102,7 @@
     "concurrently": "^8.2.2",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
+    "eslint-plugin-next": "^0.0.0",
     "eslint-plugin-storybook": "^0.11.3",
     "nodemon": "^3.0.2",
     "postcss": "^8",
