@@ -19,6 +19,13 @@ export function Hero() {
           <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
             Enhance your fintech strategies with AI-driven risk assessment and management solutions. Identify, analyze, and mitigate risks effectively using cutting-edge data analytics and predictive models.
           </p>
+          <div className="mt-8">
+            <Link href="/contact">
+              <button className="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-900 transition">
+                Get Started
+              </button>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

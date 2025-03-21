@@ -19,6 +19,15 @@ export function Hero() {
           <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
             Leverage AI-powered models to revolutionize underwriting processes and optimize pricing strategies. Empower your fintech business with data-driven insights, risk assessment, and dynamic pricing capabilities.
           </p>
+
+          <div className="mt-8">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,5 @@
-"use client"
+"use client";
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 
 export function Hero() {
   return (
@@ -18,19 +17,11 @@ export function Hero() {
           <p className="text-xl text-gray-800 mb-12 leading-relaxed max-w-3xl mx-auto"> {/* Darker gray text */}
             Safeguard your financial decisions with AI-powered credit risk management. Our solutions leverage advanced analytics and machine learning to assess risk, predict defaults, and optimize lending strategies. Empower your organization with real-time insights and data-driven decision-making.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors w-full sm:w-auto"
-            >
-              Get Started
-            </Link>
-          </div>
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
     </section>
-  )
+  );
 }
 
 export default Hero;

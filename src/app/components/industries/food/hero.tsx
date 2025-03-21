@@ -22,14 +22,15 @@ export function Hero() {
         >
           Harness AI to revolutionize food production, enhance quality control, and optimize supply chains. From predictive analytics for demand forecasting to AI-powered automation in processing and packaging — drive efficiency, cut waste, and deliver exceptional products to your customers.
         </motion.p>
-        <motion.button 
+        <motion.a 
+          href="/contact"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
           className="bg-black text-white py-3 px-8 rounded-lg text-lg font-medium hover:bg-gray-800 transition-colors"
         >
           Get Started
-        </motion.button>
+        </motion.a>
       </div>
     </section>
   );

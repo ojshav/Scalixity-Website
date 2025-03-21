@@ -64,7 +64,7 @@ export function UseCases() {
                 <p className="text-black mb-8">{useCase.description}</p>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[300px] rounded-xl overflow-hidden">
+                <div className="relative h-[300px] rounded-xl overflow-hidden border-2 border-black">
                   <Image
                     src={useCase.image}
                     alt={useCase.title}

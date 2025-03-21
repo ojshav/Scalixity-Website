@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircle } from "lucide-react";
+import Link from "next/link";
 
 const benefits = [
   {
@@ -51,9 +52,11 @@ export function Benefits() {
         </div>
 
         <div className="mt-12">
-          <button className="px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition">
-            Get Started
-          </button>
+          <Link href="/contact">
+            <button className="px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition">
+              Get Started
+            </button>
+          </Link>
         </div>
       </div>
     </section>

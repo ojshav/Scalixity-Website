@@ -18,10 +18,19 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-2xl max-w-4xl mx-auto"
+          className="text-2xl max-w-4xl mx-auto mb-8"
         >
           Unlock the full potential of your SaaS platform by leveraging AI personalization — delivering hyper-relevant recommendations, dynamic content adaptation, and seamless user experiences that evolve in real-time. Drive customer engagement, increase retention, and maximize satisfaction with AI-driven solutions.
         </motion.p>
+        <motion.a
+          href="/contact"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="inline-block bg-black text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-gray-900 transition"
+        >
+          Contact Us
+        </motion.a>
       </div>
     </section>
   );
