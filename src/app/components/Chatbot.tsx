@@ -71,6 +71,23 @@ const Chatbot: React.FC = () => {
     serviceName: ''
   });
   const [isInquirySubmitted, setIsInquirySubmitted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check for mobile device on mount and window resize
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   // Hardcoded industries
   const hardcodedIndustries: Industry[] = [
@@ -415,17 +432,44 @@ const Chatbot: React.FC = () => {
     }
   };
 
+  // Calculate chat container dimensions based on screen size
+  const getChatContainerStyles = () => {
+    if (isMobile) {
+      return {
+        width: '100vw',
+        height: '100vh',
+        bottom: 0,
+        right: 0,
+        borderRadius: 0
+      };
+    } else {
+      return {
+        width: '24rem', // 384px (w-96)
+        height: '500px',
+        bottom: '4rem',
+        right: 0,
+        borderRadius: '0.5rem'
+      };
+    }
+  };
+
   return (
-    <div className="fixed bottom-5 right-5 z-50">
-      <button
-        onClick={toggleChat}
-        className="p-4 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300"
-      >
-        {isOpen ? <FiX size={24} /> : <FiMessageSquare size={24} />}
-      </button>
+    <div className={`fixed ${isMobile ? 'bottom-0 right-0' : 'bottom-5 right-5'} z-50`}>
+      {/* Chat toggle button - hidden in mobile fullscreen mode when chat is open */}
+      {!(isMobile && isOpen) && (
+        <button
+          onClick={toggleChat}
+          className="p-4 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300"
+        >
+          {isOpen ? <FiX size={24} /> : <FiMessageSquare size={24} />}
+        </button>
+      )}
 
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-96 h-[500px] bg-white rounded-lg shadow-xl overflow-hidden flex flex-col">
+        <div 
+          className="absolute bg-white shadow-xl overflow-hidden flex flex-col"
+          style={getChatContainerStyles()}
+        >
           <div className="bg-blue-600 text-white p-4 flex justify-between items-center">
             <h3 className="font-semibold">Virtual Assistant</h3>
             <button 
@@ -451,14 +495,14 @@ const Chatbot: React.FC = () => {
                       : 'bg-gray-100 text-gray-800 rounded-tl-none'
                   }`}
                 >
-                  {message.type === 'text' && <p className="whitespace-pre-line">{message.content}</p>}
+                  {message.type === 'text' && <p className="whitespace-pre-line text-sm md:text-base">{message.content}</p>}
                   
                   {message.type === 'dropdown' && message.data && 'items' in message.data && (
                     <div className="space-y-2">
-                      <p>{message.content}</p>
+                      <p className="text-sm md:text-base">{message.content}</p>
                       <div className="relative mt-2 bg-white rounded-md shadow-sm">
                         <select
-                          className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                          className="block w-full pl-3 pr-10 py-2 text-sm border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md"
                           onChange={(e) => 
                             message.data && 'type' in message.data && message.data.type === 'industry' 
                               ? handleIndustrySelect(e.target.value) 
@@ -482,10 +526,10 @@ const Chatbot: React.FC = () => {
                   
                   {message.type === 'service-info' && message.data && 'service' in message.data && (
                     <div className="space-y-2">
-                      <p>{message.content}</p>
+                      <p className="text-sm md:text-base">{message.content}</p>
                       <a
                         href={message.data.service.url}
-                        className="inline-block mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+                        className="inline-block mt-2 bg-blue-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-md hover:bg-blue-600 transition-colors text-sm md:text-base"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -499,7 +543,7 @@ const Chatbot: React.FC = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="border-t p-4 bg-gray-50">
+          <div className="border-t p-3 md:p-4 bg-gray-50">
             <div className="flex items-center">
               <input
                 type="text"
@@ -514,7 +558,7 @@ const Chatbot: React.FC = () => {
                   "Type your message..."
                 }
                 disabled={isInputDisabled()}
-                className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-400"
+                className="flex-1 p-2 text-sm md:text-base border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-400"
               />
               <button
                 onClick={handleSendMessage}
@@ -526,32 +570,32 @@ const Chatbot: React.FC = () => {
             </div>
             
             {/* Section Navigation */}
-            <div className="mt-4 border-t pt-3 grid grid-cols-3 gap-2">
+            <div className="mt-3 border-t pt-2 grid grid-cols-3 gap-1 md:gap-2">
               <button
                 onClick={() => setActiveSection('general')}
-                className={`flex flex-col items-center justify-center p-2 rounded-md transition-colors ${
+                className={`flex flex-col items-center justify-center p-1 md:p-2 rounded-md transition-colors ${
                   activeSection === 'general' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'
                 }`}
               >
-                <FiHelpCircle size={20} />
+                <FiHelpCircle size={isMobile ? 16 : 20} />
                 <span className="text-xs mt-1">General</span>
               </button>
               <button
                 onClick={() => setActiveSection('services')}
-                className={`flex flex-col items-center justify-center p-2 rounded-md transition-colors ${
+                className={`flex flex-col items-center justify-center p-1 md:p-2 rounded-md transition-colors ${
                   activeSection === 'services' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'
                 }`}
               >
-                <FiGrid size={20} />
+                <FiGrid size={isMobile ? 16 : 20} />
                 <span className="text-xs mt-1">Services</span>
               </button>
               <button
                 onClick={() => setActiveSection('contact')}
-                className={`flex flex-col items-center justify-center p-2 rounded-md transition-colors ${
+                className={`flex flex-col items-center justify-center p-1 md:p-2 rounded-md transition-colors ${
                   activeSection === 'contact' ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'
                 }`}
               >
-                <FiMail size={20} />
+                <FiMail size={isMobile ? 16 : 20} />
                 <span className="text-xs mt-1">Contact</span>
               </button>
             </div>
@@ -560,7 +604,7 @@ const Chatbot: React.FC = () => {
             <div className="mt-2 text-center">
               <button
                 onClick={resetChat}
-                className="text-blue-600 hover:text-blue-800 text-sm"
+                className="text-blue-600 hover:text-blue-800 text-xs md:text-sm"
               >
                 Reset conversation
               </button>
