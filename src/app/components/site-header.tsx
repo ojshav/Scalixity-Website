@@ -1,3 +1,5 @@
+
+
 "use client"
 
 import * as React from "react"
@@ -167,11 +169,11 @@ export function SiteHeader() {
 
    return (
     <motion.header 
-      className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-    >
+    className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+    initial={{ y: -100 }}
+    animate={{ y: 0 }}
+    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+  >
       <div className="container-fluid w-full px-0 mx-0">
         <div className="flex h-16 items-center justify-between">
           {/* Logo at the far left corner */}
