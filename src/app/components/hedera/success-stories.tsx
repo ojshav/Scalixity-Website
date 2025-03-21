@@ -23,14 +23,14 @@ const successStories = [
 
 export function SuccessStories() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">SUCCESS STORIES</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">SUCCESS STORIES</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
             Transforming Businesses in the Metaverse
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Explore how our metaverse solutions have empowered brands, educators, and organizations to thrive in the digital era.
           </p>
         </div>
@@ -43,7 +43,7 @@ export function SuccessStories() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-card p-8 rounded-xl border border-border"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-border"
             >
               <h3 className="text-xl font-bold text-foreground mb-4">{story.title}</h3>
               <p className="text-muted-foreground leading-relaxed">{story.description}</p>

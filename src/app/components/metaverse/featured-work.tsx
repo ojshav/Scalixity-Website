@@ -41,12 +41,12 @@ const projects = [
 
 export function FeaturedWork() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-16">
           <div>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">OUR FEATURED WORK</span>
-            <h2 className="text-4xl font-bold text-foreground mt-4">
+            <span className="text-sm text-black uppercase tracking-wider">OUR FEATURED WORK</span>
+            <h2 className="text-4xl font-bold text-black mt-4">
               Our Metaverse Development Innovations
             </h2>
           </div>
@@ -63,13 +63,13 @@ export function FeaturedWork() {
               className="grid md:grid-cols-2 gap-8 items-center"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <span className="text-primary text-sm">— {project.company}</span>
-                <h3 className="text-2xl font-bold text-foreground mt-2 mb-4">{project.title}</h3>
-                <p className="text-muted-foreground mb-6">{project.description}</p>
+              <span className="text-black text-sm">— {project.company}</span>
+                <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
+                <p className="text-black mb-6">{project.description}</p>
                 <ul className="space-y-3">
                   {project.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-muted-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    <li key={idx} className="flex items-center gap-2 text-black">
+                      <div className="w-1.5 h-1.5 rounded-full bg-black" />
                       {feature}
                     </li>
                   ))}

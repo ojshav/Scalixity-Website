@@ -31,7 +31,7 @@ export function Hero() {
           </div>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
+      
     </section>
   );
 }

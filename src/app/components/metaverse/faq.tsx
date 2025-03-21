@@ -35,11 +35,11 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">FAQ</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">FAQ</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Frequently Asked Questions About Metaverse Development
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -61,7 +61,7 @@ export function FAQ() {
                 className="flex justify-between items-center w-full text-left p-4 bg-card rounded-lg"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="font-semibold text-foreground">{faq.question}</span>
+                <span className="font-semibold text-black">{faq.question}</span>
                 {openIndex === index ? (
                   <ChevronUp className="w-5 h-5 text-primary" />
                 ) : (

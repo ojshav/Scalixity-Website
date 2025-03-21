@@ -31,7 +31,7 @@ const processSteps = [
 
 export function Process() {
   return (
-    <section className="bg-background py-24">
+    <section className="py-24" style={{ backgroundColor: '#A8B2E7' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">OUR PROCESS</span>

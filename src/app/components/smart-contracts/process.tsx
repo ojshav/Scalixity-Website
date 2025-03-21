@@ -31,20 +31,20 @@ const processSteps = [
 
 export function Process() {
   return (
-    <section className="bg-background py-24">
+    <section className="py-24" style={{ backgroundColor: '#A8B2E7' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-muted-foreground uppercase tracking-wider">OUR PROCESS</span>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
             Smart Contract Development Process
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Our structured development process ensures your smart contracts are secure, efficient, and tailored to drive your business forward.
           </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-primary/20" />
+          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-black" />
 
           <div className="space-y-12">
             {processSteps.map((step, index) => (

@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export function CTA() {
   return (
-    <section className="bg-purple-700 py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
           Ready to transform your business with AI?

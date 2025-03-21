@@ -37,13 +37,13 @@ const expertiseAreas = [
 
 export function Expertise() {
   return (
-    <section className="bg-[#080B16] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-gray mb-6">
             Our Stellar App Development Expertise
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Empowering businesses with secure, scalable, and cost-effective blockchain solutions on the Stellar network.
           </p>
         </div>
@@ -55,8 +55,8 @@ export function Expertise() {
               className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
             >
               <area.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-white mb-4">{area.title}</h3>
-              <p className="text-gray-400">{area.description}</p>
+              <h3 className="text-xl font-bold text-gray mb-4">{area.title}</h3>
+              <p className="text-gray-700">{area.description}</p>
             </div>
           ))}
         </div>

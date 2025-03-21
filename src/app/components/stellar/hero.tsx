@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black py-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F3F1EB] py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -13,10 +13,10 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             Stellar App Development Services
           </h1>
-          <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
             Unlock the power of Stellar blockchain with our cutting-edge app development services. 
             We design and build secure, scalable, and high-performance Stellar-based applications 
             to drive innovation and efficiency in financial ecosystems.
@@ -24,14 +24,14 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-purple-600 text-white font-medium text-lg hover:bg-purple-700 transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-purple-700 transition-colors w-full sm:w-auto"
             >
               Get Started
             </Link>
           </div>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
+
     </section>
   );
 }

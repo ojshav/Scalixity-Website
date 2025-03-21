@@ -31,14 +31,14 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#F3F1EB] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">FAQ</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">FAQ</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Get quick answers about our Hedra app development services
           </p>
         </div>
@@ -54,7 +54,7 @@ export function FAQ() {
               className="mb-4"
             >
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-card rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#A8B2E7] rounded-lg"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <span className="font-semibold text-foreground">{faq.question}</span>
@@ -73,7 +73,7 @@ export function FAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 bg-card mt-1 rounded-lg">
+                    <div className="p-4 bg-[#A8B2E7] mt-1 rounded-lg">
                       <p className="text-muted-foreground">{faq.answer}</p>
                     </div>
                   </motion.div>

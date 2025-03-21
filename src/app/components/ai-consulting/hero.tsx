@@ -1,37 +1,37 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 
-export function Hero() {
-  return (
+
+export function AIConsultingHero() {
+return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F3F1EB] py-20">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <h1 className="text-4xl md:text-6xl font-bold text-black mb-6">
+        <div className="grid lg:grid-cols-1 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+ <h1 className="text-4xl md:text-6xl font-bold text-black mb-6">
             AI Consulting Services
           </h1>
           <p className="text-xl text-black mb-12 leading-relaxed max-w-3xl mx-auto">
             Unlock the power of AI with our expert consulting services. We help businesses integrate AI-driven solutions for automation, optimization, and strategic decision-making. Partner with us to transform your operations with cutting-edge AI technology.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
+                     <a
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors"
             >
-              Contact Us
-            </Link>
-          </div>
-        </motion.div>
+              Get Started
+            </a>
+          </motion.div>
+        </div>
       </div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
     </section>
   );
 }
+export default AIConsultingHero;
 
-export default Hero;
+
+         

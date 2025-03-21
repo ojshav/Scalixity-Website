@@ -24,14 +24,14 @@ const reasons = [
 
 export function WhyChooseUs() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">WHY US</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">WHY US</span>
+          <h2 className="text-4xl font-bold text-gray-900t-4 mb-6">
             Why choose Hedra for AI Solutions
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-gray=900 max-w-3xl mx-auto">
             Partner with Hedra to harness AI&apos;s full potential. Our expertise, innovation, and ethical approach empower your business for a smarter tomorrow. We don&apos;t just build AI systems — we create intelligent solutions tailored to transform your operations and future-proof your success.
 
           </p>
