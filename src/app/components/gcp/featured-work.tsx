@@ -10,7 +10,7 @@ const projects = [
     company: "GCPFinance",
     title: "Empowering FinTech with Google Cloud Solutions",
     description: "Using Google Cloud Platform, we helped GCPFinance build a resilient and scalable financial ecosystem with AI-driven insights and robust security features.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Data Analysis.svg",
     features: [
       "BigQuery for real-time analytics",
       "Cloud Functions for serverless computing",
@@ -22,7 +22,7 @@ const projects = [
     company: "MediGCP",
     title: "Transforming Healthcare with GCP-Powered Solutions",
     description: "We built a HIPAA-compliant telehealth platform leveraging Google Cloud services to ensure seamless patient care and data security.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Transforming SaaS Product Development.svg",
     features: [
       "Google Meet API for virtual consultations",
       "Kubernetes Engine for scalable infrastructure",
@@ -34,7 +34,7 @@ const projects = [
     company: "RetailGCP",
     title: "Enhancing E-commerce with Google Cloud AI and Analytics",
     description: "Using GCP’s AI and data analytics solutions, we helped RetailGCP enhance customer experiences and optimize supply chain operations.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/tech/Enhancing E-commerce with AI-Powered Personalization.svg",
     features: [
       "Recommendations AI for personalized shopping",
       "Dataflow for real-time data processing",
