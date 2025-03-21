@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { CTA } from "@/src/app/components/cta"
+import { CTA } from "@/src/app/components/cta";
+import { CaseStudies } from "@/src/app/components/case-studies";
 
 interface Project {
   id: string;
@@ -108,7 +109,7 @@ export default function WorkPage() {
           )}
         </div>
       </section>
-      
+      <CaseStudies />
       <CTA />
     </div>
   )

@@ -16,19 +16,15 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="py-24" style={{ backgroundColor: '#A8B2E7' }}> {/* Lavender background */}
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">
-            INDUSTRIES
-          </span>
+          <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
-            Developing effective Generative AI solutions for every industry
+            Developing effective Adaptive AI Integration for every industry
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
-            Our expertise spans across various sectors, enabling us to deliver
-            tailored Generative AI solutions that address industry-specific
-            challenges and opportunities.
+            Our expertise spans across various sectors, enabling us to deliver tailored Adaptive AI solutions that address industry-specific challenges and opportunities.
           </p>
         </div>
 
@@ -40,10 +36,9 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center p-6"
-              style={{ backgroundColor: '#F3F1EB' }} // Beige background
+              className="flex flex-col items-center p-6 rounded-xl"
             >
-              <div className="p-6 rounded-full bg-white mb-4">
+              <div className="bg-[#F3F1EB] p-4 rounded-full mb-4">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
@@ -52,15 +47,14 @@ export function Industries() {
                   className="w-12 h-12"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-black text-center">
-                {industry.name}
-              </h3>
+              <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
+
 
 export default Industries;

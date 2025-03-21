@@ -11,6 +11,8 @@ const demographicRoutes = require('./routes/demographic');
 const technicalRoutes = require('./routes/technical');
 const workRoutes = require('./routes/work');
 const contactRoutes = require('./routes/contact');
+const servicesRoutes = require('./routes/services');
+const InquireRoutes = require('./routes/inquires');
 const app = express();
 const PORT = process.env.PORT || 5000;
 

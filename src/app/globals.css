@@ -30,6 +30,14 @@
   }
 }
 
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  max-width: 100vw; /* Ensure content doesn't exceed viewport width */
+  margin: 0;
+  padding: 0;
+}
+
 body {
   @apply bg-background text-foreground antialiased;
 }
@@ -47,6 +55,7 @@ body {
       radial-gradient(circle at 10% 20%, rgba(159, 168, 218, 0.05) 0%, transparent 50%),
       radial-gradient(circle at 90% 80%, rgba(159, 168, 218, 0.04) 0%, transparent 50%);
     background-attachment: fixed;
+    background-size: contain; /* Ensure background fits within viewport */
   }
 }
 
@@ -54,6 +63,8 @@ body {
 @layer components {
   .container {
     @apply w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+    max-width: min(100%, 1400px); /* Ensure container doesn't exceed viewport */
+    overflow-x: hidden;
   }
 
   .nav-link {
@@ -63,10 +74,12 @@ body {
   /* Responsive navigation */
   .nav-container {
     @apply flex items-center justify-between w-full py-4;
+    max-width: 100%;
   }
 
   .nav-menu {
     @apply hidden md:flex space-x-6 items-center;
+    flex-wrap: wrap; /* Allow menu items to wrap */
   }
 
   .mobile-menu-button {
@@ -79,6 +92,7 @@ body {
 
   .mobile-menu-container {
     @apply flex flex-col h-full p-6 overflow-y-auto;
+    max-width: 100%;
   }
 
   .mobile-nav-link {
@@ -86,8 +100,9 @@ body {
   }
 
   .nav-dropdown {
-    @apply absolute top-full left-0 bg-white border border-border rounded-lg p-4 w-64 shadow-lg z-10;
-    @apply md:w-64 sm:w-full;
+    @apply absolute top-full left-0 bg-white border border-border rounded-lg p-4 shadow-lg z-10;
+    width: 100%;
+    max-width: 250px; /* Limit dropdown width */
   }
 
   .nav-dropdown-item {
@@ -97,6 +112,31 @@ body {
   /* Responsive grid layouts */
   .grid-cols-responsive {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+
+  /* Specific responsive fixes for the dimensions mentioned */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .grid-cols-responsive {
+      @apply grid-cols-2;
+    }
+  }
+
+  @media (min-width: 820px) and (max-width: 1180px) {
+    .grid-cols-responsive {
+      @apply grid-cols-2;
+    }
+  }
+
+  @media (min-width: 853px) and (max-width: 1280px) {
+    .grid-cols-responsive {
+      @apply grid-cols-2;
+    }
+  }
+
+  @media (min-width: 912px) and (max-width: 1368px) {
+    .grid-cols-responsive {
+      @apply grid-cols-3;
+    }
   }
 
   .grid-cols-responsive-large {
@@ -139,63 +179,119 @@ body {
 /* Responsive typography */
 h1 {
   @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-tight;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 h2 {
   @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 leading-tight;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 h3 {
   @apply text-xl sm:text-2xl font-bold mb-2 sm:mb-3 leading-tight;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 h4 {
   @apply text-lg sm:text-xl font-bold mb-2 leading-tight;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 p {
   @apply mb-4 text-base sm:text-lg leading-relaxed;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 /* Responsive spacing utilities */
 .section {
   @apply py-10 sm:py-16 md:py-20;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .section-sm {
   @apply py-6 sm:py-10 md:py-12;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Responsive card */
 .card {
-  @apply bg-card rounded-lg p-4 sm:p-6 shadow-md w-full;
+  @apply bg-card rounded-lg p-4 sm:p-6 shadow-md;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
 /* Hero section responsive styles */
 .hero-section {
   @apply py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden relative;
+  width: 100%;
+  max-width: 100vw;
 }
 
 .hero-content {
-  @apply max-w-3xl mx-auto text-center px-4 sm:px-6;
+  @apply mx-auto text-center px-4 sm:px-6;
+  max-width: min(100%, 1200px);
+  word-wrap: break-word;
 }
 
 .hero-title {
   @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .hero-description {
   @apply text-lg sm:text-xl md:text-2xl text-foreground/80 mb-6 sm:mb-8;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 /* Features section responsive styles */
 .features-grid {
   @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Specific media queries for problematic dimensions */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .features-grid {
+    @apply grid-cols-2;
+  }
+}
+
+@media (min-width: 820px) and (max-width: 1180px) {
+  .features-grid {
+    @apply grid-cols-2;
+  }
+}
+
+@media (min-width: 853px) and (max-width: 1280px) {
+  .features-grid {
+    @apply grid-cols-2;
+  }
+}
+
+@media (min-width: 912px) and (max-width: 1368px) {
+  .features-grid {
+    @apply grid-cols-3;
+  }
 }
 
 .feature-card {
   @apply p-4 sm:p-6 rounded-lg bg-card shadow-md;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .feature-icon {
@@ -205,6 +301,8 @@ p {
 /* Form styles responsive */
 .form-group {
   @apply mb-4 sm:mb-6;
+  width: 100%;
+  max-width: 100%;
 }
 
 .form-label {
@@ -213,33 +311,44 @@ p {
 
 .form-input {
   @apply w-full py-2 px-4 rounded-md border border-border bg-card focus:border-primary focus:outline-none;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Table responsive */
 .table-container {
   @apply overflow-x-auto;
+  max-width: 100%;
 }
 
 .table {
   @apply w-full border-collapse;
+  max-width: 100%;
 }
 
 .table th, .table td {
   @apply px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base;
+  word-break: break-word;
 }
 
 /* Image responsive styles */
 .responsive-img {
   @apply w-full h-auto object-cover rounded-lg;
+  max-width: 100%;
 }
 
 /* Footer responsive styles */
 .footer {
   @apply py-10 sm:py-12 border-t border-border;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .footer-grid {
   @apply grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8;
+  width: 100%;
+  max-width: 100%;
 }
 
 .footer-title {
@@ -252,6 +361,7 @@ p {
 
 .footer-bottom {
   @apply mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border text-center text-sm sm:text-base text-foreground/70;
+  width: 100%;
 }
 
 /* Responsive utils */
@@ -282,6 +392,43 @@ p {
   }
 }
 
+/* Specific fixes for the problematic dimensions */
+@media (min-width: 768px) and (max-width: 1024px),
+       (min-width: 820px) and (max-width: 1180px),
+       (min-width: 853px) and (max-width: 1280px),
+       (min-width: 912px) and (max-width: 1368px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .container {
+    max-width: 95%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+  
+  .nav-container {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+  
+  .feature-card {
+    padding: 1rem;
+  }
+  
+  .grid-cols-responsive, 
+  .grid-cols-responsive-large,
+  .features-grid {
+    gap: 1rem;
+  }
+  
+  .two-col-layout {
+    gap: 1.5rem;
+  }
+}
+
 /* Keep your existing decorative styles */
 .diagonal-lines {
   background-image: linear-gradient(45deg, rgba(159, 168, 218, 0.1) 1px, transparent 1px);
@@ -290,6 +437,7 @@ p {
 
 .ai-bg-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239FA8DA' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: contain;
 }
 
 /* Custom scrollbar styles */
@@ -352,7 +500,10 @@ button:active, .button-primary:active, .button-secondary:active {
 }
 
 input, textarea, select {
-  @apply bg-card border border-border rounded-md px-3 sm:px-4 py-2 text-foreground text-sm sm:text-base w-full;
+  @apply bg-card border border-border rounded-md px-3 sm:px-4 py-2 text-foreground text-sm sm:text-base;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
@@ -371,6 +522,7 @@ input:focus, textarea:focus, select:focus {
 
 .image-overlay {
   position: relative;
+  max-width: 100%;
 }
 
 .image-overlay::after {
@@ -387,6 +539,7 @@ input:focus, textarea:focus, select:focus {
 .accent-border {
   border: 1px solid #B7BFE5;
   border-left: 4px solid #9FA8DA;
+  box-sizing: border-box;
 }
 
 .soft-shadow {
@@ -402,7 +555,9 @@ input:focus, textarea:focus, select:focus {
 .cream-panel {
   background-color: #F7F5EF;
   border-radius: 8px;
-  padding: 16px;
   @apply p-4 sm:p-5 md:p-6;
   border: 1px solid rgba(159, 168, 218, 0.2);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
 }

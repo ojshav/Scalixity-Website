@@ -165,7 +165,7 @@ const Chatbot: React.FC = () => {
               id: 'contact-page',
               name: 'Contact Page',
               industryId: null,
-              url: 'http://localhost:3000/contact'
+              url: 'http://kea.mywire.org:5700/contact'
             } 
           }
         );
@@ -274,7 +274,7 @@ const Chatbot: React.FC = () => {
     
     try {
       // Call the FastAPI endpoint
-      const response = await fetch('http://localhost:8000/chat', {
+      const response = await fetch('http://kea.mywire.org:5901/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

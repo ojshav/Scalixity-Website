@@ -2,22 +2,14 @@ import Image from "next/image";
 
 export function TrustedBy() {
   const clients = [
-    { name: "Aisle24", logo: "/placeholder.svg?height=48&width=120" },
-    { name: "CodmanAI", logo: "/placeholder.svg?height=48&width=120" },
-    { name: "Sixfold", logo: "/placeholder.svg?height=48&width=120" },
-    { name: "Trapeze", logo: "/placeholder.svg?height=48&width=120" },
-    { name: "Synervoz", logo: "/placeholder.svg?height=48&width=120" },
-    { name: "Mavex", logo: "/placeholder.svg?height=48&width=120" },
-    { name: "NVMS", logo: "/placeholder.svg?height=48&width=120" },
-    { name: "Nown", logo: "/placeholder.svg?height=48&width=120" },
-    { name: "Landmark", logo: "/placeholder.svg?height=48&width=120" }
+    
   ];
 
   return (
     <section className="bg-[#A8B2E7] py-20"> {/* Lavender Background */}
       <div className="container mx-auto px-4">
         <p className="text-center text-black mb-16 text-sm uppercase tracking-wider font-bold">
-          Trusted by data-driven companies
+          
         </p>
         <div className="flex flex-wrap justify-center items-center gap-x-20 gap-y-12">
           {clients.map((client) => (
