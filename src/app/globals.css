@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Keep your existing base styles */
+/* Base theme styles */
 @layer base {
   :root {
     --background: 30 30% 95%;
@@ -24,62 +24,49 @@
     --border: 231 30% 85%;
     --input: 231 30% 85%;
     --ring: 231 60% 74%;
-
     --logo-color: 231 60% 74%;
     --button-color: 231 60% 74%;
   }
 }
 
+/* Global styles */
 html, body {
   width: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  max-width: 100vw; /* Ensure content doesn't exceed viewport width */
+  max-width: 100vw;
   margin: 0;
   padding: 0;
-}
-
-body {
-  @apply bg-background text-foreground antialiased;
 }
 
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   @apply antialiased;
-}
-
-@layer base {
-  body {
-    @apply bg-background text-foreground antialiased;
-    background-image: 
-      radial-gradient(circle at 10% 20%, rgba(159, 168, 218, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 90% 80%, rgba(159, 168, 218, 0.04) 0%, transparent 50%);
-    background-attachment: fixed;
-    background-size: contain; /* Ensure background fits within viewport */
-  }
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(159, 168, 218, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(159, 168, 218, 0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+  background-size: contain;
 }
 
 /* Responsive components */
 @layer components {
   .container {
-    @apply w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
-    max-width: min(100%, 1400px); /* Ensure container doesn't exceed viewport */
-    overflow-x: hidden;
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: min(100%, 1400px);
   }
 
   .nav-link {
     @apply text-foreground/80 hover:text-primary transition-colors;
   }
 
-  /* Responsive navigation */
+  /* Navigation styles */
   .nav-container {
     @apply flex items-center justify-between w-full py-4;
     max-width: 100%;
   }
 
   .nav-menu {
-    @apply hidden md:flex space-x-6 items-center;
-    flex-wrap: wrap; /* Allow menu items to wrap */
+    @apply hidden md:flex space-x-6 items-center flex-wrap;
   }
 
   .mobile-menu-button {
@@ -102,7 +89,7 @@ body {
   .nav-dropdown {
     @apply absolute top-full left-0 bg-white border border-border rounded-lg p-4 shadow-lg z-10;
     width: 100%;
-    max-width: 250px; /* Limit dropdown width */
+    max-width: 250px;
   }
 
   .nav-dropdown-item {
@@ -114,41 +101,14 @@ body {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
   }
 
-  /* Specific responsive fixes for the dimensions mentioned */
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .grid-cols-responsive {
-      @apply grid-cols-2;
-    }
-  }
-
-  @media (min-width: 820px) and (max-width: 1180px) {
-    .grid-cols-responsive {
-      @apply grid-cols-2;
-    }
-  }
-
-  @media (min-width: 853px) and (max-width: 1280px) {
-    .grid-cols-responsive {
-      @apply grid-cols-2;
-    }
-  }
-
-  @media (min-width: 912px) and (max-width: 1368px) {
-    .grid-cols-responsive {
-      @apply grid-cols-3;
-    }
-  }
-
   .grid-cols-responsive-large {
     @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8;
   }
 
-  /* Two column layout that stacks on mobile */
   .two-col-layout {
     @apply grid grid-cols-1 lg:grid-cols-2 gap-8;
   }
 
-  /* Responsive sidebar layout */
   .sidebar-layout {
     @apply grid grid-cols-1 lg:grid-cols-12 gap-8;
   }
@@ -162,12 +122,12 @@ body {
   }
 }
 
-/* Keep your existing utility classes */
+/* Utility classes */
 .gradient-text {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--logo-color))] via-[hsl(var(--accent))] to-[hsl(var(--logo-color))];
 }
 
-/* Responsive buttons */
+/* Buttons */
 .button-primary {
   @apply inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-[hsl(var(--button-color))] text-primary-foreground font-medium hover:bg-accent transition-colors transform hover:scale-105 shadow-md text-sm sm:text-base;
 }
@@ -176,29 +136,33 @@ body {
   @apply inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-muted transition-colors transform hover:scale-105 shadow-md border border-primary/20 text-sm sm:text-base;
 }
 
-/* Responsive typography */
+/* Typography */
 h1 {
   @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-tight;
   max-width: 100%;
   word-wrap: break-word;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 
 h2 {
   @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 leading-tight;
   max-width: 100%;
   word-wrap: break-word;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 
 h3 {
   @apply text-xl sm:text-2xl font-bold mb-2 sm:mb-3 leading-tight;
   max-width: 100%;
   word-wrap: break-word;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 
 h4 {
   @apply text-lg sm:text-xl font-bold mb-2 leading-tight;
   max-width: 100%;
   word-wrap: break-word;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 
 p {
@@ -207,22 +171,29 @@ p {
   word-wrap: break-word;
 }
 
-/* Responsive spacing utilities */
+a {
+  transition: all 0.3s ease;
+  color: #9FA8DA;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: #8891C9;
+}
+
+/* Spacing */
 .section {
   @apply py-10 sm:py-16 md:py-20;
   width: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
 }
 
 .section-sm {
   @apply py-6 sm:py-10 md:py-12;
   width: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
 }
 
-/* Responsive card */
+/* Components */
 .card {
   @apply bg-card rounded-lg p-4 sm:p-6 shadow-md;
   width: 100%;
@@ -231,11 +202,10 @@ p {
   transition: all 0.3s ease;
 }
 
-/* Hero section responsive styles */
+/* Hero section */
 .hero-section {
-  @apply py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden relative;
+  @apply py-12 sm:py-16 md:py-20 lg:py-24 relative;
   width: 100%;
-  max-width: 100vw;
 }
 
 .hero-content {
@@ -256,36 +226,10 @@ p {
   word-wrap: break-word;
 }
 
-/* Features section responsive styles */
+/* Features section */
 .features-grid {
   @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8;
   width: 100%;
-  max-width: 100%;
-}
-
-/* Specific media queries for problematic dimensions */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .features-grid {
-    @apply grid-cols-2;
-  }
-}
-
-@media (min-width: 820px) and (max-width: 1180px) {
-  .features-grid {
-    @apply grid-cols-2;
-  }
-}
-
-@media (min-width: 853px) and (max-width: 1280px) {
-  .features-grid {
-    @apply grid-cols-2;
-  }
-}
-
-@media (min-width: 912px) and (max-width: 1368px) {
-  .features-grid {
-    @apply grid-cols-3;
-  }
 }
 
 .feature-card {
@@ -298,7 +242,7 @@ p {
   @apply w-10 h-10 sm:w-12 sm:h-12 mb-4 text-primary;
 }
 
-/* Form styles responsive */
+/* Form styles */
 .form-group {
   @apply mb-4 sm:mb-6;
   width: 100%;
@@ -315,7 +259,20 @@ p {
   box-sizing: border-box;
 }
 
-/* Table responsive */
+input, textarea, select {
+  @apply bg-card border border-border rounded-md px-3 sm:px-4 py-2 text-foreground text-sm sm:text-base;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  @apply border-primary;
+  box-shadow: 0 0 0 2px rgba(159, 168, 218, 0.2);
+}
+
+/* Table styles */
 .table-container {
   @apply overflow-x-auto;
   max-width: 100%;
@@ -331,24 +288,21 @@ p {
   word-break: break-word;
 }
 
-/* Image responsive styles */
+/* Images */
 .responsive-img {
   @apply w-full h-auto object-cover rounded-lg;
   max-width: 100%;
 }
 
-/* Footer responsive styles */
+/* Footer */
 .footer {
   @apply py-10 sm:py-12 border-t border-border;
   width: 100%;
-  max-width: 100vw;
-  overflow-x: hidden;
 }
 
 .footer-grid {
   @apply grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8;
   width: 100%;
-  max-width: 100%;
 }
 
 .footer-title {
@@ -364,7 +318,7 @@ p {
   width: 100%;
 }
 
-/* Responsive utils */
+/* Responsive utility classes */
 .hide-on-mobile {
   @apply hidden sm:block;
 }
@@ -373,7 +327,7 @@ p {
   @apply block sm:hidden;
 }
 
-/* Media query for extra small screens */
+/* Media queries */
 @media (max-width: 340px) {
   .button-primary, .button-secondary {
     @apply px-3 py-2 text-xs;
@@ -392,17 +346,8 @@ p {
   }
 }
 
-/* Specific fixes for the problematic dimensions */
-@media (min-width: 768px) and (max-width: 1024px),
-       (min-width: 820px) and (max-width: 1180px),
-       (min-width: 853px) and (max-width: 1280px),
-       (min-width: 912px) and (max-width: 1368px) {
-  html, body {
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100%;
-  }
-  
+/* Specific tablet dimension fixes */
+@media (min-width: 768px) and (max-width: 1368px) {
   .container {
     max-width: 95%;
     padding-left: 2.5%;
@@ -429,7 +374,24 @@ p {
   }
 }
 
-/* Keep your existing decorative styles */
+/* Specific grid adjustments */
+@media (min-width: 768px) and (max-width: 1024px), 
+       (min-width: 820px) and (max-width: 1180px), 
+       (min-width: 853px) and (max-width: 1280px) {
+  .features-grid,
+  .grid-cols-responsive {
+    @apply grid-cols-2;
+  }
+}
+
+@media (min-width: 912px) and (max-width: 1368px) {
+  .features-grid,
+  .grid-cols-responsive {
+    @apply grid-cols-3;
+  }
+}
+
+/* Decorative styles */
 .diagonal-lines {
   background-image: linear-gradient(45deg, rgba(159, 168, 218, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -440,7 +402,7 @@ p {
   background-size: contain;
 }
 
-/* Custom scrollbar styles */
+/* Scrollbar and misc UI styles */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -458,10 +420,6 @@ p {
   background: #AAB2E0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 ::selection {
   background: rgba(159, 168, 218, 0.3);
   color: #505050;
@@ -470,21 +428,6 @@ html {
 :focus {
   outline: 2px solid #9FA8DA;
   outline-offset: 2px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  text-shadow: 0 1px 2px rgba(0,0,0,0.04);
-}
-
-a {
-  transition: all 0.3s ease;
-  color: #9FA8DA;
-}
-
-a:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  color: #8891C9;
 }
 
 button, .button-primary, .button-secondary {
@@ -497,19 +440,6 @@ button:active, .button-primary:active, .button-secondary:active {
 
 .glow-effect {
   box-shadow: 0 0 15px rgba(159, 168, 218, 0.4);
-}
-
-input, textarea, select {
-  @apply bg-card border border-border rounded-md px-3 sm:px-4 py-2 text-foreground text-sm sm:text-base;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-}
-
-input:focus, textarea:focus, select:focus {
-  @apply border-primary;
-  box-shadow: 0 0 0 2px rgba(159, 168, 218, 0.2);
 }
 
 .icon-hover {
