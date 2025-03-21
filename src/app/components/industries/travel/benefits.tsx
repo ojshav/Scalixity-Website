@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import { Globe, Plane, MapPin, Users, BarChart, ShieldCheck } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { Globe, Plane, MapPin, Users, BarChart, ShieldCheck } from 'lucide-react';
 
 const benefits = [
   {
@@ -34,18 +34,18 @@ const benefits = [
     title: "Fraud Detection & Security",
     description: "Utilize AI models to detect fraudulent transactions, ensuring secure online payments and protecting customer data."
   }
-]
+];
 
 export function Benefits() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">BENEFITS OF AI IN TRAVEL</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">BENEFITS OF AI IN TRAVEL</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Transform Travel with AI Solutions
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Revolutionize the travel experience with AI — enhance personalization, streamline operations, and boost customer engagement for a smarter, more connected journey.
           </p>
         </div>
@@ -58,17 +58,17 @@ export function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-black/50 transition-colors"
             >
-              <benefit.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-foreground mb-4">{benefit.title}</h3>
-              <p className="text-muted-foreground">{benefit.description}</p>
+              <benefit.icon className="w-12 h-12 text-black mb-6" />
+              <h3 className="text-xl font-bold text-black mb-4">{benefit.title}</h3>
+              <p className="text-black">{benefit.description}</p>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default Benefits
+export default Benefits;

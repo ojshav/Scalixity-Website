@@ -58,11 +58,11 @@ export function AIApplications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-xl border border-brown-300 hover:border-brown-500 transition-colors"
+              className="bg-white p-8 rounded-xl border border-black hover:border-brown-500 transition-colors"
             >
-              <app.icon className="w-12 h-12 text-brown-700 mb-6" />
-              <h3 className="text-xl font-bold text-brown-900 mb-4">{app.title}</h3>
-              <p className="text-brown-700">{app.description}</p>
+              <app.icon className="w-12 h-12 text-black mb-6" />
+              <h3 className="text-xl font-bold text-black mb-4">{app.title}</h3>
+              <p className="text-black">{app.description}</p>
             </motion.div>
           ))}
         </div>

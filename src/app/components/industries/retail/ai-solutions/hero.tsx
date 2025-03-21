@@ -22,19 +22,6 @@ export function Hero() {
         >
           Empower your retail business with AI-driven insights. Personalize customer experiences, optimize inventory management, implement dynamic pricing, and streamline operations. AI solutions unlock the full potential of data, driving innovation and boosting sales.
         </motion.p>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row justify-center gap-4"
-        >
-          <button className="px-8 py-3 text-lg font-medium bg-black text-white rounded-lg hover:bg-gray-700 transition-all">
-            Explore AI Solutions
-          </button>
-          <button className="px-8 py-3 text-lg font-medium bg-black text-white rounded-lg hover:bg-gray-700 transition-all">
-            Get in Touch
-          </button>
-        </motion.div>
       </div>
     </section>
   );

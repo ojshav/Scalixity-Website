@@ -27,7 +27,7 @@ const processSteps = [
 
 export function Process() {
   return (
-    <section className="bg-[#F3F1EB] py-24"> 
+    <section className="bg-[#A8B2E7] py-24"> 
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">PROCESS</span>
@@ -56,7 +56,7 @@ export function Process() {
                   <div className="w-2 h-2 bg-[#F3F1EB] rounded-full" />
                 </div>
                 
-                <div className="bg-[#A8B2E7] p-8 rounded-xl border border-black">
+                <div className="bg-[#F3F1EB] p-8 rounded-xl border border-black">
                   <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
                   <p className="text-black leading-relaxed">{step.description}</p>
                 </div>

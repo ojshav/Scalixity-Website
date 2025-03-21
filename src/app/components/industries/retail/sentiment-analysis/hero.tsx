@@ -22,19 +22,6 @@ export function Hero() {
         >
           Uncover customer emotions and transform feedback into actionable insights. Leverage AI-driven sentiment analysis to enhance customer experiences, predict trends, and stay ahead of the competition.
         </motion.p>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row justify-center gap-4"
-        >
-          <button className="px-8 py-3 text-lg font-medium bg-black text-white rounded-lg hover:bg-gray-900 transition-all">
-            Explore Sentiment Analysis
-          </button>
-          <button className="px-8 py-3 text-lg font-medium bg-black text-white rounded-lg hover:bg-gray-900 transition-all">
-            Request a Demo
-          </button>
-        </motion.div>
       </div>
     </section>
   );

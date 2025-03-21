@@ -31,14 +31,14 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-gradient-to-r from-[#3B82F6] via-[#9333EA] to-[#F43F5E] py-24">
+    <section className="bg-[#A8B2E7] py-24"> {/* Updated background color */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-white uppercase tracking-wider">FAQ</span>
-          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">FAQ</span> {/* Updated font color */}
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6"> {/* Updated font color */}
             AI in Insurance: Frequently Asked Questions
           </h2>
-          <p className="text-xl text-white max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto"> {/* Updated font color */}
             Explore how AI transforms the insurance industry. Get answers to common questions about AI’s role in claims processing, fraud prevention, and customer experience.
           </p>
         </div>
@@ -54,14 +54,14 @@ export function FAQ() {
               className="mb-4"
             >
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-white bg-opacity-10 rounded-lg text-white backdrop-blur-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg text-black border-2 border-black" 
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <span className="font-semibold">{faq.question}</span>
                 {openIndex === index ? (
-                  <ChevronUp className="w-5 h-5" />
+                  <ChevronUp className="w-5 h-5 text-black" /> 
                 ) : (
-                  <ChevronDown className="w-5 h-5" />
+                  <ChevronDown className="w-5 h-5 text-black" /> 
                 )}
               </button>
               <AnimatePresence>
@@ -73,7 +73,7 @@ export function FAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 bg-white bg-opacity-20 text-white rounded-lg mt-1 backdrop-blur-lg">
+                    <div className="p-4 bg-[#F3F1EB] text-black rounded-lg mt-1 border-2 border-black"> {/* Updated box color and border */}
                       <p>{faq.answer}</p>
                     </div>
                   </motion.div>
@@ -88,5 +88,3 @@ export function FAQ() {
 }
 
 export default FAQ;
-
-

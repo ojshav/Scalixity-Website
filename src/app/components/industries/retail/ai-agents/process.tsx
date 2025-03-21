@@ -56,7 +56,7 @@ export function Process() {
                   <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" />
                 </div>
 
-                <div className="bg-[#F5F5DC] p-8 rounded-xl border border-black/20">
+                <div className="bg-[#F3F1EB] p-8 rounded-xl border-2 border-[#6B5B95] shadow-lg hover:border-[#4A3F6D] transition-colors">
                   <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
                   <p className="text-black/80 leading-relaxed">{step.description}</p>
                 </div>
