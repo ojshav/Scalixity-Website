@@ -1,5 +1,5 @@
 import { Hero } from "@/src/app/components/chatgpt-integration/hero"
-import { WhatWeOffer } from "@/src/app/components/what-we-offer"
+import { WhatWeOffer } from "@/src/app/components/chatgpt-integration/what-we-offer"
 import { FeaturedWork }  from "@/src/app/components/chatgpt-integration/featured-work"
 import { Process } from "@/src/app/components/chatgpt-integration/process"
 import { Expertise } from "@/src/app/components/chatgpt-integration/expertise"

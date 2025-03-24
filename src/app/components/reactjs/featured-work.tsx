@@ -47,25 +47,27 @@ export function FeaturedWork() {
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className="flex flex-col md:flex-row items-center gap-8"
             >
-              <div className="flex-1 bg-[#F3F1EB] border border-black p-8 rounded-lg">
-                <span className="text-lg text-black/70">— {project.company}</span>
-                <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
-                <p className="mb-6 text-black/80">{project.description}</p>
-                <ul className="space-y-2 text-black">
-                  {project.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-black rounded-full" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="flex-1">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="rounded-lg shadow-lg w-full h-auto"
-                />
+              <div className="flex flex-col md:flex-row bg-[#F3F1EB] border border-black p-8 rounded-lg w-full">
+                <div className="flex-1">
+                  <span className="text-lg text-black/70">— {project.company}</span>
+                  <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
+                  <p className="mb-6 text-black/80">{project.description}</p>
+                  <ul className="space-y-2 text-black">
+                    {project.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-black rounded-full" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="flex-1 mt-8 md:mt-0">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="rounded-lg shadow-lg w-full h-auto border border-black" // Added border around image
+                  />
+                </div>
               </div>
             </motion.div>
           ))}

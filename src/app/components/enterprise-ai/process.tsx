@@ -35,12 +35,13 @@ export function Process() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
-            <div key={index} className="bg-[#F3F1EB] p-6 rounded-xl shadow-lg flex items-start gap-4">
-              <step.icon className="text-black w-10 h-10" />
-              <div>
-                <h3 className="text-xl font-semibold text-black">{step.title}</h3>
-                <p className="text-black mt-2">{step.description}</p>
-              </div>
+            <div
+              key={index}
+              className="bg-[#F3F1EB] p-6 rounded-xl shadow-lg flex flex-col items-center text-center border-2 border-gray-700"
+            >
+              <step.icon className="text-black w-12 h-12 mb-4" />
+              <h3 className="text-xl font-semibold text-black">{step.title}</h3>
+              <p className="text-black mt-2">{step.description}</p>
             </div>
           ))}
         </div>

@@ -22,13 +22,6 @@ export default function ContactPage() {
     })
   }
 
-  
-
-  // interface ContactResponse {
-  //   // Add specific response properties if known
-  //   success: boolean;
-  // }
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -47,8 +40,8 @@ export default function ContactPage() {
       }
 
       await response.json(); // Process response without assigning to unused variable
-setIsSubmitting(false);
-setIsSubmitted(true);
+      setIsSubmitting(false);
+      setIsSubmitted(true);
       
       // Reset form
       setFormData({
@@ -72,8 +65,8 @@ setIsSubmitted(true);
     <div className="pt-20 pb-32 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold py-6">Contact Us</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold py-6 text-black">Contact Us</h1>
+          <p className="text-xl text-black max-w-2xl mx-auto">
             Have a question or want to work with us? Fill out the form below and our team will contact you shortly.
           </p>
         </div>

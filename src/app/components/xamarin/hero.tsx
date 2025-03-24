@@ -21,12 +21,14 @@ export function Hero() {
             Our expert developers create seamless, high-performance apps for iOS and Android, 
             ensuring native-like user experiences with a single codebase.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors w-full sm:w-auto"
+
+          {/* Clickable Contact Button */}
+          <div className="relative z-10">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-black text-white text-lg font-semibold hover:bg-gray-900 transition"
             >
-              Get Started
+              Contact Us
             </Link>
           </div>
         </motion.div>

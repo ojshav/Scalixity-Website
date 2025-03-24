@@ -37,7 +37,7 @@ export function UseCases() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-6xl font-extrabold text-black mb-12 tracking-wider"
+          className="text-6xl font-extrabold font-sans text-black mb-12 tracking-wider"
         >
           AI Use Cases Reshaping Construction
         </motion.h2>

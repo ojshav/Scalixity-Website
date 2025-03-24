@@ -49,12 +49,6 @@ export function Benefits() {
             </div>
           ))}
         </div>
-
-        <div className="mt-12">
-          <button className="px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition">
-            Get Started
-          </button>
-        </div>
       </div>
     </section>
   );

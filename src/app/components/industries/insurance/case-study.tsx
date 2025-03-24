@@ -49,8 +49,8 @@ export function CaseStudy() {
                   ))}
                 </ul>
               </div>
-              <div className="relative h-full min-h-[300px]">
-                <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" />
+              <div className="relative h-full min-h-[300px] border border-black">
+                <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" className="rounded-r-lg" />
               </div>
             </div>
           </div>

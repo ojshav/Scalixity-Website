@@ -40,7 +40,7 @@ export function Process() {
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-white/50" />
+          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-black/50" /> {/* Black line */}
 
           <div className="space-y-12">
             {processSteps.map((step, index) => (
@@ -56,7 +56,7 @@ export function Process() {
                   <div className="w-2 h-2 bg-white rounded-full" />
                 </div>
 
-                <div className="p-8 rounded-xl border-2 border-black" style={{ backgroundColor: '#F3F1EB' }}> {/* Beige boxes with black border */}
+                <div className="p-8 rounded-xl border-2 border-black" style={{ backgroundColor: '#F3F1EB' }}> 
                   <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
                   <p className="text-gray-700 leading-relaxed">{step.description}</p>
                 </div>

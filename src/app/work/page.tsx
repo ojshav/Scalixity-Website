@@ -49,7 +49,8 @@ export default function WorkPage() {
         <p className="text-xl text-center text-gray-400 mb-12">Discover how we&apos;ve helped businesses transform with AI</p>
       </div>
       
-      <section className="bg-white py-32">
+      {/* Section with specific background and font color */}
+      <section className="bg-[#F3F1EB] py-32" id="work-section">
         <div className="container mx-auto px-4">
           <span className="block text-sm text-black uppercase tracking-wider mb-4">
             PROJECTS

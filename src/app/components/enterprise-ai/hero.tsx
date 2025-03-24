@@ -21,10 +21,12 @@ export function Hero() {
             Our AI-powered systems enhance decision-making, optimize workflows, and create competitive advantages tailored to your industry.  
             Leverage our expertise in machine learning, NLP, and deep learning to transform your business today.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors w-full sm:w-auto"
+
+          {/* Clickable Contact Button */}
+          <div className="relative z-10">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-black text-white text-lg font-semibold hover:bg-gray-900 transition"
             >
               Contact Us
             </Link>

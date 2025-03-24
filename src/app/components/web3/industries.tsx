@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -36,9 +36,9 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center p-6" /* Removed border and background */
+              className="flex flex-col items-center p-6"
             >
-              <div className="bg-white p-6 rounded-full mb-4"> {/* Removed border */}
+              <div className="bg-white p-6 rounded-full mb-4 border-2 border-black"> {/* Black border around circular card */}
                 <Image
                   src={industry.icon}
                   alt={industry.name}

@@ -60,7 +60,7 @@ export function CaseStudy() {
                   ))}
                 </ul>
               </div>
-              <div className="relative h-full min-h-[350px]">
+              <div className="relative h-full min-h-[350px] border border-black rounded-r-2xl">
                 <Image
                   src={study.image}
                   alt={study.title}

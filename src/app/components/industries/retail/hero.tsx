@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link"; // Importing Link from Next.js
 
 export function Hero() {
   return (
@@ -18,8 +19,19 @@ export function Hero() {
           <p className="text-xl text-black mb-12 leading-relaxed max-w-3xl mx-auto">
             Revolutionize your retail business with AI-driven solutions. From personalized shopping experiences to predictive analytics, we help you harness the power of AI to boost sales, optimize operations, and enhance customer satisfaction.
           </p>
+
+          {/* Get Started Button */}
+          <div className="relative z-10">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center mt-8 px-6 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+            >
+              Get Started
+            </Link>
+          </div>
         </motion.div>
       </div>
+
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
     </section>
   );

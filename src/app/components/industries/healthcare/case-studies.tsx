@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const caseStudies = [
   {
     title: "AI-Powered Diagnostic Imaging",
-    description: "Implemented an AI system that improved the accuracy of radiological diagnoses by 30%, reducing misdiagnosis rates and improving patient outcomes.",
+    description:
+      "Implemented an AI system that improved the accuracy of radiological diagnoses by 30%, reducing misdiagnosis rates and improving patient outcomes.",
     image: "/images/ai-patient-monitoring.svg",
     results: [
       "30% increase in diagnostic accuracy",
@@ -16,7 +17,8 @@ const caseStudies = [
   },
   {
     title: "Predictive Analytics for Patient Care",
-    description: "Developed a machine learning model that predicts patient readmission risks, allowing hospitals to provide targeted interventions and reduce readmission rates by 22%.",
+    description:
+      "Developed a machine learning model that predicts patient readmission risks, allowing hospitals to provide targeted interventions and reduce readmission rates by 22%.",
     image: "/images/icons/healthcare.svg",
     results: [
       "22% reduction in readmission rates",
@@ -24,16 +26,14 @@ const caseStudies = [
       "Improved patient satisfaction scores"
     ]
   }
-]
+];
 
 export function CaseStudies() {
   return (
     <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-black mb-6">
-            Case Studies
-          </h2>
+          <h2 className="text-4xl font-bold text-black mb-6">Case Studies</h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
             Real-world examples of how our AI solutions have transformed healthcare operations and patient care.
           </p>
@@ -47,7 +47,7 @@ export function CaseStudies() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="grid md:grid-cols-2 gap-8 items-center border-2 border-black bg-[#F3F1EB] p-8 rounded-xl"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
                 <h3 className="text-2xl font-bold text-black mb-4">{study.title}</h3>
@@ -62,7 +62,7 @@ export function CaseStudies() {
                 </ul>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[300px] rounded-xl overflow-hidden bg-[#F3F1EB] border border-black">
+                <div className="relative h-[300px] rounded-xl overflow-hidden border-2 border-black">
                   <Image
                     src={study.image}
                     alt={study.title}
@@ -76,5 +76,7 @@ export function CaseStudies() {
         </div>
       </div>
     </section>
-  )
+  );
 }
+
+export default CaseStudies;

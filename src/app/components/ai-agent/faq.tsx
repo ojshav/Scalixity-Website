@@ -59,9 +59,13 @@ export function FAQ() {
 
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, index) => (
-            <div key={index} className="mb-4">
+            <div
+              key={index}
+              className="mb-4 border-2 border-black rounded-lg"
+              style={{ backgroundColor: "#F3F1EB" }}
+            >
               <button
-                className="flex justify-between items-center w-full text-left p-4 rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 rounded-t-lg"
                 style={{ backgroundColor: "#F3F1EB" }}
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
@@ -73,7 +77,7 @@ export function FAQ() {
                 )}
               </button>
               {openIndex === index && (
-                <div className="p-4 mt-1 rounded-lg" style={{ backgroundColor: "#F3F1EB" }}>
+                <div className="p-4 mt-1 rounded-b-lg" style={{ backgroundColor: "#F3F1EB" }}>
                   <p className="text-black">{faq.answer}</p>
                 </div>
               )}

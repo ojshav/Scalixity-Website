@@ -62,11 +62,13 @@ export function FeaturedWork() {
                 </ul>
               </div>
               <div className="flex-1">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="rounded-lg shadow-lg w-full h-auto"
-                />
+                <div className="border-2 border-black rounded-lg overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-auto"
+                  />
+                </div>
               </div>
             </motion.div>
           ))}

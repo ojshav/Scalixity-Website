@@ -27,8 +27,8 @@ const expertiseAreas = [
 
 export function Expertise() {
   return (
-    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background for the section */}
-      <div className="container mx-auto px-4">
+    <section className="bg-[#A8B2E7] py-24 overflow-hidden"> {/* Add overflow-hidden to section */}
+      <div className="container mx-auto px-4 overflow-hidden"> {/* Add overflow-hidden to container */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-black mb-6">
             CORE EXPERTISE

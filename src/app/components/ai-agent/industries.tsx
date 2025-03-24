@@ -41,13 +41,15 @@ export function Industries() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <Image
-                src={industry.icon}
-                alt={industry.name}
-                width={48}
-                height={48}
-                className="w-12 h-12 mb-2"
-              />
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-2 border-2 border-black">
+                <Image
+                  src={industry.icon}
+                  alt={industry.name}
+                  width={48}
+                  height={48}
+                  className="w-12 h-12"
+                />
+              </div>
               <h3 className="text-lg font-semibold text-black">{industry.name}</h3>
             </motion.div>
           ))}

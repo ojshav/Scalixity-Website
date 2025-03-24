@@ -114,7 +114,7 @@ export function FeaturedWork() {
                 </Link>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
+                <div className="relative h-[400px] rounded-xl overflow-hidden border-2 border-black"> {/* Added border here */}
                   <Image
                     src={project.image}
                     alt={project.title}

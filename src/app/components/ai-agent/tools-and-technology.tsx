@@ -72,7 +72,11 @@ export function ToolsAndTechnology() {
         <div className="grid gap-8">
           <div className="grid md:grid-cols-3 gap-8">
             {Object.entries(technologies).slice(0, 6).map(([category, items], index) => (
-              <div key={index} className="border border-black rounded-2xl p-6 shadow-lg">
+              <div
+                key={index}
+                className="border border-black rounded-2xl p-6 shadow-lg"
+                style={{ backgroundColor: "#F3F1EB" }} // Updated background color
+              >
                 <h3 className="text-black font-semibold mb-6">{category}</h3>
                 <div className="grid grid-cols-3 gap-4">
                   {items.map((item, idx) =>
@@ -98,7 +102,11 @@ export function ToolsAndTechnology() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {Object.entries(technologies).slice(6).map(([category, items], index) => (
-              <div key={index} className="border border-black rounded-2xl p-6 shadow-lg">
+              <div
+                key={index}
+                className="border border-black rounded-2xl p-6 shadow-lg"
+                style={{ backgroundColor: "#F3F1EB" }} // Updated background color
+              >
                 <h3 className="text-black font-semibold mb-6">{category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {items.map((item, idx) => (

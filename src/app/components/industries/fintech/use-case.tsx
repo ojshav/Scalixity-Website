@@ -47,7 +47,7 @@ export function UseCases() {
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className="bg-[#F3F1EB] border border-black p-8 rounded-2xl shadow-lg hover:scale-105 transition-transform hover:shadow-xl"
             >
-              <div className="relative w-full h-48 mb-6">
+              <div className="relative w-full h-48 mb-6 border-2 border-black rounded-xl">
                 <Image
                   src={useCase.image}
                   alt={useCase.title}

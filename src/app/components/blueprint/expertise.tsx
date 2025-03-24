@@ -40,10 +40,10 @@ export function Expertise() {
     <section className="py-24" style={{ backgroundColor: '#A8B2E7' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-[#1D1D1D] mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Our App Blueprint Expertise
           </h2>
-          <p className="text-xl text-[#333] max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             We build scalable, secure, and innovative applications with a focus on performance and user experience.
           </p>
         </div>
@@ -55,9 +55,9 @@ export function Expertise() {
               className="p-8 rounded-xl border border-black hover:border-gray-700 transition-colors"
               style={{ backgroundColor: '#F3F1EB' }}
             >
-              <area.icon className="w-12 h-12 text-[#5A5A5A] mb-6" />
-              <h3 className="text-xl font-bold text-[#1D1D1D] mb-4">{area.title}</h3>
-              <p className="text-[#333]">{area.description}</p>
+              <area.icon className="w-12 h-12 text-black mb-6" /> {/* Changed to text-black */}
+              <h3 className="text-xl font-bold text-black mb-4">{area.title}</h3> {/* Changed to text-black */}
+              <p className="text-black">{area.description}</p> {/* Changed to text-black */}
             </div>
           ))}
         </div>

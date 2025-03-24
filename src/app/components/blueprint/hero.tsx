@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link"; // Importing Link from Next.js
 
 export function Hero() {
   return (
@@ -20,9 +21,22 @@ export function Hero() {
             user journey mapping, and technical planning to ensure a seamless development process. 
             Build a strong foundation for your next mobile or web application with our expert team.
           </p>
+
+          
+          <div className="relative z-10">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center mt-8 px-6 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+            >
+              Get Started
+            </Link>
+          </div>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
+
+      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10 z-0" />
     </section>
   );
 }
+
+export default Hero;

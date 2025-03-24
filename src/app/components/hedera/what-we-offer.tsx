@@ -1,45 +1,54 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 const services = [
   {
     title: "Generative AI Solutions",
-    description: "Hedra crafts AI solutions that generate new ideas, designs, and content. We push the boundaries of creativity and innovation with advanced generative models tailored to your business."
+    description:
+      "Scalixity crafts AI solutions that generate new ideas, designs, and content. We push the boundaries of creativity and innovation with advanced generative models tailored to your business.",
   },
   {
     title: "Custom AI Model Development",
-    description: "Our team develops AI models from scratch, fine-tuning them to your specific needs. From neural networks to transformers, we build the core intelligence behind your AI-powered solutions."
+    description:
+      "Our team develops AI models from scratch, fine-tuning them to your specific needs. From neural networks to transformers, we build the core intelligence behind your AI-powered solutions.",
   },
   {
     title: "Real-time AI Integration",
-    description: "Seamlessly embed AI into your workflows. Hedra ensures smooth integration of AI models into your systems, enabling real-time data analysis and instant decision-making."
+    description:
+      "Seamlessly embed AI into your workflows. Scalixity ensures smooth integration of AI models into your systems, enabling real-time data analysis and instant decision-making.",
   },
   {
     title: "Model Training & Optimization",
-    description: "We don’t just build AI models — we train and optimize them. By leveraging the latest AI algorithms, we enhance accuracy, speed, and efficiency to maximize business impact."
+    description:
+      "We don’t just build AI models — we train and optimize them. By leveraging the latest AI algorithms, we enhance accuracy, speed, and efficiency to maximize business impact.",
   },
   {
     title: "AI Monitoring & Maintenance",
-    description: "AI needs constant care. Hedra offers ongoing monitoring and maintenance, ensuring your AI systems perform at their peak with regular updates and improvements."
+    description:
+      "AI needs constant care. Scalixity offers ongoing monitoring and maintenance, ensuring your AI systems perform at their peak with regular updates and improvements.",
   },
   {
     title: "AI Education & Empowerment",
-    description: "Empower your team with AI expertise. We provide hands-on training and workshops, equipping your staff with the skills to utilize AI technologies effectively."
-  }
-]
+    description:
+      "Empower your team with AI expertise. We provide hands-on training and workshops, equipping your staff with the skills to utilize AI technologies effectively.",
+  },
+];
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
-          Hedra&apos;s  AI Solutions & Services
+          <span className="text-sm text-black uppercase tracking-wider">
+            WHAT WE OFFER
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
+            Scalixity&apos;s AI Solutions & Services
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Unlock the potential of AI with Hedra. Our cutting-edge solutions empower businesses to innovate, optimize, and grow.
+          <p className="text-xl text-black max-w-3xl mx-auto">
+            Unlock the potential of AI with Scalixity. Our cutting-edge
+            solutions empower businesses to innovate, optimize, and grow.
           </p>
         </div>
 
@@ -51,16 +60,18 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-black transition-colors"
             >
-              <h3 className="text-xl font-bold text-foreground mb-4">{service.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+              <h3 className="text-xl font-bold text-black mb-4">
+                {service.title}
+              </h3>
+              <p className="text-black leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default WhatWeOffer;

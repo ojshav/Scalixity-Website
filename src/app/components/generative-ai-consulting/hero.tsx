@@ -17,7 +17,12 @@ export function ConsultingHero() {
               Generative AI Consulting Company
             </h1>
             <p className="text-xl text-gray-800 mb-8">
-              Venture into the AI frontier with our specialized Generative AI consulting services.
+            Venture into the AI frontier with our specialized Generative AI consulting services. 
+Our expert team helps you navigate the evolving world of artificial intelligence, 
+providing tailored solutions that drive innovation and efficiency. Whether you&apos;re looking 
+to enhance your business processes, optimize models, or create custom AI solutions, 
+we&apos;re here to help you unlock the full potential of Generative AI technology.
+
             </p>
             <Link
               href="/contact"
@@ -26,25 +31,6 @@ export function ConsultingHero() {
               Contact us
             </Link>
           </motion.div>
-
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-[#A8B2E7] p-6 rounded-lg border border-black text-black">
-              <h3 className="text-xl font-bold mb-2">AI Model Optimization</h3>
-              <p>We fine-tune models for efficiency, reducing computational costs while maintaining high performance.</p>
-            </div>
-            <div className="bg-[#A8B2E7] p-6 rounded-lg border border-black text-black">
-              <h3 className="text-xl font-bold mb-2">Data Security & Compliance</h3>
-              <p>Ensuring safe, encrypted AI implementations while adhering to regulatory standards.</p>
-            </div>
-            <div className="bg-[#A8B2E7] p-6 rounded-lg border border-black text-black">
-              <h3 className="text-xl font-bold mb-2">Custom AI Solutions</h3>
-              <p>Tailoring Generative AI applications to fit business-specific needs and objectives.</p>
-            </div>
-            <div className="bg-[#A8B2E7] p-6 rounded-lg border border-black text-black">
-              <h3 className="text-xl font-bold mb-2">Scalable AI Infrastructure</h3>
-              <p>Deploy AI models that scale with your business, maintaining reliability and speed.</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

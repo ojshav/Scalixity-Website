@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export function Hero() {
@@ -28,30 +27,13 @@ export function Hero() {
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex justify-center gap-6"
+          className="flex justify-center"
         >
           <Link href="/contact" className="bg-black text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-800 transition">
             Get Started
           </Link>
-          <Link href="/portfolio" className="border border-black text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-black hover:text-white transition">
-            View Portfolio
-          </Link>
         </motion.div>
       </div>
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }} 
-        animate={{ opacity: 1, scale: 1 }} 
-        transition={{ duration: 1, delay: 0.6 }}
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[800px] opacity-70"
-      >
-        <Image 
-          src="/android-illustration.png" 
-          alt="Android App Development Illustration" 
-          width={800} 
-          height={400} 
-          className="mx-auto"
-        />
-      </motion.div>
     </section>
   );
 }

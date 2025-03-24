@@ -1,5 +1,6 @@
-"use client"
+"use client";
 import { motion } from 'framer-motion';
+import Link from 'next/link'; // Importing Link from Next.js
 
 export function Hero() {
   return (
@@ -17,11 +18,22 @@ export function Hero() {
           <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
             Scalixity is an expert in OpenAI models and AI-powered solutions. We can help you build ChatGPT custom chatbots, image bots, and language applications. Our ChatGPT developers are well-versed in Machine Learning (ML), Natural Language Processing (NLP), and Deep Learning.
           </p>
+
+          {/* Contact Button */}
+          <div className="relative z-10">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center mt-8 px-6 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
+
+      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10 z-0" />
     </section>
-  )
+  );
 }
 
 export default Hero;

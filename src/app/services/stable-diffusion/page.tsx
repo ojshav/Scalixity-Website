@@ -1,5 +1,5 @@
 import { Hero } from "@/src/app/components/stable-diffusion/hero"
-import { WhatWeOffer } from "@/src/app/components/what-we-offer"
+import { WhatWeOffer } from "@/src/app/components/stable-diffusion/what-we-offer"
 import { FeaturedWork } from "@/src/app/components/stable-diffusion/featured-work"
 import { Process } from "@/src/app/components/stable-diffusion/process"
 import { Expertise } from "@/src/app/components/stable-diffusion/expertise"
@@ -7,7 +7,7 @@ import { ToolsAndTechnology } from "@/src/app/components/stable-diffusion/tools-
 import { Industries } from "@/src/app/components/stable-diffusion/industries"
 import { FAQ } from "@/src/app/components/stable-diffusion/faq"
 import { CTA } from "../../components/stable-diffusion/CTA"
-export default function Enterprisegenaidev() {
+export default function GenerativeAIPage() {
   return (
     <main className="bg-[#080B16]">
       <Hero />

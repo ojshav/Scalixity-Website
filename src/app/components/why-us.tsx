@@ -28,13 +28,13 @@ export function WhyUs() {
   return (
     <section className="bg-[#9FA8DA] py-32">
       <div className="container mx-auto px-4">
-        <span className="block text-center text-sm text-gray-800 uppercase tracking-wider mb-4">
+        <span className="block text-center text-sm text-black uppercase tracking-wider mb-4">
           WHY US
         </span>
         <h2 className="text-3xl md:text-5xl font-bold text-black text-center mb-6">
           Building technology solutions for digital businesses since 2014
         </h2>
-        <p className="text-xl text-gray-800 text-center max-w-3xl mx-auto mb-20">
+        <p className="text-xl text-black text-center max-w-3xl mx-auto mb-20">
           We blend strategic insight, advanced technology, and a commitment to excellence to drive
           transformative results for your business. Discover why leading organizations partner with us
           for their digital transformation.
@@ -43,10 +43,10 @@ export function WhyUs() {
           {features.map((feature, index) => (
             <div key={index} className="bg-white p-8 rounded-lg shadow-md border border-black">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-blue-100 mb-6">
-                <feature.icon className="h-8 w-8 text-blue-500" />
+                <feature.icon className="h-8 w-8 text-black" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              <h3 className="text-xl font-bold text-black mb-4">{feature.title}</h3>
+              <p className="text-black leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>

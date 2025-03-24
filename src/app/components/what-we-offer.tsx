@@ -60,23 +60,23 @@ export function WhatWeOffer() {
               className="bg-white rounded-xl p-8 border border-black hover:bg-[#f4f4f4] transition-colors shadow-lg"
             >
               <motion.div
-                className="text-blue-500 mb-4"
+                className="text-black mb-4"
                 initial={{ scale: 1 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <offering.icon size={40} />
+                <offering.icon size={40} className="text-black" />
               </motion.div>
               <h3 className="text-3xl font-bold text-black mb-4 flex items-center">
                 {offering.title}
-                <ArrowRight className="ml-2 h-5 w-5 text-blue-500" />
+                <ArrowRight className="ml-2 h-5 w-5 text-black" />
               </h3>
               <p className="text-gray-600 mb-6">{offering.description}</p>
               <Link 
                 href={offering.link} 
-                className="inline-flex items-center text-blue-500 hover:text-blue-400 font-medium"
+                className="inline-flex items-center text-black hover:text-gray-700 font-medium"
               >
-                Learn more <ArrowRight className="ml-2 h-4 w-4" />
+                Learn more <ArrowRight className="ml-2 h-4 w-4 text-black" />
               </Link>
             </motion.div>
           ))}

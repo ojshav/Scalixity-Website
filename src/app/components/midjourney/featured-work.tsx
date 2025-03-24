@@ -1,52 +1,55 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const projects = [
   {
     company: "ArtVisions",
     title: "Revolutionizing Digital Art Creation with MidJourney AI",
-    description: "We assisted ArtVisions in integrating MidJourney AI to automate and enhance their creative workflows, enabling artists to generate high-quality visuals with minimal effort.",
+    description:
+      "We assisted ArtVisions in integrating MidJourney AI to automate and enhance their creative workflows, enabling artists to generate high-quality visuals with minimal effort.",
     image: "/midjourney/artvisions.webp",
     features: [
       "AI-assisted artwork generation",
       "Customizable artistic styles",
       "High-resolution image rendering",
-      "Seamless API integration for automation"
-    ]
+      "Seamless API integration for automation",
+    ],
   },
   {
     company: "AdCreativePro",
     title: "Enhancing Ad Creativity with MidJourney AI-Generated Visuals",
-    description: "Using MidJourney AI, we empowered AdCreativePro to generate stunning, campaign-ready visual assets, reducing design turnaround time and improving ad performance.",
+    description:
+      "Using MidJourney AI, we empowered AdCreativePro to generate stunning, campaign-ready visual assets, reducing design turnaround time and improving ad performance.",
     image: "/midjourney/adcreativepro.webp",
     features: [
       "Automated ad image generation",
       "Adaptive creative suggestions",
       "Enhanced visual storytelling",
-      "Faster campaign launch times"
-    ]
+      "Faster campaign launch times",
+    ],
   },
   {
     company: "BookCoverGen",
     title: "Transforming Book Cover Designs with AI-Generated Art",
-    description: "We leveraged MidJourney AI to help BookCoverGen create unique, eye-catching book covers tailored to different genres, saving authors time and money.",
+    description:
+      "We leveraged MidJourney AI to help BookCoverGen create unique, eye-catching book covers tailored to different genres, saving authors time and money.",
     image: "/midjourney/bookcovergen.webp",
     features: [
       "Genre-specific AI-generated covers",
       "High-resolution and print-ready designs",
       "Customizable style and theme options",
-      "Streamlined publishing workflow"
-    ]
-  }
-]
+      "Streamlined publishing workflow",
+    ],
+  },
+];
 
 export function FeaturedWork() {
   return (
-    <section className="bg-[#F3F1EB] py-24"> {/* Soft warm beige */}
+    <section className="bg-[#A8B2E7] py-24 overflow-hidden"> {/* Ensures no scrollbar */}
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-16">
           <div>
@@ -72,7 +75,7 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center bg-[#A8B2E7] p-8 rounded-xl border border-black shadow-lg"
+              className="grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB] p-8 rounded-xl border border-black shadow-lg"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
                 <span className="text-black text-sm">— {project.company}</span>
@@ -95,7 +98,7 @@ export function FeaturedWork() {
                 </Link>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden hover:scale-105 transition-transform">
+                <div className="relative h-[400px] rounded-xl overflow-hidden border-2 border-black hover:scale-105 transition-transform">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -119,8 +122,7 @@ export function FeaturedWork() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default FeaturedWork;
-

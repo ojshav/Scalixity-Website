@@ -1,50 +1,50 @@
-"use client"
+"use client";
 
-import { Brain, Code, Database, Shield, Users, Zap } from 'lucide-react'
+import { Brain, Code, Database, Shield, Users, Zap } from 'lucide-react';
 
 const expertiseAreas = [
   {
     icon: Brain,
-    title: "Hedra App Development & Strategy",
-    description: "Unlock the full potential of blockchain technology with our Hedra app development services. We strategize and build decentralized applications that harness the power of Hedra's high-performance ledger, ensuring security, speed, and scalability."
+    title: "Hedera App Development & Strategy",
+    description: "Unlock the full potential of blockchain technology with our Hedera app development services. We strategize and build decentralized applications that harness the power of Hedera's high-performance ledger, ensuring security, speed, and scalability."
   },
   {
     icon: Code,
     title: "Smart Contract Integration",
-    description: "Seamlessly integrate smart contracts into your Hedra-powered applications. Our team designs self-executing contracts that automate processes, enhance transparency, and reduce operational overhead, enabling a fully decentralized ecosystem."
+    description: "Seamlessly integrate smart contracts into your Hedera-powered applications. Our team designs self-executing contracts that automate processes, enhance transparency, and reduce operational overhead, enabling a fully decentralized ecosystem."
   },
   {
     icon: Database,
     title: "Consensus Algorithm Optimization",
-    description: "Leverage Hedra's Hashgraph consensus algorithm to achieve fast, fair, and secure transaction validation. We fine-tune your app's architecture to optimize throughput, minimize latency, and maintain robust security protocols."
+    description: "Leverage Hedera's Hashgraph consensus algorithm to achieve fast, fair, and secure transaction validation. We fine-tune your app's architecture to optimize throughput, minimize latency, and maintain robust security protocols."
   },
   {
     icon: Shield,
     title: "Security & Compliance",
-    description: "Protect your Hedra-based applications with state-of-the-art security audits. We ensure compliance with industry standards, detect vulnerabilities, and implement solutions to safeguard your app against potential threats."
+    description: "Protect your Hedera-based applications with state-of-the-art security audits. We ensure compliance with industry standards, detect vulnerabilities, and implement solutions to safeguard your app against potential threats."
   },
   {
     icon: Users,
     title: "Tokenization & Asset Management",
-    description: "Create and manage digital assets on the Hedra network. We help you design custom tokens for utility, governance, or security purposes, ensuring smooth integration and facilitating secure peer-to-peer transactions."
+    description: "Create and manage digital assets on the Hedera network. We help you design custom tokens for utility, governance, or security purposes, ensuring smooth integration and facilitating secure peer-to-peer transactions."
   },
   {
     icon: Zap,
     title: "Workflow Automation & Interoperability",
-    description: "Boost your business efficiency with Hedra-powered smart workflows. We build automated processes and connect your app with off-chain systems, APIs, and other blockchain networks, ensuring seamless interoperability."
+    description: "Boost your business efficiency with Hedera-powered smart workflows. We build automated processes and connect your app with off-chain systems, APIs, and other blockchain networks, ensuring seamless interoperability."
   }
-]
+];
 
 export function Expertise() {
   return (
-    <section className="bg-[#080B16] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Our Hedra App Development Expertise
+          <h2 className="text-4xl font-bold text-black mb-6">
+            Our Hedera App Development Expertise
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Empower your blockchain solutions with our Hedra app development services — delivering secure, scalable, and high-performance decentralized applications tailored to your business needs.
+          <p className="text-xl text-black max-w-3xl mx-auto">
+            Empower your blockchain solutions with our Hedera app development services — delivering secure, scalable, and high-performance decentralized applications tailored to your business needs.
           </p>
         </div>
 
@@ -52,17 +52,17 @@ export function Expertise() {
           {expertiseAreas.map((area, index) => (
             <div 
               key={index}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-black transition-colors"
             >
-              <area.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-white mb-4">{area.title}</h3>
-              <p className="text-gray-400 leading-relaxed">{area.description}</p>
+              <area.icon className="w-12 h-12 text-black mb-6" />
+              <h3 className="text-xl font-bold text-black mb-4">{area.title}</h3>
+              <p className="text-black leading-relaxed">{area.description}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default Expertise;

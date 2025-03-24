@@ -19,12 +19,14 @@ export function Hero() {
             Empower your business with intelligent AI-driven chatbots that enhance 
             customer interactions, automate support, and drive engagement.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors w-full sm:w-auto"
+
+          
+          <div className="relative z-10">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-black text-white text-lg font-semibold hover:bg-gray-900 transition"
             >
-              Get Started
+              Contact Us
             </Link>
           </div>
         </motion.div>

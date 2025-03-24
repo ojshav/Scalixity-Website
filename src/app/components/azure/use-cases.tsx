@@ -57,15 +57,17 @@ export function UseCases() {
               className="grid md:grid-cols-2 gap-8 items-center"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <h3 className="text-2xl font-bold text-black mb-4">{useCase.title}</h3>
-                <p className="text-black mb-8">{useCase.description}</p>
-                <div className="grid grid-cols-2 gap-8">
-                  {useCase.stats.map((stat, idx) => (
-                    <div key={idx}>
-                      <div className="text-3xl font-bold text-black mb-2">{stat.value}</div>
-                      <div className="text-sm text-black">{stat.label}</div>
-                    </div>
-                  ))}
+                <div className="border-2 border-black p-6 rounded-xl" style={{ backgroundColor: '#F3F1EB' }}>
+                  <h3 className="text-2xl font-bold text-black mb-4">{useCase.title}</h3>
+                  <p className="text-black mb-8">{useCase.description}</p>
+                  <div className="grid grid-cols-2 gap-8">
+                    {useCase.stats.map((stat, idx) => (
+                      <div key={idx}>
+                        <div className="text-3xl font-bold text-black mb-2">{stat.value}</div>
+                        <div className="text-sm text-black">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>

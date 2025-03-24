@@ -16,9 +16,12 @@ export function WhyChooseUs() {
         <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-12">
           Why Choose Our LLM Development Services
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reasons.map((reason, index) => (
-            <div key={index} className="flex items-start">
+            <div
+              key={index}
+              className="bg-[#F3F1EB] border border-black p-6 rounded-lg flex items-start"
+            >
               <CheckCircle className="h-6 w-6 text-black mr-4 flex-shrink-0 mt-1" />
               <p className="text-black text-lg">{reason}</p>
             </div>

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion } from 'framer-motion';
@@ -30,10 +29,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex justify-center gap-6"
         >
-          <Link href="/calculate" className="bg-black text-white px-6 py-3 rounded-lg text-lg font-semibold hover:opacity-80 transition">
-            Calculate Now
-          </Link>
-          <Link href="/contact" className="border border-black text-black px-6 py-3 rounded-lg text-lg font-semibold hover:bg-black hover:text-white transition">
+          <Link href="/contact" className="bg-black text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-opacity-80 transition">
             Contact Us
           </Link>
         </motion.div>

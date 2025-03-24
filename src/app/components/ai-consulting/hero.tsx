@@ -19,10 +19,12 @@ export function Hero() {
           <p className="text-xl text-black mb-12 leading-relaxed max-w-3xl mx-auto">
             Unlock the power of AI with our expert consulting services. We help businesses integrate AI-driven solutions for automation, optimization, and strategic decision-making. Partner with us to transform your operations with cutting-edge AI technology.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors w-full sm:w-auto"
+
+         
+          <div className="relative z-10">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-black text-white text-lg font-semibold hover:bg-gray-900 transition"
             >
               Contact Us
             </Link>

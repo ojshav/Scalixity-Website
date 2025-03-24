@@ -38,7 +38,7 @@ export function IndustriesProductDevelopment() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4 shadow-lg">
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4 shadow-lg border-2 border-black">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
