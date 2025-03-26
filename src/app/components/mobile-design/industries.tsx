@@ -37,7 +37,9 @@ export function Industries() {
               whileHover={{ scale: 1.1 }}
               className="flex flex-col items-center space-y-4"
             >
-              <Image src={industry.icon} alt={industry.name} width={64} height={64} />
+              <div className="w-24 h-24 bg-white border border-black rounded-full flex items-center justify-center shadow-lg">
+                <Image src={industry.icon} alt={industry.name} width={48} height={48} />
+              </div>
               <h3 className="text-xl font-semibold text-black">{industry.name}</h3>
             </motion.div>
           ))}

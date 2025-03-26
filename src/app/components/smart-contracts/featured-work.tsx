@@ -46,7 +46,7 @@ const projects = [
 
 export function FeaturedWork() {
   return (
-    <section className="bg-[#F3F1EB] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-16">
           <div>
@@ -72,40 +72,36 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB] p-8 rounded-xl border border-black"
             >
-              <div className="bg-[#F3F1EB] p-8 rounded-xl border border-black">
-                <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                  <span className="text-black text-sm">— {project.company}</span>
-                  <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
-                  <p className="text-black mb-6">{project.description}</p>
-                  <ul className="space-y-3">
-                    {project.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-black">
-                        <div className="w-1.5 h-1.5 rounded-full bg-black" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={`/work/${project.company.toLowerCase()}`}
-                    className="inline-flex items-center gap-2 text-black hover:text-black transition-colors mt-6"
-                  >
-                    Read more
-                    <ArrowRight className="w-4 h-4 text-black" />
-                  </Link>
-                </div>
+              <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
+                <span className="text-black text-sm">— {project.company}</span>
+                <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
+                <p className="text-black mb-6">{project.description}</p>
+                <ul className="space-y-3">
+                  {project.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-black">
+                      <div className="w-1.5 h-1.5 rounded-full bg-black" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={`/work/${project.company.toLowerCase()}`}
+                  className="inline-flex items-center gap-2 text-black hover:text-black transition-colors mt-6"
+                >
+                  Read more
+                  <ArrowRight className="w-4 h-4 text-black" />
+                </Link>
               </div>
 
-              <div className="bg-[#F3F1EB] p-8 rounded-xl border border-black">
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+              <div className="relative h-[400px] rounded-xl overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                />
               </div>
             </motion.div>
           ))}

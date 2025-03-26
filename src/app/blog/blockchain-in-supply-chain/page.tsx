@@ -22,7 +22,7 @@ export default function BlockchainBlogPost() {
             Blockchain in Supply Chain: A Game Changer
           </h1>
           <div className="flex items-center text-white">
-            <span>June 2, 2023</span>
+            <span>June 2, 2024</span>
             <span className="mx-2">•</span>
             <span>8 min read</span>
           </div>

@@ -7,7 +7,7 @@ const blogPosts = [
     excerpt: "Explore how generative AI is reshaping industries and creating new opportunities for innovation.",
     image: "/images/generativeai.svg",
     category: "Artificial Intelligence",
-    date: "May 15, 2023",
+    date: "May 15, 2024",
     link: "/blog/future-of-generative-ai"
   },
   {
@@ -15,7 +15,7 @@ const blogPosts = [
     excerpt: "Discover how blockchain technology is revolutionizing supply chain management and increasing transparency.",
     image: "/images/blockchain.svg",
     category: "Blockchain",
-    date: "June 2, 2023",
+    date: "June 2, 2024",
     link: "/blog/blockchain-in-supply-chain"
   },
   {
@@ -23,7 +23,7 @@ const blogPosts = [
     excerpt: "Learn how AI is transforming equipment maintenance, reducing downtime, and cutting costs in the manufacturing sector.",
     image: "/images/ai.svg",
     category: "AI in Manufacturing",
-    date: "June 20, 2023",
+    date: "June 20, 2024",
     link: "/blog/ai-predictive-maintenance"
   }
 ]

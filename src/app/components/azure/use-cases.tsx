@@ -35,12 +35,10 @@ const azureUseCases = [
 
 export function UseCases() {
   return (
-    <section className="py-24" style={{ backgroundColor: '#A8B2E7' }}>
+    <section className="py-24 bg-[#A8B2E7]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-black mb-6">
-            Azure Use Cases
-          </h2>
+          <h2 className="text-4xl font-bold text-black mb-6">Azure Use Cases</h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
             Discover how Azure cloud solutions enhance scalability, security, and intelligence.
           </p>
@@ -54,33 +52,29 @@ export function UseCases() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="flex flex-col md:flex-row bg-[#F3F1EB] border-2 border-black rounded-xl overflow-hidden"
             >
-              <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <div className="border-2 border-black p-6 rounded-xl" style={{ backgroundColor: '#F3F1EB' }}>
-                  <h3 className="text-2xl font-bold text-black mb-4">{useCase.title}</h3>
-                  <p className="text-black mb-8">{useCase.description}</p>
-                  <div className="grid grid-cols-2 gap-8">
-                    {useCase.stats.map((stat, idx) => (
-                      <div key={idx}>
-                        <div className="text-3xl font-bold text-black mb-2">{stat.value}</div>
-                        <div className="text-sm text-black">{stat.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              {/* Image Section */}
+              <div className="relative w-full md:w-1/2 h-[300px] border-r border-black">
+                <Image
+                  src={useCase.image}
+                  alt={useCase.title}
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div 
-                  className="relative h-[300px] rounded-xl overflow-hidden border-2 border-black"
-                  style={{ backgroundColor: '#F3F1EB' }}
-                >
-                  <Image
-                    src={useCase.image}
-                    alt={useCase.title}
-                    fill
-                    className="object-cover"
-                  />
+
+              {/* Content Section */}
+              <div className="p-6 w-full md:w-1/2 flex flex-col justify-center">
+                <h3 className="text-2xl font-bold text-black mb-4">{useCase.title}</h3>
+                <p className="text-black mb-6">{useCase.description}</p>
+                <div className="grid grid-cols-2 gap-6">
+                  {useCase.stats.map((stat, idx) => (
+                    <div key={idx}>
+                      <div className="text-3xl font-bold text-black mb-1">{stat.value}</div>
+                      <div className="text-sm text-black">{stat.label}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>

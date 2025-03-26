@@ -21,10 +21,10 @@ export function Industries() {
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
-            iOS App Development Across Key Industries
+          Flutter App Development Across Key Industries
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
-            Crafting high-performance iOS apps tailored to transform businesses across diverse industries.
+          Delivering flexible, high-performance Flutter apps for diverse industries to scale businesses with ease.
           </p>
         </div>
 

@@ -72,35 +72,11 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="border border-black rounded-xl p-8 grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB]"
             >
-              {/* Text Card with Black Border */}
-              <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <div className="border border-black p-8 bg-[#F3F1EB] rounded-xl">
-                  <span className="text-black text-sm">— {project.company}</span>
-                  <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
-                  <p className="text-black mb-6">{project.description}</p>
-                  <ul className="space-y-3">
-                    {project.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-black">
-                        <div className="w-1.5 h-1.5 rounded-full bg-black" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={`/work/${project.company.toLowerCase()}`}
-                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mt-6"
-                  >
-                    Read more
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Image Card with Black Border */}
-              <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="border border-black relative h-[400px] rounded-xl overflow-hidden">
+              {/* Image Section with Border */}
+              <div className="border border-black rounded-lg overflow-hidden">
+                <div className="relative h-[400px]">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -108,6 +84,28 @@ export function FeaturedWork() {
                     className="object-cover"
                   />
                 </div>
+              </div>
+
+              {/* Text Section */}
+              <div>
+                <span className="text-black text-sm">— {project.company}</span>
+                <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
+                <p className="text-black mb-6">{project.description}</p>
+                <ul className="space-y-3">
+                  {project.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-black">
+                      <div className="w-1.5 h-1.5 rounded-full bg-black" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={`/work/${project.company.toLowerCase()}`}
+                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mt-6"
+                >
+                  Read more
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </motion.div>
           ))}

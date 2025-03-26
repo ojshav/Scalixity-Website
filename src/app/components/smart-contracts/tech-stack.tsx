@@ -67,7 +67,7 @@ export function TechStack() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {techStack.map((stack, index) => (
-            <div key={index} className="bg-[#F3F1EB] p-8 rounded-xl border border-border">
+            <div key={index} className="bg-[#F3F1EB] p-8 rounded-xl border border-black">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">{stack.category}</h3>
               <div className="flex flex-wrap gap-4">
                 {stack.items.map((item, idx) => (

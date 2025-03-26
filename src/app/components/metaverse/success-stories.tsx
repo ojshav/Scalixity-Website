@@ -41,10 +41,10 @@ const successStories = [
 export function SuccessStories() {
   return (
     <section className="bg-[#A8B2E7] py-24">
-    <div className="container mx-auto px-4">
-      <div className="text-center mb-16">
-        <span className="text-sm text-black uppercase tracking-wider">SUCCESS STORIES</span>
-        <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <span className="text-sm text-black uppercase tracking-wider">SUCCESS STORIES</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
             Success Stories
           </h2>
           <p className="text-xl text-gray-900 max-w-3xl mx-auto">
@@ -60,13 +60,13 @@ export function SuccessStories() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-[#F3F1EB] rounded-xl overflow-hidden"
+              className="bg-[#F3F1EB] rounded-xl overflow-hidden border-2 border-black"
             >
               <div className="relative h-[240px]">
                 <img
                   src={story.image}
                   alt={story.company}
-                  className="object-cover w-full h-full border border-black"  
+                  className="object-cover w-full h-full"
                 />
               </div>
               <div className="p-8">

@@ -32,10 +32,10 @@ export function SuccessStories() {
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">SUCCESS STORIES</span>
           <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
-            Transforming Businesses in the Metaverse
+            Transforming Businesses with AI
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
-            Explore how our metaverse solutions have empowered brands, educators, and organizations to thrive in the digital era.
+            Explore how our AI solutions have empowered businesses across industries to optimize processes, improve security, and drive innovation.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export function SuccessStories() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-border"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black shadow-lg"
             >
               <h3 className="text-xl font-bold text-black mb-4">
                 {story.title}

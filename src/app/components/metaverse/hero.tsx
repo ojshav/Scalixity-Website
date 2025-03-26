@@ -32,9 +32,7 @@ export function Hero() {
           <Link href="/contact" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-black hover:opacity-80 md:py-4 md:text-lg md:px-10">
             Get Started
           </Link>
-          <Link href="/work" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-white hover:opacity-80 md:py-4 md:text-lg md:px-10">
-            View Our Work
-          </Link>
+          
         </motion.div>
       </div>
       <motion.div 

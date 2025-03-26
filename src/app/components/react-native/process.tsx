@@ -33,7 +33,12 @@ export function Process() {
   return (
     <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-5xl font-extrabold text-black mb-12">Our Process for React Native App Development</h2>
+        <span className="text-sm uppercase tracking-wider text-black">
+          OUR PROCESS
+        </span>
+        <h2 className="text-5xl font-bold text-black mt-2 mb-12">
+          Our Process for React Native App Development
+        </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {processSteps.map((step, index) => (
             <motion.div 
