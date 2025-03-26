@@ -65,7 +65,7 @@ export function TechStack() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-[#F3F1EB] rounded-xl border border-border p-6"
             >
-              <h3 className="text-lg font-semibold text-foreground mb-6">{stack.category}</h3>
+              <h3 className="text-lg font-semibold text-black mb-6">{stack.category}</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {stack.technologies.map((tech, idx) => (
                   <div key={idx} className="flex flex-col items-center justify-center">
@@ -75,10 +75,10 @@ export function TechStack() {
                         alt={tech.name}
                         width={64}
                         height={64}
-                        className="object-contain"
+                        className="object-contain border border-black"  
                       />
                     </div>
-                    <span className="text-sm text-muted-foreground text-center">{tech.name}</span>
+                    <span className="text-sm text-black text-center">{tech.name}</span> {/* Text color changed to black */}
                   </div>
                 ))}
               </div>

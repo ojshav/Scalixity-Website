@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 const benefits = [
   {
@@ -51,4 +51,3 @@ export function Benefits() {
 }
 
 export default Benefits;
-

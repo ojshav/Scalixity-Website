@@ -51,7 +51,7 @@ export function WhyChooseMeta() {
               className="bg-[#F3F1EB] p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
             >
               <div className="flex items-start gap-4">
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <CheckCircle className="w-6 h-6 text-black flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-bold text-black mb-2">{reason.title}</h3>
                   <p className="text-black">{reason.description}</p>

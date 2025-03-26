@@ -66,7 +66,7 @@ export function SuccessStories() {
                 <img
                   src={story.image}
                   alt={story.company}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full border border-black"  
                 />
               </div>
               <div className="p-8">

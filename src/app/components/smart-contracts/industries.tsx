@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const industries = [
   {
@@ -144,7 +144,7 @@ export function Industries() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default Industries;

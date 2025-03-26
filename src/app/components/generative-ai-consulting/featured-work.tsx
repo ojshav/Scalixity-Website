@@ -101,7 +101,7 @@ export function FeaturedWork() {
                 </Link>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden bg-[#F3F1EB]">
+                <div className="relative h-[400px] rounded-xl overflow-hidden bg-[#F3F1EB] border-2 border-black">
                   <Image src={project.image} alt={project.title} fill className="object-cover" />
                 </div>
               </div>

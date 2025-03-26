@@ -57,7 +57,7 @@ export function UseCases() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="grid md:grid-cols-2 gap-8 items-center border-2 border-black bg-[#F3F1EB] p-8 rounded-xl"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
                 <h3 className="text-2xl font-bold text-black mb-4">{useCase.title}</h3>

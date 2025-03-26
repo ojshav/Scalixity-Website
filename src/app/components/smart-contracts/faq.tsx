@@ -57,11 +57,11 @@ export function FAQ() {
                 className="flex justify-between items-center w-full text-left p-4 bg-[#A8B2E7] rounded-lg"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="font-semibold text-foreground">{faq.question}</span>
+                <span className="font-semibold text-black">{faq.question}</span>
                 {openIndex === index ? (
-                  <ChevronUp className="w-5 h-5 text-primary" />
+                  <ChevronUp className="w-5 h-5 text-black" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-primary" />
+                  <ChevronDown className="w-5 h-5 text-black" />
                 )}
               </button>
               <AnimatePresence>
@@ -73,8 +73,8 @@ export function FAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 bg-card mt-1 rounded-lg">
-                      <p className="text-muted-foreground">{faq.answer}</p>
+                    <div className="p-4 bg-[#F3F1EB] border border-black mt-1 rounded-lg">
+                      <p className="text-black">{faq.answer}</p>
                     </div>
                   </motion.div>
                 )}

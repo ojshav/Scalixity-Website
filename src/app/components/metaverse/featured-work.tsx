@@ -1,5 +1,6 @@
 "use client";
-import { motion,  } from 'framer-motion';
+import { motion } from 'framer-motion';
+
 const projects = [
   {
     company: "MetaCity",
@@ -76,12 +77,14 @@ export function FeaturedWork() {
                 </ul>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="object-cover w-full h-full"
-                  />
+                <div className="relative bg-[#F3F1EB] border border-black rounded-xl p-6">
+                  <div className="relative h-[400px] overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="object-cover w-full h-full border border-black rounded-xl"
+                    />
+                  </div>
                 </div>
               </div>
             </motion.div>

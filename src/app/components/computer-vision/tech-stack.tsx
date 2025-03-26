@@ -38,7 +38,7 @@ export function TechStack() {
           </p>
         </div>
 
-        <div className="grid gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {Object.entries(techStack).map(([category, items], index) => (
             <motion.div
               key={category}
@@ -50,10 +50,10 @@ export function TechStack() {
               style={{ backgroundColor: "#F3F1EB", color: "black" }}
             >
               <h3 className="text-lg font-semibold mb-6">{category}</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
                 {items.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 relative mb-2">
+                    <div className="w-12 h-12 relative mb-2">
                       <Image
                         src={item.logo}
                         alt={item.name}

@@ -47,7 +47,7 @@ export function TechStack() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
           {techStack.map((stack, index) => (
             <motion.div
               key={index}
@@ -55,12 +55,12 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-black"
+              className="bg-[#F3F1EB] p-8 rounded-2xl shadow-lg border-2 border-black hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105"
             >
               <h3 className="text-xl font-bold text-black mb-4">{stack.category}</h3>
-              <ul className="list-disc list-inside text-black">
+              <ul className="list-disc list-inside text-black space-y-2">
                 {stack.technologies.map((tech, i) => (
-                  <li key={i}>{tech}</li>
+                  <li key={i} className="text-lg">{tech}</li>
                 ))}
               </ul>
             </motion.div>

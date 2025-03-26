@@ -24,13 +24,13 @@ export function ToolsAndTechnology() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
           {tools.map((tool, index) => (
-            <div key={index} className="flex flex-col items-center">
-              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4">
+            <div key={index} className="flex flex-col items-center text-center">
+              <div className="p-5 bg-[#F3F1EB] rounded-full border border-black flex items-center justify-center">
                 <Image src={tool.icon} alt={tool.name} width={48} height={48} className="w-12 h-12" />
               </div>
-              <h3 className="text-lg font-semibold text-black text-center">{tool.name}</h3>
+              <h3 className="text-lg font-semibold text-black mt-3">{tool.name}</h3>
             </div>
           ))}
         </div>

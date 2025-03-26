@@ -29,7 +29,7 @@ const capabilities = [
 
 export function Capabilities() {
   return (
-    <section className="bg-[#F3F1EB] py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
@@ -41,7 +41,10 @@ export function Capabilities() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((capability, index) => (
-            <div key={index} className="bg-[#A8B2E7] p-6 rounded-lg shadow-lg">
+            <div
+              key={index}
+              className="bg-[#F3F1EB] p-6 rounded-2xl border border-black shadow-md transition-transform transform hover:scale-[1.02]"
+            >
               <h3 className="text-xl font-bold text-black mb-4">{capability.title}</h3>
               <p className="text-black">{capability.description}</p>
             </div>

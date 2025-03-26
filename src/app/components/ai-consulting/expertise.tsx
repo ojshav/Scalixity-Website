@@ -56,7 +56,10 @@ export function Expertise() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {expertiseAreas.map((area, index) => (
-            <div key={index} className="bg-[#F3F1EB] p-8 rounded-xl">
+            <div
+              key={index}
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-[#3D3D3D] shadow-lg"
+            >
               <area.icon className="w-12 h-12 text-[#3D3D3D] mb-6" />
               <h3 className="text-xl font-bold text-black mb-4">{area.title}</h3>
               <p className="text-black">{area.description}</p>

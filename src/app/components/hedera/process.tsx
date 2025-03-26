@@ -1,25 +1,29 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 const processSteps = [
   {
     title: "Comprehensive Analysis & Strategic Planning",
-    description: "Our journey begins with a thorough analysis of your existing systems, workflows, and data structures. This crucial step identifies opportunities where Hedra's decentralized ledger technology can drive innovation, ensuring a strong foundation for tailored solutions."
+    description:
+      "Our journey begins with an in-depth analysis of your business processes and data structures. This step helps us identify AI-driven opportunities to enhance efficiency, automation, and decision-making.",
   },
   {
-    title: "Custom Solution Design & Prototype Development",
-    description: "Once the strategic approach is clear, we design custom decentralized solutions. A prototype is created to test functionality, security, and scalability, ensuring alignment with business goals before full-scale deployment."
+    title: "Custom AI Solution Design & Prototype Development",
+    description:
+      "Once the strategy is defined, we design and prototype AI-powered solutions. The prototype is tested for accuracy, scalability, and performance before full-scale implementation.",
   },
   {
-    title: "Seamless Implementation & Integration",
-    description: "With a validated prototype, we move into full implementation, seamlessly integrating Hedra’s technology into your existing systems. Our team works closely with yours to ensure minimal disruption and maximum efficiency."
+    title: "Seamless Implementation & System Integration",
+    description:
+      "With a validated AI model, we move into full implementation, seamlessly integrating the solution into your existing workflows. Our team ensures a smooth transition with minimal disruptions.",
   },
   {
-    title: "Ongoing Monitoring & Continuous Improvement",
-    description: "After deployment, we provide continuous monitoring and support. Real-time performance tracking and regular updates guarantee that the decentralized solutions remain secure, scalable, and future-ready."
-  }
-]
+    title: "Continuous Monitoring & Performance Optimization",
+    description:
+      "After deployment, we provide ongoing monitoring and refinements. With real-time analytics and iterative improvements, we ensure your AI solution remains efficient, adaptive, and future-ready.",
+  },
+];
 
 export function Process() {
   return (
@@ -62,7 +66,7 @@ export function Process() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default Process;

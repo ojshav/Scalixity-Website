@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 
 const techStack = [
   {
@@ -50,7 +49,7 @@ const techStack = [
       { name: "Ledger", logo: "/images/tech/ledger.webp" }
     ]
   }
-]
+];
 
 export function TechStack() {
   return (
@@ -61,7 +60,7 @@ export function TechStack() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4 mb-6">
             Smart Contract Tech Stack
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Explore the cutting-edge tools and platforms we use to build secure, scalable, and robust smart contracts.
           </p>
         </div>
@@ -74,7 +73,7 @@ export function TechStack() {
                 {stack.items.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center w-[100px]">
                     <img src={item.logo} alt={item.name} className="w-12 h-12 mb-2" />
-                    <span className="text-muted-foreground text-sm text-center">{item.name}</span>
+                    <span className="text-black text-sm text-center">{item.name}</span>
                   </div>
                 ))}
               </div>
@@ -83,7 +82,7 @@ export function TechStack() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default TechStack;

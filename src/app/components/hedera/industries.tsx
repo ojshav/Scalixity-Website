@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const industries = [
   { name: "Healthcare", icon: "/images/icons/healthcare.svg" },
@@ -11,8 +11,8 @@ const industries = [
   { name: "Manufacturing", icon: "/images/icons/manufacturing.svg" },
   { name: "Retail", icon: "/images/icons/retail.svg" },
   { name: "Technology", icon: "/images/icons/automotive.svg" },
-  { name: "Energy", icon: "/images/icons/energy.svg" }
-]
+  { name: "Energy", icon: "/images/icons/energy.svg" },
+];
 
 export function Industries() {
   return (
@@ -53,7 +53,7 @@ export function Industries() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default Industries;

@@ -44,10 +44,10 @@ export function Industries() {
                   alt={industry.name}
                   width={48}
                   height={48}
-                  className="w-12 h-12"
+                  className="w-12 h-12 text-black"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-foreground text-center">{industry.name}</h3>
+              <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
             </motion.div>
           ))}
         </div>

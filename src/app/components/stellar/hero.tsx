@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import Link from "next/link"; // Importing Link from Next.js
 
 export function Hero() {
   return (
@@ -21,7 +21,9 @@ export function Hero() {
             We design and build secure, scalable, and high-performance Stellar-based applications 
             to drive innovation and efficiency in financial ecosystems.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+          {/* Updated Contact Button */}
+          <div className="relative z-10">
             <Link
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-purple-700 transition-colors w-full sm:w-auto"

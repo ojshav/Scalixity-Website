@@ -1,55 +1,56 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const techCategories = {
   "DL Frameworks": [
     { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
     { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
     { name: "Keras", logo: "/images/tech/keras.svg" },
-    { name: "MXNet", logo: "/images/tech/mxnet.svg" }
+    { name: "MXNet", logo: "/images/tech/mxnet.svg" },
   ],
   "Modules/Toolkits": [
     { name: "Hugging Face Transformers", logo: "/images/tech/huggingface.svg" },
     { name: "ONNX", logo: "/images/tech/onnx.svg" },
-    { name: "Core ML", logo: "/images/tech/coreml.svg" }
+    { name: "Core ML", logo: "/images/tech/coreml.svg" },
   ],
-  "Libraries": [
+  Libraries: [
     { name: "SciKit-Learn", logo: "/images/tech/scikit-learn.svg" },
     { name: "Pandas", logo: "/images/tech/pandas.svg" },
     { name: "NumPy", logo: "/images/tech/numpy.svg" },
     { name: "Matplotlib", logo: "/images/tech/matplotlib.svg" },
-    { name: "Seaborn", logo: "/images/tech/seaborn.svg" }
+    { name: "Seaborn", logo: "/images/tech/seaborn.svg" },
   ],
   "Image Classification Models": [
     "VGG-16",
     "ResNet 50",
     "Inceptionv3",
     "EfficientNet",
-    "MobileNet"
+    "MobileNet",
   ],
   "Generative AI Models": [
     "Generative Adversarial Networks (GANs)",
     "Transformer Models (GPT-4, BERT)",
     "Diffusion Models",
-    "StyleGAN"
+    "StyleGAN",
   ],
   "Neural Networks": [
     "Convolutional Neural Networks (CNN)",
     "Recurrent Neural Networks (RNN)",
     "Autoencoders",
     "Graph Neural Networks (GNN)",
-    "Long Short-Term Memory (LSTM)"
+    "Long Short-Term Memory (LSTM)",
   ],
-  "Algorithms": [
+  Algorithms: [
     "Supervised/Unsupervised Learning",
     "Reinforcement Learning",
     "Few-shot Learning",
     "Transfer Learning",
-    "Clustering Algorithms"
-  ]
-}
+    "Clustering Algorithms",
+  ],
+};
+
 type TechItem = { name: string; logo: string } | string;
 
 export function TechStack() {
@@ -74,14 +75,19 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-xl border border-border p-6"
+              className="bg-[#F3F1EB] rounded-xl border border-black p-6"
             >
-              <h3 className="text-lg font-semibold text-foreground mb-6">{category}</h3>
+              <h3 className="text-lg font-semibold text-black mb-6">
+                {category}
+              </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                 {Array.isArray(items) ? (
                   items.map((item: TechItem, idx) => (
-                    <div key={idx} className="flex flex-col items-center justify-center">
-                      {typeof item === 'object' && item.logo ? (
+                    <div
+                      key={idx}
+                      className="flex flex-col items-center justify-center"
+                    >
+                      {typeof item === "object" && item.logo ? (
                         <>
                           <div className="w-16 h-16 relative mb-2">
                             <Image
@@ -91,11 +97,13 @@ export function TechStack() {
                               className="object-contain"
                             />
                           </div>
-                          <span className="text-sm text-muted-foreground text-center">{item.name}</span>
+                          <span className="text-sm text-black text-center">
+                            {item.name}
+                          </span>
                         </>
                       ) : (
-                        <span className="text-sm text-muted-foreground text-center px-3 py-2 bg-muted rounded-full">
-                          {typeof item === 'string' ? item : item.name}
+                        <span className="text-sm text-black text-center px-3 py-2 bg-[#E8E6E0] rounded-full">
+                          {typeof item === "string" ? item : item.name}
                         </span>
                       )}
                     </div>
@@ -105,9 +113,9 @@ export function TechStack() {
                     {(items as TechItem[]).map((item, idx) => (
                       <span
                         key={idx}
-                        className="text-sm text-muted-foreground px-3 py-2 bg-muted rounded-full"
+                        className="text-sm text-black px-3 py-2 bg-[#E8E6E0] rounded-full"
                       >
-                        {typeof item === 'string' ? item : item.name}
+                        {typeof item === "string" ? item : item.name}
                       </span>
                     ))}
                   </div>
@@ -122,4 +130,3 @@ export function TechStack() {
 }
 
 export default TechStack;
-

@@ -72,7 +72,7 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="bg-[#F3F1EB] border border-black rounded-xl p-6 shadow-lg grid md:grid-cols-2 gap-8 items-center"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
                 <span className="text-black text-sm">— {project.company}</span>
@@ -88,14 +88,14 @@ export function FeaturedWork() {
                 </ul>
                 <Link
                   href={`/work/${project.company.toLowerCase()}`}
-                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mt-6"
+                  className="inline-flex items-center gap-2 text-black hover:text-black/80 transition-colors mt-6"
                 >
                   Read more
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-              <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
+              <div>
+                <div className="relative h-[400px] rounded-xl overflow-hidden border border-black">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -111,7 +111,7 @@ export function FeaturedWork() {
         <div className="text-center mt-12 md:hidden">
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+            className="inline-flex items-center gap-2 text-black hover:text-black/80 transition-colors"
           >
             Explore Our Portfolio
             <ArrowRight className="w-4 h-4" />

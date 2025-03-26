@@ -38,7 +38,7 @@ export function Industries() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center p-6 rounded-xl"
             >
-              <div className="bg-[#F3F1EB] p-4 rounded-full mb-4">
+              <div className="bg-[#F3F1EB] p-4 rounded-full mb-4 border-2 border-black"> {/* Added border here */}
                 <Image
                   src={industry.icon}
                   alt={industry.name}
@@ -53,8 +53,7 @@ export function Industries() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-
 
 export default Industries;

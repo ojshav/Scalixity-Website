@@ -1,5 +1,6 @@
 "use client"
 import { motion } from "framer-motion";
+import Link from "next/link"; // Ensure this import is present
 
 export function Hero() {
   return (
@@ -17,9 +18,18 @@ export function Hero() {
           <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
             We help businesses with Generative AI integration services, deploying advanced Gen AI applications into existing operational patterns. This approach lays a clear path towards streamlined processes, fuels the ignition of breakthrough concepts, and optimizes operational efficiency, all while drawing from the boundless potential that Generative AI holds.
           </p>
+
+          {/* Contact Button */}
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center mt-8 px-6 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors z-10 relative"
+          >
+            Contact Us
+          </Link>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
+      {/* Ensure this background element doesn't interfere with the button */}
+      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 z-0" />
     </section>
   );
 }

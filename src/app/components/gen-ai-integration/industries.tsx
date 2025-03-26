@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const industries = [
   { name: "Healthcare", icon: "/images/icons/healthcare.svg" },
@@ -12,7 +12,7 @@ const industries = [
   { name: "Retail", icon: "/images/icons/retail.svg" },
   { name: "Technology", icon: "/images/icons/technology.svg" },
   { name: "Energy", icon: "/images/icons/energy.svg" }
-]
+];
 
 export function Industries() {
   return (
@@ -36,7 +36,8 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center p-6 rounded-xl"
+              className="flex flex-col items-center p-6 rounded-xl border border-black" // Added border here
+              style={{ backgroundColor: "#F3F1EB" }} // Keeping the original background
             >
               <div className="bg-[#F3F1EB] p-4 rounded-full mb-4">
                 <Image
@@ -53,5 +54,5 @@ export function Industries() {
         </div>
       </div>
     </section>
-  )
+  );
 }

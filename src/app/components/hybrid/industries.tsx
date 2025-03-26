@@ -37,7 +37,7 @@ export function Industries() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4">
+              <div className="bg-[#F3F1EB] p-6 rounded-full border-2 border-black mb-4 flex items-center justify-center">
                 <Image
                   src={industry.icon}
                   alt={industry.name}

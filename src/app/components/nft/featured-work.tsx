@@ -74,38 +74,40 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="border-2 border-black bg-[#F3F1EB] rounded-xl p-8"
             >
-              <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <span className="text-black text-sm">— {project.company}</span> {/* Black text */}
-                <h3 className="text-2xl font-bold text-black mt-2 mb-4"> {/* Black text, no underline */}
-                  {project.title}
-                </h3>
-                <p className="text-black/80 mb-6">{project.description}</p>
-                <ul className="space-y-3">
-                  {project.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-black/80">
-                      <div className="w-1.5 h-1.5 rounded-full bg-black" /> {/* Black dot icons */}
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`/work/${project.company.toLowerCase()}`}
-                  className="inline-flex items-center gap-2 text-black hover:text-primary/80 transition-colors mt-6"
-                >
-                  Read more
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-              <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden border-2 border-black"> {/* Border added to image */}
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
+                  <span className="text-black text-sm">— {project.company}</span> {/* Black text */}
+                  <h3 className="text-2xl font-bold text-black mt-2 mb-4"> {/* Black text, no underline */}
+                    {project.title}
+                  </h3>
+                  <p className="text-black/80 mb-6">{project.description}</p>
+                  <ul className="space-y-3">
+                    {project.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-black/80">
+                        <div className="w-1.5 h-1.5 rounded-full bg-black" /> {/* Black dot icons */}
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/work/${project.company.toLowerCase()}`}
+                    className="inline-flex items-center gap-2 text-black hover:text-primary/80 transition-colors mt-6"
+                  >
+                    Read more
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+                <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
+                  <div className="relative h-[400px] rounded-xl overflow-hidden border-2 border-black"> {/* Border added to image */}
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </motion.div>

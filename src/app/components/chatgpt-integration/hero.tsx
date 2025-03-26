@@ -1,7 +1,6 @@
-// Remove the unused import of Link at the top of the file
-
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -19,6 +18,16 @@ export function Hero() {
           <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto"> {/* Dark gray text */}
             Our ChatGPT developers can help you with ChatGPT model integration into your existing software or application. We are experts in NLP and very well understand the capabilities of ChatGPT. We provide ChatGPT integration services to help you with customization of your training data, adjustments, and fine-tuning the ChatGPT model.
           </p>
+
+          {/* Clickable Contact Button */}
+          <div className="relative z-10">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-black text-white text-lg font-semibold hover:bg-gray-800 transition"
+            >
+              Contact Us
+            </Link>
+          </div>
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
