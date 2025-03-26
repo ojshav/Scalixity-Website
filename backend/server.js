@@ -86,16 +86,18 @@ async function setupDatabase() {
     // Create user_activity table if it doesn't exist
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS user_activity (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        visitorId VARCHAR(255),
-        page VARCHAR(255),
-        timestamp DATETIME,
-        event VARCHAR(50),
-        deviceType VARCHAR(50),
-        country VARCHAR(50),
-        browser VARCHAR(100),
-        INDEX idx_visitorId (visitorId)
-      )
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    visitorId VARCHAR(255),
+    page VARCHAR(255),
+    timestamp DATETIME,
+    event VARCHAR(50),
+    deviceType VARCHAR(50),
+    country VARCHAR(50),
+    browser VARCHAR(100),
+    visitCount INT NOT NULL DEFAULT 1,  -- Tracks number of visits
+    userType VARCHAR(10) NOT NULL,      -- "new" or "returning"
+    INDEX idx_visitorId (visitorId)
+)
     `);
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS projects (
