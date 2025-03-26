@@ -48,7 +48,7 @@ export function WhyChooseMeta() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-primary/50 transition-colors"
             >
               <div className="flex items-start gap-4">
                 <CheckCircle className="w-6 h-6 text-black flex-shrink-0 mt-1" />

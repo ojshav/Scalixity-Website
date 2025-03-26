@@ -21,10 +21,10 @@ export function Industries() {
         <div className="text-center mb-16">
           <span className="text-sm uppercase tracking-wider text-black/70">INDUSTRIES</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
-            iOS App Development Across Key Industries
+          Android App Development Across Key Industries
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
-            Crafting high-performance iOS apps tailored to transform businesses across diverse industries.
+          Developing high-performance Android apps tailored to elevate businesses across diverse industries.
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export function GenerativeAIDevelopmentHero() {
+export function Hero() {
   return (
     <section className="bg-[#F3F1EB] py-20 relative overflow-hidden"> {/* Soft, warm beige background */}
       <div className="container mx-auto px-4 relative z-10">
@@ -26,4 +26,4 @@ export function GenerativeAIDevelopmentHero() {
   )
 }
 
-export default GenerativeAIDevelopmentHero;
+export default Hero;

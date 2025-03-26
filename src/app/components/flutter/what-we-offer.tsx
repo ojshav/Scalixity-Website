@@ -44,7 +44,7 @@ export function WhatWeOffer() {
           <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
             Our Flutter App Development Services
           </h2>
-          <p className="text-xl text-black/80 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Unlock the full potential of Flutter — delivering fast, flexible, and scalable apps tailored to your business needs.
           </p>
         </div>
@@ -59,8 +59,8 @@ export function WhatWeOffer() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:shadow-lg transition-shadow"
             >
-              <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-              <p className="leading-relaxed">{service.description}</p>
+              <h3 className="text-xl font-bold text-black mb-4">{service.title}</h3>
+              <p className="text-black leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>

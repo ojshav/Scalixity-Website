@@ -54,10 +54,10 @@ export function UseCases() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="border border-black p-6 rounded-xl bg-[#F3F1EB] grid md:grid-cols-2 gap-8 items-center"
             >
-              {/* Card 1: Text content */}
-              <div className="bg-[#F3F1EB] p-6 border border-black rounded-xl">
+              {/* Text Content */}
+              <div>
                 <h3 className="text-2xl font-bold text-black mb-4">{useCase.title}</h3>
                 <p className="text-black mb-8">{useCase.description}</p>
                 <div className="grid grid-cols-2 gap-8">
@@ -70,8 +70,8 @@ export function UseCases() {
                 </div>
               </div>
 
-              {/* Card 2: Image */}
-              <div className="relative h-[300px] rounded-xl overflow-hidden border-2 border-black">
+              {/* Image */}
+              <div className="relative h-[300px] rounded-xl overflow-hidden border border-black">
                 <Image
                   src={useCase.image}
                   alt={useCase.title}

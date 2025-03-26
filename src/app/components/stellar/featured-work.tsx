@@ -57,7 +57,7 @@ export function FeaturedWork() {
           </div>
           <Link
             href="/work"
-            className="hidden md:flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+            className="hidden md:flex items-center gap-2 text-black hover:text-gray-700 transition-colors"
           >
             Explore Our Portfolio
             <ArrowRight className="w-4 h-4" />
@@ -77,20 +77,20 @@ export function FeaturedWork() {
               <div className="col-span-2 bg-white p-8 rounded-xl border border-black">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div className="text-section">
-                    <span className="text-primary text-sm">— {project.company}</span>
+                    <span className="text-black text-sm">— {project.company}</span>
                     <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
                     <p className="text-black mb-6">{project.description}</p>
                     <ul className="space-y-3">
                       {project.features.map((feature, idx) => (
                         <li key={idx} className="flex items-center gap-2 text-black">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-black" />
                           {feature}
                         </li>
                       ))}
                     </ul>
                     <Link
                       href={`/work/${project.company.toLowerCase()}`}
-                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mt-6"
+                      className="inline-flex items-center gap-2 text-black hover:text-gray-700 transition-colors mt-6"
                     >
                       Read more
                       <ArrowRight className="w-4 h-4" />
@@ -114,7 +114,7 @@ export function FeaturedWork() {
         <div className="text-center mt-12 md:hidden">
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+            className="inline-flex items-center gap-2 text-black hover:text-gray-700 transition-colors"
           >
             Explore Our Portfolio
             <ArrowRight className="w-4 h-4" />
