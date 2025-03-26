@@ -55,18 +55,15 @@ type TechItem = { name: string; logo: string } | string;
 
 export function TechStack() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#A8B2E7]  py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">
-            TOOLS & TECHNOLOGIES
-          </span>
+          <span className="text-sm text-black uppercase tracking-wider">TOOLS & TECHNOLOGIES</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
-            Technology Stack for Scalixity&apos;s AI Solutions
+            Technology Stack for Hedra&apos;s AI Solutions
           </h2>
           <p className="text-lg text-black max-w-3xl mx-auto">
-            Discover the powerful AI technologies we use to build intelligent,
-            efficient, and scalable solutions for your business.
+            Discover the powerful AI technologies we use to build intelligent, efficient, and scalable solutions for your business.
           </p>
         </div>
 

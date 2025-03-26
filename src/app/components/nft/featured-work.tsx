@@ -59,7 +59,7 @@ export function FeaturedWork() {
           </div>
           <Link
             href="/work"
-            className="hidden md:flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+            className="hidden md:flex items-center gap-2 text-black hover:text-black/80 transition-colors"
           >
             Explore Our Portfolio
             <ArrowRight className="w-4 h-4" />

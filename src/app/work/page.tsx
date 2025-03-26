@@ -38,7 +38,7 @@ export default function WorkPage() {
         setIsLoading(false)
       }
     }
-
+    
     fetchProjects()
   }, [])
 

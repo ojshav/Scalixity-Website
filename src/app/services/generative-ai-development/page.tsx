@@ -1,4 +1,4 @@
-import { TrustedBy } from "@/src/app/components/trusted-by"
+// import { TrustedBy } from "@/src/app/components/trusted-by"
 import { GenerativeAIDevelopmentHero } from "@/src/app/components/generative-ai-development/hero"
 import { WhyUs } from "@/src/app/components/generative-ai-development/why-us"
 import { FeaturedWork } from "@/src/app/components/generative-ai-development/featured-work"
@@ -14,7 +14,7 @@ export default function GenerativeAIDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
       <GenerativeAIDevelopmentHero />
-      <TrustedBy />
+      {/* <TrustedBy /> */}
       <WhyUs />
       <FeaturedWork />
       <WhatWeOffer />

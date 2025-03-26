@@ -30,19 +30,17 @@ export function Process() {
     <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">
-            PROCESS
-          </span>
+          <span className="text-sm text-black uppercase tracking-wider">PROCESS</span>
           <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
-            Our AI Implementation Process
+            Our Decentralized Solution Implementation Process
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
-            At Scalixity, we follow a structured approach to designing and implementing AI solutions that drive business transformation and innovation.
+            At Hedra, our process blends strategic planning with technological innovation. We work collaboratively with you to design and implement decentralized solutions that enhance security, transparency, and operational efficiency.
           </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-black/30" />
+          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-black/20" />
 
           <div className="space-y-12">
             {processSteps.map((step, index) => (
@@ -55,13 +53,11 @@ export function Process() {
                 className="relative pl-12"
               >
                 <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center">
-                  <div className="w-2 h-2 bg-[#F3F1EB] rounded-full" />
+                  <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" />
                 </div>
-
-                <div className="bg-[#F3F1EB] p-8 rounded-xl border border-black">
-                  <h3 className="text-xl font-bold text-black mb-4">
-                    {step.title}
-                  </h3>
+                
+                <div className="bg-[#F3F1EB] p-8 rounded-xl border border-border">
+                  <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
                   <p className="text-black leading-relaxed">{step.description}</p>
                 </div>
               </motion.div>

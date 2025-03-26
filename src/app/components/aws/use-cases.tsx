@@ -7,7 +7,7 @@ const awsUseCases = [
   {
     title: "Scalable Web Applications",
     description: "Deploy and manage highly available web applications with AWS cloud infrastructure.",
-    image: "/tech/aws-web-app.svg",
+    image: "/images/tech/aws.svg",
     stats: [
       { value: "99.99%", label: "Uptime Guarantee" },
       { value: "50%", label: "Reduction in Infrastructure Costs" }
@@ -16,7 +16,7 @@ const awsUseCases = [
   {
     title: "Data Analytics & Big Data",
     description: "Leverage AWS analytics services to process and analyze vast amounts of data efficiently.",
-    image: "/tech/aws-data-analytics.svg",
+    image: "/images/tech/aws-sagemaker.svg",
     stats: [
       { value: "10x", label: "Faster Data Processing" },
       { value: "30%", label: "Cost Savings on Data Storage" }
@@ -25,7 +25,7 @@ const awsUseCases = [
   {
     title: "Machine Learning & AI",
     description: "Train and deploy AI models at scale using AWS machine learning services like SageMaker.",
-    image: "/tech/aws-ai-ml.svg",
+    image: "/images/ai.svg",
     stats: [
       { value: "70%", label: "Faster Model Training" },
       { value: "40%", label: "Reduction in AI Deployment Costs" }

@@ -7,7 +7,7 @@ const gcpUseCases = [
   {
     title: "Cloud-Native Applications",
     description: "Develop and deploy cloud-native applications with Google Cloud's scalable infrastructure.",
-    image: "/tech/gcp-cloud-app.svg",
+    image: "/images/Automating Banking Services with Conversational AI.svg",
     stats: [
       { value: "99.99%", label: "Uptime Guarantee" },
       { value: "50%", label: "Reduction in Deployment Time" }
@@ -16,7 +16,7 @@ const gcpUseCases = [
   {
     title: "AI & Machine Learning",
     description: "Harness the power of Google AI and ML services for advanced analytics and automation.",
-    image: "/tech/gcp-ai-ml.svg",
+    image: "/images/Code Generation.svg",
     stats: [
       { value: "70%", label: "Faster AI Model Training" },
       { value: "40%", label: "Improvement in Predictive Accuracy" }
@@ -25,7 +25,7 @@ const gcpUseCases = [
   {
     title: "Big Data & Analytics",
     description: "Use Google Cloud’s big data and analytics solutions for real-time business insights.",
-    image: "/tech/gcp-data-analytics.svg",
+    image: "/images/Document Processing.svg",
     stats: [
       { value: "10x", label: "Faster Query Processing" },
       { value: "30%", label: "Reduction in Data Storage Costs" }

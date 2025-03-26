@@ -10,7 +10,7 @@ export function Hero() {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-5xl font-light leading-tight font-serif"
+        className="text-6xl font-light leading-tight font-serif"
       >
         Empowering Data-Driven Futures <br /> with <span className="text-black">Scalixity</span>
       </motion.h1>

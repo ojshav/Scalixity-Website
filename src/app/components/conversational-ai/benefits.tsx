@@ -49,6 +49,10 @@ export function Benefits() {
             </div>
           ))}
         </div>
+
+        <div className="mt-12">
+         
+        </div>
       </div>
     </section>
   );

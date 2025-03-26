@@ -11,7 +11,7 @@ const projects = [
     title: "Revolutionized ERP System with an AI Agent for Streamlined Order Management",
     description:
       "For a leading American manufacturer, we developed an ERP AI agent to manage customer orders, inventory, and order tracking, improving accuracy and efficiency.",
-    image: "/erp-ai-work.jpg",
+    image: "/images/review-analysis.svg",
     features: [
       "Automated order placement and real-time tracking",
       "95% order accuracy with reduced response times",
@@ -24,7 +24,7 @@ const projects = [
     title: "Redefining Restaurant Ordering with a Voice Ordering Agent",
     description:
       "We built DeVoice, an AI-based voice agent designed for restaurants and businesses, integrating advanced voice recognition and natural language processing.",
-    image: "/devoice-work-v3.jpg",
+    image: "/images/Redefining Restaurant Ordering with a Voice Ordering Solution.svg",
     features: [
       "State-of-the-art voice recognition",
       "Provides natural dialogues and verbal responses",
@@ -37,7 +37,7 @@ const projects = [
     title: "Reimagine Legal Support Driven by In-Depth Legal Research",
     description:
       "We leveraged Generative AI to speed up legal document analysis and drafting for a medium-sized law firm in Chicago.",
-    image: "/legalally-work-v3.jpg",
+    image: "/images/Reimagine Legal Support Driven by in-Depth Legal Research.svg",
     features: [
       "Legal Chatbot Assistant",
       "Improved Communication Efficiency",
@@ -49,7 +49,7 @@ const projects = [
     title: "Reduced Inspection Times for Property Inspectors",
     description:
       "We analyzed a large dataset of NVMS property photos to detect anomalies and built a conversational AI chatbot for efficient customer service.",
-    image: "/nvms-work.jpg",
+    image: "/images/Reduced Inspection Times for Property Inspectors.svg",
     features: [
       "Deep learning and computer vision-driven image data extraction",
       "GPT-based NLP chatbot for enhanced customer experience",
