@@ -13,7 +13,7 @@ const offerings = [
   {
     title: "Enhance Decision-Making with AI",
     description: "We harness AI to transform business decision-making by arming our clients with deep analytical insights, automation, and optimized operations. Scalixity's experts help predict future trends, equipping businesses to innovate proactively and make data-driven decisions.",
-    link: "/services/ai-analytics",
+    link: "/services/ai-development",
     icon: ChartBar
   },
   {
@@ -25,7 +25,7 @@ const offerings = [
   {
     title: "Enhance Customer Interaction",
     description: "At Scalixity, we specialize in creating custom chatbots tailored to the specific data, needs, and business contexts of our clients. Our approach ensures that each chatbot delivers seamless, personalized interactions, enhancing customer engagement and satisfaction.",
-    link: "/services/chatbots",
+    link: "/services/chatgpt",
     icon: MessageSquare
   },
   {
