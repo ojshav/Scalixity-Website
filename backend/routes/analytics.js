@@ -20,17 +20,21 @@ router.post('/track', async (req, res) => {
       browser,
       page, 
       event = 'demographic',
-      timestamp = new Date().toISOString()
+      timestamp = new Date().toISOString(),
+      visitCount,  // Added
+      userType     // Added
     } = req.body;
 
-    const pool = req.app.locals.pool;
+    // Validate required fields
+    if (!visitorId || !userType || typeof visitCount !== 'number') {
+      return res.status(400).json({ error: 'Missing or invalid required fields: visitorId, userType, visitCount' });
+    }
 
-    // Insert into user_activity table
     const mysqlTimestamp = new Date(timestamp).toISOString().slice(0, 19).replace('T', ' ');
     const [activityResult] = await pool.execute(
-      `INSERT INTO user_activity (visitorId, page, timestamp, event, deviceType, country, browser) 
-       VALUES (?, ?, NOW(), ?, ?, ?, ?)`,
-      [visitorId, page, event, deviceType, country, browser]
+      `INSERT INTO user_activity (visitorId, page, timestamp, event, deviceType, country, browser, visitCount, userType)
+       VALUES (?, ?, NOW(), ?, ?, ?, ?, ?, ?)`,
+      [visitorId, page, event, deviceType, country, browser, visitCount, userType]
     );
 
     // Insert into inquiries table
@@ -63,16 +67,16 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Database error" });
   }
 });
+
 // Fetch total users per month
 router.get("/total-users", async (req, res) => {
   try {
     const [rows] = await pool.execute(
       `SELECT DATE_FORMAT(timestamp, '%b') AS month, 
        COUNT(DISTINCT visitorId) AS users 
-FROM user_activity 
-GROUP BY month 
-ORDER BY MIN(timestamp);
-`
+       FROM user_activity 
+       GROUP BY month 
+       ORDER BY MIN(timestamp)`
     );
     res.json(rows);
   } catch (error) {
@@ -85,13 +89,13 @@ ORDER BY MIN(timestamp);
 router.get("/new-vs-returning", async (req, res) => {
   try {
     const [rows] = await pool.execute(
-      `SELECT DATE_FORMAT(timestamp, '%b') AS month, 
-       COUNT(DISTINCT CASE WHEN timestamp >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) THEN visitorId END) AS new, 
-       COUNT(DISTINCT CASE WHEN timestamp < DATE_SUB(CURDATE(), INTERVAL 30 DAY) THEN visitorId END) AS returning 
-FROM user_activity 
-GROUP BY month 
-ORDER BY MIN(timestamp);
-`
+      `SELECT 
+         DATE_FORMAT(timestamp, '%b') AS month,
+         COUNT(DISTINCT CASE WHEN userType = 'new' THEN visitorId END) AS new_users,
+         COUNT(DISTINCT CASE WHEN userType = 'returning' THEN visitorId END) AS returning_users
+       FROM user_activity
+       GROUP BY month
+       ORDER BY MIN(timestamp)`
     );
     res.json(rows);
   } catch (error) {
@@ -128,20 +132,19 @@ router.get("/growth-rate", async (req, res) => {
   try {
     const [rows] = await pool.execute(
       `WITH MonthlyUsers AS (
-    SELECT 
-        DATE_FORMAT(timestamp, '%b') AS month, 
-        COUNT(DISTINCT visitorId) AS users,
-        MIN(timestamp) AS min_timestamp
-    FROM user_activity
-    GROUP BY month
-)
-SELECT 
-    month,
-    (users - LAG(users) OVER (ORDER BY min_timestamp)) / 
-    NULLIF(LAG(users) OVER (ORDER BY min_timestamp), 0) * 100 AS rate
-FROM MonthlyUsers
-ORDER BY min_timestamp;
-`
+         SELECT 
+           DATE_FORMAT(timestamp, '%b') AS month, 
+           COUNT(DISTINCT visitorId) AS users,
+           MIN(timestamp) AS min_timestamp
+         FROM user_activity
+         GROUP BY month
+       )
+       SELECT 
+         month,
+         (users - LAG(users) OVER (ORDER BY min_timestamp)) / 
+         NULLIF(LAG(users) OVER (ORDER BY min_timestamp), 0) * 100 AS rate
+       FROM MonthlyUsers
+       ORDER BY min_timestamp`
     );
     res.json(rows);
   } catch (error) {
@@ -154,10 +157,10 @@ ORDER BY min_timestamp;
 router.get("/user-breakdown", async (req, res) => {
   try {
     const [newUsers] = await pool.execute(
-      "SELECT COUNT(DISTINCT visitorId) AS new_users FROM user_activity WHERE timestamp >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)"
+      "SELECT COUNT(DISTINCT visitorId) AS new_users FROM user_activity WHERE userType = 'new'"
     );
     const [returningUsers] = await pool.execute(
-      "SELECT COUNT(DISTINCT visitorId) AS returning_users FROM user_activity WHERE visitorId IN (SELECT visitorId FROM user_activity WHERE timestamp < DATE_SUB(CURDATE(), INTERVAL 30 DAY))"
+      "SELECT COUNT(DISTINCT visitorId) AS returning_users FROM user_activity WHERE userType = 'returning'"
     );
     res.json([
       { name: "New Users", value: newUsers[0].new_users },

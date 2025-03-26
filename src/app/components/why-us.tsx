@@ -32,7 +32,7 @@ export function WhyUs() {
           WHY US
         </span>
         <h2 className="text-3xl md:text-5xl font-bold text-black text-center mb-6">
-          Building technology solutions for digital businesses since 2014
+          Building technology solutions for digital businesses since 2025
         </h2>
         <p className="text-xl text-black text-center max-w-3xl mx-auto mb-20">
           We blend strategic insight, advanced technology, and a commitment to excellence to drive

@@ -1,7 +1,7 @@
 import Link from 'next/link'
-
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import WorkProjects from '@/src/app/components/work'
 
 const services = [
   {
@@ -80,47 +80,50 @@ const services = [
      
 export default function Page() {
   return (
-    <section className="bg-[#0A0B14] py-32">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Our Services</h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-          Empowering your business with cutting-edge AI solutions
-          </p>
-        </div>
-        <div className="grid lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div key={index} className="bg-[#1A1B26] rounded-xl overflow-hidden group hover:bg-[#1E1F2C] transition-colors">
-              <div className="relative h-[300px]">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover"
-                />
+    <>
+      <section className="bg-[#F3F1EB] py-32">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-bold text-black mb-6">Our Services</h2>
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
+            Empowering your business with cutting-edge AI solutions
+            </p>
+          </div>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <div key={index} className="bg-[#A8B2E7] rounded-xl overflow-hidden group  transition-colors">
+                <div className="relative h-[300px]">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-black mb-4">{service.title}</h3>
+                  <p className="text-gray-900 mb-6">{service.description}</p>
+                  <ul className="space-y-3 mb-8">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="text-gray-700 flex items-center">
+                        <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-3"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={service.link}
+                    className="inline-flex items-center text-purple-500 hover:text-purple-400 font-medium"
+                  >
+                    Learn more <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </div>
               </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-                <p className="text-gray-400 mb-6">{service.description}</p>
-                <ul className="space-y-3 mb-8">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="text-gray-300 flex items-center">
-                      <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-3"></span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={service.link}
-                  className="inline-flex items-center text-purple-500 hover:text-purple-400 font-medium"
-                >
-                  Learn more <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <WorkProjects />
+    </>
   )
 }
