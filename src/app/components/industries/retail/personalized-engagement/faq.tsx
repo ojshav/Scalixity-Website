@@ -53,7 +53,7 @@ export function FAQ() {
               className="mb-4"
             >
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg border border-black"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <span className="font-semibold text-black">{faq.question}</span>
@@ -72,7 +72,7 @@ export function FAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 bg-[#F3F1EB] mt-1 rounded-lg">
+                    <div className="p-4 bg-[#F3F1EB] mt-1 rounded-lg border border-black">
                       <p className="text-black/80">{faq.answer}</p>
                     </div>
                   </motion.div>

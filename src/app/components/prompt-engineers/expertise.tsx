@@ -27,8 +27,8 @@ const expertiseAreas = [
 
 export function Expertise() {
   return (
-    <section className="bg-[#F3F1EB] py-24"> {/* Soft beige background */}
-      <div className="container mx-auto px-4">
+    <section className="bg-[#A8B2E7] py-24 overflow-hidden"> {/* Add overflow-hidden to section */}
+      <div className="container mx-auto px-4 overflow-hidden"> {/* Add overflow-hidden to container */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-black mb-6">
             CORE EXPERTISE
@@ -46,7 +46,7 @@ export function Expertise() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#A8B2E7] p-8 rounded-xl border border-black hover:border-gray-700 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-gray-700 transition-colors"
             >
               <h3 className="text-xl font-bold text-black mb-4">{area.title}</h3>
               <p className="text-black">{area.description}</p>
@@ -57,4 +57,3 @@ export function Expertise() {
     </section>
   );
 }
-

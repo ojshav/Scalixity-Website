@@ -22,7 +22,7 @@ export function Industries() {
           <h2 className="text-4xl font-bold text-black mb-6">
             Industries We Serve
           </h2>
-          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Our AI solutions are tailored to meet the unique challenges of various industries.
           </p>
         </div>
@@ -37,7 +37,7 @@ export function Industries() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4 shadow-md border border-gray-400">
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4 shadow-md border border-gray-600">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
@@ -54,5 +54,3 @@ export function Industries() {
     </section>
   )
 }
-
-

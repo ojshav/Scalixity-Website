@@ -47,11 +47,11 @@ export function TechStack() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {Object.entries(techStack).map(([category, items], index) => (
-            <div key={index} className="border border-border rounded-lg p-6 bg-[#F3F1EB]">
+            <div key={index} className="border-2 border-black rounded-lg p-6 bg-[#F3F1EB]">
               <h3 className="text-xl font-semibold text-black mb-4">{category}</h3>
               <div className="grid grid-cols-3 gap-4">
                 {items.map((item, idx) => (
-                  <div key={idx} className="flex flex-col items-center">
+                  <div key={idx} className="flex flex-col items-center p-2">
                     <img
                       src={item.logo}
                       alt={item.name}

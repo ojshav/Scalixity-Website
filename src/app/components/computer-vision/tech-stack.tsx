@@ -5,20 +5,20 @@ import Image from "next/image";
 
 const techStack = {
   "Deep Learning Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" }
   ],
   "Computer Vision Libraries": [
-    { name: "OpenCV", logo: "/tech/opencv.svg" },
-    { name: "Detectron2", logo: "/tech/detectron2.svg" }
+    { name: "OpenCV", logo: "/images/tech/openai.svg" },
+    { name: "Detectron2", logo: "/images/tech/d3.svg" }
   ],
   "Model Deployment & Optimization": [
-    { name: "ONNX", logo: "/tech/onnx.svg" },
-    { name: "TensorRT", logo: "/tech/tensorrt.svg" }
+    { name: "ONNX", logo: "/images/tech/onnx.svg" },
+    { name: "TensorRT", logo: "/images/tech/tensor2tensor.svg" }
   ],
   "Edge AI & IoT Integration": [
-    { name: "NVIDIA Jetson", logo: "/tech/jetson.svg" },
-    { name: "Intel OpenVINO", logo: "/tech/openvino.svg" }
+    { name: "NVIDIA Jetson", logo: "/images/tech/nvcaffe.svg" },
+    { name: "Intel OpenVINO", logo: "/images/tech/ipfs.webp" }
   ]
 };
 
@@ -38,7 +38,7 @@ export function TechStack() {
           </p>
         </div>
 
-        <div className="grid gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {Object.entries(techStack).map(([category, items], index) => (
             <motion.div
               key={category}
@@ -50,10 +50,10 @@ export function TechStack() {
               style={{ backgroundColor: "#F3F1EB", color: "black" }}
             >
               <h3 className="text-lg font-semibold mb-6">{category}</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
                 {items.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 relative mb-2">
+                    <div className="w-12 h-12 relative mb-2">
                       <Image
                         src={item.logo}
                         alt={item.name}

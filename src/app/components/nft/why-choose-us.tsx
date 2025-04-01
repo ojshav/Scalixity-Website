@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import { Diamond, ShieldCheck, Shuffle, Wallet, Globe, Database } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { Diamond, ShieldCheck, Shuffle, Wallet, Globe, Database } from 'lucide-react';
 
 const reasons = [
   {
@@ -34,17 +34,17 @@ const reasons = [
     title: "Decentralized Storage Solutions",
     description: "We utilize decentralized storage options like IPFS and Arweave, guaranteeing secure and permanent storage for your NFT metadata."
   }
-]
+];
 
 export function WhyChooseUs() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background for the section */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6"> {/* Black text */}
             Why Choose Us for NFT Development
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black/80 max-w-3xl mx-auto"> {/* Black text */}
             Partner with us to build innovative, secure, and scalable NFT solutions — from marketplaces to cross-chain integrations — tailored for your business success.
           </p>
         </div>
@@ -57,17 +57,21 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-primary/50 transition-colors" /* Soft, warm beige box with black border */
             >
-              <reason.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-foreground mb-4">{reason.title}</h3>
-              <p className="text-muted-foreground">{reason.description}</p>
+              <reason.icon className="w-12 h-12 text-black mb-6" /> {/* Black icon */}
+              <h3 className="text-xl font-bold text-black mb-4"> {/* Black text */}
+                {reason.title}
+              </h3>
+              <p className="text-black/80"> {/* Black text */}
+                {reason.description}
+              </p>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default WhyChooseUs;

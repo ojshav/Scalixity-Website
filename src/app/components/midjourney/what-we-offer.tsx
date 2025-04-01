@@ -66,10 +66,9 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-8 rounded-xl hover:border-black transition-colors"
+              className="p-8 rounded-xl hover:border-black transition-colors border-2 border-black" // Added black border here
               style={{
                 backgroundColor: "#F3F1EB",
-                border: "2px solid transparent",
               }}
             >
               <h3 className="text-xl font-bold mb-4" style={{ color: "#000000" }}>
@@ -87,4 +86,3 @@ export function WhatWeOffer() {
 }
 
 export default WhatWeOffer;
-

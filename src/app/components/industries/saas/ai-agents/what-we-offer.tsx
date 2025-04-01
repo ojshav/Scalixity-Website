@@ -31,14 +31,14 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#1a237e] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-white uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">WHAT WE OFFER</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
             AI-Powered SaaS Agents for Business Growth
           </h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-black/80 max-w-3xl mx-auto">
             Empower your SaaS platform with advanced AI-driven automation, analytics, and conversational intelligence for superior performance and user experience.
           </p>
         </div>
@@ -51,10 +51,10 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-xl border border-white/20 hover:border-white/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-black transition-colors"
             >
-              <h3 className="text-xl font-bold text-[#1a237e] mb-4">{service.title}</h3>
-              <p className="text-[#1a237e]/80 leading-relaxed">{service.description}</p>
+              <h3 className="text-xl font-bold text-black mb-4">{service.title}</h3>
+              <p className="text-black/80 leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>

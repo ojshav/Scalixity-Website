@@ -31,13 +31,13 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-gradient-to-r from-[#5B1DAF] to-[#8E44AD] text-white py-24">
+    <section className="bg-[#A8B2E7] text-black py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-white mb-6">
+          <h2 className="text-5xl font-bold text-black mb-6">
             AI SaaS Personalization: FAQs
           </h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Explore answers to common questions about AI-driven SaaS personalization and how it transforms user experiences.
           </p>
         </div>
@@ -53,14 +53,14 @@ export function FAQ() {
               className="mb-4"
             >
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-white/10 rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] border border-black rounded-lg"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="font-semibold text-white">{faq.question}</span>
+                <span className="font-semibold text-black">{faq.question}</span>
                 {openIndex === index ? (
-                  <ChevronUp className="w-5 h-5 text-white" />
+                  <ChevronUp className="w-5 h-5 text-black" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-white" />
+                  <ChevronDown className="w-5 h-5 text-black" />
                 )}
               </button>
               <AnimatePresence>
@@ -72,8 +72,8 @@ export function FAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 bg-white/10 mt-1 rounded-lg">
-                      <p className="text-white/80">{faq.answer}</p>
+                    <div className="p-4 bg-[#F3F1EB] mt-1 border border-black rounded-lg">
+                      <p className="text-black">{faq.answer}</p>
                     </div>
                   </motion.div>
                 )}

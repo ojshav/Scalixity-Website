@@ -2,157 +2,299 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base theme styles */
 @layer base {
   :root {
-    --background: 30 30% 95%; /* Even lighter beige background */
-    --foreground: 240 10% 30%; /* Lighter text color */
+    --background: 30 30% 95%;
+    --foreground: 240 10% 30%;
     --card: 40 30% 98%;
     --card-foreground: 240 10% 30%;
     --popover: 40 30% 98%;
     --popover-foreground: 240 10% 30%;
-    --primary: 231 60% 74%; /* #9FA8DA - Keeping the muted lavender-blue */
+    --primary: 231 60% 74%;
     --primary-foreground: 40 30% 98%;
     --secondary: 231 40% 84%;
     --secondary-foreground: 240 10% 30%;
-    --muted: 40 20% 92%; /* Lighter muted color */
+    --muted: 40 20% 92%;
     --muted-foreground: 240 10% 40%;
-    --accent: 231 50% 70%; /* Slightly lighter accent */
+    --accent: 231 50% 70%;
     --accent-foreground: 40 30% 98%;
-    --destructive: 0 70% 60%; /* Lighter destructive color */
+    --destructive: 0 70% 60%;
     --destructive-foreground: 40 30% 98%;
-    --border: 231 30% 85%; /* Lighter border */
+    --border: 231 30% 85%;
     --input: 231 30% 85%;
     --ring: 231 60% 74%;
-
-    --logo-color: 231 60% 74%; /* #9FA8DA */
-    --button-color: 231 60% 74%; /* #9FA8DA */
+    --logo-color: 231 60% 74%;
+    --button-color: 231 60% 74%;
   }
 }
 
-body {
-  @apply bg-background text-foreground antialiased;
+/* Global styles */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   @apply antialiased;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(159, 168, 218, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(159, 168, 218, 0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+  background-size: contain;
+}
+/* Comprehensive outline removal */
+* {
+  outline: none !important;
 }
 
-@layer base {
-  body {
-    @apply bg-background text-foreground antialiased;
-    background-image: 
-      radial-gradient(circle at 10% 20%, rgba(159, 168, 218, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 90% 80%, rgba(159, 168, 218, 0.04) 0%, transparent 50%);
-    background-attachment: fixed;
-  }
+*:focus, 
+*:focus-visible, 
+*:active {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
+a, button, input, select, textarea {
+  -webkit-tap-highlight-color: transparent !important;
+  tap-highlight-color: transparent !important;
+  outline: none !important;
+}
+
+/* Remove default browser focus styles */
+:focus {
+  outline: none !important;
+}
+
+/* Additional specificity to override any lingering focus styles */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* Responsive components */
 @layer components {
+  .container {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: min(100%, 1400px);
+  }
+
   .nav-link {
     @apply text-foreground/80 hover:text-primary transition-colors;
   }
 
+  /* Navigation styles */
+  .nav-container {
+    @apply flex items-center justify-between w-full py-4;
+    max-width: 100%;
+  }
+
+  .nav-menu {
+    @apply hidden md:flex space-x-6 items-center flex-wrap;
+  }
+
+  .mobile-menu-button {
+    @apply md:hidden flex items-center p-2 rounded-md text-foreground hover:bg-muted transition-colors;
+  }
+
+  .mobile-menu {
+    @apply md:hidden fixed inset-0 z-50 bg-background/95 backdrop-blur-sm;
+  }
+
+  .mobile-menu-container {
+    @apply flex flex-col h-full p-6 overflow-y-auto;
+    max-width: 100%;
+  }
+
+  .mobile-nav-link {
+    @apply block py-3 text-lg font-medium border-b border-border/30 text-foreground hover:text-primary transition-colors;
+  }
+
   .nav-dropdown {
-    @apply absolute top-full left-0 bg-white border border-border rounded-lg p-4 w-64 shadow-lg;
+    @apply absolute top-full left-0 bg-white border border-border rounded-lg p-4 shadow-lg z-10;
+    width: 100%;
+    max-width: 250px;
   }
 
   .nav-dropdown-item {
     @apply block py-2 px-3 text-foreground hover:text-primary hover:bg-muted rounded-md transition-colors;
   }
+
+  /* Responsive grid layouts */
+  .grid-cols-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+
+  .grid-cols-responsive-large {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8;
+  }
+
+  .two-col-layout {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8;
+  }
+
+  .sidebar-layout {
+    @apply grid grid-cols-1 lg:grid-cols-12 gap-8;
+  }
+
+  .sidebar {
+    @apply lg:col-span-3 order-2 lg:order-1;
+  }
+
+  .main-content {
+    @apply lg:col-span-9 order-1 lg:order-2;
+  }
 }
 
+/* Utility classes */
 .gradient-text {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--logo-color))] via-[hsl(var(--accent))] to-[hsl(var(--logo-color))];
 }
 
+/* Buttons */
 .button-primary {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-[hsl(var(--button-color))] text-primary-foreground font-medium hover:bg-accent transition-colors transform hover:scale-105 shadow-md;
+  @apply inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-[hsl(var(--button-color))] text-primary-foreground font-medium hover:bg-accent transition-colors transform hover:scale-105 shadow-md text-sm sm:text-base;
 }
 
 .button-secondary {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-muted transition-colors transform hover:scale-105 shadow-md border border-primary/20;
+  @apply inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-muted transition-colors transform hover:scale-105 shadow-md border border-primary/20 text-sm sm:text-base;
 }
 
-.diagonal-lines {
-  background-image: linear-gradient(45deg, rgba(159, 168, 218, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-.ai-bg-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239FA8DA' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-/* Custom scrollbar styles */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #F5F3ED; /* Lighter track */
-}
-
-::-webkit-scrollbar-thumb {
-  background: #9FA8DA;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #AAB2E0; /* Lighter hover */
-}
-
-/* Smooth scrolling for the entire page */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom selection color */
-::selection {
-  background: rgba(159, 168, 218, 0.3);
-  color: #505050; /* Lighter text color */
-}
-
-/* Improved focus styles for accessibility */
-:focus {
-  outline: 2px solid #9FA8DA;
-  outline-offset: 2px;
-}
-
-/* Reduce text shadow on headings for lighter feel */
-h1, h2, h3, h4, h5, h6 {
+/* Typography */
+h1 {
+  @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-tight;
+  max-width: 100%;
+  word-wrap: break-word;
   text-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 
-/* Enhance link interactions with lighter colors */
+h2 {
+  @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 leading-tight;
+  max-width: 100%;
+  word-wrap: break-word;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+h3 {
+  @apply text-xl sm:text-2xl font-bold mb-2 sm:mb-3 leading-tight;
+  max-width: 100%;
+  word-wrap: break-word;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+h4 {
+  @apply text-lg sm:text-xl font-bold mb-2 leading-tight;
+  max-width: 100%;
+  word-wrap: break-word;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+p {
+  @apply mb-4 text-base sm:text-lg leading-relaxed;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
 a {
   transition: all 0.3s ease;
-  color: #9FA8DA; /* Keeping the lavender blue for links */
+  color: #9FA8DA;
 }
 
 a:hover {
   text-decoration: underline;
   text-underline-offset: 2px;
-  color: #8891C9; /* Slightly darker on hover but still light */
+  color: #8891C9;
 }
 
-/* Improve button interactions */
-button, .button-primary, .button-secondary {
+/* Spacing */
+.section {
+  @apply py-10 sm:py-16 md:py-20;
+  width: 100%;
+}
+
+.section-sm {
+  @apply py-6 sm:py-10 md:py-12;
+  width: 100%;
+}
+
+/* Components */
+.card {
+  @apply bg-card rounded-lg p-4 sm:p-6 shadow-md;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
-button:active, .button-primary:active, .button-secondary:active {
-  transform: scale(0.98);
+/* Hero section */
+.hero-section {
+  @apply py-12 sm:py-16 md:py-20 lg:py-24 relative;
+  width: 100%;
 }
 
-/* Add a subtle glow effect to important elements */
-.glow-effect {
-  box-shadow: 0 0 15px rgba(159, 168, 218, 0.4);
+.hero-content {
+  @apply mx-auto text-center px-4 sm:px-6;
+  max-width: min(100%, 1200px);
+  word-wrap: break-word;
 }
 
-/* Enhance form input styles */
+.hero-title {
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.hero-description {
+  @apply text-lg sm:text-xl md:text-2xl text-foreground/80 mb-6 sm:mb-8;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Features section */
+.features-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8;
+  width: 100%;
+}
+
+.feature-card {
+  @apply p-4 sm:p-6 rounded-lg bg-card shadow-md;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.feature-icon {
+  @apply w-10 h-10 sm:w-12 sm:h-12 mb-4 text-primary;
+}
+
+/* Form styles */
+.form-group {
+  @apply mb-4 sm:mb-6;
+  width: 100%;
+  max-width: 100%;
+}
+
+.form-label {
+  @apply block mb-2 text-sm sm:text-base font-medium;
+}
+
+.form-input {
+  @apply w-full py-2 px-4 rounded-md border border-border bg-card focus:border-primary focus:outline-none;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 input, textarea, select {
-  @apply bg-card border border-border rounded-md px-4 py-2 text-foreground;
+  @apply bg-card border border-border rounded-md px-3 sm:px-4 py-2 text-foreground text-sm sm:text-base;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
@@ -161,7 +303,176 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 0 2px rgba(159, 168, 218, 0.2);
 }
 
-/* Add a subtle animation to icons */
+/* Table styles */
+.table-container {
+  @apply overflow-x-auto;
+  max-width: 100%;
+}
+
+.table {
+  @apply w-full border-collapse;
+  max-width: 100%;
+}
+
+.table th, .table td {
+  @apply px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base;
+  word-break: break-word;
+}
+
+/* Images */
+.responsive-img {
+  @apply w-full h-auto object-cover rounded-lg;
+  max-width: 100%;
+}
+
+/* Footer */
+.footer {
+  @apply py-10 sm:py-12 border-t border-border;
+  width: 100%;
+}
+
+.footer-grid {
+  @apply grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8;
+  width: 100%;
+}
+
+.footer-title {
+  @apply text-base sm:text-lg font-medium mb-3 sm:mb-4;
+}
+
+.footer-link {
+  @apply block text-sm sm:text-base text-foreground/80 hover:text-primary mb-2;
+}
+
+.footer-bottom {
+  @apply mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-border text-center text-sm sm:text-base text-foreground/70;
+  width: 100%;
+}
+
+/* Responsive utility classes */
+.hide-on-mobile {
+  @apply hidden sm:block;
+}
+
+.show-on-mobile {
+  @apply block sm:hidden;
+}
+
+/* Media queries */
+@media (max-width: 340px) {
+  .button-primary, .button-secondary {
+    @apply px-3 py-2 text-xs;
+  }
+  
+  h1 {
+    @apply text-2xl;
+  }
+  
+  h2 {
+    @apply text-xl;
+  }
+  
+  .container {
+    @apply px-3;
+  }
+}
+
+/* Specific tablet dimension fixes */
+@media (min-width: 768px) and (max-width: 1368px) {
+  .container {
+    max-width: 95%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+  
+  .nav-container {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+  
+  .feature-card {
+    padding: 1rem;
+  }
+  
+  .grid-cols-responsive, 
+  .grid-cols-responsive-large,
+  .features-grid {
+    gap: 1rem;
+  }
+  
+  .two-col-layout {
+    gap: 1.5rem;
+  }
+}
+
+/* Specific grid adjustments */
+@media (min-width: 768px) and (max-width: 1024px), 
+       (min-width: 820px) and (max-width: 1180px), 
+       (min-width: 853px) and (max-width: 1280px) {
+  .features-grid,
+  .grid-cols-responsive {
+    @apply grid-cols-2;
+  }
+}
+
+@media (min-width: 912px) and (max-width: 1368px) {
+  .features-grid,
+  .grid-cols-responsive {
+    @apply grid-cols-3;
+  }
+}
+
+/* Decorative styles */
+.diagonal-lines {
+  background-image: linear-gradient(45deg, rgba(159, 168, 218, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.ai-bg-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239FA8DA' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: contain;
+}
+
+/* Scrollbar and misc UI styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F3ED;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9FA8DA;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #AAB2E0;
+}
+
+::selection {
+  background: rgba(159, 168, 218, 0.3);
+  color: #505050;
+}
+
+:focus {
+  outline: 2px solid #9FA8DA;
+  outline-offset: 2px;
+}
+
+button, .button-primary, .button-secondary {
+  transition: all 0.3s ease;
+}
+
+button:active, .button-primary:active, .button-secondary:active {
+  transform: scale(0.98);
+}
+
+.glow-effect {
+  box-shadow: 0 0 15px rgba(159, 168, 218, 0.4);
+}
+
 .icon-hover {
   transition: transform 0.3s ease;
 }
@@ -170,20 +481,9 @@ input:focus, textarea:focus, select:focus {
   transform: translateY(-2px);
 }
 
-/* Improve card styles with lighter shadows */
-.card {
-  @apply bg-card rounded-lg p-6 shadow-md;
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.06);
-}
-
-/* Add a subtle gradient overlay to images */
 .image-overlay {
   position: relative;
+  max-width: 100%;
 }
 
 .image-overlay::after {
@@ -197,10 +497,10 @@ input:focus, textarea:focus, select:focus {
   pointer-events: none;
 }
 
-/* Additional classes for the lavender-cream color scheme */
 .accent-border {
-  border: 1px solid #B7BFE5; /* Lighter border */
+  border: 1px solid #B7BFE5;
   border-left: 4px solid #9FA8DA;
+  box-sizing: border-box;
 }
 
 .soft-shadow {
@@ -208,14 +508,17 @@ input:focus, textarea:focus, select:focus {
 }
 
 .lavender-tag {
-  @apply inline-block px-3 py-1 text-xs font-medium rounded-full;
+  @apply inline-block px-2 sm:px-3 py-1 text-xs font-medium rounded-full;
   background-color: rgb(255, 255, 255);
-  color: #8891C9; /* Lighter tag text */
+  color: #8891C9;
 }
 
 .cream-panel {
-  background-color: #F7F5EF; /* Lighter cream */
+  background-color: #F7F5EF;
   border-radius: 8px;
-  padding: 20px;
+  @apply p-4 sm:p-5 md:p-6;
   border: 1px solid rgba(159, 168, 218, 0.2);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
 }

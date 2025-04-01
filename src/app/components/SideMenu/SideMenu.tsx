@@ -8,6 +8,7 @@ import Person2Icon from "@mui/icons-material/Person2";
 import SettingsIcon from "@mui/icons-material/Settings";
 import WorkIcon from "@mui/icons-material/Work"; 
 import ContactPageIcon from '@mui/icons-material/ContactPage';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import NextLink from "next/link";
 import scss from "@/styles/SideMenu.module.scss";
 import {
@@ -19,8 +20,7 @@ import {
   ListItemIcon,
   ListItemText,
   Theme,
-  useMediaQuery,
-  useTheme,
+ 
 } from "@mui/material";
 
 const drawerWidth = 240;
@@ -52,6 +52,7 @@ const menuRouteList = [
   "/dashboard/settings",
   "/dashboard/work", 
   "/dashboard/contact",
+  "/dashboard/inquiry",
 ];
 
 const menuListTranslations = [
@@ -60,79 +61,64 @@ const menuListTranslations = [
   "Settings",
   "Work", 
   "Contact",
+  "Inquiry"
 ];
 
 const menuListIcons = [
   <HomeIcon key="home" />,
   <Person2Icon key="person" />,
   <SettingsIcon key="settings" />,
-  <WorkIcon key="work" />, // Added work icon
+  <WorkIcon key="work" />,
   <ContactPageIcon key="contact" />,
+  <SupportAgentIcon key="inquiry" />,
 ];
 
+interface SideMenuProps {
+  isMobile: boolean;
+  isTablet: boolean;
+  isMobileMenuOpen: boolean;
+  onMenuClose: () => void;
+}
 
-const SideMenu = () => {
-  const theme = useTheme();
+const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMenuProps) => {
   const [open, setOpen] = React.useState(false);
-  const mobileCheck = useMediaQuery("(min-width: 600px)");
 
   const handleDrawerToggle = () => {
-    setOpen(!open);
+    if (isMobile) {
+      onMenuClose();
+    } else {
+      setOpen(!open);
+    }
   };
 
-  const handleListItemButtonClick = () => {
-    setOpen(false);
-  };
-
-  return (
-    <Drawer
-      variant="permanent"
-      anchor="left"
-      open={open}
-      className={scss.sideMenu}
-      sx={{
-        width: drawerWidth,
-        [`& .MuiDrawer-paper`]: {
-          left: 0,
-          top: mobileCheck ? 64 : 57,
-          flexShrink: 0,
-          whiteSpace: "nowrap",
-          boxSizing: "border-box",
-          ...(open && {
-            ...openedMixin(theme),
-            "& .MuiDrawer-paper": openedMixin(theme),
-          }),
-          ...(!open && {
-            ...closedMixin(theme),
-            "& .MuiDrawer-paper": closedMixin(theme),
-          }),
-        },
-      }}
-    >
-      <div className={scss.drawerHeader}>
-        <IconButton onClick={handleDrawerToggle}>
-          {theme.direction === "rtl" ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-        </IconButton>
-      </div>
+  const DrawerContent = () => (
+    <>
+      {!isMobile && (
+        <div className={scss.drawerHeader}>
+          <IconButton onClick={handleDrawerToggle}>
+            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
+        </div>
+      )}
       <Divider />
       <List>
         {menuListTranslations.map((text, index) => (
           <ListItem key={text} disablePadding sx={{ display: "block" }}>
             <NextLink className={scss.link} href={menuRouteList[index]}>
               <ListItemButton
-                onClick={handleListItemButtonClick}
+                onClick={() => (isMobile || isTablet) && onMenuClose()}
                 title={text}
                 aria-label={text}
                 sx={{
                   minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
+                  justifyContent: isMobile ? "flex-start" : open ? "initial" : "center",
                   px: 2.5,
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : "auto",
+                    mr: isMobile || open ? 3 : "auto",
                     justifyContent: "center",
                   }}
                 >
@@ -141,8 +127,7 @@ const SideMenu = () => {
                 <ListItemText
                   primary={text}
                   sx={{
-                    color: theme.palette.text.primary,
-                    opacity: open ? 1 : 0,
+                    opacity: isMobile || open ? 1 : 0,
                   }}
                 />
               </ListItemButton>
@@ -150,7 +135,53 @@ const SideMenu = () => {
           </ListItem>
         ))}
       </List>
-    </Drawer>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile Drawer */}
+      {isMobile && (
+        <Drawer
+          variant="temporary"
+          open={isMobileMenuOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { 
+              boxSizing: 'border-box', 
+              width: drawerWidth,
+              top: 56,
+            },
+          }}
+        >
+          <DrawerContent />
+        </Drawer>
+      )}
+
+      {/* Desktop/Tablet Drawer */}
+      {!isMobile && (
+        <Drawer
+          variant="permanent"
+          open={open}
+          className={scss.sideMenu}
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+            width: open ? drawerWidth : 64,
+            '& .MuiDrawer-paper': {
+              top: 64,
+              width: open ? drawerWidth : 64,
+              ...(open ? openedMixin : closedMixin),
+            },
+          }}
+        >
+          <DrawerContent />
+        </Drawer>
+      )}
+    </>
   );
 };
 

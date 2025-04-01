@@ -94,15 +94,7 @@ export function CaseStudies() {
             </div>
           </div>
         ))}
-        <div className="flex justify-center mt-12">
-          <Link
-            href="/work"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
-          >
-            Know more about our work
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </div>
+        
       </div>
     </section>
   )

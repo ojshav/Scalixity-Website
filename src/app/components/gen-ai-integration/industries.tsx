@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const industries = [
-  { name: "Healthcare", icon: "/icons/healthcare.svg" },
-  { name: "Finance", icon: "/icons/finance.svg" },
-  { name: "E-commerce", icon: "/icons/ecommerce.svg" },
-  { name: "Education", icon: "/icons/education.svg" },
-  { name: "Manufacturing", icon: "/icons/manufacturing.svg" },
-  { name: "Retail", icon: "/icons/retail.svg" },
-  { name: "Technology", icon: "/icons/technology.svg" },
-  { name: "Energy", icon: "/icons/energy.svg" }
-]
+  { name: "Healthcare", icon: "/images/icons/healthcare.svg" },
+  { name: "Finance", icon: "/images/icons/finance.svg" },
+  { name: "E-commerce", icon: "/images/icons/ecommerce.svg" },
+  { name: "Education", icon: "/images/icons/education.svg" },
+  { name: "Manufacturing", icon: "/images/icons/manufacturing.svg" },
+  { name: "Retail", icon: "/images/icons/retail.svg" },
+  { name: "Technology", icon: "/images/icons/technology.svg" },
+  { name: "Energy", icon: "/images/icons/energy.svg" }
+];
 
 export function Industries() {
   return (
-    <section className="bg-[#F3F1EB] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
-            Developing effective Generative AI solutions for every industry
+            Developing effective Generative AI Integration for every industry
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
             Our expertise spans across various sectors, enabling us to deliver tailored Generative AI solutions that address industry-specific challenges and opportunities.
@@ -36,7 +36,8 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center bg-[#A8B2E7] p-6 rounded-xl border border-black"
+              className="flex flex-col items-center p-6 rounded-xl border border-black" // Added border here
+              style={{ backgroundColor: "#F3F1EB" }} // Keeping the original background
             >
               <div className="bg-[#F3F1EB] p-4 rounded-full mb-4">
                 <Image
@@ -53,5 +54,5 @@ export function Industries() {
         </div>
       </div>
     </section>
-  )
+  );
 }

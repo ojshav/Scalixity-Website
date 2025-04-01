@@ -61,7 +61,7 @@ export function FAQ() {
           {faqs.map((faq, index) => (
             <div key={index} className="mb-4">
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg border border-gray-500 shadow-md"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg border-2 border-black shadow-md"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <span className="text-black font-semibold">{faq.question}</span>
@@ -72,7 +72,7 @@ export function FAQ() {
                 )}
               </button>
               {openIndex === index && (
-                <div className="p-4 bg-[#F3F1EB] mt-1 rounded-lg border border-gray-500">
+                <div className="p-4 bg-[#F3F1EB] mt-1 rounded-lg border-2 border-black">
                   <p className="text-gray-800">{faq.answer}</p>
                 </div>
               )}

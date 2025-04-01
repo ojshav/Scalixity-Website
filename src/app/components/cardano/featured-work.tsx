@@ -46,7 +46,7 @@ const projects = [
 
 export function FeaturedWork() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-16">
           <div>
@@ -55,10 +55,7 @@ export function FeaturedWork() {
               Our Cardano App Development Success Stories
             </h2>
           </div>
-          <Link
-            href="/work"
-            className="hidden md:flex items-center gap-2 text-black hover:text-gray-700 transition-colors border border-black px-4 py-2 rounded-lg"
-          >
+          <Link href="/work" className="hidden md:flex items-center gap-2 text-black hover:text-gray-700 transition-colors">
             Explore Our Portfolio
             <ArrowRight className="w-4 h-4 text-black" />
           </Link>
@@ -72,7 +69,7 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center border border-black p-6 rounded-lg"
+              className="grid md:grid-cols-2 gap-8 items-center border border-black p-6 rounded-lg bg-[#F3F1EB]"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
                 <span className="text-black text-sm">— {project.company}</span>
@@ -86,10 +83,7 @@ export function FeaturedWork() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={`/work/${project.company.toLowerCase()}`}
-                  className="inline-flex items-center gap-2 text-black hover:text-gray-700 transition-colors border border-black px-4 py-2 rounded-lg mt-6"
-                >
+                <Link href={`/work/${project.company.toLowerCase()}`} className="inline-flex items-center gap-2 text-black hover:text-gray-700 transition-colors mt-6">
                   Read more
                   <ArrowRight className="w-4 h-4 text-black" />
                 </Link>
@@ -109,10 +103,7 @@ export function FeaturedWork() {
         </div>
 
         <div className="text-center mt-12 md:hidden">
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-2 text-black hover:text-gray-700 transition-colors border border-black px-4 py-2 rounded-lg"
-          >
+          <Link href="/work" className="inline-flex items-center gap-2 text-black hover:text-gray-700 transition-colors">
             Explore Our Portfolio
             <ArrowRight className="w-4 h-4 text-black" />
           </Link>

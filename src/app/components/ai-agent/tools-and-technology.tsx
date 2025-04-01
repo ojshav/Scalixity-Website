@@ -20,7 +20,7 @@ const technologies: Technologies = {
   "Data Warehousing & Management": [
     { name: "BigQuery", logo: "/images/tech/bigquery.svg" },
     { name: "Snowflake", logo: "/images/tech/snowflake.svg" },
-    { name: "Redshift", logo: "/images/tech/redshift.svg" },
+    { name: "Redshift", logo: "/images/tech/google-cloud.svg" },
   ],
   "Cloud Platforms": [
     { name: "AWS", logo: "/images/tech/aws.svg" },
@@ -32,15 +32,10 @@ const technologies: Technologies = {
     { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
     { name: "Keras", logo: "/images/tech/keras.svg" },
   ],
-  "Integration & Deployment Tools": [
-    { name: "Docker", logo: "/images/tech/docker.svg" },
-    { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" },
-    { name: "CI/CD Pipelines", logo: "/images/tech/cicd.svg" },
-  ],
-  "Generative AI Models": [
-    { name: "GPT-3.5", logo: "/images/tech/gpt3-5.svg" },
-    { name: "Gemini", logo: "/images/tech/gemini.svg" },
-    { name: "Claude AI", logo: "/images/tech/claude.svg" },
+ "Generative AI Models": [
+    { name: "GPT-3", logo: "/images/tech/gpt3.svg" },
+    { name: "GPT-3.5 Turbo", logo: "/images/tech/gpt3-5.svg" },
+    { name: "Lamda", logo: "/images/tech/lamda.svg" }
   ],
   "Algorithms": [
     "Clustering",
@@ -81,7 +76,11 @@ export function ToolsAndTechnology() {
         <div className="grid gap-8">
           <div className="grid md:grid-cols-3 gap-8">
             {Object.entries(technologies).slice(0, 6).map(([category, items], index) => (
-              <div key={index} className="bg-[#F3F1EB] rounded-2xl p-6 shadow-lg">
+              <div
+                key={index}
+                className="border border-black rounded-2xl p-6 shadow-lg"
+                style={{ backgroundColor: "#F3F1EB" }} // Updated background color
+              >
                 <h3 className="text-black font-semibold mb-6">{category}</h3>
                 <div className="grid grid-cols-3 gap-4">
                   {items.map((item, idx) =>
@@ -107,14 +106,15 @@ export function ToolsAndTechnology() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {Object.entries(technologies).slice(6).map(([category, items], index) => (
-              <div key={index} className="bg-[#F3F1EB] rounded-2xl p-6 shadow-lg">
+              <div
+                key={index}
+                className="border border-black rounded-2xl p-6 shadow-lg"
+                style={{ backgroundColor: "#F3F1EB" }} // Updated background color
+              >
                 <h3 className="text-black font-semibold mb-6">{category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {items.map((item, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 bg-[#A8B2E7] text-black rounded-full text-sm"
-                    >
+                    <span key={idx} className="text-black text-sm">
                       {typeof item === "string" ? item : item.name}
                     </span>
                   ))}

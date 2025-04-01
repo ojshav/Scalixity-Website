@@ -10,7 +10,7 @@ export function Hero() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl font-extrabold mb-6 border-b-2 border-black inline-block"
+          className="text-5xl font-extrabold mb-6"
         >
           Seamlessly Integrate AI into Your SaaS
         </motion.h1>
@@ -22,19 +22,15 @@ export function Hero() {
         >
           Supercharge your SaaS platforms by integrating AI-powered tools and models — automating workflows, enhancing user experiences, and driving innovation.
         </motion.p>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row justify-center gap-4"
+        <motion.a
+          href="/contact"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="inline-block bg-black text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-gray-900 transition"
         >
-          <button className="px-8 py-3 text-lg font-medium bg-black text-[#F3F1EB] rounded-lg hover:bg-opacity-80 transition-all border-2 border-black">
-            Explore AI Integration
-          </button>
-          <button className="px-8 py-3 text-lg font-medium bg-transparent text-black border-2 border-black rounded-lg hover:bg-black hover:text-[#F3F1EB] transition-all">
-            Contact Us
-          </button>
-        </motion.div>
+          Contact Us
+        </motion.a>
       </div>
     </section>
   );

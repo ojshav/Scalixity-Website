@@ -38,13 +38,13 @@ const reasons = [
 
 export function WhyChooseUs() {
   return (
-    <section className="bg-[#F3F1EB] py-24">
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-black mb-6">
             Why Choose Us for AI Development
           </h2>
-          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Partner with us to leverage our expertise and drive innovation in your business
           </p>
         </div>
@@ -57,11 +57,11 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#A8B2E7] p-8 rounded-xl border border-gray-500 shadow-md hover:border-black transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border-2 border-black shadow-md hover:shadow-lg transition-shadow"
             >
               <reason.icon className="w-12 h-12 text-black mb-6" />
               <h3 className="text-xl font-bold text-black mb-4">{reason.title}</h3>
-              <p className="text-gray-900">{reason.description}</p>
+              <p className="text-black">{reason.description}</p>
             </motion.div>
           ))}
         </div>
@@ -70,3 +70,4 @@ export function WhyChooseUs() {
   )
 }
 
+export default WhyChooseUs;

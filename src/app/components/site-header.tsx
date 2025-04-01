@@ -1,3 +1,5 @@
+
+
 "use client"
 
 import * as React from "react"
@@ -5,9 +7,11 @@ import Link from "next/link"
 import { Button } from "@/src/app/components/ui/button"
 import { 
   Brain, Sparkles, LinkIcon, Smartphone, Stethoscope, 
-  ShoppingBag, DollarSign, BarChart, Menu, X 
+  ShoppingBag, DollarSign, BarChart, Menu, X, 
+  ChevronDown, ChevronRight
 } from 'lucide-react'
 import { motion } from 'framer-motion'
+
 const services = [
   {
     category: "Artificial Intelligence",
@@ -32,11 +36,11 @@ const services = [
     category: "Generative AI",
     icon: Sparkles,
     items: [
-      { name: "Generative AI Development", href: "/services/generative-ai/generative-ai-development" },
+      { name: "Generative AI Development", href: "/services/generative-ai-development" },
       { name: "Generative AI Consulting", href: "/services/generative-ai-consulting" },
       { name: "Enterprise Generative AI Development", href: "/services/enterprise-gen-ai" },
-      { name: "AI Agent Development", href: "/services/ai-agent-development" },
-      { name: "LLM Development", href: "/services/llm-development" },
+      { name: "AI Agent Development", href: "/services/ai-agent" },
+      { name: "LLM Development", href: "/services/llm" },
       { name: "Generative AI Integration", href: "/services/gen-ai-integration" },
       { name: "Adaptive AI Development", href: "/services/adaptive-ai" },
       { name: "ChatGPT Developers", href: "/services/chatgpt" },
@@ -134,11 +138,10 @@ const industries = [
   }
 ]
 
-
 export function ContactButton() {
   return (
     <Link href="/contact">
-      <Button className="bg-primary hover:bg-accent text-primary-foreground">
+      <Button className="bg-primary hover:bg-accent text-primary-foreground w-full sm:w-auto">
         Contact Us
       </Button>
     </Link>
@@ -147,25 +150,38 @@ export function ContactButton() {
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const [openCategories, setOpenCategories] = React.useState<Record<string, boolean>>({})
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
+    // Reset open categories when closing menu
+    if (isMenuOpen) {
+      setOpenCategories({})
+    }
   }
 
-  return (
+  const toggleCategory = (category: string) => {
+    setOpenCategories(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }))
+  }
+
+   return (
     <motion.header 
-      className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-    >
-      <div className="container flex h-16 items-center">
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center mr-8">
+    className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+    initial={{ y: -100 }}
+    animate={{ y: 0 }}
+    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+  >
+      <div className="container-fluid w-full px-0 mx-0">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo at the far left corner */}
+          <div className="flex items-center pl-4 sm:pl-6 lg:pl-8">
+            <Link href="/" className="flex items-center">
               <motion.span 
-                className="text-2xl font-bold "
-              style={{ opacity: 1, transform: 'none', paddingLeft: '10px' }}
+                className="text-xl sm:text-2xl font-bold text-black"
+                style={{ opacity: 1, transform: 'none' }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
@@ -173,101 +189,108 @@ export function SiteHeader() {
                 Scalixity
               </motion.span>
             </Link>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              {/* Services Dropdown */}
-              <div className="relative group">
-                <button className="text-foreground hover:text-primary transition-colors">
-                  Services
-                </button>
-                <div className="absolute left-0 mt-2 w-[800px] max-w-[90vw] bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                  <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {services.map((category) => (
-                      <div key={category.category} className="space-y-2">
-                        <h3 className="font-medium text-foreground flex items-center">
-                          <category.icon className="mr-2 h-4 w-4 text-primary" />
-                          {category.category}
-                        </h3>
-                        <ul className="space-y-1">
-                          {category.items.map((item) => (
-                            <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                              <Link
-                                href={item.href}
-                                className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                              >
-                                {item.name}
-                              </Link>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Industries Dropdown */}
-              <div className="relative group">
-                <button className="text-foreground hover:text-primary transition-colors">
-                  Industries
-                </button>
-                <div className="absolute left-0 mt-2 w-[600px] max-w-[90vw] bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                  <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {industries.map((industry) => (
-                      <div key={industry.category} className="space-y-2">
-                        <h3 className="font-medium text-foreground flex items-center">
-                          <industry.icon className="mr-2 h-4 w-4 text-primary" />
-                          {industry.category}
-                        </h3>
-                        <ul className="space-y-1">
-                          {industry.items.map((item) => (
-                            <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                              <Link
-                                href={item.href}
-                                className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                              >
-                                {item.name}
-                              </Link>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <Link href="/work" className="text-foreground hover:text-primary transition-colors">
-                Our Work
-              </Link>
-              <Link href="/company" className="text-foreground hover:text-primary transition-colors">
-                Company
-              </Link>
-              <Link href="/blog" className="text-foreground hover:text-primary transition-colors">
-                Blog
-              </Link>
-              <Link href="/resources" className="text-foreground hover:text-primary transition-colors">
-                Resources
-              </Link>
-            </nav>
           </div>
-          
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={toggleMenu}
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        
+        {/* Desktop Navigation - centered */}
+        <nav className="hidden md:flex items-center justify-center space-x-1 lg:space-x-6">
+          {/* Services Dropdown */}
+          <div className="relative group">
+            <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
+              Services
+              <ChevronDown className="ml-1 h-4 w-4" />
             </button>
+            <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[800px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {services.map((category) => (
+                  <div key={category.category} className="space-y-2">
+                    <h3 className="font-medium text-foreground flex items-center">
+                      <category.icon className="mr-2 h-4 w-4 text-primary" />
+                      {category.category}
+                    </h3>
+                    <ul className="space-y-1">
+                      {category.items.map((item) => (
+                        <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <Link
+                            href={item.href}
+                            className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            {item.name}
+                          </Link>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Desktop Contact Button */}
-          <div className="hidden md:block">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          {/* Industries Dropdown */}
+          <div className="relative group">
+            <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
+              Industries
+              <ChevronDown className="ml-1 h-4 w-4" />
+            </button>
+            <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[600px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {industries.map((industry) => (
+                  <div key={industry.category} className="space-y-2">
+                    <h3 className="font-medium text-foreground flex items-center">
+                      <industry.icon className="mr-2 h-4 w-4 text-primary" />
+                      {industry.category}
+                    </h3>
+                    <ul className="space-y-1">
+                      {industry.items.map((item) => (
+                        <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <Link
+                            href={item.href}
+                            className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            {item.name}
+                          </Link>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+            <Link href="/work" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
+              Our Work
+            </Link>
+            <Link href="/company" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
+              Company
+            </Link>
+            <Link href="/blog" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
+              Blog
+            </Link>
+            <Link href="/resources" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
+              Resources
+            </Link>
+          </nav>
+
+          {/* Right side - Contact Button and Mobile Menu Toggle */}
+          <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
+            <motion.div 
+              whileHover={{ scale: 1.05 }} 
+              whileTap={{ scale: 0.95 }}
+              className="hidden md:block"
+            >
               <ContactButton />
             </motion.div>
+
+            {/* Mobile Menu Button */}
+            <div className="flex items-center md:hidden">
+              <button
+                onClick={toggleMenu}
+                aria-label="Toggle menu"
+                className="p-2"
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -275,77 +298,129 @@ export function SiteHeader() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <motion.div 
-          className="md:hidden bg-background border-t border-border/40"
+          className="md:hidden bg-background border-t border-border/40 max-h-[85vh] overflow-y-auto"
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="container py-4 space-y-4">
+          <div className="px-4 py-4 space-y-4">
             {/* Services Section */}
-            <div className="space-y-2">
-              <h3 className="font-medium text-foreground">Services</h3>
-              {services.map((category) => (
-                <div key={category.category} className="space-y-2">
-                  <div className="flex items-center font-medium">
-                    <category.icon className="mr-2 h-4 w-4 text-primary" />
-                    {category.category}
-                  </div>
-                  <ul className="pl-6 space-y-1">
-                    {category.items.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          href={item.href}
-                          className="block p-2 text-foreground hover:text-primary"
-                          onClick={toggleMenu}
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+            <div className="space-y-3">
+              <button 
+                onClick={() => toggleCategory('services')}
+                className="flex items-center justify-between w-full font-medium text-foreground text-base"
+              >
+                <span>Services</span>
+                {openCategories['services'] ? 
+                  <ChevronDown className="h-5 w-5" /> : 
+                  <ChevronRight className="h-5 w-5" />
+                }
+              </button>
+              
+              {openCategories['services'] && (
+                <div className="pl-2 space-y-3">
+                  {services.map((category) => (
+                    <div key={category.category} className="space-y-2">
+                      <button
+                        onClick={() => toggleCategory(`service-${category.category}`)}
+                        className="flex items-center justify-between w-full font-medium text-base"
+                      >
+                        <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
+                          <category.icon className="mr-2 h-4 w-4 text-primary" />
+                          {category.category}
+                        </div>
+                        {openCategories[`service-${category.category}`] ? 
+                          <ChevronDown className="h-4 w-4" /> : 
+                          <ChevronRight className="h-4 w-4" />
+                        }
+                      </button>
+                      
+                      {openCategories[`service-${category.category}`] && (
+                        <ul className="pl-6 space-y-2">
+                          {category.items.map((item) => (
+                            <li key={item.name}>
+                              <Link
+                                href={item.href}
+                                className="block py-1 text-sm text-foreground hover:text-primary"
+                                onClick={toggleMenu}
+                              >
+                                {item.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
 
             {/* Industries Section */}
-            <div className="space-y-2">
-              <h3 className="font-medium text-foreground">Industries</h3>
-              {industries.map((industry) => (
-                <div key={industry.category} className="space-y-2">
-                  <div className="flex items-center font-medium">
-                    <industry.icon className="mr-2 h-4 w-4 text-primary" />
-                    {industry.category}
-                  </div>
-                  <ul className="pl-6 space-y-1">
-                    {industry.items.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          href={item.href}
-                          className="block p-2 text-foreground hover:text-primary"
-                          onClick={toggleMenu}
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+            <div className="space-y-3">
+              <button 
+                onClick={() => toggleCategory('industries')}
+                className="flex items-center justify-between w-full font-medium text-foreground text-base"
+              >
+                <span>Industries</span>
+                {openCategories['industries'] ? 
+                  <ChevronDown className="h-5 w-5" /> : 
+                  <ChevronRight className="h-5 w-5" />
+                }
+              </button>
+              
+              {openCategories['industries'] && (
+                <div className="pl-2 space-y-3">
+                  {industries.map((industry) => (
+                    <div key={industry.category} className="space-y-2">
+                      <button
+                        onClick={() => toggleCategory(`industry-${industry.category}`)}
+                        className="flex items-center justify-between w-full font-medium text-base"
+                      >
+                        <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
+                          <industry.icon className="mr-2 h-4 w-4 text-primary" />
+                          {industry.category}
+                        </div>
+                        {openCategories[`industry-${industry.category}`] ? 
+                          <ChevronDown className="h-4 w-4" /> : 
+                          <ChevronRight className="h-4 w-4" />
+                        }
+                      </button>
+                      
+                      {openCategories[`industry-${industry.category}`] && (
+                        <ul className="pl-6 space-y-2">
+                          {industry.items.map((item) => (
+                            <li key={item.name}>
+                              <Link
+                                href={item.href}
+                                className="block py-1 text-sm text-foreground hover:text-primary"
+                                onClick={toggleMenu}
+                              >
+                                {item.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
 
             {/* Other Links */}
-            <div className="space-y-2">
-              <Link href="/work" className="block p-2 text-foreground hover:text-primary" onClick={toggleMenu}>
+            <div className="space-y-3">
+              <Link href="/work" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Our Work
               </Link>
-              <Link href="/company" className="block p-2 text-foreground hover:text-primary" onClick={toggleMenu}>
+              <Link href="/company" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Company
               </Link>
-              <Link href="/blog" className="block p-2 text-foreground hover:text-primary" onClick={toggleMenu}>
+              <Link href="/blog" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Blog
               </Link>
-              <Link href="/resources" className="block p-2 text-foreground hover:text-primary" onClick={toggleMenu}>
+              <Link href="/resources" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Resources
               </Link>
             </div>

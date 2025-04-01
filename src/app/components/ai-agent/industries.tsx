@@ -31,7 +31,7 @@ export function Industries() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {industries.map((industry, index) => (
             <motion.div
               key={index}
@@ -39,9 +39,9 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center bg-[#F3F1EB] p-6 rounded-2xl shadow-lg"
+              className="flex flex-col items-center"
             >
-              <div className="bg-white p-6 rounded-full mb-4">
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-2 border-2 border-black">
                 <Image
                   src={industry.icon}
                   alt={industry.name}
@@ -50,9 +50,7 @@ export function Industries() {
                   className="w-12 h-12"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-black text-center">
-                {industry.name}
-              </h3>
+              <h3 className="text-lg font-semibold text-black">{industry.name}</h3>
             </motion.div>
           ))}
         </div>
@@ -62,4 +60,3 @@ export function Industries() {
 }
 
 export default Industries;
-

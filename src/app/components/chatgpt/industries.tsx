@@ -16,7 +16,7 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-[#F3F1EB] py-24"> {/* Beige background */}
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background for entire page */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-gray-600 uppercase tracking-wider">
@@ -25,7 +25,7 @@ export function Industries() {
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Developing effective Generative AI solutions for every industry
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Our expertise spans across various sectors, enabling us to deliver
             tailored Generative AI solutions that address industry-specific
             challenges and opportunities.
@@ -42,7 +42,7 @@ export function Industries() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="bg-[#A8B2E7] p-6 rounded-full mb-4"> {/* Lavender Card Background */}
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4 border-2 border-black"> {/* Beige background with thin black border around images */}
                 <Image
                   src={industry.icon}
                   alt={industry.name}

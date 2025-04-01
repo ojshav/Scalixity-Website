@@ -2,10 +2,10 @@ import Link from 'next/link'
 import { Linkedin, Twitter } from 'lucide-react'
 
 const mainLinks = [
-  { name: "About us", href: "/about" },
+  { name: "About us", href: "/work" },
   { name: "Blog", href: "/blog" },
   { name: "Resources", href: "/resources" },
-  { name: "Careers", href: "/careers" },
+  // { name: "Careers", href: "/careers" },
   { name: "Contact us", href: "/contact" }
 ]
 
@@ -117,7 +117,7 @@ export function Footer() {
                 </div>
               ))}
               <Link
-                href="/hire-developers"
+                href="/contact"
                 className="inline-block px-6 py-2 bg-white/10 rounded-full text-white hover:bg-white/20 transition-colors"
               >
                 Hire Developers

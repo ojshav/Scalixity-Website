@@ -1,24 +1,25 @@
-import { AgentHero } from "@/src/app/components/ai-agent-development/hero"
-import { Features } from "@/src/app/components/ai-agent-development/features"
-import { Capabilities } from "@/src/app/components/ai-agent-development/capabilities"
-import { Process } from "@/src/app/components/ai-agent-development/process"
-import { UseCases } from "@/src/app/components/ai-agent-development/use-cases"
-import { TechStack } from "@/src/app/components/ai-agent-development/tech-stack"
-import { FAQ } from "@/src/app/components/ai-agent-development/faq"
-import { CTA } from "@/src/app/components/cta"
+import { Hero } from "@/src/app/components/ai-agent/hero"
+import { WhatWeOffer } from "@/src/app/components/ai-agent/what-we-offer"
+import { FeaturedWork } from "@/src/app/components/ai-agent/featured-work"
+import { Capabilities } from "@/src/app/components/ai-agent/capabilities"
+import { Industries } from "@/src/app/components/ai-agent/industries"
+import { Process } from "@/src/app/components/ai-agent/process"
+import { ToolsAndTechnology} from "@/src/app/components/ai-agent/tools-and-technology"
+import { FAQ } from "@/src/app/components/ai-agent/faq"
+import { CTA } from "@/src/app/components/ai-agent/CTA" 
 
-export default function AIAgentDevelopmentPage() {
+export default function Enterprisegenaidev() {
   return (
     <main className="bg-[#080B16]">
-      <AgentHero />
-      <Features />
+      <Hero />
+      <WhatWeOffer />
+      <FeaturedWork />
       <Capabilities />
+      <Industries />
       <Process />
-      <UseCases />
-      <TechStack />
+      <ToolsAndTechnology /> 
       <FAQ />
-      <CTA />
+      < CTA /> 
+      
     </main>
-  )
-}
-
+  )}

@@ -10,7 +10,7 @@ const projects = [
     company: "AzureFinTech",
     title: "Secure and Scalable Financial Solutions with Azure",
     description: "Using Microsoft Azure, we helped AzureFinTech build a high-performance financial platform with top-tier security and compliance.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/icons/finance.svg",
     features: [
       "Azure Functions for serverless computing",
       "Azure SQL Database for scalable and secure data management",
@@ -22,7 +22,7 @@ const projects = [
     company: "MediCloud",
     title: "Revolutionizing Healthcare with Azure-Powered Solutions",
     description: "We created a HIPAA-compliant telemedicine platform leveraging Azure services for seamless patient interactions and data security.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/icons/healthcare.svg",
     features: [
       "Azure Communication Services for real-time consultations",
       "Azure Kubernetes Service for scalable infrastructure",
@@ -34,7 +34,7 @@ const projects = [
     company: "RetailSync",
     title: "Optimizing E-commerce with Azure AI and Analytics",
     description: "Using Azure AI and big data solutions, we helped RetailSync enhance customer engagement and streamline inventory management.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/icons/retail.svg",
     features: [
       "Azure Machine Learning for personalized recommendations",
       "Azure Synapse Analytics for data integration",
@@ -72,9 +72,20 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="flex flex-col md:flex-row bg-[#F3F1EB] border border-black rounded-xl overflow-hidden"
             >
-              <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
+              {/* Image Section */}
+              <div className="relative w-full md:w-1/2 h-[400px]">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover border-2 border-black rounded-xl"
+                />
+              </div>
+
+              {/* Content Section */}
+              <div className="p-6 w-full md:w-1/2 flex flex-col justify-center">
                 <span className="text-black text-sm">— {project.company}</span>
                 <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
                 <p className="text-black mb-6">{project.description}</p>
@@ -94,16 +105,6 @@ export function FeaturedWork() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-              <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
             </motion.div>
           ))}
         </div>
@@ -121,4 +122,3 @@ export function FeaturedWork() {
     </section>
   )
 }
-

@@ -16,7 +16,9 @@ export default function DashboardPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
     
-        <SideMenu />
+        <SideMenu isMobile={false} isTablet={false} isMobileMenuOpen={false} onMenuClose={function (): void {
+        throw new Error('Function not implemented.');
+      } } />
         <Box sx={{ flex: 1, p: 3, overflow: 'auto'}}>
           <Dashboard />
         </Box>

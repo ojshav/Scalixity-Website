@@ -34,11 +34,11 @@ export function WhatWeOffer() {
     <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-5xl font-semibold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">WHAT WE OFFER</span>
+          <h2 className="text-4xl md:text-5xl font-semibold text-black mt-4 mb-6">
             AI-Powered Customer Sentiment Analysis
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Unlock deep customer insights with AI — transforming raw emotions into actionable strategies for growth and loyalty.
           </p>
         </div>
@@ -51,10 +51,10 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-black/50 transition-colors"
             >
-              <h3 className="text-xl font-semibold text-foreground mb-4">{service.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+              <h3 className="text-xl font-semibold text-black mb-4">{service.title}</h3>
+              <p className="text-black/80 leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>

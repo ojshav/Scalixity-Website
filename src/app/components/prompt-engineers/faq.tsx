@@ -30,7 +30,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#F3F1EB] py-20"> {/* Soft beige background */}
+    <section className="bg-[#A8B2E7] py-20"> {/* Lavender background for the section */}
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-12">
           Hire Prompt Engineers
@@ -39,7 +39,7 @@ export function FAQ() {
           {faqs.map((faq, index) => (
             <div key={index} className="mb-4">
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-[#A8B2E7] rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg border border-black shadow-md hover:shadow-lg transition-shadow" // Added black border here
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <span className="text-black font-semibold">{faq.question}</span>
@@ -50,7 +50,7 @@ export function FAQ() {
                 )}
               </button>
               {openIndex === index && (
-                <div className="p-4 bg-[#A8B2E7] mt-1 rounded-lg">
+                <div className="p-4 bg-[#F3F1EB] mt-1 rounded-lg border border-black"> {/* Added black border here as well */}
                   <p className="text-black">{faq.answer}</p>
                 </div>
               )}

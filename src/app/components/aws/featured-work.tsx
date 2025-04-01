@@ -10,7 +10,7 @@ const projects = [
     company: "FinCloud",
     title: "Scalable and Secure Financial Services with AWS",
     description: "Using AWS, we helped FinCloud build a robust, scalable, and compliant financial platform, ensuring high availability and security.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/FinTech Mobile App.svg",
     features: [
       "AWS Lambda for serverless architecture",
       "Amazon RDS for secure and scalable database management",
@@ -22,7 +22,7 @@ const projects = [
     company: "MediStream",
     title: "Transforming Healthcare with AWS-Powered Telemedicine",
     description: "We developed a HIPAA-compliant telemedicine solution using AWS, allowing seamless virtual consultations and patient data security.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/ai-patient-monitoring.svg",
     features: [
       "Amazon Chime for real-time communication",
       "AWS Fargate for scalable container management",
@@ -34,7 +34,7 @@ const projects = [
     company: "Retail360",
     title: "Enhancing E-commerce with AI-Powered AWS Solutions",
     description: "Leveraging AWS AI and analytics, we optimized customer experience and inventory management for an e-commerce business.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/ai.svg",
     features: [
       "Amazon Personalize for AI-driven recommendations",
       "AWS Glue for efficient data integration",
@@ -72,36 +72,36 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="flex gap-8 items-center"
             >
-              <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <span className="text-black text-sm">— {project.company}</span>
-                <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
-                <p className="text-black mb-6">{project.description}</p>
-                <ul className="space-y-3">
-                  {project.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-black">
-                      <div className="w-1.5 h-1.5 rounded-full bg-black" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`/work/${project.company.toLowerCase()}`}
-                  className="inline-flex items-center gap-2 text-black hover:text-black/80 transition-colors mt-6"
-                >
-                  Read more
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-              <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
+              <div className="bg-white p-6 rounded-xl border-2 border-black w-full flex items-center">
+                <div className="relative h-[400px] w-[50%] rounded-xl overflow-hidden mr-8 border-2 border-black">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
                     className="object-cover"
                   />
+                </div>
+                <div className="flex flex-col w-[50%]">
+                  <span className="text-black text-sm">— {project.company}</span>
+                  <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
+                  <p className="text-black mb-6">{project.description}</p>
+                  <ul className="space-y-3">
+                    {project.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-black">
+                        <div className="w-1.5 h-1.5 rounded-full bg-black" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/work/${project.company.toLowerCase()}`}
+                    className="inline-flex items-center gap-2 text-black hover:text-black/80 transition-colors mt-6"
+                  >
+                    Read more
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
               </div>
             </motion.div>

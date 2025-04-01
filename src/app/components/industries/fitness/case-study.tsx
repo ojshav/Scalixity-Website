@@ -37,7 +37,7 @@ export function CaseStudy() {
           AI-Powered Fitness Solutions
         </h2>
         {caseStudies.map((study, index) => (
-          <div key={index} className="bg-[#0F1629] rounded-lg overflow-hidden border border-gray-800 mb-10">
+          <div key={index} className="bg-[#0F1629] rounded-lg overflow-hidden border border-black mb-10">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="p-8">
                 <h3 className="text-2xl font-bold text-white mb-4">{study.title}</h3>
@@ -51,8 +51,15 @@ export function CaseStudy() {
                   ))}
                 </ul>
               </div>
-              <div className="relative h-full min-h-[300px]">
-                <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" />
+              <div className="relative h-full min-h-[300px] border-2 border-black"> 
+                <Image
+                  src={study.image}
+                  alt={study.title}
+                  layout="intrinsic" 
+                  width={600}  
+                  height={400} 
+                  objectFit="cover"
+                />
               </div>
             </div>
           </div>

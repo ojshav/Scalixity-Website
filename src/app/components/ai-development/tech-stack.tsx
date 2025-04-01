@@ -23,13 +23,13 @@ const technologies = {
 
 export function TechStack() {
   return (
-    <section className="bg-[#F3F1EB] py-24">
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-black mb-6">
             Our AI Development Tech Stack
           </h2>
-          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             We leverage cutting-edge technologies to deliver robust and efficient AI solutions.
           </p>
         </div>
@@ -42,7 +42,7 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#A8B2E7] rounded-xl border border-gray-500 p-8 shadow-md hover:border-black transition-colors"
+              className="bg-[#F3F1EB] rounded-xl border-2 border-black p-8 shadow-md hover:shadow-lg transition-shadow"
             >
               <h3 className="text-lg font-semibold text-black mb-6">{category}</h3>
               <div className="grid grid-cols-3 gap-6">
@@ -56,7 +56,7 @@ export function TechStack() {
                         className="object-contain"
                       />
                     </div>
-                    <span className="text-sm text-gray-900 text-center">{item.name}</span>
+                    <span className="text-sm text-black text-center">{item.name}</span>
                   </div>
                 ))}
               </div>
@@ -68,4 +68,4 @@ export function TechStack() {
   )
 }
 
-
+export default TechStack;

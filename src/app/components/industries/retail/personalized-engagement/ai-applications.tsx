@@ -58,7 +58,7 @@ export function AIApplications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-black/20 hover:border-black/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black transition-colors"
             >
               <app.icon className="w-12 h-12 text-black mb-6" />
               <h3 className="text-xl font-bold text-black mb-4">{app.title}</h3>

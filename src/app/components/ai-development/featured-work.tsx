@@ -28,13 +28,13 @@ const projects = [
 
 export function FeaturedWork() {
   return (
-    <section className="bg-[#F3F1EB] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-black mb-6">
             Featured AI Projects
           </h2>
-          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Explore some of our successful AI implementations across various industries.
           </p>
         </div>
@@ -47,9 +47,9 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#A8B2E7] rounded-xl overflow-hidden border border-gray-500 hover:border-black transition-colors shadow-md"
+              className="bg-[#F3F1EB] rounded-xl border border-black shadow-md overflow-hidden"
             >
-              <div className="relative h-48">
+              <div className="relative w-full h-48">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -59,7 +59,7 @@ export function FeaturedWork() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-black mb-4">{project.title}</h3>
-                <p className="text-gray-900 mb-6">{project.description}</p>
+                <p className="text-black mb-6">{project.description}</p>
                 <Link
                   href={project.link}
                   className="inline-flex items-center text-black hover:text-gray-800 transition-colors font-medium"
@@ -74,4 +74,3 @@ export function FeaturedWork() {
     </section>
   )
 }
-

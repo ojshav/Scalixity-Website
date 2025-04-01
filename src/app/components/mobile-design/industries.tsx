@@ -16,17 +16,17 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-gradient-to-r from-[#0f172a] to-[#1e293b] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-primary uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-5xl font-bold text-white mt-4 mb-6">Industries We Serve</h2>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+          <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
+          <h2 className="text-5xl font-bold text-black mt-4 mb-6">Industries We Serve</h2>
+          <p className="text-lg text-black max-w-3xl mx-auto">
             Explore the diverse industries we revolutionize through data-driven mobile app designs.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {industries.map((industry, index) => (
             <motion.div
               key={index}
@@ -34,13 +34,13 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.1, rotate: 3 }}
-              className="bg-gradient-to-br from-[#1e293b] to-[#334155] p-8 rounded-2xl shadow-lg border border-primary/50 cursor-pointer transition-transform hover:shadow-primary/50"
+              whileHover={{ scale: 1.1 }}
+              className="flex flex-col items-center space-y-4"
             >
-              <div className="flex flex-col items-center">
-                <Image src={industry.icon} alt={industry.name} width={64} height={64} className="mb-4" />
-                <h3 className="text-xl font-semibold text-white">{industry.name}</h3>
+              <div className="w-24 h-24 bg-white border border-black rounded-full flex items-center justify-center shadow-lg">
+                <Image src={industry.icon} alt={industry.name} width={48} height={48} />
               </div>
+              <h3 className="text-xl font-semibold text-black">{industry.name}</h3>
             </motion.div>
           ))}
         </div>
@@ -50,8 +50,3 @@ export function Industries() {
 }
 
 export default Industries;
-
-
-
-
-

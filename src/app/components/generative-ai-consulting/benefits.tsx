@@ -35,7 +35,7 @@ export function Benefits() {
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <div key={index} className="bg-[#F3F1EB] p-6 rounded-2xl shadow-lg">
+            <div key={index} className="bg-[#F3F1EB] p-6 rounded-2xl shadow-lg border-2 border-black">
               <h3 className="text-2xl font-bold text-black mb-4">{benefit.title}</h3>
               <p className="text-black text-lg">{benefit.description}</p>
             </div>

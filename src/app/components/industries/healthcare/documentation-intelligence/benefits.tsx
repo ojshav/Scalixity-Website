@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import { FileText, BrainCircuit, Clock, ShieldCheck, Layers, BarChart } from 'lucide-react'
+import { motion } from 'framer-motion';
+import { FileText, BrainCircuit, Clock, ShieldCheck, Layers, BarChart } from 'lucide-react';
 
 const benefits = [
   {
@@ -34,17 +34,17 @@ const benefits = [
     title: "Enhanced Analytics",
     description: "Unlock powerful insights by analyzing documentation data for trends and predictive analytics."
   }
-]
+];
 
 export function Benefits() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Benefits of AI Documentation Intelligence
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Leverage AI to automate, secure, and enhance medical documentation processes for improved patient care.
           </p>
         </div>
@@ -57,17 +57,17 @@ export function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-[#5B1DAF] transition-colors"
             >
-              <benefit.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-foreground mb-4">{benefit.title}</h3>
-              <p className="text-muted-foreground">{benefit.description}</p>
+              <benefit.icon className="w-12 h-12 text-black mb-6" />
+              <h3 className="text-xl font-bold text-black mb-4">{benefit.title}</h3>
+              <p className="text-black">{benefit.description}</p>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default Benefits;

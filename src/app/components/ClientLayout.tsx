@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { SiteHeader } from "@/src/app/components/site-header";
 import { Footer } from "@/src/app/components/footer";
+import Chatbot from "@/src/app/components/Chatbot";
 import { v4 as uuidv4 } from "uuid";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
@@ -14,7 +15,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     "/login", "/dashboard", "/dashboard/data", "/dashboard/useranalytics",
     "/dashboard/demographic", "/dashboard/technicalmetric", "/dashboard/AcquistionMatrix",
     "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
-    "/dashboard/settings","/dashboard/work","/dashboard/contact"
+    "/dashboard/settings","/dashboard/work","/dashboard/contact","/dashboard/inquiry"
   ].includes(pathname);
 
   const getDeviceType = () => {
@@ -54,68 +55,93 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   };
 
   useEffect(() => {
+    // Clear localStorage on component mount (for testing/reset purposes)
+    // localStorage.clear();
+    // console.log("localStorage cleared");
+  
     fetchCountry();
-
-    let visitorId = localStorage.getItem("visitorId");
-    if (!visitorId) {
-      visitorId = uuidv4();
-      localStorage.setItem("visitorId", visitorId);
-    }
-
-    const { deviceType, browser } = getDeviceType();
-
-    const sendEvent = (
-      eventType: "page_visit" | "exit" | "inquiry" | "error",
-      additionalData: Record<string, unknown> = {}
-    ) => {
-      const eventData = {
-        visitorId,
-        page: pathname,
-        timestamp: new Date().toISOString(),
-        event: eventType,
-        deviceType,
-        browser,
-        country: country || "Pending",
-        ...additionalData,
-      };
-
-      console.log(`Sending ${eventType} event:`, eventData);
-
-      fetch("http://kea.mywire.org:5000/api/track", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(eventData),
-      })
-        .then(async (response) => {
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error || "Unknown"}`);
-          }
-          return response.json();
+  
+    const hasInitialized = sessionStorage.getItem(`visitInitialized_${pathname}`);
+    if (hasInitialized) return;
+  
+    const initializeVisitor = () => {
+      let visitorId = localStorage.getItem("visitorId");
+      let visitCount = parseInt(localStorage.getItem("visitCount") || "0", 10);
+      let isNewUser = false;
+  
+      if (!visitorId) {
+        visitorId = uuidv4();
+        localStorage.setItem("visitorId", visitorId);
+        visitCount = 1;
+        isNewUser = true;
+        localStorage.setItem("visitCount", "1");
+        console.log("New user initialized:", { visitorId, visitCount, isNewUser });
+      } else {
+        visitCount += 1;
+        localStorage.setItem("visitCount", visitCount.toString());
+        console.log("Returning user updated:", { visitorId, visitCount, isNewUser });
+      }
+  
+      sessionStorage.setItem(`visitInitialized_${pathname}`, "true");
+  
+      const { deviceType, browser } = getDeviceType();
+  
+      const sendEvent = (
+        eventType: "page_visit" | "exit" | "inquiry" | "error",
+        additionalData: Record<string, unknown> = {}
+      ) => {
+        const eventData = {
+          visitorId,
+          page: pathname,
+          timestamp: new Date().toISOString(),
+          event: eventType,
+          deviceType,
+          browser,
+          country: country || "Pending",
+          visitCount,
+          userType: isNewUser ? "new" : "returning",
+          ...additionalData,
+        };
+  
+        console.log(`Sending ${eventType} event:`, eventData);
+  
+        fetch("http://kea.mywire.org:5000/api/track", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(eventData),
         })
-        .then((data) => console.log(`${eventType} event successful:`, data))
-        .catch((err) => {
-          console.error(`${eventType} event failed:`, err);
-          sendEvent("error", {
-            errorCode: err.message.match(/\d{3}/)?.[0] || "Unknown",
-            errorMessage: err.message,
-            source: "fetch",
+          .then(async (response) => {
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error || "Unknown"}`);
+            }
+            return response.json();
+          })
+          .then((data) => console.log(`${eventType} event successful:`, data))
+          .catch((err) => {
+            console.error(`${eventType} event failed:`, err);
+            sendEvent("error", {
+              errorCode: err.message.match(/\d{3}/)?.[0] || "Unknown",
+              errorMessage: err.message,
+              source: "fetch",
+            });
           });
-        });
-    };
-
-    if (country) {
+      };
+  
       sendEvent("page_visit");
-    }
-
-    const handleExit = () => country && sendEvent("exit");
-    window.addEventListener("beforeunload", handleExit);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleExit);
+  
+      const handleExit = () => sendEvent("exit");
+      window.addEventListener("beforeunload", handleExit);
+  
+      return () => {
+        window.removeEventListener("beforeunload", handleExit);
+      };
     };
-  }, [pathname, country]);
-
+  
+    const cleanup = initializeVisitor();
+    return cleanup;
+  }, [pathname, country]); 
+  
   /** 🟢 Performance Metrics and Real-Time Error Tracking Logic */
   useEffect(() => {
     const { deviceType, browser } = getDeviceType();
@@ -318,10 +344,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <>
+    <Chatbot />
       {!hideLayout && <SiteHeader />}
       <main className="flex-1">
         {children}
-       
+      
       </main>
       {!hideLayout && <Footer />}
     </>

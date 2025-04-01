@@ -1,7 +1,8 @@
 'use client'
+import '@/src/app/globals.css';
 import { useState, useEffect } from 'react'
 import { Download, Search, ChevronLeft, ChevronRight, ArrowUpDown } from 'lucide-react'
-import * as XLSX from 'xlsx'
+import ExcelJS from 'exceljs'
 
 // Update the interface to match API response
 interface ContactSubmission {
@@ -78,19 +79,43 @@ export default function AdminContactDashboard() {
   const startIndex = (currentPage - 1) * itemsPerPage
   const paginatedSubmissions = filteredSubmissions.slice(startIndex, startIndex + itemsPerPage)
   
-  const handleDownloadExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(filteredSubmissions.map(s => ({
-      'Name': s.name,
-      'Email': s.email,
-      'Phone': s.phone,
-      'Message': s.message || 'N/A',
-      'Date': new Date(s.created_at).toLocaleString(),
-      'Status': s.status || 'N/A'
-    })))
-    
-    const workbook = XLSX.utils.book_new()
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Contact Submissions')
-    XLSX.writeFile(workbook, 'contact_submissions.xlsx')
+  const handleDownloadExcel = async () => {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Contacts');
+
+    // Add headers
+    worksheet.columns = [
+      { header: 'Name', key: 'name' },
+      { header: 'Email', key: 'email' },
+      { header: 'Phone', key: 'phone' },
+      { header: 'Message', key: 'message' },
+      { header: 'Service', key: 'service' },
+      { header: 'Submission Date', key: 'submissionDate' }
+    ];
+
+    // Add data
+    filteredSubmissions.forEach(s => {
+      worksheet.addRow({
+        name: s.name,
+        email: s.email,
+        phone: s.phone,
+        message: s.message,
+        service: s.status,
+        submissionDate: s.created_at
+      });
+    });
+
+    // Generate buffer
+    const buffer = await workbook.xlsx.writeBuffer();
+
+    // Create blob and download
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = window.URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'contact-submissions.xlsx';
+    anchor.click();
+    window.URL.revokeObjectURL(url);
   }
   
   const formatDate = (dateString: string) => {

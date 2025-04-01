@@ -1,44 +1,49 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqs = [
   {
     question: "How can AI enhance fraud detection in fintech?",
-    answer: "AI identifies suspicious patterns and anomalies in real-time by analyzing vast amounts of transaction data. This allows fintech companies to detect and prevent fraudulent activities swiftly, reducing risks and protecting customer assets."
+    answer:
+      "AI identifies suspicious patterns and anomalies in real-time by analyzing vast amounts of transaction data. This allows fintech companies to detect and prevent fraudulent activities swiftly, reducing risks and protecting customer assets.",
   },
   {
     question: "What role does AI play in credit scoring?",
-    answer: "AI-powered credit scoring models assess creditworthiness by analyzing customer data, spending behaviors, and economic trends. This ensures more accurate risk assessments and faster loan approvals."
+    answer:
+      "AI-powered credit scoring models assess creditworthiness by analyzing customer data, spending behaviors, and economic trends. This ensures more accurate risk assessments and faster loan approvals.",
   },
   {
     question: "Can AI solutions integrate with existing fintech systems?",
-    answer: "Yes, our AI solutions are designed to seamlessly integrate with your current fintech infrastructure using APIs and microservices, ensuring minimal disruption and maximum efficiency."
+    answer:
+      "Yes, our AI solutions are designed to seamlessly integrate with your current fintech infrastructure using APIs and microservices, ensuring minimal disruption and maximum efficiency.",
   },
   {
     question: "How does AI help with personalized customer experiences?",
-    answer: "AI analyzes user data and behaviors to offer tailored financial products, investment advice, and personalized customer support, enhancing user satisfaction and engagement."
+    answer:
+      "AI analyzes user data and behaviors to offer tailored financial products, investment advice, and personalized customer support, enhancing user satisfaction and engagement.",
   },
   {
     question: "What kind of support do you offer after AI implementation?",
-    answer: "We provide continuous support, including system monitoring, performance optimization, model retraining, and user training to ensure your AI solutions deliver sustained value."
-  }
-]
+    answer:
+      "We provide continuous support, including system monitoring, performance optimization, model retraining, and user training to ensure your AI solutions deliver sustained value.",
+  },
+];
 
-export function FAQ() {  
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+export function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">FAQ</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">FAQ</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Fintech AI Solutions — FAQs
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Explore answers to common questions about AI&apos;s impact on the fintech industry.
           </p>
         </div>
@@ -54,27 +59,27 @@ export function FAQ() {
               className="mb-4"
             >
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-card rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] rounded-lg border border-black"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="font-semibold text-foreground">{faq.question}</span>
+                <span className="font-semibold text-black">{faq.question}</span>
                 {openIndex === index ? (
-                  <ChevronUp className="w-5 h-5 text-primary" />
+                  <ChevronUp className="w-5 h-5 text-black" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-primary" />
+                  <ChevronDown className="w-5 h-5 text-black" />
                 )}
               </button>
               <AnimatePresence>
                 {openIndex === index && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
+                    animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 bg-card mt-1 rounded-lg">
-                      <p className="text-muted-foreground">{faq.answer}</p>
+                    <div className="p-4 bg-[#F3F1EB] mt-1 rounded-lg border border-black">
+                      <p className="text-black">{faq.answer}</p>
                     </div>
                   </motion.div>
                 )}
@@ -84,7 +89,7 @@ export function FAQ() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default FAQ;

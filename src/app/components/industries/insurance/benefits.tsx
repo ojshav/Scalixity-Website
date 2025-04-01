@@ -31,9 +31,9 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-gradient-to-r from-indigo-800 to-violet-900 py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-5xl font-bold text-white mb-12">Key Benefits of AI in Insurance</h2>
+        <h2 className="text-5xl font-bold text-black mb-12">Key Benefits of AI in Insurance</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
             <motion.div 
@@ -42,10 +42,10 @@ export function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-indigo-900 p-8 rounded-xl border border-violet-700 hover:border-violet-500 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black transition-colors"
             >
-              <h3 className="text-2xl font-bold text-white mb-4">{benefit.title}</h3>
-              <p className="text-gray-300 leading-relaxed">{benefit.description}</p>
+              <h3 className="text-2xl font-bold text-black mb-4">{benefit.title}</h3>
+              <p className="text-black leading-relaxed">{benefit.description}</p>
             </motion.div>
           ))}
         </div>
@@ -55,5 +55,3 @@ export function Benefits() {
 }
 
 export default Benefits;
-
-

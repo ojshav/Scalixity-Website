@@ -31,28 +31,28 @@ const manufacturingUseCases = [
 
 export function UseCases() {
   return (
-    <section className="bg-gradient-to-br from-indigo-900 via-purple-800 to-blue-900 py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-5xl font-extrabold text-white mb-12">
+        <h2 className="text-5xl font-extrabold text-black mb-12">
           AI-Powered Innovations in Manufacturing
         </h2>
-        <p className="text-xl text-white text-opacity-80 max-w-3xl mx-auto mb-16">
+        <p className="text-xl text-black text-opacity-80 max-w-3xl mx-auto mb-16">
           Supercharge your manufacturing processes with cutting-edge AI solutions. From predictive maintenance to smart quality control, let innovation drive your success.
         </p>
         <div className="flex flex-wrap justify-center gap-12">
           {manufacturingUseCases.map((useCase, index) => (
             <motion.div 
               key={index}
-              initial={{ opacity: 0, y: 50, rotate: index % 2 === 0 ? -8 : 8 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-purple-600 p-6 rounded-lg shadow-lg text-left w-full sm:w-2/5 md:w-1/3 lg:w-1/4 transform"
+              className="bg-[#F3F1EB] p-6 rounded-lg shadow-lg text-left w-full sm:w-2/5 md:w-1/3 lg:w-1/4 border border-black"
             >
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-black mb-4">
                 {useCase.title}
               </h3>
-              <p className="text-white text-opacity-80 leading-relaxed">
+              <p className="text-black text-opacity-80 leading-relaxed">
                 {useCase.description}
               </p>
             </motion.div>

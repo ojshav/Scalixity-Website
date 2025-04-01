@@ -4,41 +4,39 @@ const techStack = [
   {
     category: "Programming Languages",
     items: [
-      { name: "Python", logo: "/tech/python.svg" },
-      { name: "R", logo: "/tech/r.svg" },
-      { name: "Scala", logo: "/tech/scala.svg" },
+      { name: "Python", logo: "/images/tech/python.svg" },
+      { name: "R", logo: "/images/tech/r.svg" },
     ],
   },
   {
     category: "Machine Learning Frameworks",
     items: [
-      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-      { name: "PyTorch", logo: "/tech/pytorch.svg" },
-      { name: "Scikit-Learn", logo: "/tech/sklearn.svg" },
+      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+      { name: "PyTorch", logo: "/images/tech/pytorch.svg" }
     ],
   },
   {
     category: "Data Processing & Storage",
     items: [
-      { name: "Pandas", logo: "/tech/pandas.svg" },
-      { name: "Apache Spark", logo: "/tech/spark.svg" },
-      { name: "Hadoop", logo: "/tech/hadoop.svg" },
+      { name: "Pandas", logo: "/images/tech/pandas.svg" },
+      { name: "Apache Spark", logo: "/images/tech/spark.svg" },
+      { name: "Hadoop", logo: "/images/tech/hadoop.svg" },
     ],
   },
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS SageMaker", logo: "/tech/sagemaker.svg" },
-      { name: "Google Vertex AI", logo: "/tech/vertexai.svg" },
-      { name: "Azure ML", logo: "/tech/azureml.svg" },
+      { name: "AWS SageMaker", logo: "/images/tech/aws.svg" },
+      { name: "Google Vertex AI", logo: "/images/tech/google-cloud.svg" },
+      { name: "Azure ML", logo: "/images/tech/azure.svg" },
     ],
   },
   {
     category: "Model Monitoring & MLOps",
     items: [
-      { name: "MLflow", logo: "/tech/mlflow.svg" },
-      { name: "Kubeflow", logo: "/tech/kubeflow.svg" },
-      { name: "DVC", logo: "/tech/dvc.svg" },
+      { name: "MLflow", logo: "/images/tech/mlflow.svg" },
+      { name: "Kubeflow", logo: "/images/tech/kubernetes.svg" },
+      { name: "DVC", logo: "/images/tech/d3.svg" },
     ],
   },
 ];

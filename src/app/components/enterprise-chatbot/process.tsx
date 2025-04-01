@@ -32,7 +32,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="bg-[#F3F1EB] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">Process</span>
@@ -52,7 +52,7 @@ export function Process() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-6 bg-[#A8B2E7] border border-black rounded-lg"
+              className="p-6 bg-[#F3F1EB] border-2 border-black rounded-lg"
             >
               <div className="flex items-center space-x-3 mb-4">
                 <CheckCircle className="w-6 h-6 text-black" />

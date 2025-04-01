@@ -6,41 +6,41 @@ const techStack = [
   {
     category: "AI & Machine Learning",
     items: [
-      { name: "OpenAI GPT", logo: "/tech/openai.svg" },
-      { name: "Hugging Face Transformers", logo: "/tech/huggingface.svg" },
-      { name: "TensorFlow", logo: "/tech/tensorflow.svg" }
+      { name: "OpenAI GPT", logo: "/images/tech/openai.svg" },
+      { name: "Hugging Face Transformers", logo: "/images/tech/huggingface.svg" },
+      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" }
     ]
   },
   {
     category: "Data Analytics & Visualization",
     items: [
-      { name: "Tableau", logo: "/tech/tableau.svg" },
-      { name: "Power BI", logo: "/tech/powerbi.svg" },
-      { name: "Looker", logo: "/tech/looker.svg" }
+      { name: "Tableau", logo: "/images/tech/tableau.svg" },
+      { name: "Power BI", logo: "/images/tech/powerbi.svg" },
+      { name: "Looker", logo: "/images/tech/looker.svg" }
     ]
   },
   {
     category: "Data Processing & Storage",
     items: [
-      { name: "Pandas", logo: "/tech/pandas.svg" },
-      { name: "Apache Spark", logo: "/tech/spark.svg" },
-      { name: "PostgreSQL", logo: "/tech/postgresql.svg" }
+      { name: "Pandas", logo: "/images/tech/pandas.svg" },
+      { name: "Apache Spark", logo: "/images/tech/spark.svg" },
+      { name: "PostgreSQL", logo: "/images/tech/postgresql.svg" }
     ]
   },
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS Lambda", logo: "/tech/aws.svg" },
-      { name: "Google Cloud Functions", logo: "/tech/gcp.svg" },
-      { name: "Azure AI", logo: "/tech/azure.svg" }
+      { name: "AWS Lambda", logo: "/images/tech/aws.svg" },
+      { name: "Google Cloud Functions", logo: "/images/tech/gcp.svg" },
+      { name: "Azure AI", logo: "/images/tech/azure.svg" }
     ]
   },
   {
     category: "Model Deployment & APIs",
     items: [
-      { name: "FastAPI", logo: "/tech/fastapi.svg" },
-      { name: "Docker", logo: "/tech/docker.svg" },
-      { name: "Kubernetes", logo: "/tech/kubernetes.svg" }
+      { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
+      { name: "Docker", logo: "/images/tech/docker.svg" },
+      { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" }
     ]
   }
 ];

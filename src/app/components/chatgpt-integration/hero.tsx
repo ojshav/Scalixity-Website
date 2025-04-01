@@ -18,10 +18,12 @@ export function Hero() {
           <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto"> {/* Dark gray text */}
             Our ChatGPT developers can help you with ChatGPT model integration into your existing software or application. We are experts in NLP and very well understand the capabilities of ChatGPT. We provide ChatGPT integration services to help you with customization of your training data, adjustments, and fine-tuning the ChatGPT model.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors w-full sm:w-auto"
+
+          {/* Clickable Contact Button */}
+          <div className="relative z-10">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-black text-white text-lg font-semibold hover:bg-gray-800 transition"
             >
               Contact Us
             </Link>

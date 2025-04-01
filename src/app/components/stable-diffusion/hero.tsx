@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden py-20"
-      style={{ backgroundColor: "#F3F1EB" }} // Soft Warm Beige Background
+      style={{ backgroundColor: "#F3F1EB" }} 
     >
       <div className="container mx-auto px-4">
         <motion.div
@@ -15,19 +15,23 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ color: "#000000" }}>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-black">
             Stable Diffusion Developers
           </h1>
-          <p className="text-xl mb-12 leading-relaxed max-w-3xl mx-auto" style={{ color: "#000000" }}>
-            Leverage the power of Stable Diffusion for high-quality AI-generated visuals, custom fine-tuning, and seamless integration into your projects. Our developers specialize in crafting AI-powered design solutions that enhance automation, efficiency, and creativity across industries.
+          <p className="text-xl mb-12 leading-relaxed max-w-3xl mx-auto text-black">
+            Leverage the power of Stable Diffusion for high-quality AI-generated visuals, 
+            custom fine-tuning, and seamless integration into your projects. Our developers 
+            specialize in crafting AI-powered design solutions that enhance automation, efficiency, 
+            and creativity across industries.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-lg hover:bg-gray-300 transition-colors w-full sm:w-auto"
-              style={{ backgroundColor: "#000000", color: "#FFFFFF" }} // Black Button
+
+          {/* Clickable Contact Button */}
+          <div className="relative z-10">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-black text-white text-lg font-semibold hover:bg-gray-800 transition"
             >
-              Let’s Talk
+              Contact Us
             </Link>
           </div>
         </motion.div>
@@ -38,4 +42,3 @@ export function Hero() {
 }
 
 export default Hero;
-

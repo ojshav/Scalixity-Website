@@ -7,41 +7,41 @@ const integrationTechStack = [
   {
     category: "AI Models & Frameworks",
     items: [
-      { name: "OpenAI GPT", logo: "/tech/openai.svg" },
-      { name: "Hugging Face Transformers", logo: "/tech/huggingface.svg" },
-      { name: "BERT", logo: "/tech/bert.svg" }
+      { name: "OpenAI GPT", logo: "/images/tech/openai.svg" },
+      { name: "Hugging Face Transformers", logo: "/images/tech/huggingface.svg" },
+      { name: "BERT", logo: "/images/tech/bert.svg" }
     ]
   },
   {
     category: "Natural Language Processing",
     items: [
-      { name: "SpaCy", logo: "/tech/spacy.svg" },
-      { name: "NLTK", logo: "/tech/nltk.svg" },
-      { name: "TensorFlow NLP", logo: "/tech/tensorflow.svg" }
+      { name: "SpaCy", logo: "/images/tech/spacy.svg" },
+      { name: "NLTK", logo: "/images/tech/nltk.svg" },
+      { name: "TensorFlow NLP", logo: "/images/tech/tensorflow.svg" }
     ]
   },
   {
     category: "Automation & Orchestration",
     items: [
-      { name: "Zapier", logo: "/tech/zapier.svg" },
-      { name: "Apache Airflow", logo: "/tech/airflow.svg" },
-      { name: "n8n", logo: "/tech/n8n.svg" }
+      { name: "Zapier", logo: "/images/tech/zapier.svg" },
+      { name: "Apache Airflow", logo: "/images/tech/apache-spark.svg" },
+      { name: "n8n", logo: "/images/tech/n8n.svg" }
     ]
   },
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS Lambda", logo: "/tech/aws.svg" },
-      { name: "Google Cloud AI", logo: "/tech/gcp.svg" },
-      { name: "Azure AI", logo: "/tech/azure.svg" }
+      { name: "AWS Lambda", logo: "/images/tech/aws.svg" },
+      { name: "Google Cloud AI", logo: "/images/tech/google-cloud.svg" },
+      { name: "Azure AI", logo: "/images/tech/azure.svg" }
     ]
   },
   {
     category: "APIs & Integration",
     items: [
-      { name: "FastAPI", logo: "/tech/fastapi.svg" },
-      { name: "GraphQL", logo: "/tech/graphql.svg" },
-      { name: "RESTful APIs", logo: "/tech/restapi.svg" }
+      { name: "FastAPI", logo: "/images/tech/fastapi.svg" },
+      { name: "GraphQL", logo: "/images/tech/graphql.svg" },
+      { name: "RESTful APIs", logo: "/images/tech/rest-api.svg" }
     ]
   }
 ];
