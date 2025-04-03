@@ -14,7 +14,7 @@ const services = [
       "Enterprise AI Solutions"
     ],
     image: "/images/genai.svg",
-    link: "/services/generative-ai/generative-ai-development"
+    link: "/services/generative-ai-development"
   },
   {
     title: "AI Development Services",
