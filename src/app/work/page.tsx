@@ -2,6 +2,7 @@
 import WorkProjects from '@/src/app/components/work'
 import { CaseStudies } from "@/src/app/components/case-studies";
 import { CTA } from "@/src/app/components/cta";
+import { YouTubeProjects } from "@/src/app/components/youtube-projects";
 
 export default function WorkPage() {
   return (
@@ -12,6 +13,7 @@ export default function WorkPage() {
       </div>
       
       <WorkProjects />
+      <YouTubeProjects />
       <CaseStudies />
       <CTA />
     </div>
