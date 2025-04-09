@@ -11,21 +11,27 @@ interface YouTubeProject {
 
 const projects: YouTubeProject[] = [
   {
-    title: "AI-Powered Chat Application",
-    description: "A real-time chat application built with Next.js and OpenAI integration, featuring advanced natural language processing capabilities.",
-    videoId: "UrsmFxEIp5k", // Sample YouTube video ID
-    projectUrl: "https://github.com/scalixity/ai-chat"
+    title: "Scalixity-GPS Tracker",
+    description: "Scalixity-GPS Tracker is an advanced GPS tracking website designed to keep your vehicle secure and monitored at all times.",
+    videoId: "JpRnWuI4aLU", // Sample YouTube video ID
+    projectUrl: "https://github.com/scalixity-dev/GSP_DEVICE"
   },
   {
-    title: "Blockchain Analytics Dashboard",
-    description: "Interactive dashboard for real-time blockchain data visualization using React and Web3 technologies.",
-    videoId: "M7lc1UVf-VE", // Sample YouTube video ID
-    projectUrl: "https://github.com/scalixity/blockchain-analytics"
+    title: "Scalixity-Ecommerce Website",
+    description: "Scalixity is a powerful e-commerce platform with a built-in CRM, designed to help you launch and manage your online store effortlessly.",
+    videoId: "EZhu3rh-LB4", // Sample YouTube video ID
+    projectUrl: "https://github.com/scalixity-dev/Scalixity_ecommerce"
   },
   {
-    title: "E-commerce Platform",
-    description: "Modern e-commerce solution with AI-powered product recommendations and real-time inventory management.",
-    videoId: "rfscVS0vtbw", // Sample YouTube video ID
+    title: "Scalixity AI Chatbot",
+    description: "At Scalixity, we don’t just build chatbots.We build tools that help you scale smarter and grow faster.",
+    videoId: "cMpIZsZROAc", // Sample YouTube video ID
+    projectUrl: "https://github.com/scalixity/smart-commerce"
+  },
+  {
+    title: "Scalixity's AI-Driven CRM Solution",
+    description: "An intelligent customer relationship management system designed to streamline operations, enhance customer engagement, and drive business growth.",
+    videoId: "gtBVvFeRm-4", // Sample YouTube video ID
     projectUrl: "https://github.com/scalixity/smart-commerce"
   }
 ];
@@ -73,7 +79,7 @@ export function YouTubeProjects() {
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 transition-colors"
               >
-                View Project →
+                
               </a>
             </motion.div>
           ))}
