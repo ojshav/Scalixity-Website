@@ -7,7 +7,7 @@ import {
   Legend, ResponsiveContainer, PieChart, Pie, 
   Cell, AreaChart, Area, ComposedChart
 } from 'recharts';
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface SessionDataType {
   duration: number;
   pages: number;
@@ -40,9 +40,9 @@ export default function EngagementMetrics() {
     const fetchData = async () => {
       try {
         const [engagementRes, pagesRes, deviceRes] = await Promise.all([
-          fetch('http://kea.mywire.org:5000/api/engagement'),
-          fetch('http://kea.mywire.org:5000/api/most-visited'),
-          fetch('http://kea.mywire.org:5000/api/device-distribution')
+          fetch(`${baseURL}/api/engagement`),
+          fetch(`${baseURL}/api/most-visited`),
+          fetch(`${baseURL}/api/device-distribution`)
         ]);
 
         const engagementData = await engagementRes.json();

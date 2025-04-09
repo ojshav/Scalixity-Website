@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import WorldMap from '@/src/app/components/WorldMap';
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface CountryData {
   country: string;
   id?: string;
@@ -26,7 +26,7 @@ export default function PortfolioMetrics() {
     const fetchDemographicData = async () => {
       try {
         // Fetch demographic analytics
-        const demographicResponse = await fetch('http://kea.mywire.org:5000/api/demographic-analytics');
+        const demographicResponse = await fetch(`${baseURL}/api/demographic-analytics`);
         if (!demographicResponse.ok) {
           throw new Error('Failed to fetch demographic data');
         }

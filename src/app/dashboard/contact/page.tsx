@@ -3,7 +3,7 @@ import '@/src/app/globals.css';
 import { useState, useEffect } from 'react'
 import { Download, Search, ChevronLeft, ChevronRight, ArrowUpDown } from 'lucide-react'
 import ExcelJS from 'exceljs'
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 // Update the interface to match API response
 interface ContactSubmission {
   id: number; // Changed to number since API returns numeric ID
@@ -28,7 +28,7 @@ export default function AdminContactDashboard() {
   useEffect(() => {
     const fetchSubmissions = async () => {
       try {
-        const response = await fetch('http://kea.mywire.org:5000/api/contact', {
+        const response = await fetch(`${baseURL}/api/contact`, {
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('adminToken')
           }
