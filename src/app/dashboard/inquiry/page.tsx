@@ -49,6 +49,7 @@ interface ServiceInquiry {
   created_at: string;
   updated_at: string;
 }
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const InquiriesDashboard: React.FC = () => {
   const [inquiries, setInquiries] = useState<ServiceInquiry[]>([]);
@@ -68,7 +69,7 @@ const InquiriesDashboard: React.FC = () => {
   const fetchInquiries = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://kea.mywire.org:5000/api/inquiries');
+      const response = await fetch(`${baseURL}/api/inquiries`);
       if (!response.ok) {
         throw new Error('Failed to fetch inquiries');
       }
@@ -92,7 +93,7 @@ const InquiriesDashboard: React.FC = () => {
 
   const updateInquiryStatus = async (id: number, status: string) => {
     try {
-      const response = await fetch(`http://kea.mywire.org:5000/api/inquiries/${id}`, {
+      const response = await fetch(`${baseURL}/api/inquiries/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

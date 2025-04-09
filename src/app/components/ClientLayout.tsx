@@ -6,7 +6,7 @@ import { SiteHeader } from "@/src/app/components/site-header";
 import { Footer } from "@/src/app/components/footer";
 import Chatbot from "@/src/app/components/Chatbot";
 import { v4 as uuidv4 } from "uuid";
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [country, setCountry] = useState<string | null>(null);
@@ -105,7 +105,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   
         console.log(`Sending ${eventType} event:`, eventData);
   
-        fetch("http://kea.mywire.org:5000/api/track", {
+        fetch(`${baseURL}/api/track`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(eventData),
@@ -153,7 +153,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     const recentErrorLogs: { path: string; errorCode: string; count: number; lastOccurrence: string }[] = [];
 
     const sendErrorData = (data: Record<string, unknown>) => {
-      fetch(`http://kea.mywire.org:5000/api/track-error-logs`, {
+      fetch(`${baseURL}/api/track-error-logs`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -249,7 +249,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       console.log("Performance Metrics:", metrics);
 
       // Send performance metrics to /track-metrics endpoint
-      fetch("http://kea.mywire.org:5000/api/track-metrics", {
+      fetch(`${baseURL}/api/track-metrics`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(metrics),

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface Project {
   id: string;
   title: string;
@@ -21,7 +21,7 @@ export default function WorkProjects() {
     const fetchProjects = async () => {
       try {
         setIsLoading(true)
-        const response = await fetch('http://kea.mywire.org:5000/api/work/projects')
+        const response = await fetch(`${baseURL}/api/work/projects`)
         
         if (!response.ok) {
           throw new Error('Failed to fetch projects')

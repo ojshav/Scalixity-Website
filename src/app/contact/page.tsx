@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send, Check } from 'lucide-react'
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -27,7 +27,7 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://kea.mywire.org:5000/api/contact', {
+      const response = await fetch(`${baseURL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
