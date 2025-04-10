@@ -3,6 +3,7 @@ import WorkProjects from '@/src/app/components/work'
 import { CaseStudies } from "@/src/app/components/case-studies";
 import { CTA } from "@/src/app/components/cta";
 import { YouTubeProjects } from "@/src/app/components/youtube-projects";
+import { ProjectShowcase } from "@/src/app/components/project-showcase";
 
 export default function WorkPage() {
   return (
@@ -11,10 +12,11 @@ export default function WorkPage() {
         <h1 className="text-4xl md:text-5xl font-bold text-center py-12 text-black">Our Work</h1>
         <p className="text-xl text-center text-gray-900 mb-12">Discover how we&apos;ve helped businesses transform with AI</p>
       </div>
-      
+      <ProjectShowcase />
       <WorkProjects />
       <YouTubeProjects />
       <CaseStudies />
+    
       <CTA />
     </div>
   )
