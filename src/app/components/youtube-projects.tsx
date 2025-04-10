@@ -11,12 +11,6 @@ interface YouTubeProject {
 
 const projects: YouTubeProject[] = [
   {
-    title: "Scalixity-GPS Tracker",
-    description: "Scalixity-GPS Tracker is an advanced GPS tracking website designed to keep your vehicle secure and monitored at all times.",
-    videoId: "JpRnWuI4aLU", // Sample YouTube video ID
-    projectUrl: "https://github.com/scalixity-dev/GSP_DEVICE"
-  },
-  {
     title: "Scalixity-Ecommerce Website",
     description: "Scalixity is a powerful e-commerce platform with a built-in CRM, designed to help you launch and manage your online store effortlessly.",
     videoId: "EZhu3rh-LB4", // Sample YouTube video ID
@@ -33,6 +27,12 @@ const projects: YouTubeProject[] = [
     description: "An intelligent customer relationship management system designed to streamline operations, enhance customer engagement, and drive business growth.",
     videoId: "gtBVvFeRm-4", // Sample YouTube video ID
     projectUrl: "https://github.com/scalixity/smart-commerce"
+  },
+  {
+    title: "Scalixity-GPS Tracker",
+    description: "Scalixity-GPS Tracker is an advanced GPS tracking website designed to keep your vehicle secure and monitored at all times.",
+    videoId: "JpRnWuI4aLU", // Sample YouTube video ID
+    projectUrl: "https://github.com/scalixity-dev/GSP_DEVICE"
   }
 ];
 
