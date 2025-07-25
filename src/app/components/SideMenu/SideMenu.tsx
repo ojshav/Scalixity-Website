@@ -53,6 +53,7 @@ const menuRouteList = [
   "/dashboard/work", 
   "/dashboard/contact",
   "/dashboard/inquiry",
+  "/dashboard/campaign",
 ];
 
 const menuListTranslations = [
@@ -61,7 +62,8 @@ const menuListTranslations = [
   "Settings",
   "Work", 
   "Contact",
-  "Inquiry"
+  "Inquiry",
+  "Campaigns",
 ];
 
 const menuListIcons = [
@@ -71,6 +73,7 @@ const menuListIcons = [
   <WorkIcon key="work" />,
   <ContactPageIcon key="contact" />,
   <SupportAgentIcon key="inquiry" />,
+  <WorkIcon key="campaigns" />,
 ];
 
 interface SideMenuProps {

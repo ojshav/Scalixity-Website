@@ -13,6 +13,7 @@ const workRoutes = require('./routes/work');
 const contactRoutes = require('./routes/contact');
 const servicesRoutes = require('./routes/services');
 const InquireRoutes = require('./routes/inquires');
+const campaignsRoutes = require('./routes/campaigns');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -182,6 +183,23 @@ async function setupDatabase() {
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
     `);
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS campaigns
+       (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) 
+       NOT NULL, start_date DATE NOT NULL, 
+       end_date DATE NOT NULL, type VARCHAR(50) NOT NULL, 
+       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+       ON UPDATE CURRENT_TIMESTAMP);
+    `);
+
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS campaign_questions
+       (id INT AUTO_INCREMENT PRIMARY KEY, campaign_id INT NOT NULL, 
+       question_order INT NOT NULL, label VARCHAR(255) NOT NULL, 
+       type VARCHAR(50) NOT NULL, options JSON, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);
+    `);
     // Check if default admin exists, if not create one
     const [rows] = await connection.execute(
       'SELECT * FROM admin_users WHERE role = "super_admin"'
@@ -214,7 +232,8 @@ app.use("/api", technicalRoutes);
 app.use("/api", contactRoutes);
 app.use("/api/work", workRoutes);
 app.use('/api', servicesRoutes); 
-app.use("/api", InquireRoutes);// Add this line here
+app.use("/api", InquireRoutes);
+app.use('/api', campaignsRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

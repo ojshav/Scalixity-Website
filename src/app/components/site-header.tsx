@@ -269,6 +269,9 @@ export function SiteHeader() {
             <Link href="/resources" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
               Resources
             </Link>
+            <Link href="/campaign" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
+              Campaign
+            </Link>
           </nav>
 
           {/* Right side - Contact Button and Mobile Menu Toggle */}
@@ -422,6 +425,9 @@ export function SiteHeader() {
               </Link>
               <Link href="/resources" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Resources
+              </Link>
+              <Link href="/campaign" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
+                UI/UX Competition
               </Link>
             </div>
 

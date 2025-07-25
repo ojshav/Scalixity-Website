@@ -11,12 +11,14 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const pathname = usePathname();
   const [country, setCountry] = useState<string | null>(null);
 
-  const hideLayout = [
-    "/login", "/dashboard", "/dashboard/data", "/dashboard/useranalytics",
-    "/dashboard/demographic", "/dashboard/technicalmetric", "/dashboard/AcquistionMatrix",
-    "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
-    "/dashboard/settings","/dashboard/work","/dashboard/contact","/dashboard/inquiry"
-  ].includes(pathname);
+  const hideLayout =
+    [
+      "/login", "/dashboard", "/dashboard/data", "/dashboard/useranalytics",
+      "/dashboard/demographic", "/dashboard/technicalmetric", "/dashboard/AcquistionMatrix",
+      "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
+      "/dashboard/settings", "/dashboard/work", "/dashboard/contact", "/dashboard/inquiry", "/dashboard/campaign"
+    ].includes(pathname) ||
+    (pathname.startsWith("/dashboard/campaign/") && pathname.endsWith("/form"));
 
   const getDeviceType = () => {
     const userAgent = navigator.userAgent.toLowerCase();
