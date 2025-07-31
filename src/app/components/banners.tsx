@@ -160,7 +160,7 @@ export function ContestBanner({ className = "" }: ContestBannerProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="relative w-full h-80 md:h-96 lg:h-[400px] overflow-hidden rounded-xl shadow-lg">
+      <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-96 xl:h-[400px] overflow-hidden rounded-xl shadow-lg">
         <img 
           src="https://res.cloudinary.com/dxwspucxw/image/upload/v1753700324/YouTube_Banner_-_Global_Figma_Design_Challenge_sp0jf6.svg"
           alt="Global Figma Design Challenge"

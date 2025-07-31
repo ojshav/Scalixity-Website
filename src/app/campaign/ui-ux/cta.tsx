@@ -6,17 +6,17 @@ import Link from 'next/link';
 
 export default function CompetitionCTA() {
   return (
-    <div className="w-full py-16 md:py-20" style={{ backgroundColor: '#FEFBF2' }}>
+         <div className="w-full py-8 md:py-12" style={{ backgroundColor: '#fefcfd' }}>
       <div className="w-full px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* Left Section - Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="space-y-6"
-          >
+                     {/* Left Section - Text Content */}
+           <motion.div
+             initial={{ opacity: 0, x: -30 }}
+             animate={{ opacity: 1, x: 0 }}
+             transition={{ duration: 0.8, ease: "easeOut" }}
+             className="space-y-6"
+           >
             {/* Top Badge */}
             <div className="inline-block">
               <span className="text-sm font-semibold text-amber-700 uppercase tracking-wider bg-amber-100 px-4 py-2 rounded-full">
@@ -76,7 +76,7 @@ export default function CompetitionCTA() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="relative"
+            className="relative hidden xl:block"
           >
             <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden h-[500px]">
               <Image
