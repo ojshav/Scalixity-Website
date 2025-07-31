@@ -166,6 +166,8 @@ export function Footer() {
             <span>Scalixity Inc. | Copyright 2024 | </span>
             <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
             <span> | </span>
+            <Link href="/terms" className="hover:text-white">Terms & Conditions</Link>
+            <span> | </span>
             <Link href="/sitemap" className="hover:text-white">Sitemap</Link>
           </div>
           <div className="flex items-center space-x-4">

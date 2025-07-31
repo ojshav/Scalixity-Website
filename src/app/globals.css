@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Font Classes */
+.font-playfair {
+  font-family: var(--font-playfair), serif;
+}
+
+.font-poppins {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+.font-source-sans {
+  font-family: var(--font-source-sans), sans-serif;
+}
+
+.font-inter {
+  font-family: var(--font-inter), sans-serif;
+}
+
 /* Base theme styles */
 @layer base {
   :root {

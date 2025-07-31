@@ -19,5 +19,5 @@ export function CTA() {
       </div>
     </section>
   )
-}
+} 
 
