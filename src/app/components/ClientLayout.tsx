@@ -51,7 +51,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       const data = await response.json();
       setCountry(data.country_name || "Unknown");
     } catch (error) {
-      console.error("Failed to fetch country:", error);
+    
       setCountry("Unknown");
     }
   };
@@ -77,11 +77,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         visitCount = 1;
         isNewUser = true;
         localStorage.setItem("visitCount", "1");
-        console.log("New user initialized:", { visitorId, visitCount, isNewUser });
+     
       } else {
         visitCount += 1;
         localStorage.setItem("visitCount", visitCount.toString());
-        console.log("Returning user updated:", { visitorId, visitCount, isNewUser });
+   
       }
   
       sessionStorage.setItem(`visitInitialized_${pathname}`, "true");
@@ -105,7 +105,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           ...additionalData,
         };
   
-        console.log(`Sending ${eventType} event:`, eventData);
+   
   
         fetch(`${baseURL}/api/track`, {
           method: "POST",
@@ -119,9 +119,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             }
             return response.json();
           })
-          .then((data) => console.log(`${eventType} event successful:`, data))
+          .then((data) => {
+            // Silent success - no logging
+          })
           .catch((err) => {
-            console.error(`${eventType} event failed:`, err);
+            // Silent error handling - no logging
             sendEvent("error", {
               errorCode: err.message.match(/\d{3}/)?.[0] || "Unknown",
               errorMessage: err.message,
@@ -169,8 +171,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         }),
       })
         .then((res) => res.json())
-        .then((data) => console.log(`Error data sent successfully:`, data))
-        .catch((err) => console.error(`Failed to send error data:`, err));
+        .then((data) => {
+          // Silent success - no logging
+        })
+        .catch((err) => {
+          // Silent error handling - no logging
+        });
     };
 
     let lastErrorTime = 0;
@@ -179,7 +185,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     const updateErrorTracking = (errorCode: string, errorMessage: string, source: string) => {
       const currentTime = Date.now();
       if (currentTime - lastErrorTime < ERROR_THRESHOLD) {
-        console.warn("Too many errors in a short period, skipping logging.");
         return;
       }
 
@@ -220,8 +225,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       localStorage.setItem("errorTypes", JSON.stringify(errorTypes));
       localStorage.setItem("errorsOverTime", JSON.stringify(errorsOverTime));
       localStorage.setItem("recentErrorLogs", JSON.stringify(recentErrorLogs));
-
-      console.log("Error tracked:", { errorCode, errorMessage, source });
     };
 
     // Performance observer for metrics
@@ -248,8 +251,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       metrics.TTI = performance.timing.domInteractive - performance.timing.navigationStart;
       metrics.loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
 
-      console.log("Performance Metrics:", metrics);
-
       // Send performance metrics to /track-metrics endpoint
       fetch(`${baseURL}/api/track-metrics`, {
         method: "POST",
@@ -263,9 +264,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           }
           return response.json();
         })
-        .then((data) => console.log("Performance metrics sent successfully:", data))
+        .then((data) => {
+          // Silent success - no logging
+        })
         .catch((err) => {
-          console.error("Failed to send performance metrics:", err);
+          // Silent error handling - no logging
           updateErrorTracking(
             err.message.match(/\d{3}/)?.[0] || "Unknown",
             err.message,

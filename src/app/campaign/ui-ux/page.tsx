@@ -54,7 +54,7 @@ export default function UIUXCampaignPage() {
       const response = await fetch(`${baseURL}/api/campaigns/1/questions`);
       if (!response.ok) throw new Error("Failed to fetch form questions");
       const data = await response.json();
-      console.log('Fetched questions:', data);
+   
       setQuestions(data);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Error fetching form questions");
@@ -64,7 +64,7 @@ export default function UIUXCampaignPage() {
   };
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
-    console.log('Form data submitted:', data);
+
     
     try {
       // Generate a simple visitor ID (in production, you might want to use a proper tracking system)
@@ -194,7 +194,7 @@ export default function UIUXCampaignPage() {
                          ) : (
                <div className="space-y-3 sm:space-y-4">
                  {questions.map((question) => {
-                   console.log('Rendering question:', question);
+          
                    return (
                    <div key={question.id}>
                      <Label htmlFor={`question_${question.id}`} style={{ fontFamily: 'Playfair Display, serif' }}>
