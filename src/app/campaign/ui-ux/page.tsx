@@ -14,31 +14,90 @@ import { ContestBanner } from "@/src/app/components/banners";
 import { CompetitionAbout } from "./about";
 import CompetitionCTA from "./cta";
 
-interface FormInputs {
-  name: string;
-  email: string;
-  phone: string;
-  portfolio: string;
-  experience: string;
-  about: string;
-  agree: boolean;
+interface CampaignQuestion {
+  id: number;
+  campaign_id: number;
+  question_order: number;
+  label: string;
+  type: string;
+  options: string[];
 }
+
+interface FormInputs {
+  [key: string]: string | boolean;
+}
+
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function UIUXCampaignPage() {
   const { toast } = useToast();
   const [open, setOpen] = React.useState(false);
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormInputs>({
-    defaultValues: { experience: "Beginner" }
-  });
+  const [questions, setQuestions] = React.useState<CampaignQuestion[]>([]);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+  
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs> = async () => {
-    await new Promise((r) => setTimeout(r, 1000));
-    toast({
-      title: "Registration Successful!",
-      description: `Thank you for registering for the Scalixity UI/UX Competition. We will contact you soon.`,
-    });
-    reset();
-    setOpen(false);
+  // Fetch campaign questions when dialog opens
+  React.useEffect(() => {
+    if (open) {
+      fetchCampaignQuestions();
+    }
+  }, [open]);
+
+  const fetchCampaignQuestions = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      // For now, we'll use campaign ID 1 for UI/UX competition
+      // In the future, you can make this dynamic based on the campaign
+      const response = await fetch(`${baseURL}/api/campaigns/1/questions`);
+      if (!response.ok) throw new Error("Failed to fetch form questions");
+      const data = await response.json();
+      console.log('Fetched questions:', data);
+      setQuestions(data);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Error fetching form questions");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    console.log('Form data submitted:', data);
+    
+    try {
+      // Generate a simple visitor ID (in production, you might want to use a proper tracking system)
+      const visitor_id = `visitor_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      
+      const response = await fetch(`${baseURL}/api/campaigns/1/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          answers: data,
+          visitor_id: visitor_id
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit form');
+      }
+      
+      toast({
+        title: "Registration Successful!",
+        description: `Thank you for registering for the Scalixity UI/UX Competition. We will contact you soon.`,
+      });
+      reset();
+      setOpen(false);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Failed to submit registration. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -113,51 +172,110 @@ export default function UIUXCampaignPage() {
              <DialogDescription className="text-gray-900 text-sm sm:text-base" style={{ fontFamily: 'Playfair Display, serif' }}>Fill the form below to participate in the competition.</DialogDescription>
            </DialogHeader>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="space-y-3 sm:space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-                <div>
-                  <Label htmlFor="name" style={{ fontFamily: 'Playfair Display, serif' }}>Full Name</Label>
-                  <Input id="name" placeholder="Your Name" {...register("name", { required: "Name is required" })} />
-                  {errors.name && <span className="text-destructive text-xs">{errors.name.message}</span>}
-                </div>
-                <div>
-                  <Label htmlFor="email" style={{ fontFamily: 'Playfair Display, serif' }}>Email</Label>
-                  <Input id="email" type="email" placeholder="you@example.com" {...register("email", { required: "Email is required" })} />
-                  {errors.email && <span className="text-destructive text-xs">{errors.email.message}</span>}
-                </div>
-                <div>
-                  <Label htmlFor="phone" style={{ fontFamily: 'Playfair Display, serif' }}>Phone</Label>
-                  <Input id="phone" type="tel" placeholder="Phone Number" {...register("phone", { required: "Phone is required" })} />
-                  {errors.phone && <span className="text-destructive text-xs">{errors.phone.message}</span>}
-                </div>
-                <div>
-                  <Label htmlFor="experience" style={{ fontFamily: 'Playfair Display, serif' }}>Experience Level</Label>
-                  <select id="experience" className="form-input" {...register("experience")}>
-                    <option value="Beginner">Beginner</option>
-                    <option value="Intermediate">Intermediate</option>
-                    <option value="Advanced">Advanced</option>
-                  </select>
-                </div>
+            {loading ? (
+              <div className="text-center py-8">
+                <div className="text-gray-500">Loading form...</div>
               </div>
-              <div>
-                <Label htmlFor="portfolio" style={{ fontFamily: 'Playfair Display, serif' }}>Portfolio Link</Label>
-                <Input id="portfolio" placeholder="https://yourportfolio.com" {...register("portfolio", { required: "Portfolio link is required" })} />
-                {errors.portfolio && <span className="text-destructive text-xs">{errors.portfolio.message}</span>}
+            ) : error ? (
+              <div className="text-center py-8">
+                <div className="text-red-500">{error}</div>
+                <Button 
+                  type="button" 
+                  onClick={fetchCampaignQuestions}
+                  className="mt-4 bg-amber-600 hover:bg-amber-700 text-white"
+                >
+                  Retry
+                </Button>
               </div>
-              <div>
-                <Label htmlFor="about" style={{ fontFamily: 'Playfair Display, serif' }}>About You / Project</Label>
-                <Textarea id="about" placeholder="Tell us about yourself or your project..." {...register("about", { required: "This field is required" })} />
-                {errors.about && <span className="text-destructive text-xs">{errors.about.message}</span>}
+            ) : questions.length === 0 ? (
+              <div className="text-center py-8">
+                <div className="text-gray-500">No form questions available.</div>
               </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="agree" {...register("agree", { required: "You must agree to the terms" })} />
-                <Label htmlFor="agree" className="text-xs" style={{ fontFamily: 'Playfair Display, serif' }}>I agree to the <a href="/terms" className="underline text-primary">terms and conditions</a>.</Label>
-                {errors.agree && <span className="text-destructive text-xs ml-2">{errors.agree.message as string}</span>}
+                         ) : (
+               <div className="space-y-3 sm:space-y-4">
+                 {questions.map((question) => {
+                   console.log('Rendering question:', question);
+                   return (
+                   <div key={question.id}>
+                     <Label htmlFor={`question_${question.id}`} style={{ fontFamily: 'Playfair Display, serif' }}>
+                       {question.label}
+                     </Label>
+                    
+                                         {question.type === 'short' && question.label.toLowerCase().includes('email') && (
+                       <Input 
+                         id={`question_${question.id}`}
+                         type="email"
+                         placeholder="you@example.com"
+                         {...register(`question_${question.id}`, { required: `${question.label} is required` })}
+                       />
+                     )}
+                     
+                     {question.type === 'short' && question.label.toLowerCase().includes('phone') && (
+                       <Input 
+                         id={`question_${question.id}`}
+                         type="tel"
+                         placeholder="Phone Number"
+                         {...register(`question_${question.id}`, { required: `${question.label} is required` })}
+                       />
+                     )}
+                     
+                     {question.type === 'short' && !question.label.toLowerCase().includes('email') && !question.label.toLowerCase().includes('phone') && (
+                       <Input 
+                         id={`question_${question.id}`}
+                         placeholder={`Enter ${question.label.toLowerCase()}...`}
+                         {...register(`question_${question.id}`, { required: `${question.label} is required` })}
+                       />
+                     )}
+                     
+                     {question.type === 'paragraph' && (
+                       <Textarea 
+                         id={`question_${question.id}`}
+                         placeholder={`Tell us about ${question.label.toLowerCase()}...`}
+                         {...register(`question_${question.id}`, { required: `${question.label} is required` })}
+                       />
+                     )}
+                    
+                                         {question.type === 'select' && question.options && question.options.length > 0 && (
+                       <select 
+                         id={`question_${question.id}`}
+                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                         {...register(`question_${question.id}`, { required: `${question.label} is required` })}
+                       >
+                         <option value="">Select {question.label.toLowerCase()}</option>
+                         {question.options.map((option, optionIndex) => (
+                           <option key={optionIndex} value={option}>
+                             {option}
+                           </option>
+                         ))}
+                       </select>
+                     )}
+                    
+                    {question.type === 'checkbox' && (
+                      <div className="flex items-center space-x-2">
+                        <Checkbox 
+                          id={`question_${question.id}`}
+                          {...register(`question_${question.id}`, { required: `You must agree to ${question.label}` })}
+                        />
+                        <Label htmlFor={`question_${question.id}`} className="text-xs" style={{ fontFamily: 'Playfair Display, serif' }}>
+                          {question.label}
+                        </Label>
+                      </div>
+                    )}
+                    
+                                         {errors[`question_${question.id}`] && (
+                       <span className="text-destructive text-xs">
+                         {errors[`question_${question.id}`]?.message as string}
+                       </span>
+                     )}
+                   </div>
+                 );
+               })}
+                
+                <Button type="submit" className="w-full mt-4 sm:mt-6 bg-amber-700 text-white py-3 sm:py-4 text-sm sm:text-base" style={{ fontFamily: 'Playfair Display, serif' }} disabled={isSubmitting}>
+                  {isSubmitting ? "Submitting..." : "Submit Registration"}
+                </Button>
               </div>
-            </div>
-                         <Button type="submit" className="w-full mt-4 sm:mt-6 bg-amber-700 text-white py-3 sm:py-4 text-sm sm:text-base" style={{ fontFamily: 'Playfair Display, serif' }} disabled={isSubmitting}>
-               {isSubmitting ? "Submitting..." : "Submit Registration"}
-             </Button>
+            )}
           </form>
         </DialogContent>
       </Dialog>

@@ -6,7 +6,7 @@ router.get('/campaigns', async (req, res) => {
   try {
     const pool = req.app.locals.pool;
     const [rows] = await pool.execute(
-      `SELECT id, name, start_date, end_date, type, created_at, updated_at FROM campaigns ORDER BY created_at DESC`
+      `SELECT id, name, description, image_url, start_date, end_date, type, created_at, updated_at FROM campaigns ORDER BY created_at DESC`
     );
     res.status(200).json(rows);
   } catch (error) {
@@ -21,7 +21,7 @@ router.get('/campaigns/:id', async (req, res) => {
     const { id } = req.params;
     const pool = req.app.locals.pool;
     const [rows] = await pool.execute(
-      `SELECT id, name, start_date, end_date, type, created_at, updated_at FROM campaigns WHERE id = ?`,
+      `SELECT id, name, description, image_url, start_date, end_date, type, created_at, updated_at FROM campaigns WHERE id = ?`,
       [id]
     );
     if (rows.length === 0) {
@@ -36,15 +36,22 @@ router.get('/campaigns/:id', async (req, res) => {
 
 // POST a new campaign
 router.post('/campaigns', async (req, res) => {
-  const { name, start_date, end_date, type } = req.body;
+  const { name, description, image_url, start_date, end_date, type } = req.body;
   if (!name || !start_date || !end_date || !type) {
-    return res.status(400).json({ error: 'All fields are required.' });
+    return res.status(400).json({ error: 'Name, start_date, end_date, and type are required.' });
   }
+  
+  // Validate date format (YYYY-MM-DD)
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dateRegex.test(start_date) || !dateRegex.test(end_date)) {
+    return res.status(400).json({ error: 'Invalid date format. Use YYYY-MM-DD format.' });
+  }
+  
   try {
     const pool = req.app.locals.pool;
     const [result] = await pool.execute(
-      `INSERT INTO campaigns (name, start_date, end_date, type, created_at, updated_at) VALUES (?, ?, ?, ?, NOW(), NOW())`,
-      [name, start_date, end_date, type]
+      `INSERT INTO campaigns (name, description, image_url, start_date, end_date, type, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())`,
+      [name, description || null, image_url || null, start_date, end_date, type]
     );
     res.status(201).json({
       message: 'Campaign created successfully',
@@ -59,15 +66,22 @@ router.post('/campaigns', async (req, res) => {
 // PUT update a campaign
 router.put('/campaigns/:id', async (req, res) => {
   const { id } = req.params;
-  const { name, start_date, end_date, type } = req.body;
+  const { name, description, image_url, start_date, end_date, type } = req.body;
   if (!name || !start_date || !end_date || !type) {
-    return res.status(400).json({ error: 'All fields are required.' });
+    return res.status(400).json({ error: 'Name, start_date, end_date, and type are required.' });
   }
+  
+  // Validate date format (YYYY-MM-DD)
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dateRegex.test(start_date) || !dateRegex.test(end_date)) {
+    return res.status(400).json({ error: 'Invalid date format. Use YYYY-MM-DD format.' });
+  }
+  
   try {
     const pool = req.app.locals.pool;
     const [result] = await pool.execute(
-      `UPDATE campaigns SET name = ?, start_date = ?, end_date = ?, type = ?, updated_at = NOW() WHERE id = ?`,
-      [name, start_date, end_date, type, id]
+      `UPDATE campaigns SET name = ?, description = ?, image_url = ?, start_date = ?, end_date = ?, type = ?, updated_at = NOW() WHERE id = ?`,
+      [name, description || null, image_url || null, start_date, end_date, type, id]
     );
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: 'Campaign not found' });
@@ -151,6 +165,128 @@ router.post('/campaigns/:id/questions', async (req, res) => {
   } catch (error) {
     console.error('Error saving campaign questions:', error);
     res.status(500).json({ error: 'Failed to save campaign questions' });
+  }
+});
+
+// --- Campaign Submissions API ---
+// POST submit a campaign form
+router.post('/campaigns/:id/submit', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { answers, visitor_id } = req.body;
+    
+    if (!answers || typeof answers !== 'object') {
+      return res.status(400).json({ error: 'Answers are required and must be an object' });
+    }
+    
+    const pool = req.app.locals.pool;
+    
+    // Verify campaign exists
+    const [campaignRows] = await pool.execute(
+      `SELECT id FROM campaigns WHERE id = ?`,
+      [id]
+    );
+    
+    if (campaignRows.length === 0) {
+      return res.status(404).json({ error: 'Campaign not found' });
+    }
+    
+    // Insert submission
+    console.log('Storing submission with answers:', answers);
+    const answersJson = JSON.stringify(answers);
+    console.log('Answers JSON:', answersJson);
+    
+    const [result] = await pool.execute(
+      `INSERT INTO campaign_submissions (campaign_id, visitor_id, answers) VALUES (?, ?, ?)`,
+      [id, visitor_id || null, answersJson]
+    );
+    
+    res.status(201).json({
+      message: 'Submission received successfully',
+      submissionId: result.insertId,
+    });
+  } catch (error) {
+    console.error('Error submitting campaign form:', error);
+    res.status(500).json({ error: 'Failed to submit form' });
+  }
+});
+
+// GET all submissions for a campaign (admin only)
+router.get('/campaigns/:id/submissions', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const pool = req.app.locals.pool;
+    
+    const [rows] = await pool.execute(
+      `SELECT id, campaign_id, visitor_id, answers, status, created_at, updated_at 
+       FROM campaign_submissions 
+       WHERE campaign_id = ? 
+       ORDER BY created_at DESC`,
+      [id]
+    );
+    
+    console.log('Raw database rows:', rows);
+    
+    // Parse answers JSON safely
+    const submissions = rows.map(row => {
+      let answers = {};
+      if (row.answers) {
+        try {
+          // Log the raw answers string for debugging
+          console.log(`Raw answers for submission ${row.id}:`, row.answers);
+          console.log(`Raw answers type:`, typeof row.answers);
+          
+          // Handle both string and object cases
+          if (typeof row.answers === 'string') {
+            answers = JSON.parse(row.answers);
+          } else if (typeof row.answers === 'object') {
+            answers = row.answers;
+          }
+          
+          console.log(`Parsed answers for submission ${row.id}:`, answers);
+        } catch (error) {
+          console.error(`Failed to parse answers for submission ${row.id}:`, error);
+          console.error(`Raw answers that failed to parse:`, row.answers);
+          answers = {};
+        }
+      } else {
+        console.log(`No answers found for submission ${row.id}`);
+      }
+      return { ...row, answers };
+    });
+    
+    console.log('Sending submissions:', submissions);
+    res.status(200).json(submissions);
+  } catch (error) {
+    console.error('Error fetching campaign submissions:', error);
+    res.status(500).json({ error: 'Failed to fetch submissions' });
+  }
+});
+
+// PUT update submission status (admin only)
+router.put('/campaigns/submissions/:submissionId/status', async (req, res) => {
+  try {
+    const { submissionId } = req.params;
+    const { status } = req.body;
+    
+    if (!['submitted', 'reviewed', 'approved', 'rejected'].includes(status)) {
+      return res.status(400).json({ error: 'Invalid status. Must be submitted, reviewed, approved, or rejected.' });
+    }
+    
+    const pool = req.app.locals.pool;
+    const [result] = await pool.execute(
+      `UPDATE campaign_submissions SET status = ?, updated_at = NOW() WHERE id = ?`,
+      [status, submissionId]
+    );
+    
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Submission not found' });
+    }
+    
+    res.status(200).json({ message: 'Submission status updated successfully' });
+  } catch (error) {
+    console.error('Error updating submission status:', error);
+    res.status(500).json({ error: 'Failed to update submission status' });
   }
 });
 

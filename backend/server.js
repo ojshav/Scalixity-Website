@@ -186,9 +186,9 @@ async function setupDatabase() {
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS campaigns
        (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) 
-       NOT NULL, start_date DATE NOT NULL, 
-       end_date DATE NOT NULL, type VARCHAR(50) NOT NULL, 
-       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+       NOT NULL, description TEXT, image_url VARCHAR(500), 
+       start_date DATE NOT NULL, end_date DATE NOT NULL, 
+       type VARCHAR(50) NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
        ON UPDATE CURRENT_TIMESTAMP);
     `);
@@ -199,6 +199,18 @@ async function setupDatabase() {
        question_order INT NOT NULL, label VARCHAR(255) NOT NULL, 
        type VARCHAR(50) NOT NULL, options JSON, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);
+    `);
+
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS campaign_submissions
+       (id INT AUTO_INCREMENT PRIMARY KEY, campaign_id INT NOT NULL, 
+       visitor_id VARCHAR(255), answers JSON NOT NULL, 
+       status ENUM('submitted', 'reviewed', 'approved', 'rejected') DEFAULT 'submitted',
+       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+       INDEX idx_campaign_id (campaign_id),
+       INDEX idx_visitor_id (visitor_id),
+       INDEX idx_status (status));
     `);
     // Check if default admin exists, if not create one
     const [rows] = await connection.execute(

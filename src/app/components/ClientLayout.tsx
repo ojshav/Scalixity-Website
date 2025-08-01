@@ -18,7 +18,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
       "/dashboard/settings", "/dashboard/work", "/dashboard/contact", "/dashboard/inquiry", "/dashboard/campaign"
     ].includes(pathname) ||
-    (pathname.startsWith("/dashboard/campaign/") && pathname.endsWith("/form"));
+    (pathname.startsWith("/dashboard/campaign/") && (pathname.endsWith("/form") || pathname.endsWith("/responses")));
 
   const getDeviceType = () => {
     const userAgent = navigator.userAgent.toLowerCase();

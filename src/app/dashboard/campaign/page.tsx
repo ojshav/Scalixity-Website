@@ -20,6 +20,8 @@ const campaignTypes = [
 interface Campaign {
   id: number;
   name: string;
+  description?: string;
+  image_url?: string;
   start_date: string;
   end_date: string;
   type: string;
@@ -45,6 +47,8 @@ export default function DashboardCampaignPage() {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({
     name: "",
+    description: "",
+    image_url: "",
     startDate: "",
     startTime: "00:00",
     endDate: "",
@@ -75,7 +79,7 @@ export default function DashboardCampaignPage() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -88,14 +92,16 @@ export default function DashboardCampaignPage() {
     setLoading(true);
     setError(null);
     try {
-      // Combine date and time to ISO string in IST
-      const start = new Date(`${form.startDate}T${form.startTime}:00+05:30`).toISOString();
-      const end = new Date(`${form.endDate}T${form.endTime}:00+05:30`).toISOString();
+      // Format dates as YYYY-MM-DD for database
+      const start = form.startDate;
+      const end = form.endDate;
       const response = await fetch(`${baseURL}/api/campaigns`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name,
+          description: form.description || null,
+          image_url: form.image_url || null,
           start_date: start,
           end_date: end,
           type: form.type,
@@ -107,7 +113,7 @@ export default function DashboardCampaignPage() {
       }
       fetchCampaigns();
       setOpen(false);
-      setForm({ name: "", startDate: "", startTime: "00:00", endDate: "", endTime: "12:00", type: "Competition" });
+      setForm({ name: "", description: "", image_url: "", startDate: "", startTime: "00:00", endDate: "", endTime: "12:00", type: "Competition" });
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Error creating campaign");
     } finally {
@@ -139,25 +145,34 @@ export default function DashboardCampaignPage() {
                   <thead className="bg-gray-50">
                     <tr>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Date</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">End Date</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {campaigns.map((c) => (
                       <tr key={c.id}>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{c.name}</td>
+                        <td className="px-6 py-4 text-sm text-gray-700 max-w-xs truncate">
+                          {c.description || "No description"}
+                        </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{c.type}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatISTDateTime(c.start_date)}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatISTDateTime(c.end_date)}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(c.created_at).toLocaleDateString()}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm">
-                          <Button size="sm" variant="outline" onClick={() => router.push(`/dashboard/campaign/${c.id}/form`)}>
-                            Edit Form
-                          </Button>
+                          <div className="flex gap-2">
+                            <Button size="sm" variant="outline" onClick={() => router.push(`/dashboard/campaign/${c.id}/form`)}>
+                              Edit Form
+                            </Button>
+                            <Button size="sm" variant="secondary" onClick={() => router.push(`/dashboard/campaign/${c.id}/responses`)}>
+                              Responses
+                            </Button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -179,6 +194,22 @@ export default function DashboardCampaignPage() {
             <div>
               <Label htmlFor="name">Campaign Name</Label>
               <Input id="name" name="name" placeholder="Campaign Name" value={form.name} onChange={handleChange} required />
+            </div>
+            <div>
+              <Label htmlFor="description">Description</Label>
+              <textarea 
+                id="description" 
+                name="description" 
+                placeholder="Enter campaign description..." 
+                value={form.description} 
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                rows={3}
+              />
+            </div>
+            <div>
+              <Label htmlFor="image_url">Image URL</Label>
+              <Input id="image_url" name="image_url" placeholder="https://example.com/image.jpg" value={form.image_url} onChange={handleChange} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
