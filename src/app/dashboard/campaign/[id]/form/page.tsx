@@ -45,7 +45,7 @@ export default function CampaignFormBuilder() {
       .then((data) => {
         // Assign a random id to each question for UI tracking if not present
         setQuestions(
-          data.map((q: any) => ({
+          data.map((q: { label: string; type: string; options?: string[] }) => ({
             id: Math.random().toString(36).substr(2, 9),
             label: q.label,
             type: q.type,
@@ -86,7 +86,7 @@ export default function CampaignFormBuilder() {
     }
   };
 
-  const updateQuestion = (qid: string, field: string, value: any) => {
+  const updateQuestion = (qid: string, field: string, value: string | string[]) => {
     setQuestions(
       questions.map((q) =>
         q.id === qid ? { ...q, [field]: value } : q
@@ -148,8 +148,8 @@ export default function CampaignFormBuilder() {
         throw new Error(errData.error || "Failed to save questions");
       }
       setSuccess("Form saved successfully!");
-    } catch (err: any) {
-      setError(err.message || "Error saving questions");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Error saving questions");
     } finally {
       setSaving(false);
     }

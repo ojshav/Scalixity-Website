@@ -68,8 +68,8 @@ export default function DashboardCampaignPage() {
       if (!response.ok) throw new Error("Failed to fetch campaigns");
       const data = await response.json();
       setCampaigns(data);
-    } catch (err: any) {
-      setError(err.message || "Error fetching campaigns");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Error fetching campaigns");
     } finally {
       setLoading(false);
     }
@@ -108,8 +108,8 @@ export default function DashboardCampaignPage() {
       fetchCampaigns();
       setOpen(false);
       setForm({ name: "", startDate: "", startTime: "00:00", endDate: "", endTime: "12:00", type: "Competition" });
-    } catch (err: any) {
-      setError(err.message || "Error creating campaign");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Error creating campaign");
     } finally {
       setLoading(false);
     }
@@ -132,7 +132,7 @@ export default function DashboardCampaignPage() {
             ) : error ? (
               <div className="text-center py-12 text-red-500">{error}</div>
             ) : campaigns.length === 0 ? (
-              <div className="text-gray-500 py-12 text-center">No campaigns yet. Click "Add Campaign" to create one.</div>
+              <div className="text-gray-500 py-12 text-center">No campaigns yet. Click &quot;Add Campaign&quot; to create one.</div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
