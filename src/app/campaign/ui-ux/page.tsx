@@ -1,6 +1,6 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/src/app/components/ui/card";
+
 import { Input } from "@/src/app/components/ui/input";
 import { Textarea } from "@/src/app/components/ui/textarea";
 import { Button } from "@/src/app/components/ui/button";
@@ -31,7 +31,7 @@ export default function UIUXCampaignPage() {
     defaultValues: { experience: "Beginner" }
   });
 
-  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<FormInputs> = async () => {
     await new Promise((r) => setTimeout(r, 1000));
     toast({
       title: "Registration Successful!",

@@ -33,7 +33,7 @@ export default function CompetitionCTA() {
 
             {/* Description */}
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Don't miss your chance to compete with the world's best designers. Submit your innovative UI/UX solution and stand a chance to win amazing prizes, career opportunities, and global recognition.
+              Don&rsquo;t miss your chance to compete with the world&rsquo;s best designers. Submit your innovative UI/UX solution and stand a chance to win amazing prizes, career opportunities, and global recognition.
             </p>
 
             {/* Features */}
