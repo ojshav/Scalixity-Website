@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/src/app/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/src/app/components/ui/card";
 import { CheckCircle, Users, Target, Upload, Brain, Calendar, Mail, Linkedin } from "lucide-react";
 
 export function CompetitionAbout() {
@@ -20,7 +20,7 @@ export function CompetitionAbout() {
                   About the Competition
                 </CardTitle>
                 <CardDescription className="text-gray-700 text-base sm:text-lg leading-relaxed text-justify" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  Design is more than visuals — it's a tool for change. Scalixity is hosting its first international UI/UX Design Competition to celebrate purposeful, human-centered design. Whether you're a student just discovering the craft or a seasoned designer solving real-world challenges, this competition is your platform to shine.
+                  Design is more than visuals — it&rsquo;s a tool for change. Scalixity is hosting its first international UI/UX Design Competition to celebrate purposeful, human-centered design. Whether you&rsquo;re a student just discovering the craft or a seasoned designer solving real-world challenges, this competition is your platform to shine.
                 </CardDescription>
                 <CardDescription className="text-gray-700 text-base sm:text-lg leading-relaxed mt-4 text-justify" style={{ fontFamily: 'Playfair Display, serif' }}>
                   We invite participants from around the world to submit creative, functional, and impactful digital design solutions.
@@ -74,11 +74,11 @@ export function CompetitionAbout() {
               <div className="flex items-center gap-3 mb-4 sm:mb-6">
                 <Target className="h-6 w-6 sm:h-8 sm:w-8 text-amber-600" />
                 <CardTitle className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  Theme: "Design for Impact"
+                  Theme: &ldquo;Design for Impact&rdquo;
                 </CardTitle>
               </div>
               <CardDescription className="text-gray-700 text-base sm:text-lg leading-relaxed text-justify" style={{ fontFamily: 'Playfair Display, serif' }}>
-                Think beyond aesthetics. This year's theme challenges you to create UI/UX solutions that make a tangible difference. It could be social, environmental, educational, or even healthcare-based — but your idea should bring clarity, empathy, and innovation to life.
+                Think beyond aesthetics. This year&rsquo;s theme challenges you to create UI/UX solutions that make a tangible difference. It could be social, environmental, educational, or even healthcare-based — but your idea should bring clarity, empathy, and innovation to life.
               </CardDescription>
             </CardHeader>
           </Card>

@@ -60,7 +60,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold mb-6 text-gray-800 font-playfair tracking-tight">Introduction</h2>
             <div className="space-y-4 text-gray-700 font-source-sans leading-relaxed">
               <p>
-                <strong className="text-gray-800">Scalixity Technologies Pvt. Ltd.</strong> ("Scalixity", "we", "our", "us") provides these Terms and Conditions ("Terms") that govern your use of our website, software solutions, products, and services.
+                <strong className="text-gray-800">Scalixity Technologies Pvt. Ltd.</strong> (&ldquo;Scalixity&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;) provides these Terms and Conditions (&ldquo;Terms&rdquo;) that govern your use of our website, software solutions, products, and services.
               </p>
               <p>
                 By accessing or using our services, you agree to be bound by these Terms. If you do not agree to these Terms, please do not use our services.
@@ -180,7 +180,7 @@ export default function TermsPage() {
           >
             <h2 className="text-2xl font-bold mb-4 text-gray-800">6. Intellectual Property Rights</h2>
             <div className="space-y-4 text-gray-700">
-              <p><strong>Scalixity's Rights:</strong></p>
+              <p><strong>Scalixity&rsquo;s Rights:</strong></p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>All services, software, and content remain our exclusive property</li>
                 <li>We retain all intellectual property rights in our services</li>
@@ -241,7 +241,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold mb-4 text-gray-800">9. Limitation of Liability</h2>
             <div className="space-y-4 text-gray-700">
               <p className="bg-gray-100 p-4 rounded-lg">
-                <strong>Disclaimer:</strong> Our services are provided "as is" without warranties of any kind, either express or implied.
+                <strong>Disclaimer:</strong> Our services are provided &ldquo;as is&rdquo; without warranties of any kind, either express or implied.
               </p>
               <p>To the maximum extent permitted by law, Scalixity shall not be liable for:</p>
               <ul className="list-disc list-inside space-y-2 ml-4">

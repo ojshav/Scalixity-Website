@@ -28,7 +28,7 @@ export function CampaignHero() {
                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight"
                style={{ fontFamily: 'Playfair Display, serif' }}
              >
-               <span className="text-amber-600 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">Join Scalixity's</span>
+               <span className="text-amber-600 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">Join Scalixity&rsquo;s</span>
                <br />
                <span className="text-gray-900">Innovation Challenges</span>
              </motion.h1>

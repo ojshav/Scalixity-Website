@@ -21,7 +21,7 @@ import { NavigationMenuLink } from "./ui/navigation-menu";
     >
       <div className="text-sm font-medium leading-none">UI/UX Competition</div>
       <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-        Participate in Scalixity's UI/UX design competition
+        Participate in Scalixity&rsquo;s UI/UX design competition
       </p>
     </Link>
   </NavigationMenuLink>

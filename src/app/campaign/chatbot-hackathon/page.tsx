@@ -1,6 +1,6 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/src/app/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/src/app/components/ui/card";
 import { Input } from "@/src/app/components/ui/input";
 import { Textarea } from "@/src/app/components/ui/textarea";
 import { Button } from "@/src/app/components/ui/button";
@@ -9,6 +9,7 @@ import { Checkbox } from "@/src/app/components/ui/checkbox";
 import { useToast } from "@/src/app/hooks/use-toast";
 import * as React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/src/app/components/ui/dialog";
+import Image from "next/image";
 
 interface FormInputs {
   name: string;
@@ -27,7 +28,7 @@ export default function ChatbotHackathonPage() {
     defaultValues: { experience: "Beginner" }
   });
 
-  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<FormInputs> = async () => {
     await new Promise((r) => setTimeout(r, 1000));
     toast({
       title: "Registration Successful!",
@@ -42,10 +43,10 @@ export default function ChatbotHackathonPage() {
       <div className="container mx-auto px-4 flex flex-col items-center text-center">
         <Card className="w-full max-w-3xl mx-auto mb-10">
           <CardHeader>
-            <img src="/images/ai-chatbot.svg" alt="Build-A-Chatbot Hackathon" className="w-full max-h-64 object-contain rounded-xl shadow mb-4" />
+            <Image src="/images/ai-chatbot.svg" alt="Build-A-Chatbot Hackathon" width={400} height={256} className="w-full max-h-64 object-contain rounded-xl shadow mb-4" />
             <CardTitle className="text-3xl md:text-4xl mb-2 text-black">Build-A-Chatbot Hackathon</CardTitle>
             <CardDescription className="text-gray-900 mb-4">
-              <span className="block mb-2">Create a functional AI chatbot for a real-world use case! Use Scalixity's chatbot service or any API provided to build innovative solutions.</span>
+              <span className="block mb-2">Create a functional AI chatbot for a real-world use case! Use Scalixity&rsquo;s chatbot service or any API provided to build innovative solutions.</span>
               <ul className="list-disc list-inside text-gray-900 text-base mb-2 text-left mx-auto max-w-xl">
                 <li>Open to developers, students, and automation lovers</li>
                 <li>Individual or team participation allowed</li>
@@ -58,8 +59,8 @@ export default function ChatbotHackathonPage() {
                   <li><b>Target:</b> Developers, students, and automation lovers</li>
                   <li><b>Objective:</b> Create a functional AI chatbot for a real-world use case</li>
                   <li><b>Use Cases:</b> E-commerce, health, support, or any innovative application</li>
-                  <li><b>Bonus:</b> Use Scalixity's chatbot service or any API provided</li>
-                  <li><b>Reward:</b> Winner's chatbot will be featured on Scalixity.com</li>
+                  <li><b>Bonus:</b> Use Scalixity&rsquo;s chatbot service or any API provided</li>
+                  <li><b>Reward:</b> Winner&rsquo;s chatbot will be featured on Scalixity.com</li>
                   <li><b>Submission Deadline:</b> 15th August 2025, 11:59 PM IST</li>
                   <li><b>Judging Criteria:</b> Functionality, Innovation, User Experience, Technical Implementation</li>
                 </ul>

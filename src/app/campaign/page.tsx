@@ -34,7 +34,7 @@ const dummyCampaigns: Campaign[] = [
     id: 3,
     title: "App Creation Contest",
     description: "Build a business app using Bubble, Glide, or Softr! Focus on business automation using data to create innovative solutions.",
-    banner: "https://res.cloudinary.com/dxwspucxw/image/upload/v1753999714/Gemini_Generated_Image_nq4nhunq4nhunq4n_balzju.png",
+    banner: "https://res.cloudinary.com/dxwspucxw/image/upload/v1754025672/Screenshot_2025-08-01_105037_q6tatr.png",
     
   },
   {

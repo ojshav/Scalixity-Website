@@ -60,14 +60,14 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-bold mb-6 text-gray-800 font-playfair tracking-tight">Introduction</h2>
             <div className="space-y-4 text-gray-700 font-source-sans leading-relaxed">
               <p>
-                <strong className="text-gray-800">Scalixity Technologies Pvt. Ltd.</strong> ("Scalixity", "we", "our", "us") is committed to protecting the privacy and confidentiality of information provided to us by users of our website, software solutions, products, and services.
+                <strong className="text-gray-800">Scalixity Technologies Pvt. Ltd.</strong> (&ldquo;Scalixity&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;) is committed to protecting the privacy and confidentiality of information provided to us by users of our website, software solutions, products, and services.
               </p>
               <p>
                 This Privacy Policy outlines the types of data we collect, how we use it, and your rights under applicable Indian laws, including:
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4 text-gray-800 font-semibold">
                 <li>The Information Technology Act, 2000, and its associated rules</li>
-                <li>The Digital Personal Data Protection Act, 2023 ("DPDP Act")</li>
+                <li>The Digital Personal Data Protection Act, 2023 (&ldquo;DPDP Act&rdquo;)</li>
               </ul>
               <p>
                 This policy applies to all interactions with Scalixity, including via websites, mobile applications, APIs, hardware products (such as GPS devices), and custom software platforms.

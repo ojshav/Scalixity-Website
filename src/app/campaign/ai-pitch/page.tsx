@@ -1,6 +1,6 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/src/app/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/src/app/components/ui/card";
 import { Input } from "@/src/app/components/ui/input";
 import { Textarea } from "@/src/app/components/ui/textarea";
 import { Button } from "@/src/app/components/ui/button";
@@ -9,6 +9,7 @@ import { Checkbox } from "@/src/app/components/ui/checkbox";
 import { useToast } from "@/src/app/hooks/use-toast";
 import * as React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/src/app/components/ui/dialog";
+import Image from "next/image";
 
 interface FormInputs {
   name: string;
@@ -27,7 +28,7 @@ export default function AIPitchPage() {
     defaultValues: { experience: "Beginner" }
   });
 
-  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<FormInputs> = async () => {
     await new Promise((r) => setTimeout(r, 1000));
     toast({
       title: "Registration Successful!",
@@ -42,7 +43,7 @@ export default function AIPitchPage() {
       <div className="container mx-auto px-4 flex flex-col items-center text-center">
         <Card className="w-full max-w-3xl mx-auto mb-10">
           <CardHeader>
-            <img src="/images/ai-innovation.svg" alt="AI Product Idea Pitch Contest" className="w-full max-h-64 object-contain rounded-xl shadow mb-4" />
+            <Image src="/images/ai-innovation.svg" alt="AI Product Idea Pitch Contest" width={400} height={256} className="w-full max-h-64 object-contain rounded-xl shadow mb-4" />
             <CardTitle className="text-3xl md:text-4xl mb-2 text-black">AI Product Idea Pitch Contest</CardTitle>
             <CardDescription className="text-gray-900 mb-4">
               <span className="block mb-2">Pitch your AI startup idea in under 2 minutes! Submit a short video and one-pager to showcase your innovative AI product concept.</span>
@@ -56,7 +57,7 @@ export default function AIPitchPage() {
                 <h3 className="text-lg font-semibold mb-1">Contest Details:</h3>
                 <ul className="list-disc list-inside text-gray-900 text-base mb-2">
                   <li><b>Target:</b> Innovators, students, creators</li>
-                  <li><b>Prompt:</b> "Pitch your AI startup idea in under 2 minutes"</li>
+                  <li><b>Prompt:</b> &ldquo;Pitch your AI startup idea in under 2 minutes&rdquo;</li>
                   <li><b>Format:</b> Short video + one-pager document</li>
                   <li><b>Video Requirements:</b> Maximum 2 minutes, clear audio, good lighting</li>
                   <li><b>One-Pager:</b> Executive summary, problem, solution, market, team</li>
