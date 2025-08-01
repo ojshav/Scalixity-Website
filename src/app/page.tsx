@@ -10,9 +10,13 @@ import { CTA } from "@/src/app/components/cta"
 import { YouTubeProjects } from "@/src/app/components/youtube-projects";
 import Work from "@/src/app/components/work"
 
+
 export default function Home() {
   return (
     <main>
+      <div className="w-full">
+        
+      </div>
       <Hero />
       <WhatWeOffer />
       <WhyUs />

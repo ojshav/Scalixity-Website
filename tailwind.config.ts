@@ -8,6 +8,12 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'playfair': ['var(--font-playfair)', 'serif'],
+        'poppins': ['var(--font-poppins)', 'sans-serif'],
+        'source-sans': ['var(--font-source-sans)', 'sans-serif'],
+        'inter': ['var(--font-inter)', 'sans-serif'],
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
