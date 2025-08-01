@@ -45,16 +45,15 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     return { deviceType, browser };
   };
 
-  const fetchCountry = async () => {
-    try {
-      const response = await fetch("https://ipapi.co/json/");
-      const data = await response.json();
-      setCountry(data.country_name || "Unknown");
-    } catch (error) {
-    
-      setCountry("Unknown");
-    }
-  };
+      const fetchCountry = async () => {
+      try {
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+        setCountry(data.country_name || "Unknown");
+      } catch {
+        setCountry("Unknown");
+      }
+    };
 
   useEffect(() => {
     // Clear localStorage on component mount (for testing/reset purposes)
@@ -119,7 +118,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             }
             return response.json();
           })
-          .then((data) => {
+          .then(() => {
             // Silent success - no logging
           })
           .catch((err) => {
@@ -171,10 +170,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         }),
       })
         .then((res) => res.json())
-        .then((data) => {
+        .then(() => {
           // Silent success - no logging
         })
-        .catch((err) => {
+        .catch(() => {
           // Silent error handling - no logging
         });
     };
@@ -264,7 +263,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           }
           return response.json();
         })
-        .then((data) => {
+        .then(() => {
           // Silent success - no logging
         })
         .catch((err) => {
