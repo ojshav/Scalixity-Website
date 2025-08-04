@@ -45,7 +45,7 @@ export default function CampaignFormBuilder() {
       .then((data) => {
         // Assign a random id to each question for UI tracking if not present
         setQuestions(
-          data.map((q: { label: string; type: string; options?: string[] }) => ({
+          data.map((q: any) => ({
             id: Math.random().toString(36).substr(2, 9),
             label: q.label,
             type: q.type,
@@ -88,9 +88,17 @@ export default function CampaignFormBuilder() {
 
   const updateQuestion = (qid: string, field: string, value: string | string[]) => {
     setQuestions(
-      questions.map((q) =>
-        q.id === qid ? { ...q, [field]: value } : q
-      )
+      questions.map((q) => {
+        if (q.id === qid) {
+          const updatedQuestion = { ...q, [field]: value };
+          // If type is changing to multiple/checkbox and options don't exist, initialize them
+          if (field === 'type' && (value === 'multiple' || value === 'checkbox') && !updatedQuestion.options) {
+            updatedQuestion.options = [];
+          }
+          return updatedQuestion;
+        }
+        return q;
+      })
     );
   };
 

@@ -24,7 +24,7 @@ interface CampaignQuestion {
 }
 
 interface FormInputs {
-  [key: string]: string | boolean;
+  [key: string]: string | boolean | string[];
 }
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -35,6 +35,8 @@ export default function UIUXCampaignPage() {
   const [questions, setQuestions] = React.useState<CampaignQuestion[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [checkboxValues, setCheckboxValues] = React.useState<{[key: string]: string[]}>({});
+  const [isSuccess, setIsSuccess] = React.useState(false);
   
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormInputs>();
 
@@ -54,6 +56,7 @@ export default function UIUXCampaignPage() {
       const response = await fetch(`${baseURL}/api/campaigns/1/questions`);
       if (!response.ok) throw new Error("Failed to fetch form questions");
       const data = await response.json();
+      console.log('Fetched questions:', data);
    
       setQuestions(data);
     } catch (err: unknown) {
@@ -63,8 +66,30 @@ export default function UIUXCampaignPage() {
     }
   };
 
-  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+  const handleCheckboxChange = (questionId: number, option: string, checked: boolean) => {
+    setCheckboxValues(prev => {
+      const currentValues = prev[`question_${questionId}`] || [];
+      if (checked) {
+        return {
+          ...prev,
+          [`question_${questionId}`]: [...currentValues, option]
+        };
+      } else {
+        return {
+          ...prev,
+          [`question_${questionId}`]: currentValues.filter(val => val !== option)
+        };
+      }
+    });
+  };
 
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    console.log('Form data being submitted:', data);
+    console.log('Checkbox values:', checkboxValues);
+    
+    // Merge form data with checkbox values
+    const mergedData = { ...data, ...checkboxValues };
+    console.log('Merged data:', mergedData);
     
     try {
       // Generate a simple visitor ID (in production, you might want to use a proper tracking system)
@@ -74,7 +99,7 @@ export default function UIUXCampaignPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          answers: data,
+          answers: mergedData,
           visitor_id: visitor_id
         }),
       });
@@ -84,12 +109,19 @@ export default function UIUXCampaignPage() {
         throw new Error(errorData.error || 'Failed to submit form');
       }
       
-      toast({
-        title: "Registration Successful!",
-        description: `Thank you for registering for the Scalixity UI/UX Competition. We will contact you soon.`,
-      });
-      reset();
-      setOpen(false);
+                    toast({
+         title: "🎉 Registration Successful!",
+         description: `You have successfully registered for the Scalixity UI/UX Competition. We will contact you soon with further details.`,
+         duration: 5000,
+       });
+       setIsSuccess(true);
+       reset();
+       setCheckboxValues({});
+       // Close modal after 3 seconds to show success message
+       setTimeout(() => {
+         setOpen(false);
+         setIsSuccess(false);
+       }, 3000);
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -165,118 +197,161 @@ export default function UIUXCampaignPage() {
       {/* CTA Section */}
       <CompetitionCTA />
       
-             <Dialog open={open} onOpenChange={setOpen}>
-         <DialogContent className="max-w-2xl w-full py-6 sm:py-8 px-4 sm:px-6" style={{ backgroundColor: '#fefcfd' }}>
-                     <DialogHeader>
+                                       <Dialog open={open} onOpenChange={setOpen}>
+          <DialogContent className="max-w-2xl w-full max-h-[80vh] flex flex-col" style={{ backgroundColor: '#fefcfd' }}>
+                      <DialogHeader className="flex-shrink-0 pb-4">
              <DialogTitle className="text-black text-lg sm:text-xl lg:text-2xl" style={{ fontFamily: 'Playfair Display, serif' }}>Register for Scalixity UI/UX Competition</DialogTitle>
              <DialogDescription className="text-gray-900 text-sm sm:text-base" style={{ fontFamily: 'Playfair Display, serif' }}>Fill the form below to participate in the competition.</DialogDescription>
            </DialogHeader>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            {loading ? (
-              <div className="text-center py-8">
-                <div className="text-gray-500">Loading form...</div>
-              </div>
-            ) : error ? (
-              <div className="text-center py-8">
-                <div className="text-red-500">{error}</div>
-                <Button 
-                  type="button" 
-                  onClick={fetchCampaignQuestions}
-                  className="mt-4 bg-amber-600 hover:bg-amber-700 text-white"
-                >
-                  Retry
-                </Button>
-              </div>
-            ) : questions.length === 0 ? (
-              <div className="text-center py-8">
-                <div className="text-gray-500">No form questions available.</div>
-              </div>
-                         ) : (
-               <div className="space-y-3 sm:space-y-4">
-                 {questions.map((question) => {
-          
-                   return (
-                   <div key={question.id}>
-                     <Label htmlFor={`question_${question.id}`} style={{ fontFamily: 'Playfair Display, serif' }}>
-                       {question.label}
-                     </Label>
-                    
-                                         {question.type === 'short' && question.label.toLowerCase().includes('email') && (
-                       <Input 
-                         id={`question_${question.id}`}
-                         type="email"
-                         placeholder="you@example.com"
-                         {...register(`question_${question.id}`, { required: `${question.label} is required` })}
-                       />
-                     )}
-                     
-                     {question.type === 'short' && question.label.toLowerCase().includes('phone') && (
-                       <Input 
-                         id={`question_${question.id}`}
-                         type="tel"
-                         placeholder="Phone Number"
-                         {...register(`question_${question.id}`, { required: `${question.label} is required` })}
-                       />
-                     )}
-                     
-                     {question.type === 'short' && !question.label.toLowerCase().includes('email') && !question.label.toLowerCase().includes('phone') && (
-                       <Input 
-                         id={`question_${question.id}`}
-                         placeholder={`Enter ${question.label.toLowerCase()}...`}
-                         {...register(`question_${question.id}`, { required: `${question.label} is required` })}
-                       />
-                     )}
-                     
-                     {question.type === 'paragraph' && (
-                       <Textarea 
-                         id={`question_${question.id}`}
-                         placeholder={`Tell us about ${question.label.toLowerCase()}...`}
-                         {...register(`question_${question.id}`, { required: `${question.label} is required` })}
-                       />
-                     )}
-                    
-                                         {question.type === 'select' && question.options && question.options.length > 0 && (
-                       <select 
-                         id={`question_${question.id}`}
-                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                         {...register(`question_${question.id}`, { required: `${question.label} is required` })}
-                       >
-                         <option value="">Select {question.label.toLowerCase()}</option>
-                         {question.options.map((option, optionIndex) => (
-                           <option key={optionIndex} value={option}>
-                             {option}
-                           </option>
-                         ))}
-                       </select>
-                     )}
-                    
-                    {question.type === 'checkbox' && (
-                      <div className="flex items-center space-x-2">
-                        <Checkbox 
-                          id={`question_${question.id}`}
-                          {...register(`question_${question.id}`, { required: `You must agree to ${question.label}` })}
-                        />
-                        <Label htmlFor={`question_${question.id}`} className="text-xs" style={{ fontFamily: 'Playfair Display, serif' }}>
-                          {question.label}
-                        </Label>
-                      </div>
-                    )}
-                    
-                                         {errors[`question_${question.id}`] && (
-                       <span className="text-destructive text-xs">
-                         {errors[`question_${question.id}`]?.message as string}
-                       </span>
-                     )}
+                      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-1 min-h-0">
+             {loading ? (
+               <div className="text-center py-8 flex-1">
+                 <div className="text-gray-500">Loading form...</div>
+               </div>
+             ) : isSuccess ? (
+               <div className="text-center py-8 flex-1 flex flex-col items-center justify-center">
+                 <div className="text-6xl mb-4">🎉</div>
+                 <div className="text-2xl font-bold text-green-600 mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>
+                   Registration Successful!
+                 </div>
+                 <div className="text-gray-600 text-center max-w-md" style={{ fontFamily: 'Playfair Display, serif' }}>
+                   You have successfully registered for the Scalixity UI/UX Competition. We will contact you soon with further details.
+                 </div>
+               </div>
+             ) : error ? (
+               <div className="text-center py-8 flex-1">
+                 <div className="text-red-500">{error}</div>
+                 <Button 
+                   type="button" 
+                   onClick={fetchCampaignQuestions}
+                   className="mt-4 bg-amber-600 hover:bg-amber-700 text-white"
+                 >
+                   Retry
+                 </Button>
+               </div>
+                           ) : questions.length === 0 ? (
+                <div className="text-center py-8 flex-1">
+                  <div className="text-gray-500">No form questions available.</div>
+                </div>
+                           ) : (
+                                  <div className="flex flex-col flex-1 min-h-0">
+                    <div className="flex-1 dialog-scrollable space-y-4 px-6 pb-4" style={{ maxHeight: 'calc(80vh - 200px)' }}>
+                     {questions.map((question) => {
+           
+                       return (
+                       <div key={question.id}>
+                         <Label htmlFor={`question_${question.id}`} style={{ fontFamily: 'Playfair Display, serif' }}>
+                           {question.label}
+                         </Label>
+                        
+                                           {question.type === 'short' && question.label.toLowerCase().includes('email') && (
+                           <Input 
+                             id={`question_${question.id}`}
+                             type="email"
+                             placeholder="you@example.com"
+                             {...register(`question_${question.id}`, { required: `${question.label} is required` })}
+                           />
+                         )}
+                         
+                         {question.type === 'short' && question.label.toLowerCase().includes('phone') && (
+                           <Input 
+                             id={`question_${question.id}`}
+                             type="tel"
+                             placeholder="Phone Number"
+                             {...register(`question_${question.id}`, { required: `${question.label} is required` })}
+                           />
+                         )}
+                         
+                         {question.type === 'short' && !question.label.toLowerCase().includes('email') && !question.label.toLowerCase().includes('phone') && (
+                           <Input 
+                             id={`question_${question.id}`}
+                             placeholder={`Enter ${question.label.toLowerCase()}...`}
+                             {...register(`question_${question.id}`, { required: `${question.label} is required` })}
+                           />
+                         )}
+                         
+                         {question.type === 'paragraph' && (
+                           <Textarea 
+                             id={`question_${question.id}`}
+                             placeholder={`Tell us about ${question.label.toLowerCase()}...`}
+                             {...register(`question_${question.id}`, { required: `${question.label} is required` })}
+                           />
+                         )}
+                        
+                                           {question.type === 'multiple' && question.options && question.options.length > 0 && (
+                           <div className="space-y-2">
+                             {question.options.map((option, optionIndex) => (
+                               <div key={optionIndex} className="flex items-center space-x-2">
+                                 <input 
+                                   type="radio" 
+                                   id={`question_${question.id}_option_${optionIndex}`}
+                                   value={option}
+                                   {...register(`question_${question.id}`, { required: `${question.label} is required` })}
+                                   className="w-4 h-4 text-amber-600 bg-gray-100 border-gray-300 focus:ring-amber-500"
+                                 />
+                                 <Label htmlFor={`question_${question.id}_option_${optionIndex}`} className="text-sm" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                   {option}
+                                 </Label>
+                               </div>
+                             ))}
+                           </div>
+                         )}
+                        
+                        {question.type === 'checkbox' && question.options && question.options.length > 0 && (
+                          <div className="space-y-2">
+                            {question.options.map((option, optionIndex) => (
+                              <div key={optionIndex} className="flex items-center space-x-2">
+                                <input 
+                                  type="checkbox" 
+                                  id={`question_${question.id}_option_${optionIndex}`}
+                                  value={option}
+                                  checked={checkboxValues[`question_${question.id}`]?.includes(option) || false}
+                                  onChange={(e) => handleCheckboxChange(question.id, option, e.target.checked)}
+                                  className="w-4 h-4 text-amber-600 bg-gray-100 border-gray-300 rounded focus:ring-amber-500"
+                                />
+                                <Label htmlFor={`question_${question.id}_option_${optionIndex}`} className="text-sm" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                  {option}
+                                </Label>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        
+                        {question.type === 'checkbox' && (!question.options || question.options.length === 0) && (
+                          <div className="flex items-center space-x-2">
+                            <Checkbox 
+                              id={`question_${question.id}`}
+                              {...register(`question_${question.id}`, { required: `You must agree to ${question.label}` })}
+                            />
+                            <Label htmlFor={`question_${question.id}`} className="text-xs" style={{ fontFamily: 'Playfair Display, serif' }}>
+                              {question.label}
+                            </Label>
+                          </div>
+                        )}
+                        
+                                           {errors[`question_${question.id}`] && (
+                             <span className="text-destructive text-xs">
+                               {errors[`question_${question.id}`]?.message as string}
+                             </span>
+                           )}
+                         </div>
+                       );
+                     })}
                    </div>
-                 );
-               })}
-                
-                <Button type="submit" className="w-full mt-4 sm:mt-6 bg-amber-700 text-white py-3 sm:py-4 text-sm sm:text-base" style={{ fontFamily: 'Playfair Display, serif' }} disabled={isSubmitting}>
-                  {isSubmitting ? "Submitting..." : "Submit Registration"}
-                </Button>
-              </div>
-            )}
-          </form>
+                   
+                                                            <div className="flex-shrink-0 pt-4 border-t px-6 pb-6 mt-auto">
+                       <Button 
+                         type="submit" 
+                         className="w-full bg-amber-700 text-white py-3 sm:py-4 text-sm sm:text-base" 
+                         style={{ fontFamily: 'Playfair Display, serif' }} 
+                         disabled={isSubmitting || isSuccess}
+                       >
+                         {isSubmitting ? "Submitting..." : isSuccess ? "Registration Successful!" : "Submit Registration"}
+                       </Button>
+                     </div>
+                 </div>
+               )}
+             </form>
         </DialogContent>
       </Dialog>
     </div>

@@ -118,22 +118,59 @@ router.get('/campaigns/:id/questions', async (req, res) => {
   try {
     const { id } = req.params;
     const pool = req.app.locals.pool;
+    
+    // First, let's clean up any malformed options data
+    const [updateResult] = await pool.execute(
+      `UPDATE campaign_questions SET options = NULL WHERE campaign_id = ? AND (options = '' OR options = 'null' OR options = '[]')`,
+      [id]
+    );
+    
     const [rows] = await pool.execute(
       `SELECT id, campaign_id, question_order, label, type, options FROM campaign_questions WHERE campaign_id = ? ORDER BY question_order ASC`,
       [id]
     );
+    
+    console.log('Raw database rows:', rows);
     // Parse options JSON safely
     const questions = rows.map(q => {
+      console.log(`Processing question ${q.id}:`, q);
+      console.log(`Raw options for question ${q.id}:`, q.options);
+      console.log(`Options type:`, typeof q.options);
+      
+      // Special check for the problematic question
+      if (q.id === 10) {
+        console.log('=== SPECIAL DEBUG FOR QUESTION 10 ===');
+        console.log('Raw options:', q.options);
+        console.log('Options type:', typeof q.options);
+        console.log('Options length:', q.options ? q.options.length : 'null');
+        if (typeof q.options === 'string') {
+          console.log('Options string length:', q.options.length);
+          console.log('Options string chars:', Array.from(q.options).map(c => c.charCodeAt(0)));
+        }
+        console.log('=== END SPECIAL DEBUG ===');
+      }
+      
       let opts = [];
-      if (q.options) {
+      if (q.options && q.options !== null && q.options !== 'null' && q.options !== '') {
         try {
-          opts = JSON.parse(q.options);
+          // Check if it's already an array (MySQL might have parsed it)
+          if (Array.isArray(q.options)) {
+            opts = q.options;
+            console.log(`Options already parsed for question ${q.id}:`, opts);
+          } else {
+            opts = JSON.parse(q.options);
+            console.log(`Parsed options for question ${q.id}:`, opts);
+          }
           if (!Array.isArray(opts)) opts = [];
-        } catch {
+        } catch (error) {
+          console.error(`Failed to parse options for question ${q.id}:`, error);
+          console.error(`Raw options that failed:`, q.options);
           opts = [];
         }
       }
-      return { ...q, options: opts };
+      const result = { ...q, options: opts };
+      console.log(`Final question ${q.id}:`, result);
+      return result;
     });
     res.status(200).json(questions);
   } catch (error) {
@@ -156,9 +193,14 @@ router.post('/campaigns/:id/questions', async (req, res) => {
     // Insert new questions
     for (let i = 0; i < questions.length; i++) {
       const q = questions[i];
+      // Only save options for question types that need them
+      let optionsJson = null;
+      if ((q.type === 'multiple' || q.type === 'checkbox') && q.options && q.options.length > 0) {
+        optionsJson = JSON.stringify(q.options);
+      }
       await pool.execute(
         `INSERT INTO campaign_questions (campaign_id, question_order, label, type, options) VALUES (?, ?, ?, ?, ?)`,
-        [id, i, q.label, q.type, q.options ? JSON.stringify(q.options) : null]
+        [id, i, q.label, q.type, optionsJson]
       );
     }
     res.status(200).json({ message: 'Questions saved successfully' });
