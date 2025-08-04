@@ -45,6 +45,7 @@ function formatISTDateTime(dateString: string) {
 
 export default function DashboardCampaignPage() {
   const [open, setOpen] = useState(false);
+  const [editingCampaign, setEditingCampaign] = useState<Campaign | null>(null);
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -87,6 +88,52 @@ export default function DashboardCampaignPage() {
     setForm({ ...form, type: value });
   };
 
+  const openAddModal = () => {
+    setEditingCampaign(null);
+    setForm({ name: "", description: "", image_url: "", startDate: "", startTime: "00:00", endDate: "", endTime: "12:00", type: "Competition" });
+    setOpen(true);
+  };
+
+  const openEditModal = (campaign: Campaign) => {
+    setEditingCampaign(campaign);
+    const startDate = campaign.start_date ? campaign.start_date.split('T')[0] : "";
+    const endDate = campaign.end_date ? campaign.end_date.split('T')[0] : "";
+    setForm({
+      name: campaign.name,
+      description: campaign.description || "",
+      image_url: campaign.image_url || "",
+      startDate,
+      startTime: "00:00",
+      endDate,
+      endTime: "12:00",
+      type: campaign.type,
+    });
+    setOpen(true);
+  };
+
+  const deleteCampaign = async (campaignId: number) => {
+    if (!confirm("Are you sure you want to delete this campaign? This action cannot be undone.")) {
+      return;
+    }
+    
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`${baseURL}/api/campaigns/${campaignId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || "Failed to delete campaign");
+      }
+      fetchCampaigns();
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Error deleting campaign");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -95,8 +142,14 @@ export default function DashboardCampaignPage() {
       // Format dates as YYYY-MM-DD for database
       const start = form.startDate;
       const end = form.endDate;
-      const response = await fetch(`${baseURL}/api/campaigns`, {
-        method: "POST",
+      
+      const method = editingCampaign ? "PUT" : "POST";
+      const url = editingCampaign 
+        ? `${baseURL}/api/campaigns/${editingCampaign.id}` 
+        : `${baseURL}/api/campaigns`;
+      
+      const response = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name,
@@ -109,13 +162,14 @@ export default function DashboardCampaignPage() {
       });
       if (!response.ok) {
         const errData = await response.json();
-        throw new Error(errData.error || "Failed to create campaign");
+        throw new Error(errData.error || `Failed to ${editingCampaign ? 'update' : 'create'} campaign`);
       }
       fetchCampaigns();
       setOpen(false);
+      setEditingCampaign(null);
       setForm({ name: "", description: "", image_url: "", startDate: "", startTime: "00:00", endDate: "", endTime: "12:00", type: "Competition" });
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Error creating campaign");
+      setError(err instanceof Error ? err.message : `Error ${editingCampaign ? 'updating' : 'creating'} campaign`);
     } finally {
       setLoading(false);
     }
@@ -126,7 +180,7 @@ export default function DashboardCampaignPage() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold text-black">Campaigns</h1>
-          <Button onClick={() => setOpen(true)} className="px-6 py-2 text-base">Add Campaign</Button>
+          <Button onClick={openAddModal} className="px-6 py-2 text-base">Add Campaign</Button>
         </div>
         <Card className="bg-white">
           <CardHeader>
@@ -166,6 +220,22 @@ export default function DashboardCampaignPage() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(c.created_at).toLocaleDateString()}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm">
                           <div className="flex gap-2">
+                            <Button 
+                              size="sm" 
+                              variant="outline" 
+                              onClick={() => openEditModal(c)}
+                              className="text-blue-600 hover:text-blue-800"
+                            >
+                              Edit
+                            </Button>
+                            <Button 
+                              size="sm" 
+                              variant="destructive" 
+                              onClick={() => deleteCampaign(c.id)}
+                              className="text-red-600 hover:text-red-800"
+                            >
+                              Delete
+                            </Button>
                             <Button size="sm" variant="outline" onClick={() => router.push(`/dashboard/campaign/${c.id}/form`)}>
                               Edit Form
                             </Button>
@@ -187,8 +257,12 @@ export default function DashboardCampaignPage() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-md w-full bg-white border border-primary/30">
           <DialogHeader>
-            <DialogTitle className="text-black">Add Campaign</DialogTitle>
-            <DialogDescription className="text-gray-900">Enter campaign details below.</DialogDescription>
+            <DialogTitle className="text-black">
+              {editingCampaign ? "Edit Campaign" : "Add Campaign"}
+            </DialogTitle>
+            <DialogDescription className="text-gray-900">
+              {editingCampaign ? "Update campaign details below." : "Enter campaign details below."}
+            </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="space-y-4 mt-2">
             <div>
@@ -242,7 +316,12 @@ export default function DashboardCampaignPage() {
                 </SelectContent>
               </Select>
             </div>
-            <Button type="submit" className="w-full mt-4" disabled={loading}>Create Campaign</Button>
+            <Button type="submit" className="w-full mt-4" disabled={loading}>
+              {editingCampaign ? "Update Campaign" : "Create Campaign"}
+            </Button>
+            {error && (
+              <div className="text-red-500 text-sm mt-2">{error}</div>
+            )}
           </form>
         </DialogContent>
       </Dialog>
