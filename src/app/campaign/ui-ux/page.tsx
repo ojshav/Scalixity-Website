@@ -56,7 +56,7 @@ export default function UIUXCampaignPage() {
       const response = await fetch(`${baseURL}/api/campaigns/1/questions`);
       if (!response.ok) throw new Error("Failed to fetch form questions");
       const data = await response.json();
-      console.log('Fetched questions:', data);
+      
    
       setQuestions(data);
     } catch (err: unknown) {
@@ -84,12 +84,11 @@ export default function UIUXCampaignPage() {
   };
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
-    console.log('Form data being submitted:', data);
-    console.log('Checkbox values:', checkboxValues);
+
     
     // Merge form data with checkbox values
     const mergedData = { ...data, ...checkboxValues };
-    console.log('Merged data:', mergedData);
+
     
     try {
       // Generate a simple visitor ID (in production, you might want to use a proper tracking system)
