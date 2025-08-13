@@ -272,6 +272,9 @@ export function SiteHeader() {
             <Link href="/campaign" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
               Campaign
             </Link>
+            <Link href="/scalixity" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
+              UK Scalixity
+            </Link>
           </nav>
 
           {/* Right side - Contact Button and Mobile Menu Toggle */}
@@ -429,6 +432,10 @@ export function SiteHeader() {
               <Link href="/campaign" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 UI/UX Competition
               </Link>
+              <Link href="/scalixity" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
+                UK Scalixity
+              </Link>
+              
             </div>
 
             {/* Mobile Contact Button */}
