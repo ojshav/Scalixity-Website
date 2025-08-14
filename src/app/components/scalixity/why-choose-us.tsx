@@ -3,8 +3,11 @@
 import * as React from "react";
 import { motion, useInView } from "framer-motion";
 import { Building2, PoundSterling, TrendingUp, Clock } from "lucide-react";
+import { Button } from "@/src/app/components/ui/button";
+import { usePopup } from "@/src/app/hooks/use-popup";
 
 export default function WhyChooseUs() {
+  const { openPopup } = usePopup();
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -72,7 +75,7 @@ export default function WhyChooseUs() {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16 sm:mb-20 lg:mb-24">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-amber-600" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Why Choose Us
+            Why Partner with Scalixity
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-900 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
               UK-focused technology solutions designed for British businesses
@@ -81,7 +84,7 @@ export default function WhyChooseUs() {
 
           {/* Features Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <motion.div
                 key={feature.title}
                 variants={itemVariants}
@@ -135,10 +138,40 @@ export default function WhyChooseUs() {
               <h3 className="text-2xl sm:text-3xl font-bold text-amber-600 mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                 Built for the UK Market
               </h3>
-              <p className="text-lg sm:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+              <p className="text-lg sm:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-8" style={{ fontFamily: 'Playfair Display, serif' }}>
                 We understand the unique challenges and opportunities facing UK businesses. Our solutions are tailored to meet local regulations, 
                 business practices, and market demands, ensuring you get technology that works seamlessly in the British business environment.
               </p>
+              
+              <motion.div
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -2
+                }}
+                whileTap={{ 
+                  scale: 0.95,
+                  y: 0
+                }}
+                transition={{ 
+                  duration: 0.3,
+                  ease: "easeOut"
+                }}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              >
+                <Button 
+                  onClick={openPopup}
+                  className="bg-black hover:bg-gray-800 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 hover:shadow-lg"
+                >
+                  Start Your UK Journey
+                </Button>
+                
+                <Button 
+                  asChild
+                  className="bg-[#FFC145] hover:bg-[#FFB833] text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 hover:shadow-lg"
+                >
+                  <a href="https://scalixity.com/blog/future-of-generative-ai">Explore more</a>
+                </Button>
+              </motion.div>
             </motion.div>
           </motion.div>
         </motion.div>

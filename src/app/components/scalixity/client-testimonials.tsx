@@ -4,7 +4,6 @@ import * as React from "react";
 import { motion, useInView } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import { Button } from "@/src/app/components/ui/button";
-import Link from "next/link";
 import { usePopup } from "@/src/app/hooks/use-popup";
 
 export default function ClientTestimonials() {
@@ -67,7 +66,7 @@ export default function ClientTestimonials() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 xl:py-32" style={{ backgroundColor: "#fefcfd" }}>
+    <section className="py-16 sm:py-20 lg:py-24 xl:py-32" style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -79,7 +78,7 @@ export default function ClientTestimonials() {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16 sm:mb-20 lg:mb-24">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-amber-600" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Client Testimonials
+            Scalixity Success Stories
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-900 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
               Trusted by businesses across the UK and internationally
@@ -135,7 +134,7 @@ export default function ClientTestimonials() {
 
                   {/* Testimonial Content */}
                   <blockquote className="text-sm text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-                    "{testimonial.content}"
+                    &ldquo;{testimonial.content}&rdquo;
                   </blockquote>
 
                   {/* Bottom-Right Faded Quote Icon */}
@@ -166,7 +165,7 @@ export default function ClientTestimonials() {
                 International Clients
               </h3>
               <p className="text-lg sm:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
-                While we're based in the UK, our solutions serve businesses worldwide. From London to Mumbai, 
+                While we&apos;re based in the UK, our solutions serve businesses worldwide. From London to Mumbai, 
                 we deliver technology that transcends borders while maintaining local compliance and support.
               </p>
               
@@ -195,12 +194,20 @@ export default function ClientTestimonials() {
                    duration: 0.3,
                    ease: "easeOut"
                  }}
+                 className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                >
                                 <Button 
                  onClick={openPopup}
-                 className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 text-lg font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50"
+                 className="bg-[#FFC145] hover:bg-[#FFB833] text-white px-8 py-3 text-lg font-semibold rounded-lg transition-all duration-300 hover:shadow-lg"
                >
                  Join Our Success Stories
+               </Button>
+               
+               <Button 
+                 asChild
+                 className="bg-black hover:bg-gray-800 text-white px-8 py-3 text-lg font-semibold rounded-lg transition-all duration-300 hover:shadow-lg"
+               >
+                 <a href="https://scalixity.com/industries">Explore</a>
                </Button>
                </motion.div>
             </motion.div>

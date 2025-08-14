@@ -58,7 +58,7 @@ export default function ContactForm() {
   ];
 
   return (
-    <section id="contact-form" className="py-16 sm:py-20 lg:py-24 xl:py-32" style={{ backgroundColor: "#fefcfd" }}>
+    <section id="contact-form" className="py-16 sm:py-20 lg:py-24 xl:py-32" style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -76,7 +76,7 @@ export default function ContactForm() {
               Book Your Free Strategy Call
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-900 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Ready to transform your business? Let's discuss your technology needs.
+              Ready to transform your business? Let&apos;s discuss your technology needs.
             </p>
           </motion.div>
 
@@ -222,17 +222,17 @@ export default function ContactForm() {
               <div className="space-y-8">
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
-                    Let's start a conversation
+                    Let&apos;s start a conversation
                   </h3>
                   <p className="text-lg text-gray-600 leading-relaxed mb-8" style={{ fontFamily: 'Playfair Display, serif' }}>
-                    Whether you're a startup looking to scale or an established business seeking digital transformation, 
-                    we're here to help. Our UK-based team provides local expertise with global reach.
+                    Whether you&apos;re a startup looking to scale or an established business seeking digital transformation, 
+                    we&apos;re here to help. Our UK-based team provides local expertise with global reach.
                   </p>
                 </div>
 
                 {/* Contact Methods */}
                 <div className="space-y-6">
-                  {contactInfo.map((info, index) => (
+                  {contactInfo.map((info) => (
                     <motion.div
                       key={info.title}
                       className="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-lg border border-gray-100"

@@ -38,9 +38,9 @@ export default function WhatWeDo() {
 
   const imageVariants = {
     float: {
-      y: [-10, 10, -10],
+      y: [-15, 15, -15],
       transition: {
-        duration: 6,
+        duration: 4,
         repeat: Infinity,
         ease: "easeInOut" as const
       }
@@ -54,7 +54,7 @@ export default function WhatWeDo() {
       benefit2: "Reduce manual tasks and increase productivity with AI-powered workflows",
       benefit3: "Get real-time insights and analytics to make data-driven decisions",
       icon: Settings,
-      image: "https://res.cloudinary.com/dxwspucxw/image/upload/v1755031965/Gemini_Generated_Image_lex7m5lex7m5lex7_om44x1.png",
+      image: "https://res.cloudinary.com/dxwspucxw/video/upload/v1755077898/A_20video_20of_20the_20provided_20image_2C_20with_20the_20background_20being_20white_20and_20adaptable._wxqdfy.mp4",
       imageAlt: "CRM Automation Solutions"
     },
     {
@@ -63,17 +63,17 @@ export default function WhatWeDo() {
       benefit2: "Optimize user experience with responsive design and fast loading",
       benefit3: "Integrate payment gateways and inventory management seamlessly",
       icon: ShoppingCart,
-      image: "https://res.cloudinary.com/dxwspucxw/image/upload/v1755033214/d57dc346-9020-4291-bfff-f7bc8047c6e6_qsogks.jpg",
+      image: "https://res.cloudinary.com/dxwspucxw/video/upload/v1755079686/A_20video_20of_20the_20provided_20image_2C_20with_20the_20background_20being_20white_20and_20adaptable.-2_dwmphw.mp4",
       imageAlt: "E-commerce Solutions"
     },
     {
-      title: "GPS Tracking",
-      benefit: "Real-time location monitoring for fleet and asset management",
-      benefit2: "Track vehicles, equipment, and personnel with pinpoint accuracy",
-      benefit3: "Generate detailed reports and optimize routes for cost savings",
+      title: "Custom tech Solutions",
+      benefit: "Tailored software development for your unique business needs",
+      benefit2: "Scalable applications built with modern technologies and best practices",
+      benefit3: "Ongoing support and maintenance to ensure long-term success",
       icon: MapPin,
       image: "https://res.cloudinary.com/dxwspucxw/image/upload/v1755033636/Gemini_Generated_Image_1slmp31slmp31slm_ef34e4.png",
-      imageAlt: "GPS Tracking Solutions"
+      imageAlt: "Custom Software Solutions"
     }
   ];
 
@@ -90,7 +90,7 @@ export default function WhatWeDo() {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16 sm:mb-20 lg:mb-24">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-amber-600" style={{ fontFamily: 'Playfair Display, serif' }}>
-              What We Do
+            What Scalixity Offers
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-900 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
               Comprehensive technology solutions designed for UK businesses
@@ -142,13 +142,21 @@ export default function WhatWeDo() {
                         duration: 0.3,
                         ease: "easeOut"
                       }}
+                      className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                     >
-                                          <Button 
-                      onClick={openPopup}
-                      className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 text-base font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50"
-                    >
-                      Get in Touch
-                    </Button>
+                      <Button 
+                        asChild
+                        className="bg-[#FFC145] hover:bg-[#FFB833] text-white px-6 py-2 text-base font-semibold rounded-lg transition-all duration-300 hover:shadow-lg"
+                      >
+                        <Link href="/work">Explore more</Link>
+                      </Button>
+                      
+                      <Button 
+                        onClick={openPopup}
+                        className="bg-black hover:bg-gray-800 text-white px-6 py-2 text-base font-semibold rounded-lg transition-all duration-300 hover:shadow-lg"
+                      >
+                        Get in Touch
+                      </Button>
                     </motion.div>
                   </div>
                 </div>
@@ -165,18 +173,22 @@ export default function WhatWeDo() {
                       transition: { duration: 0.4, ease: "easeOut" }
                     }}
                   >
-                    <div className="relative overflow-hidden rounded-2xl shadow-2xl group">
-                      <motion.img
-                        src={card.image}
-                        alt={card.imageAlt}
-                        className="w-full h-64 sm:h-80 lg:h-96 object-cover"
-                        whileHover={{ 
-                          scale: 1.1,
-                          transition: { duration: 0.4, ease: "easeOut" }
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/10 transition-all duration-300"></div>
-                    </div>
+                    <Link href="/work" className="block cursor-pointer">
+                      <div className="relative overflow-hidden rounded-2xl shadow-2xl group">
+                        <motion.img
+                          src={card.image}
+                          alt={card.imageAlt}
+                          className="w-full h-80 sm:h-96 lg:h-[28rem] xl:h-[32rem] object-cover drop-shadow-2xl"
+                          whileHover={{ 
+                            scale: 1.1,
+                            transition: { duration: 0.4, ease: "easeOut" }
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/10 transition-all duration-300"></div>
+                        {/* Constant Glow Effect */}
+                        <div className="absolute inset-0 rounded-2xl shadow-[0_0_30px_rgba(217,119,6,0.3)] pointer-events-none"></div>
+                      </div>
+                    </Link>
                   </motion.div>
                 </div>
               </motion.div>
