@@ -35,11 +35,11 @@ export function ScalixityHero() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative overflow-hidden flex md:items-center md:justify-center min-h-0 md:min-h-screen"
     >
       {/* Wave Animation Background */}
       <motion.div 
-        className="absolute bottom-10 sm:bottom-16 md:bottom-20 left-0 z-0 pointer-events-none select-none"
+        className="absolute bottom-10 sm:bottom-16 md:bottom-20 left-0 z-0 pointer-events-none select-none md:hidden"
         variants={itemVariants}
         initial="hidden"
         animate="visible"
@@ -52,7 +52,7 @@ export function ScalixityHero() {
       </motion.div>
       {/* Content Container */}
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 mx-auto relative z-10">
-        <div className="py-16 sm:py-20 md:py-24 grid grid-cols-1 md:grid-cols-2 items-center gap-8 sm:gap-10 md:gap-12 max-w-[1440px] mx-auto">
+        <div className="pt-10 pb-6 sm:py-20 md:py-24 grid grid-cols-1 md:grid-cols-2 items-center gap-8 sm:gap-10 md:gap-12 max-w-[1440px] mx-auto">
           {/* Content Column - Left Side */}
           <motion.div
             className="space-y-6 text-center md:text-left max-w-2xl mx-auto md:mx-0"
