@@ -52,7 +52,7 @@ export function ScalixityHero() {
       </motion.div>
       {/* Content Container */}
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 mx-auto relative z-10">
-        <div className="py-16 sm:py-20 md:py-24 grid grid-cols-1 items-center gap-8 sm:gap-10 md:gap-12 max-w-[1200px] mx-auto">
+        <div className="py-16 sm:py-20 md:py-24 grid grid-cols-1 md:grid-cols-2 items-center gap-8 sm:gap-10 md:gap-12 max-w-[1440px] mx-auto">
           {/* Content Column - Left Side */}
           <motion.div
             className="space-y-6 text-center md:text-left max-w-2xl mx-auto md:mx-0"
@@ -117,11 +117,11 @@ export function ScalixityHero() {
             initial="hidden"
             animate="visible"
           >
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center md:justify-end">
               <img
                 src="https://res.cloudinary.com/dxwspucxw/image/upload/v1755492148/d72df7f738f7fc142ff033c76437bf562f94ae48_ste57l.png"
                 alt="Scalixity Tech Solutions"
-                className="object-contain w-full max-w-[360px] sm:max-w-[480px] md:max-w-[640px] lg:max-w-[720px] h-auto"
+                className="object-contain w-full max-w-[360px] sm:max-w-[480px] md:max-w-[680px] lg:max-w-[840px] xl:max-w-[960px] h-auto"
               />
             </div>
           </motion.div>
