@@ -17,6 +17,12 @@ const QUESTION_TYPES = [
   { value: "checkbox", label: "Checkboxes" },
 ];
 
+interface QuestionData {
+  label: string;
+  type: string;
+  options?: string[];
+}
+
 interface Question {
   id: string;
   label: string;
@@ -45,7 +51,7 @@ export default function CampaignFormBuilder() {
       .then((data) => {
         // Assign a random id to each question for UI tracking if not present
         setQuestions(
-          data.map((q: any) => ({
+          data.map((q: QuestionData) => ({
             id: Math.random().toString(36).substr(2, 9),
             label: q.label,
             type: q.type,

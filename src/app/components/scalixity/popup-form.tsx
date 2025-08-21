@@ -53,7 +53,7 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
       y: 0,
       transition: {
         duration: 0.4,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     },
     exit: { 
@@ -62,7 +62,7 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
       y: 50,
       transition: {
         duration: 0.3,
-        ease: "easeIn"
+        ease: "easeIn" as const
       }
     }
   };
@@ -74,7 +74,7 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     }
   };

@@ -4,7 +4,6 @@ import * as React from "react";
 import { motion, useInView } from "framer-motion";
 import { Settings, ShoppingCart, MapPin } from "lucide-react";
 import { Button } from "@/src/app/components/ui/button";
-import Link from "next/link";
 import { usePopup } from "@/src/app/hooks/use-popup";
 
 export default function WhatWeDo() {
@@ -36,16 +35,7 @@ export default function WhatWeDo() {
     }
   };
 
-  const imageVariants = {
-    float: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut" as const
-      }
-    }
-  };
+
 
   const cards = [
     {
@@ -54,7 +44,7 @@ export default function WhatWeDo() {
       benefit2: "Reduce manual tasks and increase productivity with AI-powered workflows",
       benefit3: "Get real-time insights and analytics to make data-driven decisions",
       icon: Settings,
-      image: "https://res.cloudinary.com/dxwspucxw/image/upload/v1755031965/Gemini_Generated_Image_lex7m5lex7m5lex7_om44x1.png",
+      image: "https://res.cloudinary.com/dxwspucxw/image/upload/v1755492180/6d7573ff22f8ac53977db859067168d5e2b50203_hk2sli.png",
       imageAlt: "CRM Automation Solutions"
     },
     {
@@ -63,23 +53,37 @@ export default function WhatWeDo() {
       benefit2: "Optimize user experience with responsive design and fast loading",
       benefit3: "Integrate payment gateways and inventory management seamlessly",
       icon: ShoppingCart,
-      image: "https://res.cloudinary.com/dxwspucxw/image/upload/v1755033214/d57dc346-9020-4291-bfff-f7bc8047c6e6_qsogks.jpg",
+      image: "https://res.cloudinary.com/dxwspucxw/image/upload/v1755492218/1900800dab2e796ed09fd07754320cf472145861_xiwlu2.png",
       imageAlt: "E-commerce Solutions"
     },
     {
-      title: "GPS Tracking",
-      benefit: "Real-time location monitoring for fleet and asset management",
-      benefit2: "Track vehicles, equipment, and personnel with pinpoint accuracy",
-      benefit3: "Generate detailed reports and optimize routes for cost savings",
+      title: "Custom tech Solutions",
+      benefit: "Tailored software development for your unique business needs",
+      benefit2: "Scalable applications built with modern technologies and best practices",
+      benefit3: "Ongoing support and maintenance to ensure long-term success",
       icon: MapPin,
-      image: "https://res.cloudinary.com/dxwspucxw/image/upload/v1755033636/Gemini_Generated_Image_1slmp31slmp31slm_ef34e4.png",
-      imageAlt: "GPS Tracking Solutions"
+      image: "https://res.cloudinary.com/dxwspucxw/image/upload/v1755492169/5f0bafd00f4e0e3b31b751942c046110b75271ea_iuira2.png",
+      imageAlt: "Custom Software Solutions"
     }
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 xl:py-32 bg-white/80">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-16 sm:py-20 lg:py-24 xl:py-32 bg-[#F3F1EB]">
+      {/* Wave Animation Background */}
+      <motion.div 
+        className="absolute inset-0 z-0 top-[82rem]"
+        variants={itemVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        <img
+          src="https://res.cloudinary.com/dxwspucxw/image/upload/v1755492397/c64db3caaf991855741eb60d0246d83665bb85eb_y4uclc.png"
+          alt="Wave Animation"
+          className="w-full h-auto object-cover opacity-10 blur-sm"
+        />
+      </motion.div>
+      
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           variants={containerVariants}
@@ -87,10 +91,20 @@ export default function WhatWeDo() {
           animate={isInView ? "visible" : "hidden"}
           className="max-w-7xl mx-auto"
         >
+          {/* Get Started Button */}
+          <motion.div variants={itemVariants} className="text-center mb-8">
+            <Button 
+              onClick={openPopup}
+              className="bg-[#A8B2E7] hover:bg-[#9BA5D9] text-white px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
+            >
+              GET STARTED IN A MINUTE
+            </Button>
+          </motion.div>
+
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16 sm:mb-20 lg:mb-24">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-amber-600" style={{ fontFamily: 'Playfair Display, serif' }}>
-              What We Do
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-black" style={{ fontFamily: 'Playfair Display, serif' }}>
+            What Scalixity Offers
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-900 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
               Comprehensive technology solutions designed for UK businesses
@@ -104,18 +118,18 @@ export default function WhatWeDo() {
                 key={card.title}
                 variants={itemVariants}
                 className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ${
-                  index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                  index === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
                 {/* Content Side */}
                 <div className="flex-1 text-center lg:text-left">
                   <div className="mb-6">
                     <motion.div
-                      className="inline-flex items-center justify-center w-16 h-16 bg-amber-100 rounded-full mb-4"
+                      className="inline-flex items-center justify-center w-16 h-16 bg-[#A8B2E7] rounded-full mb-4"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <card.icon className="w-8 h-8 text-amber-600" />
+                      <card.icon className="w-8 h-8 text-white" />
                     </motion.div>
                     <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                       {card.title}
@@ -142,45 +156,43 @@ export default function WhatWeDo() {
                         duration: 0.3,
                         ease: "easeOut"
                       }}
+                      className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                     >
-                                          <Button 
-                      onClick={openPopup}
-                      className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 text-base font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/50"
-                    >
-                      Get in Touch
-                    </Button>
+                      <Button 
+                        asChild
+                        className="bg-[#F3F1EB] hover:bg-[#F3F1EB] text-black border border-black px-6 py-2 text-base font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
+                      >
+                        <a href="http://localhost:3000/work">Explore more</a>
+                      </Button>
+                      
+                      <Button 
+                        onClick={openPopup}
+                        className="bg-[#A8B2E7] hover:bg-[#9BA5D9] text-white px-6 py-2 text-base font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
+                      >
+                        Get in Touch
+                      </Button>
                     </motion.div>
                   </div>
                 </div>
 
                 {/* Image Side */}
                 <div className="flex-1">
-                  <motion.div
-                    className="relative"
-                    variants={imageVariants}
-                    animate="float"
-                    whileHover={{ 
-                      scale: 1.05,
-                      z: 20,
-                      transition: { duration: 0.4, ease: "easeOut" }
-                    }}
-                  >
-                    <div className="relative overflow-hidden rounded-2xl shadow-2xl group">
-                      <motion.img
+                  <div className="relative">
+                    <div className={`relative overflow-hidden ${
+                      index === 1 ? '' : 'rounded-3xl'
+                    }`}>
+                      <img
                         src={card.image}
                         alt={card.imageAlt}
-                        className="w-full h-64 sm:h-80 lg:h-96 object-cover"
-                        whileHover={{ 
-                          scale: 1.1,
-                          transition: { duration: 0.4, ease: "easeOut" }
-                        }}
+                        className="w-full h-80 sm:h-96 lg:h-[28rem] xl:h-[32rem] object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/10 transition-all duration-300"></div>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </motion.div>
             ))}
+            
+
           </div>
         </motion.div>
       </div>
