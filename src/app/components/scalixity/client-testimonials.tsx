@@ -67,8 +67,8 @@ export default function ClientTestimonials() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 xl:py-32 bg-[#A8B2E7]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#A8B2E7]">
+      <div className="container mx-auto px-3 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           variants={containerVariants}
@@ -77,39 +77,39 @@ export default function ClientTestimonials() {
           className="max-w-7xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16 sm:mb-20 lg:mb-24">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-black" style={{ fontFamily: 'Playfair Display, serif' }}>
+          <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-12 lg:mb-20">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-black" style={{ fontFamily: 'Playfair Display, serif' }}>
             Scalixity Success Stories
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-900 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-900 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed px-2 sm:px-0" style={{ fontFamily: 'Playfair Display, serif' }}>
               Trusted by businesses across the UK and internationally
             </p>
           </motion.div>
 
           {/* Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-10">
             {testimonials.map((testimonial) => (
               <motion.div
                 key={testimonial.name}
                 variants={itemVariants}
                 className="group"
                 whileHover={{ 
-                  y: -8,
+                  y: -4,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
               >
-                <div className="bg-white rounded-xl p-6 sm:p-8 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden">
+                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 lg:p-8 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden">
                   {/* Top-Left Colored Quote Icon */}
                   <motion.div
-                    className="absolute top-4 left-4 w-12 h-12 rounded-full flex items-center justify-center bg-[#C47BD1]"
+                    className="absolute top-3 left-3 sm:top-4 sm:left-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center bg-[#C47BD1]"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
-                    <Quote className="w-6 h-6 text-white" />
+                    <Quote className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </motion.div>
 
                   {/* Client Info - Top Right */}
-                  <div className="ml-16 mb-3">
-                    <h4 className="font-bold text-gray-900 text-base" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <div className="ml-12 sm:ml-16 mb-2 sm:mb-3">
+                    <h4 className="font-bold text-gray-900 text-sm sm:text-base" style={{ fontFamily: 'Playfair Display, serif' }}>
                       {testimonial.name}
                     </h4>
                     <p className="text-xs text-gray-600" style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -118,25 +118,25 @@ export default function ClientTestimonials() {
                   </div>
 
                   {/* Rating Stars */}
-                  <div className="flex items-center mb-4 gap-2">
+                  <div className="flex items-center mb-3 sm:mb-4 gap-1 sm:gap-2">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <div key={i}>
-                        <Star className="w-7 h-7 text-amber-500 fill-current" />
+                        <Star className="w-5 h-5 sm:w-7 sm:h-7 text-amber-500 fill-current" />
                       </div>
                     ))}
                   </div>
 
                   {/* Testimonial Content */}
-                  <blockquote className="text-sm text-gray-700 leading-relaxed mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <blockquote className="text-xs sm:text-sm text-gray-700 leading-relaxed mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                     &ldquo;{testimonial.content}&rdquo;
                   </blockquote>
 
                   {/* Bottom-Right Faded Quote Icon */}
                   <motion.div
-                    className="absolute bottom-4 right-4 text-gray-300 opacity-40"
+                    className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 text-gray-300 opacity-40"
                     whileHover={{ scale: 1.1, opacity: 0.6 }}
                   >
-                    <Quote className="w-8 h-8" />
+                    <Quote className="w-6 h-6 sm:w-8 sm:h-8" />
                   </motion.div>
                 </div>
               </motion.div>
@@ -146,11 +146,11 @@ export default function ClientTestimonials() {
           {/* CTA Button */}
           <motion.div 
             variants={itemVariants}
-            className="text-center mt-48"
+            className="text-center mt-16 sm:mt-24 lg:mt-32 xl:mt-48"
           >
             <Button 
               onClick={openPopup}
-              className="bg-[#A8B2E7] hover:bg-[#A8B2E7] text-white px-8 py-4 text-lg font-semibold rounded-full"
+              className="w-full sm:w-auto bg-[#A8B2E7] hover:bg-[#A8B2E7] text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full"
             >
            Join Our Success Stories
             </Button>
