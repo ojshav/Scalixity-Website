@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 function AdminLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

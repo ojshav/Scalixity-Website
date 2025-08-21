@@ -10,10 +10,9 @@ export default function ScalixityCTA() {
 
   return (
     <section 
-      className="py-12 px-4 bg-white"
-      style={{ backgroundColor: "#FFFFFF" }}
+      className="py-12 px-4 bg-[#F3F1EB]"
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8 max-w-6xl mx-auto">
           
           {/* Left Side - Text Content */}
@@ -25,22 +24,21 @@ export default function ScalixityCTA() {
               Ready to Scale Your Business?
             </h2>
             
-            <p className="text-lg sm:text-xl text-amber-600 mb-8 leading-relaxed font-medium max-w-xl lg:max-w-none">
+            <p className="text-lg sm:text-xl text-black mb-8 leading-relaxed font-medium max-w-xl lg:max-w-none">
               Get affordable tech solutions that deliver real results. No overspending, just smart solutions.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6">
               <Button 
                 onClick={openPopup}
-                className="bg-black hover:bg-gray-800 text-white px-8 py-3 text-base font-semibold rounded-lg shadow-sm"
+                className="bg-[#A8B2E7] hover:bg-[#9BA5D9] text-white px-8 py-3 text-base font-semibold rounded-full shadow-sm"
               >
                 Let&apos;s Scale Together
               </Button>
               
               <Link href="/services">
                 <Button 
-                  variant="outline" 
-                  className="bg-[#FFC145] hover:bg-[#FFB833] text-white border-2 border-[#FFC145] px-8 py-3 text-base font-semibold rounded-lg shadow-sm"
+                  className="bg-[#F3F1EB] hover:bg-[#F3F1EB] text-black border border-black px-8 py-3 text-base font-semibold rounded-full shadow-sm"
                 >
                   View Solutions
                 </Button>
@@ -52,20 +50,15 @@ export default function ScalixityCTA() {
             </p>
           </div>
           
-          {/* Right Side - Video */}
+          {/* Right Side - Image */}
           <div className="flex-1 flex justify-center lg:justify-start">
-            <div className="w-full max-w-lg overflow-hidden">
-              <video
-                className="w-full h-auto rounded-xl shadow-lg -mt-16 -mb-16 -mr-16"
-                autoPlay
-                loop
-                muted
-                playsInline
-                controls={false}
-              >
-                <source src="https://res.cloudinary.com/dxwspucxw/video/upload/v1755092464/Hailuo_Video_412032205348503561_skjo5q.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+            <div className="w-full max-w-2xl h-full flex items-center">
+              <img
+                src="https://res.cloudinary.com/dxwspucxw/image/upload/v1755497964/89e8d5a42093b2f921a4671c9b50972c163ecea7_bdrbwy.png"
+                alt="Scalixity Tech Solutions"
+                className="w-full h-full object-cover -mt-16 -mb-16 -mr-16"
+                style={{ minHeight: '400px' }}
+              />
             </div>
           </div>
           
