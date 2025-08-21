@@ -20,6 +20,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     ].includes(pathname) ||
     (pathname.startsWith("/dashboard/campaign/") && (pathname.endsWith("/form") || pathname.endsWith("/responses")));
 
+  const hideHeaderOnly = [
+    "/scalixity"
+  ].includes(pathname);
+
   const getDeviceType = () => {
     const userAgent = navigator.userAgent.toLowerCase();
     let browser = "Unknown";
@@ -349,7 +353,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
     <Chatbot />
-      {!hideLayout && <SiteHeader />}
+      {!hideLayout && !hideHeaderOnly && <SiteHeader />}
       <main className="flex-1">
         {children}
       
