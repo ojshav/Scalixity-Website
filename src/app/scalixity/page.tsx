@@ -17,7 +17,7 @@ export default function ScalixityPage() {
   const { isOpen, closePopup } = usePopup();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F3F1EB]">
+    <div className="min-h-screen flex flex-col bg-[#F2E5DC]">
       
       {/* Hero Section */}
       <ScalixityHero />

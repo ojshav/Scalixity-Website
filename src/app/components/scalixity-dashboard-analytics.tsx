@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function ScalixityDashboardAnalytics() {
   return (
-    <section className="relative bg-[#F3F1EB] flex items-center justify-center overflow-hidden min-h-0 md:min-h-screen">
+    <section className="relative bg-[#F2E5DC] flex items-center justify-center overflow-hidden min-h-0 md:min-h-screen">
       {/* Wave Animation Background */}
       <motion.div 
         className="absolute bottom-0 left-0 right-0 z-0"

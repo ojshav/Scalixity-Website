@@ -68,7 +68,7 @@ export default function WhatWeDo() {
   ];
 
   return (
-    <section className="relative py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#F3F1EB]">
+    <section className="relative py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#F2E5DC]">
       {/* Wave Animation Background */}
       <motion.div 
         className="absolute inset-0 z-0 top-8 sm:top-12 lg:top-20 xl:top-32"

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Button } from "@/src/app/components/ui/button";
 import { usePopup } from "@/src/app/hooks/use-popup";
 
@@ -35,24 +36,33 @@ export function ScalixityHero() {
   return (
     <section 
       ref={containerRef}
-      className="relative overflow-hidden flex md:items-center md:justify-center min-h-0 md:min-h-screen"
+      className="relative overflow-visible flex md:items-center md:justify-center min-h-screen"
     >
       {/* Wave Animation Background */}
       <motion.div 
-        className="absolute bottom-10 sm:bottom-16 md:bottom-20 left-0 z-0 pointer-events-none select-none md:hidden"
+        className="absolute bottom-0 left-0 right-0 z-0 pointer-events-none select-none"
         variants={itemVariants}
         initial="hidden"
         animate="visible"
       >
-        <img
+        <Image
           src="https://res.cloudinary.com/dxwspucxw/image/upload/v1755497997/e147818fb004d101c1420f0af7214c9d48b88cdc_njjxqf.png"
           alt="Wave Animation"
-          className="w-full h-auto object-cover scale-y-[-1] scale-x-[-1]"
+          width={1245}
+          height={498}
+          style={{
+            transform: 'rotate(-179.597deg)',
+            flexShrink: 0,
+            aspectRatio: '998/399'
+          }}
+          className="object-cover"
         />
       </motion.div>
+
+      
       {/* Content Container */}
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 mx-auto relative z-10">
-        <div className="pt-10 pb-6 sm:py-20 md:py-24 grid grid-cols-1 md:grid-cols-2 items-center gap-8 sm:gap-10 md:gap-12 max-w-[1440px] mx-auto">
+        <div className="pt-4 pb-6 sm:py-20 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center gap-8 sm:gap-10 md:gap-12 max-w-[1440px] mx-auto">
           {/* Content Column - Left Side */}
           <motion.div
             className="space-y-6 text-center md:text-left max-w-2xl mx-auto md:mx-0"
@@ -117,11 +127,19 @@ export function ScalixityHero() {
             initial="hidden"
             animate="visible"
           >
-            <div className="flex items-center justify-center md:justify-end">
-              <img
-                src="https://res.cloudinary.com/dxwspucxw/image/upload/v1755492148/d72df7f738f7fc142ff033c76437bf562f94ae48_ste57l.png"
+            <div className="flex items-end justify-center md:justify-end -mb-80 ">
+              <Image
+                src="/hero.svg"
                 alt="Scalixity Tech Solutions"
-                className="object-contain w-full max-w-[360px] sm:max-w-[480px] md:max-w-[680px] lg:max-w-[840px] xl:max-w-[960px] h-auto"
+                width={908}
+                height={635}
+                style={{
+                  width: '908px',
+                  height: '635px',
+                  flexShrink: 0,
+                  aspectRatio: '143/100'
+                }}
+                className="object-contain"
               />
             </div>
           </motion.div>
