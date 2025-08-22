@@ -2,15 +2,11 @@
 
 import * as React from "react";
 import { motion, useInView } from "framer-motion";
-import { Star, Quote } from "lucide-react";
-import { Button } from "@/src/app/components/ui/button";
-import { usePopup } from "@/src/app/hooks/use-popup";
+import { Quote } from "lucide-react";
 
 export default function ClientTestimonials() {
-  const { openPopup } = usePopup();
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -38,122 +34,91 @@ export default function ClientTestimonials() {
 
   const testimonials = [
     {
-      name: "Sarah Mitchell",
-      company: "TechFlow Solutions Ltd",
-      location: "London, UK",
-      role: "CEO",
-      content: "Scalixity transformed our business operations with their AI-powered CRM solution. The local UK support and GBP pricing made everything seamless.",
-      rating: 5,
-      avatar: "https://res.cloudinary.com/dxwspucxw/image/upload/v1753994862/client_avatar_1_uk_scalixity.jpg"
+      name: "Leslie Alexander",
+      role: "Medical Assistant",
+      content: "Financial planners help people to knowledge in about how to invest and save their moneye the most efficient way eve plan ers help to age people to knowledge in a about how. s plan ers help people to Financial Financia planners help people to knowledge"
     },
     {
-      name: "Rajesh Patel",
-      company: "Global Innovations Inc",
-      location: "Mumbai, India",
-      role: "CTO",
-      content: "Working with Scalixity has been exceptional. Their e-commerce platform helped us scale internationally while maintaining local compliance.",
-      rating: 5,
-      avatar: "https://res.cloudinary.com/dxwspucxw/image/upload/v1753994862/client_avatar_2_uk_scalixity.jpg"
+      name: "Esther Howard",
+      role: "Marketing CEO",
+      content: "Financial planners help people to knowledge in about how to invest and save their moneye the most efficient way eve plan ers help to age people to knowledge in a about how. s plan ers help people to Financial Financia planners help people to knowledge"
     },
     {
-      name: "Emma Thompson",
-      company: "Green Logistics Co",
-      location: "Manchester, UK",
-      role: "Operations Director",
-      content: "The GPS tracking solution from Scalixity revolutionized our fleet management. 24/7 support and local expertise made all the difference.",
-      rating: 5,
-      avatar: "https://res.cloudinary.com/dxwspucxw/image/upload/v1753994862/client_avatar_3_uk_scalixity.jpg"
+      name: "Albert Flores",
+      role: "President of Sales",
+      content: "Financial planners help people to knowledge in about how to invest and save their moneye the most efficient way eve plan ers help to age people to knowledge in a about how. s plan ers help people to Financial Financia planners help people to knowledge"
     }
   ];
 
   return (
-    <section className="py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#A8B2E7]">
-      <div className="container mx-auto px-3 sm:px-6 lg:px-8">
+    <section className="py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#E9E7FF]">
+      <div className="container max-w-full px-1 mx-auto ">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="max-w-7xl mx-auto"
+          className="mx-auto"
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-12 lg:mb-20">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-black" style={{ fontFamily: 'Playfair Display, serif' }}>
-            Scalixity Success Stories
+              Scalixity Success Stories
             </h2>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-900 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed px-2 sm:px-0" style={{ fontFamily: 'Playfair Display, serif' }}>
               Trusted by businesses across the UK and internationally
             </p>
           </motion.div>
 
-          {/* Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-10">
-            {testimonials.map((testimonial) => (
-              <motion.div
-                key={testimonial.name}
-                variants={itemVariants}
-                className="group"
-                whileHover={{ 
-                  y: -4,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-              >
-                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 lg:p-8 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden">
-                  {/* Top-Left Colored Quote Icon */}
+                    {/* Horizontal Scrollable Testimonials Container */}
+          <div className="relative">
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex gap-4 sm:gap-6 lg:gap-8 xl:gap-10 pb-4 pt-8" style={{ minWidth: 'max-content' }}>
+                {testimonials.map((testimonial, index) => (
                   <motion.div
-                    className="absolute top-3 left-3 sm:top-4 sm:left-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center bg-[#C47BD1]"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    key={testimonial.name}
+                    variants={itemVariants}
+                    className={`group flex-shrink-0 ${index === 1 ? '-mt-8' : ''}`}
                   >
-                    <Quote className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                  </motion.div>
-
-                  {/* Client Info - Top Right */}
-                  <div className="ml-12 sm:ml-16 mb-2 sm:mb-3">
-                    <h4 className="font-bold text-gray-900 text-sm sm:text-base" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-xs text-gray-600" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      {testimonial.role}
-                    </p>
-                  </div>
-
-                  {/* Rating Stars */}
-                  <div className="flex items-center mb-3 sm:mb-4 gap-1 sm:gap-2">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <div key={i}>
-                        <Star className="w-5 h-5 sm:w-7 sm:h-7 text-amber-500 fill-current" />
+                    <div className="bg-white p-4 sm:p-6 lg:p-8 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden" style={{ width: '675.766px', height: '424.54px', borderRadius: '15.9px', border: '0.795px solid #CCC' }}>
+                      {/* Top-Left Purple Quote Icon */}
+                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center bg-[#C47BD1] border-2 border-white">
+                        <Quote className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                    ))}
-                  </div>
 
-                  {/* Testimonial Content */}
-                  <blockquote className="text-xs sm:text-sm text-gray-700 leading-relaxed mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-                    &ldquo;{testimonial.content}&rdquo;
-                  </blockquote>
+                      {/* Testimonial Content */}
+                      <div className="mt-12 sm:mt-16 mb-6 sm:mb-8">
+                        <blockquote className="text-xs sm:text-sm text-gray-700 leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                          {testimonial.content}
+                        </blockquote>
+                      </div>
 
-                  {/* Bottom-Right Faded Quote Icon */}
-                  <motion.div
-                    className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 text-gray-300 opacity-40"
-                    whileHover={{ scale: 1.1, opacity: 0.6 }}
-                  >
-                    <Quote className="w-6 h-6 sm:w-8 sm:h-8" />
+                      {/* Author Information */}
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-300 rounded-full mr-3 sm:mr-4"></div>
+                        <div>
+                          <h4 className="font-bold text-gray-900 text-sm sm:text-base" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            {testimonial.name}
+                          </h4>
+                          <p className="text-xs text-gray-600" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            {testimonial.role}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </motion.div>
-                </div>
-              </motion.div>
-            ))}
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* CTA Button */}
+          {/* Pagination Indicators */}
           <motion.div 
             variants={itemVariants}
-            className="text-center mt-16 sm:mt-24 lg:mt-32 xl:mt-48"
+            className="flex justify-center items-center gap-2 mt-8 sm:mt-12"
           >
-            <Button 
-              onClick={openPopup}
-              className="w-full sm:w-auto bg-[#A8B2E7] hover:bg-[#A8B2E7] text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full"
-            >
-           Join Our Success Stories
-            </Button>
+            <div className="w-3 h-1 bg-[#C47BD1] rounded-full"></div>
+            <div className="w-3 h-1 bg-gray-300 rounded-full"></div>
           </motion.div>
 
         </motion.div>

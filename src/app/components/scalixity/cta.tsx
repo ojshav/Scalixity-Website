@@ -10,10 +10,10 @@ export default function ScalixityCTA() {
 
   return (
     <section 
-      className="py-6 sm:py-8 lg:py-12 px-3 sm:px-4 bg-[#F2E5DC]"
+      className="py-6 sm:py-8 lg:py-12 px-3 sm:px-16 bg-[#F2E5DC]"
     >
-      <div className="container mx-auto relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
+      <div className="container max-w-[1640px] px-10 mx-auto relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-4 sm:gap-6 lg:gap-8 mx-auto">
           
           {/* Left Side - Text Content */}
           <div className="flex-1 text-center lg:text-left lg:pr-4">

@@ -9,7 +9,7 @@ export default function InternationalClients() {
   const { openPopup } = usePopup();
 
   return (
-    <section className="relative py-4 xs:py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 2xl:py-28">
+    <section className="relative px-12 py-4 xs:py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 2xl:py-28">
       {/* Wave Animation Background */}
       <motion.div 
         className="absolute inset-0 z-0 top-4 xs:top-6 sm:top-8 md:top-12 lg:top-16 xl:top-20 2xl:top-28"
@@ -24,12 +24,12 @@ export default function InternationalClients() {
         />
       </motion.div>
       
-      <div className="relative z-10 container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
+      <div className="relative max-w-[1640px] z-10 container mx-auto ">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center max-w-4xl sm:max-w-5xl md:max-w-6xl lg:max-w-7xl mx-auto"
+          className="text-center  mx-auto"
         >
           <div
             className="bg-[#E2E8F0] rounded-lg xs:rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8 lg:p-10 xl:p-12 2xl:p-16 relative overflow-hidden"

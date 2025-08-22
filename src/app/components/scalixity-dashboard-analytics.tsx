@@ -22,7 +22,7 @@ export function ScalixityDashboardAnalytics() {
 
       {/* Dashboard Image - Centered */}
       <motion.div
-        className="relative z-10 flex items-center justify-center mt-0 md:mt-32 mx-3 sm:mx-4 md:mx-0"
+        className="relative z-10 flex items-center justify-center mt-0 md:mt-16 mx-3 sm:mx-4 md:mx-0"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
