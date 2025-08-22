@@ -102,7 +102,7 @@ export function ScalixityHero() {
               </Button>
               
               <button 
-                onClick={() => window.location.href = 'http://localhost:3000'}
+                onClick={() => window.location.href = '/'}
                 className="bg-[#F3F1EB] hover:bg-[#F3F1EB] text-black border border-black px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-2xl cursor-pointer relative z-10"
               >
                 Explore more

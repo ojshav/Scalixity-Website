@@ -162,7 +162,7 @@ export default function WhatWeDo() {
                         asChild
                         className="w-full sm:w-auto bg-[#F3F1EB] hover:bg-[#F3F1EB] text-black border border-black px-4 sm:px-6 py-2 text-sm sm:text-base font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
                       >
-                        <a href="http://localhost:3000/work">Explore more</a>
+                        <a href="/work">Explore more</a>
                       </Button>
                       
                       <Button 
@@ -178,7 +178,7 @@ export default function WhatWeDo() {
                 {/* Image Side */}
                 <div className="flex-1">
                   <div className="relative">
-                    <a href="http://localhost:3000/work" className="block">
+                    <a href="/work" className="block">
                       <div className={`relative overflow-hidden ${
                         index === 1 ? '' : 'rounded-2xl sm:rounded-3xl'
                       }`}>
