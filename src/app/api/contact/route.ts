@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Send data to your backend API
-    const backendResponse = await fetch(`${process.env.BACKEND_URL || 'http://localhost:3001'}/contact`, {
+    const backendResponse = await fetch(`${process.env.BACKEND_URL || 'http://localhost:5000'}/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
