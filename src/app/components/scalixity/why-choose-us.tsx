@@ -67,10 +67,10 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="relative px-16 py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#F2E5DC] overflow-hidden">
+    <section className="relative px-4 sm:px-8 md:px-12 lg:px-16 py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#F2E5DC] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="w-full h-full bg-gradient-to-br from-[#F2E5DC] via-[#E8D5C4] to-[#F2E5DC] opacity-90"></div>
+        <div className="w-full h-full  opacity-90"></div>
         {/* You can add an actual background image here */}
         {/* <img 
           src="/images/background-pattern.svg" 
@@ -98,22 +98,17 @@ export default function WhyChooseUs() {
           </motion.div>
 
           {/* Overlay Cards Container */}
-          <div className="relative  flex items-center justify-center">
+          <div className="relative flex items-center justify-center">
             {/* Background Pattern or Image Placeholder */}
            
 
             {/* Cards Grid */}
-            <div className="relative grid grid-cols-1 py-20 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-[1640px] mx-auto">
+            <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 lg:gap-10 max-w-[1640px] mx-auto w-full">
               {features.map((feature) => (
                 <motion.div
                   key={feature.title}
                   variants={itemVariants}
                   className="group cursor-pointer relative"
-                  style={{
-                    width: '381.395px',
-                    height: '333.685px',
-                    flexShrink: 0
-                  }}
                   whileHover={{ 
                     transition: { duration: 0.3, ease: "easeOut" }
                   }}
@@ -121,35 +116,31 @@ export default function WhyChooseUs() {
                 >
                   {/* Floating Icon */}
                   <div
-                    className={`absolute -top-14 left-36 z-20 w-24 h-24 rounded-2xl ${feature.bgColor} shadow-lg flex items-center justify-center transition-transform duration-300 ease-out group-hover:translate-y-2`}
+                    className={`absolute -top-8 sm:-top-10 lg:-top-14 left-1/2 transform -translate-x-1/2 z-20 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-2xl ${feature.bgColor} shadow-lg flex items-center justify-center transition-transform duration-300 ease-out group-hover:translate-y-2`}
                   >
-                    <feature.icon className="w-8 h-8 text-white" />
+                    <feature.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
                   </div>
 
                   {/* Card */}
-                  <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl transition-all duration-300 border border-gray-100 relative z-10 h-full group-hover:bg-[#E9E7FF]">
+                  <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl transition-all duration-300 border border-gray-100 relative z-10 h-full min-h-[280px] sm:min-h-[320px] lg:min-h-[360px] group-hover:bg-[#E9E7FF]">
                     {/* Content */}
-                    <div className="pt-8 flex flex-col h-full">
-                      <h3 className="mb-4 leading-tight text-center" style={{ 
+                    <div className="pt-8 sm:pt-10 lg:pt-12 flex flex-col h-full">
+                      <h3 className="mb-3 sm:mb-4 leading-tight text-center text-lg sm:text-xl lg:text-2xl font-semibold" style={{ 
                         color: 'var(--900, #090F32)',
                         fontFeatureSettings: "'liga' off, 'clig' off",
                         fontFamily: '"Plus Jakarta Sans"',
-                        fontSize: '24px',
                         fontStyle: 'normal',
-                        fontWeight: 600,
-                        lineHeight: '45.06px'
+                        lineHeight: '1.4'
                       }}>
                         {feature.title}
                       </h3>
-                      <p className="mb-6 flex-1 text-left" style={{ 
+                      <p className="mb-4 sm:mb-6 flex-1 text-center sm:text-left text-sm sm:text-base lg:text-lg" style={{ 
                         color: 'var(--800, #4F4F4F)',
                         fontFeatureSettings: "'liga' off, 'clig' off",
                         fontFamily: '"Plus Jakarta Sans"',
-                        fontSize: '20px',
                         fontStyle: 'normal',
                         fontWeight: 400,
-                        lineHeight: '30px',
-                        width: '292.279px'
+                        lineHeight: '1.5'
                       }}>
                         {feature.description}
                       </p>
@@ -158,16 +149,16 @@ export default function WhyChooseUs() {
                       <motion.div
                         whileHover={{ x: 5 }}
                         transition={{ duration: 0.2 }}
-                        className="flex items-center gap-2 cursor-pointer group mt-auto"
+                        className="flex items-center gap-2 cursor-pointer group mt-auto justify-center sm:justify-start"
                         onClick={openPopup}
                       >
-                        <span className="text-base sm:text-lg text-black font-medium hover:underline">Learn More</span>
-                        <span className="text-lg sm:text-xl text-black group-hover:translate-x-1 transition-transform duration-200">→</span>
+                        <span className="text-sm sm:text-base lg:text-lg text-black font-medium hover:underline">Learn More</span>
+                        <span className="text-base sm:text-lg lg:text-xl text-black group-hover:translate-x-1 transition-transform duration-200">→</span>
                       </motion.div>
 
                       {/* Hover Effect Line */}
                       <motion.div
-                        className="h-1 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full mt-4"
+                        className="h-1 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full mt-3 sm:mt-4"
                         initial={{ width: "0%" }}
                         whileHover={{ width: "100%" }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
