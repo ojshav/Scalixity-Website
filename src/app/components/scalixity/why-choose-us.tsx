@@ -186,7 +186,7 @@ export default function WhyChooseUs() {
                       asChild
                       className="w-full sm:w-auto bg-[#A8B2E7] hover:bg-[#A8B2E7] text-black border border-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
                     >
-                      <a href="https://scalixity.com/blog/future-of-generative-ai">Explore more</a>
+                      <a href="/blog/future-of-generative-ai">Explore more</a>
                     </Button>
                   </motion.div>
                 </div>
