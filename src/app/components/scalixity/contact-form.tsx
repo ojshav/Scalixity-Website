@@ -87,7 +87,7 @@ export default function ContactForm() {
 
 
   return (
-         <section id="contact-form" className="pt-16 sm:py-12 lg:py-20 xl:py-28 bg-[#F2E5DC]">
+         <section id="contact-form" className="pt-16 sm:py-12 lg:py-20 xl:py-28">
       <div className="container mx-auto px-3 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -269,7 +269,7 @@ export default function ContactForm() {
 
                 {/* Additional Info */}
                 <motion.div
-                  className="hidden sm:block bg-[#F3F1EB] rounded-xl sm:rounded-2xl p-4 sm:p-6"
+                  className="hidden sm:block rounded-xl sm:rounded-2xl p-4 sm:p-6"
                   whileHover={{ 
                     scale: 1.02,
                     transition: { duration: 0.3 }
