@@ -63,8 +63,8 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 xl:py-32 bg-[#F3F1EB]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#F3F1EB]">
+      <div className="container mx-auto px-3 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           variants={containerVariants}
@@ -73,43 +73,44 @@ export default function WhyChooseUs() {
           className="max-w-7xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16 sm:mb-20 lg:mb-24">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-black" style={{ fontFamily: 'Playfair Display, serif' }}>
+          <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-12 lg:mb-20">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-black" style={{ fontFamily: 'Playfair Display, serif' }}>
             Why Partner with Scalixity
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-900 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-900 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed px-2 sm:px-0" style={{ fontFamily: 'Playfair Display, serif' }}>
               UK-focused technology solutions designed for British businesses
             </p>
           </motion.div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 xl:gap-10">
             {features.map((feature) => (
               <motion.div
                 key={feature.title}
                 variants={itemVariants}
-                className="group"
+                className="group cursor-pointer"
                 whileHover={{ 
-                  y: -8,
+                  y: -4,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
+                onClick={openPopup}
               >
-                <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+                <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
                   {/* Icon Container */}
                   <motion.div
-                    className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300 ${
+                    className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 ${
                       features.indexOf(feature) % 2 === 0 ? 'bg-[#4A64F0]' : 'bg-[#C47BD1]'
                     }`}
                     whileHover={{ rotate: 5 }}
                   >
-                    <feature.icon className="w-8 h-8 text-white" />
+                    <feature.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </motion.div>
 
                   {/* Content */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
                     {feature.title}
                   </h3>
-                  <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                     {feature.description}
                   </p>
 
@@ -120,13 +121,13 @@ export default function WhyChooseUs() {
                     className="flex items-center gap-2 cursor-pointer group"
                     onClick={openPopup}
                   >
-                    <span className="text-black font-medium hover:underline">Learn more</span>
-                    <span className="text-black text-lg group-hover:translate-x-1 transition-transform duration-200">→</span>
+                    <span className="text-sm sm:text-base text-black font-medium hover:underline">Learn more</span>
+                    <span className="text-base sm:text-lg text-black group-hover:translate-x-1 transition-transform duration-200">→</span>
                   </motion.div>
 
                   {/* Hover Effect Line */}
                   <motion.div
-                    className="h-1 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full mt-6"
+                    className="h-1 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full mt-4 sm:mt-6"
                     initial={{ width: "0%" }}
                     whileHover={{ width: "100%" }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
@@ -139,22 +140,22 @@ export default function WhyChooseUs() {
           {/* Additional UK Focus Message */}
           <motion.div
             variants={itemVariants}
-            className="mt-16 sm:mt-20 lg:mt-24 text-center"
+            className="mt-8 sm:mt-12 lg:mt-20 text-center"
           >
             <motion.div
-              className="bg-[#A8B2E7] rounded-2xl p-8 sm:p-10"
+              className="bg-[#A8B2E7] rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 xl:p-10"
               whileHover={{ 
                 scale: 1.02,
                 transition: { duration: 0.3 }
               }}
             >
-              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+              <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-12">
                 {/* Left Side - Content */}
-                <div className="flex-1 text-left">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+                <div className="flex-1 text-center lg:text-left">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-3 sm:mb-4 mt-4 sm:mt-0" style={{ fontFamily: 'Playfair Display, serif' }}>
                     Built for the UK Market
                   </h3>
-                  <p className="text-lg sm:text-xl text-black leading-relaxed mb-8" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <p className="text-base sm:text-lg lg:text-xl text-black leading-relaxed mb-6 sm:mb-8 px-2 sm:px-0" style={{ fontFamily: 'Playfair Display, serif' }}>
                     We understand the unique challenges and opportunities facing UK businesses. Our solutions are tailored to meet local regulations, 
                     business practices, and market demands, ensuring you get technology that works seamlessly in the British business environment.
                   </p>
@@ -172,20 +173,20 @@ export default function WhyChooseUs() {
                       duration: 0.3,
                       ease: "easeOut"
                     }}
-                    className="flex flex-col sm:flex-row gap-4 justify-start items-start"
+                    className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center lg:items-start"
                   >
                     <Button 
                       onClick={openPopup}
-                      className="bg-[#9B7BB8] hover:bg-[#8A6AA7] text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
+                      className="w-full sm:w-auto bg-[#9B7BB8] hover:bg-[#8A6AA7] text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
                     >
                       Start Your UK Journey
                     </Button>
                     
                     <Button 
                       asChild
-                      className="bg-[#A8B2E7] hover:bg-[#A8B2E7] text-black border border-black px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
+                      className="w-full sm:w-auto bg-[#A8B2E7] hover:bg-[#A8B2E7] text-black border border-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
                     >
-                      <a href="https://scalixity.com/blog/future-of-generative-ai">Explore more</a>
+                      <a href="/blog/future-of-generative-ai">Explore more</a>
                     </Button>
                   </motion.div>
                 </div>
@@ -195,7 +196,7 @@ export default function WhyChooseUs() {
                   <img
                     src="https://res.cloudinary.com/dxwspucxw/image/upload/v1755492238/c5f54dbaf6e7d788e665cbb617aa16817d24c605_db0v51.png"
                     alt="UK Market Technology Solutions"
-                    className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto"
+                    className="w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl h-auto"
                   />
                 </div>
               </div>

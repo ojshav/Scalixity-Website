@@ -68,10 +68,10 @@ export default function WhatWeDo() {
   ];
 
   return (
-    <section className="relative py-16 sm:py-20 lg:py-24 xl:py-32 bg-[#F3F1EB]">
+    <section className="relative py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#F2E5DC]">
       {/* Wave Animation Background */}
       <motion.div 
-        className="absolute inset-0 z-0 top-[82rem]"
+        className="absolute inset-0 z-0 top-8 sm:top-12 lg:top-20 xl:top-32"
         variants={itemVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -83,7 +83,7 @@ export default function WhatWeDo() {
         />
       </motion.div>
       
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 container mx-auto px-3 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           variants={containerVariants}
@@ -92,55 +92,55 @@ export default function WhatWeDo() {
           className="max-w-7xl mx-auto"
         >
           {/* Get Started Button */}
-          <motion.div variants={itemVariants} className="text-center mb-8">
+          <motion.div variants={itemVariants} className="text-center mb-6 sm:mb-8">
             <Button 
               onClick={openPopup}
-              className="bg-[#A8B2E7] hover:bg-[#9BA5D9] text-white px-8 py-3 text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
+              className="w-full sm:w-auto bg-[#A8B2E7] hover:bg-[#9BA5D9] text-white px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
             >
               GET STARTED IN A MINUTE
             </Button>
           </motion.div>
 
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16 sm:mb-20 lg:mb-24">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-black" style={{ fontFamily: 'Playfair Display, serif' }}>
+          <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-12 lg:mb-20">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-black" style={{ fontFamily: 'Playfair Display, serif' }}>
             What Scalixity Offers
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-900 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-900 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed px-2 sm:px-0" style={{ fontFamily: 'Playfair Display, serif' }}>
               Comprehensive technology solutions designed for UK businesses
             </p>
           </motion.div>
 
           {/* Cards Container */}
-          <div className="space-y-16 sm:space-y-20 lg:space-y-24">
+          <div className="space-y-8 sm:space-y-12 lg:space-y-20">
             {cards.map((card, index) => (
               <motion.div
                 key={card.title}
                 variants={itemVariants}
-                className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ${
+                className={`flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-12 ${
                   index === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
                 {/* Content Side */}
                 <div className="flex-1 text-center lg:text-left">
-                  <div className="mb-6">
+                  <div className="mb-4 sm:mb-6">
                     <motion.div
-                      className="inline-flex items-center justify-center w-16 h-16 bg-[#A8B2E7] rounded-full mb-4"
+                      className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-[#A8B2E7] rounded-full mb-3 sm:mb-4"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <card.icon className="w-8 h-8 text-white" />
+                      <card.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                     </motion.div>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                       {card.title}
                     </h3>
-                    <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed mb-2 sm:mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
                       {card.benefit}
                     </p>
-                    <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed mb-2 sm:mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
                       {card.benefit2}
                     </p>
-                    <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
                       {card.benefit3}
                     </p>
                     <motion.div
@@ -156,18 +156,18 @@ export default function WhatWeDo() {
                         duration: 0.3,
                         ease: "easeOut"
                       }}
-                      className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                      className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
                     >
                       <Button 
                         asChild
-                        className="bg-[#F3F1EB] hover:bg-[#F3F1EB] text-black border border-black px-6 py-2 text-base font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
+                        className="w-full sm:w-auto bg-[#F3F1EB] hover:bg-[#F3F1EB] text-black border border-black px-4 sm:px-6 py-2 text-sm sm:text-base font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
                       >
-                        <a href="http://localhost:3000/work">Explore more</a>
+                        <a href="/work">Explore more</a>
                       </Button>
                       
                       <Button 
                         onClick={openPopup}
-                        className="bg-[#A8B2E7] hover:bg-[#9BA5D9] text-white px-6 py-2 text-base font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
+                        className="w-full sm:w-auto bg-[#A8B2E7] hover:bg-[#9BA5D9] text-white px-4 sm:px-6 py-2 text-sm sm:text-base font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
                       >
                         Get in Touch
                       </Button>
@@ -178,15 +178,17 @@ export default function WhatWeDo() {
                 {/* Image Side */}
                 <div className="flex-1">
                   <div className="relative">
-                    <div className={`relative overflow-hidden ${
-                      index === 1 ? '' : 'rounded-3xl'
-                    }`}>
-                      <img
-                        src={card.image}
-                        alt={card.imageAlt}
-                        className="w-full h-80 sm:h-96 lg:h-[28rem] xl:h-[32rem] object-cover"
-                      />
-                    </div>
+                    <a href="/work" className="block">
+                      <div className={`relative overflow-hidden ${
+                        index === 1 ? '' : 'rounded-2xl sm:rounded-3xl'
+                      }`}>
+                        <img
+                          src={card.image}
+                          alt={card.imageAlt}
+                          className="w-full h-64 sm:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    </a>
                   </div>
                 </div>
               </motion.div>
