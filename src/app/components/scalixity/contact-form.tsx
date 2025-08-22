@@ -19,6 +19,7 @@ export default function ContactForm() {
   });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitStatus, setSubmitStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -58,7 +59,7 @@ export default function ContactForm() {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`${baseURL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,6 +75,8 @@ export default function ContactForm() {
           setSubmitStatus('idle');
         }, 3000);
       } else {
+        const errorData = await response.json();
+        console.error('Error submitting form:', errorData);
         setSubmitStatus('error');
       }
     } catch (error) {

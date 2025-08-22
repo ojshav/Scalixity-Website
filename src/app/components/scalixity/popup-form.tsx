@@ -24,6 +24,7 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
   const [error, setError] = React.useState("");
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,7 +32,7 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
     setError("");
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`${baseURL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
