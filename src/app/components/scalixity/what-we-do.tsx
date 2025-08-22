@@ -68,7 +68,7 @@ export default function WhatWeDo() {
   ];
 
   return (
-    <section className="relative py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#F3F1EB]">
+    <section className="relative px-12 py-8 sm:py-12 lg:py-20 xl:py-28 bg-[#F2E5DC]">
       {/* Wave Animation Background */}
       <motion.div 
         className="absolute inset-0 z-0 top-8 sm:top-12 lg:top-20 xl:top-32"
@@ -83,19 +83,19 @@ export default function WhatWeDo() {
         />
       </motion.div>
       
-      <div className="relative z-10 container mx-auto px-3 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full px-3 sm:px-6 lg:px-8 mx-auto">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="max-w-7xl mx-auto"
+          className="max-w-[1640px] mx-auto"
         >
           {/* Get Started Button */}
           <motion.div variants={itemVariants} className="text-center mb-6 sm:mb-8">
             <Button 
               onClick={openPopup}
-              className="w-full sm:w-auto bg-[#A8B2E7] hover:bg-[#9BA5D9] text-white px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
+              className="w-full sm:w-auto bg-[#9486D9]  text-white px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
             >
               GET STARTED IN A MINUTE
             </Button>
@@ -125,9 +125,7 @@ export default function WhatWeDo() {
                 <div className="flex-1 text-center lg:text-left">
                   <div className="mb-4 sm:mb-6">
                     <motion.div
-                      className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-[#A8B2E7] rounded-full mb-3 sm:mb-4"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.3 }}
+                      className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-[#9486D9] rounded-full mb-3 sm:mb-4"
                     >
                       <card.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                     </motion.div>
@@ -144,18 +142,6 @@ export default function WhatWeDo() {
                       {card.benefit3}
                     </p>
                     <motion.div
-                      whileHover={{ 
-                        scale: 1.05,
-                        y: -2
-                      }}
-                      whileTap={{ 
-                        scale: 0.95,
-                        y: 0
-                      }}
-                      transition={{ 
-                        duration: 0.3,
-                        ease: "easeOut"
-                      }}
                       className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
                     >
                       <Button 
@@ -167,7 +153,7 @@ export default function WhatWeDo() {
                       
                       <Button 
                         onClick={openPopup}
-                        className="w-full sm:w-auto bg-[#A8B2E7] hover:bg-[#9BA5D9] text-white px-4 sm:px-6 py-2 text-sm sm:text-base font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
+                        className="w-full sm:w-auto bg-[#9486D9]  text-white px-4 sm:px-6 py-2 text-sm sm:text-base font-semibold rounded-full transition-all duration-300 hover:shadow-lg"
                       >
                         Get in Touch
                       </Button>
@@ -185,7 +171,7 @@ export default function WhatWeDo() {
                         <img
                           src={card.image}
                           alt={card.imageAlt}
-                          className="w-full h-64 sm:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+                          className="w-full h-64 sm:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] object-cover cursor-pointer"
                         />
                       </div>
                     </a>

@@ -17,14 +17,17 @@ const QUESTION_TYPES = [
   { value: "checkbox", label: "Checkboxes" },
 ];
 
-interface QuestionData {
+interface Question {
+  id: string;
   label: string;
   type: string;
   options?: string[];
 }
 
-interface Question {
-  id: string;
+interface BackendQuestion {
+  id?: number;
+  campaign_id?: number;
+  question_order?: number;
   label: string;
   type: string;
   options?: string[];
@@ -48,10 +51,11 @@ export default function CampaignFormBuilder() {
         if (!res.ok) throw new Error("Failed to fetch questions");
         return res.json();
       })
-      .then((data) => {
+      .then((data: BackendQuestion[]) => {
+        console.log('Fetched questions from backend:', data); // Debug log
         // Assign a random id to each question for UI tracking if not present
         setQuestions(
-          data.map((q: QuestionData) => ({
+          data.map((q: BackendQuestion) => ({
             id: Math.random().toString(36).substr(2, 9),
             label: q.label,
             type: q.type,
@@ -98,8 +102,8 @@ export default function CampaignFormBuilder() {
         if (q.id === qid) {
           const updatedQuestion = { ...q, [field]: value };
           // If type is changing to multiple/checkbox and options don't exist, initialize them
-          if (field === 'type' && (value === 'multiple' || value === 'checkbox') && !updatedQuestion.options) {
-            updatedQuestion.options = [];
+          if (field === 'type' && (value === 'multiple' || value === 'checkbox') && !updatedQuestion.options?.length) {
+            updatedQuestion.options = [''];
           }
           return updatedQuestion;
         }
@@ -146,12 +150,17 @@ export default function CampaignFormBuilder() {
     setError(null);
     setSuccess(null);
     try {
-      // Prepare questions for backend (remove UI-only id)
+      // Prepare questions for backend (remove UI-only id and filter empty options)
       const payload = questions.map((q) => ({
         label: q.label,
         type: q.type,
-        options: q.options || [],
+        options: (q.type === 'multiple' || q.type === 'checkbox') 
+          ? (q.options || []).filter(opt => opt.trim() !== '') 
+          : [],
       }));
+      
+      console.log('Saving questions payload:', payload); // Debug log
+      
       const response = await fetch(`${baseURL}/api/campaigns/${id}/questions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -162,6 +171,11 @@ export default function CampaignFormBuilder() {
         throw new Error(errData.error || "Failed to save questions");
       }
       setSuccess("Form saved successfully!");
+      
+      // Refresh questions to get the saved data
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Error saving questions");
     } finally {
@@ -210,7 +224,7 @@ export default function CampaignFormBuilder() {
                   {(q.type === "multiple" || q.type === "checkbox") && (
                     <div className="space-y-2 mt-2">
                       <Label>Options</Label>
-                      {(q.options || []).map((opt, i) => (
+                      {(q.options && q.options.length > 0 ? q.options : ['']).map((opt, i) => (
                         <div key={i} className="flex items-center gap-2 mt-1">
                           <Input
                             className="flex-1"
@@ -218,56 +232,122 @@ export default function CampaignFormBuilder() {
                             value={opt}
                             onChange={(e) => updateOption(q.id, i, e.target.value)}
                           />
-                          <Button size="icon" variant="ghost" onClick={() => removeOption(q.id, i)}><X /></Button>
+                          <Button 
+                            size="icon" 
+                            variant="ghost" 
+                            onClick={() => removeOption(q.id, i)}
+                            disabled={q.options?.length === 1}
+                          >
+                            <X />
+                          </Button>
                         </div>
                       ))}
-                      <Button size="sm" variant="outline" onClick={() => addOption(q.id)} className="mt-1"><Plus className="w-4 h-4 mr-1" /> Add Option</Button>
+                      <Button size="sm" variant="outline" onClick={() => addOption(q.id)} className="mt-1">
+                        <Plus className="w-4 h-4 mr-1" /> Add Option
+                      </Button>
                     </div>
                   )}
                 </div>
               ))}
             </div>
-            <Button className="mt-6" onClick={addQuestion} variant="secondary"><Plus className="w-4 h-4 mr-1" /> Add Question</Button>
+            <Button className="mt-6" onClick={addQuestion} variant="secondary">
+              <Plus className="w-4 h-4 mr-1" /> Add Question
+            </Button>
             <div className="mt-10 flex justify-end">
-              <Button onClick={handleSave} disabled={saving}>{saving ? "Saving..." : "Save Form"}</Button>
+              <Button onClick={handleSave} disabled={saving}>
+                {saving ? "Saving..." : "Save Form"}
+              </Button>
             </div>
             {success && <div className="text-green-600 text-center mt-4">{success}</div>}
+            {error && <div className="text-red-600 text-center mt-4">{error}</div>}
+            
             {/* Live Preview */}
             <div className="mt-12 border-t pt-8">
               <h2 className="text-xl font-semibold mb-4">Live Preview</h2>
-              <form className="space-y-6">
-                {questions.map((q, idx) => (
-                  <div key={q.id} className="space-y-2">
-                    <Label>{q.label || `Question ${idx + 1}`}</Label>
-                    {q.type === "short" && <Input placeholder="Short answer" disabled />}
-                    {q.type === "paragraph" && <Textarea placeholder="Paragraph" disabled />}
-                    {q.type === "multiple" && (
-                      <div className="space-y-1">
-                        {(q.options || []).map((opt, i) => (
-                          <div key={i} className="flex items-center gap-2">
-                            <input type="radio" disabled />
-                            <span>{opt || `Option ${i + 1}`}</span>
+              <div className="bg-gray-50 p-6 rounded-lg border">
+                <div className="space-y-6">
+                  {questions.length === 0 ? (
+                    <div className="text-gray-500 text-center py-8">
+                      No questions added yet. Add some questions to see the preview.
+                    </div>
+                  ) : (
+                    questions.map((q, idx) => (
+                      <div key={q.id} className="space-y-3 bg-white p-4 rounded border">
+                        <Label className="text-base font-medium text-gray-900">
+                          {q.label || `Question ${idx + 1}`}
+                        </Label>
+                        
+                        {q.type === "short" && (
+                          <Input 
+                            placeholder="Short answer text will appear here..." 
+                            disabled 
+                            className="bg-gray-100"
+                          />
+                        )}
+                        
+                        {q.type === "paragraph" && (
+                          <Textarea 
+                            placeholder="Long form text will appear here..." 
+                            disabled 
+                            className="bg-gray-100 min-h-[100px]"
+                          />
+                        )}
+                        
+                        {q.type === "multiple" && (
+                          <div className="space-y-2">
+                            {q.options && q.options.length > 0 && q.options.some(opt => opt.trim() !== '') ? (
+                              q.options
+                                .filter(opt => opt.trim() !== '')
+                                .map((opt, i) => (
+                                  <div key={i} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded">
+                                    <input 
+                                      type="radio" 
+                                      name={`preview_${q.id}`}
+                                      disabled 
+                                      className="text-blue-600"
+                                    />
+                                    <span className="text-gray-700">{opt}</span>
+                                  </div>
+                                ))
+                            ) : (
+                              <div className="text-gray-400 italic p-2">
+                                Add options to see them in the preview
+                              </div>
+                            )}
                           </div>
-                        ))}
-                      </div>
-                    )}
-                    {q.type === "checkbox" && (
-                      <div className="space-y-1">
-                        {(q.options || []).map((opt, i) => (
-                          <div key={i} className="flex items-center gap-2">
-                            <input type="checkbox" disabled />
-                            <span>{opt || `Option ${i + 1}`}</span>
+                        )}
+                        
+                        {q.type === "checkbox" && (
+                          <div className="space-y-2">
+                            {q.options && q.options.length > 0 && q.options.some(opt => opt.trim() !== '') ? (
+                              q.options
+                                .filter(opt => opt.trim() !== '')
+                                .map((opt, i) => (
+                                  <div key={i} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded">
+                                    <input 
+                                      type="checkbox" 
+                                      disabled 
+                                      className="text-blue-600"
+                                    />
+                                    <span className="text-gray-700">{opt}</span>
+                                  </div>
+                                ))
+                            ) : (
+                              <div className="text-gray-400 italic p-2">
+                                Add options to see them in the preview
+                              </div>
+                            )}
                           </div>
-                        ))}
+                        )}
                       </div>
-                    )}
-                  </div>
-                ))}
-              </form>
+                    ))
+                  )}
+                </div>
+              </div>
             </div>
           </>
         )}
       </div>
     </div>
   );
-} 
+}

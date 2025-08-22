@@ -11,6 +11,15 @@ import { Label } from "@/src/app/components/ui/label";
 export default function ContactForm() {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [formData, setFormData] = React.useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submitStatus, setSubmitStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -36,10 +45,52 @@ export default function ContactForm() {
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch(`${baseURL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        // Reset form after successful submission
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 3000);
+      } else {
+        const errorData = await response.json();
+        console.error('Error submitting form:', errorData);
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
 
 
   return (
-    <section id="contact-form" className="pt-16 sm:py-12 lg:py-20 xl:py-28 bg-[#F3F1EB]">
+         <section id="contact-form" className="pt-16 sm:py-12 lg:py-20 xl:py-28">
       <div className="container mx-auto px-3 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -68,15 +119,18 @@ export default function ContactForm() {
                 Send us a message
               </h3>
               
-              <form className="space-y-4 sm:space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div>
                   <Label htmlFor="name" className="text-gray-700 font-medium mb-2 block">
                     Name *
                   </Label>
                   <Input
                     id="name"
+                    name="name"
                     type="text"
                     placeholder="Your name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                     className="w-full px-3 sm:px-4 py-4 sm:py-6 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all duration-300 text-base sm:text-lg bg-white"
                     style={{ height: '50px' }}
                     required
@@ -89,8 +143,11 @@ export default function ContactForm() {
                   </Label>
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="you@company.com"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     className="w-full px-3 sm:px-4 py-4 sm:py-6 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all duration-300 text-base sm:text-lg bg-white"
                     style={{ height: '50px' }}
                     required
@@ -102,46 +159,17 @@ export default function ContactForm() {
                     Phone number
                   </Label>
                   <div className="flex gap-2">
-                                          <select className="px-3 sm:px-4 py-4 sm:py-6 border border-gray-300 rounded-lg text-base sm:text-lg bg-white text-gray-900" style={{ height: '50px', width: '80px' }}>
-                        <option value="US">US</option>
-                        <option value="UK">UK</option>
-                        <option value="+44">+44</option>
-                        <option value="+1">+1</option>
-                      </select>
                     <Input
                       id="phone"
+                      name="phone"
                       type="tel"
                       placeholder="+1 (555) 000-0000"
+                      value={formData.phone}
+                      onChange={handleInputChange}
                       className="flex-1 px-3 sm:px-4 py-4 sm:py-6 border border-gray-300 rounded-lg text-base sm:text-lg bg-white text-gray-900"
                       style={{ height: '50px' }}
                     />
                   </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="services" className="text-gray-700 font-medium mb-2 block">
-                    Services Interested in
-                  </Label>
-                                      <select
-                      id="services"
-                      className="w-full px-3 sm:px-4 py-4 sm:py-6 border border-gray-300 rounded-lg text-base sm:text-lg bg-white text-gray-900"
-                      style={{ height: '50px' }}
-                    >
-                    <option value="">Select a service or type your own</option>
-                    <option value="crm">CRM & Automation</option>
-                    <option value="ecommerce">E-commerce Solutions</option>
-                    <option value="gps">GPS Tracking</option>
-                    <option value="ai">AI Development</option>
-                    <option value="custom">Custom Solution</option>
-                    <option value="other">Other (type below)</option>
-                  </select>
-                  <Input
-                    id="servicesCustom"
-                    type="text"
-                    placeholder="Or type your specific service here..."
-                    className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all duration-300 text-sm sm:text-base mt-2 bg-white"
-                    style={{ height: '40px' }}
-                  />
                 </div>
 
                 <div>
@@ -150,13 +178,29 @@ export default function ContactForm() {
                   </Label>
                   <Textarea
                     id="message"
+                    name="message"
                     placeholder="Tell us a little about the project..."
+                    value={formData.message}
+                    onChange={handleInputChange}
                     rows={4}
                     className="w-full px-3 sm:px-4 py-4 sm:py-6 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all duration-300 resize-none text-base sm:text-lg bg-white"
                     style={{ height: '100px' }}
                     required
                   />
                 </div>
+
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                    Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                    Sorry, there was an error sending your message. Please try again.
+                  </div>
+                )}
 
                 <motion.div
                   whileHover={{ 
@@ -174,9 +218,10 @@ export default function ContactForm() {
                 >
                   <Button 
                     type="submit" 
-                    className="w-full bg-[#A8B2E7] hover:bg-[#9BA5D9] text-white py-2 sm:py-3 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2 uppercase tracking-wide mb-8 sm:mb-0"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#A8B2E7] hover:bg-[#9BA5D9] disabled:bg-gray-400 text-white py-2 sm:py-3 px-6 sm:px-8 text-base sm:text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2 uppercase tracking-wide mb-8 sm:mb-0"
                   >
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </motion.div>
               </form>
@@ -196,30 +241,30 @@ export default function ContactForm() {
                 </div>
 
                 {/* Contact Methods */}
-                <div className="grid grid-cols-3 gap-3 sm:gap-4 -mt-8 sm:mt-0">
-                  <div className="text-center">
-                    <h4 className="font-semibold text-[#A8B2E7] mb-1 text-xs sm:text-sm" style={{ fontFamily: 'Playfair Display, serif' }}>
+                <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                  <div className="text-left">
+                    <h4 className="font-bold text-[#9486D9] mb-1 text-3xl" style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '30px' }}>
                       Email
                     </h4>
-                    <p className="text-black text-xs sm:text-sm" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      hello@scalixity.co.uk
+                    <p className="text-black text-xs sm:text-sm" style={{ fontFamily: 'Montserrat, serif', fontWeight: 500, fontSize: '16px' }}>
+                      scalixity@gmail.com
                     </p>
                   </div>
 
-                  <div className="text-center">
-                    <h4 className="font-semibold text-[#A8B2E7] mb-1 text-xs sm:text-sm" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <div className="text-left">
+                    <h4 className="font-bold text-[#9486D9] mb-1 text-3xl" style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '30px' }}>
                       Visit Us
                     </h4>
-                    <p className="text-black text-xs sm:text-sm" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <p className="text-black text-xs sm:text-sm" style={{ fontFamily: 'Montserrat, serif', fontWeight: 500, fontSize: '16px' }}>
                       London, United Kingdom
                     </p>
                   </div>
 
-                  <div className="text-center">
-                    <h4 className="font-semibold text-[#A8B2E7] mb-1 text-xs sm:text-sm" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <div className="text-left">
+                    <h4 className="font-bold text-[#9486D9] mb-1 text-3xl" style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '32px' }}>
                       Call Us
                     </h4>
-                    <p className="text-black text-xs sm:text-sm" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <p className="text-black text-xs sm:text-sm" style={{ fontFamily: 'Montserrat, serif', fontWeight: 500, fontSize: '16px' }}>
                       +44 (0) 20 1234 5678
                     </p>
                   </div>
@@ -227,7 +272,7 @@ export default function ContactForm() {
 
                 {/* Additional Info */}
                 <motion.div
-                  className="hidden sm:block bg-[#F3F1EB] rounded-xl sm:rounded-2xl p-4 sm:p-6"
+                  className="hidden sm:block rounded-xl sm:rounded-2xl p-4 sm:p-6"
                   whileHover={{ 
                     scale: 1.02,
                     transition: { duration: 0.3 }
@@ -236,17 +281,17 @@ export default function ContactForm() {
                   <h4 className="text-lg sm:text-xl font-bold text-black mb-2 sm:mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
                     Why Choose Scalixity?
                   </h4>
-                  <ul className="space-y-1 sm:space-y-2 text-sm sm:text-base text-gray-700" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <ul className="space-y-1 sm:space-y-2 text-sm sm:text-base text-gray-700" style={{ fontFamily: 'Poppins, serif' }}>
                     <li className="flex items-center gap-2">
-                      <span className="text-gray-600 font-bold">&gt;</span>
+                      <img src="/images/fi_4495290.svg" alt="arrow" className="w-4 h-4" />
                       UK-registered company with local expertise
                     </li>
                     <li className="flex items-center gap-2">
-                      <span className="text-gray-600 font-bold">&gt;</span>
+                      <img src="/images/fi_4495290.svg" alt="arrow" className="w-4 h-4" />
                       Transparent GBP pricing, no hidden fees
                     </li>
                     <li className="flex items-center gap-2">
-                      <span className="text-gray-600 font-bold">&gt;</span>
+                      <img src="/images/fi_4495290.svg" alt="arrow" className="w-4 h-4" />
                       24/7 support and dedicated account management
                     </li>
                   </ul>
