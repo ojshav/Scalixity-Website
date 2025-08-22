@@ -62,7 +62,7 @@ export function ScalixityHero() {
       
       {/* Content Container */}
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 mx-auto relative z-10">
-        <div className="pt-4 pb-6 sm:py-20 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center gap-8 sm:gap-10 md:gap-12 max-w-[1440px] mx-auto">
+        <div className="pt-4 pb-6 sm:py-20 md:py-2 grid grid-cols-1 md:grid-cols-2 items-center gap-8 sm:gap-10 md:gap-12 max-w-[1640px] mx-auto">
           {/* Content Column - Left Side */}
           <motion.div
             className="space-y-6 text-center md:text-left max-w-2xl mx-auto md:mx-0"
