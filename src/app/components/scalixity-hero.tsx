@@ -36,7 +36,7 @@ export function ScalixityHero() {
   return (
     <section 
       ref={containerRef}
-        className="relative overflow-visible flex items-start justify-center h-[800px] sm:h-[900px] md:h-[900px] lg:h-[900px]"
+      className="relative overflow-visible flex items-start justify-center h-[800px] sm:h-[900px] md:h-[900px] lg:h-[900px]"
     >
       {/* Wave Animation Background */}
       <motion.div 
