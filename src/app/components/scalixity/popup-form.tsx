@@ -176,7 +176,7 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
                   <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
                   <div>
                     <h3 className="text-green-800 font-semibold">Thank you!</h3>
-                    <p className="text-green-700 text-sm">Your message has been sent successfully. We'll get back to you soon!</p>
+                    <p className="text-green-700 text-sm">Your message has been sent successfully. We&apos;ll get back to you soon!</p>
                   </div>
                 </div>
               </motion.div>
