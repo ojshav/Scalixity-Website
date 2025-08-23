@@ -1,9 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import PopupForm from "./scalixity/popup-form";
 // import { motion } from "framer-motion";
 
 export function Hero() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <section className="relative flex flex-col items-center justify-center min-h-screen text-center text-[#2C2C2C] bg-[#F3F1EB] p-4 sm:p-8 space-y-4 sm:space-y-8">
       {/* Wave Animation Background - COMMENTED OUT */}
@@ -45,12 +56,12 @@ export function Hero() {
         className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4 w-full max-w-md px-4 sm:px-0 relative z-10"
       > */}
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4 w-full max-w-md px-4 sm:px-0 relative z-10">
-        <a
-          href="/contact"
-          className="px-4 py-2 sm:px-6 sm:py-3 text-white bg-black rounded-full text-sm sm:text-base w-full text-center"
+        <button
+          onClick={handleOpenPopup}
+          className="px-4 py-2 sm:px-6 sm:py-3 text-white bg-black rounded-full text-sm sm:text-base w-full text-center hover:bg-gray-800 transition-colors duration-200"
         >
           Start Your AI Journey
-        </a>
+        </button>
         <a
           href="/services"
           className="px-4 py-2 sm:px-6 sm:py-3 text-white bg-black rounded-full text-sm sm:text-base w-full text-center"
@@ -58,6 +69,9 @@ export function Hero() {
           Explore Our Services
         </a>
       </div>
+
+      {/* Popup Form */}
+      <PopupForm isOpen={isPopupOpen} onClose={handleClosePopup} />
     </section>
   );
 }

@@ -1,5 +1,8 @@
+"use client";
+
 import { Layers, Target, Cpu, Cog } from 'lucide-react'
-import Link from 'next/link'
+import { useState } from 'react'
+import PopupForm from './scalixity/popup-form'
 
 const features = [
   {
@@ -25,6 +28,16 @@ const features = [
 ]
 
 export function WhyUs() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <section className="bg-[#9FA8DA] py-32">
       <div className="container mx-auto px-4">
@@ -51,14 +64,17 @@ export function WhyUs() {
           ))}
         </div>
         <div className="text-center mt-16">
-          <Link
-            href="/contact"
+          <button
+            onClick={handleOpenPopup}
             className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white hover:bg-gray-900 transition-colors"
           >
             Contact Us
-          </Link>
+          </button>
         </div>
       </div>
+
+      {/* Popup Form */}
+      <PopupForm isOpen={isPopupOpen} onClose={handleClosePopup} />
     </section>
   )
 }
