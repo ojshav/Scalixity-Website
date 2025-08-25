@@ -39,10 +39,10 @@ export function Industries() {
   };
 
   return (
-    <div className="bg-[#F5F1ED] py-20">
+    <div className="bg-[#F2E5DC] py-20">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl md:text-4xl font-bold text-gray-800 mb-12 text-center"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold  sm:mb-6 text-black mb-24 text-center  " style={{ fontFamily: 'Playfair Display, serif' }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -51,7 +51,7 @@ export function Industries() {
         </motion.h2>
         
         <motion.div 
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-14"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -91,4 +91,3 @@ export function Industries() {
     </div>
   )
 }
-
