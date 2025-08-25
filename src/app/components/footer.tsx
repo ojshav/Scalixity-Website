@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Linkedin, Twitter } from 'lucide-react'
+import { Linkedin, Twitter, Youtube, Instagram, Facebook } from 'lucide-react'
 
 const mainLinks = [
   { name: "About us", href: "/work" },
@@ -188,6 +188,33 @@ export function Footer() {
             >
               <Twitter className="h-5 w-5" />
               <span className="sr-only">Twitter</span>
+            </a>
+            <a
+              href="https://www.youtube.com/@ScalixitypvtLtd"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <Youtube className="h-5 w-5" />
+              <span className="sr-only">YouTube</span>
+            </a>
+            <a
+              href="https://www.instagram.com/scalixity?igsh=MTZjYTh4eWE1YTlyZA=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <Instagram className="h-5 w-5" />
+              <span className="sr-only">Instagram</span>
+            </a>
+            <a
+              href="https://www.facebook.com/share/176oBhw9aE/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <Facebook className="h-5 w-5" />
+              <span className="sr-only">Facebook</span>
             </a>
           </div>
         </div>

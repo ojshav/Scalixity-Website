@@ -103,7 +103,7 @@ export default function WhyChooseUs() {
            
 
             {/* Cards Grid */}
-            <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 lg:gap-10 max-w-[1640px] mx-auto w-full">
+            <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 lg:gap-10 max-w-[1640px] py-10 mx-auto w-full">
               {features.map((feature) => (
                 <motion.div
                   key={feature.title}
@@ -122,7 +122,7 @@ export default function WhyChooseUs() {
                   </div>
 
                   {/* Card */}
-                  <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl transition-all duration-300 border border-gray-100 relative z-10 h-full min-h-[280px] sm:min-h-[320px] lg:min-h-[360px] group-hover:bg-[#E9E7FF]">
+                  <div className="bg-white rounded-2xl  p-4 sm:p-6 lg:p-8 shadow-xl transition-all duration-300 border border-gray-100 relative z-10 h-full min-h-[280px] sm:min-h-[320px] lg:min-h-[360px] group-hover:bg-[#E9E7FF]">
                     {/* Content */}
                     <div className="pt-8 sm:pt-10 lg:pt-12 flex flex-col h-full">
                       <h3 className="mb-3 sm:mb-4 leading-tight text-center text-lg sm:text-xl lg:text-2xl font-semibold" style={{ 
