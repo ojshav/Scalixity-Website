@@ -96,7 +96,7 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-xl font-semibold text-black mb-2">Email Us</h3>
                 <p className="text-black">
-                  info@scalixity.com
+                  scalixity@gmail.com
                 </p>
               </div>
               
