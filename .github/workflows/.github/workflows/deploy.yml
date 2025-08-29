@@ -1,34 +1,26 @@
-name: Deploy Vite App
+name: Deploy Website
 
 on:
   push:
-    branches: [ "main" ]   # change if you use a different branch
+    branches:
+      - main  # or master, depending on your repo
 
 jobs:
   deploy:
-    runs-on: [self-hosted, vps]
+    runs-on: self-hosted
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: npm
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build app
+      - name: Build project
         run: npm run build
 
-      - name: Deploy build
+      - name: Restart app with PM2
         run: |
-          rsync -a --delete dist/ /home/scalixity/scalixity/Scalixity-Website/dist/
-
-      - name: Restart PM2
-        run: |
-          pm2 restart scalixity-app || pm2 serve /home/scalixity/scalixity/Scalixity-Website/dist 5700 --spa --name scalixity-app
+          pm2 delete Scalixity-Website || true
+          pm2 start "npm start -- -p 5700" --name Scalixity-Website
           pm2 save
