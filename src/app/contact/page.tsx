@@ -131,7 +131,7 @@ export default function ContactPage() {
                 <Check className="h-8 w-8 mr-4" />
                 <div>
                   <h3 className="font-semibold text-lg">Thank you for contacting us!</h3>
-                  <p>We&apos;ve received your message and will get back to you shortly.</p>
+                  <p>We&apos;ve received the  message and will get back to you shortly.</p>
                 </div>
               </div>
             ) : (
