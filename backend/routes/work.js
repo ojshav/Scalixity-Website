@@ -4,6 +4,7 @@ require('dotenv').config({ path: './backend/.env' });
 const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
+const prisma = require('../config/db');
 
 // Configure Cloudinary
 cloudinary.config({
@@ -26,9 +27,10 @@ router.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 // Get all projects
 router.get('/projects', async (req, res) => {
     try {
-        const pool = req.app.locals.pool;
-        const [rows] = await pool.query('SELECT * FROM projects ORDER BY created_at DESC');
-        res.json(rows);
+        const projects = await prisma.project.findMany({
+            orderBy: { createdAt: 'desc' }
+        });
+        res.json(projects);
     } catch (error) {
         console.error('Error fetching projects:', error);
         res.status(500).json({ error: 'Failed to fetch projects' });
@@ -63,14 +65,17 @@ router.post('/projects', authMiddleware, async (req, res) => {
         }
 
         // Store project details in the database
-        const pool = req.app.locals.pool;
-        const [result] = await pool.query(
-            'INSERT INTO projects (title, description, image, live_url) VALUES (?, ?, ?, ?)',
-            [title, description, imageUrl, live_url]
-        );
+        const result = await prisma.project.create({
+            data: {
+                title,
+                description,
+                image: imageUrl,
+                liveUrl: live_url
+            }
+        });
 
         res.status(201).json({
-            id: result.insertId,
+            id: result.id,
             title,
             description,
             image: imageUrl,
@@ -110,15 +115,15 @@ router.put('/projects/:id', authMiddleware, async (req, res) => {
             }
         }
 
-        const pool = req.app.locals.pool;
-        const [result] = await pool.query(
-            'UPDATE projects SET title = ?, description = ?, image = ?, live_url = ? WHERE id = ?',
-            [title, description, imageUrl, live_url, id]
-        );
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ error: 'Project not found' });
-        }
+        const result = await prisma.project.update({
+            where: { id: parseInt(id) },
+            data: {
+                title,
+                description,
+                image: imageUrl,
+                liveUrl: live_url
+            }
+        });
 
         res.json({
             id: parseInt(id),
@@ -137,13 +142,9 @@ router.put('/projects/:id', authMiddleware, async (req, res) => {
 router.delete('/projects/:id', authMiddleware, async (req, res) => {
     try {
         const { id } = req.params;
-        const pool = req.app.locals.pool;
-        
-        const [result] = await pool.query('DELETE FROM projects WHERE id = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ error: 'Project not found' });
-        }
+        const result = await prisma.project.delete({
+            where: { id: parseInt(id) }
+        });
 
         res.json({ message: 'Project deleted successfully' });
     } catch (error) {
