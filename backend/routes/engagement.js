@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const mysql = require('mysql2/promise'); // Change to promise-based MySQL
-const pool = require('../config/db');
+const prisma = require('../config/db');
+const { Prisma } = require('@prisma/client');
 // Function to format data into weekly periods
 const formatWeeklyData = (rows) => {
     const weeklyData = {};
@@ -28,10 +28,9 @@ const formatWeeklyData = (rows) => {
 // Route to fetch user engagement data
 router.get('/engagement', async (req, res) => {
     try {
-        const pool = req.app.locals.pool;
         console.log('Fetching engagement data...');
         
-        const query = `
+        const results = await prisma.$queryRaw`
             SELECT 
                 MIN(DATE_FORMAT(timestamp, '%Y-%m-%d')) as week_start,
                 MIN(DATE_FORMAT(DATE_ADD(timestamp, INTERVAL 6 DAY), '%Y-%m-%d')) as week_end,
@@ -45,10 +44,9 @@ router.get('/engagement', async (req, res) => {
                 (COUNT(CASE WHEN event = 'exit' THEN 1 END) / COUNT(*)) * 100 AS bounce_rate
             FROM user_activity
             GROUP BY YEARWEEK(timestamp)
-            ORDER BY MIN(timestamp) ASC;
+            ORDER BY MIN(timestamp) ASC
         `;
-
-        const [results] = await pool.query(query);
+        
         console.log('Raw engagement results:', results);
         
         const formattedData = formatWeeklyData(results);
@@ -64,10 +62,9 @@ router.get('/engagement', async (req, res) => {
 // Route to get most visited pages
 router.get('/most-visited', async (req, res) => {
     try {
-        const pool = req.app.locals.pool;
         console.log('Fetching most visited pages...');
         
-        const query = `
+        const results = await prisma.$queryRaw`
             SELECT 
                 page, 
                 COUNT(*) AS views,
@@ -81,10 +78,9 @@ router.get('/most-visited', async (req, res) => {
             FROM user_activity
             GROUP BY page
             ORDER BY views DESC
-            LIMIT 10;
+            LIMIT 10
         `;
-
-        const [results] = await pool.query(query);
+        
         console.log('Most visited pages raw results:', results);
         
         const formattedResults = results.map(row => ({
@@ -104,18 +100,16 @@ router.get('/most-visited', async (req, res) => {
 // Route to get device distribution
 router.get('/device-distribution', async (req, res) => {
     try {
-        const pool = req.app.locals.pool;
         console.log('Fetching device distribution...');
         
-        const query = `
+        const results = await prisma.$queryRaw`
             SELECT 
                 COALESCE(deviceType, 'unknown') AS deviceType, 
                 COUNT(*) AS count
             FROM user_activity
-            GROUP BY deviceType;
+            GROUP BY deviceType
         `;
-
-        const [results] = await pool.query(query);
+        
         console.log('Device distribution raw results:', results);
         
         const formattedResults = results.map(row => ({ 
