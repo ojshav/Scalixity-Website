@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const prisma = require('../config/db');
 
 // POST route to handle contact form submission
 router.post('/contact', async (req, res) => {
@@ -13,15 +14,18 @@ router.post('/contact', async (req, res) => {
   }
 
   try {
-    const pool = req.app.locals.pool;
-    const [result] = await pool.execute(
-      'INSERT INTO contact_us (name, email, phone, message) VALUES (?, ?, ?, ?)',
-      [name, email, phone || null, message]
-    );
+    const result = await prisma.contactUs.create({
+      data: {
+        name,
+        email,
+        phone: phone || null,
+        message
+      }
+    });
 
     res.status(201).json({
       message: 'Contact form submitted successfully',
-      id: result.insertId
+      id: result.id
     });
   } catch (error) {
     console.error('Error saving contact form:', error);
@@ -34,13 +38,21 @@ router.post('/contact', async (req, res) => {
 // GET route to retrieve all contact submissions (for admin purposes)
 router.get('/contact', async (req, res) => {
   try {
-    const pool = req.app.locals.pool;
-    const [rows] = await pool.execute(
-      'SELECT id, name, email, phone,message, status, created_at FROM contact_us ORDER BY created_at DESC'
-    );
+    const contacts = await prisma.contactUs.findMany({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        phone: true,
+        message: true,
+        status: true,
+        createdAt: true
+      },
+      orderBy: { createdAt: 'desc' }
+    });
 
     res.json({
-      data: rows
+      data: contacts
     });
   } catch (error) {
     console.error('Error fetching contact submissions:', error);
