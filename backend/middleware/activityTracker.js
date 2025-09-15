@@ -1,13 +1,14 @@
 // middleware/activityTracker.js
+const prisma = require('../config/db');
+
 const updateUserActivity = async (req, res, next) => {
     if (req.user) {
       try {
         // Update last activity timestamp in the database
-        const pool = req.app.locals.pool;
-        await pool.execute(
-          'UPDATE admin_users SET last_activity = NOW() WHERE id = ?',
-          [req.user.userId]
-        );
+        await prisma.adminUser.update({
+          where: { id: req.user.userId },
+          data: { lastActivity: new Date() }
+        });
       } catch (error) {
         console.error('Error updating user activity:', error);
       }
