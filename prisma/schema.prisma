@@ -24,6 +24,8 @@ model AdminUser {
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
 
+  @@index([role])
+  @@index([lastLogin])
   @@map("admin_users")
 }
 
@@ -43,6 +45,14 @@ model UserActivity {
   inquiries         Inquiry[]
 
   @@index([visitorId])
+  @@index([timestamp])
+  @@index([page])
+  @@index([event])
+  @@index([deviceType])
+  @@index([country])
+  @@index([userType])
+  @@index([visitorId, timestamp])
+  @@index([page, timestamp])
   @@map("user_activity")
 }
 
@@ -83,6 +93,12 @@ model PerformanceMetric {
   deviceType String?   @map("deviceType") @db.VarChar(50)
   country    String?   @db.VarChar(100)
 
+  @@index([visitorId])
+  @@index([page])
+  @@index([timestamp])
+  @@index([deviceType])
+  @@index([visitorId, timestamp])
+  @@index([page, timestamp])
   @@map("performance_metrics")
 }
 
@@ -101,6 +117,12 @@ model ErrorLog {
   browser          String?   @db.VarChar(100)
   country          String?   @db.VarChar(100)
 
+  @@index([visitorId])
+  @@index([page])
+  @@index([errorCode])
+  @@index([timestamp])
+  @@index([page, errorCode])
+  @@index([visitorId, page])
   @@map("error_logs")
 }
 
@@ -114,6 +136,9 @@ model ContactUs {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  @@index([status])
+  @@index([createdAt])
+  @@index([email])
   @@map("contact_us")
 }
 
@@ -127,6 +152,11 @@ model ServiceInquiry {
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
 
+  @@index([status])
+  @@index([createdAt])
+  @@index([email])
+  @@index([industryName])
+  @@index([serviceName])
   @@map("service_inquiries")
 }
 
@@ -145,6 +175,11 @@ model Campaign {
   questions   CampaignQuestion[]
   submissions CampaignSubmission[]
 
+  @@index([type])
+  @@index([startDate])
+  @@index([endDate])
+  @@index([createdAt])
+  @@index([startDate, endDate])
   @@map("campaigns")
 }
 
