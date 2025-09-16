@@ -2,6 +2,35 @@ const express = require('express');
 const router = express.Router();
 const prisma = require('../config/db');
 
+/**
+ * @swagger
+ * tags:
+ *   name: Inquiries
+ *   description: Service inquiry management
+ */
+
+/**
+ * @swagger
+ * /api/inquiries:
+ *   get:
+ *     summary: Get all service inquiries
+ *     tags: [Inquiries]
+ *     responses:
+ *       200:
+ *         description: List of inquiries retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/ServiceInquiry'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // GET all inquiries
 router.get('/inquiries', async (req, res) => {
   try {
