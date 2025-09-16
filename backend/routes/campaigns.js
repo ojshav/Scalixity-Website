@@ -2,6 +2,35 @@ const express = require('express');
 const router = express.Router();
 const prisma = require('../config/db');
 
+/**
+ * @swagger
+ * tags:
+ *   name: Campaigns
+ *   description: Marketing campaign management
+ */
+
+/**
+ * @swagger
+ * /api/campaigns:
+ *   get:
+ *     summary: Get all campaigns
+ *     tags: [Campaigns]
+ *     responses:
+ *       200:
+ *         description: List of campaigns retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Campaign'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // GET all campaigns
 router.get('/campaigns', async (req, res) => {
   try {
@@ -15,6 +44,39 @@ router.get('/campaigns', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/campaigns/{id}:
+ *   get:
+ *     summary: Get a single campaign by ID
+ *     tags: [Campaigns]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Campaign ID
+ *     responses:
+ *       200:
+ *         description: Campaign retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Campaign'
+ *       404:
+ *         description: Campaign not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // GET a single campaign by ID
 router.get('/campaigns/:id', async (req, res) => {
   try {
@@ -32,6 +94,60 @@ router.get('/campaigns/:id', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/campaigns:
+ *   post:
+ *     summary: Create a new campaign
+ *     tags: [Campaigns]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - start_date
+ *               - end_date
+ *               - type
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: Summer Campaign 2024
+ *               description:
+ *                 type: string
+ *                 example: Summer promotional campaign for products
+ *               image_url:
+ *                 type: string
+ *                 example: https://example.com/campaign-image.jpg
+ *               start_date:
+ *                 type: string
+ *                 format: date
+ *                 example: 2024-06-01
+ *               end_date:
+ *                 type: string
+ *                 format: date
+ *                 example: 2024-08-31
+ *               type:
+ *                 type: string
+ *                 example: promotional
+ *     responses:
+ *       201:
+ *         description: Campaign created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Campaign'
+ *       400:
+ *         $ref: '#/components/responses/ValidationError'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // POST a new campaign
 router.post('/campaigns', async (req, res) => {
   const { name, description, image_url, start_date, end_date, type } = req.body;

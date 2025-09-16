@@ -2,6 +2,13 @@ const express = require("express");
 const router = express.Router();
 const prisma = require('../config/db');
 
+/**
+ * @swagger
+ * tags:
+ *   name: Analytics
+ *   description: User analytics and tracking data
+ */
+
 // Utility function to get date range
 const getDateRange = (days) => {
   return new Date(Date.now() - days * 24 * 60 * 60 * 1000)
@@ -10,6 +17,75 @@ const getDateRange = (days) => {
     .replace("T", " ");
 };
 
+/**
+ * @swagger
+ * /api/track:
+ *   post:
+ *     summary: Track user activity and analytics
+ *     tags: [Analytics]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - visitorId
+ *               - userType
+ *               - visitCount
+ *             properties:
+ *               visitorId:
+ *                 type: string
+ *                 example: visitor_123456
+ *               country:
+ *                 type: string
+ *                 example: United States
+ *               deviceType:
+ *                 type: string
+ *                 example: Desktop
+ *               browser:
+ *                 type: string
+ *                 example: Chrome
+ *               page:
+ *                 type: string
+ *                 example: /home
+ *               event:
+ *                 type: string
+ *                 default: demographic
+ *                 example: demographic
+ *               timestamp:
+ *                 type: string
+ *                 format: date-time
+ *                 example: 2024-01-15T10:30:00Z
+ *               visitCount:
+ *                 type: integer
+ *                 example: 5
+ *               userType:
+ *                 type: string
+ *                 example: returning
+ *     responses:
+ *       200:
+ *         description: Activity tracked successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Activity tracked successfully
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: integer
+ *                       example: 1
+ *       400:
+ *         $ref: '#/components/responses/ValidationError'
+ */
 // Store user activity in MySQL
 router.post('/track', async (req, res) => {
   try {
@@ -68,10 +144,68 @@ router.post('/track', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/:
+ *   get:
+ *     summary: Get comprehensive user analytics data
+ *     tags: [Analytics]
+ *     responses:
+ *       200:
+ *         description: Analytics data retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 totalUsers:
+ *                   type: integer
+ *                   example: 1250
+ *                 newUsers:
+ *                   type: integer
+ *                   example: 45
+ *                 returningUsers:
+ *                   type: integer
+ *                   example: 1205
+ *                 activeUsers:
+ *                   type: integer
+ *                   example: 320
+ *                 averageVisitsPerUser:
+ *                   type: number
+ *                   example: 3.2
+ *                 topCountries:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       country:
+ *                         type: string
+ *                         example: United States
+ *                       count:
+ *                         type: integer
+ *                         example: 450
+ *                 deviceBreakdown:
+ *                   type: object
+ *                   properties:
+ *                     Desktop:
+ *                       type: integer
+ *                       example: 750
+ *                     Mobile:
+ *                       type: integer
+ *                       example: 400
+ *                     Tablet:
+ *                       type: integer
+ *                       example: 100
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // Get user analytics data
 router.get("/", async (req, res) => {
   try {
-    console.log("Fetching user analytics data...");
     const results = await prisma.userActivity.groupBy({
       by: ['page'],
       _count: {
@@ -84,7 +218,6 @@ router.get("/", async (req, res) => {
       visits: result._count._all
     }));
     
-    console.log("Analytics Data:", formattedResults);
     res.status(200).json(formattedResults);
   } catch (err) {
     console.error("Error fetching analytics:", err);
@@ -92,7 +225,30 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Fetch total users per month
+/**
+ * @swagger
+ * /api/total-users:
+ *   get:
+ *     summary: Get total user count
+ *     tags: [Analytics]
+ *     responses:
+ *       200:
+ *         description: Total users count retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 totalUsers:
+ *                   type: integer
+ *                   example: 1250
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 router.get("/total-users", async (req, res) => {
   try {
     const results = await prisma.$queryRaw`
@@ -109,6 +265,38 @@ router.get("/total-users", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/new-vs-returning:
+ *   get:
+ *     summary: Get new vs returning users analytics
+ *     tags: [Analytics]
+ *     responses:
+ *       200:
+ *         description: New vs returning users data retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   month:
+ *                     type: string
+ *                     example: Jan
+ *                   new_users:
+ *                     type: integer
+ *                     example: 45
+ *                   returning_users:
+ *                     type: integer
+ *                     example: 123
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // Fetch new vs returning users per month
 router.get("/new-vs-returning", async (req, res) => {
   try {
@@ -128,7 +316,30 @@ router.get("/new-vs-returning", async (req, res) => {
   }
 });
 
-// Fetch active users (DAU, WAU, MAU)
+/**
+ * @swagger
+ * /api/active-users:
+ *   get:
+ *     summary: Get active users count
+ *     tags: [Analytics]
+ *     responses:
+ *       200:
+ *         description: Active users count retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 activeUsers:
+ *                   type: integer
+ *                   example: 320
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 router.get("/active-users", async (req, res) => {
   try {
     const dailyDate = getDateRange(1);
@@ -150,7 +361,33 @@ router.get("/active-users", async (req, res) => {
   }
 });
 
-// Fetch user growth rate per month
+/**
+ * @swagger
+ * /api/growth-rate:
+ *   get:
+ *     summary: Get user growth rate analytics
+ *     tags: [Analytics]
+ *     responses:
+ *       200:
+ *         description: Growth rate data retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 growthRate:
+ *                   type: number
+ *                   example: 15.5
+ *                 period:
+ *                   type: string
+ *                   example: monthly
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 router.get("/growth-rate", async (req, res) => {
   try {
     const results = await prisma.$queryRaw`
@@ -176,7 +413,36 @@ router.get("/growth-rate", async (req, res) => {
   }
 });
 
-// Fetch user breakdown
+/**
+ * @swagger
+ * /api/user-breakdown:
+ *   get:
+ *     summary: Get user breakdown by demographics
+ *     tags: [Analytics]
+ *     responses:
+ *       200:
+ *         description: User breakdown data retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 byCountry:
+ *                   type: object
+ *                   example: {"United States": 450, "Canada": 120, "UK": 89}
+ *                 byDevice:
+ *                   type: object
+ *                   example: {"Desktop": 750, "Mobile": 400, "Tablet": 100}
+ *                 byBrowser:
+ *                   type: object
+ *                   example: {"Chrome": 800, "Firefox": 250, "Safari": 200}
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 router.get("/user-breakdown", async (req, res) => {
   try {
     const newUsersCount = await prisma.userActivity.count({

@@ -5,6 +5,17 @@ const jwt = require('jsonwebtoken');
 const prisma = require('../config/db');
 const { authenticateToken, checkTokenExpiration } = require('../middleware/auth');
 const { updateUserActivity } = require('../middleware/activityTracker');
+const { validate, validateParams } = require('../middleware/validation');
+const { adminSchemas, paramSchemas } = require('../validators/schemas');
+const { asyncHandler, sendSuccess, sendError } = require('../middleware/errorHandler');
+const { logger, logSecurityEvent } = require('../utils/logger');
+
+/**
+ * @swagger
+ * tags:
+ *   name: Authentication
+ *   description: Admin authentication and user management
+ */
 
 // Inactivity timeout (in milliseconds) - 30 minutes
 const INACTIVITY_TIMEOUT = 30 * 60 * 1000;
@@ -60,6 +71,59 @@ const isSuperAdmin = async (req, res, next) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 };
+
+/**
+ * @swagger
+ * /api/admin/login:
+ *   post:
+ *     summary: Admin user login
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: admin
+ *               password:
+ *                 type: string
+ *                 example: password123
+ *     responses:
+ *       200:
+ *         description: Login successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Login successful
+ *                 token:
+ *                   type: string
+ *                   example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+ *                 user:
+ *                   $ref: '#/components/schemas/AdminUser'
+ *       400:
+ *         $ref: '#/components/responses/ValidationError'
+ *       401:
+ *         description: Invalid credentials
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       429:
+ *         $ref: '#/components/responses/RateLimitError'
+ */
 // Admin login endpoint (same as before)
 router.post('/login', async (req, res) => {
   try {
@@ -118,6 +182,36 @@ router.post('/login', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/admin/profile:
+ *   get:
+ *     summary: Get admin user profile
+ *     tags: [Authentication]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Profile retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 user:
+ *                   $ref: '#/components/schemas/AdminUser'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // Get admin profile
 router.get('/profile', 
   authenticateToken,
@@ -152,6 +246,61 @@ router.get('/profile',
     }
 });
 
+/**
+ * @swagger
+ * /api/admin/profile:
+ *   put:
+ *     summary: Update admin user profile
+ *     tags: [Authentication]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: admin_updated
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: admin@example.com
+ *               firstName:
+ *                 type: string
+ *                 example: John
+ *               lastName:
+ *                 type: string
+ *                 example: Doe
+ *               password:
+ *                 type: string
+ *                 example: newpassword123
+ *               receiveEmails:
+ *                 type: boolean
+ *                 example: true
+ *     responses:
+ *       200:
+ *         description: Profile updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Profile updated successfully
+ *                 data:
+ *                   $ref: '#/components/schemas/AdminUser'
+ *       400:
+ *         $ref: '#/components/responses/ValidationError'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ */
 // Update admin profile
 router.put('/profile',
   authenticateToken,
@@ -220,6 +369,75 @@ router.put('/profile',
     }
 });
 
+/**
+ * @swagger
+ * /api/admin/users:
+ *   post:
+ *     summary: Create new admin user (Super Admin only)
+ *     tags: [Authentication]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - email
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: newadmin
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: newadmin@example.com
+ *               password:
+ *                 type: string
+ *                 example: password123
+ *               firstName:
+ *                 type: string
+ *                 example: Jane
+ *               lastName:
+ *                 type: string
+ *                 example: Smith
+ *               role:
+ *                 type: string
+ *                 enum: [admin, super_admin]
+ *                 example: admin
+ *               receiveEmails:
+ *                 type: boolean
+ *                 example: true
+ *     responses:
+ *       201:
+ *         description: Admin user created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Admin user created successfully
+ *                 data:
+ *                   $ref: '#/components/schemas/AdminUser'
+ *       400:
+ *         $ref: '#/components/responses/ValidationError'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       403:
+ *         description: Access denied - Super Admin required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // Create new admin (super admin only)
 router.post('/users',
   authenticateToken,
@@ -279,6 +497,56 @@ router.post('/users',
     }
 });
 
+/**
+ * @swagger
+ * /api/admin/users/{id}:
+ *   delete:
+ *     summary: Delete admin user (Super Admin only)
+ *     tags: [Authentication]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Admin user ID to delete
+ *     responses:
+ *       200:
+ *         description: Admin user deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Admin user deleted successfully
+ *       400:
+ *         description: Cannot delete yourself or invalid request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       403:
+ *         description: Access denied - Super Admin required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       404:
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // Delete admin (super admin only)
 router.delete('/users/:id',
   authenticateToken,
@@ -323,6 +591,38 @@ router.delete('/users/:id',
     }
 });
 
+/**
+ * @swagger
+ * /api/admin/users:
+ *   get:
+ *     summary: Get all admin users (Super Admin only)
+ *     tags: [Authentication]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of admin users retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/AdminUser'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       403:
+ *         description: Access denied - Super Admin required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // Get all admins (super admin only)
 router.get('/users',
   authenticateToken,
@@ -355,6 +655,33 @@ router.get('/users',
     }
 });
 
+/**
+ * @swagger
+ * /api/admin/check-session:
+ *   get:
+ *     summary: Check if user session is valid
+ *     tags: [Authentication]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Session is valid
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Session is valid
+ *                 user:
+ *                   $ref: '#/components/schemas/AdminUser'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ */
 // Check session endpoint (same as before)
 router.get('/check-session', 
   authenticateToken,
