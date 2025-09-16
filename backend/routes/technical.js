@@ -3,9 +3,81 @@ const router = express.Router();
 const prisma = require('../config/db');
 const { Prisma } = require('@prisma/client');
 
+/**
+ * @swagger
+ * tags:
+ *   name: Technical
+ *   description: Performance metrics and error logging
+ */
+
+/**
+ * @swagger
+ * /api/track-metrics:
+ *   post:
+ *     summary: Store performance metrics
+ *     tags: [Technical]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - visitorId
+ *             properties:
+ *               visitorId:
+ *                 type: string
+ *                 example: visitor_123456
+ *               page:
+ *                 type: string
+ *                 example: /home
+ *               FCP:
+ *                 type: number
+ *                 description: First Contentful Paint (ms)
+ *                 example: 1200.5
+ *               LCP:
+ *                 type: number
+ *                 description: Largest Contentful Paint (ms)
+ *                 example: 2500.0
+ *               TTI:
+ *                 type: number
+ *                 description: Time to Interactive (ms)
+ *                 example: 3000.0
+ *               loadTime:
+ *                 type: number
+ *                 description: Page load time (ms)
+ *                 example: 1500.0
+ *               deviceType:
+ *                 type: string
+ *                 example: Desktop
+ *               country:
+ *                 type: string
+ *                 example: United States
+ *     responses:
+ *       200:
+ *         description: Performance metrics recorded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Performance metrics recorded successfully
+ *                 id:
+ *                   type: integer
+ *                   example: 1
+ *       400:
+ *         $ref: '#/components/responses/ValidationError'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // POST route to store performance metrics
 router.post('/track-metrics', async (req, res) => {
-  console.log('Received metrics:', req.body);
   try {
     const { visitorId, page, FCP, LCP, TTI, loadTime, deviceType, country } = req.body;
 
@@ -41,6 +113,74 @@ const convertToMySQLDate = (isoDate) => {
   return date.toISOString().slice(0, 19).replace('T', ' ');  // Converts to 'YYYY-MM-DD HH:MM:SS'
 };
 
+/**
+ * @swagger
+ * /api/track-error-logs:
+ *   post:
+ *     summary: Track error logs and events
+ *     tags: [Technical]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - recentErrorLogs
+ *               - visitorId
+ *             properties:
+ *               recentErrorLogs:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                       example: "TypeError: Cannot read property 'length' of undefined"
+ *                     stack:
+ *                       type: string
+ *                       example: "at Component.render (bundle.js:1234:56)"
+ *                     timestamp:
+ *                       type: string
+ *                       format: date-time
+ *               visitorId:
+ *                 type: string
+ *                 example: visitor_123456
+ *               page:
+ *                 type: string
+ *                 example: /dashboard
+ *               timestamp:
+ *                 type: string
+ *                 format: date-time
+ *               deviceType:
+ *                 type: string
+ *                 example: Desktop
+ *               browser:
+ *                 type: string
+ *                 example: Chrome
+ *               country:
+ *                 type: string
+ *                 example: United States
+ *     responses:
+ *       200:
+ *         description: Error logs tracked successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error logs recorded successfully
+ *       400:
+ *         $ref: '#/components/responses/ValidationError'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 router.post('/track-error-logs', async (req, res) => {
   try {
     const { recentErrorLogs, visitorId, page, timestamp, deviceType, browser, country } = req.body;
