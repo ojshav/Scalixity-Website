@@ -2,6 +2,13 @@
 const express = require('express');
 const router = express.Router();
 
+/**
+ * @swagger
+ * tags:
+ *   name: Services
+ *   description: Service and industry listings
+ */
+
 
 // Simulated route list from your input (you provided this earlier)
 const routes = [
@@ -183,10 +190,44 @@ function capitalize(str) {
 let industries = extractIndustries();
 let services = extractServices();
 
+/**
+ * @swagger
+ * /api/industries:
+ *   get:
+ *     summary: Get all available industries
+ *     tags: [Services]
+ *     responses:
+ *       200:
+ *         description: List of industries retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ *                 example: healthcare
+ */
 router.get('/industries', (req, res) => {
   res.json(industries);
 });
 
+/**
+ * @swagger
+ * /api/services:
+ *   get:
+ *     summary: Get all available services
+ *     tags: [Services]
+ *     responses:
+ *       200:
+ *         description: List of services retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ *                 example: ai-solutions
+ */
 router.get('/services', (req, res) => {
   res.json(services);
 });
