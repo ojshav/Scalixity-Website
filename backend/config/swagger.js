@@ -177,6 +177,110 @@ const options = {
               }
             }
           }
+        },
+        
+        // Service Management Schemas
+        Service: {
+          type: 'object',
+          properties: {
+            id: { type: 'string', example: 'cmfnpgy6g0000e2csxt13o2ae' },
+            slug: { type: 'string', example: 'ai-development' },
+            title: { type: 'string', example: 'AI Development Services' },
+            description: { type: 'string', example: 'Comprehensive AI development solutions for your business' },
+            shortDescription: { type: 'string', example: 'AI solutions for your business' },
+            imageUrl: { type: 'string', example: '/icons/ai.svg' },
+            heroImageUrl: { type: 'string', example: 'https://example.com/hero.jpg' },
+            features: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  id: { type: 'string' },
+                  feature: { type: 'string', example: 'Machine Learning Integration' },
+                  order: { type: 'integer', example: 0 }
+                }
+              }
+            },
+            technologies: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  id: { type: 'string' },
+                  technology: { type: 'string', example: 'Python' },
+                  order: { type: 'integer', example: 0 }
+                }
+              }
+            },
+            benefits: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  id: { type: 'string' },
+                  benefit: { type: 'string', example: 'Increased efficiency' },
+                  order: { type: 'integer', example: 0 }
+                }
+              }
+            },
+            keywords: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  id: { type: 'string' },
+                  keyword: { type: 'string', example: 'AI' },
+                  order: { type: 'integer', example: 0 }
+                }
+              }
+            },
+            pricing: {
+              type: 'object',
+              properties: {
+                id: { type: 'string' },
+                starting: { type: 'string', example: '£5,000' },
+                description: { type: 'string', example: 'Starting from £5,000' }
+              }
+            },
+            createdAt: { type: 'string', format: 'date-time' },
+            updatedAt: { type: 'string', format: 'date-time' }
+          }
+        },
+        
+        WebsiteService: {
+          type: 'object',
+          properties: {
+            id: { type: 'string', example: 'cmfnpgy6g0000e2csxt13o2ae' },
+            slug: { type: 'string', example: 'ai-development' },
+            title: { type: 'string', example: 'AI Development Services' },
+            description: { type: 'string', example: 'Comprehensive AI development solutions for your business' },
+            shortDescription: { type: 'string', example: 'AI solutions for your business' },
+            image: { type: 'string', example: '/icons/ai.svg' },
+            heroImage: { type: 'string', example: 'https://example.com/hero.jpg' },
+            features: {
+              type: 'array',
+              items: { type: 'string', example: 'Machine Learning Integration' }
+            },
+            technologies: {
+              type: 'array',
+              items: { type: 'string', example: 'Python' }
+            },
+            benefits: {
+              type: 'array',
+              items: { type: 'string', example: 'Increased efficiency' }
+            },
+            keywords: {
+              type: 'array',
+              items: { type: 'string', example: 'AI' }
+            },
+            pricing: {
+              type: 'object',
+              properties: {
+                starting: { type: 'string', example: '£5,000' },
+                description: { type: 'string', example: 'Starting from £5,000' }
+              }
+            }
+          }
         }
       },
       
@@ -282,6 +386,14 @@ const options = {
       {
         name: 'Services',
         description: 'Service and industry listings'
+      },
+      {
+        name: 'Website Services',
+        description: 'Public service endpoints for website consumption'
+      },
+      {
+        name: 'Admin Services',
+        description: 'Protected service management endpoints (admin only)'
       }
     ]
   },
