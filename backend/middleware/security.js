@@ -7,7 +7,7 @@ const rateLimiters = {
   // General API rate limiting
   general: rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
+    max: 300, // limit each IP to 300 requests per windowMs (increased from 100)
     message: {
       success: false,
       message: 'Too many requests from this IP, please try again later.',
@@ -17,13 +17,26 @@ const rateLimiters = {
     legacyHeaders: false,
   }),
 
-  // Strict rate limiting for auth endpoints
+  // Strict rate limiting for auth endpoints (login only)
   auth: rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 5, // limit each IP to 5 login attempts per windowMs
     message: {
       success: false,
       message: 'Too many login attempts from this IP, please try again later.',
+      retryAfter: '15 minutes'
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+  }),
+
+  // More lenient rate limiting for admin operations
+  admin: rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 1000, // limit each IP to 1000 admin requests per windowMs (increased from 200)
+    message: {
+      success: false,
+      message: 'Too many admin requests from this IP, please try again later.',
       retryAfter: '15 minutes'
     },
     standardHeaders: true,
