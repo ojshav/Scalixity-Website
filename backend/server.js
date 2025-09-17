@@ -16,6 +16,8 @@ const contactRoutes = require('./routes/contact');
 const servicesRoutes = require('./routes/services');
 const InquireRoutes = require('./routes/inquires');
 const campaignsRoutes = require('./routes/campaigns');
+const publicServicesRoutes = require('./routes/public-services');
+const adminServicesRoutes = require('./routes/admin-services');
 
 // Import middleware and utilities
 const { logger, httpLogger } = require('./utils/logger');
@@ -123,7 +125,14 @@ async function setupDatabase() {
 
 // Routes with specific rate limiting
 const adminRoutes = require('./routes/admin');
-app.use('/api/admin', rateLimiters.auth, adminRoutes);
+
+// Apply strict rate limiting only to login endpoint
+app.use('/api/admin/login', rateLimiters.auth);
+
+// Apply lenient rate limiting to other admin routes
+app.use('/api/admin', rateLimiters.admin, adminRoutes);
+app.use('/api/admin/services', rateLimiters.admin, adminServicesRoutes);
+app.use('/api/website-services', publicServicesRoutes);
 app.use("/api", analyticsRoutes);
 app.use("/api", engagementRoutes);
 app.use("/api", demographicRoutes);
@@ -137,7 +146,7 @@ app.use('/api', rateLimiters.campaign, campaignsRoutes);
 // 404 handler for undefined routes
 app.use(notFoundHandler);
 
-// Global error handling middleware (must be last)
+// Global error handling middleware
 app.use(errorHandler);
 
 // Start server
