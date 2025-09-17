@@ -1,0 +1,276 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id            Int       @id @default(autoincrement())
+  username      String    @unique(map: "username") @db.VarChar(50)
+  password      String    @db.VarChar(255)
+  email         String    @unique(map: "email") @db.VarChar(100)
+  firstName     String?   @map("first_name") @db.VarChar(50)
+  lastName      String?   @map("last_name") @db.VarChar(50)
+  role          String?   @default("admin") @db.VarChar(50)
+  receiveEmails Boolean?  @default(false) @map("receive_emails")
+  lastLogin     DateTime? @map("last_login") @db.DateTime(0)
+  lastActivity  DateTime? @map("last_activity") @db.DateTime(0)
+  createdAt     DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("admin_users")
+}
+
+model UserActivity {
+  id         Int       @id @default(autoincrement())
+  visitorId  String?   @map("visitorId") @db.VarChar(255)
+  page       String?   @db.VarChar(255)
+  timestamp  DateTime? @db.DateTime(0)
+  event      String?   @db.VarChar(50)
+  deviceType String?   @map("deviceType") @db.VarChar(50)
+  country    String?   @db.VarChar(50)
+  browser    String?   @db.VarChar(100)
+  visitCount Int       @default(1) @map("visitCount")
+  userType   String    @map("userType") @db.VarChar(10)
+  inquiries  Inquiry[]
+
+  @@index([visitorId], map: "idx_visitorId")
+  @@index([timestamp], map: "idx_timestamp")
+  @@index([userType], map: "idx_userType")
+  @@index([country], map: "idx_country")
+  @@index([page], map: "idx_page")
+  @@map("user_activity")
+}
+
+model Project {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(100)
+  description String    @db.Text
+  image       String    @db.VarChar(255)
+  liveUrl     String    @map("live_url") @db.VarChar(255)
+  createdAt   DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt   DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("projects")
+}
+
+model Inquiry {
+  id          Int           @id @default(autoincrement())
+  visitorId   String        @map("visitor_id") @db.VarChar(255)
+  activityId  Int?          @map("activity_id")
+  inquiryType String?       @map("inquiry_type") @db.VarChar(50)
+  timestamp   DateTime      @db.DateTime(0)
+  activity    UserActivity? @relation(fields: [activityId], references: [id], onUpdate: NoAction, map: "inquiries_ibfk_1")
+
+  @@index([activityId], map: "activity_id")
+  @@map("inquiries")
+}
+
+model PerformanceMetric {
+  id         Int      @id @default(autoincrement())
+  visitorId  String   @db.VarChar(255)
+  page       String?  @db.VarChar(255)
+  fcp        Float?   @db.Float
+  lcp        Float?   @db.Float
+  tti        Float?   @db.Float
+  loadTime   Float?   @map("loadTime") @db.Float
+  timestamp  DateTime @db.DateTime(0)
+  deviceType String?  @map("deviceType") @db.VarChar(50)
+  country    String?  @db.VarChar(100)
+
+  @@map("performance_metrics")
+}
+
+model ErrorLog {
+  id              Int       @id @default(autoincrement())
+  visitorId       String?   @map("visitorId") @db.VarChar(255)
+  page            String?   @db.VarChar(255)
+  errorCode       String?   @map("errorCode") @db.VarChar(50)
+  errorMessage    String?   @map("errorMessage") @db.Text
+  source          String?   @db.VarChar(50)
+  count           Int?      @default(1)
+  firstOccurrence DateTime? @map("firstOccurrence") @db.DateTime(0)
+  lastOccurrence  DateTime? @map("lastOccurrence") @db.DateTime(0)
+  timestamp       DateTime  @db.DateTime(0)
+  deviceType      String?   @map("deviceType") @db.VarChar(50)
+  browser         String?   @db.VarChar(100)
+  country         String?   @db.VarChar(100)
+
+  @@map("error_logs")
+}
+
+model ContactUs {
+  id        Int            @id @default(autoincrement())
+  name      String         @db.VarChar(100)
+  email     String         @db.VarChar(100)
+  phone     String?        @db.VarChar(20)
+  message   String         @db.Text
+  status    ContactStatus? @default(NEW)
+  createdAt DateTime?      @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt DateTime?      @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@index([status], map: "idx_contact_status")
+  @@index([createdAt], map: "idx_contact_created")
+  @@index([email], map: "idx_contact_email")
+  @@map("contact_us")
+}
+
+model ServiceInquiry {
+  id           Int                   @id @default(autoincrement())
+  companyName  String                @map("company_name") @db.VarChar(100)
+  email        String                @db.VarChar(100)
+  industryName String                @map("industry_name") @db.VarChar(100)
+  serviceName  String                @map("service_name") @db.VarChar(100)
+  status       ServiceInquiryStatus? @default(NEW)
+  createdAt    DateTime?             @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime?             @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("service_inquiries")
+}
+
+model Campaign {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  description String?   @db.Text
+  imageUrl    String?   @map("image_url") @db.VarChar(500)
+  startDate   DateTime  @map("start_date") @db.Date
+  endDate     DateTime  @map("end_date") @db.Date
+  type        String    @db.VarChar(50)
+  createdAt   DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt   DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("campaigns")
+}
+
+model CampaignQuestion {
+  id            Int       @id @default(autoincrement())
+  campaignId    Int       @map("campaign_id")
+  questionOrder Int       @map("question_order")
+  label         String    @db.VarChar(255)
+  type          String    @db.VarChar(50)
+  options       Json?
+  createdAt     DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt     DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@map("campaign_questions")
+}
+
+model CampaignSubmission {
+  id         Int                       @id @default(autoincrement())
+  campaignId Int                       @map("campaign_id")
+  visitorId  String?                   @map("visitor_id") @db.VarChar(255)
+  answers    Json
+  status     CampaignSubmissionStatus? @default(SUBMITTED)
+  createdAt  DateTime?                 @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt  DateTime?                 @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  @@index([campaignId], map: "idx_campaign_id")
+  @@index([status], map: "idx_status")
+  @@index([visitorId], map: "idx_visitor_id")
+  @@map("campaign_submissions")
+}
+
+enum ContactStatus {
+  NEW         @map("new")
+  IN_PROGRESS @map("in_progress")
+  RESOLVED    @map("resolved")
+}
+
+enum ServiceInquiryStatus {
+  NEW         @map("new")
+  IN_PROGRESS @map("in_progress")
+  RESOLVED    @map("resolved")
+}
+
+enum CampaignSubmissionStatus {
+  SUBMITTED @map("submitted")
+  REVIEWED  @map("reviewed")
+  APPROVED  @map("approved")
+  REJECTED  @map("rejected")
+}
+
+// Service Management Models (New Addition - Does not affect existing functionality)
+model Service {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  description      String   @db.Text
+  shortDescription String   @map("short_description") @db.Text
+  imageUrl         String?  @map("image_url") @db.VarChar(500)
+  heroImageUrl     String?  @map("hero_image_url") @db.VarChar(500)
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt        DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
+
+  // Relations
+  features     ServiceFeature[]
+  technologies ServiceTechnology[]
+  benefits     ServiceBenefit[]
+  pricing      ServicePricing?
+  keywords     ServiceKeyword[]
+
+  @@map("services")
+}
+
+model ServiceFeature {
+  id        String  @id @default(cuid())
+  serviceId String  @map("service_id")
+  feature   String  @db.Text
+  order     Int     @default(0)
+
+  // Relations
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@map("service_features")
+}
+
+model ServiceTechnology {
+  id         String @id @default(cuid())
+  serviceId  String @map("service_id")
+  technology String
+  order      Int    @default(0)
+
+  // Relations
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@map("service_technologies")
+}
+
+model ServiceBenefit {
+  id        String @id @default(cuid())
+  serviceId String @map("service_id")
+  benefit   String @db.Text
+  order     Int    @default(0)
+
+  // Relations
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@map("service_benefits")
+}
+
+model ServiceKeyword {
+  id        String @id @default(cuid())
+  serviceId String @map("service_id")
+  keyword   String
+  order     Int    @default(0)
+
+  // Relations
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@map("service_keywords")
+}
+
+model ServicePricing {
+  id          String @id @default(cuid())
+  serviceId   String @unique @map("service_id")
+  starting    String
+  description String @db.Text
+
+  // Relations
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@map("service_pricing")
+}
