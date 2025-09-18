@@ -248,7 +248,7 @@ router.get('/campaigns/:id/questions', async (req, res) => {
     await prisma.$executeRaw`
       UPDATE campaign_questions 
       SET options = NULL 
-      WHERE campaignId = ${parseInt(id)} 
+      WHERE campaign_id = ${parseInt(id)} 
       AND (options = '' OR options = 'null' OR options = '[]')
     `;
     
