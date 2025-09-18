@@ -202,6 +202,7 @@ model Service {
   shortDescription String   @map("short_description") @db.Text
   imageUrl         String?  @map("image_url") @db.VarChar(500)
   heroImageUrl     String?  @map("hero_image_url") @db.VarChar(500)
+  pricingPlans     Json?    @map("pricing_plans")
   createdAt        DateTime @default(now()) @map("created_at") @db.Timestamp(0)
   updatedAt        DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
 
@@ -228,10 +229,11 @@ model ServiceFeature {
 }
 
 model ServiceTechnology {
-  id         String @id @default(cuid())
-  serviceId  String @map("service_id")
+  id         String  @id @default(cuid())
+  serviceId  String  @map("service_id")
   technology String
-  order      Int    @default(0)
+  iconUrl    String? @map("icon_url") @db.VarChar(500)
+  order      Int     @default(0)
 
   // Relations
   service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
