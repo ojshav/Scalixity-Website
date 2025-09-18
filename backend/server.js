@@ -137,11 +137,18 @@ app.use("/api", analyticsRoutes);
 app.use("/api", engagementRoutes);
 app.use("/api", demographicRoutes);
 app.use("/api", technicalRoutes);
-app.use("/api", rateLimiters.contact, contactRoutes);
+
+// Apply rate limiting only to public submission endpoints
+app.post('/api/contact', rateLimiters.contact);
+app.post('/api/campaigns/:id/submit', rateLimiters.campaign);
+app.post('/api/inquiries', rateLimiters.inquiry);
+
+// Apply routes without blanket rate limiting (admin operations need higher limits)
+app.use("/api", contactRoutes);
 app.use("/api/work", workRoutes);
 app.use('/api', servicesRoutes); 
 app.use("/api", InquireRoutes);
-app.use('/api', rateLimiters.campaign, campaignsRoutes);
+app.use('/api', campaignsRoutes);
 
 // 404 handler for undefined routes
 app.use(notFoundHandler);
