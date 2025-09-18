@@ -34,10 +34,16 @@ export default function AdminWorkPage() {
   const fetchProjects = async () => {
     try {
       const response = await fetch(`${baseURL}/api/work/projects`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
-      setProjects(data);
+      // Ensure data is always an array
+      setProjects(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching projects:', error);
+      // Set empty array on error to prevent map error
+      setProjects([]);
     }
   };
 
@@ -223,7 +229,7 @@ export default function AdminWorkPage() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {projects.map((project) => (
+            {Array.isArray(projects) && projects.length > 0 ? projects.map((project) => (
               <tr key={project.id}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="relative w-16 h-16">
@@ -259,7 +265,13 @@ export default function AdminWorkPage() {
                   </button>
                 </td>
               </tr>
-            ))}
+            )) : (
+              <tr>
+                <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
+                  {Array.isArray(projects) ? 'No projects found' : 'Loading projects...'}
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

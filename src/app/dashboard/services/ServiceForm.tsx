@@ -21,6 +21,7 @@ interface Service {
   technologies: Array<{
     id: string;
     technology: string;
+    iconUrl?: string | null;
     order: number;
   }>;
   benefits: Array<{
@@ -38,6 +39,23 @@ interface Service {
     starting: string;
     description: string;
   };
+  pricingPlans?: {
+    beginner: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+    professional: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+    pro: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+  } | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -48,12 +66,33 @@ interface ServiceFormData {
   description: string;
   shortDescription: string;
   features: string[];
-  technologies: string[];
+  technologies: Array<{
+    name: string;
+    iconUrl?: string;
+    iconFile?: File;
+  }>;
   benefits: string[];
   keywords: string[];
   pricing: {
     starting: string;
     description: string;
+  } | null;
+  pricingPlans: {
+    beginner: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+    professional: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+    pro: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
   } | null;
 }
 
@@ -72,10 +111,11 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
     description: '',
     shortDescription: '',
     features: [''],
-    technologies: [''],
+    technologies: [{ name: '', iconUrl: '', iconFile: undefined }],
     benefits: [''],
     keywords: [''],
-    pricing: null
+    pricing: null,
+    pricingPlans: null
   });
 
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -85,6 +125,7 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasPricing, setHasPricing] = useState(false);
+  const [hasPricingPlans, setHasPricingPlans] = useState(false);
 
   const imageInputRef = useRef<HTMLInputElement>(null);
   const heroImageInputRef = useRef<HTMLInputElement>(null);
@@ -98,17 +139,23 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
         description: service.description,
         shortDescription: service.shortDescription,
         features: service.features.length > 0 ? service.features.map(f => f.feature) : [''],
-        technologies: service.technologies.length > 0 ? service.technologies.map(t => t.technology) : [''],
+        technologies: service.technologies.length > 0 ? service.technologies.map(t => ({
+          name: t.technology,
+          iconUrl: t.iconUrl || '',
+          iconFile: undefined
+        })) : [{ name: '', iconUrl: '', iconFile: undefined }],
         benefits: service.benefits.length > 0 ? service.benefits.map(b => b.benefit) : [''],
         keywords: service.keywords && service.keywords.length > 0 ? service.keywords.map(k => k.keyword) : [''],
         pricing: service.pricing ? {
           starting: service.pricing.starting,
           description: service.pricing.description
-        } : null
+        } : null,
+        pricingPlans: service.pricingPlans || null
       });
       setImagePreview(service.imageUrl);
       setHeroImagePreview(service.heroImageUrl);
       setHasPricing(service.pricing ? true : false);
+      setHasPricingPlans(service.pricingPlans ? true : false);
     } else if (mode === 'create') {
       // Reset form for create mode
       setFormData({
@@ -117,40 +164,118 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
         description: '',
         shortDescription: '',
         features: [''],
-        technologies: [''],
+        technologies: [{ name: '', iconUrl: '', iconFile: undefined }],
         benefits: [''],
         keywords: [''],
-        pricing: null
+        pricing: null,
+        pricingPlans: null
       });
       setImagePreview(null);
       setHeroImagePreview(null);
       setHasPricing(false);
+      setHasPricingPlans(false);
       setImageFile(null);
       setHeroImageFile(null);
     }
     setError(null);
   }, [service, mode, isOpen]);
 
-  const handleInputChange = (field: keyof ServiceFormData, value: any) => {
+  const handleInputChange = (field: keyof ServiceFormData, value: string | number | boolean | File | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleArrayChange = (field: 'features' | 'technologies' | 'benefits' | 'keywords', index: number, value: string) => {
+  const handleArrayChange = (field: 'features' | 'benefits' | 'keywords', index: number, value: string) => {
     const newArray = [...formData[field]];
     newArray[index] = value;
     setFormData(prev => ({ ...prev, [field]: newArray }));
   };
 
-  const addArrayItem = (field: 'features' | 'technologies' | 'benefits' | 'keywords') => {
+  const handleTechnologyChange = (index: number, field: 'name' | 'iconUrl', value: string) => {
+    const newTechnologies = [...formData.technologies];
+    newTechnologies[index] = { ...newTechnologies[index], [field]: value };
+    setFormData(prev => ({ ...prev, technologies: newTechnologies }));
+  };
+
+  const handleTechnologyIconChange = (index: number, file: File | null) => {
+    const newTechnologies = [...formData.technologies];
+    newTechnologies[index] = { ...newTechnologies[index], iconFile: file || undefined };
+    setFormData(prev => ({ ...prev, technologies: newTechnologies }));
+  };
+
+  const handlePricingPlanChange = (plan: 'beginner' | 'professional' | 'pro', field: 'priceRange' | 'description', value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      pricingPlans: {
+        ...prev.pricingPlans!,
+        [plan]: {
+          ...prev.pricingPlans![plan],
+          [field]: value
+        }
+      }
+    }));
+  };
+
+  const handlePricingPlanBulletChange = (plan: 'beginner' | 'professional' | 'pro', index: number, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      pricingPlans: {
+        ...prev.pricingPlans!,
+        [plan]: {
+          ...prev.pricingPlans![plan],
+          bulletPoints: prev.pricingPlans![plan].bulletPoints.map((bullet, i) => i === index ? value : bullet)
+        }
+      }
+    }));
+  };
+
+  const addPricingPlanBullet = (plan: 'beginner' | 'professional' | 'pro') => {
+    setFormData(prev => ({
+      ...prev,
+      pricingPlans: {
+        ...prev.pricingPlans!,
+        [plan]: {
+          ...prev.pricingPlans![plan],
+          bulletPoints: [...prev.pricingPlans![plan].bulletPoints, '']
+        }
+      }
+    }));
+  };
+
+  const removePricingPlanBullet = (plan: 'beginner' | 'professional' | 'pro', index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      pricingPlans: {
+        ...prev.pricingPlans!,
+        [plan]: {
+          ...prev.pricingPlans![plan],
+          bulletPoints: prev.pricingPlans![plan].bulletPoints.filter((_, i) => i !== index)
+        }
+      }
+    }));
+  };
+
+  const addArrayItem = (field: 'features' | 'benefits' | 'keywords') => {
     setFormData(prev => ({
       ...prev,
       [field]: [...prev[field], '']
     }));
   };
 
-  const removeArrayItem = (field: 'features' | 'technologies' | 'benefits' | 'keywords', index: number) => {
+  const addTechnology = () => {
+    setFormData(prev => ({
+      ...prev,
+      technologies: [...prev.technologies, { name: '', iconUrl: '', iconFile: undefined }]
+    }));
+  };
+
+  const removeArrayItem = (field: 'features' | 'benefits' | 'keywords', index: number) => {
     const newArray = formData[field].filter((_, i) => i !== index);
     setFormData(prev => ({ ...prev, [field]: newArray }));
+  };
+
+  const removeTechnology = (index: number) => {
+    const newTechnologies = formData.technologies.filter((_, i) => i !== index);
+    setFormData(prev => ({ ...prev, technologies: newTechnologies }));
   };
 
   const handleImageChange = (file: File | null, type: 'image' | 'heroImage') => {
@@ -209,7 +334,13 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
       
       // Add arrays as JSON strings
       formDataObj.append('features', JSON.stringify(formData.features.filter(f => f.trim())));
-      formDataObj.append('technologies', JSON.stringify(formData.technologies.filter(t => t.trim())));
+      formDataObj.append('technologies', JSON.stringify(formData.technologies
+        .filter(t => t.name.trim())
+        .map(t => ({ 
+          name: t.name, 
+          iconUrl: t.iconUrl && t.iconUrl.trim() ? t.iconUrl : null 
+        }))
+      ));
       formDataObj.append('benefits', JSON.stringify(formData.benefits.filter(b => b.trim())));
       formDataObj.append('keywords', JSON.stringify(formData.keywords.filter(k => k.trim())));
       
@@ -217,16 +348,26 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
       if (hasPricing && formData.pricing) {
         formDataObj.append('pricing', JSON.stringify(formData.pricing));
       }
-      
-      // Add image files
-      if (imageFile) {
-        formDataObj.append('image', imageFile);
-      }
-      if (heroImageFile) {
-        formDataObj.append('heroImage', heroImageFile);
-      }
 
-      const url = mode === 'create' 
+      // Add pricing plans if enabled
+      if (hasPricingPlans && formData.pricingPlans) {
+        formDataObj.append('pricingPlans', JSON.stringify(formData.pricingPlans));
+      }
+      
+          {/* Add image files */}
+          if (imageFile) {
+            formDataObj.append('image', imageFile);
+          }
+          if (heroImageFile) {
+            formDataObj.append('heroImage', heroImageFile);
+          }
+
+          // Add technology icon files
+          formData.technologies.forEach((tech, index) => {
+            if (tech.iconFile) {
+              formDataObj.append(`techIcon-${index}`, tech.iconFile);
+            }
+          });      const url = mode === 'create' 
         ? `${baseURL}/api/admin/services`
         : `${baseURL}/api/admin/services/${service?.id}`;
       
@@ -252,9 +393,9 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
       } else {
         setError(data.message || 'Operation failed');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(`Error ${mode === 'create' ? 'creating' : 'updating'} service:`, error);
-      setError(error.message || `Failed to ${mode === 'create' ? 'create' : 'update'} service`);
+      setError(error instanceof Error ? error.message : `Failed to ${mode === 'create' ? 'create' : 'update'} service`);
     } finally {
       setLoading(false);
     }
@@ -475,19 +616,60 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Technologies
             </label>
-            <div className="space-y-2">
+            <div className="space-y-4">
               {formData.technologies.map((tech, index) => (
-                <div key={index} className="flex gap-2">
-                  <input
-                    type="text"
-                    value={tech}
-                    onChange={(e) => handleArrayChange('technologies', index, e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter technology"
-                  />
+                <div key={index} className="flex gap-2 p-4 border border-gray-200 rounded-lg">
+                  <div className="flex-1">
+                    <input
+                      type="text"
+                      value={tech.name}
+                      onChange={(e) => handleTechnologyChange(index, 'name', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="Enter technology name"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-2">
+                      {tech.iconUrl || tech.iconFile ? (
+                        <div className="relative">
+                          <Image
+                            src={tech.iconFile ? URL.createObjectURL(tech.iconFile) : tech.iconUrl || ''}
+                            alt="Technology icon"
+                            width={40}
+                            height={40}
+                            className="w-10 h-10 object-cover rounded mx-auto"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => handleTechnologyIconChange(index, null)}
+                            className="absolute -top-1 -right-1 bg-red-600 text-white rounded-full p-1 hover:bg-red-700"
+                          >
+                            <X className="h-3 w-3" />
+                          </button>
+                        </div>
+                      ) : (
+                        <div
+                          className="text-center cursor-pointer"
+                          onClick={() => {
+                            const input = document.createElement('input');
+                            input.type = 'file';
+                            input.accept = 'image/*';
+                            input.onchange = (e) => {
+                              const file = (e.target as HTMLInputElement).files?.[0];
+                              handleTechnologyIconChange(index, file || null);
+                            };
+                            input.click();
+                          }}
+                        >
+                          <Upload className="mx-auto h-6 w-6 text-gray-400" />
+                          <p className="mt-1 text-xs text-gray-600">Click to upload icon</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   <button
                     type="button"
-                    onClick={() => removeArrayItem('technologies', index)}
+                    onClick={() => removeTechnology(index)}
                     className="text-red-600 hover:text-red-800"
                   >
                     <Trash2 className="h-4 w-4" />
@@ -496,7 +678,7 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
               ))}
               <button
                 type="button"
-                onClick={() => addArrayItem('technologies')}
+                onClick={addTechnology}
                 className="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50"
               >
                 <Plus className="h-4 w-4 mr-1" />
@@ -575,7 +757,103 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
             </div>
           </div>
 
-          {/* Pricing */}
+          {/* Pricing Plans */}
+          <div>
+            <div className="flex items-center mb-4">
+              <input
+                type="checkbox"
+                id="hasPricingPlans"
+                checked={hasPricingPlans}
+                onChange={(e) => {
+                  setHasPricingPlans(e.target.checked);
+                  if (e.target.checked && !formData.pricingPlans) {
+                    setFormData(prev => ({
+                      ...prev,
+                      pricingPlans: {
+                        beginner: { priceRange: '', description: '', bulletPoints: [''] },
+                        professional: { priceRange: '', description: '', bulletPoints: [''] },
+                        pro: { priceRange: '', description: '', bulletPoints: [''] }
+                      }
+                    }));
+                  }
+                }}
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+              <label htmlFor="hasPricingPlans" className="ml-2 block text-sm text-gray-900">
+                Add dynamic pricing plans (Beginner, Professional, Pro)
+              </label>
+            </div>
+            {hasPricingPlans && formData.pricingPlans && (
+              <div className="space-y-6">
+                {(['beginner', 'professional', 'pro'] as const).map((plan) => (
+                  <div key={plan} className="border border-gray-200 rounded-lg p-4">
+                    <h4 className="text-lg font-medium text-gray-900 mb-4 capitalize">{plan} Plan</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Price Range
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.pricingPlans![plan].priceRange}
+                          onChange={(e) => handlePricingPlanChange(plan, 'priceRange', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                          placeholder="e.g., $25k - $50k"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Description
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.pricingPlans![plan].description}
+                          onChange={(e) => handlePricingPlanChange(plan, 'description', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                          placeholder="e.g., Perfect for startups and small projects"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Bullet Points
+                      </label>
+                      <div className="space-y-2">
+                        {formData.pricingPlans![plan].bulletPoints.map((bullet, index) => (
+                          <div key={index} className="flex gap-2">
+                            <input
+                              type="text"
+                              value={bullet}
+                              onChange={(e) => handlePricingPlanBulletChange(plan, index, e.target.value)}
+                              className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                              placeholder="Enter bullet point"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => removePricingPlanBullet(plan, index)}
+                              className="text-red-600 hover:text-red-800"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          </div>
+                        ))}
+                        <button
+                          type="button"
+                          onClick={() => addPricingPlanBullet(plan)}
+                          className="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50"
+                        >
+                          <Plus className="h-4 w-4 mr-1" />
+                          Add Bullet Point
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Legacy Pricing */}
           <div>
             <div className="flex items-center mb-4">
               <input

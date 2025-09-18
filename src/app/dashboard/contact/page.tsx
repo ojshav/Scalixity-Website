@@ -68,12 +68,15 @@ export default function AdminContactDashboard() {
     return 0
   })
   
-  const filteredSubmissions = sortedSubmissions.filter(submission =>
-    submission.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    submission.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (submission.phone && submission.phone.includes(searchTerm)) ||
-    (submission.message && submission.message.toLowerCase().includes(searchTerm.toLowerCase()))
-  )
+  const filteredSubmissions = sortedSubmissions.filter(submission => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      (submission.name?.toLowerCase().includes(searchLower) ?? false) ||
+      (submission.email?.toLowerCase().includes(searchLower) ?? false) ||
+      (submission.phone?.includes(searchTerm) ?? false) ||
+      (submission.message?.toLowerCase().includes(searchLower) ?? false)
+    );
+  });
   
   const totalPages = Math.ceil(filteredSubmissions.length / itemsPerPage)
   const startIndex = (currentPage - 1) * itemsPerPage

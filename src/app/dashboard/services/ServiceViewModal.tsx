@@ -19,6 +19,7 @@ interface Service {
   technologies: Array<{
     id: string;
     technology: string;
+    iconUrl?: string | null;
     order: number;
   }>;
   benefits: Array<{
@@ -36,6 +37,23 @@ interface Service {
     starting: string;
     description: string;
   };
+  pricingPlans?: {
+    beginner: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+    professional: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+    pro: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+  } | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -162,16 +180,27 @@ export default function ServiceViewModal({ isOpen, onClose, service }: ServiceVi
             {service.technologies.length > 0 && (
               <div>
                 <h4 className="text-sm font-medium text-gray-700 mb-3">Technologies ({service.technologies.length})</h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                   {service.technologies
                     .sort((a, b) => a.order - b.order)
                     .map((tech) => (
-                      <span
+                      <div
                         key={tech.id}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
+                        className="flex items-center space-x-2 bg-blue-50 rounded-lg p-3 border border-blue-100"
                       >
-                        {tech.technology}
-                      </span>
+                        {tech.iconUrl && (
+                          <Image
+                            src={tech.iconUrl}
+                            alt={tech.technology}
+                            width={24}
+                            height={24}
+                            className="w-6 h-6 object-contain flex-shrink-0"
+                          />
+                        )}
+                        <span className="text-sm font-medium text-blue-900 truncate">
+                          {tech.technology}
+                        </span>
+                      </div>
                     ))}
                 </div>
               </div>
@@ -215,7 +244,38 @@ export default function ServiceViewModal({ isOpen, onClose, service }: ServiceVi
               </div>
             )}
 
-            {/* Pricing Section */}
+            {/* Pricing Plans Section */}
+            {service.pricingPlans && (
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-3">Pricing Plans</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {(['beginner', 'professional', 'pro'] as const).map((plan) => {
+                    const planData = service.pricingPlans![plan];
+                    const planColors = {
+                      beginner: 'bg-green-50 border-green-200 text-green-900',
+                      professional: 'bg-blue-50 border-blue-200 text-blue-900',
+                      pro: 'bg-purple-50 border-purple-200 text-purple-900'
+                    };
+                    
+                    return (
+                      <div key={plan} className={`border rounded-lg p-4 ${planColors[plan]}`}>
+                        <h5 className="text-lg font-semibold mb-2 capitalize">{plan}</h5>
+                        <div className="text-sm font-medium mb-2">{planData.priceRange}</div>
+                        <p className="text-sm mb-3">{planData.description}</p>
+                        <ul className="space-y-1">
+                          {planData.bulletPoints.map((bullet, bulletIndex) => (
+                            <li key={bulletIndex} className="text-sm flex items-start space-x-2">
+                              <span className="flex-shrink-0 w-4 h-4 rounded-full bg-current opacity-20 mt-0.5"></span>
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}\n\n            {/* Legacy Pricing Section */}
             {service.pricing && (
               <div>
                 <h4 className="text-sm font-medium text-gray-700 mb-3">Pricing Information</h4>

@@ -72,9 +72,12 @@ export default function DashboardCampaignPage() {
       const response = await fetch(`${baseURL}/api/campaigns`);
       if (!response.ok) throw new Error("Failed to fetch campaigns");
       const data = await response.json();
-      setCampaigns(data);
+      // Ensure data is always an array
+      setCampaigns(Array.isArray(data) ? data : []);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Error fetching campaigns");
+      // Set empty array on error to prevent map error
+      setCampaigns([]);
     } finally {
       setLoading(false);
     }

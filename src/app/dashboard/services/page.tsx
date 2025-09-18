@@ -7,10 +7,7 @@ import {
   Trash2, 
   Search, 
   Filter, 
-  MoreHorizontal, 
-  Upload,
-  Eye,
-  ExternalLink
+  Eye
 } from 'lucide-react';
 import Image from 'next/image';
 import ServiceForm from './ServiceForm';
@@ -34,6 +31,7 @@ interface Service {
   technologies: Array<{
     id: string;
     technology: string;
+    iconUrl?: string | null;
     order: number;
   }>;
   benefits: Array<{
@@ -51,6 +49,23 @@ interface Service {
     starting: string;
     description: string;
   };
+  pricingPlans?: {
+    beginner: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+    professional: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+    pro: {
+      priceRange: string;
+      description: string;
+      bulletPoints: string[];
+    };
+  } | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -150,11 +165,14 @@ export default function AdminServicesPage() {
     }
   };
 
-  const filteredServices = services.filter(service =>
-    service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    service.slug.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    service.shortDescription.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredServices = services.filter(service => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      (service.title?.toLowerCase().includes(searchLower) ?? false) ||
+      (service.slug?.toLowerCase().includes(searchLower) ?? false) ||
+      (service.shortDescription?.toLowerCase().includes(searchLower) ?? false)
+    );
+  });
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -326,7 +344,7 @@ export default function AdminServicesPage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex flex-wrap gap-1">
-                        {service.technologies.slice(0, 3).map((tech, index) => (
+                        {service.technologies.slice(0, 3).map((tech) => (
                           <span
                             key={tech.id}
                             className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
@@ -342,7 +360,16 @@ export default function AdminServicesPage() {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {service.pricing ? (
+                      {service.pricingPlans ? (
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">
+                            3 Plan Tiers
+                          </div>
+                          <div className="text-sm text-gray-500">
+                            {service.pricingPlans.beginner.priceRange} - {service.pricingPlans.pro.priceRange}
+                          </div>
+                        </div>
+                      ) : service.pricing ? (
                         <div>
                           <div className="text-sm font-medium text-gray-900">
                             {service.pricing.starting}
@@ -412,7 +439,7 @@ export default function AdminServicesPage() {
               <h3 className="text-lg font-medium text-gray-900 mt-4">Delete Service</h3>
               <div className="mt-2 px-7 py-3">
                 <p className="text-sm text-gray-500">
-                  Are you sure you want to delete "{deleteConfirmation.serviceName}"? This action cannot be undone.
+                  Are you sure you want to delete &quot;{deleteConfirmation.serviceName}&quot;? This action cannot be undone.
                 </p>
               </div>
               <div className="flex gap-3 justify-center mt-4">

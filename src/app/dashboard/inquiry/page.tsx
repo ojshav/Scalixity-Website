@@ -41,13 +41,13 @@ import {
 
 interface ServiceInquiry {
   id: number;
-  company_name: string;
+  companyName: string;
   email: string;
-  industry_name: string;
-  service_name: string;
-  status: 'new' | 'in_progress' | 'resolved';
-  created_at: string;
-  updated_at: string;
+  industryName: string;
+  serviceName: string;
+  status: 'NEW' | 'IN_PROGRESS' | 'RESOLVED' | 'new' | 'in_progress' | 'resolved';
+  createdAt: string;
+  updatedAt: string;
 }
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -74,18 +74,22 @@ const InquiriesDashboard: React.FC = () => {
         throw new Error('Failed to fetch inquiries');
       }
       const data = await response.json();
-      setInquiries(data);
+      // Ensure data is always an array
+      const inquiriesArray = Array.isArray(data) ? data : [];
+      setInquiries(inquiriesArray);
       
       // Calculate statistics
-      setTotalInquiries(data.length);
-      setNewInquiries(data.filter((item: { status: string; }) => item.status === 'new').length);
-      setInProgressInquiries(data.filter((item: { status: string; }) => item.status === 'in_progress').length);
-      setResolvedInquiries(data.filter((item: { status: string; }) => item.status === 'resolved').length);
+      setTotalInquiries(inquiriesArray.length);
+      setNewInquiries(inquiriesArray.filter((item: { status: string; }) => item.status.toLowerCase() === 'new').length);
+      setInProgressInquiries(inquiriesArray.filter((item: { status: string; }) => item.status.toLowerCase() === 'in_progress' || item.status.toLowerCase() === 'in progress').length);
+      setResolvedInquiries(inquiriesArray.filter((item: { status: string; }) => item.status.toLowerCase() === 'resolved').length);
       
       setError(null);
     } catch (err) {
       setError('Error fetching inquiries. Please try again.');
       console.error('Error fetching inquiries:', err);
+      // Set empty array on error to prevent map error
+      setInquiries([]);
     } finally {
       setLoading(false);
     }
@@ -114,34 +118,44 @@ const InquiriesDashboard: React.FC = () => {
   };
 
   const filteredInquiries = inquiries.filter((inquiry) => {
+    const searchLower = searchTerm.toLowerCase();
     const matchesSearch = 
-      inquiry.company_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      inquiry.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      inquiry.industry_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      inquiry.service_name.toLowerCase().includes(searchTerm.toLowerCase());
+      (inquiry.companyName?.toLowerCase().includes(searchLower) ?? false) ||
+      (inquiry.email?.toLowerCase().includes(searchLower) ?? false) ||
+      (inquiry.industryName?.toLowerCase().includes(searchLower) ?? false) ||
+      (inquiry.serviceName?.toLowerCase().includes(searchLower) ?? false);
     
-    const matchesStatus = statusFilter === 'all' || inquiry.status === statusFilter;
+    const normalizedStatus = inquiry.status.toLowerCase();
+    const matchesStatus = statusFilter === 'all' || normalizedStatus === statusFilter;
     
     return matchesSearch && matchesStatus;
   });
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    }) + ' ' + date.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit'
-    });
+    if (!dateString) return 'N/A';
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return 'Invalid Date';
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      }) + ' ' + date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    } catch (error) {
+      return 'Invalid Date';
+    }
   };
 
   const getStatusBadge = (status: string) => {
-    switch (status) {
+    const normalizedStatus = status.toLowerCase();
+    switch (normalizedStatus) {
       case 'new':
         return <Badge className="bg-blue-500">New</Badge>;
       case 'in_progress':
+      case 'in progress':
         return <Badge className="bg-yellow-500">In Progress</Badge>;
       case 'resolved':
         return <Badge className="bg-green-500">Resolved</Badge>;
@@ -258,13 +272,13 @@ const InquiriesDashboard: React.FC = () => {
                   filteredInquiries.map((inquiry) => (
                     <TableRow key={inquiry.id}>
                       <TableCell>{inquiry.id}</TableCell>
-                      <TableCell className="font-medium">{inquiry.company_name}</TableCell>
-                      <TableCell>{inquiry.email}</TableCell>
-                      <TableCell>{inquiry.industry_name}</TableCell>
-                      <TableCell>{inquiry.service_name}</TableCell>
+                      <TableCell className="font-medium">{inquiry.companyName || 'N/A'}</TableCell>
+                      <TableCell>{inquiry.email || 'N/A'}</TableCell>
+                      <TableCell>{inquiry.industryName || 'N/A'}</TableCell>
+                      <TableCell>{inquiry.serviceName || 'N/A'}</TableCell>
                       <TableCell>{getStatusBadge(inquiry.status)}</TableCell>
-                      <TableCell>{formatDate(inquiry.created_at)}</TableCell>
-                      <TableCell>{formatDate(inquiry.updated_at)}</TableCell>
+                      <TableCell>{formatDate(inquiry.createdAt)}</TableCell>
+                      <TableCell>{formatDate(inquiry.updatedAt)}</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -274,20 +288,20 @@ const InquiriesDashboard: React.FC = () => {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem 
-                              onClick={() => updateInquiryStatus(inquiry.id, 'new')}
-                              disabled={inquiry.status === 'new'}
+                              onClick={() => updateInquiryStatus(inquiry.id, 'NEW')}
+                              disabled={inquiry.status.toLowerCase() === 'new'}
                             >
                               Mark as New
                             </DropdownMenuItem>
                             <DropdownMenuItem 
-                              onClick={() => updateInquiryStatus(inquiry.id, 'in_progress')}
-                              disabled={inquiry.status === 'in_progress'}
+                              onClick={() => updateInquiryStatus(inquiry.id, 'IN_PROGRESS')}
+                              disabled={inquiry.status.toLowerCase() === 'in_progress' || inquiry.status.toLowerCase() === 'in progress'}
                             >
                               Mark as In Progress
                             </DropdownMenuItem>
                             <DropdownMenuItem 
-                              onClick={() => updateInquiryStatus(inquiry.id, 'resolved')}
-                              disabled={inquiry.status === 'resolved'}
+                              onClick={() => updateInquiryStatus(inquiry.id, 'RESOLVED')}
+                              disabled={inquiry.status.toLowerCase() === 'resolved'}
                             >
                               Mark as Resolved
                             </DropdownMenuItem>
