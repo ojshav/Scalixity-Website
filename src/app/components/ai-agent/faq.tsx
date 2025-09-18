@@ -45,24 +45,28 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-20" style={{ backgroundColor: '#F3F1EB' }}>
+    <section className="py-20" style={{ backgroundColor: "#A8B2E7" }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <span className="text-sm text-gray-600 uppercase tracking-wider">FAQs</span>
+          <span className="text-sm text-black uppercase tracking-wider">FAQs</span>
           <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">
             About AI Agent Development
           </h2>
-          <p className="text-gray-600 mt-4 max-w-3xl mx-auto">
+          <p className="text-black mt-4 max-w-3xl mx-auto">
             Find answers to common questions about AI agent development, costs, timelines, security, and more.
           </p>
         </div>
 
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, index) => (
-            <div key={index} className="mb-4">
+            <div
+              key={index}
+              className="mb-4 border-2 border-black rounded-lg"
+              style={{ backgroundColor: "#F3F1EB" }}
+            >
               <button
-                className="flex justify-between items-center w-full text-left p-4 rounded-lg"
-                style={{ backgroundColor: '#A8B2E7' }}
+                className="flex justify-between items-center w-full text-left p-4 rounded-t-lg"
+                style={{ backgroundColor: "#F3F1EB" }}
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <span className="text-black font-semibold">{faq.question}</span>
@@ -73,7 +77,7 @@ export function FAQ() {
                 )}
               </button>
               {openIndex === index && (
-                <div className="p-4 mt-1 rounded-lg" style={{ backgroundColor: '#A8B2E7' }}>
+                <div className="p-4 mt-1 rounded-b-lg" style={{ backgroundColor: "#F3F1EB" }}>
                   <p className="text-black">{faq.answer}</p>
                 </div>
               )}
@@ -84,3 +88,5 @@ export function FAQ() {
     </section>
   );
 }
+
+export default FAQ;

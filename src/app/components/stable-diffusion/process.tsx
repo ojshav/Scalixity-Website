@@ -33,11 +33,11 @@ const processSteps = [
 
 export function Process() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender Background for the Section */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-black mb-6">Our Stable Diffusion Development Process</h2>
-          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             A structured approach to building high-quality AI-generated visuals with Stable Diffusion.
           </p>
         </div>
@@ -50,11 +50,11 @@ export function Process() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-6 rounded-xl border border-border hover:border-primary/50 transition-colors text-center"
+              className="bg-[#F3F1EB] p-6 rounded-xl border border-black hover:border-primary/50 transition-colors text-center" /* Soft Beige Background for Boxes */
             >
-              <step.icon className="w-12 h-12 text-black mb-4 mx-auto" />
-              <h3 className="text-lg font-bold text-black mb-2">{step.title}</h3>
-              <p className="text-gray-800">{step.description}</p>
+              <step.icon className="w-12 h-12 text-black mb-4 mx-auto" /> {/* Black Icon */}
+              <h3 className="text-lg font-bold text-black mb-2">{step.title}</h3> {/* Black Title */}
+              <p className="text-black">{step.description}</p> {/* Black Description */}
             </motion.div>
           ))}
         </div>

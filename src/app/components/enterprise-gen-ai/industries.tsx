@@ -4,84 +4,12 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const industries = [
-  { 
-    name: "Healthcare", 
-    icon: "/images/icons/healthcare.svg",
-    useCases: [
-      "Healthcare AI Solutions",
-      "Healthcare AI Agents",
-      "Documentation Intelligence",
-      "Medical Imaging Intelligence",
-      "Personalized Treatment",
-      "Medical Claims Processing",
-      "Virtual Health Assistants"
-    ]
-  },
-  { 
-    name: "Finance", 
-    icon: "/icons/finance.svg",
-    useCases: [
-      "Fraud Detection",
-      "Risk Assessment",
-      "Algorithmic Trading",
-      "Customer Insights",
-      "Predictive Analytics",
-      "Automated Report Generation",
-      "Personalized Banking"
-    ]
-  },
-  { 
-    name: "Retail", 
-    icon: "/icons/retail.svg",
-    useCases: [
-      "Customer Behavior Analysis",
-      "Inventory Management",
-      "Price Optimization",
-      "Product Recommendation",
-      "Sales Forecasting",
-      "Chatbot Assistants",
-      "Visual Search AI"
-    ]
-  },
-  { 
-    name: "Manufacturing", 
-    icon: "/icons/manufacturing.svg",
-    useCases: [
-      "Predictive Maintenance",
-      "Supply Chain Optimization",
-      "Quality Control",
-      "Production Planning",
-      "Inventory Forecasting",
-      "Robotic Process Automation",
-      "Fault Detection"
-    ]
-  },
-  { 
-    name: "Education", 
-    icon: "/icons/education.svg",
-    useCases: [
-      "Adaptive Learning Platforms",
-      "Automated Grading",
-      "Student Performance Analytics",
-      "Chatbot Tutors",
-      "Course Recommendation",
-      "Content Personalization",
-      "Plagiarism Detection"
-    ]
-  },
-  { 
-    name: "Logistics", 
-    icon: "/icons/logistics.svg",
-    useCases: [
-      "Route Optimization",
-      "Demand Forecasting",
-      "Warehouse Automation",
-      "Fleet Management",
-      "Real-time Tracking",
-      "Supply Chain Analytics",
-      "Shipment Prediction"
-    ]
-  }
+  { name: "Healthcare", icon: "/images/icons/healthcare.svg" },
+  { name: "Finance", icon: "/images/icons/finance.svg" },
+  { name: "Retail", icon: "/images/icons/retail.svg" },
+  { name: "Manufacturing", icon: "/images/icons/manufacturing.svg" },
+  { name: "Education", icon: "/images/icons/education.svg" },
+  { name: "Logistics", icon: "/images/icons/logistics.svg" }
 ]
 
 export function Industries() {
@@ -106,23 +34,16 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="border-2 border-black bg-[#F3F1EB] p-6 rounded-xl hover:shadow-lg transition-shadow"
+              className="border-2 border-black bg-[#F3F1EB] p-6 rounded-xl hover:shadow-lg transition-shadow flex flex-col items-center"
             >
-              <div className="flex flex-col items-center mb-4">
-                <Image
-                  src={industry.icon}
-                  alt={industry.name}
-                  width={48}
-                  height={48}
-                  className="w-12 h-12 mb-4"
-                />
-                <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
-              </div>
-              <ul className="text-center text-black">
-                {industry.useCases.map((useCase, idx) => (
-                  <li key={idx} className="text-sm mb-2">{useCase}</li>
-                ))}
-              </ul>
+              <Image
+                src={industry.icon}
+                alt={industry.name}
+                width={48}
+                height={48}
+                className="w-12 h-12 mb-4"
+              />
+              <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
             </motion.div>
           ))}
         </div>
@@ -130,5 +51,3 @@ export function Industries() {
     </section>
   )
 }
-
-

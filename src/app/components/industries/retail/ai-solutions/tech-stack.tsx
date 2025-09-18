@@ -77,7 +77,7 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl shadow-lg"
+              className="bg-[#F3F1EB] p-8 rounded-xl shadow-lg border-2 border-black"
             >
               <h3 className="text-2xl font-bold text-black mb-6">{stack.category}</h3>
               <div className="flex flex-wrap gap-4">

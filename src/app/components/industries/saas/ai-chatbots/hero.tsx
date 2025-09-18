@@ -10,7 +10,7 @@ export function Hero() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl font-extrabold mb-6 border-b-2 border-black inline-block"
+          className="text-5xl font-extrabold mb-6"
         >
           Transform Your SaaS with AI Chatbots
         </motion.h1>
@@ -22,19 +22,15 @@ export function Hero() {
         >
           Elevate customer support, streamline processes, and boost engagement using AI-powered chatbot solutions tailored for SaaS platforms.
         </motion.p>
-        <motion.div 
+        <motion.a 
+          href="/contact"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row justify-center gap-4"
+          className="inline-block bg-black text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-800 transition"
         >
-          <button className="px-8 py-3 text-lg font-medium bg-black text-[#F3F1EB] rounded-lg hover:bg-opacity-80 transition-all border-2 border-black">
-            Discover AI Solutions
-          </button>
-          <button className="px-8 py-3 text-lg font-medium bg-transparent text-black border-2 border-black rounded-lg hover:bg-black hover:text-[#F3F1EB] transition-all">
-            Get in Touch
-          </button>
-        </motion.div>
+          Contact
+        </motion.a>
       </div>
     </section>
   );

@@ -68,13 +68,13 @@ const useCases = [
 
 export function UseCases() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             AI Use Cases for Travel
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Revolutionize travel experiences with AI — from dynamic pricing to personalized itineraries — elevating customer engagement and boosting operational efficiency.
           </p>
         </div>
@@ -87,14 +87,14 @@ export function UseCases() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB] p-8 rounded-xl border border-black"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <h3 className="text-2xl font-bold text-foreground mb-4">{useCase.title}</h3>
-                <p className="text-muted-foreground mb-8">{useCase.description}</p>
+                <h3 className="text-2xl font-bold text-black mb-4">{useCase.title}</h3>
+                <p className="text-black mb-8">{useCase.description}</p>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[300px] rounded-xl overflow-hidden">
+                <div className="relative h-[300px] rounded-xl overflow-hidden border-2 border-black"> {/* Added border to image container */}
                   <Image
                     src={useCase.image}
                     alt={useCase.title}

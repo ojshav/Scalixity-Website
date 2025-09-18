@@ -27,7 +27,7 @@ export function FeaturedWork() {
   return (
     <section
       className="py-24"
-      style={{ backgroundColor: "#F3F1EB" }} // Soft Warm Beige Background
+      style={{ backgroundColor: "#A8B2E7" }} // Lavender Background
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -49,16 +49,18 @@ export function FeaturedWork() {
           {featuredWorks.map((work, index) => (
             <div
               key={index}
-              className="p-6 rounded-xl"
-              style={{ backgroundColor: "#A8B2E7" }} // Lavender Card Background
+              className="p-6 rounded-xl border border-black" // Border added to the card
+              style={{ backgroundColor: "#F3F1EB" }} // Soft Warm Beige Card Background
             >
-              <Image
-                src={work.image}
-                alt={work.title}
-                width={400}
-                height={300}
-                className="rounded-lg mb-4"
-              />
+              <div className="mb-4 border border-black rounded-lg overflow-hidden">
+                <Image
+                  src={work.image}
+                  alt={work.title}
+                  width={400}
+                  height={300}
+                  className="rounded-lg"
+                />
+              </div>
               <h3
                 className="text-xl font-semibold"
                 style={{ color: "#000000" }} // Black Text

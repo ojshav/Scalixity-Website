@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 const benefits = [
   {
@@ -29,19 +29,19 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-[#0A0B14] py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-12">
           Benefits of Hedera App Development
         </h2>
-        <p className="text-lg text-gray-400 text-center max-w-2xl mx-auto mb-16">
+        <p className="text-lg text-gray-700 text-center max-w-2xl mx-auto mb-16">
           Unlock the full potential of blockchain technology with Hedera — delivering fast, secure, and cost-effective solutions tailored for modern businesses. Whether You&apos;re developing a decentralized application or integrating blockchain into existing systems, Hedera empowers innovation with confidence.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <div key={index} className="bg-[#0F1629] p-6 rounded-lg border border-gray-800 hover:border-primary/50 transition-colors">
-              <h3 className="text-xl font-bold text-white mb-4">{benefit.title}</h3>
-              <p className="text-gray-400 leading-relaxed">{benefit.description}</p>
+            <div key={index} className="bg-[#F3F1EB] p-6 rounded-lg border border-gray-800 hover:border-primary/50 transition-colors">
+              <h3 className="text-xl font-bold text-black mb-4">{benefit.title}</h3>
+              <p className="text-gray-900 leading-relaxed">{benefit.description}</p>
             </div>
           ))}
         </div>
@@ -51,4 +51,3 @@ export function Benefits() {
 }
 
 export default Benefits;
-

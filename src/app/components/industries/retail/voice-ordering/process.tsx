@@ -55,10 +55,10 @@ export function Process() {
                 <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center">
                   <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" />
                 </div>
-                
-                <div className="bg-[#F3F1EB] p-8 rounded-xl border border-black/20">
+
+                <div className="bg-[#F3F1EB] p-8 rounded-xl border border-black">
                   <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
-                  <p className="text-black/80 leading-relaxed">{step.description}</p>
+                  <p className="text-black leading-relaxed">{step.description}</p>
                 </div>
               </motion.div>
             ))}

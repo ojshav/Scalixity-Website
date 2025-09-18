@@ -5,7 +5,7 @@ import { Process } from "@/src/app/components/industries/fintech/ai-solutions/pr
 import { TechStack} from "@/src/app/components/industries/fintech/ai-solutions/tech-stack"
 import { CTA } from "@/src/app/components/cta"
 import { FAQ } from "@/src/app/components/industries/fintech/ai-solutions/faq"
-import AIAPPLICATION from "@/src/app/components/industries/healthcare/clinical-decision-support/ai-applications"
+import AIAPPLICATION from "@/src/app/components/industries/fintech/ai-solutions/ai-applications"
 export default function AIDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">

@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import { Linkedin, Twitter } from 'lucide-react'
+import { Linkedin, Twitter, Youtube, Instagram, Facebook } from 'lucide-react'
 
 const mainLinks = [
-  { name: "About us", href: "/about" },
+  { name: "About us", href: "/work" },
   { name: "Blog", href: "/blog" },
   { name: "Resources", href: "/resources" },
-  { name: "Careers", href: "/careers" },
+  // { name: "Careers", href: "/careers" },
   { name: "Contact us", href: "/contact" }
 ]
 
@@ -117,7 +117,7 @@ export function Footer() {
                 </div>
               ))}
               <Link
-                href="/hire-developers"
+                href="/contact"
                 className="inline-block px-6 py-2 bg-white/10 rounded-full text-white hover:bg-white/20 transition-colors"
               >
                 Hire Developers
@@ -166,6 +166,8 @@ export function Footer() {
             <span>Scalixity Inc. | Copyright 2024 | </span>
             <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
             <span> | </span>
+            <Link href="/terms" className="hover:text-white">Terms & Conditions</Link>
+            <span> | </span>
             <Link href="/sitemap" className="hover:text-white">Sitemap</Link>
           </div>
           <div className="flex items-center space-x-4">
@@ -186,6 +188,33 @@ export function Footer() {
             >
               <Twitter className="h-5 w-5" />
               <span className="sr-only">Twitter</span>
+            </a>
+            <a
+              href="https://www.youtube.com/@ScalixitypvtLtd"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <Youtube className="h-5 w-5" />
+              <span className="sr-only">YouTube</span>
+            </a>
+            <a
+              href="https://www.instagram.com/scalixity?igsh=MTZjYTh4eWE1YTlyZA=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <Instagram className="h-5 w-5" />
+              <span className="sr-only">Instagram</span>
+            </a>
+            <a
+              href="https://www.facebook.com/share/176oBhw9aE/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <Facebook className="h-5 w-5" />
+              <span className="sr-only">Facebook</span>
             </a>
           </div>
         </div>

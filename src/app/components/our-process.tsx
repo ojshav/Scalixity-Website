@@ -1,4 +1,7 @@
-import Link from 'next/link'
+"use client";
+
+import { useState } from 'react'
+import PopupForm from './scalixity/popup-form'
 
 const processSteps = [
   {
@@ -21,15 +24,19 @@ const processSteps = [
     duration: "3-4 Months",
     description: "Full implementation and deployment to production"
   }
-]
-
-const stats = [
-  { value: "300+", label: "Innovative Solutions Deployed" },
-  { value: "50+", label: "Certified AI Engineers & Developers" },
-  { value: "15+", label: "Years of Proven Industry Experience" }
-]
+];  // Added closing bracket and semicolon here
 
 export function OurProcess() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <section className="bg-[#9FA8DA] py-32">
       <div className="container mx-auto px-4">
@@ -41,12 +48,12 @@ export function OurProcess() {
           in just a few weeks, not years.
         </h2>
         <div className="flex justify-center mb-20">
-          <Link
-            href="/contact"
+          <button
+            onClick={handleOpenPopup}
             className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors"
           >
             Contact Us
-          </Link>
+          </button>
         </div>
         <div className="relative max-w-4xl mx-auto mb-32">
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-black transform -translate-x-1/2" />
@@ -73,7 +80,7 @@ export function OurProcess() {
         </div>
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
-            Helping startups to large-sized organizations with tailored solutions since 2014
+            Helping startups to large-sized organizations with tailored solutions
           </h3>
           <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
             As industry leaders, we bring a deep understanding of AI, Generative AI, Agentic AI, Chatbots, and
@@ -82,18 +89,11 @@ export function OurProcess() {
             data security, and support you fully from pre-processing data to technology evaluation, delivering
             solutions that grow with your business.
           </p>
-          <div className="grid grid-cols-3 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-gray-800 mb-2">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
+
+      {/* Popup Form */}
+      <PopupForm isOpen={isPopupOpen} onClose={handleClosePopup} />
     </section>
   )
 }
-
-

@@ -4,49 +4,49 @@ const techStack = [
   {
     category: "Model Development & Versioning",
     items: [
-      { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-      { name: "PyTorch", logo: "/tech/pytorch.svg" },
-      { name: "MLflow", logo: "/tech/mlflow.svg" }
+      { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+      { name: "PyTorch", logo: "/images/tech/pytorch.svg" },
+      { name: "MLflow", logo: "/images/tech/mlflow.svg" }
     ]
   },
   {
     category: "Data Pipeline & Feature Engineering",
     items: [
-      { name: "Apache Airflow", logo: "/tech/airflow.svg" },
-      { name: "Kafka", logo: "/tech/kafka.svg" },
-      { name: "Feast", logo: "/tech/feast.svg" }
+      { name: "Apache Airflow", logo: "/images/tech/apache-spark.svg" },
+      { name: "Kafka", logo: "/images/tech/kafka.svg" },
+      { name: "Feast", logo: "/images/tech/fhir.webp" }
     ]
   },
   {
     category: "Model Deployment & Serving",
     items: [
-      { name: "Kubernetes", logo: "/tech/kubernetes.svg" },
-      { name: "TensorFlow Serving", logo: "/tech/tf-serving.svg" },
-      { name: "TorchServe", logo: "/tech/torchserve.svg" }
+      { name: "Kubernetes", logo: "/images/tech/kubernetes.svg" },
+      { name: "TensorFlow Serving", logo: "/images/tech/tensor2tensor.svg" },
+      { name: "TorchServe", logo: "/images/tech/t5.svg" }
     ]
   },
   {
     category: "CI/CD & Automation",
     items: [
-      { name: "GitHub Actions", logo: "/tech/github-actions.svg" },
-      { name: "Jenkins", logo: "/tech/jenkins.svg" },
-      { name: "ArgoCD", logo: "/tech/argocd.svg" }
+      { name: "GitHub Actions", logo: "/images/tech/gatk.webp" },
+      { name: "Jenkins", logo: "/images/tech/jwt.webp" },
+      { name: "ArgoCD", logo: "/images/tech/api3.webp" }
     ]
   },
   {
     category: "Monitoring & Performance Tracking",
     items: [
-      { name: "Prometheus", logo: "/tech/prometheus.svg" },
-      { name: "Grafana", logo: "/tech/grafana.svg" },
-      { name: "Seldon Core", logo: "/tech/seldon.svg" }
+      { name: "Prometheus", logo: "/images/tech/prometheus.webp" },
+      { name: "Grafana", logo: "/images/tech/grafana.webp" },
+      { name: "Seldon Core", logo: "/images/tech/sd-2-1.webp" }
     ]
   },
   {
     category: "Cloud & Storage Solutions",
     items: [
-      { name: "AWS SageMaker", logo: "/tech/aws-sagemaker.svg" },
-      { name: "Google Vertex AI", logo: "/tech/vertex-ai.svg" },
-      { name: "Azure ML", logo: "/tech/azure-ml.svg" }
+      { name: "AWS SageMaker", logo: "/images/tech/aws.svg" },
+      { name: "Google Vertex AI", logo: "/images/tech/googlecloud.svg" },
+      { name: "Azure ML", logo: "/images/tech/azure.svg" }
     ]
   }
 ];

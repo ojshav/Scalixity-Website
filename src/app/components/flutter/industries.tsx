@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const industries = [
-  { name: "Healthcare", icon: "/icons/healthcare.svg" },
-  { name: "Finance", icon: "/icons/finance.svg" },
-  { name: "E-commerce", icon: "/icons/ecommerce.svg" },
-  { name: "Education", icon: "/icons/education.svg" },
-  { name: "Retail", icon: "/icons/retail.svg" },
-  { name: "Travel & Hospitality", icon: "/icons/travel.svg" },
-  { name: "Real Estate", icon: "/icons/realestate.svg" },
-  { name: "Logistics & Transportation", icon: "/icons/logistics.svg" }
+  { name: "Healthcare", icon: "/images/icons/healthcare.svg" },
+  { name: "Finance", icon: "/images/icons/finance.svg" },
+  { name: "E-commerce", icon: "/images/icons/ecommerce.svg" },
+  { name: "Education", icon: "/images/icons/education.svg" },
+  { name: "Retail", icon: "/images/icons/retail.svg" },
+  { name: "Travel & Hospitality", icon: "/images/icons/travel.svg" },
+  { name: "Real Estate", icon: "/images/icons/construction.svg" },
+  { name: "Logistics & Transportation", icon: "/images/icons/logistics.svg" }
 ];
 
 export function Industries() {
@@ -21,10 +21,10 @@ export function Industries() {
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
-            Flutter App Development Across Various Industries
+          Flutter App Development Across Key Industries
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
-            Our Flutter app solutions cater to a wide range of industries, ensuring seamless, high-performance applications for businesses worldwide.
+          Delivering flexible, high-performance Flutter apps for diverse industries to scale businesses with ease.
           </p>
         </div>
 
@@ -36,9 +36,9 @@ export function Industries() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center bg-[#F3F1EB] p-6 rounded-lg border border-black shadow-lg hover:scale-105 transition-transform"
+              className="flex flex-col items-center"
             >
-              <div className="p-4 rounded-full bg-white border border-black mb-4">
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4 border-2 border-black shadow-md">
                 <Image
                   src={industry.icon}
                   alt={industry.name}

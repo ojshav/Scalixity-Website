@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Trash2, Edit, Plus, X, Save, Upload } from 'lucide-react'
 import Image from 'next/image'
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface Project {
   id: number;
   title: string;
@@ -33,7 +33,7 @@ export default function AdminWorkPage() {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch('http://kea.mywire.org:5000/api/work/projects');
+      const response = await fetch(`${baseURL}/api/work/projects`);
       const data = await response.json();
       setProjects(data);
     } catch (error) {
@@ -147,8 +147,8 @@ export default function AdminWorkPage() {
       }
       
       const url = isEditing 
-        ? `http://kea.mywire.org:5000/api/work/projects/${formData.id}`
-        : 'http://kea.mywire.org:5000/api/work/projects';
+        ? `${baseURL}/api/work/projects/${formData.id}`
+        : `${baseURL}/api/work/projects`;
       const method = isEditing ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
@@ -183,7 +183,7 @@ export default function AdminWorkPage() {
   const handleDelete = async (id: number) => {
     if (window.confirm('Are you sure you want to delete this project?')) {
       try {
-        const response = await fetch(`http://kea.mywire.org:5000/api/work/projects/${id}`, {
+        const response = await fetch(`${baseURL}/api/work/projects/${id}`, {
           method: 'DELETE',
           headers: {
             // Add authorization header if needed

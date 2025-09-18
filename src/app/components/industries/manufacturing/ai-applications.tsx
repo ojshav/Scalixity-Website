@@ -31,13 +31,13 @@ const manufacturingServices = [
 
 export function AIApplications() {
   return (
-    <section className="bg-gradient-to-br from-[#1E293B] to-[#2563EB] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4 text-center">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-extrabold text-white mb-12"
+          className="text-5xl font-extrabold text-black mb-12"
         >
           AI Applications in Manufacturing
         </motion.h2>
@@ -49,10 +49,10 @@ export function AIApplications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white/10 p-8 rounded-xl border border-white/20 hover:border-blue-400 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black"
             >
-              <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-              <p className="text-gray-300 leading-relaxed">{service.description}</p>
+              <h3 className="text-2xl font-bold text-black mb-4">{service.title}</h3>
+              <p className="text-black text-opacity-80 leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>

@@ -56,9 +56,9 @@ export function Process() {
                   <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" />
                 </div>
                 
-                <div className="bg-white p-8 rounded-xl border border-black/20">
+                <div className="bg-white p-8 rounded-xl border border-black">
                   <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
-                  <p className="text-black/80 leading-relaxed">{step.description}</p>
+                  <p className="text-black">{step.description}</p>
                 </div>
               </motion.div>
             ))}

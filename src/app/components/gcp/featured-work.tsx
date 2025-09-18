@@ -10,7 +10,7 @@ const projects = [
     company: "GCPFinance",
     title: "Empowering FinTech with Google Cloud Solutions",
     description: "Using Google Cloud Platform, we helped GCPFinance build a resilient and scalable financial ecosystem with AI-driven insights and robust security features.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Data Analysis.svg",
     features: [
       "BigQuery for real-time analytics",
       "Cloud Functions for serverless computing",
@@ -22,7 +22,7 @@ const projects = [
     company: "MediGCP",
     title: "Transforming Healthcare with GCP-Powered Solutions",
     description: "We built a HIPAA-compliant telehealth platform leveraging Google Cloud services to ensure seamless patient care and data security.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Transforming SaaS Product Development.svg",
     features: [
       "Google Meet API for virtual consultations",
       "Kubernetes Engine for scalable infrastructure",
@@ -34,7 +34,7 @@ const projects = [
     company: "RetailGCP",
     title: "Enhancing E-commerce with Google Cloud AI and Analytics",
     description: "Using GCP’s AI and data analytics solutions, we helped RetailGCP enhance customer experiences and optimize supply chain operations.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/tech/Enhancing E-commerce with AI-Powered Personalization.svg",
     features: [
       "Recommendations AI for personalized shopping",
       "Dataflow for real-time data processing",
@@ -44,14 +44,14 @@ const projects = [
   }
 ]
 
-export function FeaturedWorkGCP() {
+export function FeaturedWork() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-16">
           <div>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">OUR FEATURED WORK</span>
-            <h2 className="text-4xl font-bold text-foreground mt-4">
+            <span className="text-sm text-black uppercase tracking-wider">OUR FEATURED WORK</span>
+            <h2 className="text-4xl font-bold text-black mt-4">
               Our Google Cloud-Powered Projects
             </h2>
           </div>
@@ -72,16 +72,29 @@ export function FeaturedWorkGCP() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
+              className="border border-black rounded-xl p-8 grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB]"
             >
-              <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                <span className="text-primary text-sm">— {project.company}</span>
-                <h3 className="text-2xl font-bold text-foreground mt-2 mb-4">{project.title}</h3>
-                <p className="text-muted-foreground mb-6">{project.description}</p>
+              {/* Image Section with Border */}
+              <div className="border border-black rounded-lg overflow-hidden">
+                <div className="relative h-[400px]">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Text Section */}
+              <div>
+                <span className="text-black text-sm">— {project.company}</span>
+                <h3 className="text-2xl font-bold text-black mt-2 mb-4">{project.title}</h3>
+                <p className="text-black mb-6">{project.description}</p>
                 <ul className="space-y-3">
                   {project.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-muted-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    <li key={idx} className="flex items-center gap-2 text-black">
+                      <div className="w-1.5 h-1.5 rounded-full bg-black" />
                       {feature}
                     </li>
                   ))}
@@ -93,16 +106,6 @@ export function FeaturedWorkGCP() {
                   Read more
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-              </div>
-              <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
               </div>
             </motion.div>
           ))}

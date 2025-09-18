@@ -2,19 +2,19 @@ import Image from 'next/image'
 
 const technologies = {
   "Hardware Platforms": [
-    { name: "Raspberry Pi", logo: "/tech/raspberry-pi.svg" },
-    { name: "Arduino", logo: "/tech/arduino.svg" },
-    { name: "ESP32", logo: "/tech/esp32.svg" }
+    { name: "Raspberry Pi", logo: "/images/tech/raspberry-pi.svg" },
+    { name: "Arduino", logo: "/images/tech/arduino.svg" },
+    { name: "ESP32", logo: "/images/tech/esp32.svg" }
   ],
   "Cloud Platforms": [
-    { name: "AWS IoT", logo: "/tech/aws-iot.svg" },
-    { name: "Azure IoT", logo: "/tech/azure-iot.svg" },
-    { name: "Google Cloud IoT", logo: "/tech/google-cloud-iot.svg" }
+    { name: "AWS IoT", logo: "/images/tech/aws-iot.svg" },
+    { name: "Azure IoT", logo: "/images/tech/azure-iot.svg" },
+    { name: "Google Cloud IoT", logo: "/images/tech/google-cloud.svg" }
   ],
   "Protocols & Connectivity": [
-    { name: "MQTT", logo: "/tech/mqtt.svg" },
-    { name: "CoAP", logo: "/tech/coap.svg" },
-    { name: "Bluetooth", logo: "/tech/bluetooth.svg" }
+    { name: "MQTT", logo: "/images/tech/mqtt.svg" },
+    { name: "CoAP", logo: "/images/tech/coap.svg" },
+    { name: "Bluetooth", logo: "/images/tech/bluetooth.svg" }
   ]
 }
 

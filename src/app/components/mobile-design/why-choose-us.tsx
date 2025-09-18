@@ -38,13 +38,13 @@ const reasons = [
 
 export function WhyChooseUs() {
   return (
-    <section className="bg-gradient-to-br from-[#1A1B26] to-[#080B16] py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-extrabold text-white mb-6 tracking-tight">
+          <h2 className="text-5xl font-extrabold text-black mb-6 tracking-tight">
             Why Choose Us for Mobile App Design
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             We create more than just designs — we build digital experiences that inspire, engage, and deliver results.
           </p>
         </div>
@@ -57,13 +57,13 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#0F1629] p-10 rounded-2xl border border-[#2A2D3A] hover:border-purple-500 shadow-lg hover:shadow-purple-500/50 transition-all"
+              className="bg-[#F3F1EB] p-10 rounded-2xl border border-black shadow-lg hover:shadow-black/50 transition-all"
             >
-              <div className="flex items-center justify-center w-16 h-16 bg-purple-500/20 rounded-full mb-6">
-                <reason.icon className="w-10 h-10 text-purple-500" />
+              <div className="flex items-center justify-center w-16 h-16 bg-transparent rounded-full mb-6">
+                <reason.icon className="w-10 h-10 text-black" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">{reason.title}</h3>
-              <p className="text-gray-400">{reason.description}</p>
+              <h3 className="text-2xl font-bold text-black mb-4">{reason.title}</h3>
+              <p className="text-black">{reason.description}</p>
             </motion.div>
           ))}
         </div>

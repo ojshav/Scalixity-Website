@@ -89,22 +89,17 @@ export function FeaturedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB] p-8 rounded-xl shadow-lg"
+              className="grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB] p-8 rounded-xl border-2 border-black shadow-lg"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
                 <span className="text-black text-sm">— {project.company}</span>
                 <h3 className="text-2xl font-bold text-black mt-2 mb-4">
                   {project.title}
                 </h3>
-                <p className="text-black mb-6">
-                  {project.description}
-                </p>
+                <p className="text-black mb-6">{project.description}</p>
                 <ul className="space-y-3">
                   {project.features.map((feature, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-center gap-2 text-black"
-                    >
+                    <li key={idx} className="flex items-center gap-2 text-black">
                       <div className="w-1.5 h-1.5 rounded-full bg-black" />
                       {feature}
                     </li>
@@ -119,7 +114,7 @@ export function FeaturedWork() {
                 </Link>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[400px] rounded-xl overflow-hidden">
+                <div className="relative h-[400px] rounded-xl overflow-hidden border-2 border-black"> {/* Added border here */}
                   <Image
                     src={project.image}
                     alt={project.title}

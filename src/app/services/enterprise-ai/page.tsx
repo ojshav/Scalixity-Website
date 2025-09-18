@@ -1,4 +1,4 @@
-import { Hero } from "@/src/app/components/enterprise-ai/hero"
+import { EnterpriseAIDevelopmentHero } from "@/src/app/components/enterprise-ai/hero"
 import { WhatWeOffer } from "@/src/app/components/enterprise-ai/what-we-offer"
 import { Benefits } from "@/src/app/components/enterprise-ai/benifits"
 import { WhyChooseUs } from "@/src/app/components/enterprise-ai/why-choose-us"
@@ -13,7 +13,7 @@ import { CTA } from "@/src/app/components/enterprise-ai/CT"
 export default function Enterpriseaidev() {
   return (
     <main className="bg-[#080B16]">
-      <Hero />
+      <EnterpriseAIDevelopmentHero />
       <WhatWeOffer />
       <Benefits />
       <WhyChooseUs />

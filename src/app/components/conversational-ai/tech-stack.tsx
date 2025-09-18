@@ -5,20 +5,20 @@ import Image from "next/image";
 
 const techStack = {
   "Natural Language Processing (NLP)": [
-    { name: "SpaCy", logo: "/tech/spacy.svg" },
-    { name: "NLTK", logo: "/tech/nltk.svg" }
+    { name: "SpaCy", logo: "/images/tech/spacy.svg" },
+    { name: "NLTK", logo: "/images/tech/nltk.svg" }
   ],
   "AI & ML Frameworks": [
-    { name: "TensorFlow", logo: "/tech/tensorflow.svg" },
-    { name: "PyTorch", logo: "/tech/pytorch.svg" }
+    { name: "TensorFlow", logo: "/images/tech/tensorflow.svg" },
+    { name: "PyTorch", logo: "/images/tech/pytorch.svg" }
   ],
   "Conversational AI Platforms": [
-    { name: "Dialogflow", logo: "/tech/dialogflow.svg" },
-    { name: "Rasa", logo: "/tech/rasa.svg" }
+    { name: "Dialogflow", logo: "/images/tech/dialogflow.svg" },
+    { name: "Rasa", logo: "/images/tech/rasa.svg" }
   ],
   "Deployment & Integration": [
-    { name: "AWS Lex", logo: "/tech/aws-lex.svg" },
-    { name: "Microsoft Bot Framework", logo: "/tech/ms-bot.svg" }
+    { name: "AWS Lex", logo: "/images/tech/aws.svg" },
+    { name: "Microsoft Bot Framework", logo: "/images/tech/mxnet.svg" }
   ]
 };
 
@@ -38,7 +38,7 @@ export function TechStack() {
           </p>
         </div>
 
-        <div className="grid gap-8">
+        <div className="grid gap-8 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
           {Object.entries(techStack).map(([category, items], index) => (
             <motion.div
               key={category}
@@ -46,22 +46,28 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="rounded-xl border-2 border-black p-6"
-              style={{ backgroundColor: "#F3F1EB", color: "black" }}
+              className="text-center"
             >
-              <h3 className="text-lg font-semibold mb-6">{category}</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <h3 className="text-lg font-semibold text-black mb-4">{category}</h3>
+              <div className="grid grid-cols-2 gap-6">
                 {items.map((item, idx) => (
-                  <div key={idx} className="flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 relative mb-2">
+                  <div
+                    key={idx}
+                    className="flex flex-col items-center justify-center"
+                  >
+                    <div
+                      className="w-20 h-20 rounded-full border-2 border-black flex items-center justify-center mb-2"
+                      style={{ backgroundColor: "#F3F1EB" }}
+                    >
                       <Image
                         src={item.logo}
                         alt={item.name}
-                        fill
+                        width={40}
+                        height={40}
                         className="object-contain filter invert"
                       />
                     </div>
-                    <span className="text-sm text-black text-center">{item.name}</span>
+                    <span className="text-sm text-black">{item.name}</span>
                   </div>
                 ))}
               </div>

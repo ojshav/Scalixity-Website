@@ -1,45 +1,50 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqs = [
   {
-    question: "What is Hedra app development?",
-    answer: "Hedra app development involves creating decentralized applications (dApps) using the Hedra Hashgraph technology. This technology provides a secure, fast, and fair distributed ledger that processes thousands of transactions per second with finality. It leverages a unique consensus algorithm, ensuring no forks, which makes it a reliable choice for blockchain-based solutions. Businesses use Hedra to build applications that require transparent and immutable records, from supply chains to tokenized assets and secure voting systems."
+    question: "What AI services does Scalixity offer?",
+    answer:
+      "Scalixity provides AI-powered solutions including data analytics, AI chatbot development, machine learning automation, and generative AI consulting. Our technology helps businesses optimize workflows, improve decision-making, and enhance customer interactions.",
   },
   {
-    question: "How can Hedra apps benefit my business?",
-    answer: "Hedra apps offer a multitude of benefits for your business by enhancing security, increasing transaction speeds, and reducing costs. These apps automate workflows, streamline peer-to-peer transactions, and secure digital assets using robust cryptographic methods. Businesses can create more trustworthy ecosystems with transparent data sharing and real-time updates. Additionally, Hedra's low, predictable fees make it suitable for scalable enterprise solutions without unexpected spikes in transaction costs."
+    question: "How can AI benefit my business?",
+    answer:
+      "AI streamlines operations, reduces costs, and enhances efficiency by automating repetitive tasks, analyzing data-driven insights, and improving customer engagement. Scalixity's AI-driven strategies help businesses scale with precision and innovation.",
   },
   {
-    question: "What types of applications can be built on Hedra?",
-    answer: "Hedra's versatile framework allows the creation of various applications, including secure payment gateways, supply chain management systems with end-to-end transparency, tokenized asset platforms for managing digital ownership, and decentralized finance (DeFi) applications for lending, borrowing, and trading. Furthermore, businesses can build non-fungible token (NFT) marketplaces, gaming ecosystems with verifiable randomness, and even decentralized identity verification systems, pushing innovation across industries."
+    question: "Can AI solutions integrate with my existing systems?",
+    answer:
+      "Yes! Scalixity ensures seamless integration of AI solutions with your current software, databases, and cloud platforms. Our API-driven approach allows businesses to implement AI capabilities without disrupting existing workflows.",
   },
   {
-    question: "Is Hedra app development secure?",
-    answer: "Yes, security is at the core of Hedra's Hashgraph technology. The consensus algorithm guarantees asynchronous Byzantine Fault Tolerance (aBFT), ensuring that even if malicious nodes are present, the system remains secure and operational. Additionally, we implement multi-layered security protocols, including encryption of data in transit and at rest, rigorous smart contract audits, and real-time threat monitoring. For businesses with strict compliance needs, we also ensure adherence to industry standards like GDPR and ISO certifications."
+    question: "Is AI implementation secure?",
+    answer:
+      "Absolutely. Scalixity prioritizes security by implementing encrypted data processing, access controls, and compliance measures. Our AI models adhere to GDPR, ISO, and other industry standards, ensuring safe and ethical AI deployment.",
   },
   {
-    question: "Can Hedra apps integrate with other blockchains?",
-    answer: "Absolutely. Hedra apps are designed to support interoperability with other blockchains and legacy systems. Using APIs, bridges, and smart contracts, Hedra enables seamless data exchange and asset transfers between networks. This allows businesses to connect their Hedra-based dApps with Ethereum, Binance Smart Chain, or private blockchains to leverage the strengths of multiple technologies. Integration with off-chain systems like databases, CRMs, and cloud services also enhances functionality, ensuring a smooth workflow across your entire digital infrastructure."
-  }
-]
+    question: "How do I get started with Scalixity's AI solutions?",
+    answer:
+      "Getting started is easy! Contact us for a free consultation where we analyze your business needs and propose a tailored AI solution. Our team ensures a smooth transition from planning to deployment.",
+  },
+];
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">FAQ</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">FAQ</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get quick answers about our Hedra app development services
+          <p className="text-xl text-black max-w-3xl mx-auto">
+            Get quick answers about our AI solutions.
           </p>
         </div>
 
@@ -54,27 +59,27 @@ export function FAQ() {
               className="mb-4"
             >
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-card rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] border border-black rounded-lg"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <span className="font-semibold text-foreground">{faq.question}</span>
+                <span className="font-semibold text-black">{faq.question}</span>
                 {openIndex === index ? (
-                  <ChevronUp className="w-5 h-5 text-primary" />
+                  <ChevronUp className="w-5 h-5 text-black" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-primary" />
+                  <ChevronDown className="w-5 h-5 text-black" />
                 )}
               </button>
               <AnimatePresence>
                 {openIndex === index && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
+                    animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 bg-card mt-1 rounded-lg">
-                      <p className="text-muted-foreground">{faq.answer}</p>
+                    <div className="p-4 bg-[#F3F1EB] mt-1 border border-black rounded-lg">
+                      <p className="text-black">{faq.answer}</p>
                     </div>
                   </motion.div>
                 )}
@@ -84,7 +89,7 @@ export function FAQ() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default FAQ;

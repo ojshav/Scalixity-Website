@@ -38,14 +38,14 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#F3F1EB] py-24">
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-gray-700 uppercase tracking-wider">WHAT WE OFFER</span>
+          <span className="text-sm text-black uppercase tracking-wider">WHAT WE OFFER</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Our AI Development Services
           </h2>
-          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             We provide a comprehensive range of AI development services to help businesses innovate and stay ahead of the competition.
           </p>
         </div>
@@ -58,11 +58,11 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#A8B2E7] p-8 rounded-xl border border-gray-400 hover:border-black transition-colors shadow-md"
+              className="bg-[#F3F1EB] p-8 rounded-xl border-2 border-black hover:border-gray-700 transition-colors shadow-md"
             >
               <service.icon className="w-12 h-12 text-black mb-6" />
               <h3 className="text-xl font-bold text-black mb-4">{service.title}</h3>
-              <p className="text-gray-900">{service.description}</p>
+              <p className="text-black">{service.description}</p>
             </motion.div>
           ))}
         </div>
@@ -70,3 +70,5 @@ export function WhatWeOffer() {
     </section>
   )
 }
+
+export default WhatWeOffer;

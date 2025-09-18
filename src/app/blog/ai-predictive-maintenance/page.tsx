@@ -22,7 +22,7 @@ export default function AIPredictiveMaintenanceBlogPost() {
             AI in Predictive Maintenance: Transforming Industry
           </h1>
           <div className="flex items-center text-white">
-            <span>July 15, 2023</span>
+            <span>July 15, 2024</span>
             <span className="mx-2">•</span>
             <span>6 min read</span>
           </div>

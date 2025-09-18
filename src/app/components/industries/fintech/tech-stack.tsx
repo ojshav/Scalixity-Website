@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const technologies = {
   "AI Algorithms": [
-    { name: "Neural Networks", logo: "/tech/neural-networks.svg" },
-    { name: "Decision Trees", logo: "/tech/decision-trees.svg" },
-    { name: "Regression Models", logo: "/tech/regression-models.svg" }
+    { name: "Neural Networks", logo: "/images/tech/neural-networks.svg" },
+    { name: "Decision Trees", logo: "/images/tech/decision-trees.svg" },
+    { name: "Regression Models", logo: "/images/tech/regression-models.svg" },
   ],
   "Cloud Platforms": [
-    { name: "AWS", logo: "/tech/aws.svg" },
-    { name: "Google Cloud", logo: "/tech/google-cloud.svg" },
-    { name: "Azure", logo: "/tech/azure.svg" }
+    { name: "AWS", logo: "/images/tech/aws.svg" },
+    { name: "Google Cloud", logo: "/images/tech/google-cloud.svg" },
+    { name: "Azure", logo: "/images/tech/azure.svg" },
   ],
   "Financial Tools": [
-    { name: "QuantLib", logo: "/tech/quantlib.svg" },
-    { name: "Bloomberg API", logo: "/tech/bloomberg-api.svg" },
-    { name: "Alpaca", logo: "/tech/alpaca.svg" }
-  ]
-}
+    { name: "QuantLib", logo: "/images/tech/quantlib.svg" },
+    { name: "Bloomberg API", logo: "/images/tech/bloomberg-api.svg" },
+    { name: "Alpaca", logo: "/images/tech/alpaca.svg" },
+  ],
+};
 
 export function TechStack() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Our Fintech AI Tech Stack
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Empowering financial solutions with cutting-edge AI technologies and platforms.
           </p>
         </div>
@@ -42,9 +42,9 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-xl border border-border p-6"
+              className="bg-[#F3F1EB] rounded-xl border border-black p-6"
             >
-              <h3 className="text-lg font-semibold text-foreground mb-6">{category}</h3>
+              <h3 className="text-lg font-semibold text-black mb-6">{category}</h3>
               <div className="grid grid-cols-3 gap-6">
                 {items.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center justify-center">
@@ -56,7 +56,7 @@ export function TechStack() {
                         className="object-contain"
                       />
                     </div>
-                    <span className="text-sm text-muted-foreground text-center">{item.name}</span>
+                    <span className="text-sm text-black text-center">{item.name}</span>
                   </div>
                 ))}
               </div>
@@ -65,7 +65,7 @@ export function TechStack() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default TechStack;

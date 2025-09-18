@@ -4,10 +4,10 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 const industries = [
-  { name: "Finance", icon: "/icons/finance.svg" },
-  { name: "Healthcare", icon: "/icons/healthcare.svg" },
-  { name: "Supply Chain", icon: "/icons/supply-chain.svg" },
-  { name: "Gaming & NFTs", icon: "/icons/gaming.svg" }
+  { name: "Finance", icon: "/images/icons/finance.svg" },
+  { name: "Healthcare", icon: "/images/icons/healthcare.svg" },
+  { name: "Supply Chain", icon: "/images/icons/saas.svg" },
+  { name: "Gaming & NFTs", icon: "/images/icons/gaming.webp" }
 ];
 
 export function Industries() {
@@ -31,7 +31,7 @@ export function Industries() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4">
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4 border-2 border-black">
                 <Image
                   src={industry.icon}
                   alt={industry.name}

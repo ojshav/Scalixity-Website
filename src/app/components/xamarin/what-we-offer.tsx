@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { motion } from 'framer-motion';
 
@@ -31,12 +31,12 @@ const offerings = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#F3F1EB] py-24"> {/* Beige background */}
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">What We Offer</span>
           <h2 className="text-4xl font-bold text-black mt-4 mb-6">Xamarin App Development Services</h2>
-          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Discover how our Xamarin expertise helps you create powerful, cross-platform mobile applications with seamless performance and native experiences.
           </p>
         </div>
@@ -49,10 +49,10 @@ export function WhatWeOffer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-6 border border-black rounded-lg bg-[#F3F1EB]"
+              className="p-6 border border-black rounded-lg bg-[#F3F1EB]" // Soft warm beige background with black border
             >
               <h3 className="text-xl font-semibold text-black mb-4">{offer.title}</h3>
-              <p className="text-gray-800">{offer.description}</p>
+              <p className="text-black">{offer.description}</p>
             </motion.div>
           ))}
         </div>

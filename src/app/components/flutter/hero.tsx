@@ -1,10 +1,10 @@
-"use client"
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+"use client";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F3F1EB] py-20"> {/* Beige background */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F3F1EB] py-20"> {/* Soft beige background */}
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -18,19 +18,21 @@ export function Hero() {
           <p className="text-xl text-gray-800 mb-12 leading-relaxed max-w-3xl mx-auto"> {/* Darker gray text */}
             Transform your mobile presence with Flutter. Our cross-platform app development solutions ensure seamless performance, beautiful UI, and faster time-to-market. Leverage the power of Flutter to create feature-rich apps for both iOS and Android, with a single codebase.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors w-full sm:w-auto"
+
+          {/* Clickable Contact Button */}
+          <div className="relative z-10">
+            <Link 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-black text-white text-lg font-semibold hover:bg-gray-800 transition"
             >
-              Get Started
+              Contact Us
             </Link>
           </div>
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
     </section>
-  )
+  );
 }
 
 export default Hero;

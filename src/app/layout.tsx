@@ -1,12 +1,33 @@
-// import { Inter } from "next/font/google";
+import { Inter, Poppins, Playfair_Display, Source_Sans_3 } from "next/font/google";
 import ClientLayout from "@/src/app/components/ClientLayout"; // Import the new client layout
 import "./globals.css";
 
-// const inter = Inter({
-//   subsets: ["latin"],
-//   variable: "--font-inter",
-//   display: "swap",
-// });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-source-sans",
+  display: "swap",
+});
 
 export const metadata = {
 
@@ -54,7 +75,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col bg-gradient-to-b from-[#080B16] to-[#0F1629]">
+      <body className={`min-h-screen flex flex-col bg-gradient-to-b from-[#080B16] to-[#0F1629] ${inter.variable} ${poppins.variable} ${playfair.variable} ${sourceSans.variable}`}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

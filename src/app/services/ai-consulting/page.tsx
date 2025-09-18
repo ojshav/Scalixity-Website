@@ -1,4 +1,4 @@
-import { Hero} from "@/src/app/components/ai-consulting/hero"
+import { AIConsultingHero} from "@/src/app/components/ai-consulting/hero"
 import { WhatWeOffer } from "@/src/app/components/ai-consulting/what-we-offer"
 import { Benefits } from "@/src/app/components/ai-consulting/benifits"
 import { WhyChooseUs } from "@/src/app/components/ai-consulting/why-choose-us"
@@ -14,7 +14,7 @@ import { CTA } from "@/src/app/components/ai-consulting/CTA"
 export default function AIDevelopmentPage() {
   return (
     <main className="bg-[#080B16]">
-      <Hero />
+      <AIConsultingHero />
       <WhatWeOffer />
       <Benefits />
       <WhyChooseUs />

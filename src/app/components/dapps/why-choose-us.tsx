@@ -1,50 +1,56 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { Shield, Code, Users, Zap, BarChart, Layers } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Shield, Code, Users, Zap, BarChart, Layers } from "lucide-react";
 
 const reasons = [
   {
     icon: Shield,
     title: "Uncompromising Security & Reliability",
-    description: "We prioritize security-first DApp development, ensuring robust smart contracts, secure user interactions, and protection against vulnerabilities."
+    description:
+      "We prioritize security-first DApp development, ensuring robust smart contracts, secure user interactions, and protection against vulnerabilities."
   },
   {
     icon: Code,
     title: "Custom DApp Development",
-    description: "Our team builds tailored decentralized applications for DeFi, gaming, supply chain, and beyond, leveraging cutting-edge blockchain technology."
+    description:
+      "Our team builds tailored decentralized applications for DeFi, gaming, supply chain, and beyond, leveraging cutting-edge blockchain technology."
   },
   {
     icon: Users,
     title: "User-Centric Approach",
-    description: "We design and develop DApps with intuitive UX/UI, ensuring seamless interactions and smooth user experiences on Web3 platforms."
+    description:
+      "We design and develop DApps with intuitive UX/UI, ensuring seamless interactions and smooth user experiences on Web3 platforms."
   },
   {
     icon: Zap,
     title: "Performance & Scalability",
-    description: "We create high-performance DApps optimized for scalability, enabling efficient operations even in high-demand blockchain ecosystems."
+    description:
+      "We create high-performance DApps optimized for scalability, enabling efficient operations even in high-demand blockchain ecosystems."
   },
   {
     icon: BarChart,
     title: "Data Transparency & Trust",
-    description: "By harnessing blockchain’s decentralized nature, we ensure data immutability, transparency, and trust for all stakeholders."
+    description:
+      "By harnessing blockchain’s decentralized nature, we ensure data immutability, transparency, and trust for all stakeholders."
   },
   {
     icon: Layers,
     title: "Interoperability & Cross-Chain Integration",
-    description: "We enable smooth integration with multiple blockchain networks, ensuring interoperability and seamless cross-chain asset transfers."
+    description:
+      "We enable smooth integration with multiple blockchain networks, ensuring interoperability and seamless cross-chain asset transfers."
   }
 ];
 
 export function WhyChooseUs() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl font-bold text-black mb-6">
             Why Choose Us for DApp Development
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Build secure, scalable, and future-ready decentralized applications with our expert blockchain development services.
           </p>
         </div>
@@ -57,11 +63,11 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-border hover:border-primary/50 transition-colors"
+              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-black transition-colors"
             >
-              <reason.icon className="w-12 h-12 text-primary mb-6" />
-              <h3 className="text-xl font-bold text-foreground mb-4">{reason.title}</h3>
-              <p className="text-muted-foreground">{reason.description}</p>
+              <reason.icon className="w-12 h-12 text-black mb-6" />
+              <h3 className="text-xl font-bold text-black mb-4">{reason.title}</h3>
+              <p className="text-black">{reason.description}</p>
             </motion.div>
           ))}
         </div>

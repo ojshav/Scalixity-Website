@@ -41,11 +41,11 @@ export function AIApplications() {
     <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-brown-700 uppercase tracking-wider">AI AGENT APPLICATIONS</span>
-          <h2 className="text-4xl font-bold text-brown-900 mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">AI AGENT APPLICATIONS</span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Transforming Retail with AI-Powered Customer Segmentation
           </h2>
-          <p className="text-xl text-brown-700 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Unleash the power of AI to understand your audience better, personalize shopping experiences, and drive business growth through intelligent customer segmentation.
           </p>
         </div>
@@ -58,11 +58,11 @@ export function AIApplications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-xl border border-brown-300 hover:border-brown-500 transition-colors"
+              className="bg-white p-8 rounded-xl border border-black hover:border-brown-500 transition-colors"
             >
-              <app.icon className="w-12 h-12 text-brown-700 mb-6" />
-              <h3 className="text-xl font-bold text-brown-900 mb-4">{app.title}</h3>
-              <p className="text-brown-700">{app.description}</p>
+              <app.icon className="w-12 h-12 text-black mb-6" />
+              <h3 className="text-xl font-bold text-black mb-4">{app.title}</h3>
+              <p className="text-black">{app.description}</p>
             </motion.div>
           ))}
         </div>

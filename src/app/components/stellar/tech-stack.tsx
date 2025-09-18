@@ -24,19 +24,21 @@ const techStack = {
 
 export function TechStack() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#A8B2E7] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">STELLAR TECH STACK</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-black uppercase tracking-wider">
+            STELLAR TECH STACK
+          </span>
+          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
             Our Stellar Technology Stack
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-black max-w-3xl mx-auto">
             We leverage the most advanced Stellar technologies to build secure, scalable, and high-performance blockchain applications.
           </p>
         </div>
 
-        <div className="grid gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {Object.entries(techStack).map(([category, items], index) => (
             <motion.div
               key={category}
@@ -44,9 +46,11 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-xl border border-border p-6"
+              className="bg-[#F3F1EB] rounded-xl border border-black p-6 flex flex-col items-center"
             >
-              <h3 className="text-lg font-semibold text-foreground mb-6">{category}</h3>
+              <h3 className="text-lg font-semibold text-black mb-6 text-center">
+                {category}
+              </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {items.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center justify-center">
@@ -58,7 +62,9 @@ export function TechStack() {
                         className="object-contain"
                       />
                     </div>
-                    <span className="text-sm text-muted-foreground text-center">{item.name}</span>
+                    <span className="text-sm text-black text-center">
+                      {item.name}
+                    </span>
                   </div>
                 ))}
               </div>

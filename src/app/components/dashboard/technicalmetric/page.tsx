@@ -1,11 +1,11 @@
 'use client';
-
+import '@/src/app/globals.css';
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/src/app/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/src/app/components/ui/tabs';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { AlertCircle, Clock, Laptop } from 'lucide-react';
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function TechnicalMetrics() {
   const [activeTab, setActiveTab] = useState('performance');
   
@@ -151,7 +151,7 @@ export default function TechnicalMetrics() {
 
       try {
         // Fetch aggregated performance data with web vitals
-        const performanceRes = await fetch('http://kea.mywire.org:5000/api/technical-metrics/aggregate');
+        const performanceRes = await fetch(`${baseURL}/api/technical-metrics/aggregate`);
         if (!performanceRes.ok) throw new Error('Failed to fetch performance data');
         
         const performanceJson = await performanceRes.json();
@@ -188,7 +188,7 @@ export default function TechnicalMetrics() {
           value: number;
         }
         
-        const deviceRes = await fetch('http://kea.mywire.org:5000/api/technical-metrics?groupBy=deviceType');
+        const deviceRes = await fetch(`${baseURL}/api/technical-metrics?groupBy=deviceType`);
         if (!deviceRes.ok) throw new Error('Failed to fetch device data');
         
         const deviceJson: { data: DeviceMetric[] } = await deviceRes.json();
@@ -202,7 +202,7 @@ export default function TechnicalMetrics() {
         
 
         // Fetch device performance data from API
-        const devicePerfRes = await fetch('http://kea.mywire.org:5000/api/device-performance');
+        const devicePerfRes = await fetch(`${baseURL}/api/device-performance`);
         if (!devicePerfRes.ok) throw new Error('Failed to fetch device performance data');
         const devicePerfJson = await devicePerfRes.json();
         
@@ -211,7 +211,7 @@ export default function TechnicalMetrics() {
         setDevicePerformance(processedDevicePerf);
 
         // Fetch browser usage data from the browser-stats API
-        const browserRes = await fetch('http://kea.mywire.org:5000/api/browser-stats');
+        const browserRes = await fetch(`${baseURL}/api/browser-stats`);
         if (!browserRes.ok) throw new Error('Failed to fetch browser data');
         const browserJson = await browserRes.json();
         const formattedBrowser = browserJson.data.map((item: { browser: string; count: number }) => ({
@@ -233,7 +233,7 @@ interface FormattedHourlyMetric {
   users: number;
 }
 
-const hourlyRes = await fetch('http://kea.mywire.org:5000/api/technical-metrics?groupBy=hour');
+const hourlyRes = await fetch(`${baseURL}/api/technical-metrics?groupBy=hour`);
 if (!hourlyRes.ok) throw new Error('Failed to fetch hourly performance data');
 
 const hourlyJson: { data: HourlyMetric[] } = await hourlyRes.json();
@@ -248,7 +248,7 @@ setHourlyPerformance(formattedHourly);
 
 
         // Fetch error tracking data
-        const errorTypesRes = await fetch('http://kea.mywire.org:5000/api/error-types');
+        const errorTypesRes = await fetch(`${baseURL}/api/error-types`);
         if (!errorTypesRes.ok) throw new Error('Failed to fetch error types data');
         const errorTypesJson = await errorTypesRes.json();
         const formattedErrorTypes = errorTypesJson.data.map((item: { name: string; value: string }) => ({
@@ -257,12 +257,12 @@ setHourlyPerformance(formattedHourly);
         }));
         setErrorTypes(formattedErrorTypes);
 
-        const errorsOverTimeRes = await fetch('http://kea.mywire.org:5000/api/errors-over-time');
+        const errorsOverTimeRes = await fetch(`${baseURL}/api/errors-over-time`);
         if (!errorsOverTimeRes.ok) throw new Error('Failed to fetch errors over time data');
         const errorsOverTimeJson = await errorsOverTimeRes.json();
         setErrorsOverTime(errorsOverTimeJson.data as ErrorOverTime[]);
 
-        const recentErrorLogsRes = await fetch('http://kea.mywire.org:5000/api/recent-error-logs');
+        const recentErrorLogsRes = await fetch(`${baseURL}/api/recent-error-logs`);
         if (!recentErrorLogsRes.ok) throw new Error('Failed to fetch recent error logs');
         const recentErrorLogsJson = await recentErrorLogsRes.json();
         setRecentErrorLogs(recentErrorLogsJson.data as ErrorLog[]);
@@ -326,35 +326,61 @@ setHourlyPerformance(formattedHourly);
           
           <TabsContent value="performance" className="w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="col-span-1 md:col-span-2">
-                <CardHeader>
-                  <CardTitle>Page Load Times (seconds)</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-80">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={performanceData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip formatter={(value) => [`${msToSeconds(Number(value))}s`, 'Load Time']} />
-                        <Legend />
-                        {performanceData.map((entry, index) => (
-                          <Line 
-                            key={entry.page}
-                            type="monotone" 
-                            dataKey="loadTime" 
-                            name={entry.page} 
-                            stroke={generatePageColor(index)} 
-                            strokeWidth={2}
-                            data={[entry]}
-                          />
-                        ))}
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </div>
-                </CardContent>
-              </Card>
+            <Card className="col-span-1 md:col-span-2">
+  <CardHeader>
+    <CardTitle>Page Load Times (seconds)</CardTitle>
+  </CardHeader>
+  <CardContent>
+    {/* Tag cloud with horizontal scrolling */}
+    <div className="mb-4 overflow-x-auto pb-2">
+      <div className="flex flex-nowrap gap-2 min-w-max">
+        {performanceData.map((entry, index) => (
+          <div 
+            key={entry.page} 
+            className="flex items-center gap-1 px-2 py-1 text-sm rounded-full whitespace-nowrap flex-shrink-0"
+            style={{ backgroundColor: `${generatePageColor(index)}20`, color: generatePageColor(index) }}
+          >
+            <span className="h-3 w-3 rounded-full" style={{ backgroundColor: generatePageColor(index) }}></span>
+            <span>{entry.page}</span>
+            <span className="font-medium">{msToSeconds(entry.loadTime)}s</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    {/* Chart container with fixed height */}
+    <div className="h-80 relative">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart 
+          data={performanceData}
+          margin={{ top: 20, right: 30, left: 20, bottom: 70 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis 
+            dataKey="name" 
+            angle={-45} 
+            textAnchor="end" 
+            height={70} 
+            tick={false} 
+          />
+          <YAxis 
+            label={{ value: '', angle: -90, position: 'insideLeft' }}
+          />
+          <Tooltip 
+            formatter={(value) => [`${msToSeconds(Number(value))}s`, 'Load Time']}
+            labelFormatter={(label) => `Page: ${label}`}
+          />
+          <Legend />
+          <Bar dataKey="loadTime" name="Load Time">
+            {performanceData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={generatePageColor(index)} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  </CardContent>
+</Card>
               
               <Card>
                 <CardHeader>

@@ -18,27 +18,22 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-xl max-w-3xl mx-auto mb-8"
+          className="text-xl max-w-3xl mx-auto"
         >
           Revolutionize customer experiences with AI voice ordering. Enable seamless product searches, personalized recommendations, and hands-free checkout — all through intuitive voice commands.
         </motion.p>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        <motion.a
+          href="/contact"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row justify-center gap-4"
+          className="inline-block bg-black text-white py-3 px-6 rounded-lg text-lg font-semibold"
         >
-          <button className="px-8 py-3 text-lg font-medium bg-black text-white rounded-lg hover:bg-gray-800 transition-all">
-            Explore Voice AI
-          </button>
-          <button className="px-8 py-3 text-lg font-medium bg-black text-white rounded-lg hover:bg-gray-800 transition-all">
-            Request a Demo
-          </button>
-        </motion.div>
+          Contact Us
+        </motion.a>
       </div>
     </section>
   );
 }
 
 export default Hero;
-

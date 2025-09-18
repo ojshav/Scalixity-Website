@@ -6,7 +6,7 @@ const caseStudies = [
   {
     title: "AI-Powered Personalized Shopping Experiences",
     description: "We partnered with a major retail brand to implement AI-driven recommendation engines. This solution uses customer data and behavioral patterns to deliver hyper-personalized product suggestions, boosting engagement and sales.",
-    image: "/images/retail-personalized-shopping.jpg",
+    image: "/images/ai-powered-maintenance.svg",
     highlights: [
       "Increased customer engagement by 40% through tailored suggestions",
       "Real-time analysis of shopping behavior and preferences",
@@ -18,7 +18,7 @@ const caseStudies = [
   {
     title: "AI-Driven Demand Forecasting and Inventory Management",
     description: "We collaborated with a retail chain to develop an AI-powered inventory management system. This solution predicts demand fluctuations, optimizes stock levels, and prevents overstock and stockouts.",
-    image: "/images/retail-inventory-management.jpg",
+    image: "/images/metaverse-ecommerce.svg",
     highlights: [
       "Reduced stockouts by 50% with accurate demand forecasting",
       "Dynamic inventory adjustments based on AI predictions",
@@ -33,12 +33,12 @@ export function CaseStudy() {
   return (
     <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">Our AI-Powered Retail Solutions</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-12">Our AI-Powered Retail Solutions</h2>
         {caseStudies.map((study, index) => (
           <div key={index} className="bg-[#F3F1EB] rounded-lg overflow-hidden border border-gray-800 mb-8">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-4">{study.title}</h3>
+                <h3 className="text-2xl font-bold text-black mb-4">{study.title}</h3>
                 <p className="text-muted-foreground mb-6">{study.description}</p>
                 <ul className="space-y-2">
                   {study.highlights.map((highlight, idx) => (
@@ -61,4 +61,3 @@ export function CaseStudy() {
 }
 
 export default CaseStudy;
-

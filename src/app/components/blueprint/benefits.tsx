@@ -7,22 +7,22 @@ const benefits = [
   {
     title: "Clear Project Roadmap",
     description: "Get a well-structured plan that outlines every phase of your project, ensuring clarity and alignment before execution.",
-    icon: <PencilRuler className="w-10 h-10 text-primary" />,
+    icon: <PencilRuler className="w-10 h-10 text-black" />,  // Changed to text-black
   },
   {
     title: "Minimized Risks",
     description: "Identify potential roadblocks early with strategic planning, reducing costly errors and ensuring smooth development.",
-    icon: <Target className="w-10 h-10 text-primary" />,
+    icon: <Target className="w-10 h-10 text-black" />,  // Changed to text-black
   },
   {
     title: "Scalable & Flexible Designs",
     description: "Blueprints are created with future scalability in mind, ensuring seamless adaptability as your business grows.",
-    icon: <Layers className="w-10 h-10 text-primary" />,
+    icon: <Layers className="w-10 h-10 text-black" />,  // Changed to text-black
   },
   {
     title: "Cost & Time Efficiency",
     description: "With a structured blueprint, development becomes faster and more cost-effective, saving valuable resources.",
-    icon: <CheckCircle className="w-10 h-10 text-primary" />,
+    icon: <CheckCircle className="w-10 h-10 text-black" />,  // Changed to text-black
   },
 ];
 

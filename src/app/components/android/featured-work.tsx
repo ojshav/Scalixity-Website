@@ -7,7 +7,7 @@ const projects = [
     company: "AppFlow Solutions",
     title: "E-Commerce Android App",
     description: "We developed a seamless, high-performance Android app for AppFlow Solutions, offering intuitive navigation, real-time tracking, and secure payment integrations.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/Enhancing E-Commerce Engagement with AI Chatbots.svg",
     features: [
       "Kotlin-powered native development",
       "Firebase integration for real-time database",
@@ -19,7 +19,7 @@ const projects = [
     company: "HealthTrack",
     title: "Fitness & Wellness App",
     description: "For HealthTrack, we built a feature-rich Android app to monitor health metrics, provide personalized fitness plans, and sync with wearables.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/FinTech Mobile App.svg",
     features: [
       "Bluetooth connectivity with fitness devices",
       "Real-time health data visualization",
@@ -62,11 +62,13 @@ export function FeaturedWork() {
                 </ul>
               </div>
               <div className="flex-1">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="rounded-lg shadow-lg w-full h-auto"
-                />
+                <div className="border-2 border-black rounded-lg overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-auto"
+                  />
+                </div>
               </div>
             </motion.div>
           ))}

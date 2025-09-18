@@ -1,12 +1,12 @@
 'use client';
-
+import '@/src/app/globals.css';
 import React, { useState, useEffect } from 'react';
 import { 
   LineChart, Line, AreaChart, Area, BarChart, Bar, 
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, 
   Tooltip, Legend, ResponsiveContainer 
 } from 'recharts';
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function UserAnalytics() {
   interface ActiveUserData {
     month: string;
@@ -31,11 +31,11 @@ export default function UserAnalytics() {
 
   useEffect(() => {
     Promise.all([
-      fetch('http://kea.mywire.org:5000/api/total-users').then((res) => res.json()),
-      fetch('http://kea.mywire.org:5000/api/new-vs-returning').then((res) => res.json()),
-      fetch('http://kea.mywire.org:5000/api/active-users').then((res) => res.json()),
-      fetch('http://kea.mywire.org:5000/api/user-breakdown').then((res) => res.json()),
-      fetch('http://kea.mywire.org:5000/api/growth-rate').then((res) => res.json()),
+      fetch(`${baseURL}/api/total-users`).then((res) => res.json()),
+      fetch(`${baseURL}/api/new-vs-returning`).then((res) => res.json()),
+      fetch(`${baseURL}/api/active-users`).then((res) => res.json()),
+      fetch(`${baseURL}/api/user-breakdown`).then((res) => res.json()),
+      fetch(`${baseURL}/api/growth-rate`).then((res) => res.json()),
     ])
       .then(([totalUsers, newVsReturning, activeUsers, userBreakdown, growthRate]) => {
         // Fix active users data structure - flatten the nested array

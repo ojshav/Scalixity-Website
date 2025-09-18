@@ -40,7 +40,7 @@ export function Process() {
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-white/30" />
+          <div className="absolute left-[15px] top-0 bottom-0 w-0.5 bg-black/30" />
 
           <div className="space-y-12">
             {processSteps.map((step, index) => (
@@ -52,11 +52,11 @@ export function Process() {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 className="relative pl-12"
               >
-                <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-white rounded-full flex items-center justify-center">
+                <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center">
                   <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" />
                 </div>
                 
-                <div className="bg-[#F3F1EB] p-8 rounded-xl border border-white/20">
+                <div className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-black/50 transition-colors">
                   <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
                   <p className="text-black/80 leading-relaxed">{step.description}</p>
                 </div>

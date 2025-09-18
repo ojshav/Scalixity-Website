@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 function AdminLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +19,7 @@ function AdminLogin() {
         return;
     }
     try {
-      const response = await fetch('http://kea.mywire.org:5000/api/admin/login', {
+      const response = await fetch(`${baseURL}/api/admin/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

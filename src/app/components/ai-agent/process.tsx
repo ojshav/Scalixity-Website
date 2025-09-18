@@ -29,7 +29,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="bg-[#F3F1EB] py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-sm text-black uppercase tracking-wider">
@@ -46,7 +46,10 @@ export function Process() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {steps.map((step, index) => (
-            <div key={index} className="bg-[#A8B2E7] p-6 rounded-lg border border-[#F3F1EB] shadow-lg">
+            <div
+              key={index}
+              className="bg-[#F3F1EB] p-6 rounded-lg border border-black shadow-lg"
+            >
               <div className="text-black text-2xl font-bold mb-4">{index + 1}</div>
               <h3 className="text-xl font-bold text-black mb-2">{step.title}</h3>
               <p className="text-black">{step.description}</p>

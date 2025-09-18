@@ -54,7 +54,8 @@ export function Capabilities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-[#F3F1EB] p-6 rounded-lg border border-[#A8B2E7] shadow-lg hover:shadow-xl transition-all"
+              className="bg-[#F3F1EB] p-6 rounded-lg border border-black shadow-lg hover:shadow-xl transition-all"
+
             >
               <h3 className="text-xl font-bold text-black mb-4">{capability.title}</h3>
               <p className="text-gray-800">{capability.description}</p>

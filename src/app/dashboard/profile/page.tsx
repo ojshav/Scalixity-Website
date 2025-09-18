@@ -1,4 +1,5 @@
 'use client'
+import '@/src/app/globals.css';
 import React, { useState, useEffect } from 'react';
 import {
   Box,
@@ -31,7 +32,7 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const AdminUsers = () => {
   interface User {
     id: string;
@@ -79,7 +80,7 @@ const AdminUsers = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await fetch('http://kea.mywire.org:5000/api/admin/users', {
+      const response = await fetch(`${baseURL}/api/admin/users`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -127,7 +128,7 @@ const AdminUsers = () => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await fetch('http://kea.mywire.org:5000/api/admin/users', {
+      const response = await fetch(`${baseURL}/api/admin/users`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -182,7 +183,7 @@ const AdminUsers = () => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await fetch(`http://kea.mywire.org:5000/api/admin/users/${selectedUserId}`, {
+      const response = await fetch(`${baseURL}/api/admin/users/${selectedUserId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

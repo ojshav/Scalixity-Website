@@ -4,17 +4,24 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { SiteHeader } from "@/src/app/components/site-header";
 import { Footer } from "@/src/app/components/footer";
+import Chatbot from "@/src/app/components/Chatbot";
 import { v4 as uuidv4 } from "uuid";
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [country, setCountry] = useState<string | null>(null);
 
-  const hideLayout = [
-    "/login", "/dashboard", "/dashboard/data", "/dashboard/useranalytics",
-    "/dashboard/demographic", "/dashboard/technicalmetric", "/dashboard/AcquistionMatrix",
-    "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
-    "/dashboard/settings","/dashboard/work","/dashboard/contact"
+  const hideLayout =
+    [
+      "/login", "/dashboard", "/dashboard/data", "/dashboard/useranalytics",
+      "/dashboard/demographic", "/dashboard/technicalmetric", "/dashboard/AcquistionMatrix",
+      "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
+      "/dashboard/settings", "/dashboard/work", "/dashboard/contact", "/dashboard/inquiry", "/dashboard/campaign"
+    ].includes(pathname) ||
+    (pathname.startsWith("/dashboard/campaign/") && (pathname.endsWith("/form") || pathname.endsWith("/responses")));
+
+  const hideHeaderOnly = [
+    "/scalixity"
   ].includes(pathname);
 
   const getDeviceType = () => {
@@ -42,80 +49,106 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     return { deviceType, browser };
   };
 
-  const fetchCountry = async () => {
-    try {
-      const response = await fetch("https://ipapi.co/json/");
-      const data = await response.json();
-      setCountry(data.country_name || "Unknown");
-    } catch (error) {
-      console.error("Failed to fetch country:", error);
-      setCountry("Unknown");
-    }
-  };
+      const fetchCountry = async () => {
+      try {
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+        setCountry(data.country_name || "Unknown");
+      } catch {
+        setCountry("Unknown");
+      }
+    };
 
   useEffect(() => {
+    // Clear localStorage on component mount (for testing/reset purposes)
+    // localStorage.clear();
+    // console.log("localStorage cleared");
+  
     fetchCountry();
-
-    let visitorId = localStorage.getItem("visitorId");
-    if (!visitorId) {
-      visitorId = uuidv4();
-      localStorage.setItem("visitorId", visitorId);
-    }
-
-    const { deviceType, browser } = getDeviceType();
-
-    const sendEvent = (
-      eventType: "page_visit" | "exit" | "inquiry" | "error",
-      additionalData: Record<string, unknown> = {}
-    ) => {
-      const eventData = {
-        visitorId,
-        page: pathname,
-        timestamp: new Date().toISOString(),
-        event: eventType,
-        deviceType,
-        browser,
-        country: country || "Pending",
-        ...additionalData,
-      };
-
-      console.log(`Sending ${eventType} event:`, eventData);
-
-      fetch("http://kea.mywire.org:5000/api/track", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(eventData),
-      })
-        .then(async (response) => {
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error || "Unknown"}`);
-          }
-          return response.json();
+  
+    const hasInitialized = sessionStorage.getItem(`visitInitialized_${pathname}`);
+    if (hasInitialized) return;
+  
+    const initializeVisitor = () => {
+      let visitorId = localStorage.getItem("visitorId");
+      let visitCount = parseInt(localStorage.getItem("visitCount") || "0", 10);
+      let isNewUser = false;
+  
+      if (!visitorId) {
+        visitorId = uuidv4();
+        localStorage.setItem("visitorId", visitorId);
+        visitCount = 1;
+        isNewUser = true;
+        localStorage.setItem("visitCount", "1");
+     
+      } else {
+        visitCount += 1;
+        localStorage.setItem("visitCount", visitCount.toString());
+   
+      }
+  
+      sessionStorage.setItem(`visitInitialized_${pathname}`, "true");
+  
+      const { deviceType, browser } = getDeviceType();
+  
+      const sendEvent = (
+        eventType: "page_visit" | "exit" | "inquiry" | "error",
+        additionalData: Record<string, unknown> = {}
+      ) => {
+        const eventData = {
+          visitorId,
+          page: pathname,
+          timestamp: new Date().toISOString(),
+          event: eventType,
+          deviceType,
+          browser,
+          country: country || "Pending",
+          visitCount,
+          userType: isNewUser ? "new" : "returning",
+          ...additionalData,
+        };
+  
+   
+  
+        fetch(`${baseURL}/api/track`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(eventData),
         })
-        .then((data) => console.log(`${eventType} event successful:`, data))
-        .catch((err) => {
-          console.error(`${eventType} event failed:`, err);
-          sendEvent("error", {
-            errorCode: err.message.match(/\d{3}/)?.[0] || "Unknown",
-            errorMessage: err.message,
-            source: "fetch",
+          .then(async (response) => {
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error || "Unknown"}`);
+            }
+            return response.json();
+          })
+          .then(() => {
+            // Silent success - no logging
+          })
+          .catch((err) => {
+            // Silent error handling - no logging
+            sendEvent("error", {
+              errorCode: err.message.match(/\d{3}/)?.[0] || "Unknown",
+              errorMessage: err.message,
+              source: "fetch",
+            });
           });
-        });
-    };
-
-    if (country) {
+      };
+  
       sendEvent("page_visit");
-    }
-
-    const handleExit = () => country && sendEvent("exit");
-    window.addEventListener("beforeunload", handleExit);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleExit);
+  
+      const handleExit = () => sendEvent("exit");
+      window.addEventListener("beforeunload", handleExit);
+  
+      return () => {
+        window.removeEventListener("beforeunload", handleExit);
+      };
     };
-  }, [pathname, country]);
-
+  
+    const cleanup = initializeVisitor();
+    return cleanup;
+  }, [pathname, country]); 
+  
   /** 🟢 Performance Metrics and Real-Time Error Tracking Logic */
   useEffect(() => {
     const { deviceType, browser } = getDeviceType();
@@ -127,7 +160,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     const recentErrorLogs: { path: string; errorCode: string; count: number; lastOccurrence: string }[] = [];
 
     const sendErrorData = (data: Record<string, unknown>) => {
-      fetch(`http://kea.mywire.org:5000/api/track-error-logs`, {
+      fetch(`${baseURL}/api/track-error-logs`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -141,8 +174,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         }),
       })
         .then((res) => res.json())
-        .then((data) => console.log(`Error data sent successfully:`, data))
-        .catch((err) => console.error(`Failed to send error data:`, err));
+        .then(() => {
+          // Silent success - no logging
+        })
+        .catch(() => {
+          // Silent error handling - no logging
+        });
     };
 
     let lastErrorTime = 0;
@@ -151,7 +188,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     const updateErrorTracking = (errorCode: string, errorMessage: string, source: string) => {
       const currentTime = Date.now();
       if (currentTime - lastErrorTime < ERROR_THRESHOLD) {
-        console.warn("Too many errors in a short period, skipping logging.");
         return;
       }
 
@@ -192,8 +228,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       localStorage.setItem("errorTypes", JSON.stringify(errorTypes));
       localStorage.setItem("errorsOverTime", JSON.stringify(errorsOverTime));
       localStorage.setItem("recentErrorLogs", JSON.stringify(recentErrorLogs));
-
-      console.log("Error tracked:", { errorCode, errorMessage, source });
     };
 
     // Performance observer for metrics
@@ -220,10 +254,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       metrics.TTI = performance.timing.domInteractive - performance.timing.navigationStart;
       metrics.loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
 
-      console.log("Performance Metrics:", metrics);
-
       // Send performance metrics to /track-metrics endpoint
-      fetch("http://kea.mywire.org:5000/api/track-metrics", {
+      fetch(`${baseURL}/api/track-metrics`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(metrics),
@@ -235,9 +267,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           }
           return response.json();
         })
-        .then((data) => console.log("Performance metrics sent successfully:", data))
+        .then(() => {
+          // Silent success - no logging
+        })
         .catch((err) => {
-          console.error("Failed to send performance metrics:", err);
+          // Silent error handling - no logging
           updateErrorTracking(
             err.message.match(/\d{3}/)?.[0] || "Unknown",
             err.message,
@@ -318,10 +352,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <>
-      {!hideLayout && <SiteHeader />}
+    <Chatbot />
+      {!hideLayout && !hideHeaderOnly && <SiteHeader />}
       <main className="flex-1">
         {children}
-       
+      
       </main>
       {!hideLayout && <Footer />}
     </>

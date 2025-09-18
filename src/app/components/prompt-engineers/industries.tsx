@@ -16,8 +16,8 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-[#F3F1EB] py-24"> {/* Soft beige background */}
-      <div className="container mx-auto px-4">
+    <section className="bg-[#A8B2E7] py-24 overflow-hidden">
+      <div className="container mx-auto px-4 overflow-hidden">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">
             INDUSTRIES
@@ -42,13 +42,13 @@ export function Industries() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="bg-[#A8B2E7] p-6 rounded-full mb-4 flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-[#F3F1EB] p-6 rounded-full mb-4 flex items-center justify-center shadow-md hover:shadow-lg transition-shadow border-2 border-black"> {/* Reduced border thickness to 2px */}
                 <Image
                   src={industry.icon}
                   alt={industry.name}
                   width={48}
                   height={48}
-                  className="w-12 h-12"
+                  className="w-12 h-12 rounded-full" // Ensure the image is circular
                 />
               </div>
               <h3 className="text-lg font-semibold text-black text-center">

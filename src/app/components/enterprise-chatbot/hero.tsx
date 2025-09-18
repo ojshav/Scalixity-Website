@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -18,19 +18,21 @@ export function Hero() {
           <p className="text-xl text-gray-800 mb-12 leading-relaxed max-w-3xl mx-auto"> {/* Darker gray text */}
             Revolutionize your business communication with AI-powered chatbots. Our enterprise chatbot solutions are designed to automate customer interactions, streamline workflows, and provide real-time support. Empower your brand with intelligent AI assistants that adapt to your needs, enhancing both customer satisfaction and operational efficiency.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+          {/* Clickable Contact Us Button */}
+          <div className="relative z-10">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-black text-white text-lg font-semibold hover:bg-gray-900 transition"
             >
-              Get Started
+              Contact Us
             </Link>
           </div>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
+    
     </section>
-  )
+  );
 }
 
 export default Hero;

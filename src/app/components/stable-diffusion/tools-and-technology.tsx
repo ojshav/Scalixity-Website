@@ -31,7 +31,7 @@ const technologies: Technologies = {
   "OpenAI Models": [
     { name: "GPT-3", logo: "/images/tech/gpt3.svg" },
     { name: "GPT-3.5 Turbo", logo: "/images/tech/gpt3-5.svg" },
-    { name: "GPT-4", logo: "/images/tech/gpt4.svg" }
+    { name: "GPT-4", logo: "/images/tech/gpt-4.svg" }
   ],
   "Programming Languages": [
     { name: "Python", logo: "/images/tech/python.svg" },

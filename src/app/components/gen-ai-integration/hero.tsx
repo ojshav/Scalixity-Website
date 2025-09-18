@@ -1,6 +1,6 @@
 "use client"
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { motion } from "framer-motion";
+import Link from "next/link"; // Ensure this import is present
 
 export function Hero() {
   return (
@@ -15,22 +15,23 @@ export function Hero() {
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             Generative AI Integration Services
           </h1>
-          <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
             We help businesses with Generative AI integration services, deploying advanced Gen AI applications into existing operational patterns. This approach lays a clear path towards streamlined processes, fuels the ignition of breakthrough concepts, and optimizes operational efficiency, all while drawing from the boundless potential that Generative AI holds.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-900 transition-colors w-full sm:w-auto"
-            >
-              Contact Us
-            </Link>
-          </div>
+
+          {/* Contact Button */}
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center mt-8 px-6 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors z-10 relative"
+          >
+            Contact Us
+          </Link>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20" />
+      {/* Ensure this background element doesn't interfere with the button */}
+      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20 z-0" />
     </section>
-  )
+  );
 }
 
 export default Hero;

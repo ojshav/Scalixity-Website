@@ -13,24 +13,20 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-black mb-6">
+          <h1 className="text-3xl md:text-5xl font-semibold text-black mb-8">
             Empower Your Future with Personalized Financial Engines
           </h1>
           <p className="text-xl text-black mb-12 leading-relaxed max-w-3xl mx-auto">
             Unlock tailored financial strategies using AI-powered insights. Optimize investments, manage savings, and achieve your financial goals with precision and personalization.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:opacity-80 transition-opacity w-full sm:w-auto"
-            >
-              Get Started
+          <div className="mt-8">
+            <Link href="/contact">
+              <button className="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-900 transition">
+                Get Started
+              </button>
             </Link>
           </div>
         </motion.div>
-      </div>
-      <div className="absolute inset-0">
-        <div className="w-full h-full bg-black opacity-10 animate-pulse"></div>
       </div>
     </section>
   );

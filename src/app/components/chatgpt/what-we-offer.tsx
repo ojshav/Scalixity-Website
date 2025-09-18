@@ -38,16 +38,17 @@ export function WhatWeOffer() {
         <div className="grid lg:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-gray-300 hover:border-gray-500 transition-colors"
-            >
-              <h3 className="text-xl font-bold text-black mb-4">{service.title}</h3>
-              <p className="text-black leading-relaxed">{service.description}</p>
-            </motion.div>
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-gray-500 transition-colors"
+          >
+            <h3 className="text-xl font-bold text-black mb-4">{service.title}</h3>
+            <p className="text-black leading-relaxed">{service.description}</p>
+          </motion.div>
+          
           ))}
         </div>
       </div>

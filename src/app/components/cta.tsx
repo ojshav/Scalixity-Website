@@ -1,6 +1,19 @@
-import Link from 'next/link'
+"use client";
+
+import { useState } from 'react'
+import PopupForm from './scalixity/popup-form'
 
 export function CTA() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4 text-center">
@@ -10,14 +23,17 @@ export function CTA() {
         <p className="text-xl text-black mb-12 max-w-3xl mx-auto">
           Let&rsquo;s discuss how we can help you leverage the power of generative AI and blockchain technology to drive growth and innovation.
         </p>
-        <Link
-          href="/contact"
+        <button
+          onClick={handleOpenPopup}
           className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-bold text-lg hover:bg-gray-800 transition-colors"
         >
           Schedule a Consultation
-        </Link>
+        </button>
       </div>
+
+      {/* Popup Form */}
+      <PopupForm isOpen={isPopupOpen} onClose={handleClosePopup} />
     </section>
   )
-}
+} 
 

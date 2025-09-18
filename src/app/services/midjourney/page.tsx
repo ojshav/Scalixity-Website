@@ -3,7 +3,7 @@ import { WhatWeOffer } from "@/src/app//components/midjourney/what-we-offer"
 import { FeaturedWork } from "@/src/app/components/midjourney/featured-work"
 import { Process } from "@/src/app/components/midjourney/process"
 import { Expertise } from "@/src/app/components/midjourney/expertise"
-
+import { ToolsAndTechnology } from "@/src/app/components/midjourney/tools-and-technology"
 import { Industries} from "@/src/app/components/midjourney/industries"
 import { FAQ } from "@/src/app/components/midjourney/faq"
 import { CTA } from "../../components/midjourney/CTA"
@@ -15,6 +15,7 @@ export default function Enterprisegenaidev() {
       <FeaturedWork />
       <Process />
       <Expertise />
+      <ToolsAndTechnology/>
       <Industries />
       <FAQ />
       <CTA />

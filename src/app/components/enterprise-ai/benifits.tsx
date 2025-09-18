@@ -45,21 +45,21 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-[#F3F1EB] py-20">
+    <section className="bg-[#A8B2E7] py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-8">
           Benefits of Enterprise AI Development
         </h2>
-        <p className="text-xl text-black text-center mb-8">
+        <p className="text-lg md:text-xl text-black text-center mb-12 max-w-3xl mx-auto">
           Unlock new efficiencies, enhance decision-making, and drive innovation with AI-powered enterprise solutions.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-[#A8B2E7] p-6 rounded-lg border-2 border-gray-600 shadow-md"
+              className="bg-[#F3F1EB] p-6 rounded-2xl border border-black shadow-md transition-transform transform hover:scale-[1.02]"
             >
-              <h3 className="text-xl font-bold text-black mb-4">{benefit.title}</h3>
+              <h3 className="text-xl font-bold text-black mb-3">{benefit.title}</h3>
               <p className="text-black">{benefit.description}</p>
             </div>
           ))}

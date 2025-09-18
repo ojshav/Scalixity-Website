@@ -96,19 +96,14 @@ export function TechStack() {
                           <span className="text-md text-black text-center">{item.name}</span>
                         </>
                       ) : (
-                        <span className="text-md text-black bg-[#A8B2E7] px-4 py-2 rounded-full">
-                          {typeof item === "string" ? item : item.name}
-                        </span>
+                        <span className="text-md text-black">{typeof item === "string" ? item : item.name}</span>
                       )}
                     </div>
                   ))
                 ) : (
                   <div className="col-span-full flex flex-wrap gap-2">
                     {(items as TechItem[]).map((item, idx) => (
-                      <span
-                        key={idx}
-                        className="text-md text-black bg-[#A8B2E7] px-4 py-2 rounded-full"
-                      >
+                      <span key={idx} className="text-md text-black">
                         {typeof item === "string" ? item : item.name}
                       </span>
                     ))}

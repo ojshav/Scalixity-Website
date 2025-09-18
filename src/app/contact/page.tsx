@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send, Check } from 'lucide-react'
-
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -22,19 +22,12 @@ export default function ContactPage() {
     })
   }
 
-  
-
-  // interface ContactResponse {
-  //   // Add specific response properties if known
-  //   success: boolean;
-  // }
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://kea.mywire.org:5000/api/contact', {
+      const response = await fetch(`${baseURL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,8 +40,8 @@ export default function ContactPage() {
       }
 
       await response.json(); // Process response without assigning to unused variable
-setIsSubmitting(false);
-setIsSubmitted(true);
+      setIsSubmitting(false);
+      setIsSubmitted(true);
       
       // Reset form
       setFormData({
@@ -72,8 +65,8 @@ setIsSubmitted(true);
     <div className="pt-20 pb-32 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold py-6">Contact Us</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold py-6 text-black">Contact Us</h1>
+          <p className="text-xl text-black max-w-2xl mx-auto">
             Have a question or want to work with us? Fill out the form below and our team will contact you shortly.
           </p>
         </div>
@@ -103,7 +96,7 @@ setIsSubmitted(true);
               <div>
                 <h3 className="text-xl font-semibold text-black mb-2">Email Us</h3>
                 <p className="text-black">
-                  info@scalixity.com
+                  scalixity@gmail.com
                 </p>
               </div>
               
@@ -138,7 +131,7 @@ setIsSubmitted(true);
                 <Check className="h-8 w-8 mr-4" />
                 <div>
                   <h3 className="font-semibold text-lg">Thank you for contacting us!</h3>
-                  <p>We&apos;ve received your message and will get back to you shortly.</p>
+                  <p>We&apos;ve received the  message and will get back to you shortly.</p>
                 </div>
               </div>
             ) : (
