@@ -18,7 +18,10 @@ const serviceSchemas = {
       .max(500, 'Short description must be less than 500 characters'),
     features: z.array(z.string().min(1, 'Feature cannot be empty'))
       .min(1, 'At least one feature is required'),
-    technologies: z.array(z.string().min(1, 'Technology cannot be empty'))
+    technologies: z.array(z.object({
+      name: z.string().min(1, 'Technology name cannot be empty'),
+      iconUrl: z.string().url('Invalid icon URL').nullish(),
+    }))
       .min(1, 'At least one technology is required'),
     benefits: z.array(z.string().min(1, 'Benefit cannot be empty'))
       .min(1, 'At least one benefit is required'),
@@ -26,6 +29,26 @@ const serviceSchemas = {
     pricing: z.object({
       starting: z.string().min(1, 'Starting price is required'),
       description: z.string().min(1, 'Pricing description is required'),
+    }).optional(),
+    pricingPlans: z.object({
+      beginner: z.object({
+        priceRange: z.string().min(1, 'Beginner price range is required'),
+        description: z.string().min(1, 'Beginner description is required'),
+        bulletPoints: z.array(z.string().min(1, 'Bullet point cannot be empty'))
+          .min(1, 'At least one bullet point is required'),
+      }),
+      professional: z.object({
+        priceRange: z.string().min(1, 'Professional price range is required'),
+        description: z.string().min(1, 'Professional description is required'),
+        bulletPoints: z.array(z.string().min(1, 'Bullet point cannot be empty'))
+          .min(1, 'At least one bullet point is required'),
+      }),
+      pro: z.object({
+        priceRange: z.string().min(1, 'Pro price range is required'),
+        description: z.string().min(1, 'Pro description is required'),
+        bulletPoints: z.array(z.string().min(1, 'Bullet point cannot be empty'))
+          .min(1, 'At least one bullet point is required'),
+      }),
     }).optional(),
   }),
 
@@ -50,7 +73,10 @@ const serviceSchemas = {
     features: z.array(z.string().min(1, 'Feature cannot be empty'))
       .min(1, 'At least one feature is required')
       .optional(),
-    technologies: z.array(z.string().min(1, 'Technology cannot be empty'))
+    technologies: z.array(z.object({
+      name: z.string().min(1, 'Technology name cannot be empty'),
+      iconUrl: z.string().url('Invalid icon URL').nullish(),
+    }))
       .min(1, 'At least one technology is required')
       .optional(),
     benefits: z.array(z.string().min(1, 'Benefit cannot be empty'))
@@ -60,6 +86,26 @@ const serviceSchemas = {
     pricing: z.object({
       starting: z.string().min(1, 'Starting price is required'),
       description: z.string().min(1, 'Pricing description is required'),
+    }).optional(),
+    pricingPlans: z.object({
+      beginner: z.object({
+        priceRange: z.string().min(1, 'Beginner price range is required'),
+        description: z.string().min(1, 'Beginner description is required'),
+        bulletPoints: z.array(z.string().min(1, 'Bullet point cannot be empty'))
+          .min(1, 'At least one bullet point is required'),
+      }),
+      professional: z.object({
+        priceRange: z.string().min(1, 'Professional price range is required'),
+        description: z.string().min(1, 'Professional description is required'),
+        bulletPoints: z.array(z.string().min(1, 'Bullet point cannot be empty'))
+          .min(1, 'At least one bullet point is required'),
+      }),
+      pro: z.object({
+        priceRange: z.string().min(1, 'Pro price range is required'),
+        description: z.string().min(1, 'Pro description is required'),
+        bulletPoints: z.array(z.string().min(1, 'Bullet point cannot be empty'))
+          .min(1, 'At least one bullet point is required'),
+      }),
     }).optional(),
   }),
 
