@@ -21,12 +21,12 @@ interface Campaign {
   id: number;
   name: string;
   description?: string;
-  image_url?: string;
-  start_date: string;
-  end_date: string;
+  imageUrl?: string;
+  startDate: string;
+  endDate: string;
   type: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 function formatISTDateTime(dateString: string) {
@@ -99,12 +99,12 @@ export default function DashboardCampaignPage() {
 
   const openEditModal = (campaign: Campaign) => {
     setEditingCampaign(campaign);
-    const startDate = campaign.start_date ? campaign.start_date.split('T')[0] : "";
-    const endDate = campaign.end_date ? campaign.end_date.split('T')[0] : "";
+    const startDate = campaign.startDate ? campaign.startDate.split('T')[0] : "";
+    const endDate = campaign.endDate ? campaign.endDate.split('T')[0] : "";
     setForm({
       name: campaign.name,
       description: campaign.description || "",
-      image_url: campaign.image_url || "",
+      image_url: campaign.imageUrl || "",
       startDate,
       startTime: "00:00",
       endDate,
@@ -157,9 +157,9 @@ export default function DashboardCampaignPage() {
         body: JSON.stringify({
           name: form.name,
           description: form.description || null,
-          image_url: form.image_url || null,
-          start_date: start,
-          end_date: end,
+          imageUrl: form.image_url || null,
+          startDate: start,
+          endDate: end,
           type: form.type,
         }),
       });
@@ -218,9 +218,9 @@ export default function DashboardCampaignPage() {
                           {c.description || "No description"}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{c.type}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatISTDateTime(c.start_date)}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatISTDateTime(c.end_date)}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(c.created_at).toLocaleDateString()}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatISTDateTime(c.startDate)}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatISTDateTime(c.endDate)}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(c.createdAt).toLocaleDateString()}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm">
                           <div className="flex gap-2">
                             <Button 
