@@ -59,10 +59,23 @@ const rateLimiters = {
   // Campaign submission rate limiting
   campaign: rateLimit({
     windowMs: 60 * 60 * 1000, // 1 hour
-    max: 5, // limit each IP to 5 campaign submissions per hour
+    max: 50, // limit each IP to 50 campaign requests per hour (increased from 5)
     message: {
       success: false,
-      message: 'Too many campaign submissions, please try again later.',
+      message: 'Too many campaign requests, please try again later.',
+      retryAfter: '1 hour'
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+  }),
+
+  // Inquiry submission rate limiting
+  inquiry: rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 30, // limit each IP to 30 inquiry requests per hour
+    message: {
+      success: false,
+      message: 'Too many inquiry requests, please try again later.',
       retryAfter: '1 hour'
     },
     standardHeaders: true,

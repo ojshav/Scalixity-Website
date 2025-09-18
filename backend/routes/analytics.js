@@ -258,7 +258,14 @@ router.get("/total-users", async (req, res) => {
        GROUP BY month 
        ORDER BY MIN(timestamp)
     `;
-    res.json(results);
+    
+    // Convert BigInt to Number for JSON serialization
+    const convertedResults = results.map(row => ({
+      ...row,
+      users: Number(row.users)
+    }));
+    
+    res.json(convertedResults);
   } catch (error) {
     console.error("Error fetching total users:", error);
     res.status(500).json({ error: "Server error" });
@@ -309,7 +316,15 @@ router.get("/new-vs-returning", async (req, res) => {
        GROUP BY month
        ORDER BY MIN(timestamp)
     `;
-    res.json(results);
+    
+    // Convert BigInt to Number for JSON serialization
+    const convertedResults = results.map(row => ({
+      ...row,
+      new_users: Number(row.new_users),
+      returning_users: Number(row.returning_users)
+    }));
+    
+    res.json(convertedResults);
   } catch (error) {
     console.error("Error fetching new vs returning users:", error);
     res.status(500).json({ error: "Server error" });
@@ -354,7 +369,15 @@ router.get("/active-users", async (req, res) => {
         (SELECT COUNT(DISTINCT visitorId) FROM user_activity WHERE timestamp >= ${monthlyDate}) as monthly
     `;
     
-    res.json(results ? [results[0]] : []);
+    // Convert BigInt to Number for JSON serialization
+    const convertedResults = results.map(row => ({
+      ...row,
+      daily: Number(row.daily),
+      weekly: Number(row.weekly),
+      monthly: Number(row.monthly)
+    }));
+    
+    res.json(convertedResults.length > 0 ? [convertedResults[0]] : []);
   } catch (error) {
     console.error("Error fetching active users:", error);
     res.status(500).json({ error: "Server error" });
@@ -445,15 +468,21 @@ router.get("/growth-rate", async (req, res) => {
  */
 router.get("/user-breakdown", async (req, res) => {
   try {
-    const newUsersCount = await prisma.userActivity.count({
+    // Use groupBy to get distinct counts
+    const newUsersData = await prisma.userActivity.groupBy({
+      by: ['visitorId'],
       where: { userType: 'new' },
-      distinct: ['visitorId']
+      _count: true
     });
     
-    const returningUsersCount = await prisma.userActivity.count({
+    const returningUsersData = await prisma.userActivity.groupBy({
+      by: ['visitorId'],
       where: { userType: 'returning' },
-      distinct: ['visitorId']
+      _count: true
     });
+    
+    const newUsersCount = newUsersData.length;
+    const returningUsersCount = returningUsersData.length;
     
     res.json([
       { name: "New Users", value: newUsersCount },

@@ -106,11 +106,11 @@ router.post('/track-metrics', async (req, res) => {
   }
 });
 
-// Function to convert ISO 8601 datetime string to MySQL compatible format (YYYY-MM-DD HH:MM:SS)
+// Function to convert to ISO-8601 datetime string (Prisma compatible format)
 const convertToMySQLDate = (isoDate) => {
   if (!isoDate) return null;
   const date = new Date(isoDate);
-  return date.toISOString().slice(0, 19).replace('T', ' ');  // Converts to 'YYYY-MM-DD HH:MM:SS'
+  return date.toISOString();  // Returns ISO-8601 format for Prisma DateTime fields
 };
 
 /**
@@ -252,7 +252,26 @@ router.get('/technical-metrics', async (req, res) => {
     const { visitorId, page, startDate, endDate, groupBy } = req.query;
 
     if (groupBy === 'deviceType') {
-      const rows = await prisma.$queryRaw`
+      // Build query conditions dynamically
+      let whereConditions = ['1=1'];
+      let queryParams = [];
+      
+      if (visitorId) {
+        whereConditions.push('visitorId = ?');
+        queryParams.push(visitorId);
+      }
+      if (startDate) {
+        whereConditions.push('timestamp >= ?');
+        queryParams.push(startDate);
+      }
+      if (endDate) {
+        whereConditions.push('timestamp <= ?');
+        queryParams.push(endDate);
+      }
+      
+      const whereClause = whereConditions.join(' AND ');
+      
+      const rows = await prisma.$queryRawUnsafe(`
         SELECT 
           CASE 
             WHEN deviceType LIKE '{%' THEN 
@@ -261,30 +280,55 @@ router.get('/technical-metrics', async (req, res) => {
           END as deviceType,
           COUNT(*) as count 
          FROM performance_metrics 
-         WHERE 1=1 
-         ${visitorId ? Prisma.sql`AND visitorId = ${visitorId}` : Prisma.empty}
-         ${startDate ? Prisma.sql`AND timestamp >= ${startDate}` : Prisma.empty}
-         ${endDate ? Prisma.sql`AND timestamp <= ${endDate}` : Prisma.empty}
+         WHERE ${whereClause}
          GROUP BY deviceType
          ORDER BY count DESC
-      `;
-      return res.json({ message: 'Device breakdown retrieved', data: rows });
+      `, ...queryParams);
+      
+      // Convert BigInt to Number for JSON serialization
+      const convertedRows = rows.map(row => ({
+        ...row,
+        count: Number(row.count)
+      }));
+      
+      return res.json({ message: 'Device breakdown retrieved', data: convertedRows });
     }
 
     if (groupBy === 'hour') {
-      const rows = await prisma.$queryRaw`
+      // Build query conditions dynamically
+      let whereConditions = ['1=1'];
+      let queryParams = [];
+      
+      if (startDate) {
+        whereConditions.push('timestamp >= ?');
+        queryParams.push(startDate);
+      }
+      if (endDate) {
+        whereConditions.push('timestamp <= ?');
+        queryParams.push(endDate);
+      }
+      
+      const whereClause = whereConditions.join(' AND ');
+      
+      const rows = await prisma.$queryRawUnsafe(`
         SELECT 
            DATE_FORMAT(timestamp, '%H:00') as hour, 
            AVG(loadTime) as avg_loadTime, 
            COUNT(DISTINCT visitorId) as userCount 
          FROM performance_metrics 
-         WHERE 1=1 
-         ${startDate ? Prisma.sql`AND timestamp >= ${startDate}` : Prisma.empty}
-         ${endDate ? Prisma.sql`AND timestamp <= ${endDate}` : Prisma.empty}
+         WHERE ${whereClause}
          GROUP BY DATE_FORMAT(timestamp, '%H:00') 
          ORDER BY hour
-      `;
-      return res.json({ message: 'Hourly performance retrieved', data: rows });
+      `, ...queryParams);
+      
+      // Convert BigInt to Number for JSON serialization
+      const convertedRows = rows.map(row => ({
+        ...row,
+        avg_loadTime: Number(row.avg_loadTime),
+        userCount: Number(row.userCount)
+      }));
+      
+      return res.json({ message: 'Hourly performance retrieved', data: convertedRows });
     }
 
     const whereConditions = {};
@@ -357,7 +401,26 @@ router.get('/errors-over-time', async (req, res) => {
   try {
     const { startDate, endDate, page } = req.query;
 
-    let sql = Prisma.sql`
+    // Build query conditions dynamically
+    let whereConditions = ['1=1'];
+    let queryParams = [];
+    
+    if (startDate) {
+      whereConditions.push('timestamp >= ?');
+      queryParams.push(startDate);
+    }
+    if (endDate) {
+      whereConditions.push('timestamp <= ?');
+      queryParams.push(endDate);
+    }
+    if (page) {
+      whereConditions.push('page = ?');
+      queryParams.push(page);
+    }
+    
+    const whereClause = whereConditions.join(' AND ');
+
+    const rows = await prisma.$queryRawUnsafe(`
       SELECT 
         DATE_FORMAT(timestamp, '%a') AS date,
         SUM(CASE WHEN errorCode = '404' THEN count ELSE 0 END) AS \`404\`,
@@ -366,23 +429,22 @@ router.get('/errors-over-time', async (req, res) => {
         SUM(CASE WHEN errorCode = '400' THEN count ELSE 0 END) AS \`400\`,
         SUM(CASE WHEN errorCode NOT IN ('404', '500', '403', '400') THEN count ELSE 0 END) AS \`Other\`
       FROM error_logs
-      WHERE 1=1
-    `;
-
-    if (startDate) {
-      sql = Prisma.sql`${sql} AND timestamp >= ${startDate}`;
-    }
-    if (endDate) {
-      sql = Prisma.sql`${sql} AND timestamp <= ${endDate}`;
-    }
-    if (page) {
-      sql = Prisma.sql`${sql} AND page = ${page}`;
-    }
-
-    sql = Prisma.sql`${sql} GROUP BY DATE_FORMAT(timestamp, '%a') ORDER BY DATE_FORMAT(timestamp, '%a')`;
-
-    const rows = await prisma.$queryRaw(sql);
-    res.json({ message: 'Errors over time retrieved successfully', data: rows });
+      WHERE ${whereClause}
+      GROUP BY DATE_FORMAT(timestamp, '%a') 
+      ORDER BY DATE_FORMAT(timestamp, '%a')
+    `, ...queryParams);
+    
+    // Convert BigInt to Number for JSON serialization
+    const convertedRows = rows.map(row => ({
+      ...row,
+      '404': Number(row['404']),
+      '500': Number(row['500']),
+      '403': Number(row['403']),
+      '400': Number(row['400']),
+      'Other': Number(row['Other'])
+    }));
+    
+    res.json({ message: 'Errors over time retrieved successfully', data: convertedRows });
   } catch (error) {
     console.error('Error retrieving errors over time:', error);
     res.status(500).json({ error: 'Failed to retrieve errors over time' });
