@@ -3,16 +3,16 @@ import '@/src/app/globals.css';
 import { useState, useEffect } from 'react'
 import { Download, Search, ChevronLeft, ChevronRight, ArrowUpDown } from 'lucide-react'
 import ExcelJS from 'exceljs'
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 // Update the interface to match API response
 interface ContactSubmission {
-  id: number; // Changed to number since API returns numeric ID
+  id: number;
   name: string;
   email: string;
   phone: string;
-  message?: string; // Made optional since API doesn't return it
-  status?: string; // Added status from API, made optional
-  created_at: string; // Changed to match API field name
+  message: string;
+  status: string;
+  createdAt: string; // Changed to match API field name
 }
 
 export default function AdminContactDashboard() {
@@ -20,7 +20,7 @@ export default function AdminContactDashboard() {
   const [isLoading, setIsLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const [sortField, setSortField] = useState<keyof ContactSubmission>('created_at') // Updated default sort field
+  const [sortField, setSortField] = useState<keyof ContactSubmission>('createdAt')
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc')
   
   const itemsPerPage = 10
@@ -68,12 +68,15 @@ export default function AdminContactDashboard() {
     return 0
   })
   
-  const filteredSubmissions = sortedSubmissions.filter(submission =>
-    submission.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    submission.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (submission.phone && submission.phone.includes(searchTerm)) ||
-    (submission.message && submission.message.toLowerCase().includes(searchTerm.toLowerCase()))
-  )
+  const filteredSubmissions = sortedSubmissions.filter(submission => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      (submission.name?.toLowerCase().includes(searchLower) ?? false) ||
+      (submission.email?.toLowerCase().includes(searchLower) ?? false) ||
+      (submission.phone?.includes(searchTerm) ?? false) ||
+      (submission.message?.toLowerCase().includes(searchLower) ?? false)
+    );
+  });
   
   const totalPages = Math.ceil(filteredSubmissions.length / itemsPerPage)
   const startIndex = (currentPage - 1) * itemsPerPage
@@ -101,7 +104,7 @@ export default function AdminContactDashboard() {
         phone: s.phone,
         message: s.message,
         service: s.status,
-        submissionDate: s.created_at
+        submissionDate: s.createdAt
       });
     });
 
@@ -119,7 +122,23 @@ export default function AdminContactDashboard() {
   }
   
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleString()
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        return 'Invalid Date';
+      }
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return 'Invalid Date';
+    }
   }
   
   return (
@@ -200,7 +219,7 @@ export default function AdminContactDashboard() {
                       <th 
                         scope="col" 
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                        onClick={() => handleSort('created_at')} // Updated to match field name
+                        onClick={() => handleSort('createdAt')}
                       >
                         <div className="flex items-center">
                           Date
@@ -226,7 +245,7 @@ export default function AdminContactDashboard() {
                             {submission.message || 'N/A'}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {formatDate(submission.created_at)} {/* Updated field name */}
+                            {formatDate(submission.createdAt)}
                           </td>
                         </tr>
                       ))

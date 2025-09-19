@@ -6,7 +6,7 @@ import { SiteHeader } from "@/src/app/components/site-header";
 import { Footer } from "@/src/app/components/footer";
 import Chatbot from "@/src/app/components/Chatbot";
 import { v4 as uuidv4 } from "uuid";
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [country, setCountry] = useState<string | null>(null);
@@ -16,7 +16,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       "/login", "/dashboard", "/dashboard/data", "/dashboard/useranalytics",
       "/dashboard/demographic", "/dashboard/technicalmetric", "/dashboard/AcquistionMatrix",
       "/dashboard/engagementmetrices", "/dashboard/home", "/dashboard/profile",
-      "/dashboard/settings", "/dashboard/work", "/dashboard/contact", "/dashboard/inquiry", "/dashboard/campaign"
+      "/dashboard/settings", "/dashboard/work", "/dashboard/contact", "/dashboard/inquiry", "/dashboard/campaign","/dashboard/services"
     ].includes(pathname) ||
     (pathname.startsWith("/dashboard/campaign/") && (pathname.endsWith("/form") || pathname.endsWith("/responses")));
 
@@ -90,6 +90,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       sessionStorage.setItem(`visitInitialized_${pathname}`, "true");
   
       const { deviceType, browser } = getDeviceType();
+      
+      // Define baseURL locally to ensure it's accessible
+      const localBaseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+      console.log('API Base URL:', localBaseURL); // Debug log
   
       const sendEvent = (
         eventType: "page_visit" | "exit" | "inquiry" | "error",
@@ -110,7 +114,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   
    
   
-        fetch(`${baseURL}/api/track`, {
+        fetch(`${localBaseURL}/api/track`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(eventData),
@@ -153,6 +157,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   useEffect(() => {
     const { deviceType, browser } = getDeviceType();
     const visitorId = localStorage.getItem("visitorId");
+    
+    // Define baseURL locally to ensure it's accessible
+    const localBaseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+    console.log('Error Tracking API Base URL:', localBaseURL); // Debug log
 
     // Initialize error tracking structures
     const errorTypes: Record<string, number> = {};
@@ -160,7 +168,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     const recentErrorLogs: { path: string; errorCode: string; count: number; lastOccurrence: string }[] = [];
 
     const sendErrorData = (data: Record<string, unknown>) => {
-      fetch(`${baseURL}/api/track-error-logs`, {
+      fetch(`${localBaseURL}/api/track-error-logs`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -255,7 +263,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       metrics.loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
 
       // Send performance metrics to /track-metrics endpoint
-      fetch(`${baseURL}/api/track-metrics`, {
+      fetch(`${localBaseURL}/api/track-metrics`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(metrics),

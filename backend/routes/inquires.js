@@ -1,16 +1,54 @@
 const express = require('express');
 const router = express.Router();
+const prisma = require('../config/db');
 
+/**
+ * @swagger
+ * tags:
+ *   name: Inquiries
+ *   description: Service inquiry management
+ */
+
+/**
+ * @swagger
+ * /api/inquiries:
+ *   get:
+ *     summary: Get all service inquiries
+ *     tags: [Inquiries]
+ *     responses:
+ *       200:
+ *         description: List of inquiries retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/ServiceInquiry'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 // GET all inquiries
 router.get('/inquiries', async (req, res) => {
   try {
-    const pool = req.app.locals.pool;
-    const [rows] = await pool.execute(
-      `SELECT id, company_name, email, industry_name, service_name, status, 
-       created_at, updated_at FROM service_inquiries ORDER BY created_at DESC`
-    );
+    const inquiries = await prisma.serviceInquiry.findMany({
+      select: {
+        id: true,
+        companyName: true,
+        email: true,
+        industryName: true,
+        serviceName: true,
+        status: true,
+        createdAt: true,
+        updatedAt: true
+      },
+      orderBy: { createdAt: 'desc' }
+    });
     
-    res.status(200).json(rows);
+    res.status(200).json(inquiries);
   } catch (error) {
     console.error('Error fetching inquiries:', error);
     res.status(500).json({ error: 'Failed to fetch inquiries' });
@@ -21,19 +59,26 @@ router.get('/inquiries', async (req, res) => {
 router.get('/inquiries/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const pool = req.app.locals.pool;
     
-    const [rows] = await pool.execute(
-      `SELECT id, company_name, email, industry_name, service_name, status, 
-       created_at, updated_at FROM service_inquiries WHERE id = ?`,
-      [id]
-    );
+    const inquiry = await prisma.serviceInquiry.findUnique({
+      where: { id: parseInt(id) },
+      select: {
+        id: true,
+        companyName: true,
+        email: true,
+        industryName: true,
+        serviceName: true,
+        status: true,
+        createdAt: true,
+        updatedAt: true
+      }
+    });
     
-    if (rows.length === 0) {
+    if (!inquiry) {
       return res.status(404).json({ error: 'Inquiry not found' });
     }
     
-    res.status(200).json(rows[0]);
+    res.status(200).json(inquiry);
   } catch (error) {
     console.error('Error fetching inquiry:', error);
     res.status(500).json({ error: 'Failed to fetch inquiry' });
@@ -48,15 +93,18 @@ router.post('/inquiries', async (req, res) => {
     return res.status(400).json({ error: "All fields are required." });
   }
   try {
-    const pool = req.app.locals.pool;
-    const [result] = await pool.execute(
-      `INSERT INTO service_inquiries (company_name, email, industry_name, service_name, created_at) 
-       VALUES (?, ?, ?, ?, NOW())`,
-      [company_name, email, industry_name, service_name]
-    );
+    const inquiry = await prisma.serviceInquiry.create({
+      data: {
+        companyName: company_name,
+        email,
+        industryName: industry_name,
+        serviceName: service_name
+      }
+    });
+    
     res.status(201).json({
       message: 'Service inquiry stored successfully',
-      inquiryId: result.insertId,
+      inquiryId: inquiry.id,
     });
   } catch (error) {
     console.error('Error storing service inquiry:', error);
@@ -71,21 +119,19 @@ router.put('/inquiries/:id', async (req, res) => {
     const { status } = req.body;
     
     // Validate status
-    if (!status || !['new', 'in_progress', 'resolved'].includes(status)) {
+    if (!status || !['NEW', 'IN_PROGRESS', 'RESOLVED'].includes(status)) {
       return res.status(400).json({ error: 'Invalid status value' });
     }
     
-    const pool = req.app.locals.pool;
-    const [result] = await pool.execute(
-      `UPDATE service_inquiries SET status = ? WHERE id = ?`,
-      [status, id]
-    );
+    const inquiry = await prisma.serviceInquiry.update({
+      where: { id: parseInt(id) },
+      data: { status }
+    });
     
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: 'Inquiry not found' });
-    }
-    
-    res.status(200).json({ message: 'Inquiry status updated successfully' });
+    res.status(200).json({ 
+      message: 'Inquiry status updated successfully',
+      inquiry 
+    });
   } catch (error) {
     console.error('Error updating inquiry status:', error);
     res.status(500).json({ error: 'Failed to update inquiry status' });
@@ -96,19 +142,16 @@ router.put('/inquiries/:id', async (req, res) => {
 router.delete('/inquiries/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const pool = req.app.locals.pool;
     
-    const [result] = await pool.execute(
-      `DELETE FROM service_inquiries WHERE id = ?`,
-      [id]
-    );
-    
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: 'Inquiry not found' });
-    }
+    await prisma.serviceInquiry.delete({
+      where: { id: parseInt(id) }
+    });
     
     res.status(200).json({ message: 'Inquiry deleted successfully' });
   } catch (error) {
+    if (error.code === 'P2025') {
+      return res.status(404).json({ error: 'Inquiry not found' });
+    }
     console.error('Error deleting inquiry:', error);
     res.status(500).json({ error: 'Failed to delete inquiry' });
   }

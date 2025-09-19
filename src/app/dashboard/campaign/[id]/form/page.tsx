@@ -8,7 +8,7 @@ import { Label } from "@/src/app/components/ui/label";
 import { X, Plus, ArrowUp, ArrowDown } from "lucide-react";
 import { useParams } from "next/navigation";
 
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
 const QUESTION_TYPES = [
   { value: "short", label: "Short Answer" },

@@ -7,16 +7,16 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { useParams } from "next/navigation";
 import { Download, Eye, Calendar, User, CheckCircle, XCircle, Clock, AlertCircle } from "lucide-react";
 
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
 interface Submission {
   id: number;
-  campaign_id: number;
-  visitor_id: string;
-  answers: Record<string, string | boolean>;
-  status: 'submitted' | 'reviewed' | 'approved' | 'rejected';
-  created_at: string;
-  updated_at: string;
+  campaignId: number;
+  visitorId: string;
+  answers: Record<string, string | boolean | string[]>;
+  status: 'SUBMITTED' | 'REVIEWED' | 'APPROVED' | 'REJECTED';
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface Campaign {
@@ -35,17 +35,17 @@ interface CampaignQuestion {
 }
 
 const STATUS_COLORS = {
-  submitted: "bg-blue-100 text-blue-800",
-  reviewed: "bg-yellow-100 text-yellow-800",
-  approved: "bg-green-100 text-green-800",
-  rejected: "bg-red-100 text-red-800",
+  SUBMITTED: "bg-blue-100 text-blue-800",
+  REVIEWED: "bg-yellow-100 text-yellow-800",
+  APPROVED: "bg-green-100 text-green-800",
+  REJECTED: "bg-red-100 text-red-800",
 };
 
 const STATUS_ICONS = {
-  submitted: Clock,
-  reviewed: Eye,
-  approved: CheckCircle,
-  rejected: XCircle,
+  SUBMITTED: Clock,
+  REVIEWED: Eye,
+  APPROVED: CheckCircle,
+  REJECTED: XCircle,
 };
 
 export default function CampaignResponses() {
@@ -120,9 +120,9 @@ export default function CampaignResponses() {
     const headers = ["Submission ID", "Visitor ID", "Status", "Submitted At", ...questions.map(q => q.label)];
     const csvData = submissions.map(sub => [
       sub.id,
-      sub.visitor_id,
+      sub.visitorId,
       sub.status,
-      new Date(sub.created_at).toLocaleString(),
+      new Date(sub.createdAt).toLocaleString(),
       ...questions.map(q => sub.answers[`question_${q.id}`] || "")
     ]);
 
@@ -188,10 +188,10 @@ export default function CampaignResponses() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="submitted">Submitted</SelectItem>
-                <SelectItem value="reviewed">Reviewed</SelectItem>
-                <SelectItem value="approved">Approved</SelectItem>
-                <SelectItem value="rejected">Rejected</SelectItem>
+                <SelectItem value="SUBMITTED">Submitted</SelectItem>
+                <SelectItem value="REVIEWED">Reviewed</SelectItem>
+                <SelectItem value="APPROVED">Approved</SelectItem>
+                <SelectItem value="REJECTED">Rejected</SelectItem>
               </SelectContent>
             </Select>
             <Button onClick={exportToCSV} variant="outline">
@@ -212,7 +212,7 @@ export default function CampaignResponses() {
                 <div className="ml-3">
                   <p className="text-sm text-gray-600">Submitted</p>
                   <p className="text-2xl font-bold">
-                    {submissions.filter(s => s.status === 'submitted').length}
+                    {submissions.filter(s => s.status === 'SUBMITTED').length}
                   </p>
                 </div>
               </div>
@@ -227,7 +227,7 @@ export default function CampaignResponses() {
                 <div className="ml-3">
                   <p className="text-sm text-gray-600">Reviewed</p>
                   <p className="text-2xl font-bold">
-                    {submissions.filter(s => s.status === 'reviewed').length}
+                    {submissions.filter(s => s.status === 'REVIEWED').length}
                   </p>
                 </div>
               </div>
@@ -242,7 +242,7 @@ export default function CampaignResponses() {
                 <div className="ml-3">
                   <p className="text-sm text-gray-600">Approved</p>
                   <p className="text-2xl font-bold">
-                    {submissions.filter(s => s.status === 'approved').length}
+                    {submissions.filter(s => s.status === 'APPROVED').length}
                   </p>
                 </div>
               </div>
@@ -257,7 +257,7 @@ export default function CampaignResponses() {
                 <div className="ml-3">
                   <p className="text-sm text-gray-600">Rejected</p>
                   <p className="text-2xl font-bold">
-                    {submissions.filter(s => s.status === 'rejected').length}
+                    {submissions.filter(s => s.status === 'REJECTED').length}
                   </p>
                 </div>
               </div>
@@ -292,15 +292,15 @@ export default function CampaignResponses() {
                           <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
                             <div className="flex items-center gap-1">
                               <Calendar className="w-4 h-4" />
-                              {new Date(submission.created_at).toLocaleDateString()}
+                              {new Date(submission.createdAt).toLocaleDateString()}
                             </div>
-                            <span>ID: {submission.visitor_id}</span>
+                            <span>ID: {submission.visitorId}</span>
                           </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <Badge className={STATUS_COLORS[submission.status]}>
-                          <StatusIcon className="w-3 h-3 mr-1" />
+                          {React.createElement(StatusIcon, { className: "w-3 h-3 mr-1" })}
                           {submission.status}
                         </Badge>
                         <Select 
@@ -311,10 +311,10 @@ export default function CampaignResponses() {
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="submitted">Submitted</SelectItem>
-                            <SelectItem value="reviewed">Reviewed</SelectItem>
-                            <SelectItem value="approved">Approved</SelectItem>
-                            <SelectItem value="rejected">Rejected</SelectItem>
+                            <SelectItem value="SUBMITTED">Submitted</SelectItem>
+                            <SelectItem value="REVIEWED">Reviewed</SelectItem>
+                            <SelectItem value="APPROVED">Approved</SelectItem>
+                            <SelectItem value="REJECTED">Rejected</SelectItem>
                           </SelectContent>
                         </Select>
                         <Button 
@@ -377,12 +377,12 @@ export default function CampaignResponses() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <p className="font-medium text-gray-700">Visitor ID</p>
-                      <p className="text-gray-600">{selectedSubmission.visitor_id}</p>
+                      <p className="text-gray-600">{selectedSubmission.visitorId}</p>
                     </div>
                     <div>
                       <p className="font-medium text-gray-700">Submitted</p>
                       <p className="text-gray-600">
-                        {new Date(selectedSubmission.created_at).toLocaleString()}
+                        {new Date(selectedSubmission.createdAt).toLocaleString()}
                       </p>
                     </div>
                   </div>
