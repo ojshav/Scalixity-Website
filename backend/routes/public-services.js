@@ -59,6 +59,12 @@ const { serviceSchemas } = require('../validators/service-schemas');
  *           items:
  *             type: string
  *           description: SEO keywords
+ *         pricingPlans:
+ *           type: array
+ *           description: Flexible pricing plans JSON array
+ *           items:
+ *             type: object
+ *             additionalProperties: true
  *         pricing:
  *           type: object
  *           properties:
@@ -113,7 +119,8 @@ router.get('/', async (req, res) => {
           orderBy: { order: 'asc' }
         },
         technologies: {
-          orderBy: { order: 'asc' }
+          orderBy: { order: 'asc' },
+          select: { technology: true, iconUrl: true }
         },
         benefits: {
           orderBy: { order: 'asc' }
@@ -138,9 +145,10 @@ router.get('/', async (req, res) => {
       image: service.imageUrl || '',
       heroImage: service.heroImageUrl || '',
       features: service.features.map(f => f.feature),
-      technologies: service.technologies.map(t => t.technology),
+      technologies: service.technologies.map(t => ({ name: t.technology, icon: t.iconUrl || '' })),
       benefits: service.benefits.map(b => b.benefit),
       keywords: service.keywords.map(k => k.keyword),
+      pricingPlans: service.pricingPlans || undefined,
       pricing: service.pricing ? {
         starting: service.pricing.starting,
         description: service.pricing.description,
@@ -158,6 +166,70 @@ router.get('/', async (req, res) => {
       message: 'Failed to fetch services',
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
+  }
+});
+
+/**
+ * @swagger
+ * /api/website-services/carousel:
+ *   get:
+ *     summary: Get minimal services data for homepage carousel
+ *     tags: [Public Services]
+ *     description: Returns only id, slug, title and hero image for lightweight consumption
+ *     responses:
+ *       200:
+ *         description: Services retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       slug:
+ *                         type: string
+ *                       title:
+ *                         type: string
+ *                       image:
+ *                         type: string
+ *       500:
+ *         description: Internal server error
+ */
+router.get('/carousel', async (req, res) => {
+  try {
+    const services = await prisma.service.findMany({
+      select: {
+        id: true,
+        slug: true,
+        title: true,
+        heroImageUrl: true,
+        imageUrl: true,
+        createdAt: true
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+
+    const minimal = services.map(s => ({
+      id: s.id,
+      slug: s.slug,
+      title: s.title,
+      image: s.heroImageUrl || s.imageUrl || ''
+    }));
+
+    res.status(200).json({ success: true, data: minimal });
+  } catch (error) {
+    console.error('Error fetching carousel services:', error);
+    res.status(500).json({ success: false, message: 'Failed to fetch services' });
   }
 });
 
@@ -220,7 +292,8 @@ router.get('/:slug', validateParams(serviceSchemas.slug), async (req, res) => {
           orderBy: { order: 'asc' }
         },
         technologies: {
-          orderBy: { order: 'asc' }
+          orderBy: { order: 'asc' },
+          select: { technology: true, iconUrl: true }
         },
         benefits: {
           orderBy: { order: 'asc' }
@@ -249,9 +322,10 @@ router.get('/:slug', validateParams(serviceSchemas.slug), async (req, res) => {
       image: service.imageUrl || '',
       heroImage: service.heroImageUrl || '',
       features: service.features.map(f => f.feature),
-      technologies: service.technologies.map(t => t.technology),
+      technologies: service.technologies.map(t => ({ name: t.technology, icon: t.iconUrl || '' })),
       benefits: service.benefits.map(b => b.benefit),
       keywords: service.keywords.map(k => k.keyword),
+      pricingPlans: service.pricingPlans || undefined,
       pricing: service.pricing ? {
         starting: service.pricing.starting,
         description: service.pricing.description,
@@ -269,6 +343,30 @@ router.get('/:slug', validateParams(serviceSchemas.slug), async (req, res) => {
       message: 'Failed to fetch service',
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
+  }
+});
+
+// Lightweight technologies endpoint for a given service slug
+router.get('/:slug/technologies', validateParams(serviceSchemas.slug), async (req, res) => {
+  try {
+    const { slug } = req.validatedParams;
+    const service = await prisma.service.findUnique({
+      where: { slug },
+      select: {
+        technologies: {
+          orderBy: { order: 'asc' },
+          select: { technology: true, iconUrl: true }
+        }
+      }
+    });
+    if (!service) {
+      return res.status(404).json({ success: false, message: 'Service not found' });
+    }
+    const technologies = service.technologies.map(t => ({ name: t.technology, icon: t.iconUrl || '' }));
+    res.status(200).json({ success: true, data: technologies });
+  } catch (error) {
+    console.error('Error fetching technologies:', error);
+    res.status(500).json({ success: false, message: 'Failed to fetch technologies' });
   }
 });
 
