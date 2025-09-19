@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Trash2, Edit, Plus, X, Save, Upload } from 'lucide-react'
 import Image from 'next/image'
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 interface Project {
   id: number;
   title: string;

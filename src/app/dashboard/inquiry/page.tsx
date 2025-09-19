@@ -49,7 +49,7 @@ interface ServiceInquiry {
   createdAt: string;
   updatedAt: string;
 }
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
 const InquiriesDashboard: React.FC = () => {
   const [inquiries, setInquiries] = useState<ServiceInquiry[]>([]);

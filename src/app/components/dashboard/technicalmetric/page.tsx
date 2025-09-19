@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/src/app/components/u
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/src/app/components/ui/tabs';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { AlertCircle, Clock, Laptop } from 'lucide-react';
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 export default function TechnicalMetrics() {
   const [activeTab, setActiveTab] = useState('performance');
   

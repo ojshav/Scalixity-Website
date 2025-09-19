@@ -7,7 +7,7 @@ import {
   Legend, ResponsiveContainer, PieChart, Pie, 
   Cell, AreaChart, Area, ComposedChart
 } from 'recharts';
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 interface SessionDataType {
   duration: number;
   pages: number;
