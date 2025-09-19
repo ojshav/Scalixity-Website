@@ -1,10 +1,12 @@
 require('dotenv').config({ path: './backend/.env' });
 const express = require('express');
 const cors = require('cors');
-const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
+const prisma = require('./config/db');
+
+// Import routes
 const analyticsRoutes = require("./routes/analytics");
 const engagementRoutes = require('./routes/engagement');
 const demographicRoutes = require('./routes/demographic');
@@ -14,15 +16,29 @@ const contactRoutes = require('./routes/contact');
 const servicesRoutes = require('./routes/services');
 const InquireRoutes = require('./routes/inquires');
 const campaignsRoutes = require('./routes/campaigns');
+const publicServicesRoutes = require('./routes/public-services');
+const adminServicesRoutes = require('./routes/admin-services');
+
+// Import middleware and utilities
+const { logger, httpLogger } = require('./utils/logger');
+const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
+const { rateLimiters, securityMiddleware, sanitizeInput } = require('./middleware/security');
+const { swaggerSpec, swaggerUi } = require('./config/swagger');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Security middleware (should be first)
+app.use(securityMiddleware);
+
+// Rate limiting
+app.use('/api', rateLimiters.general);
+
+// CORS configuration (more secure)
 app.use(cors({
-
-  origin: ["http://kea.mywire.org:5700", "http://localhost:3000","http://kea.mywire.org:5000","http://localhost:5000","http://192.168.0.210:3000", "http://192.168.0.210:5700","https://www.scalixity.com","https://scalixity.com"], // No trailing slash
-
-
+  origin: process.env.ALLOWED_ORIGINS ? 
+    process.env.ALLOWED_ORIGINS.split(',') : 
+    ["http://kea.mywire.org:5700", "http://localhost:3000","http://kea.mywire.org:5000","http://localhost:5000","http://192.168.0.210:3000", "http://192.168.0.210:5700","https://www.scalixity.com","https://scalixity.com"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
@@ -30,203 +46,76 @@ app.use(cors({
 
 
 
+// HTTP request logging
+app.use(httpLogger);
 
-
+// Body parsing with increased limits for images
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
+// Input sanitization
+app.use(sanitizeInput);
 
-// Create database pool
-const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'scalixity_admin',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+// API Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Scalixity API Documentation'
+}));
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'healthy', 
+    timestamp: new Date().toISOString(),
+    version: '1.0.0'
+  });
 });
 
-// Make pool available globally
-app.locals.pool = pool;
+// Make prisma available globally for compatibility (some routes might still reference req.app.locals.pool)
+app.locals.pool = {
+  execute: async (query, params) => {
+    // This is a compatibility shim - routes should be updated to use Prisma directly
+    console.warn('Deprecated: Using pool.execute compatibility shim. Please update route to use Prisma.');
+    throw new Error('This query should be converted to Prisma. Query: ' + query);
+  }
+};
 
 // Test database connection
 app.get('/api/test-db', async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT 1');
-    res.json({ message: 'Database connection successful', result });
+    await prisma.$queryRaw`SELECT 1`;
+    res.json({ message: 'Database connection successful' });
   } catch (error) {
     console.error('Database connection test failed:', error);
     res.status(500).json({ error: 'Database connection failed' });
   }
 });
 
-// Database setup function
+// Database setup function - with Prisma, table creation is handled by migrations
+// This function is kept for backwards compatibility but should eventually be removed
 async function setupDatabase() {
   try {
-    const connection = await pool.getConnection();
+    console.log('Database setup with Prisma - tables should be created via Prisma migrations');
     
-    // Create admin users table if it doesn't exist
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS admin_users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(50) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        email VARCHAR(100) UNIQUE NOT NULL,
-        first_name VARCHAR(50),
-        last_name VARCHAR(50),
-        role VARCHAR(50) DEFAULT 'admin',
-        receive_emails BOOLEAN DEFAULT FALSE,
-        last_login DATETIME,
-        last_activity DATETIME,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      )
-    `);
-    
-    // Create user_activity table if it doesn't exist
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS user_activity (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    visitorId VARCHAR(255),
-    page VARCHAR(255),
-    timestamp DATETIME,
-    event VARCHAR(50),
-    deviceType VARCHAR(50),
-    country VARCHAR(50),
-    browser VARCHAR(100),
-    visitCount INT NOT NULL DEFAULT 1,  -- Tracks number of visits
-    userType VARCHAR(10) NOT NULL,      -- "new" or "returning"
-    INDEX idx_visitorId (visitorId)
-)
-    `);
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS projects (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        title VARCHAR(100) NOT NULL,
-        description TEXT NOT NULL,
-        image VARCHAR(255) NOT NULL,
-        live_url VARCHAR(255) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      )
-    `);
-
-    // Create inquiries table if it doesn't exist
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS inquiries (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        visitor_id VARCHAR(255) NOT NULL,
-        activity_id INT,
-        inquiry_type VARCHAR(50),
-        timestamp DATETIME NOT NULL,
-        FOREIGN KEY (activity_id) REFERENCES user_activity(id) ON DELETE SET NULL
-      )
-    `);
-
-    // Create performance_metrics table if it doesn't exist
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS performance_metrics (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        visitorId VARCHAR(255) NOT NULL,
-        page VARCHAR(255),
-        fcp FLOAT,
-        lcp FLOAT,
-        tti FLOAT,
-        loadTime FLOAT,
-        timestamp DATETIME NOT NULL,
-        deviceType VARCHAR(50),
-        country VARCHAR(100),
-        FOREIGN KEY (visitorId) REFERENCES user_activity(visitorId) ON DELETE CASCADE
-      )
-    `);
-
-    // Create error_logs table if it doesn't exist
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS error_logs (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        visitorId VARCHAR(255),
-        page VARCHAR(255),
-        errorCode VARCHAR(50),
-        errorMessage TEXT,
-        source VARCHAR(50),
-        count INT DEFAULT 1,
-        firstOccurrence DATETIME,
-        lastOccurrence DATETIME,
-        timestamp DATETIME NOT NULL,
-        deviceType VARCHAR(50),
-        browser VARCHAR(100),
-        country VARCHAR(100)
-      )
-    `);
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS contact_us (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100) NOT NULL,
-        email VARCHAR(100) NOT NULL,
-        phone VARCHAR(20),
-        message TEXT NOT NULL,
-        status ENUM('new', 'in_progress', 'resolved') DEFAULT 'new',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      )
-    `);
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS service_inquiries (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        company_name VARCHAR(100) NOT NULL,
-        email VARCHAR(100) NOT NULL,
-        industry_name VARCHAR(100) NOT NULL,
-        service_name VARCHAR(100) NOT NULL,
-        status ENUM('new', 'in_progress', 'resolved') DEFAULT 'new',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      )
-    `);
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS campaigns
-       (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) 
-       NOT NULL, description TEXT, image_url VARCHAR(500), 
-       start_date DATE NOT NULL, end_date DATE NOT NULL, 
-       type VARCHAR(50) NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-       ON UPDATE CURRENT_TIMESTAMP);
-    `);
-
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS campaign_questions
-       (id INT AUTO_INCREMENT PRIMARY KEY, campaign_id INT NOT NULL, 
-       question_order INT NOT NULL, label VARCHAR(255) NOT NULL, 
-       type VARCHAR(50) NOT NULL, options JSON, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);
-    `);
-
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS campaign_submissions
-       (id INT AUTO_INCREMENT PRIMARY KEY, campaign_id INT NOT NULL, 
-       visitor_id VARCHAR(255), answers JSON NOT NULL, 
-       status ENUM('submitted', 'reviewed', 'approved', 'rejected') DEFAULT 'submitted',
-       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-       INDEX idx_campaign_id (campaign_id),
-       INDEX idx_visitor_id (visitor_id),
-       INDEX idx_status (status));
-    `);
     // Check if default admin exists, if not create one
-    const [rows] = await connection.execute(
-      'SELECT * FROM admin_users WHERE role = "super_admin"'
-    );
+    const existingSuperAdmin = await prisma.adminUser.findFirst({
+      where: { role: 'super_admin' }
+    });
 
-    if (rows.length === 0) {
+    if (!existingSuperAdmin) {
       const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
-      await connection.execute(
-        'INSERT INTO admin_users (username, password, email, role, receive_emails) VALUES (?, ?, ?, ?, ?)',
-        [process.env.ADMIN_USERNAME, hashedPassword, process.env.ADMIN_EMAIL, 'super_admin', true]
-      );
+      await prisma.adminUser.create({
+        data: {
+          username: process.env.ADMIN_USERNAME,
+          password: hashedPassword,
+          email: process.env.ADMIN_EMAIL,
+          role: 'super_admin',
+          receiveEmails: true
+        }
+      });
       console.log('Default super admin user created');
     }
     
-    connection.release();
     console.log('Database setup completed');
   } catch (error) {
     console.error('Database setup error:', error);
@@ -234,34 +123,53 @@ async function setupDatabase() {
   }
 }
 
-// Routes
+// Routes with specific rate limiting
 const adminRoutes = require('./routes/admin');
-app.use('/api/admin', adminRoutes);
+
+// Apply strict rate limiting only to login endpoint
+app.use('/api/admin/login', rateLimiters.auth);
+
+// Apply lenient rate limiting to other admin routes
+app.use('/api/admin', rateLimiters.admin, adminRoutes);
+app.use('/api/admin/services', rateLimiters.admin, adminServicesRoutes);
+app.use('/api/website-services', publicServicesRoutes);
 app.use("/api", analyticsRoutes);
 app.use("/api", engagementRoutes);
 app.use("/api", demographicRoutes);
 app.use("/api", technicalRoutes);
+
+// Apply rate limiting only to public submission endpoints
+app.post('/api/contact', rateLimiters.contact);
+app.post('/api/campaigns/:id/submit', rateLimiters.campaign);
+app.post('/api/inquiries', rateLimiters.inquiry);
+
+// Apply routes without blanket rate limiting (admin operations need higher limits)
 app.use("/api", contactRoutes);
 app.use("/api/work", workRoutes);
 app.use('/api', servicesRoutes); 
 app.use("/api", InquireRoutes);
 app.use('/api', campaignsRoutes);
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error('Global error:', err);
-  res.status(500).json({ error: 'Something broke!' });
-});
+// 404 handler for undefined routes
+app.use(notFoundHandler);
+
+// Global error handling middleware
+app.use(errorHandler);
 
 // Start server
 (async () => {
   try {
     await setupDatabase();
     app.listen(PORT, () => {
+      logger.info(`Server running on port ${PORT}`);
+      logger.info('Database connected successfully');
+      logger.info(`API Documentation available at http://localhost:${PORT}/api-docs`);
       console.log(`Server running on port ${PORT}`);
       console.log('Database pool initialized');
+      console.log(`API Documentation: http://localhost:${PORT}/api-docs`);
     });
   } catch (error) {
+    logger.error('Server startup error:', error);
     console.error('Server startup error:', error);
     process.exit(1);
   }

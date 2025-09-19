@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const prisma = require('../config/db');
 
 
 // Route to fetch demographic analytics
 router.get('/demographic-analytics', async (req, res) => {
   try {
-    const pool = req.app.locals.pool;
-
     // Country Distribution
-    const [countryDistribution] = await pool.execute(`
+    const countryDistribution = await prisma.$queryRaw`
       SELECT 
         country, 
         COUNT(DISTINCT visitorId) as visitor_count 
@@ -16,10 +15,10 @@ router.get('/demographic-analytics', async (req, res) => {
       WHERE country IS NOT NULL AND country != ''
       GROUP BY country 
       ORDER BY visitor_count DESC
-    `);
+    `;
 
     // Device Type Distribution
-    const [deviceDistribution] = await pool.execute(`
+    const deviceDistribution = await prisma.$queryRaw`
       SELECT 
         deviceType, 
         COUNT(DISTINCT visitorId) as visitor_count 
@@ -27,10 +26,10 @@ router.get('/demographic-analytics', async (req, res) => {
       WHERE deviceType IS NOT NULL AND deviceType != ''
       GROUP BY deviceType 
       ORDER BY visitor_count DESC
-    `);
+    `;
 
     // Page Engagement
-    const [pageEngagement] = await pool.execute(`
+    const pageEngagement = await prisma.$queryRaw`
       SELECT 
         page, 
         COUNT(*) as visits,
@@ -38,20 +37,20 @@ router.get('/demographic-analytics', async (req, res) => {
       FROM user_activity
       GROUP BY page
       ORDER BY visits DESC
-    `);
+    `;
 
     // Inquiries Distribution
-    const [inquiriesDistribution] = await pool.execute(`
+    const inquiriesDistribution = await prisma.$queryRaw`
       SELECT 
         inquiry_type, 
         COUNT(*) as inquiry_count 
       FROM inquiries 
       GROUP BY inquiry_type 
       ORDER BY inquiry_count DESC
-    `);
+    `;
 
     // Demographic Breakdown by Time
-    const [timeBasedBreakdown] = await pool.execute(`
+    const timeBasedBreakdown = await prisma.$queryRaw`
       SELECT 
         DATE_FORMAT(timestamp, '%Y-%m') as month,
         COUNT(DISTINCT visitorId) as total_visitors,
@@ -61,7 +60,7 @@ router.get('/demographic-analytics', async (req, res) => {
       FROM user_activity
       GROUP BY month
       ORDER BY month DESC
-    `);
+    `;
 
     res.json({
       countryDistribution,
@@ -79,9 +78,8 @@ router.get('/demographic-analytics', async (req, res) => {
 // Route to fetch detailed country data
 router.get('/country-details', async (req, res) => {
   try {
-    const pool = req.app.locals.pool;
 
-    const [countryDetails] = await pool.execute(`
+    const countryDetails = await prisma.$queryRaw`
       SELECT 
         country, 
         COUNT(DISTINCT visitorId) as total_visitors,
@@ -93,7 +91,7 @@ router.get('/country-details', async (req, res) => {
       WHERE country IS NOT NULL AND country != ''
       GROUP BY country
       ORDER BY total_visitors DESC
-    `);
+    `;
 
     res.json(countryDetails);
   } catch (error) {

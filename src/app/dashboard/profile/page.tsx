@@ -1,6 +1,6 @@
 'use client'
 import '@/src/app/globals.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Box,
   Button,
@@ -72,11 +72,7 @@ const AdminUsers = () => {
     receiveEmails: false
   });
 
-  useEffect(() => {
-    fetchAdminUsers();
-  }, []);
-
-  const fetchAdminUsers = async () => {
+  const fetchAdminUsers = useCallback(async () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('adminToken');
@@ -111,7 +107,11 @@ const AdminUsers = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchAdminUsers();
+  }, [fetchAdminUsers]);
 
   const handleAddUser = async () => {
     // Validate form

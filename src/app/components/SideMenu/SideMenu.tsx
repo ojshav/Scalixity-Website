@@ -9,6 +9,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import WorkIcon from "@mui/icons-material/Work"; 
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 import NextLink from "next/link";
 import scss from "@/styles/SideMenu.module.scss";
 import {
@@ -51,6 +52,7 @@ const menuRouteList = [
   "/dashboard/profile",
   "/dashboard/settings",
   "/dashboard/work", 
+  "/dashboard/services",
   "/dashboard/contact",
   "/dashboard/inquiry",
   "/dashboard/campaign",
@@ -61,6 +63,7 @@ const menuListTranslations = [
   "Profile",
   "Settings",
   "Work", 
+  "Services",
   "Contact",
   "Inquiry",
   "Campaigns",
@@ -71,6 +74,7 @@ const menuListIcons = [
   <Person2Icon key="person" />,
   <SettingsIcon key="settings" />,
   <WorkIcon key="work" />,
+  <MiscellaneousServicesIcon key="services" />,
   <ContactPageIcon key="contact" />,
   <SupportAgentIcon key="inquiry" />,
   <WorkIcon key="campaigns" />,

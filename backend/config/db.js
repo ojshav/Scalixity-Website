@@ -1,13 +1,11 @@
-const mysql = require('mysql2/promise');
+const { PrismaClient } = require('../generated/prisma');
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'scalixity_admin',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+const prisma = new PrismaClient({
+  // Production: Only show errors and warnings
+  log: ['warn', 'error'],
+  
+  // Development: Show all queries (uncomment below)
+  // log: ['query', 'info', 'warn', 'error'],
 });
 
-module.exports = pool;
+module.exports = prisma;
