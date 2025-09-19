@@ -38,7 +38,7 @@ app.use('/api', rateLimiters.general);
 app.use(cors({
   origin: process.env.ALLOWED_ORIGINS ? 
     process.env.ALLOWED_ORIGINS.split(',') : 
-    ["http://kea.mywire.org:5700", "http://localhost:3000","http://kea.mywire.org:5000","http://localhost:5000","http://192.168.0.210:3000", "http://192.168.0.210:5700","https://www.scalixity.com","https://scalixity.com"],
+    ["http://kea.mywire.org:5700", "http://localhost:3000","http://kea.mywire.org:5000","http://localhost:5000","http://192.168.0.210:3000", "http://192.168.0.210:5700","https://www.scalixity.com","https://scalixity.com","https://uk.scalixity.com","https://api.scalixity.com"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
