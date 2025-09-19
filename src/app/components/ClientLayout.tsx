@@ -6,7 +6,7 @@ import { SiteHeader } from "@/src/app/components/site-header";
 import { Footer } from "@/src/app/components/footer";
 import Chatbot from "@/src/app/components/Chatbot";
 import { v4 as uuidv4 } from "uuid";
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+// const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [country, setCountry] = useState<string | null>(null);

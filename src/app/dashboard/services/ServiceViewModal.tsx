@@ -213,7 +213,7 @@ export default function ServiceViewModal({ isOpen, onClose, service }: ServiceVi
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {service.benefits
                     .sort((a, b) => a.order - b.order)
-                    .map((benefit, index) => (
+                    .map((benefit, ) => (
                       <div key={benefit.id} className="flex items-center space-x-2">
                         <span className="flex-shrink-0 w-6 h-6 bg-green-100 text-green-800 text-xs font-medium rounded-full flex items-center justify-center">
                           ✓

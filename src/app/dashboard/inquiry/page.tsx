@@ -144,7 +144,8 @@ const InquiriesDashboard: React.FC = () => {
         hour: '2-digit',
         minute: '2-digit'
       });
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_error) {
       return 'Invalid Date';
     }
   };
