@@ -1,5 +1,4 @@
 import { Inter, Poppins, Playfair_Display, Source_Sans_3 } from "next/font/google";
-import Script from "next/script";
 import ClientLayout from "@/src/app/components/ClientLayout"; // Import the new client layout
 import "./globals.css";
 
@@ -77,20 +76,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`min-h-screen flex flex-col bg-gradient-to-b from-[#080B16] to-[#0F1629] ${inter.variable} ${poppins.variable} ${playfair.variable} ${sourceSans.variable}`}>
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17682763341"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17682763341');
-          `}
-        </Script>
-        
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
