@@ -39,7 +39,7 @@ export function Process() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      stepsRef.current.forEach((step, index) => {
+      stepsRef.current.forEach((step) => {
         if (!step) return
 
         // Entrance animation
@@ -68,7 +68,6 @@ export function Process() {
         // Active state animation (Highlight when aligned with title)
         const title = step.querySelector('h3')
         const desc = step.querySelector('p')
-        const iconBox = step.querySelector('.group-hover\\:bg-\\[\\#1A1A1A\\]') // Select the icon container if needed, or rely on CSS group-hover
 
         gsap.to(step, {
           scale: 1.05, // Increase size

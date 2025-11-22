@@ -69,7 +69,7 @@ const services = [
 export function DetailedServices() {
     return (
         <section className="bg-[#FFF2D5] min-h-screen flex flex-col">
-            <div className="container mx-auto px-4 md:px-8 py-20 md:py-28">
+            <div className="container mx-auto px-4 md:px-8 pt-28">
 
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-10">
@@ -86,7 +86,7 @@ export function DetailedServices() {
                     {services.map((service, index) => (
                         <div
                             key={service.id}
-                            className="sticky top-24 md:top-20 min-h-[80vh] bg-[#FFF2D5] border-t-2 border-blue-500/30 pt-12 mb-12 last:mb-0"
+                            className={`sticky top-24 md:top-20 ${index === 4 ? 'min-h-screen' : 'min-h-[80vh]'} bg-[#FFF2D5] border-t-2 border-blue-500/30 pt-12 mb-12 last:mb-0`}
                             style={{
                                 zIndex: index + 1,
                                 // Optional: subtle scale effect could be added here with scroll-driven animations if desired later

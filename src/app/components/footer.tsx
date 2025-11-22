@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Linkedin, Twitter, Youtube, Instagram, Facebook, Mail, Phone, MapPin } from 'lucide-react'
+import { Linkedin, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react'
 
 const services = [
   { name: "Custom Web Apps", href: "/services/web-development" },
