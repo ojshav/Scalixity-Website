@@ -1,85 +1,85 @@
 'use client'
-import { ArrowRight, Brain, BarChartIcon as ChartBar, Sparkles, MessageSquare, Cog } from 'lucide-react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
 
-const offerings = [
+import { Gauge, Award, Brain, Headphones, Sprout, Shield } from 'lucide-react'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+
+const features = [
   {
-    title: "Plan Your AI Adoption",
-    description: "Our AI consulting services focus on guiding businesses through the complexities of AI integration. From initial planning to full implementation, we collaborate with clients to develop customized AI strategies that enhance competitive advantage and drive innovation.",
-    link: "/services/ai-consulting",
+    title: "Lightning Fast Delivery",
+    description: "We deliver projects on time without compromising quality, using agile methodologies.",
+    icon: Gauge
+  },
+  {
+    title: "Premium Quality",
+    description: "Every project is crafted with attention to detail and tested rigorously for perfection.",
+    icon: Award
+  },
+  {
+    title: "Cutting-Edge Technology",
+    description: "We leverage the latest technologies and frameworks to build future-proof solutions.",
     icon: Brain
   },
   {
-    title: "Enhance Decision-Making with AI",
-    description: "We harness AI to transform business decision-making by arming our clients with deep analytical insights, automation, and optimized operations. Scalixity's experts help predict future trends, equipping businesses to innovate proactively and make data-driven decisions.",
-    link: "/services/ai-development",
-    icon: ChartBar
+    title: "24/7 Support",
+    description: "Our dedicated team is always available to assist you with any questions or issues.",
+    icon: Headphones
   },
   {
-    title: "Ignite Creativity with Generative AI",
-    description: "We build custom AI agents and Generative AI solutions to help businesses provide personalized content and products, fostering continuous innovation and market differentiation for sustained growth and a competitive edge.",
-    link: "/services/generative-ai",
-    icon: Sparkles
+    title: "Scalable Solutions",
+    description: "Build for growth with architectures that scale seamlessly with your business.",
+    icon: Sprout
   },
   {
-    title: "Enhance Customer Interaction",
-    description: "At Scalixity, we specialize in creating custom chatbots tailored to the specific data, needs, and business contexts of our clients. Our approach ensures that each chatbot delivers seamless, personalized interactions, enhancing customer engagement and satisfaction.",
-    link: "/services/chatgpt",
-    icon: MessageSquare
-  },
-  {
-    title: "Streamline Your AI Operations",
-    description: "Our MLOps team focuses on efficient AI implementation and measurable impact. We assist clients through the development, deployment, and monitoring of AI systems, aiming for operational excellence. By supporting businesses with continuous performance evaluations, we ensure that their AI investments yield tangible results.",
-    link: "/services/mlops",
-    icon: Cog
+    title: "Top-tier Security",
+    description: "We implement industry-best security practices to protect your data and users.",
+    icon: Shield
   }
 ]
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#9FA8DA] py-32">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-20">
-          <span className="text-md text-black uppercase tracking-wider font-semibold">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-6xl font-bold text-black mt-4 mb-6">
-            Transforming Businesses with AI Solutions
+    <section className="bg-[#4A0E78] py-24 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
+            Why Choose Scalixity?
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
-            Scalixity brings together industry specialists, strategic thinkers, and advanced technology to
-            drive data-driven success and scale value.
+          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto font-light">
+            We combine technical expertise with creative innovation to deliver exceptional results
           </p>
         </div>
-        <div className="grid lg:grid-cols-2 gap-8">
-          {offerings.map((offering, index) => (
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {features.map((feature, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-xl p-8 border border-black hover:bg-[#f4f4f4] transition-colors shadow-lg"
+              className="bg-[#FFF8E1] rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300"
             >
-              <motion.div
-                className="text-black mb-4"
-                initial={{ scale: 1 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <offering.icon size={40} className="text-black" />
-              </motion.div>
-              <h3 className="text-3xl font-bold text-black mb-4 flex items-center">
-                {offering.title}
-                <ArrowRight className="ml-2 h-5 w-5 text-black" />
+              <div className="mb-6">
+                <feature.icon strokeWidth={1.5} className="w-12 h-12 text-black" />
+              </div>
+              <h3 className="text-xl font-bold text-black mb-3 font-serif">
+                {feature.title}
               </h3>
-              <p className="text-gray-600 mb-6">{offering.description}</p>
-              <Link 
-                href={offering.link} 
-                className="inline-flex items-center text-black hover:text-gray-700 font-medium"
-              >
-                Learn more <ArrowRight className="ml-2 h-4 w-4 text-black" />
-              </Link>
+              <p className="text-gray-800 leading-relaxed">
+                {feature.description}
+              </p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="text-center">
+          <Link
+            href="/contact"
+            className="inline-block bg-white text-[#4A0E78] font-bold text-lg px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg"
+          >
+            Start Your Project
+          </Link>
         </div>
       </div>
     </section>

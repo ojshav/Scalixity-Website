@@ -5,9 +5,9 @@
 import * as React from "react"
 import Link from "next/link"
 import { Button } from "@/src/app/components/ui/button"
-import { 
-  Brain, Sparkles, LinkIcon, Smartphone, Stethoscope, 
-  ShoppingBag, DollarSign, BarChart, Menu, X, 
+import {
+  Brain, Sparkles, LinkIcon, Smartphone, Stethoscope,
+  ShoppingBag, DollarSign, BarChart, Menu, X,
   ChevronDown, ChevronRight
 } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -141,8 +141,8 @@ const industries = [
 export function ContactButton() {
   return (
     <Link href="/contact">
-      <Button className="bg-primary hover:bg-accent text-primary-foreground w-full sm:w-auto">
-        Contact Us
+      <Button className="bg-[#590178] hover:bg-[#6D0489] text-white w-full sm:w-auto">
+        Get Started
       </Button>
     </Link>
   )
@@ -151,6 +151,8 @@ export function ContactButton() {
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [openCategories, setOpenCategories] = React.useState<Record<string, boolean>>({})
+  const [isScrolled, setIsScrolled] = React.useState(false)
+  const [isDesktopMenuOpen, setIsDesktopMenuOpen] = React.useState(false)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -160,6 +162,10 @@ export function SiteHeader() {
     }
   }
 
+  const toggleDesktopMenu = () => {
+    setIsDesktopMenuOpen(!isDesktopMenuOpen)
+  }
+
   const toggleCategory = (category: string) => {
     setOpenCategories(prev => ({
       ...prev,
@@ -167,125 +173,219 @@ export function SiteHeader() {
     }))
   }
 
-   return (
-    <motion.header 
-    className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-    initial={{ y: -100 }}
-    animate={{ y: 0 }}
-    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-  >
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      setIsScrolled(currentScrollY > 100)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
+    // Check initial scroll position
+    handleScroll()
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+  return (
+    <motion.header
+      className="fixed top-0 z-50 w-full bg-[#FFF2D5] transition-all duration-300"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+    >
       <div className="container-fluid w-full px-0 mx-0">
         <div className="flex h-16 items-center justify-between">
           {/* Logo at the far left corner */}
           <div className="flex items-center pl-4 sm:pl-6 lg:pl-8">
-            <Link href="/" className="flex items-center">
-              <motion.span 
-                className="text-xl sm:text-2xl font-bold text-black"
+            <Link href="/" className="group flex items-center hover:no-underline">
+              <motion.span
+                className="text-xl sm:text-2xl font-bold text-black hover:text-[#590178] transition-colors"
                 style={{ opacity: 1, transform: 'none' }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                Scalixity
+                <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">
+                  Scalixity
+                </span>
               </motion.span>
             </Link>
           </div>
-        
-        {/* Desktop Navigation - centered */}
-        <nav className="hidden md:flex items-center justify-center space-x-1 lg:space-x-6">
-          {/* Services Dropdown */}
-          <div className="relative group">
-            <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
-              Services
-              <ChevronDown className="ml-1 h-4 w-4" />
-            </button>
-            <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[800px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                {services.map((category) => (
-                  <div key={category.category} className="space-y-2">
-                    <h3 className="font-medium text-foreground flex items-center">
-                      <category.icon className="mr-2 h-4 w-4 text-primary" />
-                      {category.category}
-                    </h3>
-                    <ul className="space-y-1">
-                      {category.items.map((item) => (
-                        <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                          <Link
-                            href={item.href}
-                            className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            {item.name}
-                          </Link>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
 
-          {/* Industries Dropdown */}
-          <div className="relative group">
-            <button className="flex items-center px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
-              Industries
-              <ChevronDown className="ml-1 h-4 w-4" />
-            </button>
-            <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[600px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                {industries.map((industry) => (
-                  <div key={industry.category} className="space-y-2">
-                    <h3 className="font-medium text-foreground flex items-center">
-                      <industry.icon className="mr-2 h-4 w-4 text-primary" />
-                      {industry.category}
-                    </h3>
-                    <ul className="space-y-1">
-                      {industry.items.map((item) => (
-                        <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                          <Link
-                            href={item.href}
-                            className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            {item.name}
-                          </Link>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-            <Link href="/work" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
-              Our Work
-            </Link>
-            <Link href="/company" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
-              Company
-            </Link>
-            <Link href="/blog" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
-              Blog
-            </Link>
-            <Link href="/resources" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
-              Resources
-            </Link>
-            <Link href="/campaign" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
-              Campaign
-            </Link>
-            <Link href="/scalixity" className="px-2 py-1 text-foreground hover:text-primary transition-colors text-base font-medium">
-              UK Scalixity
-            </Link>
-          </nav>
-
-          {/* Right side - Contact Button and Mobile Menu Toggle */}
-          <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
-            <motion.div 
-              whileHover={{ scale: 1.05 }} 
-              whileTap={{ scale: 0.95 }}
-              className="hidden md:block"
+          {/* Desktop Navigation - centered (only show when not scrolled) */}
+          {!isScrolled && (
+            <motion.nav
+              className="hidden md:flex items-center justify-center space-x-1 lg:space-x-6"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <ContactButton />
-            </motion.div>
+              {/* Services Dropdown */}
+              <motion.div
+                className="relative group"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+              >
+                <button className="group flex items-center px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                  <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Services</span>
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </button>
+                <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[800px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                  <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {services.map((category) => (
+                      <div key={category.category} className="space-y-2">
+                        <h3 className="font-medium text-foreground flex items-center">
+                          <category.icon className="mr-2 h-4 w-4 text-primary" />
+                          {category.category}
+                        </h3>
+                        <ul className="space-y-1">
+                          {category.items.map((item) => (
+                            <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                              <Link
+                                href={item.href}
+                                className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              >
+                                {item.name}
+                              </Link>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Industries Dropdown */}
+              <motion.div
+                className="relative group"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.15 }}
+              >
+                <button className="group flex items-center px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                  <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Industries</span>
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </button>
+                <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[600px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                  <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {industries.map((industry) => (
+                      <div key={industry.category} className="space-y-2">
+                        <h3 className="font-medium text-foreground flex items-center">
+                          <industry.icon className="mr-2 h-4 w-4 text-primary" />
+                          {industry.category}
+                        </h3>
+                        <ul className="space-y-1">
+                          {industry.items.map((item) => (
+                            <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                              <Link
+                                href={item.href}
+                                className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              >
+                                {item.name}
+                              </Link>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+              >
+                <Link href="/work" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                  <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Our Work</span>
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.25 }}
+              >
+                <Link href="/company" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                  <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Company</span>
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+              >
+                <Link href="/blog" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                  <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Blog</span>
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.35 }}
+              >
+                <Link href="/resources" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                  <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Resources</span>
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+              >
+                <Link href="/campaign" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                  <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Campaign</span>
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.45 }}
+              >
+
+              </motion.div>
+            </motion.nav>
+          )}
+
+          {/* Right side - Contact Button / Toggle and Mobile Menu Toggle */}
+          <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
+            {/* Desktop Menu Toggle (only show when scrolled) */}
+            {isScrolled && (
+              <motion.div
+                className="hidden md:flex items-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <button
+                  onClick={toggleDesktopMenu}
+                  aria-label="Toggle menu"
+                  className="p-2 hover:bg-accent rounded-md transition-colors"
+                >
+                  {isDesktopMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                </button>
+              </motion.div>
+            )}
+
+            {/* Contact Button (only show when not scrolled) */}
+            {!isScrolled && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="hidden md:block"
+              >
+                <ContactButton />
+              </motion.div>
+            )}
 
             {/* Mobile Menu Button */}
             <div className="flex items-center md:hidden">
@@ -301,9 +401,200 @@ export function SiteHeader() {
         </div>
       </div>
 
+      {/* Desktop Menu Dropdown (when scrolled) */}
+      {isScrolled && isDesktopMenuOpen && (
+        <motion.div
+          className="hidden md:block fixed top-16 left-0 right-0 bg-[#FFF2D5] shadow-xl overflow-hidden z-40"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
+          <div className="container mx-auto px-8 py-8 max-h-[80vh] overflow-y-auto">
+            <div className="grid grid-cols-4 gap-8">
+              {/* Services */}
+              <motion.div
+                className="space-y-4"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+              >
+                <h3 className="text-xl font-bold text-[#8B05AE] mb-4 pb-2 border-b-2 border-[#8B05AE]/20">Services</h3>
+                <div className="space-y-4">
+                  {services.map((category, idx) => (
+                    <motion.div
+                      key={category.category}
+                      className="space-y-2"
+                      initial={{ x: -10, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.15 + idx * 0.05 }}
+                    >
+                      <h4 className="font-semibold text-sm text-black flex items-center">
+                        <category.icon className="mr-2 h-4 w-4 text-[#8B05AE]" />
+                        {category.category}
+                      </h4>
+                      <ul className="space-y-1.5 pl-6">
+                        {category.items.slice(0, 3).map((item) => (
+                          <li key={item.name}>
+                            <Link
+                              href={item.href}
+                              className="text-sm text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 block"
+                              onClick={toggleDesktopMenu}
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Industries */}
+              <motion.div
+                className="space-y-4"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+              >
+                <h3 className="text-xl font-bold text-[#8B05AE] mb-4 pb-2 border-b-2 border-[#8B05AE]/20">Industries</h3>
+                <div className="space-y-4">
+                  {industries.map((industry, idx) => (
+                    <motion.div
+                      key={industry.category}
+                      className="space-y-2"
+                      initial={{ x: -10, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.25 + idx * 0.05 }}
+                    >
+                      <h4 className="font-semibold text-sm text-black flex items-center">
+                        <industry.icon className="mr-2 h-4 w-4 text-[#8B05AE]" />
+                        {industry.category}
+                      </h4>
+                      <ul className="space-y-1.5 pl-6">
+                        {industry.items.slice(0, 3).map((item) => (
+                          <li key={item.name}>
+                            <Link
+                              href={item.href}
+                              className="text-sm text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 block"
+                              onClick={toggleDesktopMenu}
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Quick Links */}
+              <motion.div
+                className="space-y-4"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+              >
+                <h3 className="text-xl font-bold text-[#8B05AE] mb-4 pb-2 border-b-2 border-[#8B05AE]/20">Quick Links</h3>
+                <div className="space-y-3">
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.35 }}
+                  >
+                    <Link
+                      href="/work"
+                      className="block text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 font-medium"
+                      onClick={toggleDesktopMenu}
+                    >
+                      Our Work
+                    </Link>
+                  </motion.div>
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.4 }}
+                  >
+                    <Link
+                      href="/company"
+                      className="block text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 font-medium"
+                      onClick={toggleDesktopMenu}
+                    >
+                      Company
+                    </Link>
+                  </motion.div>
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.45 }}
+                  >
+                    <Link
+                      href="/blog"
+                      className="block text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 font-medium"
+                      onClick={toggleDesktopMenu}
+                    >
+                      Blog
+                    </Link>
+                  </motion.div>
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.5 }}
+                  >
+                    <Link
+                      href="/resources"
+                      className="block text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 font-medium"
+                      onClick={toggleDesktopMenu}
+                    >
+                      Resources
+                    </Link>
+                  </motion.div>
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.55 }}
+                  >
+                    <Link
+                      href="/campaign"
+                      className="block text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 font-medium"
+                      onClick={toggleDesktopMenu}
+                    >
+                      Campaign
+                    </Link>
+                  </motion.div>
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.6 }}
+                  >
+
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Contact */}
+              <motion.div
+                className="space-y-4"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+              >
+                <h3 className="text-xl font-bold text-[#8B05AE] mb-4 pb-2 border-b-2 border-[#8B05AE]/20">Get in Touch</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  Ready to transform your business with innovative solutions? Let&apos;s talk.
+                </p>
+                <ContactButton />
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <motion.div 
+        <motion.div
           className="md:hidden bg-background border-t border-border/40 max-h-[85vh] overflow-y-auto"
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
@@ -313,17 +604,17 @@ export function SiteHeader() {
           <div className="px-4 py-4 space-y-4">
             {/* Services Section */}
             <div className="space-y-3">
-              <button 
+              <button
                 onClick={() => toggleCategory('services')}
                 className="flex items-center justify-between w-full font-medium text-foreground text-base"
               >
                 <span>Services</span>
-                {openCategories['services'] ? 
-                  <ChevronDown className="h-5 w-5" /> : 
+                {openCategories['services'] ?
+                  <ChevronDown className="h-5 w-5" /> :
                   <ChevronRight className="h-5 w-5" />
                 }
               </button>
-              
+
               {openCategories['services'] && (
                 <div className="pl-2 space-y-3">
                   {services.map((category) => (
@@ -336,12 +627,12 @@ export function SiteHeader() {
                           <category.icon className="mr-2 h-4 w-4 text-primary" />
                           {category.category}
                         </div>
-                        {openCategories[`service-${category.category}`] ? 
-                          <ChevronDown className="h-4 w-4" /> : 
+                        {openCategories[`service-${category.category}`] ?
+                          <ChevronDown className="h-4 w-4" /> :
                           <ChevronRight className="h-4 w-4" />
                         }
                       </button>
-                      
+
                       {openCategories[`service-${category.category}`] && (
                         <ul className="pl-6 space-y-2">
                           {category.items.map((item) => (
@@ -365,17 +656,17 @@ export function SiteHeader() {
 
             {/* Industries Section */}
             <div className="space-y-3">
-              <button 
+              <button
                 onClick={() => toggleCategory('industries')}
                 className="flex items-center justify-between w-full font-medium text-foreground text-base"
               >
                 <span>Industries</span>
-                {openCategories['industries'] ? 
-                  <ChevronDown className="h-5 w-5" /> : 
+                {openCategories['industries'] ?
+                  <ChevronDown className="h-5 w-5" /> :
                   <ChevronRight className="h-5 w-5" />
                 }
               </button>
-              
+
               {openCategories['industries'] && (
                 <div className="pl-2 space-y-3">
                   {industries.map((industry) => (
@@ -388,12 +679,12 @@ export function SiteHeader() {
                           <industry.icon className="mr-2 h-4 w-4 text-primary" />
                           {industry.category}
                         </div>
-                        {openCategories[`industry-${industry.category}`] ? 
-                          <ChevronDown className="h-4 w-4" /> : 
+                        {openCategories[`industry-${industry.category}`] ?
+                          <ChevronDown className="h-4 w-4" /> :
                           <ChevronRight className="h-4 w-4" />
                         }
                       </button>
-                      
+
                       {openCategories[`industry-${industry.category}`] && (
                         <ul className="pl-6 space-y-2">
                           {industry.items.map((item) => (
@@ -432,10 +723,8 @@ export function SiteHeader() {
               <Link href="/campaign" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 UI/UX Competition
               </Link>
-              <Link href="/scalixity" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
-                UK Scalixity
-              </Link>
-              
+
+
             </div>
 
             {/* Mobile Contact Button */}
