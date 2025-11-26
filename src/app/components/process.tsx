@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { Rocket, Puzzle, CheckCircle, Bot } from 'lucide-react'
+import { Rocket, Puzzle, CheckCircle, Bot, Wrench } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CTA } from './cta'
@@ -17,25 +17,47 @@ export function Process() {
 
   const steps = [
     {
-      title: "Execution Briefing",
-      duration: "2 Hours",
+      title: "Discovery",
+      description: "We understand your goals, requirements, KPIs, and success metrics to align on the problem and vision.",
+      duration: "1–3 days",
       icon: Rocket,
     },
     {
-      title: "Technology Assessment",
-      duration: "2-3 Days",
+      title: "Solution & Architecture",
+      description: "We design the best solution and architecture for your project, considering the best practices and technologies.",
+      duration: "2-5 Days",
       icon: Puzzle,
     },
     {
-      title: "Proof of Concept (POC)",
-      duration: "8-12 weeks",
+      title: "Design",
+      description: "We create wireframes, user flows, and a clean design system to ensure a smooth and intuitive user experienc",
+      duration: "3–7 days",
       icon: CheckCircle,
     },
     {
-      title: "AI Application Deployment in Production",
-      duration: "3-4 Months",
+      title: "Development",
+      description: "We build the product in iterative sprints with weekly demos and continuous integration for faster delivery.",
+      duration: "2-8 Weeks",
       icon: Bot,
     },
+    {
+      title: "Testing & QA",
+      description: "We run functional tests, bug fixes, load testing, and security checks to ensure the product is stable and production-ready.",
+      duration: "3–7 days",
+      icon: CheckCircle,
+    },
+    {
+      title: "Launch & Handover",
+      description: "We deploy the solution to production, provide documentation, and offer training for your team.",
+      duration: "1–3 days",
+      icon: Rocket,
+    },
+    {
+      title: "Ongoing Support & Optimization",
+      description: "We monitor performance, fix issues, and roll out improvements or new features based on your evolving needs.",
+      duration: "Continuous / Monthly",
+      icon: Wrench,
+    }
   ]
 
   useEffect(() => {
@@ -127,7 +149,7 @@ export function Process() {
               </h2>
               <div className="w-20 h-1 bg-[#1A1A1A] rounded-full hidden md:block mb-6"></div>
               <p className="text-lg text-[#590178] font-medium max-w-md">
-                Start improving your efficiency and reducing your operational costs with Generative AI in just a few weeks, not years.
+              Our process is structured to deliver high-quality digital solutions efficiently from understanding your goals to launching and continuously improving your product.
               </p>
             </div>
           </div>
@@ -150,8 +172,9 @@ export function Process() {
                     {step.title}
                   </h3>
                   <p className="text-lg md:text-xl text-[#666666] font-medium">
-                    {step.duration}
+                    {step.description}
                   </p>
+                  <p className="text-lg md:text-xl text-[#666666] font-medium">{step.duration}</p>
                 </div>
               </div>
             ))}

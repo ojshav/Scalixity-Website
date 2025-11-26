@@ -277,7 +277,7 @@ export function Hero() {
           className="relative w-full px-6 mt-8 lg:absolute lg:bottom-0 lg:left-[38%] lg:w-[70%] lg:px-0 lg:mt-0 lg:max-w-3xl 2xl:max-w-4xl"
         >
           <p className="text-xl md:text-2xl lg:text-2xl xl:text-2xl leading-relaxed md:leading-relaxed lg:leading-relaxed xl:leading-tight text-[#1F1F1F] font-medium font-playfair mb-6">
-            At <span className="font-bold text-[#8B05AE] tracking-wide font-playfair">Scalixity</span>, we redefine innovation by crafting AI solutions tailored to elevate businesses. Our approach merges data intelligence and automation, unlocking new realms of growth and efficiency. From streamlining operations to uncovering hidden opportunities, we empower companies to embrace the future with confidence and creativity.
+            At <span className="font-bold text-[#8B05AE] tracking-wide font-playfair">Scalixity</span>, we help businesses turn ideas into powerful digital products — custom web apps, ecommerce systems, dashboards, mobile apps, and AI automations. Our team handles everything from strategy to execution, ensuring fast delivery, scalable architecture, and real results.
           </p>
           <Link href="/contact">
             <button className="bg-[#590178] text-white px-8 py-3 rounded-lg font-manrope font-medium text-lg hover:bg-[#7A0499] transition-all duration-300 shadow-[0px_2px_4px_-2px_rgba(0,0,0,0.1)] hover:shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] active:shadow-[0px_0px_0px_0px_rgba(0,0,0,0)] focus:shadow-[0px_0px_0px_0px_rgba(0,0,0,0)]">
