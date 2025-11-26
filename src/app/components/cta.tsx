@@ -1,39 +1,25 @@
-"use client";
-
-import { useState } from 'react'
-import PopupForm from './scalixity/popup-form'
+'use client'
 
 export function CTA() {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
-
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
-  };
-
   return (
-    <section className="bg-[#A8B2E7] py-20">
+    <div className="w-full bg-[#FFF2D5] pb-20 pt-10 ">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold text-black mb-8">
-          Ready to transform your business with AI?
+        <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#1A1A1A] mb-6">
+          Ready to Transform Your Business?
         </h2>
-        <p className="text-xl text-black mb-12 max-w-3xl mx-auto">
-          Let&rsquo;s discuss how we can help you leverage the power of generative AI and blockchain technology to drive growth and innovation.
+        <p className="text-[#6B21A8] text-lg md:text-xl max-w-2xl mx-auto mb-10 font-medium">
+          Let&apos;s discuss how Scalixity can help you achieve your digital transformation goals
         </p>
-        <button
-          onClick={handleOpenPopup}
-          className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-bold text-lg hover:bg-gray-800 transition-colors"
-        >
-          Schedule a Consultation
-        </button>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <button className="px-8 py-3 bg-[#590178] text-white font-semibold rounded-lg hover:bg-[#3a1678] transition-colors shadow-lg">
+            Start Your Project
+          </button>
+          <button className="px-8 py-3 bg-transparent border-2 border-[#4A1D96] text-[#1A1A1A] font-semibold rounded-lg hover:bg-[#4A1D96] hover:text-white transition-colors">
+            Schedule a Call
+          </button>
+        </div>
       </div>
-
-      {/* Popup Form */}
-      <PopupForm isOpen={isPopupOpen} onClose={handleClosePopup} />
-    </section>
+    </div>
   )
-} 
+}
 

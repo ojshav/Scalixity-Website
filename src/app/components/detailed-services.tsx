@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { CTA } from './cta';
 
 const services = [
     {
@@ -73,20 +75,30 @@ export function DetailedServices() {
 
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-10">
-                    <h2 className="text-5xl md:text-7xl font-bold font-playfair text-black mb-8 md:mb-0">
+                    <motion.h2 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="text-5xl md:text-7xl font-bold font-playfair text-black mb-8 md:mb-0"
+                    >
                         Our Services
-                    </h2>
-                    <p className="text-[#590178] text-lg md:text-xl max-w-md font-inter leading-relaxed">
+                    </motion.h2>
+                    <motion.p 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                        className="text-[#590178] text-lg md:text-xl max-w-md font-inter leading-relaxed"
+                    >
                         At Scalixity, we deliver cutting-edge digital solutions tailored to your business needs. From web applications to AI-powered chatbots, we&apos;ve got you covered.
-                    </p>
+                    </motion.p>
                 </div>
 
                 {/* Main Content Area - Stacking Cards */}
-                <div className="flex flex-col pb-24">
+                <div className="flex flex-col pb-2">
                     {services.map((service, index) => (
                         <div
                             key={service.id}
-                            className={`sticky top-24 md:top-20 ${index === 4 ? 'min-h-screen' : 'min-h-[80vh]'} bg-[#FFF2D5] border-t-2 border-blue-500/30 pt-12 mb-12 last:mb-0`}
+                            className={`sticky top-24 md:top-20 ${index === 4 ? 'min-h-screen' : 'min-h-[80vh]'} bg-[#FFF2D5] border-t-2 border-black/40 pt-12 mb-12 last:mb-0`}
                             style={{
                                 zIndex: index + 1,
                                 // Optional: subtle scale effect could be added here with scroll-driven animations if desired later
@@ -95,18 +107,28 @@ export function DetailedServices() {
                             <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 h-full">
                                 {/* Left Sidebar - Service Number & All Service Titles */}
                                 <div className="lg:w-1/5 flex flex-col gap-6">
-                                    <div className="text-7xl md:text-5xl font-bold font-playfair text-[#590178] mb-4">
+                                    <motion.div 
+                                        initial={{ opacity: 0, scale: 0.5 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.6, ease: "easeOut" }}
+                                        className="text-7xl md:text-5xl font-bold font-playfair text-[#590178] mb-4"
+                                    >
                                         {service.id}
-                                    </div>
+                                    </motion.div>
                                     <div className="flex flex-col gap-3">
                                         {services.map((s, sIndex) => (
-                                            <div
+                                            <motion.div
                                                 key={s.id}
-                                                className={`text-base md:text-lg font-semibold font-playfair transition-colors ${sIndex === index ? 'text-[#590178]' : 'text-black'
+                                                initial={{ opacity: 0, x: -20 }}
+                                                whileInView={{ opacity: 1, x: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.5, delay: sIndex * 0.1 }}
+                                                className={`text-base md:text-lg font-semibold font-playfair transition-colors duration-300 ${sIndex === index ? 'text-[#590178]' : 'text-black'
                                                     }`}
                                             >
                                                 {s.title}
-                                            </div>
+                                            </motion.div>
                                         ))}
                                     </div>
                                 </div>
@@ -114,14 +136,26 @@ export function DetailedServices() {
                                 {/* Main Content Area */}
                                 <div className="lg:w-4/5 flex flex-col">
                                     {/* Service Title */}
-                                    <h3 className="text-4xl md:text-5xl font-bold font-playfair text-[#590178] mb-6">
+                                    <motion.h3 
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.6, ease: "easeOut" }}
+                                        className="text-4xl md:text-5xl font-bold font-playfair text-[#590178] mb-6"
+                                    >
                                         {service.title}
-                                    </h3>
+                                    </motion.h3>
 
                                     {/* Service Description */}
-                                    <p className="text-black/80 text-base md:text-lg leading-relaxed mb-12 font-inter">
+                                    <motion.p 
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                                        className="text-black/80 text-base md:text-lg leading-relaxed mb-12 font-inter"
+                                    >
                                         {service.fullDescription}
-                                    </p>
+                                    </motion.p>
 
                                     <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 items-start">
                                         {/* Illustration - Centered */}
@@ -151,23 +185,41 @@ export function DetailedServices() {
                                         {/* Features List - Right Side */}
                                         <div className="w-full lg:w-1/2 flex flex-col gap-1">
                                             {service.features.map((feature, fIndex) => (
-                                                <div key={fIndex} className="pb-1">
+                                                <motion.div 
+                                                    key={fIndex} 
+                                                    initial={{ opacity: 0, x: 20 }}
+                                                    whileInView={{ opacity: 1, x: 0 }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ duration: 0.5, delay: 0.3 + fIndex * 0.15 }}
+                                                    whileHover={{ x: 5 }}
+                                                    className="pb-1"
+                                                >
                                                     <h4 className="text-[#590178] font-bold text-lg md:text-xl mb-2 font-playfair">
                                                         {feature.title}
                                                     </h4>
                                                     <p className="text-black/70 text-sm md:text-base leading-relaxed">
                                                         {feature.description}
                                                     </p>
-                                                </div>
+                                                </motion.div>
                                             ))}
 
-                                            <div className="mt-4">
+                                            <motion.div 
+                                                initial={{ opacity: 0, y: 20 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.5, delay: 0.9 }}
+                                                className="mt-4"
+                                            >
                                                 <Link href="/contact">
-                                                    <button className="bg-[#590178] text-white px-8 py-3 rounded-lg font-bold font-playfair hover:bg-[#4a0b63] transition-colors">
+                                                    <motion.button 
+                                                        whileHover={{ scale: 1.05 }}
+                                                        whileTap={{ scale: 0.95 }}
+                                                        className="bg-[#590178] text-white px-8 py-3 rounded-lg font-bold font-playfair hover:bg-[#4a0b63] transition-colors"
+                                                    >
                                                         Learn More
-                                                    </button>
+                                                    </motion.button>
                                                 </Link>
-                                            </div>
+                                            </motion.div>
                                         </div>
                                     </div>
                                 </div>
@@ -176,6 +228,9 @@ export function DetailedServices() {
                     ))}
                 </div>
             </div>
+            
+            {/* CTA Section */}
+            <CTA />
         </section>
     );
 }

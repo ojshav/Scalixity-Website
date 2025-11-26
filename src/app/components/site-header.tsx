@@ -202,7 +202,7 @@ export function SiteHeader() {
           <div className="flex items-center pl-4 sm:pl-6 lg:pl-8">
             <Link href="/" className="group flex items-center hover:no-underline">
               <motion.span
-                className="text-xl sm:text-2xl font-bold text-black hover:text-[#590178] transition-colors"
+                className="text-xl sm:text-2xl font-bold text-black hover:text-[#590178] transition-colors font-playfair"
                 style={{ opacity: 1, transform: 'none' }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

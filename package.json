@@ -83,6 +83,7 @@
     "pigeon-maps": "^0.22.1",
     "pm2": "^6.0.8",
     "react": "^19.0.0",
+    "react-calendly": "^4.4.0",
     "react-day-picker": "^9.5.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
