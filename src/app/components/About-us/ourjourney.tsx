@@ -9,27 +9,27 @@ gsap.registerPlugin(ScrollTrigger);
 
 const milestones = [
     {
-        year: "2020",
-        title: "Inception",
-        description: "Scalixity was founded with a vision to democratize AI for enterprise.",
+        year: "2024",
+        title: "The Beginning",
+        description: "Scalixity was founded as a small but ambitious team dedicated to delivering high-quality custom software, ecommerce solutions, dashboards, and AI-driven tools for early-stage businesses.",
         side: "left",
     },
     {
-        year: "2022",
-        title: "Global Expansion",
-        description: "Opened offices in London and Singapore, expanding our reach to 3 continents.",
+        year: "2024 (Mid)",
+        title: "First Major Projects",
+        description: "Delivered our first multi-vendor ecommerce platform, a service marketplace with real-time communication, and an internal automation product — establishing a strong foundation across ecommerce, platforms, and AI-driven tools.",
         side: "right",
     },
     {
-        year: "2023",
-        title: "Series B Funding",
-        description: "Secured $50M to accelerate R&D in generative AI models.",
+        year: "2024 (Late)",
+        title: "Expansion of Services",
+        description: "Introduced AI automation, chatbots, and mobile app development into our offerings as client needs grew.",
         side: "left",
     },
     {
         year: "2025 Onwards",
-        title: "The Future",
-        description: "Launching Scalixity Core 2.0, setting new benchmarks in AI ethics and speed.",
+        title: "Steady Growth & Strong Portfolio",
+        description: "With consistent delivery and word-of-mouth referrals, we continue to expand our project base across ecommerce, SaaS, AI, dashboards, and mobile apps — fully bootstrapped and profitable.",
         side: "right",
     },
 ];

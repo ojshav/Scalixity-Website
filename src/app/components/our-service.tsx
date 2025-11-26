@@ -5,7 +5,8 @@ import {
   BarChart3,
   Smartphone,
   MessageSquare,
-  ShoppingBag
+  ShoppingBag,
+  Brain
 } from 'lucide-react';
 import { useRef } from 'react';
 import gsap from 'gsap';
@@ -15,29 +16,34 @@ import Link from 'next/link';
 
 const services = [
   {
-    title: "Custom Web Apps",
-    description: "Powerful, scalable web applications built with modern technologies to streamline your business operations.",
-    icon: Monitor,
-  },
-  {
-    title: "Custom Dashboards",
-    description: "Data-driven dashboards with beautiful visualizations to make informed business decisions.",
+    title: "Custom Dashboards & Analytics",
+    description: "Real-time dashboards and analytics systems that turn your data into clear insights to drive better decisions..",
     icon: BarChart3,
   },
   {
-    title: "Mobile Applications",
-    description: "Native and cross-platform mobile apps that deliver exceptional user experiences on any device.",
+    title: "Web Apps & Websites",
+    description: "Powerful, scalable web applications and responsive websites built to streamline operations and deliver great user experiences.",
+    icon: Monitor,
+  },
+  {
+    title: "Mobile App Development (iOS & Android)",
+    description: "High-performance mobile apps for iOS and Android with sleek UI, smooth performance, and seamless backend integration.",
     icon: Smartphone,
   },
   {
-    title: "AI Chatbots",
-    description: "Intelligent conversational AI solutions that enhance customer engagement and automate support.",
+    title: "AI Automations & Chatbots",
+    description: "Intelligent AI chatbots and workflow automations that reduce manual work and enhance customer engagement.",
     icon: MessageSquare,
   },
   {
-    title: "E-commerce Solution",
-    description: "Data-driven dashboards with beautiful visualizations to make informed business decisions.",
+    title: "Custom Ecommerce Development",
+    description: "Modern, conversion-focused ecommerce stores with secure checkout, inventory management, and full admin control.",
     icon: ShoppingBag,
+  },
+  {
+    title: "Machine Learning & NLP Solutions",
+    description: "Prediction models, classification systems, and NLP pipelines tailored to automate processes and unlock business insights.",
+    icon: Brain,
   }
 ];
 

@@ -65,6 +65,17 @@ const services = [
             { title: "Conversion Optimization", description: "Designed to maximize sales" }
         ],
         image: "/images/ecommerce-illustration.png"
+    },
+    {
+        id: "06",
+        title: "Machine Learning & NLP Solutions",
+        fullDescription: "Unlock business insights and automate processes with our machine learning and NLP solutions. We build predictive models, classification systems, and NLP pipelines tailored to your specific needs.",
+        features: [
+            { title: "Predictive Models", description: "Build models that predict future outcomes and automate decisions" },
+            { title: "Classification Systems", description: "Classify data into categories and automate processes" },
+            { title: "NLP Pipelines", description: "Build NLP pipelines that understand and respond to natural language" }
+        ],
+        image: "/images/chatbot-illustration.png"
     }
 ];
 

@@ -87,23 +87,23 @@ export default function GlobalImpact() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Stat 1 */}
           <div className="text-center">
-            <AnimatedCounter end={50} suffix="+" />
+            <AnimatedCounter end={10} suffix="+" />
             <div className="text-xs md:text-sm font-semibold text-black tracking-wider">
-              SUCCESSFUL PROJECTS
+              SUCCESSFUL PROJECTS DELIVERED
             </div>
           </div>
 
           {/* Stat 2 */}
           <div className="text-center">
-            <AnimatedCounter end={200} suffix="+" />
+            <AnimatedCounter end={8} suffix="+" />
             <div className="text-xs md:text-sm font-semibold text-black tracking-wider">
-              GLOBAL CLIENTS
+            ACTIVE CLIENTS ACROSS DIFFERENT INDUSTRIES
             </div>
           </div>
 
           {/* Stat 3 */}
           <div className="text-center">
-            <AnimatedCounter end={65} suffix="+" />
+            <AnimatedCounter end={5} suffix="+" />
             <div className="text-xs md:text-sm font-semibold text-black tracking-wider">
               INDUSTRIES SERVED
             </div>
@@ -111,9 +111,9 @@ export default function GlobalImpact() {
 
           {/* Stat 4 */}
           <div className="text-center">
-            <AnimatedCounter end={4} suffix="" />
+            <AnimatedCounter end={1} suffix="+" />
             <div className="text-xs md:text-sm font-semibold text-black tracking-wider">
-              YEARS OF EXCELLENCE
+            SHIPPING SCALABLE DIGITAL SOLUTIONS
             </div>
           </div>
         </div>
