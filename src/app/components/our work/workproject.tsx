@@ -7,34 +7,19 @@ import { ArrowUpRight } from 'lucide-react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-const projects = [
-    {
-        id: 1,
-        title: "Scalixity-AI-Driven CRM Solution",
-        description: "Built a conversational AI that reduced support time by 65% using LLM-powered workflows.",
-        image: "https://picsum.photos/seed/scalixity-crm/600/400"
-    },
-    {
-        id: 2,
-        title: "Scalixity-Nakshatra Gyan",
-        description: "Built a conversational AI that reduced support time by 65% using LLM-powered workflows.",
-        image: "https://picsum.photos/seed/scalixity-nakshatra/600/400"
-    },
-    {
-        id: 3,
-        title: "Scalixity-GPS Tracker",
-        description: "Built a conversational AI that reduced support time by 65% using LLM-powered workflows.",
-        image: "https://picsum.photos/seed/scalixity-gps/600/400"
-    },
-    {
-        id: 4,
-        title: "Scalixity-Ecommerce Website",
-        description: "Built a conversational AI that reduced support time by 65% using LLM-powered workflows.",
-        image: "https://picsum.photos/seed/scalixity-ecom/600/400"
-    },
-];
+interface Project {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+}
+
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
 export function WorkProjects() {
+    const [projects, setProjects] = useState<Project[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [activeProjectIndex, setActiveProjectIndex] = useState(0);
     const containerRef = React.useRef<HTMLDivElement>(null);
     const contentRef = React.useRef<HTMLDivElement>(null);
@@ -58,6 +43,40 @@ export function WorkProjects() {
     ];
 
     const activeProject = largeProjects[activeProjectIndex];
+
+    // Fetch projects from backend
+    useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+                const response = await fetch(`${baseURL}/api/work/projects`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch projects');
+                }
+
+                const data = await response.json();
+                
+                // Map backend data to component format and reverse to show oldest first
+                const mappedProjects: Project[] = data.map((project: any) => ({
+                    id: project.id,
+                    title: project.title,
+                    description: project.description || '',
+                    image: project.image
+                })).reverse();
+
+                setProjects(mappedProjects);
+            } catch (err) {
+                console.error('Error fetching projects:', err);
+                setError(err instanceof Error ? err.message : 'Failed to load projects');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProjects();
+    }, []);
 
     // Handle scroll when page loads with hash anchor
     useEffect(() => {
@@ -105,45 +124,59 @@ export function WorkProjects() {
     return (
         <section className="w-full bg-[#FFF2D5] py-16 px-4 md:px-8">
             <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-                    {projects.map((project) => (
-                        <div
-                            key={project.id}
-                            className="bg-white p-12 rounded-lg shadow-lg overflow-hidden flex flex-col"
-                        >
-                            {/* Image Placeholder */}
-                            <div className="w-full h-64 overflow-hidden rounded-md mb-6 relative">
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover hover:scale-105 transition-transform duration-500"
-                                />
+                {loading ? (
+                    <div className="flex items-center justify-center py-20">
+                        <p className="text-[#4A0E78] text-lg">Loading projects...</p>
+                    </div>
+                ) : error ? (
+                    <div className="flex items-center justify-center py-20">
+                        <p className="text-red-600 text-lg">Error: {error}</p>
+                    </div>
+                ) : projects.length === 0 ? (
+                    <div className="flex items-center justify-center py-20">
+                        <p className="text-[#4A0E78] text-lg">No projects found</p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+                        {projects.map((project) => (
+                            <div
+                                key={project.id}
+                                className="bg-white p-12 rounded-lg shadow-lg overflow-hidden flex flex-col"
+                            >
+                                {/* Image Placeholder */}
+                                <div className="w-full h-64 overflow-hidden rounded-md mb-6 relative">
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover hover:scale-105 transition-transform duration-500"
+                                    />
+                                </div>
+
+                                {/* Content Section */}
+                                <div className="flex flex-col items-center text-center py-6 flex-grow">
+                                    {/* Title */}
+                                    <h3 className="font-playfair text-xl md:text-2xl font-semibold text-[#0D0C0C] mb-4">
+                                        {project.title}
+                                    </h3>
+
+                                    {/* Description */}
+                                    <p className="text-sm md:text-base text-[#0D0C0C] mb-6 flex-grow">
+                                        {project.description}
+                                    </p>
+
+                                    {/* Learn More Button */}
+                                    <Link
+                                        href="/work"
+                                        className="px-6 py-3 bg-[#590178] text-white rounded-lg font-semibold hover:bg-[#6A0188] transition-colors text-sm md:text-base w-full md:w-auto"
+                                    >
+                                        Learn More
+                                    </Link>
+                                </div>
                             </div>
-
-                            {/* Content Section */}
-                            <div className="flex flex-col items-center text-center py-6 flex-grow">
-                                {/* Title */}
-                                <h3 className="font-playfair text-xl md:text-2xl font-semibold text-[#0D0C0C] mb-4">
-                                    {project.title}
-                                </h3>
-
-                                {/* Description */}
-                                <p className="text-sm md:text-base text-[#0D0C0C] mb-6 flex-grow">
-                                    {project.description}
-                                </p>
-
-                                {/* Learn More Button */}
-                                <Link
-                                    href="/work"
-                                    className="px-6 py-3 bg-[#590178] text-white rounded-lg font-semibold hover:bg-[#6A0188] transition-colors text-sm md:text-base w-full md:w-auto"
-                                >
-                                    Learn More
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                )}
 
                 {/* Large Card Below All Cards */}
                 <div id="aoin-project" className="mt-28 relative scroll-mt-20" ref={containerRef}>

@@ -1,55 +1,39 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
-const projects = [
-  {
-    id: 1,
-    title: "Prink",
-    category: "HEALTH AND WELLNESS",
-    year: "2025",
-    image: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2940&auto=format&fit=crop",
-    color: "bg-[#4A0E78]", // Purple
-  },
-  {
-    id: 2,
-    title: "Cars Daily",
-    category: "TRANSPORTATION",
-    year: "2025",
-    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2883&auto=format&fit=crop",
-    color: "bg-[#4A0E78]", // Purple
-  },
-  {
-    id: 3,
-    title: "Lumina",
-    category: "TECHNOLOGY",
-    year: "2024",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2944&auto=format&fit=crop",
-    color: "bg-[#4A0E78]", // Purple
-  },
-  {
-    id: 4,
-    title: "Elevate",
-    category: "FINANCE",
-    year: "2024",
-    image: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=2940&auto=format&fit=crop",
-    color: "bg-[#4A0E78]", // Purple
-  },
-];
+interface Project {
+  id: number;
+  title: string;
+  description?: string;
+  image: string;
+  liveUrl?: string;
+  category?: string;
+  year?: string;
+  color?: string;
+}
 
-function ProjectCard({ project }: { project: typeof projects[0] }) {
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+
+function ProjectCard({ project }: { project: Project }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.3, once: false });
+
+  const handleClick = () => {
+    if (project.liveUrl) {
+      window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   return (
     <div
       ref={ref}
       className={`relative h-[80vh] w-screen flex-shrink-0 flex flex-col justify-between p-2 md:p-4 `}
     >
-      <div className={`w-full h-full ${project.color} rounded-3xl flex flex-col justify-between relative overflow-hidden`}>
+      <div className={`w-full h-full ${project.color || "bg-[#4A0E78]"} rounded-3xl flex flex-col justify-between relative overflow-hidden`}>
         {/* Project Image Area */}
         <div className="relative h-full w-full overflow-hidden rounded-lg bg-gray-800/20">
           <motion.div
@@ -72,16 +56,25 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
         {/* Project Info */}
         <div className="flex items-end p-10 justify-between text-white ">
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-4 text-sm font-medium uppercase tracking-wider opacity-80">
-              <span>{project.year}</span>
-              <span>{project.category}</span>
-            </div>
+            {project.category && (
+              <div className="flex items-center gap-4 text-sm font-medium uppercase tracking-wider opacity-80">
+                <span>{project.category}</span>
+              </div>
+            )}
             <h2 className="text-4xl font-bold md:text-7xl tracking-tighter">
               {project.title}
             </h2>
           </div>
 
-          <button className="group rounded-full border border-current p-3 md:p-4 transition-colors hover:bg-white hover:text-black">
+          <button 
+            onClick={handleClick}
+            disabled={!project.liveUrl}
+            className={`group rounded-full border border-current p-3 md:p-4 transition-colors ${
+              project.liveUrl 
+                ? 'hover:bg-white hover:text-black cursor-pointer' 
+                : 'opacity-50 cursor-not-allowed'
+            }`}
+          >
             <ArrowUpRight className="h-6 w-6 md:h-8 md:w-8 transition-transform group-hover:rotate-45" />
           </button>
         </div>
@@ -92,11 +85,53 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
 
 export function ProjectShowcase() {
   const targetRef = useRef<HTMLDivElement>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
 
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-75%"]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`${baseURL}/api/work/projects`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch projects');
+        }
+
+        const data = await response.json();
+        
+        // Map backend data to component format
+        const mappedProjects: Project[] = data.map((project: any) => ({
+          id: project.id,
+          title: project.title,
+          description: project.description,
+          image: project.image,
+          liveUrl: project.liveUrl || project.live_url,
+          category: project.category,
+          year: project.year || new Date(project.createdAt || Date.now()).getFullYear().toString(),
+          color: project.color || "bg-[#4A0E78]"
+        }));
+
+        // Reverse the array to show first project entered first (oldest first)
+        setProjects(mappedProjects.reverse());
+      } catch (err) {
+        console.error('Error fetching projects:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load projects');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   return (
     <section ref={targetRef} className=" py-10 h-[500vh] bg-[#FFF2D5]">
@@ -114,11 +149,25 @@ export function ProjectShowcase() {
 
         {/* Cards Container */}
         <div className="flex-1 flex items-center ">
-          <motion.div style={{ x }} className="flex gap-0">
-            {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </motion.div>
+          {loading ? (
+            <div className="w-full flex items-center justify-center">
+              <p className="text-[#4A0E78] text-lg">Loading projects...</p>
+            </div>
+          ) : error ? (
+            <div className="w-full flex items-center justify-center">
+              <p className="text-red-600 text-lg">Error: {error}</p>
+            </div>
+          ) : projects.length === 0 ? (
+            <div className="w-full flex items-center justify-center">
+              <p className="text-[#4A0E78] text-lg">No projects found</p>
+            </div>
+          ) : (
+            <motion.div style={{ x }} className="flex gap-0">
+              {projects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </motion.div>
+          )}
         </div>
       </div>
     </section>
