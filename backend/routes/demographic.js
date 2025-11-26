@@ -62,12 +62,42 @@ router.get('/demographic-analytics', async (req, res) => {
       ORDER BY month DESC
     `;
 
+    // Convert BigInt to Number for JSON serialization
+    const convertedCountryDistribution = countryDistribution.map(row => ({
+      ...row,
+      visitor_count: Number(row.visitor_count)
+    }));
+
+    const convertedDeviceDistribution = deviceDistribution.map(row => ({
+      ...row,
+      visitor_count: Number(row.visitor_count)
+    }));
+
+    const convertedPageEngagement = pageEngagement.map(row => ({
+      ...row,
+      visits: Number(row.visits),
+      unique_visitors: Number(row.unique_visitors)
+    }));
+
+    const convertedInquiriesDistribution = inquiriesDistribution.map(row => ({
+      ...row,
+      inquiry_count: Number(row.inquiry_count)
+    }));
+
+    const convertedTimeBasedBreakdown = timeBasedBreakdown.map(row => ({
+      ...row,
+      total_visitors: Number(row.total_visitors),
+      mobile_visitors: Number(row.mobile_visitors),
+      desktop_visitors: Number(row.desktop_visitors),
+      tablet_visitors: Number(row.tablet_visitors)
+    }));
+
     res.json({
-      countryDistribution,
-      deviceDistribution,
-      pageEngagement,
-      inquiriesDistribution,
-      timeBasedBreakdown
+      countryDistribution: convertedCountryDistribution,
+      deviceDistribution: convertedDeviceDistribution,
+      pageEngagement: convertedPageEngagement,
+      inquiriesDistribution: convertedInquiriesDistribution,
+      timeBasedBreakdown: convertedTimeBasedBreakdown
     });
   } catch (error) {
     console.error('Error fetching demographic analytics:', error);
@@ -93,7 +123,16 @@ router.get('/country-details', async (req, res) => {
       ORDER BY total_visitors DESC
     `;
 
-    res.json(countryDetails);
+    // Convert BigInt to Number for JSON serialization
+    const convertedCountryDetails = countryDetails.map(row => ({
+      ...row,
+      total_visitors: Number(row.total_visitors),
+      page_visits: Number(row.page_visits),
+      inquiries: Number(row.inquiries),
+      inquiry_rate: row.inquiry_rate ? Number(row.inquiry_rate) : null
+    }));
+
+    res.json(convertedCountryDetails);
   } catch (error) {
     console.error('Error fetching country details:', error);
     res.status(500).json({ error: 'Failed to retrieve country details' });

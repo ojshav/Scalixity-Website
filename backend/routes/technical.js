@@ -520,7 +520,17 @@ router.get('/device-performance', async (req, res) => {
        ORDER BY avg_loadTime DESC
     `;
 
-    res.json({ message: 'Device performance metrics retrieved successfully', data: rows });
+    // Convert BigInt to Number for JSON serialization
+    const convertedRows = rows.map(row => ({
+      ...row,
+      count: Number(row.count),
+      avg_fcp: row.avg_fcp ? Number(row.avg_fcp) : null,
+      avg_lcp: row.avg_lcp ? Number(row.avg_lcp) : null,
+      avg_tti: row.avg_tti ? Number(row.avg_tti) : null,
+      avg_loadTime: row.avg_loadTime ? Number(row.avg_loadTime) : null
+    }));
+
+    res.json({ message: 'Device performance metrics retrieved successfully', data: convertedRows });
   } catch (error) {
     console.error('Error retrieving device performance metrics:', error);
     res.status(500).json({ error: 'Failed to retrieve device performance metrics' });
