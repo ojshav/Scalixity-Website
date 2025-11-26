@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Lenis smooth scrolling */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 /* Custom Font Classes */
 .font-playfair {
   font-family: var(--font-playfair), serif;
@@ -230,12 +251,11 @@ p {
 a {
   transition: all 0.3s ease;
   color: #9FA8DA;
+  text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  color: #8891C9;
+  color: #6D76B0;
 }
 
 /* Spacing */
@@ -598,4 +618,16 @@ button:active, .button-primary:active, .button-secondary:active {
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
+}
+
+/* Custom animations */
+@keyframes slideDown {
+  from {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

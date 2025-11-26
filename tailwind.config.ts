@@ -13,6 +13,7 @@ export default {
         'poppins': ['var(--font-poppins)', 'sans-serif'],
         'source-sans': ['var(--font-source-sans)', 'sans-serif'],
         'inter': ['var(--font-inter)', 'sans-serif'],
+        'manrope': ['var(--font-manrope)', 'sans-serif'],
       },
       colors: {
         background: "hsl(var(--background))",
