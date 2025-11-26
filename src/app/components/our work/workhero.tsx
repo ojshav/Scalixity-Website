@@ -16,7 +16,7 @@ export function WorkHero() {
                     {/* Buttons */}
                     <div className="flex flex-col sm:flex-row items-center gap-4 relative">
                         <Link
-                            href="/scalixity"
+                            href="/contact"
                             className="px-8 py-3.5 bg-[#FFF8E7] text-[#590178] rounded-lg font-semibold hover:bg-white transition-colors text-base hover:text-[#590178]"
                         >
                             Explore Scalixity
