@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Button } from "@/src/app/components/ui/button";
 import { Badge } from "@/src/app/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/app/components/ui/card";
@@ -58,12 +58,7 @@ export default function CampaignResponses() {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [selectedSubmission, setSelectedSubmission] = useState<Submission | null>(null);
 
-  useEffect(() => {
-    if (!id) return;
-    fetchData();
-  }, [id]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -93,7 +88,12 @@ export default function CampaignResponses() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (!id) return;
+    fetchData();
+  }, [id, fetchData]);
 
   const updateSubmissionStatus = async (submissionId: number, newStatus: string) => {
     try {
