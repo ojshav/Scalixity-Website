@@ -1,5 +1,7 @@
 'use client'
 
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { CTA } from "@/src/app/components/cta";
 import { ServiceHero } from "@/src/app/components/service-hero";
 import KeyFeatures from "@/src/app/components/keyfeatures"
@@ -7,58 +9,93 @@ import { Benefits } from "@/src/app/components/benefits";
 import TechnologiesUsed from "@/src/app/components/technologiesused";
 import PricingPlan from "@/src/app/components/pricing-plan";
 
-import { Brain, FileText, BarChart3, Sparkles, Target, Zap } from "lucide-react";
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+
+interface ServiceData {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  shortDescription: string;
+  features: string[];
+  technologies: Array<{ name: string; icon: string }>;
+  benefits: string[];
+  pricingPlans?: any[];
+  pricing?: {
+    starting: string;
+    description: string;
+  };
+}
 
 export default function MLNLPSolutionsPage() {
-  const customFeatures = [
-    {
-      title: "Advanced ML Models",
-      description: "Custom machine learning models trained on your data for accurate predictions and insights.",
-      icon: Brain
-    },
-    {
-      title: "Natural Language Processing",
-      description: "Extract meaning from text with sentiment analysis, entity recognition, and language understanding.",
-      icon: FileText
-    },
-    {
-      title: "Predictive Analytics",
-      description: "Forecast trends and outcomes with sophisticated statistical modeling and AI algorithms.",
-      icon: BarChart3
-    },
-    {
-      title: "Deep Learning Solutions",
-      description: "Neural networks and deep learning architectures for complex pattern recognition.",
-      icon: Sparkles
-    },
-    {
-      title: "High Accuracy",
-      description: "Precision-tuned models delivering reliable results for business-critical decisions.",
-      icon: Target
-    },
-    {
-      title: "Real-Time Processing",
-      description: "Lightning-fast inference for real-time predictions and instant insights.",
-      icon: Zap
-    }
-  ];
+  const pathname = usePathname();
+  const [serviceData, setServiceData] = useState<ServiceData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Extract slug from pathname (e.g., /services/ml-nlp-solutions -> ml-nlp-solutions)
+  const slug = pathname?.split('/').pop() || 'ml-nlp-solutions';
+
+  useEffect(() => {
+    const fetchServiceData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`${baseURL}/api/website-services/${slug}`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch service data');
+        }
+
+        const result = await response.json();
+        if (result.success && result.data) {
+          setServiceData(result.data);
+        } else {
+          throw new Error('Invalid service data format');
+        }
+      } catch (err) {
+        console.error('Error fetching service data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load service data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServiceData();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <main className="bg-[#FFF2D5] text-[#1A1A1A] min-h-screen flex items-center justify-center">
+        <p className="text-[#4A0E78] text-lg">Loading service data...</p>
+      </main>
+    );
+  }
+
+  if (error || !serviceData) {
+    return (
+      <main className="bg-[#FFF2D5] text-[#1A1A1A] min-h-screen flex items-center justify-center">
+        <p className="text-red-600 text-lg">Error: {error || 'Service not found'}</p>
+      </main>
+    );
+  }
 
   return (
     <main className="bg-[#FFF2D5] text-[#1A1A1A]">
       <ServiceHero
-        title="Machine Learning & NLP Solutions"
-        description="Unlock the power of AI with custom machine learning and natural language processing solutions. We build intelligent systems that learn from data, understand language, and deliver actionable insights for your business."
+        title={serviceData.title}
+        description={serviceData.description}
       />
-      <KeyFeatures />
+      <KeyFeatures features={serviceData.features} />
       <Benefits 
         title="Benefits"
-        subtitle="We combine data science expertise with cutting-edge AI to build solutions that transform your business"
-        benefits={customFeatures}
-        ctaLink="/contact"
+        subtitle="We combine technical expertise with creative innovation to deliver exceptional results"
+        benefits={serviceData.benefits}
         ctaText="Start Your Project"
-      />
-      <TechnologiesUsed />
-      <PricingPlan />
+        ctaLink="/contact"
+      /> 
+      <TechnologiesUsed technologies={serviceData.technologies} />
+      <PricingPlan pricingPlans={serviceData.pricingPlans} pricing={serviceData.pricing} />
       <CTA />
     </main>
   );

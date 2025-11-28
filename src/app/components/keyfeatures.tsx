@@ -7,46 +7,53 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const features = [
-    {
-        description: "Scalixity was founded with a vision to democratize AI for enterprise.",
-        color: "#FF9F66", // Orange
-        lightColor: "#FFF0E6",
-        number: "01",
-    },
-    {
-        description: "Opened offices in London and Singapore, expanding our reach to 3 continents.",
-        color: "#2E86DE", // Blue
-        lightColor: "#E6F2FF",
-        number: "02",
-    },
-    {
-        description: "Secured $50M to accelerate R&D in generative AI models.",
-        color: "#4CD137", // Green
-        lightColor: "#E8F9E6",
-        number: "03",
-    },
-    {
-        description: "Launching Scalixity Core 2.0, setting new benchmarks in AI ethics and speed.",
-        color: "#E84118", // Red
-        lightColor: "#FDECEC",
-        number: "04",
-    },
-    {
-        description: "Secured $50M to accelerate R&D in generative AI models.",
-        color: "#9C88FF", // Purple
-        lightColor: "#F3F0FF",
-        number: "05",
-    },
-    {
-        description: "Launching Scalixity Core 2.0, setting new benchmarks in AI ethics and speed.",
-        color: "#FF6B81", // Pink
-        lightColor: "#FFF0F3",
-        number: "06",
-    },
+const defaultColors = [
+    { color: "#FF9F66", lightColor: "#FFF0E6" }, // Orange
+    { color: "#2E86DE", lightColor: "#E6F2FF" }, // Blue
+    { color: "#4CD137", lightColor: "#E8F9E6" }, // Green
+    { color: "#E84118", lightColor: "#FDECEC" }, // Red
+    { color: "#9C88FF", lightColor: "#F3F0FF" }, // Purple
+    { color: "#FF6B81", lightColor: "#FFF0F3" }, // Pink
 ];
 
-const KeyFeatures = () => {
+interface KeyFeaturesProps {
+    features?: string[];
+}
+
+const KeyFeatures = ({ features }: KeyFeaturesProps) => {
+    // Use provided features or fallback to default
+    const displayFeatures = features && features.length > 0 
+        ? features.map((feature, index) => ({
+            description: feature,
+            ...defaultColors[index % defaultColors.length],
+            number: String(index + 1).padStart(2, '0'),
+        }))
+        : [
+            {
+                description: "Scalixity was founded with a vision to democratize AI for enterprise.",
+                color: "#FF9F66",
+                lightColor: "#FFF0E6",
+                number: "01",
+            },
+            {
+                description: "Opened offices in London and Singapore, expanding our reach to 3 continents.",
+                color: "#2E86DE",
+                lightColor: "#E6F2FF",
+                number: "02",
+            },
+            {
+                description: "Secured $50M to accelerate R&D in generative AI models.",
+                color: "#4CD137",
+                lightColor: "#E8F9E6",
+                number: "03",
+            },
+            {
+                description: "Launching Scalixity Core 2.0, setting new benchmarks in AI ethics and speed.",
+                color: "#E84118",
+                lightColor: "#FDECEC",
+                number: "04",
+            },
+        ];
     const containerRef = useRef<HTMLDivElement>(null);
     const lineRef = useRef<HTMLDivElement>(null);
     const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -131,7 +138,7 @@ const KeyFeatures = () => {
 
                     {/* Features */}
                     <div className="space-y-16 md:space-y-20 relative z-10">
-                        {features.map((feature, index) => {
+                        {displayFeatures.map((feature, index) => {
                             const isEven = index % 2 !== 0; // Alternating pattern
 
                             return (

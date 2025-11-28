@@ -12,6 +12,7 @@ interface Project {
     title: string;
     description: string;
     image: string;
+    liveUrl?: string | null;
 }
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
@@ -63,7 +64,8 @@ export function WorkProjects() {
                     id: project.id,
                     title: project.title,
                     description: project.description || '',
-                    image: project.image
+                    image: project.image,
+                    liveUrl: project.liveUrl || project.live_url || null
                 })).reverse();
 
                 setProjects(mappedProjects);
@@ -165,13 +167,17 @@ export function WorkProjects() {
                                         {project.description}
                                     </p>
 
-                                    {/* Learn More Button */}
-                                    <Link
-                                        href="/work"
-                                        className="px-6 py-3 bg-[#590178] text-white rounded-lg font-semibold hover:bg-[#6A0188] transition-colors text-sm md:text-base w-full md:w-auto"
-                                    >
-                                        Learn More
-                                    </Link>
+                                    {/* Learn More Button - Only show if liveUrl exists */}
+                                    {project.liveUrl && (
+                                        <Link
+                                            href={project.liveUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-6 py-3 bg-[#590178] text-white rounded-lg font-semibold hover:bg-[#6A0188] transition-colors text-sm md:text-base w-full md:w-auto"
+                                        >
+                                            Learn More
+                                        </Link>
+                                    )}
                                 </div>
                             </div>
                         ))}

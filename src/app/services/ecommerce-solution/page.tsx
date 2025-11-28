@@ -1,5 +1,7 @@
 'use client'
 
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { CTA } from "@/src/app/components/cta";
 import { ServiceHero } from "@/src/app/components/service-hero";
 import KeyFeatures from "@/src/app/components/keyfeatures"
@@ -7,58 +9,93 @@ import { Benefits } from "@/src/app/components/benefits";
 import TechnologiesUsed from "@/src/app/components/technologiesused";
 import PricingPlan from "@/src/app/components/pricing-plan";
 
-import { ShoppingCart, CreditCard, Package, TrendingUp, Shield, Zap } from "lucide-react";
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+
+interface ServiceData {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  shortDescription: string;
+  features: string[];
+  technologies: Array<{ name: string; icon: string }>;
+  benefits: string[];
+  pricingPlans?: any[];
+  pricing?: {
+    starting: string;
+    description: string;
+  };
+}
 
 export default function EcommerceSolutionPage() {
-  const customFeatures = [
-    {
-      title: "Complete Store Setup",
-      description: "Full-featured online stores with product catalogs, inventory management, and order tracking.",
-      icon: ShoppingCart
-    },
-    {
-      title: "Secure Payments",
-      description: "Integrated payment gateways with PCI compliance and fraud protection.",
-      icon: CreditCard
-    },
-    {
-      title: "Order Management",
-      description: "Streamlined order processing, shipping integration, and automated fulfillment.",
-      icon: Package
-    },
-    {
-      title: "Sales Analytics",
-      description: "Real-time insights into sales performance, customer behavior, and inventory trends.",
-      icon: TrendingUp
-    },
-    {
-      title: "Fast & Reliable",
-      description: "Optimized for speed with 99.9% uptime and lightning-fast page loads.",
-      icon: Zap
-    },
-    {
-      title: "Enterprise Security",
-      description: "SSL encryption, secure checkout, and compliance with industry standards.",
-      icon: Shield
-    }
-  ];
+  const pathname = usePathname();
+  const [serviceData, setServiceData] = useState<ServiceData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Extract slug from pathname (e.g., /services/ecommerce-solution -> ecommerce-solution)
+  const slug = pathname?.split('/').pop() || 'ecommerce-solution';
+
+  useEffect(() => {
+    const fetchServiceData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`${baseURL}/api/website-services/${slug}`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch service data');
+        }
+
+        const result = await response.json();
+        if (result.success && result.data) {
+          setServiceData(result.data);
+        } else {
+          throw new Error('Invalid service data format');
+        }
+      } catch (err) {
+        console.error('Error fetching service data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load service data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServiceData();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <main className="bg-[#FFF2D5] text-[#1A1A1A] min-h-screen flex items-center justify-center">
+        <p className="text-[#4A0E78] text-lg">Loading service data...</p>
+      </main>
+    );
+  }
+
+  if (error || !serviceData) {
+    return (
+      <main className="bg-[#FFF2D5] text-[#1A1A1A] min-h-screen flex items-center justify-center">
+        <p className="text-red-600 text-lg">Error: {error || 'Service not found'}</p>
+      </main>
+    );
+  }
 
   return (
     <main className="bg-[#FFF2D5] text-[#1A1A1A]">
       <ServiceHero
-        title="E-commerce Solution Development"
-        description="Launch your online store with a powerful, scalable e-commerce platform. We build custom e-commerce solutions with secure payments, inventory management, and seamless shopping experiences that drive sales."
+        title={serviceData.title}
+        description={serviceData.description}
       />
-      <KeyFeatures />
+      <KeyFeatures features={serviceData.features} />
       <Benefits 
         title="Benefits"
-        subtitle="We combine e-commerce expertise with cutting-edge technology to build online stores that convert"
-        benefits={customFeatures}
-        ctaLink="/contact"
+        subtitle="We combine technical expertise with creative innovation to deliver exceptional results"
+        benefits={serviceData.benefits}
         ctaText="Start Your Project"
-      />
-      <TechnologiesUsed />
-      <PricingPlan />
+        ctaLink="/contact"
+      /> 
+      <TechnologiesUsed technologies={serviceData.technologies} />
+      <PricingPlan pricingPlans={serviceData.pricingPlans} pricing={serviceData.pricing} />
       <CTA />
     </main>
   );

@@ -17,7 +17,33 @@ interface PricingTier {
   popular?: boolean;
 }
 
-const pricingData: PricingTier[] = [
+interface PricingPlanObject {
+  beginner?: {
+    priceRange: string;
+    description: string;
+    bulletPoints: string[];
+  };
+  professional?: {
+    priceRange: string;
+    description: string;
+    bulletPoints: string[];
+  };
+  pro?: {
+    priceRange: string;
+    description: string;
+    bulletPoints: string[];
+  };
+}
+
+interface PricingPlanProps {
+  pricingPlans?: PricingPlanObject | any[];
+  pricing?: {
+    starting: string;
+    description: string;
+  };
+}
+
+const defaultPricingData: PricingTier[] = [
   {
     name: 'Beginner',
     price: '$29',
@@ -72,7 +98,103 @@ const pricingData: PricingTier[] = [
   },
 ];
 
-export default function PricingPlan() {
+export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps = {}) {
+  // Transform API pricingPlans to component format, or use default
+  let displayPricingData: PricingTier[] = defaultPricingData;
+
+  if (pricingPlans) {
+    // Handle object structure from backend (beginner, professional, pro)
+    if (typeof pricingPlans === 'object' && !Array.isArray(pricingPlans)) {
+      const plans: PricingTier[] = [];
+      
+      // Map beginner plan
+      if (pricingPlans.beginner) {
+        plans.push({
+          name: 'Beginner',
+          price: pricingPlans.beginner.priceRange || '$0',
+          period: '',
+          description: pricingPlans.beginner.description || 'Perfect for small projects and startups',
+          features: Array.isArray(pricingPlans.beginner.bulletPoints)
+            ? pricingPlans.beginner.bulletPoints.map((point: string) => ({ text: point, included: true }))
+            : [],
+          buttonText: 'Get Started',
+          popular: false,
+        });
+      }
+
+      // Map professional plan
+      if (pricingPlans.professional) {
+        plans.push({
+          name: 'Professional',
+          price: pricingPlans.professional.priceRange || '$0',
+          period: '',
+          description: pricingPlans.professional.description || 'Ideal for growing businesses',
+          features: Array.isArray(pricingPlans.professional.bulletPoints)
+            ? pricingPlans.professional.bulletPoints.map((point: string) => ({ text: point, included: true }))
+            : [],
+          buttonText: 'Get Started',
+          popular: true, // Professional is typically the popular one
+        });
+      }
+
+      // Map pro plan
+      if (pricingPlans.pro) {
+        plans.push({
+          name: 'Pro',
+          price: pricingPlans.pro.priceRange || '$0',
+          period: '',
+          description: pricingPlans.pro.description || 'For large enterprises and teams',
+          features: Array.isArray(pricingPlans.pro.bulletPoints)
+            ? pricingPlans.pro.bulletPoints.map((point: string) => ({ text: point, included: true }))
+            : [],
+          buttonText: 'Contact Sales',
+          popular: false,
+        });
+      }
+
+      if (plans.length > 0) {
+        displayPricingData = plans;
+      }
+    } 
+    // Handle array structure (fallback for other formats)
+    else if (Array.isArray(pricingPlans) && pricingPlans.length > 0) {
+      displayPricingData = pricingPlans.map((plan: any, index: number) => ({
+        name: plan.name || plan.title || `Plan ${index + 1}`,
+        price: plan.price || plan.amount || plan.priceRange || '$0',
+        period: plan.period || plan.billingPeriod || '/month',
+        description: plan.description || '',
+        features: Array.isArray(plan.features) 
+          ? plan.features.map((f: string | { text: string; included: boolean }) => 
+              typeof f === 'string' 
+                ? { text: f, included: true }
+                : { text: f.text || f, included: f.included !== false }
+            )
+          : Array.isArray(plan.bulletPoints)
+          ? plan.bulletPoints.map((point: string) => ({ text: point, included: true }))
+          : [],
+        buttonText: plan.buttonText || plan.ctaText || 'Get Started',
+        popular: plan.popular || plan.highlighted || index === 1,
+      }));
+    }
+  } else if (pricing) {
+    // If only pricing object is provided, create a simple pricing display
+    displayPricingData = [
+      {
+        name: 'Starting Price',
+        price: pricing.starting,
+        period: '',
+        description: pricing.description,
+        features: [
+          { text: 'Custom solution tailored to your needs', included: true },
+          { text: 'Dedicated support', included: true },
+          { text: 'Flexible payment options', included: true },
+        ],
+        buttonText: 'Contact Us',
+        popular: false,
+      }
+    ];
+  }
+
   return (
     <div className="min-h-screen bg-[#FFF2D5] py-16 px-4">
       <div className="max-w-7xl mx-auto">
@@ -83,7 +205,7 @@ export default function PricingPlan() {
 
         {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {pricingData.map((tier, index) => (
+          {displayPricingData.map((tier, index) => (
             <div
               key={index}
               className={`group bg-white rounded-3xl shadow-xl overflow-hidden transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:z-10 cursor-pointer relative ${
@@ -107,13 +229,15 @@ export default function PricingPlan() {
               <div className="p-8 relative z-10 group-hover:text-white transition-colors duration-500">
                 {/* Price */}
                 <div className="text-center mb-6">
-                  <div className="flex items-baseline justify-center mb-2">
-                    <span className="text-5xl font-bold text-[#6B2D8F] group-hover:text-white transition-colors duration-500">
+                  <div className="flex items-baseline justify-center mb-2 flex-wrap gap-1">
+                    <span className="text-3xl md:text-4xl font-bold text-[#6B2D8F] group-hover:text-white transition-colors duration-500 whitespace-nowrap">
                       {tier.price}
                     </span>
-                    <span className="text-xl text-gray-600 group-hover:text-white ml-2 transition-colors duration-500">
-                      {tier.period}
-                    </span>
+                    {tier.period && (
+                      <span className="text-lg text-gray-600 group-hover:text-white transition-colors duration-500">
+                        {tier.period}
+                      </span>
+                    )}
                   </div>
                   <p className="text-gray-600 group-hover:text-white text-sm transition-colors duration-500">{tier.description}</p>
                 </div>

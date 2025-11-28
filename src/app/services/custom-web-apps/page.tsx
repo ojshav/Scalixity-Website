@@ -1,5 +1,7 @@
 'use client'
 
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { CTA } from "@/src/app/components/cta";
 import { ServiceHero } from "@/src/app/components/service-hero";
 import KeyFeatures from "@/src/app/components/keyfeatures"
@@ -7,58 +9,93 @@ import { Benefits } from "@/src/app/components/benefits";
 import TechnologiesUsed from "@/src/app/components/technologiesused";
 import PricingPlan from "@/src/app/components/pricing-plan";
 
-import { Layout, Smartphone, Zap, Lock, BarChart3, Code2 } from "lucide-react";
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+
+interface ServiceData {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  shortDescription: string;
+  features: string[];
+  technologies: Array<{ name: string; icon: string }>;
+  benefits: string[];
+  pricingPlans?: any[];
+  pricing?: {
+    starting: string;
+    description: string;
+  };
+}
 
 export default function CustomWebAppsPage() {
-  const customFeatures = [
-    {
-      title: "Fast Launch",
-      description: "We deliver projects on time without compromising quality, using agile methodologies.",
-      icon: Smartphone
-    },
-    {
-      title: "Premium Quality",
-      description: "Every project is crafted with attention to detail and tested rigorously for perfection.",
-      icon: Code2
-    },
-    {
-      title: "Cutting-Edge Technology",
-      description: "We leverage the latest technologies and frameworks to build future-proof solutions.",
-      icon: Zap
-    },
-    {
-      title: "24/7 Support",
-      description: "Our dedicated team is always available to assist you with any questions or issues.",
-      icon: Lock
-    },
-    {
-      title: "Scalable Solutions",
-      description: "Build for growth with architectures that scale seamlessly with your business.",
-      icon: BarChart3
-    },
-    {
-      title: "Top-tier Security",
-      description: "We implement industry-best security practices to protect your data and users.",
-      icon: Layout
-    }
-  ];
+  const pathname = usePathname();
+  const [serviceData, setServiceData] = useState<ServiceData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Extract slug from pathname (e.g., /services/custom-web-apps -> custom-web-apps)
+  const slug = pathname?.split('/').pop() || 'custom-web-apps';
+
+  useEffect(() => {
+    const fetchServiceData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`${baseURL}/api/website-services/${slug}`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch service data');
+        }
+
+        const result = await response.json();
+        if (result.success && result.data) {
+          setServiceData(result.data);
+        } else {
+          throw new Error('Invalid service data format');
+        }
+      } catch (err) {
+        console.error('Error fetching service data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load service data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServiceData();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <main className="bg-[#FFF2D5] text-[#1A1A1A] min-h-screen flex items-center justify-center">
+        <p className="text-[#4A0E78] text-lg">Loading service data...</p>
+      </main>
+    );
+  }
+
+  if (error || !serviceData) {
+    return (
+      <main className="bg-[#FFF2D5] text-[#1A1A1A] min-h-screen flex items-center justify-center">
+        <p className="text-red-600 text-lg">Error: {error || 'Service not found'}</p>
+      </main>
+    );
+  }
 
   return (
     <main className="bg-[#FFF2D5] text-[#1A1A1A]">
       <ServiceHero
-        title="Custom Web Applications & Website Development"
-        description="We build high-performance websites and web apps — from marketing sites to SaaS MVPs — with responsive design, secure authentication, analytics, and full deployment pipelines."
+        title={serviceData.title}
+        description={serviceData.description}
       />
-      <KeyFeatures />
+      <KeyFeatures features={serviceData.features} />
       <Benefits 
         title="Benefits"
         subtitle="We combine technical expertise with creative innovation to deliver exceptional results"
-        benefits={customFeatures}
-        ctaLink="/contact"
+        benefits={serviceData.benefits}
         ctaText="Start Your Project"
-      />
-      <TechnologiesUsed />
-      <PricingPlan />
+        ctaLink="/contact"
+      /> 
+      <TechnologiesUsed technologies={serviceData.technologies} />
+      <PricingPlan pricingPlans={serviceData.pricingPlans} pricing={serviceData.pricing} />
       <CTA />
     </main>
   );

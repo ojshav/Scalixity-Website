@@ -12,7 +12,7 @@ interface Benefit {
 interface BenefitsProps {
   title?: string
   subtitle?: string
-  benefits?: Benefit[]
+  benefits?: Benefit[] | string[]
   ctaText?: string
   ctaLink?: string
 }
@@ -51,6 +51,21 @@ export function Benefits({
   ctaText = "Start Your Project",
   ctaLink = "/contact"
 }: BenefitsProps = {}) {
+  // Convert string array to Benefit format if needed
+  const displayBenefits: Benefit[] = Array.isArray(benefits) && benefits.length > 0
+    ? benefits.map((benefit, index) => {
+        if (typeof benefit === 'string') {
+          // Map string to Benefit object with default icons
+          const icons = [Clock, Award, Flower2, Headphones, Sprout, Shield];
+          return {
+            description: benefit,
+            icon: icons[index % icons.length]
+          };
+        }
+        return benefit;
+      })
+    : defaultBenefits;
+
   return (
     <section className="bg-[#FFF2D5] py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
@@ -64,7 +79,7 @@ export function Benefits({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {benefits.map((benefit, index) => (
+          {displayBenefits.map((benefit, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}

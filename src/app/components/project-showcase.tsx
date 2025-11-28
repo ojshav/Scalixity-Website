@@ -23,12 +23,6 @@ function ProjectCard({ project }: { project: Project }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.3, once: false });
 
-  const handleClick = () => {
-    if (project.liveUrl) {
-      window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
-    }
-  };
-
   return (
     <div
       ref={ref}
@@ -67,15 +61,6 @@ function ProjectCard({ project }: { project: Project }) {
             </h2>
           </div>
 
-          <button 
-            onClick={handleClick}
-            disabled={!project.liveUrl}
-            className={`group rounded-full border border-current p-3 md:p-4 transition-colors ${
-              project.liveUrl 
-                ? 'hover:bg-white hover:text-black cursor-pointer' 
-                : 'opacity-50 cursor-not-allowed'
-            }`}
-          >
           <Link href="/work" className="group rounded-full border border-current p-3 md:p-4 transition-colors hover:bg-white hover:text-black">
             <ArrowUpRight className="h-6 w-6 md:h-8 md:w-8 transition-transform group-hover:rotate-45" />
           </Link>

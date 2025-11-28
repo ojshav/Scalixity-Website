@@ -11,11 +11,27 @@ import {
 
 interface Technology {
   name: string;
-  icon: React.ElementType;
-  description: string;
+  icon?: React.ElementType | string;
+  description?: string;
 }
 
-const technologies: Technology[] = [
+interface TechnologiesUsedProps {
+  technologies?: Array<{ name: string; icon?: string }>;
+}
+
+// Technology name to icon mapping
+const technologyIconMap: Record<string, React.ElementType> = {
+  'React': SiReact,
+  'Next.js': SiNextdotjs,
+  'Nextjs': SiNextdotjs,
+  'TypeScript': SiTypescript,
+  'Typescript': SiTypescript,
+  'Python': SiPython,
+  'MySQL': SiMysql,
+  'SQL': SiMysql,
+};
+
+const defaultTechnologies: Technology[] = [
   {
     name: 'React',
     icon: SiReact,
@@ -43,7 +59,17 @@ const technologies: Technology[] = [
   }
 ];
 
-export default function TechnologiesUsed() {
+export default function TechnologiesUsed({ technologies: propTechnologies }: TechnologiesUsedProps = {}) {
+  // Use provided technologies or fallback to default
+  const displayTechnologies: Technology[] = propTechnologies && propTechnologies.length > 0
+    ? propTechnologies.map(tech => ({
+        name: tech.name,
+        icon: tech.icon 
+          ? tech.icon // If icon is a URL string, keep it as string
+          : technologyIconMap[tech.name] || technologyIconMap[tech.name.toLowerCase()] || SiReact, // Try to map to icon component
+        description: `Technology: ${tech.name}`
+      }))
+    : defaultTechnologies;
   return (
     <section className="w-full py-16 md:py-24 px-4 md:px-8 bg-[#590178]">
       <div className="max-w-7xl mx-auto">
@@ -54,8 +80,10 @@ export default function TechnologiesUsed() {
 
         {/* Technologies Grid */}
         <div className="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-10">
-          {technologies.map((tech, index) => {
-            const IconComponent = tech.icon;
+          {displayTechnologies.map((tech, index) => {
+            const IconComponent = typeof tech.icon === 'string' ? null : tech.icon;
+            const iconUrl = typeof tech.icon === 'string' ? tech.icon : null;
+            
             return (
               <div
                 key={index}
@@ -66,7 +94,11 @@ export default function TechnologiesUsed() {
                   {/* Hover overlay card - smaller and on top */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                     <div className="w-[85%] h-[85%] rounded-xl bg-[#A10AC9] shadow-[0px_4px_4px_0px_#00000040] flex flex-col items-center justify-center gap-2 p-3">
-                      <IconComponent className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-white" />
+                      {IconComponent ? (
+                        <IconComponent className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-white" />
+                      ) : iconUrl ? (
+                        <img src={iconUrl} alt={tech.name} className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain" />
+                      ) : null}
                       <p className="text-lg md:text-xl font-semibold text-white text-center">
                         {tech.name}
                       </p>
@@ -75,7 +107,11 @@ export default function TechnologiesUsed() {
                   
                   {/* Main card */}
                   <div className="w-full h-full rounded-2xl bg-[#8002A1] flex flex-col items-center justify-center gap-2 p-4">
-                    <IconComponent className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-white" />
+                    {IconComponent ? (
+                      <IconComponent className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-white" />
+                    ) : iconUrl ? (
+                      <img src={iconUrl} alt={tech.name} className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain" />
+                    ) : null}
                     {/* Technology Name */}
                     <p className="text-xl md:text-2xl font-semibold text-white text-center">
                       {tech.name}
