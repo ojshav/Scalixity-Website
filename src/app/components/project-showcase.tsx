@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 const projects = [
@@ -81,9 +82,9 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
             </h2>
           </div>
 
-          <button className="group rounded-full border border-current p-3 md:p-4 transition-colors hover:bg-white hover:text-black">
+          <Link href="/work" className="group rounded-full border border-current p-3 md:p-4 transition-colors hover:bg-white hover:text-black">
             <ArrowUpRight className="h-6 w-6 md:h-8 md:w-8 transition-transform group-hover:rotate-45" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>

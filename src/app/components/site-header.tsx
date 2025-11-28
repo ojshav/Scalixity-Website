@@ -83,10 +83,11 @@ import { motion } from 'framer-motion'
 // New simplified services dropdown
 const services = [
   { name: "Custom Web Apps", href: "/services/custom-web-apps" },
-  { name: "Custom Dashboards", href: "/services/custom-dashboards" },
-  { name: "AI Chatbot", href: "/services/ai-chatbot" },
-  { name: "Mobile Application", href: "/services/mobile-application" },
+  { name: "Custom Dashboards", href: "/services/custom-dashboard" },
+  { name: "AI Chatbot", href: "/services/AI-Chatbot" },
+  { name: "Mobile Application", href: "/services/Mobile-Application" },
   { name: "Ecommerce solution", href: "/services/ecommerce-solution" },
+  { name: "Machine Learning & NLP Solutions", href: "/services/ml-nlp-solutions" },
   { name: "All Services", href: "/services" }
 ]
 
@@ -253,7 +254,7 @@ export function SiteHeader() {
                         <motion.li key={item.name}>
                           <Link
                             href={item.href}
-                            className="block rounded-xl px-3 py-2 text-sm font-medium text-[#0D0C0C] transition-all duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] hover:shadow-[0_4px_12px_rgba(89,1,120,0.12)]"
+                            className="block  px-3 py-2 text-sm font-medium text-[#0D0C0C] transition-all duration-200  hover:text-[#590178] hover:shadow-[0_4px_12px_rgba(89,1,120,0.12)]"
                           >
                             {item.name}
                           </Link>
@@ -328,7 +329,7 @@ export function SiteHeader() {
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Contact</span>
                 </Link>
               </motion.div>
-              {/* <motion.div
+             <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
@@ -346,6 +347,7 @@ export function SiteHeader() {
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Resources</span>
                 </Link>
               </motion.div>
+                {/*
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -442,7 +444,7 @@ export function SiteHeader() {
                     >
                       <Link
                         href={item.href}
-                        className="text-sm text-gray-800 block font-medium px-2 py-1 rounded-lg transition-all duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] hover:pl-3"
+                        className="text-sm text-gray-800 rounded-xl block font-medium px-2 py-1 transition-all duration-200 hover:text-[#590178] hover:pl-3"
                         onClick={toggleDesktopMenu}
                       >
                         {item.name}
@@ -478,7 +480,7 @@ export function SiteHeader() {
                           <li key={item.name}>
                             <Link
                               href={item.href}
-                              className="text-sm text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 block"
+                              className="text-sm  text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 block"
                               onClick={toggleDesktopMenu}
                             >
                               {item.name}
@@ -539,7 +541,7 @@ export function SiteHeader() {
                       Contact
                     </Link>
                   </motion.div>
-                  {/* <motion.div
+                  <motion.div
                     initial={{ x: -10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.3, delay: 0.45 }}
@@ -565,6 +567,7 @@ export function SiteHeader() {
                       Resources
                     </Link>
                   </motion.div>
+                  {/* 
                   <motion.div
                     initial={{ x: -10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -635,7 +638,7 @@ export function SiteHeader() {
                     <div key={item.name}>
                       <Link
                         href={item.href}
-                        className="block py-1 px-2 rounded-md text-sm text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178]"
+                        className="block py-1 px-2 rounded-md text-sm text-foreground transition-colors duration-200  hover:text-[#590178]"
                         onClick={toggleMenu}
                       >
                         {item.name}
@@ -709,12 +712,13 @@ export function SiteHeader() {
               <Link href="/contact" className="block py-1 px-2 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base font-medium" onClick={toggleMenu}>
                 Contact
               </Link>
-              {/* <Link href="/blog" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
+              <Link href="/blog" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Blog
               </Link>
               <Link href="/resources" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Resources
               </Link>
+              {/* 
               <Link href="/campaign" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 UI/UX Competition
               </Link> */}

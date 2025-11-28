@@ -75,8 +75,8 @@ export function OurService() {
       tl.to(cards, {
         y: 0,
         opacity: 1,
-        duration: 1,
-        stagger: 0.1,
+        duration: 2,
+        stagger: 0.2,
         ease: "power3.out"
       })
         // Hold for a moment
@@ -85,7 +85,7 @@ export function OurService() {
         .to(cards, {
           y: "-100px",
           opacity: 0,
-          duration: 1,
+          duration: 2,
           stagger: 0.2,
           ease: "power3.in"
         });
@@ -141,8 +141,8 @@ export function OurService() {
 
 function ServiceCard({ title, description, icon: Icon }: { title: string, description: string, icon: React.ComponentType<{ strokeWidth?: number; className?: string }> }) {
   return (
-    <div className="group bg-[#FFF2D5] p-8 rounded-2xl border border-[#D4B5D8] hover:border-[#3B82F6] shadow-[0px_4px_19px_0px_#00000033] hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 h-full min-h-[300px] flex flex-col items-start text-left">
-      <div className="mb-6 p-4 rounded-xl transition-colors duration-300 inline-block">
+    <div className="group bg-[#FFF2D5] p-6 rounded-2xl border border-[#D4B5D8] hover:border-[#3B82F6] shadow-[0px_4px_19px_0px_#00000033] hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 h-full min-h-[300px] flex flex-col items-start text-left">
+      <div className="mb-2 p-0 rounded-xl transition-colors duration-300 inline-block">
         <Icon strokeWidth={1.5} className="w-14 h-14 text-[#5D2E68]" />
       </div>
       <h3 className="text-2xl font-bold font-playfair mb-4 text-black">

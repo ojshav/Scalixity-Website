@@ -109,7 +109,7 @@ export function DetailedServices() {
                     {services.map((service, index) => (
                         <div
                             key={service.id}
-                            className={`sticky top-24 md:top-20 ${index === 4 ? 'min-h-screen' : 'min-h-[80vh]'} bg-[#FFF2D5] border-t-2 border-black/40 pt-12 mb-12 last:mb-0`}
+                            className={`sticky top-24 md:top-20 ${index === 5 ? 'min-h-screen' : 'min-h-[80vh]'} bg-[#FFF2D5] border-t-2 border-black/40 pt-12 mb-12 last:mb-0`}
                             style={{
                                 zIndex: index + 1,
                                 // Optional: subtle scale effect could be added here with scroll-driven animations if desired later
