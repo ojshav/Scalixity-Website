@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 
 const videoIds = [
@@ -12,13 +12,63 @@ const videoIds = [
 
 export function YouTubeProjects() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+
+  const sendPlayerCommand = (
+    command: 'playVideo' | 'pauseVideo' | 'unMute'
+  ) => {
+    if (!iframeRef.current) {
+      return;
+    }
+
+    iframeRef.current.contentWindow?.postMessage(
+      JSON.stringify({ event: 'command', func: command, args: [] }),
+      '*'
+    );
+  };
+
+  useEffect(() => {
+    if (!sectionRef.current) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!playerReady) {
+      return;
+    }
+
+    if (isInView) {
+      sendPlayerCommand('playVideo');
+      sendPlayerCommand('unMute');
+    } else {
+      sendPlayerCommand('pauseVideo');
+    }
+  }, [isInView, playerReady]);
+
+  useEffect(() => {
+    setPlayerReady(false);
+  }, [currentIndex]);
 
   const handleNextVideo = () => {
     setCurrentIndex((prev) => (prev + 1) % videoIds.length);
   };
 
   return (
-    <section className="py-24 bg-[#FFF2D5]">
+    <section ref={sectionRef} className="py-24 bg-[#FFF2D5]">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -38,14 +88,16 @@ export function YouTubeProjects() {
             <div className="w-full h-full">
               <iframe
                 key={videoIds[currentIndex]}
+                ref={iframeRef}
                 width="100%"
                 height="100%"
-                src={`https://www.youtube.com/embed/${videoIds[currentIndex]}?autoplay=1&controls=0&rel=0&mute=1&loop=1&playlist=${videoIds[currentIndex]}`}
+                src={`https://www.youtube.com/embed/${videoIds[currentIndex]}?autoplay=1&mute=0&enablejsapi=1&controls=0&rel=0&loop=1&playlist=${videoIds[currentIndex]}`}
                 title="Project Showcase Video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full object-cover"
+                onLoad={() => setPlayerReady(true)}
               ></iframe>
             </div>
           </div>

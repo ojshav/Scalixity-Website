@@ -1,7 +1,7 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Check, Phone, Mail, MapPin, Twitter, MessageCircle } from 'lucide-react'
+import { Check, Phone, Mail, MapPin, Twitter, MessageCircle, X } from 'lucide-react'
 import { WhatWeOffer } from "@/src/app/components/what-we-offer"
 import CoreValue from "@/src/app/components/About-us/corevalue"
 import { CTA } from '../components/cta'
@@ -17,6 +17,14 @@ export default function ContactPage() {
 
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = isCalendarOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isCalendarOpen])
 
   const handleInputChange = (e: { target: { name: string; value: number | string | boolean } }) => {
     const { name, value } = e.target
@@ -118,22 +126,21 @@ export default function ContactPage() {
               </div>
 
               {/* Calendar Widget */}
-              <div 
-                className="bg-white rounded-lg overflow-auto mb-8 h-[400px]"
-                style={{
-                  WebkitOverflowScrolling: 'touch',
-                  scrollBehavior: 'smooth',
-                  overscrollBehavior: 'contain'
-                }}
-              >
-                <InlineWidget
-                  url="https://calendly.com/awasthirishabh56/30min"
-                  styles={{
-                    height: "100%",
-                    width: "100%",
-                    minHeight: "400px"
-                  }}
-                />
+              <div className="bg-white rounded-lg mb-8 p-6 flex flex-col gap-4">
+                <div>
+                  <p className="text-sm font-semibold text-[#590178] uppercase tracking-wide font-poppins">Book a Call</p>
+                  <h3 className="text-2xl font-bold text-gray-900 font-poppins mt-1">Schedule a 30 min chat</h3>
+                  <p className="text-gray-600 text-sm mt-2 font-poppins">
+                    Pick a time that works for you and we&apos;ll meet over a quick video call.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsCalendarOpen(true)}
+                  className="w-full px-6 py-3 bg-[#590178] text-white rounded-lg font-medium hover:bg-[#4a0166] transition-colors focus:outline-none focus:ring-2 focus:ring-[#590178] focus:ring-offset-2 font-poppins"
+                >
+                  Open Calendar
+                </button>
               </div>
 
               {/* Social Media Icons */}
@@ -303,6 +310,36 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+      {isCalendarOpen && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center px-4 py-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="w-full max-w-5xl bg-white rounded-2xl shadow-2xl relative h-[90vh] flex flex-col"
+          >
+            <button
+              type="button"
+              className="absolute top-4 right-4 h-10 w-10 flex items-center justify-center rounded-full border border-gray-200 bg-white hover:bg-gray-100 transition-colors"
+              onClick={() => setIsCalendarOpen(false)}
+              aria-label="Close calendar"
+            >
+              <X className="h-5 w-5 text-gray-700" />
+            </button>
+            <div className="flex-1 mt-12 overflow-hidden rounded-2xl border border-gray-100 shadow-inner">
+              <InlineWidget
+                url="https://calendly.com/awasthirishabh56/30min"
+                styles={{
+                  height: "100%",
+                  width: "100%",
+                  minHeight: "100%"
+                }}
+              />
+            </div>
+          </motion.div>
+        </div>
+      )}
       <WhatWeOffer />
       <CoreValue />
       <CTA />

@@ -28,13 +28,13 @@ export function Hero() {
                     {/* Buttons */}
                     <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 relative">
                         <Link
-                            href="/explore"
+                            href="/contact"
                             className="px-8 py-3.5 bg-[#FFF8E7] text-[#4A0072] rounded-lg font-semibold text-base hover:text-[#4A0072]"
                         >
                             Explore Scalixity
                         </Link>
                         <Link
-                            href="/work"
+                            href="/contact"
                             className="px-8 py-3.5 bg-transparent border border-white/30 text-white rounded-lg font-semibold transition-colors text-base hover:text-white"
                         >
                             View Our Work

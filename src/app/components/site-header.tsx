@@ -6,77 +6,89 @@ import * as React from "react"
 import Link from "next/link"
 import { Button } from "@/src/app/components/ui/button"
 import {
-  Brain, Sparkles, LinkIcon, Smartphone, Stethoscope,
+  Stethoscope,
   ShoppingBag, DollarSign, BarChart, Menu, X,
   ChevronDown, ChevronRight
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
+// Commented out old services structure
+// const services = [
+//   {
+//     category: "Artificial Intelligence",
+//     icon: Brain,
+//     items: [
+//       { name: "AI Development Services", href: "/services/ai-development" },
+//       { name: "Enterprise AI Development", href: "/services/enterprise-ai" },
+//       { name: "AI Consulting Services", href: "/services/ai-consulting" },
+//       { name: "AI Chatbot Development", href: "/services/chatbot" },
+//       { name: "AI POC Development", href: "/services/poc" },
+//       { name: "Enterprise AI Chatbot Development", href: "/services/enterprise-chatbot" },
+//       { name: "AI Engineers", href: "/services/engineers" },
+//       { name: "AI Copilot Development", href: "/services/copilot" },
+//       { name: "Computer Vision Development Services", href: "/services/computer-vision" },
+//       { name: "ML Development", href: "/services/ml" },
+//       { name: "MLOps Consulting Services", href: "/services/mlops" },
+//       { name: "Conversational AI Development", href: "/services/conversational-ai" },
+//       { name: "LLM API Pricing Calculator", href: "/services/llm-pricing" }
+//     ]
+//   },
+//   {
+//     category: "Generative AI",
+//     icon: Sparkles,
+//     items: [
+//       { name: "Generative AI Development", href: "/services/generative-ai-development" },
+//       { name: "Generative AI Consulting", href: "/services/generative-ai-consulting" },
+//       { name: "Enterprise Generative AI Development", href: "/services/enterprise-gen-ai" },
+//       { name: "AI Agent Development", href: "/services/ai-agent" },
+//       { name: "LLM Development", href: "/services/llm" },
+//       { name: "Generative AI Integration", href: "/services/gen-ai-integration" },
+//       { name: "Adaptive AI Development", href: "/services/adaptive-ai" },
+//       { name: "ChatGPT Developers", href: "/services/chatgpt" },
+//       { name: "Hire Prompt Engineers", href: "/services/prompt-engineers" },
+//       { name: "ChatGPT Integration Service", href: "/services/chatgpt-integration" },
+//       { name: "Midjourney Developers", href: "/services/midjourney" },
+//       { name: "Stable Diffusion Developers", href: "/services/stable-diffusion" }
+//     ]
+//   },
+//   {
+//     category: "Blockchain Development",
+//     icon: LinkIcon,
+//     items: [
+//       { name: "Cardano App Development", href: "/services/cardano" },
+//       { name: "Stellar App Development", href: "/services/stellar" },
+//       { name: "Smart Contracts Development", href: "/services/smart-contracts" },
+//       { name: "dApps Development", href: "/services/dapps" },
+//       { name: "NFT Marketplace Development", href: "/services/nft" },
+//       { name: "Hedera App Development", href: "/services/hedera" },
+//       { name: "Metaverse Development", href: "/services/metaverse" }
+//     ]
+//   },
+//   {
+//     category: "Mobile Development",
+//     icon: Smartphone,
+//     items: [
+//       { name: "Hybrid App Development", href: "/services/hybrid" },
+//       { name: "Native App Development", href: "/services/native" },
+//       { name: "iOS App Development", href: "/services/ios" },
+//       { name: "Android App Development", href: "/services/android" },
+//       { name: "Flutter App Development", href: "/services/flutter" },
+//       { name: "React Native App Development", href: "/services/react-native" },
+//       { name: "Ionic App Development", href: "/services/ionic" },
+//       { name: "Xamarin App Development", href: "/services/xamarin" }
+//     ]
+//   }
+// ]
+
+// New simplified services dropdown
 const services = [
-  {
-    category: "Artificial Intelligence",
-    icon: Brain,
-    items: [
-      { name: "AI Development Services", href: "/services/ai-development" },
-      { name: "Enterprise AI Development", href: "/services/enterprise-ai" },
-      { name: "AI Consulting Services", href: "/services/ai-consulting" },
-      { name: "AI Chatbot Development", href: "/services/chatbot" },
-      { name: "AI POC Development", href: "/services/poc" },
-      { name: "Enterprise AI Chatbot Development", href: "/services/enterprise-chatbot" },
-      { name: "AI Engineers", href: "/services/engineers" },
-      { name: "AI Copilot Development", href: "/services/copilot" },
-      { name: "Computer Vision Development Services", href: "/services/computer-vision" },
-      { name: "ML Development", href: "/services/ml" },
-      { name: "MLOps Consulting Services", href: "/services/mlops" },
-      { name: "Conversational AI Development", href: "/services/conversational-ai" },
-      { name: "LLM API Pricing Calculator", href: "/services/llm-pricing" }
-    ]
-  },
-  {
-    category: "Generative AI",
-    icon: Sparkles,
-    items: [
-      { name: "Generative AI Development", href: "/services/generative-ai-development" },
-      { name: "Generative AI Consulting", href: "/services/generative-ai-consulting" },
-      { name: "Enterprise Generative AI Development", href: "/services/enterprise-gen-ai" },
-      { name: "AI Agent Development", href: "/services/ai-agent" },
-      { name: "LLM Development", href: "/services/llm" },
-      { name: "Generative AI Integration", href: "/services/gen-ai-integration" },
-      { name: "Adaptive AI Development", href: "/services/adaptive-ai" },
-      { name: "ChatGPT Developers", href: "/services/chatgpt" },
-      { name: "Hire Prompt Engineers", href: "/services/prompt-engineers" },
-      { name: "ChatGPT Integration Service", href: "/services/chatgpt-integration" },
-      { name: "Midjourney Developers", href: "/services/midjourney" },
-      { name: "Stable Diffusion Developers", href: "/services/stable-diffusion" }
-    ]
-  },
-  {
-    category: "Blockchain Development",
-    icon: LinkIcon,
-    items: [
-      { name: "Cardano App Development", href: "/services/cardano" },
-      { name: "Stellar App Development", href: "/services/stellar" },
-      { name: "Smart Contracts Development", href: "/services/smart-contracts" },
-      { name: "dApps Development", href: "/services/dapps" },
-      { name: "NFT Marketplace Development", href: "/services/nft" },
-      { name: "Hedera App Development", href: "/services/hedera" },
-      { name: "Metaverse Development", href: "/services/metaverse" }
-    ]
-  },
-  {
-    category: "Mobile Development",
-    icon: Smartphone,
-    items: [
-      { name: "Hybrid App Development", href: "/services/hybrid" },
-      { name: "Native App Development", href: "/services/native" },
-      { name: "iOS App Development", href: "/services/ios" },
-      { name: "Android App Development", href: "/services/android" },
-      { name: "Flutter App Development", href: "/services/flutter" },
-      { name: "React Native App Development", href: "/services/react-native" },
-      { name: "Ionic App Development", href: "/services/ionic" },
-      { name: "Xamarin App Development", href: "/services/xamarin" }
-    ]
-  }
+  { name: "Custom Web Apps", href: "/services/custom-web-apps" },
+  { name: "Custom Dashboards", href: "/services/custom-dashboard" },
+  { name: "AI Chatbot", href: "/services/AI-Chatbot" },
+  { name: "Mobile Application", href: "/services/Mobile-Application" },
+  { name: "Ecommerce solution", href: "/services/ecommerce-solution" },
+  { name: "Machine Learning & NLP Solutions", href: "/services/ml-nlp-solutions" },
+  { name: "All Services", href: "/services" }
 ]
 
 const industries = [
@@ -235,28 +247,20 @@ export function SiteHeader() {
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Services</span>
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </button>
-                <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[800px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                  <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {services.map((category) => (
-                      <div key={category.category} className="space-y-2">
-                        <h3 className="font-medium text-foreground flex items-center">
-                          <category.icon className="mr-2 h-4 w-4 text-primary" />
-                          {category.category}
-                        </h3>
-                        <ul className="space-y-1">
-                          {category.items.map((item) => (
-                            <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                              <Link
-                                href={item.href}
-                                className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                              >
-                                {item.name}
-                              </Link>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+                <div className="absolute left-0 mt-2 w-[230px] rounded-2xl border border-[#E4E7EC] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                  <div className="px-3 py-3 space-y-2">
+                    <ul className="space-y-1">
+                      {services.map((item) => (
+                        <motion.li key={item.name}>
+                          <Link
+                            href={item.href}
+                            className="block  px-3 py-2 text-sm font-medium text-[#0D0C0C] transition-all duration-200  hover:text-[#590178] hover:shadow-[0_4px_12px_rgba(89,1,120,0.12)]"
+                          >
+                            {item.name}
+                          </Link>
+                        </motion.li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </motion.div>
@@ -313,10 +317,19 @@ export function SiteHeader() {
                 transition={{ duration: 0.4, delay: 0.25 }}
               >
                 <Link href="/company" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
-                  <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Company</span>
+                  <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">About us</span>
                 </Link>
               </motion.div>
               <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+              >
+                <Link href="/contact" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                  <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Contact</span>
+                </Link>
+              </motion.div>
+             <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
@@ -334,6 +347,7 @@ export function SiteHeader() {
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Resources</span>
                 </Link>
               </motion.div>
+                {/*
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -342,7 +356,7 @@ export function SiteHeader() {
                 <Link href="/campaign" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Campaign</span>
                 </Link>
-              </motion.div>
+              </motion.div> */}
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -420,32 +434,21 @@ export function SiteHeader() {
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
                 <h3 className="text-xl font-bold text-[#8B05AE] mb-4 pb-2 border-b-2 border-[#8B05AE]/20">Services</h3>
-                <div className="space-y-4">
-                  {services.map((category, idx) => (
+                <div className="space-y-2">
+                  {services.map((item, idx) => (
                     <motion.div
-                      key={category.category}
-                      className="space-y-2"
+                      key={item.name}
                       initial={{ x: -10, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ duration: 0.3, delay: 0.15 + idx * 0.05 }}
                     >
-                      <h4 className="font-semibold text-sm text-black flex items-center">
-                        <category.icon className="mr-2 h-4 w-4 text-[#8B05AE]" />
-                        {category.category}
-                      </h4>
-                      <ul className="space-y-1.5 pl-6">
-                        {category.items.slice(0, 3).map((item) => (
-                          <li key={item.name}>
-                            <Link
-                              href={item.href}
-                              className="text-sm text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 block"
-                              onClick={toggleDesktopMenu}
-                            >
-                              {item.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                      <Link
+                        href={item.href}
+                        className="text-sm text-gray-800 rounded-xl block font-medium px-2 py-1 transition-all duration-200 hover:text-[#590178] hover:pl-3"
+                        onClick={toggleDesktopMenu}
+                      >
+                        {item.name}
+                      </Link>
                     </motion.div>
                   ))}
                 </div>
@@ -477,7 +480,7 @@ export function SiteHeader() {
                           <li key={item.name}>
                             <Link
                               href={item.href}
-                              className="text-sm text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 block"
+                              className="text-sm  text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 block"
                               onClick={toggleDesktopMenu}
                             >
                               {item.name}
@@ -522,7 +525,20 @@ export function SiteHeader() {
                       className="block text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 font-medium"
                       onClick={toggleDesktopMenu}
                     >
-                      Company
+                      About us
+                    </Link>
+                  </motion.div>
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.45 }}
+                  >
+                    <Link
+                      href="/contact"
+                      className="block text-gray-700 hover:text-[#8B05AE] hover:pl-1 transition-all duration-200 font-medium"
+                      onClick={toggleDesktopMenu}
+                    >
+                      Contact
                     </Link>
                   </motion.div>
                   <motion.div
@@ -551,6 +567,7 @@ export function SiteHeader() {
                       Resources
                     </Link>
                   </motion.div>
+                  {/* 
                   <motion.div
                     initial={{ x: -10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -563,7 +580,7 @@ export function SiteHeader() {
                     >
                       Campaign
                     </Link>
-                  </motion.div>
+                  </motion.div> */}
                   <motion.div
                     initial={{ x: -10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -616,38 +633,16 @@ export function SiteHeader() {
               </button>
 
               {openCategories['services'] && (
-                <div className="pl-2 space-y-3">
-                  {services.map((category) => (
-                    <div key={category.category} className="space-y-2">
-                      <button
-                        onClick={() => toggleCategory(`service-${category.category}`)}
-                        className="flex items-center justify-between w-full font-medium text-base"
+                <div className="pl-2 space-y-2">
+                  {services.map((item) => (
+                    <div key={item.name}>
+                      <Link
+                        href={item.href}
+                        className="block py-1 px-2 rounded-md text-sm text-foreground transition-colors duration-200  hover:text-[#590178]"
+                        onClick={toggleMenu}
                       >
-                        <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
-                          <category.icon className="mr-2 h-4 w-4 text-primary" />
-                          {category.category}
-                        </div>
-                        {openCategories[`service-${category.category}`] ?
-                          <ChevronDown className="h-4 w-4" /> :
-                          <ChevronRight className="h-4 w-4" />
-                        }
-                      </button>
-
-                      {openCategories[`service-${category.category}`] && (
-                        <ul className="pl-6 space-y-2">
-                          {category.items.map((item) => (
-                            <li key={item.name}>
-                              <Link
-                                href={item.href}
-                                className="block py-1 text-sm text-foreground hover:text-primary"
-                                onClick={toggleMenu}
-                              >
-                                {item.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
+                        {item.name}
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -691,7 +686,7 @@ export function SiteHeader() {
                             <li key={item.name}>
                               <Link
                                 href={item.href}
-                                className="block py-1 text-sm text-foreground hover:text-primary"
+                                className="block py-1 px-2 rounded-md text-sm text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178]"
                                 onClick={toggleMenu}
                               >
                                 {item.name}
@@ -708,11 +703,14 @@ export function SiteHeader() {
 
             {/* Other Links */}
             <div className="space-y-3">
-              <Link href="/work" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
+              <Link href="/work" className="block py-1 px-2 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base font-medium" onClick={toggleMenu}>
                 Our Work
               </Link>
-              <Link href="/company" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
-                Company
+              <Link href="/company" className="block py-1 px-2 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base font-medium" onClick={toggleMenu}>
+                About us
+              </Link>
+              <Link href="/contact" className="block py-1 px-2 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base font-medium" onClick={toggleMenu}>
+                Contact
               </Link>
               <Link href="/blog" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Blog
@@ -720,9 +718,10 @@ export function SiteHeader() {
               <Link href="/resources" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 Resources
               </Link>
+              {/* 
               <Link href="/campaign" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
                 UI/UX Competition
-              </Link>
+              </Link> */}
 
 
             </div>

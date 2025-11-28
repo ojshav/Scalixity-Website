@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 interface Project {
@@ -75,8 +76,9 @@ function ProjectCard({ project }: { project: Project }) {
                 : 'opacity-50 cursor-not-allowed'
             }`}
           >
+          <Link href="/work" className="group rounded-full border border-current p-3 md:p-4 transition-colors hover:bg-white hover:text-black">
             <ArrowUpRight className="h-6 w-6 md:h-8 md:w-8 transition-transform group-hover:rotate-45" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -3,9 +3,11 @@ import { Linkedin, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react'
 
 const services = [
   { name: "Custom Web Apps", href: "/services/web-development" },
-  { name: "AI Chatbots", href: "/services/ai-chatbots" },
-  { name: "Mobile Applications", href: "/services/mobile-app-development" },
-  { name: "Custom Dashboards", href: "/services/custom-dashboards" },
+  { name: "AI Chatbots", href: "/services/AI-Chatbot" },
+  { name: "Mobile Applications", href: "/services/Mobile-Application" },
+  { name: "Custom Dashboards", href: "/services/custom-dashboard" },
+  { name: "Ecommerce Solution", href: "/services/ecommerce-solution" },
+  { name: "Machine Learning & NLP Solutions", href: "/services/ml-nlp-solutions" },
   { name: "UI/UX Design", href: "/services/ui-ux-design" }
 ]
 

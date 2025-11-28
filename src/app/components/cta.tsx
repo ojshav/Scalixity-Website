@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 export function CTA() {
   return (
     <div className="w-full bg-[#FFF2D5] pb-20 pt-10 ">
@@ -11,12 +13,18 @@ export function CTA() {
           Let&apos;s discuss how Scalixity can help you achieve your digital transformation goals
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <button className="px-8 py-3 bg-[#590178] text-white font-semibold rounded-lg hover:bg-[#3a1678] transition-colors shadow-lg">
+          <Link
+            href="/contact"
+            className="px-8 py-3 bg-[#590178] text-white font-semibold rounded-lg hover:bg-[#3a1678] transition-colors shadow-lg"
+          >
             Start Your Project
-          </button>
-          <button className="px-8 py-3 bg-transparent border-2 border-[#4A1D96] text-[#1A1A1A] font-semibold rounded-lg hover:bg-[#4A1D96] hover:text-white transition-colors">
+          </Link>
+          <Link
+            href="/contact"
+            className="px-8 py-3 bg-transparent border-2 border-[#4A1D96] text-[#1A1A1A] font-semibold rounded-lg hover:bg-[#590178] hover:text-white transition-colors"
+          >
             Schedule a Call
-          </button>
+          </Link>
         </div>
       </div>
     </div>
