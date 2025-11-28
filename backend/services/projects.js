@@ -69,8 +69,8 @@ class ProjectsService {
     try {
       const { title, description, image, live_url } = projectData;
 
-      if (!title || !description || !image || !live_url) {
-        throw new Error('All fields are required');
+      if (!title || !description || !image) {
+        throw new Error('Title, description, and image are required');
       }
 
       let imageUrl = image;
@@ -95,7 +95,7 @@ class ProjectsService {
           title,
           description,
           image: imageUrl,
-          liveUrl: live_url
+          liveUrl: live_url || null
         }
       });
     } catch (error) {
@@ -111,8 +111,8 @@ class ProjectsService {
     try {
       const { title, description, image, live_url } = projectData;
 
-      if (!title || !description || !image || !live_url) {
-        throw new Error('All fields are required');
+      if (!title || !description || !image) {
+        throw new Error('Title, description, and image are required');
       }
 
       let imageUrl = image;
@@ -138,7 +138,7 @@ class ProjectsService {
           title,
           description,
           image: imageUrl,
-          liveUrl: live_url
+          liveUrl: live_url || null
         }
       });
 

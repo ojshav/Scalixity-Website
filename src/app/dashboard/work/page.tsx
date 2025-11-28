@@ -8,7 +8,7 @@ interface Project {
   title: string;
   description: string;
   image: string;
-  liveUrl: string;
+  liveUrl: string | null;
 }
 
 export default function AdminWorkPage() {
@@ -116,13 +116,13 @@ export default function AdminWorkPage() {
     setIsFormOpen(true)
   }
 
-  const openEditForm = (project: { id: number; title: string; description: string; image: string; liveUrl: string }) => {
+  const openEditForm = (project: { id: number; title: string; description: string; image: string; liveUrl: string | null }) => {
     setFormData({
       id: project.id,
       title: project.title,
       description: project.description,
       image: project.image,
-      liveUrl: project.liveUrl
+      liveUrl: project.liveUrl || ''
     })
     setUploadedImage(null);
     setPreviewUrl(project.image);
@@ -167,7 +167,7 @@ export default function AdminWorkPage() {
           title: formData.title,
           description: formData.description,
           image: base64Image,
-          live_url: formData.liveUrl
+          live_url: formData.liveUrl || null
         })
       });
 
@@ -248,7 +248,9 @@ export default function AdminWorkPage() {
                   <div className="text-sm text-gray-500 truncate max-w-xs">{project.description}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-blue-500 truncate max-w-xs">{project.liveUrl}</div>
+                  <div className="text-sm text-blue-500 truncate max-w-xs">
+                    {project.liveUrl || <span className="text-gray-400">No URL</span>}
+                  </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <button 
@@ -385,7 +387,7 @@ export default function AdminWorkPage() {
               
               <div className="mb-6">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="liveUrl">
-                  Live URL
+                  Live URL <span className="text-gray-500 font-normal">(Optional)</span>
                 </label>
                 <input
                   type="url"
@@ -395,7 +397,6 @@ export default function AdminWorkPage() {
                   onChange={handleInputChange}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="https://example.com/project"
-                  required
                 />
               </div>
               

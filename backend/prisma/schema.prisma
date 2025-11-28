@@ -51,7 +51,7 @@ model Project {
   title       String    @db.VarChar(100)
   description String    @db.Text
   image       String    @db.VarChar(255)
-  liveUrl     String    @map("live_url") @db.VarChar(255)
+  liveUrl     String?   @map("live_url") @db.VarChar(255)
   createdAt   DateTime? @default(now()) @map("created_at") @db.Timestamp(0)
   updatedAt   DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
 

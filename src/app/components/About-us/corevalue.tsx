@@ -5,23 +5,23 @@ const CoreValue = () => {
   const values = [
     {
       icon: Target,
-      title: 'Innovation',
-      description: 'Pushing boundaries with cutting-edge R&D.',
+      title: 'Customer-Centric Delivery',
+      description: 'We build every solution around the client&apos;s goals, ensuring clarity, transparency, and measurable impact at every step.',
     },
     {
       icon: Scale,
-      title: 'Ethical AI',
-      description: 'Transparent models that prioritize fairness.',
+      title: 'Quality & Reliability',
+      description: 'From architecture to deployment, we focus on stable, scalable, and maintainable products that stand the test of time.',
     },
     {
       icon: Leaf,
-      title: 'Sustainability',
-      description: 'Green computing and energy-efficient code.',
+      title: 'Innovation with Purpose',
+      description: 'We adopt modern technologies and AI-driven approaches that solve real problems — not just add complexity.',
     },
     {
       icon: Heart,
-      title: 'Client-First',
-      description: 'Partnerships built on trust and mutual growth.',
+      title: 'Ownership & Accountability',
+      description: 'We treat every project as our own, taking full responsibility for outcomes, timelines, and long-term support.',
     },
   ];
 
@@ -35,10 +35,9 @@ const CoreValue = () => {
               Our Core Values
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
-              We believe that technology should serve humanity, not replace it. Our
-              ethical framework guides every line of code we write.
+            Our core values guide how we work, collaborate, and deliver. They define our commitment to quality, innovation, and building solutions that truly make a difference for our clients.
             </p>
-            <a
+            {/* <a
               href="#"
               className="inline-flex items-center text-purple-700 font-semibold text-lg hover:text-purple-800 hover:no-underline transition-colors"
             >
@@ -56,7 +55,7 @@ const CoreValue = () => {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-            </a>
+            </a> */}
           </div>
 
           {/* Right Side - Value Cards */}

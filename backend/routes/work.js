@@ -90,7 +90,6 @@ router.get('/projects', async (req, res) => {
  *               - title
  *               - description
  *               - image
- *               - live_url
  *             properties:
  *               title:
  *                 type: string
@@ -103,6 +102,7 @@ router.get('/projects', async (req, res) => {
  *                 example: https://example.com/project-image.jpg
  *               live_url:
  *                 type: string
+ *                 nullable: true
  *                 example: https://chatbot.example.com
  *     responses:
  *       201:
@@ -136,8 +136,8 @@ router.post('/projects', authMiddleware, async (req, res) => {
     try {
         const { title, description, image, live_url } = req.body;
 
-        if (!title || !description || !image || !live_url) {
-            return res.status(400).json({ error: 'All fields are required' });
+        if (!title || !description || !image) {
+            return res.status(400).json({ error: 'Title, description, and image are required' });
         }
 
         let imageUrl = image;
@@ -164,7 +164,7 @@ router.post('/projects', authMiddleware, async (req, res) => {
                 title,
                 description,
                 image: imageUrl,
-                liveUrl: live_url
+                liveUrl: live_url || null
             }
         });
 
@@ -206,7 +206,6 @@ router.post('/projects', authMiddleware, async (req, res) => {
  *               - title
  *               - description
  *               - image
- *               - live_url
  *             properties:
  *               title:
  *                 type: string
@@ -219,6 +218,7 @@ router.post('/projects', authMiddleware, async (req, res) => {
  *                 example: https://example.com/updated-image.jpg
  *               live_url:
  *                 type: string
+ *                 nullable: true
  *                 example: https://updated-chatbot.example.com
  *     responses:
  *       200:
@@ -255,8 +255,8 @@ router.put('/projects/:id', authMiddleware, async (req, res) => {
         const { id } = req.params;
         const { title, description, image, live_url } = req.body;
 
-        if (!title || !description || !image || !live_url) {
-            return res.status(400).json({ error: 'All fields are required' });
+        if (!title || !description || !image) {
+            return res.status(400).json({ error: 'Title, description, and image are required' });
         }
 
         let imageUrl = image;
@@ -283,7 +283,7 @@ router.put('/projects/:id', authMiddleware, async (req, res) => {
                 title,
                 description,
                 image: imageUrl,
-                liveUrl: live_url
+                liveUrl: live_url || null
             }
         });
 
