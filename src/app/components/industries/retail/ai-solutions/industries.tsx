@@ -14,14 +14,14 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
+          <span className="text-sm text-white uppercase tracking-wider">INDUSTRIES</span>
+          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
             AI Solutions Transforming Retail Industries
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Leverage AI technologies to enhance customer experiences, streamline operations, and boost retail innovation.
           </p>
         </div>

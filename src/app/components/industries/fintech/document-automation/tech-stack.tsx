@@ -36,11 +36,11 @@ const techStack = {
 
 export function TechStack() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">TECH STACK</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
+          <span className="text-sm text-white uppercase tracking-wider">TECH STACK</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
             Technologies We Use for Financial Document Automation
           </h2>
         </div>

@@ -31,7 +31,7 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">WHAT WE OFFER</span>

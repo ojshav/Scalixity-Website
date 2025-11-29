@@ -39,7 +39,7 @@ export function WhyChooseUs() {
           </div>
         </div>
         <div className="text-center mt-12">
-          <button className="bg-black text-white py-3 px-8 rounded-lg font-semibold border-2 border-black">Contact Us</button>
+          <button className="bg-[#590178] text-white py-3 px-8 rounded-lg font-semibold border-2 border-black">Contact Us</button>
         </div>
       </div>
     </section>

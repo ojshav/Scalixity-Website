@@ -38,14 +38,14 @@ const applications = [
 
 export function AIApplications() {
   return (
-    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
+    <section className="bg-[#590178] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">AI APPLICATIONS IN ANALYTICS</span>
-          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
+          <span className="text-sm text-white uppercase tracking-wider">AI APPLICATIONS IN ANALYTICS</span>
+          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
             Unlock Insights with AI-Powered Analytics
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Explore how AI transforms data analytics — from real-time insights to predictive forecasting and intelligent automation.
           </p>
         </div>

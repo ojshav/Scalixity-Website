@@ -92,7 +92,7 @@ export function AgentHero() {
   , [])
   
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#080B16] py-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#FFF2D5] py-20">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -108,7 +108,7 @@ export function AgentHero() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-purple-600 text-white font-medium text-lg hover:bg-purple-700 transition-colors"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#590178] text-white font-medium text-lg transition-colors"
             >
               Contact us
             </Link>

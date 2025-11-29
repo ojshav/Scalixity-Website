@@ -34,14 +34,14 @@ const applications = [
 
 export function AIApplications() {
   return (
-    <section className="bg-background py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-muted-foreground uppercase tracking-wider">AI APPLICATIONS</span>
-          <h2 className="text-4xl font-bold text-foreground mt-4 mb-6">
+          <span className="text-sm text-white uppercase tracking-wider">AI APPLICATIONS</span>
+          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
             Transforming Fitness with AI
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Discover how AI is revolutionizing the fitness industry — from personalized training plans and real-time health tracking to virtual coaching and smart nutrition advice. Our AI solutions empower fitness professionals and enthusiasts alike to achieve peak performance with data-driven strategies.
           </p>
         </div>

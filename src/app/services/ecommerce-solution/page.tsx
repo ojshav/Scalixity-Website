@@ -8,6 +8,7 @@ import KeyFeatures from "@/src/app/components/keyfeatures"
 import { Benefits } from "@/src/app/components/benefits";
 import TechnologiesUsed from "@/src/app/components/technologiesused";
 import PricingPlan from "@/src/app/components/pricing-plan";
+import type { PricingPlanObject, FlexiblePricingPlan } from "@/src/app/components/pricing-plan";
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
@@ -20,7 +21,7 @@ interface ServiceData {
   features: string[];
   technologies: Array<{ name: string; icon: string }>;
   benefits: string[];
-  pricingPlans?: any[];
+  pricingPlans?: PricingPlanObject | FlexiblePricingPlan[];
   pricing?: {
     starting: string;
     description: string;
@@ -85,6 +86,11 @@ export default function EcommerceSolutionPage() {
       <ServiceHero
         title={serviceData.title}
         description={serviceData.description}
+        images={[
+          "/images/Ecommerce-solution/1.png",
+          "/images/Ecommerce-solution/5.png",
+          "/images/Ecommerce-solution/6.png"
+        ]}
       />
       <KeyFeatures features={serviceData.features} />
       <Benefits 

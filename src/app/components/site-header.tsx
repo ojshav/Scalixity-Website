@@ -254,7 +254,7 @@ export function SiteHeader() {
                         <motion.li key={item.name}>
                           <Link
                             href={item.href}
-                            className="block  px-3 py-2 text-sm font-medium text-[#0D0C0C] transition-all duration-200  hover:text-[#590178] hover:shadow-[0_4px_12px_rgba(89,1,120,0.12)]"
+                            className="block px-3 py-2 text-sm font-medium text-[#0D0C0C] transition-all duration-200 hover:text-[#590178] hover:bg-transparent"
                           >
                             {item.name}
                           </Link>
@@ -276,20 +276,20 @@ export function SiteHeader() {
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Industries</span>
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </button>
-                <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[600px] max-h-[80vh] overflow-y-auto bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                  <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[600px] max-h-[80vh] overflow-y-auto rounded-2xl border border-[#E4E7EC] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                  <div className="px-3 py-3 grid grid-cols-1 md:grid-cols-2 gap-4">
                     {industries.map((industry) => (
                       <div key={industry.category} className="space-y-2">
-                        <h3 className="font-medium text-foreground flex items-center">
-                          <industry.icon className="mr-2 h-4 w-4 text-primary" />
+                        <h3 className="font-medium text-[#590178] flex items-center text-base ">
+                          <industry.icon className="mr-2 h-4 w-4 text-[#590178]" />
                           {industry.category}
                         </h3>
                         <ul className="space-y-1">
                           {industry.items.map((item) => (
-                            <motion.li key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                            <motion.li key={item.name}>
                               <Link
                                 href={item.href}
-                                className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                className="block px-3 py-2 text-sm font-medium text-[#0D0C0C] transition-all duration-200 hover:text-[#590178] hover:bg-transparent"
                               >
                                 {item.name}
                               </Link>

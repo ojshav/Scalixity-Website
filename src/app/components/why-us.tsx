@@ -66,7 +66,7 @@ export function WhyUs() {
         <div className="text-center mt-16">
           <button
             onClick={handleOpenPopup}
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white hover:bg-gray-900 transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#590178] text-white  transition-colors"
           >
             Contact Us
           </button>

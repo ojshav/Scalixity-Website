@@ -17,6 +17,19 @@ interface Project {
   color?: string;
 }
 
+interface ApiProject {
+  id: number;
+  title: string;
+  description?: string | null;
+  image: string;
+  liveUrl?: string | null;
+  live_url?: string | null;
+  category?: string | null;
+  year?: string | null;
+  color?: string | null;
+  createdAt?: string | null;
+}
+
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
 function ProjectCard({ project }: { project: Project }) {
@@ -28,7 +41,7 @@ function ProjectCard({ project }: { project: Project }) {
       ref={ref}
       className={`relative h-[80vh] w-screen flex-shrink-0 flex flex-col justify-between p-2 md:p-4 `}
     >
-      <div className={`w-full h-full ${project.color || "bg-[#4A0E78]"} rounded-3xl flex flex-col justify-between relative overflow-hidden`}>
+      <div className={`w-full h-full ${project.color || "bg-[#590178]"} rounded-3xl flex flex-col justify-between relative overflow-hidden`}>
         {/* Project Image Area */}
         <div className="relative h-full w-full overflow-hidden rounded-lg bg-gray-800/20">
           <motion.div
@@ -56,7 +69,7 @@ function ProjectCard({ project }: { project: Project }) {
                 <span>{project.category}</span>
               </div>
             )}
-            <h2 className="text-4xl font-bold md:text-7xl tracking-tighter">
+            <h2 className="text-4xl font-bold md:text-5xl tracking-tighter">
               {project.title}
             </h2>
           </div>
@@ -96,15 +109,15 @@ export function ProjectShowcase() {
         const data = await response.json();
         
         // Map backend data to component format
-        const mappedProjects: Project[] = data.map((project: any) => ({
+        const mappedProjects: Project[] = data.map((project: ApiProject) => ({
           id: project.id,
           title: project.title,
-          description: project.description,
+          description: project.description || undefined,
           image: project.image,
-          liveUrl: project.liveUrl || project.live_url,
-          category: project.category,
+          liveUrl: project.liveUrl || project.live_url || undefined,
+          category: project.category || undefined,
           year: project.year || new Date(project.createdAt || Date.now()).getFullYear().toString(),
-          color: project.color || "bg-[#4A0E78]"
+          color: project.color || "bg-[#590178]"
         }));
 
         // Reverse the array to show first project entered first (oldest first)
@@ -129,7 +142,7 @@ export function ProjectShowcase() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0D0C0C] mb-2">
             Featured Projects
           </h2>
-          <p className="text-[#4A0E78] text-sm md:text-base max-w-xl text-center px-4">
+          <p className="text-[#590178] text-sm md:text-base max-w-xl text-center px-4">
             Explore our portfolio of successful projects that have transformed businesses
           </p>
         </div>

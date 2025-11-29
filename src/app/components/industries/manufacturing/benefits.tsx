@@ -2,12 +2,12 @@
 
 export function Benefits() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-5xl font-bold text-black mb-8">
+        <h2 className="text-5xl font-bold text-white mb-8">
           Benefits of AI in Manufacturing
         </h2>
-        <p className="text-lg text-black text-opacity-80 max-w-2xl mx-auto mb-12">
+        <p className="text-lg text-white text-opacity-80 max-w-2xl mx-auto mb-12">
           Discover how AI transforms manufacturing processes — boosting productivity, ensuring quality, and driving innovation.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

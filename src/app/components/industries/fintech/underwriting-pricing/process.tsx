@@ -37,7 +37,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#FFF2D5] py-24">
       <div className="container mx-auto px-6">
         <div className="text-center mb-20">
           <h2 className="text-5xl font-extrabold text-black mb-4">Streamlined Underwriting & Pricing Process</h2>

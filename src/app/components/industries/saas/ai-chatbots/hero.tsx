@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export function Hero() {
   return (
-    <section className="bg-[#F3F1EB] text-black py-32">
+    <section className="bg-[#FFF2D5] text-black py-32">
       <div className="container mx-auto px-4 text-center">
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
@@ -27,7 +27,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="inline-block bg-black text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-800 transition"
+          className="inline-block bg-[#590178] text-white px-6 py-3 rounded-lg text-lg font-semibold  transition"
         >
           Contact
         </motion.a>

@@ -38,14 +38,14 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm uppercase tracking-wider text-black">BENEFITS OF AI PERSONALIZATION FOR SAAS</span>
-          <h2 className="text-5xl font-bold text-black mt-4 mb-6">
+          <span className="text-sm uppercase tracking-wider text-white">BENEFITS OF AI PERSONALIZATION FOR SAAS</span>
+          <h2 className="text-5xl font-bold text-white mt-4 mb-6">
             Unlock the Full Potential of AI-Powered SaaS Personalization
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Discover the transformative benefits of integrating AI into your SaaS platform — from boosting user engagement to making data-driven decisions in real-time.
           </p>
         </div>

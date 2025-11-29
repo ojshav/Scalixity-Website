@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 
 interface PricingFeature {
   text: string;
@@ -17,7 +18,24 @@ interface PricingTier {
   popular?: boolean;
 }
 
-interface PricingPlanObject {
+export type FlexiblePricingPlan = {
+  name?: string;
+  title?: string;
+  price?: string;
+  amount?: string;
+  priceRange?: string;
+  period?: string;
+  billingPeriod?: string;
+  description?: string;
+  features?: Array<string | { text: string; included: boolean }>;
+  bulletPoints?: string[];
+  buttonText?: string;
+  ctaText?: string;
+  popular?: boolean;
+  highlighted?: boolean;
+};
+
+export interface PricingPlanObject {
   beginner?: {
     priceRange: string;
     description: string;
@@ -36,7 +54,7 @@ interface PricingPlanObject {
 }
 
 interface PricingPlanProps {
-  pricingPlans?: PricingPlanObject | any[];
+  pricingPlans?: PricingPlanObject | FlexiblePricingPlan[];
   pricing?: {
     starting: string;
     description: string;
@@ -94,7 +112,7 @@ const defaultPricingData: PricingTier[] = [
       { text: 'SLA guarantee', included: true },
       { text: 'Dedicated account manager', included: true },
     ],
-    buttonText: 'Contact Sales',
+    buttonText: 'Get Started',
   },
 ];
 
@@ -158,7 +176,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
     } 
     // Handle array structure (fallback for other formats)
     else if (Array.isArray(pricingPlans) && pricingPlans.length > 0) {
-      displayPricingData = pricingPlans.map((plan: any, index: number) => ({
+      displayPricingData = pricingPlans.map((plan: FlexiblePricingPlan, index: number) => ({
         name: plan.name || plan.title || `Plan ${index + 1}`,
         price: plan.price || plan.amount || plan.priceRange || '$0',
         period: plan.period || plan.billingPeriod || '/month',
@@ -167,7 +185,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
           ? plan.features.map((f: string | { text: string; included: boolean }) => 
               typeof f === 'string' 
                 ? { text: f, included: true }
-                : { text: f.text || f, included: f.included !== false }
+                : { text: typeof f.text === 'string' ? f.text : '', included: f.included !== false }
             )
           : Array.isArray(plan.bulletPoints)
           ? plan.bulletPoints.map((point: string) => ({ text: point, included: true }))
@@ -227,19 +245,11 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
 
               {/* Card Body */}
               <div className="p-8 relative z-10 group-hover:text-white transition-colors duration-500">
-                {/* Price */}
+                {/* Description (Price hidden) */}
                 <div className="text-center mb-6">
-                  <div className="flex items-baseline justify-center mb-2 flex-wrap gap-1">
-                    <span className="text-3xl md:text-4xl font-bold text-[#6B2D8F] group-hover:text-white transition-colors duration-500 whitespace-nowrap">
-                      {tier.price}
-                    </span>
-                    {tier.period && (
-                      <span className="text-lg text-gray-600 group-hover:text-white transition-colors duration-500">
-                        {tier.period}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-gray-600 group-hover:text-white text-sm transition-colors duration-500">{tier.description}</p>
+                  <p className="text-gray-600 group-hover:text-white text-sm transition-colors duration-500">
+                    {tier.description}
+                  </p>
                 </div>
 
                 {/* Features List */}
@@ -289,33 +299,23 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
                 </ul>
 
                 {/* CTA Button */}
-                <button
-                  className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-500 ${
-                    tier.popular
-                      ? 'bg-[#6B2D8F] text-white hover:bg-[#5A2478] shadow-lg group-hover:bg-white group-hover:text-[#6B2D8F]'
-                      : 'bg-[#6B2D8F] bg-opacity-10 text-[#6B2D8F] hover:bg-opacity-20 border-2 border-[#6B2D8F] group-hover:bg-white group-hover:border-white group-hover:text-[#6B2D8F]'
-                  }`}
-                >
-                  {tier.buttonText}
-                </button>
+                <Link href="/contact">
+                  <button
+                    className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-500 ${
+                      tier.popular
+                        ? 'bg-[#6B2D8F] text-white hover:bg-[#5A2478] shadow-lg group-hover:bg-white group-hover:text-[#6B2D8F]'
+                        : 'bg-[#6B2D8F] bg-opacity-10 text-[#6B2D8F] hover:bg-opacity-20 border-2 border-[#6B2D8F] group-hover:bg-white group-hover:border-white group-hover:text-[#6B2D8F]'
+                    }`}
+                  >
+                    {tier.buttonText}
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom Note */}
-        <div className="text-center mt-16">
-          <p className="text-gray-600 text-sm">
-            All plans include SSL certificate, 99.9% uptime guarantee, and
-            regular backups
-          </p>
-          <p className="text-gray-600 text-sm mt-2">
-            Need a custom plan?{' '}
-            <button className="text-[#6B2D8F] font-semibold hover:underline transition-all duration-300">
-              Contact us
-            </button>
-          </p>
-        </div>
+        
       </div>
     </div>
   );

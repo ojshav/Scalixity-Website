@@ -38,14 +38,14 @@ const applications = [
 
 export function AIApplications() {
   return (
-    <section className="bg-[#A8B2E7] py-24 text-black">
+    <section className="bg-[#590178] py-24 text-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm uppercase tracking-wider">AI AGENT APPLICATIONS</span>
-          <h2 className="text-4xl font-bold mt-4 mb-6">
+          <span className="text-sm text-white uppercase tracking-wider">AI AGENT APPLICATIONS</span>
+          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
             Transforming Retail with AI-Powered Dynamic Pricing
           </h2>
-          <p className="text-xl max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Discover how AI agents revolutionize retail by driving data-driven dynamic pricing strategies — boosting sales, customer engagement, and profitability.
           </p>
         </div>

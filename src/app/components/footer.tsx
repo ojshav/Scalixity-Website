@@ -2,22 +2,21 @@ import Link from 'next/link'
 import { Linkedin, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react'
 
 const services = [
-  { name: "Custom Web Apps", href: "/services/web-development" },
-  { name: "AI Chatbots", href: "/services/AI-Chatbot" },
-  { name: "Mobile Applications", href: "/services/Mobile-Application" },
+  { name: "Custom Web Apps", href: "/services/custom-web-apps" },
   { name: "Custom Dashboards", href: "/services/custom-dashboard" },
-  { name: "Ecommerce Solution", href: "/services/ecommerce-solution" },
+  { name: "AI Chatbot", href: "/services/AI-Chatbot" },
+  { name: "Mobile Application", href: "/services/Mobile-Application" },
+  { name: "Ecommerce solution", href: "/services/ecommerce-solution" },
   { name: "Machine Learning & NLP Solutions", href: "/services/ml-nlp-solutions" },
-  { name: "UI/UX Design", href: "/services/ui-ux-design" }
+  { name: "All Services", href: "/services" }
 ]
 
 const company = [
-  { name: "About Us", href: "/about" },
-  { name: "Careers", href: "/careers" },
+  { name: "About Us", href: "/company" },
+  { name: "Our Work", href: "/work" },
   { name: "Blog", href: "/blog" },
-  { name: "Case Studies", href: "/case-studies" },
-  { name: "Press Kit", href: "/press-kit" },
-  { name: "Partners", href: "/partners" }
+  { name: "Resources", href: "/resources" },
+  { name: "Contact", href: "/contact" }
 ]
 
 export function Footer() {
@@ -28,7 +27,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <h2 className="text-3xl font-serif font-bold">Scalixity</h2>
+              <h2 className="text-3xl text-white font-serif font-bold">Scalixity</h2>
             </Link>
             <p className="text-gray-200 text-sm leading-relaxed max-w-xs">
               Transforming ideas into digital reality with innovative solutions and cutting-edge technology.
@@ -62,12 +61,7 @@ export function Footer() {
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
-            <Link
-              href="/contact"
-              className="inline-block px-6 py-2 bg-white/10 rounded-full text-white hover:bg-white/20 transition-colors text-sm font-medium"
-            >
-              Hire Developers
-            </Link>
+            
           </div>
 
           {/* Services Column */}
@@ -105,21 +99,21 @@ export function Footer() {
               <li>
                 <a href="mailto:contact@scalixity.com" className="flex items-center space-x-3 text-gray-200 hover:text-white transition-colors group">
                   <Mail className="h-5 w-5 flex-shrink-0 group-hover:text-white" />
-                  <span className="text-sm">contact@scalixity.com</span>
+                  <span className="text-sm">scalixity@gmail.com</span>
                 </a>
               </li>
               <li>
                 <a href="tel:+15551234567" className="flex items-center space-x-3 text-gray-200 hover:text-white transition-colors group">
                   <Phone className="h-5 w-5 flex-shrink-0 group-hover:text-white" />
-                  <span className="text-sm">+1 (555) 123-4567</span>
+                  <span className="text-sm">+91 9424710030</span>
                 </a>
               </li>
               <li>
                 <div className="flex items-start space-x-3 text-gray-200">
                   <MapPin className="h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    123 Innovation Drive<br />
-                    Tech City, TC 12345
+                  Comfort Medows,78,Vijay Nagar<br />
+                  Indore,MP, India 452010
                   </span>
                 </div>
               </li>

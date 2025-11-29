@@ -40,7 +40,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#A8B2E7] py-20">
+    <section className="bg-[#FFF2D5] py-20">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-black text-center mb-12">Frequently Asked Questions</h2>
         <div className="max-w-3xl mx-auto">

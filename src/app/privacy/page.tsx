@@ -18,7 +18,7 @@ export default function PrivacyPage() {
   }
 
   return (
-    <div className="pt-20 bg-[#F3F1EB] text-black min-h-screen">
+    <div className="pt-20 bg-[#FFF2D5] text-black min-h-screen">
       <div className="w-full px-6 lg:px-12">
         <motion.h1 
           className="text-4xl md:text-6xl font-bold text-center py-12 font-playfair tracking-tight"

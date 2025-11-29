@@ -32,10 +32,10 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="py-20 bg-[#A8B2E7]">
+    <section className="py-20 bg-[#590178]">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-black mb-6">Key Benefits of AI-Powered Financial Document Automation</h2>
-        <p className="text-lg text-black mb-12">
+        <h2 className="text-4xl font-bold text-white mb-6">Key Benefits of AI-Powered Financial Document Automation</h2>
+        <p className="text-lg text-white mb-12">
           Streamline financial operations with AI-driven document automation — improving accuracy, efficiency, and compliance.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -45,15 +45,15 @@ export function Benefits() {
               className="p-6 rounded-lg border-2 border-black bg-[#F3F1EB] text-black hover:border-gray-700 transition"
             >
               <CheckCircle className="text-black w-8 h-8 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-              <p>{benefit.description}</p>
+              <h3 className="text-xl text-black font-semibold mb-2">{benefit.title}</h3>
+              <p className="text-black">{benefit.description}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-12">
           <Link href="/contact">
-            <button className="px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition">
+            <button className="px-6 py-3 bg-[#590178] text-white font-bold rounded-lg border-2 border-white transition">
               Get Started
             </button>
           </Link>

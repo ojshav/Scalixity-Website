@@ -12,11 +12,13 @@ gsap.registerPlugin(ScrollTrigger);
 interface ServiceHeroProps {
   title: string;
   description: string;
+  images?: string[];
 }
 
 export function ServiceHero({
   title,
   description,
+  images,
 }: ServiceHeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -45,7 +47,7 @@ export function ServiceHero({
     // Card 0: -4 degrees (rotated left)
     // Card 1: -1 degrees (slightly left)
     // Card 2: 2 degrees (slightly right)
-    const rotations = [-4, 0, 4];
+    const rotations = [-3, 0, 3];
     
     // Set initial state - 1st card visible, 2nd and 3rd start from bottom
     gsap.set(cards, {
@@ -100,11 +102,11 @@ export function ServiceHero({
       </div>
 
       <div ref={cardsRef} className="relative w-full max-w-9xl h-[550px] flex items-center justify-center perspective-1000">
-        {[
+        {(images || [
           "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2940&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=2940&auto=format&fit=crop"
-        ].map((src, index) => (
+        ]).map((src, index) => (
           <div
             key={index}
             className="hero-card absolute w-[85%] md:w-[70%] h-[550px] rounded-[32px] shadow-xl overflow-hidden border border-white/20"
@@ -119,7 +121,7 @@ export function ServiceHero({
         ))}
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 text-center max-w-7xl mt-24">
+      <div className="container mx-auto px-4 md:px-8 text-center max-w-7xl mt-20">
         <p className="text-lg md:text-3xl text-black font-inter font-medium leading-relaxed">
           {description}
         </p>

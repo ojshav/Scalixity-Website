@@ -31,7 +31,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#FFF2D5] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-black mb-6">
@@ -53,7 +53,7 @@ export function FAQ() {
               className="mb-4"
             >
               <button
-                className="flex justify-between items-center w-full text-left p-4 bg-[#F3F1EB] border-2 border-black rounded-lg"
+                className="flex justify-between items-center w-full text-left p-4 bg-[#FFF2D5] border-2 border-black rounded-lg"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <span className="font-semibold text-black">{faq.question}</span>
@@ -72,7 +72,7 @@ export function FAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 bg-[#F3F1EB] mt-1 border-2 border-black rounded-lg">
+                    <div className="p-4 bg-[#FFF2D5] mt-1 border-2 border-black rounded-lg">
                       <p className="text-black">{faq.answer}</p>
                     </div>
                   </motion.div>

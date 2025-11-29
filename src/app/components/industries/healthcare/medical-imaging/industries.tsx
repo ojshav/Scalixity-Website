@@ -16,14 +16,14 @@ const industries = [
 
 export function Industries() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">INDUSTRIES</span>
-          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
+          <span className="text-sm text-white uppercase tracking-wider">INDUSTRIES</span>
+          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
             Transforming Healthcare with Medical Imaging Intelligence
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Explore how AI-powered Medical Imaging Intelligence revolutionizes diagnostics, accelerates treatment plans, and enhances patient care across various medical fields.
           </p>
         </div>
@@ -47,7 +47,7 @@ export function Industries() {
                   className="w-12 h-12"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-black text-center">{industry.name}</h3>
+              <h3 className="text-lg font-semibold text-white text-center">{industry.name}</h3>
             </motion.div>
           ))}
         </div>

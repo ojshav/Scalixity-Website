@@ -31,10 +31,10 @@ const offerings = [
 
 export function WhatWeOffer() {
   return (
-    <section className="py-20 bg-[#A8B2E7]">
+    <section className="py-20 bg-[#590178]">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-black mb-6">What We Offer in Enterprise Chatbot AI Development</h2>
-        <p className="text-lg text-black mb-12">
+        <h2 className="text-4xl font-bold text-white mb-6">What We Offer in Enterprise Chatbot AI Development</h2>
+        <p className="text-lg text-white mb-12">
           Empower your business with AI chatbots — streamlining customer support, automating workflows, and delivering seamless user experiences.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

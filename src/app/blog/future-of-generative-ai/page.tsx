@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function GenerativeAIBlogPost() {
   return (
-    <article className="bg-[#F3F1EB] min-h-screen">
+    <article className="bg-[#FFF2D5] min-h-screen">
       {/* Header */}
       <div className="relative h-96 w-full">
         <Image 
@@ -101,22 +101,22 @@ export default function GenerativeAIBlogPost() {
             <h3 className="text-2xl font-bold mb-6">Related Articles</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <Link href="/blog/ai-predictive-maintenance" className="block group">
-                <div className="bg-[#A8B2E7] rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="bg-[#590178] rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
                   <div className="relative h-40 w-full">
                     <Image src="/images/ai.svg" alt="AI in Manufacturing" fill className="object-cover" />
                   </div>
                   <div className="p-4">
-                    <h4 className="font-bold group-hover:text-gray-700">AI-Driven Predictive Maintenance in Manufacturing</h4>
+                    <h4 className="font-bold text-white ">AI-Driven Predictive Maintenance in Manufacturing</h4>
                   </div>
                 </div>
               </Link>
               <Link href="/blog/blockchain-in-supply-chain" className="block group">
-                <div className="bg-[#A8B2E7] rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+                <div className="bg-[#590178] rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
                   <div className="relative h-40 w-full">
                     <Image src="/images/blockchain.svg" alt="Blockchain" fill className="object-cover" />
                   </div>
                   <div className="p-4">
-                    <h4 className="font-bold group-hover:text-gray-700">Blockchain in Supply Chain: A Game Changer</h4>
+                    <h4 className="font-bold text-white ">Blockchain in Supply Chain: A Game Changer</h4>
                   </div>
                 </div>
               </Link>
@@ -125,7 +125,7 @@ export default function GenerativeAIBlogPost() {
 
           {/* Back to Blog */}
           <div className="mt-12 text-center">
-            <Link href="/" className="inline-block bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors">
+            <Link href="/" className="inline-block bg-[#590178] text-white px-6 py-3 rounded-full font-medium  transition-colors">
               Back to All Articles
             </Link>
           </div>

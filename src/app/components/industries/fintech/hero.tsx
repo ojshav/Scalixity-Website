@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F3F1EB] py-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#FFF2D5] py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,7 +20,7 @@ export function Hero() {
           </p>
           <a
             href="/contact"
-            className="inline-block bg-black text-white py-3 px-6 rounded-lg text-lg font-semibold transition duration-300 hover:bg-gray-800"
+            className="inline-block bg-[#590178] text-white py-3 px-6 rounded-lg text-lg font-semibold transition duration-300"
           >
             Contact Us
           </a>

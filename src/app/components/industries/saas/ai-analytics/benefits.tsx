@@ -38,13 +38,13 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
+    <section className="bg-[#590178] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-black mb-6">
+          <h2 className="text-4xl font-bold text-white mb-6">
             Benefits of AI Analytics in SaaS
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Unlock AI-driven insights to optimize performance, security, and decision-making in SaaS platforms.
           </p>
         </div>

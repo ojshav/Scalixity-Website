@@ -31,14 +31,14 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#A8B2E7] py-24 text-black">
+    <section className="bg-[#590178] py-24 text-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+          <span className="text-sm text-white uppercase tracking-wider">WHAT WE OFFER</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
             AI-Powered Dynamic Pricing Solutions
           </h2>
-          <p className="text-xl max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Revolutionize your retail pricing strategy with AI — adaptive, data-driven, and profit-focused. Stay ahead of the competition with intelligent pricing automation.
           </p>
         </div>

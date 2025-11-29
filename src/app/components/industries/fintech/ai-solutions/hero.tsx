@@ -2,7 +2,7 @@
 
 export function Hero() {
   return (
-    <section className="bg-[#F3F1EB] text-black py-32 text-center">
+    <section className="bg-[#FFF2D5] text-black py-32 text-center">
       <div className="container mx-auto px-6">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
           AI-Powered Financial Solutions for a Smarter Future
@@ -12,7 +12,7 @@ export function Hero() {
         </p>
         <a
           href="/contact"
-          className="inline-block bg-black text-white py-3 px-6 rounded-lg text-lg font-semibold transition duration-300 hover:bg-gray-800"
+          className="inline-block bg-[#590178] text-white py-3 px-6 rounded-lg text-lg font-semibold transition duration-300"
         >
           Contact Us
         </a>

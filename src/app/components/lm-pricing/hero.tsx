@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export function Hero() {
   return (
-    <section className="bg-[#F3F1EB] py-24 text-center">
+    <section className="bg-[#FFF2D5] py-24 text-center">
       <div className="container mx-auto px-4">
         <motion.h1 
           initial={{ opacity: 0, y: -20 }} 
@@ -31,7 +31,7 @@ export function Hero() {
         >
           <Link 
             href="/contact" 
-            className="bg-black text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-900 transition"
+            className="bg-[#590178] text-white px-6 py-3 rounded-lg text-lg font-semibold  transition"
           >
             Contact Us
           </Link>

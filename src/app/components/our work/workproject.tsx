@@ -15,6 +15,15 @@ interface Project {
     liveUrl?: string | null;
 }
 
+interface ApiProject {
+    id: number;
+    title: string;
+    description?: string | null;
+    image: string;
+    liveUrl?: string | null;
+    live_url?: string | null;
+}
+
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
 export function WorkProjects() {
@@ -31,7 +40,7 @@ export function WorkProjects() {
             id: 'aoin',
             title: "AOIN - ECOMMERCE PLATFORM",
             description: "We developed AOIN, a comprehensive e-commerce platform designed to empower merchants to easily enroll, list, and manage their products online. The platform was built end-to-end using React for the frontend and Python for the backend, ensuring a seamless, responsive, and secure experience for both merchants and customers.",
-            image: "https://picsum.photos/seed/aoin-platform/800/600",
+            image: "/images/aoin.webp",
             buttonText: "View Live Demo"
         },
         {
@@ -60,7 +69,7 @@ export function WorkProjects() {
                 const data = await response.json();
                 
                 // Map backend data to component format and reverse to show oldest first
-                const mappedProjects: Project[] = data.map((project: any) => ({
+                const mappedProjects: Project[] = data.map((project: ApiProject) => ({
                     id: project.id,
                     title: project.title,
                     description: project.description || '',

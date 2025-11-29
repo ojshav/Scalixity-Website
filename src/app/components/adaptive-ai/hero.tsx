@@ -23,7 +23,7 @@ export function Hero() {
           <div className="relative z-10">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center mt-8 px-6 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center justify-center mt-8 px-6 py-3 rounded-full bg-[#590178] text-white transition-colors"
             >
               Contact Us
             </Link>

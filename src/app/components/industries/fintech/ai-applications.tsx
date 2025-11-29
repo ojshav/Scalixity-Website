@@ -38,14 +38,14 @@ const applications = [
 
 export function AIApplications() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">AI APPLICATIONS</span>
-          <h2 className="text-5xl font-bold text-black mt-4 mb-6">
+          <span className="text-sm text-white uppercase tracking-wider">AI APPLICATIONS</span>
+          <h2 className="text-5xl font-bold text-white mt-4 mb-6">
             Revolutionizing Fintech with AI
           </h2>
-          <p className="text-lg text-black max-w-3xl mx-auto">
+          <p className="text-lg text-white max-w-3xl mx-auto">
             Explore how our AI-powered solutions are transforming the fintech landscape by enhancing security, optimizing investments, personalizing customer experiences, and driving operational efficiency. Our innovative AI technologies empower financial institutions to make data-backed decisions, mitigate risks proactively, and deliver tailored financial solutions that cater to the evolving needs of their clients.
           </p>
         </div>

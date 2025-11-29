@@ -20,8 +20,8 @@ export function CTA() {
         </p>
         <Link
           href="/contact"
-          className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-300 transition-colors"
-          style={{ backgroundColor: "#000000", color: "#FFFFFF" }}
+          className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-lg transition-colors"
+          style={{ backgroundColor: "#590178", color: "#FFFFFF" }}
         >
           Schedule a Consultation
         </Link>

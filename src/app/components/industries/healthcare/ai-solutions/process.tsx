@@ -31,7 +31,7 @@ const processSteps = [
 
 export function Process() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#FFF2D5] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">PROCESS</span>
@@ -57,10 +57,10 @@ export function Process() {
                 className="relative pl-12"
               >
                 <div className="absolute left-0 top-2 w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center">
-                  <div className="w-2 h-2 bg-[#A8B2E7] rounded-full" />
+                  <div className="w-2 h-2 bg-[#590178] rounded-full" />
                 </div>
                 
-                <div className="bg-[#F3F1EB] p-8 rounded-xl border-2 border-black">
+                <div className="bg-[#FFF2D5] p-8 rounded-xl border-2 border-black">
                   <h3 className="text-xl font-bold text-black mb-4">{step.title}</h3>
                   <p className="text-black/80 leading-relaxed">{step.description}</p>
                 </div>

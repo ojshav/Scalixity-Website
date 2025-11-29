@@ -38,13 +38,13 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-black mb-6">
+          <h2 className="text-4xl font-bold text-white mb-6">
             Benefits of AI Agents in Retail
           </h2>
-          <p className="text-xl text-black/80 max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Discover how AI agents revolutionize the retail industry — boosting sales, enhancing customer experiences, and streamlining operations.
           </p>
         </div>

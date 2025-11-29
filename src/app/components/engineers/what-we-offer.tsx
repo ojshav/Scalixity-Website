@@ -32,12 +32,12 @@ const offerings = [
 
 export function WhatWeOffer() {
   return (
-    <section className="py-24" style={{ backgroundColor: '#A8B2E7' }}>
+    <section className="py-24" style={{ backgroundColor: '#590178' }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm uppercase tracking-wider text-black">AI ENGINEERING SERVICES</span>
-          <h2 className="text-4xl font-bold text-black mt-4 mb-6">What We Offer</h2>
-          <p className="text-lg text-black max-w-3xl mx-auto">
+          <span className="text-sm uppercase tracking-wider text-white">AI ENGINEERING SERVICES</span>
+          <h2 className="text-4xl font-bold text-white mt-4 mb-6">What We Offer</h2>
+          <p className="text-lg text-white max-w-3xl mx-auto">
             Explore our specialized AI engineering services, empowering your business with innovative, high-performance artificial intelligence solutions.
           </p>
         </div>

@@ -31,9 +31,9 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-5xl font-extrabold text-black mb-12">What We Offer</h2>
+        <h2 className="text-5xl font-extrabold text-white mb-12">What We Offer</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div 

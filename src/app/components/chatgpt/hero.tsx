@@ -4,7 +4,7 @@ import Link from 'next/link'; // Importing Link from Next.js
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F3F1EB] py-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#FFF2D5] py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,7 +23,7 @@ export function Hero() {
           <div className="relative z-10">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center mt-8 px-6 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center justify-center mt-8 px-6 py-3 rounded-full bg-[#590178] text-white transition-colors"
             >
               Contact Us
             </Link>

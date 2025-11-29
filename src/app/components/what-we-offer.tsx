@@ -59,7 +59,7 @@ export function WhatWeOffer({
   ctaLink = "/contact"
 }: WhatWeOfferProps = {}) {
   return (
-    <section className="bg-[#4A0E78] py-24 px-4 md:px-8">
+    <section className="bg-[#590178] py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">

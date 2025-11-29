@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export function Hero() {
   return (
-    <section className="bg-[#F3F1EB] text-black py-32">
+    <section className="bg-[#FFF2D5] text-black py-32">
       <div className="container mx-auto px-4 text-center">
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
@@ -28,11 +28,11 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex justify-center"
         >
-          <button className="px-8 py-3 text-lg font-medium bg-black text-white rounded-lg hover:bg-gray-700 transition-all" onClick={() => window.location.href = '/contact'}>
+          <button className="px-8 py-3 text-lg font-medium bg-[#590178] text-white rounded-lg transition-all" onClick={() => window.location.href = '/contact'}>
             Contact Us
           </button>
         </motion.div>
-      </div>
+      </div>  
     </section>
   );
 }

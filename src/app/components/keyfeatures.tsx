@@ -8,12 +8,12 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
 const defaultColors = [
-    { color: "#FF9F66", lightColor: "#FFF0E6" }, // Orange
-    { color: "#2E86DE", lightColor: "#E6F2FF" }, // Blue
-    { color: "#4CD137", lightColor: "#E8F9E6" }, // Green
-    { color: "#E84118", lightColor: "#FDECEC" }, // Red
-    { color: "#9C88FF", lightColor: "#F3F0FF" }, // Purple
-    { color: "#FF6B81", lightColor: "#FFF0F3" }, // Pink
+    { color: "#590178", lightColor: "#FFF0E6" }, // Orange
+    { color: "#590178", lightColor: "#E6F2FF" }, // Blue
+    { color: "#590178", lightColor: "#E8F9E6" }, // Green
+    { color: "#590178", lightColor: "#FDECEC" }, // Red
+    { color: "#590178", lightColor: "#F3F0FF" }, // Purple
+    { color: "#590178", lightColor: "#FFF0F3" }, // Pink
 ];
 
 interface KeyFeaturesProps {
@@ -120,7 +120,7 @@ const KeyFeatures = ({ features }: KeyFeaturesProps) => {
     );
 
     return (
-        <section className="w-full py-16 md:py-20 bg-[#FFF2D5] overflow-hidden" ref={containerRef}>
+        <section className="w-full py-16 md:py-2 bg-[#FFF2D5] overflow-hidden" ref={containerRef}>
             <div className="container mx-auto px-4 md:px-8">
                 {/* Header */}
                 <div className="mb-16 md:mb-20 text-center">

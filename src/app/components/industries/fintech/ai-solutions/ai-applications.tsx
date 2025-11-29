@@ -2,12 +2,12 @@
 
 export function AIApplications() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-5xl font-bold text-black mb-8">
+        <h2 className="text-5xl font-bold text-white mb-8">
           AI Applications in Fintech
         </h2>
-        <p className="text-lg text-black max-w-2xl mx-auto mb-12">
+        <p className="text-lg text-white max-w-2xl mx-auto mb-12">
           Discover how AI is revolutionizing the financial industry — enhancing security, optimizing transactions, and delivering smarter insights.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

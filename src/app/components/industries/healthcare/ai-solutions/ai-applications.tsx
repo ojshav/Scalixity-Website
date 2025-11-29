@@ -38,14 +38,14 @@ const applications = [
 
 export function AIApplications() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">OUR AI SOLUTIONS</span>
-          <h2 className="text-4xl font-bold text-black mt-4 mb-6">
+          <span className="text-sm text-white uppercase tracking-wider">OUR AI SOLUTIONS</span>
+          <h2 className="text-4xl font-bold text-white mt-4 mb-6">
             Revolutionizing Healthcare with AI
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Explore how Scalixity&apos;s AI-driven solutions are transforming healthcare by enhancing precision, efficiency, and patient outcomes.
           </p>
         </div>
@@ -58,7 +58,7 @@ export function AIApplications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-[#3D3D3D] transition-colors"
+              className="bg-[#FFF2D5] p-8 rounded-xl border border-black hover:border-[#3D3D3D] transition-colors"
             >
               <app.icon className="w-12 h-12 text-black mb-6" />
               <h3 className="text-xl font-bold text-black mb-4">{app.title}</h3>

@@ -38,13 +38,13 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-black mb-6">
+          <h2 className="text-4xl font-bold text-white mb-6">
             The Impact of AI in Healthcare
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Explore how Scalixity’s AI solutions enhance healthcare services by boosting efficiency, security, and patient outcomes.
           </p>
         </div>
@@ -57,7 +57,7 @@ export function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-[#3D3D3D] transition-colors"
+              className="bg-[#FFF2D5] p-8 rounded-xl border border-black hover:border-[#3D3D3D] transition-colors"
             >
               <benefit.icon className="w-12 h-12 text-black mb-6" />
               <h3 className="text-xl font-bold text-black mb-4">{benefit.title}</h3>

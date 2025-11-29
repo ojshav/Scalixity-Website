@@ -5,8 +5,8 @@ import Link from "next/link";
 export function Hero() {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-20"
-      style={{ backgroundColor: "#F3F1EB" }} 
+        className="relative min-h-screen flex items-center justify-center overflow-hidden py-20"
+      style={{ backgroundColor: "#FFF2D5" }} 
     >
       <div className="container mx-auto px-4">
         <motion.div
@@ -29,7 +29,7 @@ export function Hero() {
           <div className="relative z-10">
             <Link 
               href="/contact" 
-              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-black text-white text-lg font-semibold hover:bg-gray-800 transition"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#590178] text-white text-lg font-semibold  transition"
             >
               Contact Us
             </Link>

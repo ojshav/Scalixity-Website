@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export function ConsultingHero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#F3F1EB] py-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#FFF2D5] py-20">
       <div className="container mx-auto px-4 text-center">
         <div className="flex justify-center">
           <motion.div
@@ -26,7 +26,7 @@ export function ConsultingHero() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#590178] text-white font-medium text-lg transition-colors"
             >
               Contact us
             </Link>

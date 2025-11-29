@@ -16,7 +16,8 @@ const services = [
             { title: "Modern Tech Stack", description: "React, Vue, Angular, Node.js, and more" },
             { title: "Security First", description: "Enterprise-grade security measures implemented" }
         ],
-        image: "/images/web-apps-illustration.png" // Placeholder path
+        image: "/images/web-apps-illustration.png", // Placeholder path
+        link: "/services/custom-web-apps"
     },
     {
         id: "02",
@@ -28,7 +29,8 @@ const services = [
             { title: "Custom Reports", description: "Automated reporting and export functionality" },
             { title: "User Management", description: "Role-based access control and permissions" }
         ],
-        image: "/images/dashboard-illustration.png"
+        image: "/images/dashboard-illustration.png",
+        link: "/services/custom-dashboard"
     },
     {
         id: "03",
@@ -40,7 +42,8 @@ const services = [
             { title: "Seamless Handoff", description: "Smart escalation to human agents when needed" },
             { title: "Analytics & Insights", description: "Track conversations and improve performance" }
         ],
-        image: "/images/chatbot-illustration.png"
+        image: "/images/chatbot-illustration.png",
+        link: "/services/AI-Chatbot"
     },
     {
         id: "04",
@@ -52,7 +55,8 @@ const services = [
             { title: "Offline Capabilities", description: "Functional even without internet connection" },
             { title: "App Store Optimization", description: "Assistance with publishing and ranking" }
         ],
-        image: "/images/mobile-app-illustration.png"
+        image: "/images/mobile-app-illustration.png",
+        link: "/services/Mobile-Application"
     },
     {
         id: "05",
@@ -64,7 +68,8 @@ const services = [
             { title: "Inventory Management", description: "Real-time tracking and stock alerts" },
             { title: "Conversion Optimization", description: "Designed to maximize sales" }
         ],
-        image: "/images/ecommerce-illustration.png"
+        image: "/images/ecommerce-illustration.png",
+        link: "/services/ecommerce-solution"
     },
     {
         id: "06",
@@ -75,7 +80,8 @@ const services = [
             { title: "Classification Systems", description: "Classify data into categories and automate processes" },
             { title: "NLP Pipelines", description: "Build NLP pipelines that understand and respond to natural language" }
         ],
-        image: "/images/chatbot-illustration.png"
+        image: "/images/chatbot-illustration.png",
+        link: "/services/ml-nlp-solutions"
     }
 ];
 
@@ -173,13 +179,15 @@ export function DetailedServices() {
                                         <div className="w-full lg:w-1/2 flex items-center justify-center">
                                             <div className={`relative w-full ${
                                                 index === 0 ? 'max-w-[450px]' : 
-                                                index === 4 ? 'max-w-[400px]' : 
+                                                index === 4 ? 'max-w-[400px]' :
+                                                index === 5 ? 'max-w-[380px]' :
                                                 'max-w-[500px]'
                                             } aspect-square flex items-center justify-center`}>
                                                 {/* GIF Images for all services */}
                                                 <div className={`relative w-full h-full ${
                                                     index === 0 ? 'scale-150 -translate-y-12' :
                                                     index === 4 ? 'scale-150 -translate-y-6' :
+                                                    index === 5 ? 'scale-100 -translate-y-8' :
                                                     'scale-150 -translate-y-20'
                                                 }`}>
                                                     <Image
@@ -221,7 +229,7 @@ export function DetailedServices() {
                                                 transition={{ duration: 0.5, delay: 0.9 }}
                                                 className="mt-4"
                                             >
-                                                <Link href="/contact">
+                                                <Link href={service.link}>
                                                     <motion.button 
                                                         whileHover={{ scale: 1.05 }}
                                                         whileTap={{ scale: 0.95 }}

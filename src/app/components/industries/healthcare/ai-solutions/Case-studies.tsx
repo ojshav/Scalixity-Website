@@ -28,7 +28,7 @@ const caseStudies = [
 
 export function CaseStudies() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#FFF2D5] py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-black mb-6">
@@ -47,7 +47,7 @@ export function CaseStudies() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-8 items-center bg-[#F3F1EB] p-8 rounded-xl border border-black hover:border-[#3D3D3D] transition-colors"
+              className="grid md:grid-cols-2 gap-8 items-center bg-[#FFF2D5] p-8 rounded-xl border border-black hover:border-[#3D3D3D] transition-colors shadow-lg hover:shadow-xl"
             >
               <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
                 <h3 className="text-2xl font-bold text-black mb-4">{study.title}</h3>
@@ -62,7 +62,7 @@ export function CaseStudies() {
                 </ul>
               </div>
               <div className={index % 2 === 0 ? "md:order-2" : "md:order-1"}>
-                <div className="relative h-[300px] bg-[#F3F1EB] rounded-xl overflow-hidden border border-black hover:border-[#3D3D3D] transition-colors">
+                <div className="relative h-[300px] bg-[#FFF2D5] rounded-xl overflow-hidden border border-black hover:border-[#3D3D3D] transition-colors shadow-md hover:shadow-lg">
                   <Image
                     src={study.image}
                     alt={study.title}

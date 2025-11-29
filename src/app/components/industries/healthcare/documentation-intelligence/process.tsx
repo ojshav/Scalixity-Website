@@ -32,7 +32,7 @@ const processSteps = [
 
 export function Process() {
   return (
-    <section className="bg-[#A8B2E7] text-black py-32">
+    <section className="bg-[#FFF2D5] !text-black py-32">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm text-black uppercase tracking-wider">

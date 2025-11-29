@@ -32,11 +32,11 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section className="bg-[#A8B2E7] py-20">
+    <section className="bg-[#590178] py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-black">Benefits of AI-Powered Underwriting & Pricing</h2>
-          <p className="text-lg text-black mt-4 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-white">Benefits of AI-Powered Underwriting & Pricing</h2>
+          <p className="text-lg text-white mt-4 max-w-2xl mx-auto">
             Leverage AI to enhance risk evaluation, optimize pricing, and streamline financial decision-making.
           </p>
         </div>

@@ -2,12 +2,12 @@
 
 export function Benefits() {
   return (
-    <section className="bg-[#A8B2E7] py-24">
+    <section className="bg-[#590178] py-24">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-5xl font-bold text-black mb-8">
+        <h2 className="text-5xl font-bold text-white mb-8">
           Benefits of AI in Fintech
         </h2>
-        <p className="text-lg text-black max-w-2xl mx-auto mb-12">
+        <p className="text-lg text-white max-w-2xl mx-auto mb-12">
           AI is transforming financial services — enhancing security, optimizing efficiency, and providing intelligent insights for better decision-making.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

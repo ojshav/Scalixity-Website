@@ -23,14 +23,14 @@ const services = [
 
 export function WhatWeOffer() {
   return (
-    <section className="bg-[#A8B2E7] py-24"> {/* Lavender background */}
+    <section className="bg-[#590178] py-24"> {/* Lavender background */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-sm text-black uppercase tracking-wider">WHAT WE OFFER</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-black mt-4 mb-6">
+          <span className="text-sm text-white uppercase tracking-wider">WHAT WE OFFER</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
             OpenAI-powered Development Services
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Our expertise in OpenAI models like GPT-3.5 Turbo, DALL-E, and CLIP allows us to build powerful, customized AI solutions for your business needs.
           </p>
         </div>

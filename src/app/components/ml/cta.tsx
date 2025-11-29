@@ -13,7 +13,7 @@ export function CTA() {
         </p>
         <Link
           href="/contact"
-          className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-black text-white font-bold text-lg hover:bg-gray-900 transition-colors"
+          className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#590178] text-white font-bold text-lg transition-colors"
         >
           Schedule a Consultation
         </Link>
