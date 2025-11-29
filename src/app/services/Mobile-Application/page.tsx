@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { CTA } from "@/src/app/components/cta";
-import { ServiceHero } from "@/src/app/components/service-hero";
+import { MobileServiceHero } from "@/src/app/components/mobile-service-hero";
 import KeyFeatures from "@/src/app/components/keyfeatures"
 import { Benefits } from "@/src/app/components/benefits";
 import TechnologiesUsed from "@/src/app/components/technologiesused";
@@ -83,7 +83,7 @@ export default function MobileApplicationPage() {
 
   return (
     <main className="bg-[#FFF2D5] text-[#1A1A1A]">
-      <ServiceHero
+      <MobileServiceHero
         title={serviceData.title}
         description={serviceData.description}
         images={[

@@ -46,22 +46,22 @@ function AdminLogin() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen" style={{ backgroundColor: '#F3F1EB' }}>
-      <div className="w-full max-w-md p-8 space-y-8 rounded-xl shadow-lg" style={{ backgroundColor: 'white' }}>
+    <div className="flex items-center justify-center min-h-screen bg-[#FFF2D5]">
+      <div className="w-full max-w-md p-8 space-y-8 rounded-xl shadow-lg bg-white">
         <div className="flex justify-center">
-          <div className="text-4xl font-bold tracking-wider" style={{ color: '#424242' }}>
-            <span style={{ color: '#9FA8DA' }}>S</span>CALIXITY
+          <div className="text-4xl font-bold tracking-normal font-playfair text-gray-800">
+            <span className="text-black">SCALIXITY</span>
           </div>
         </div>
         
-        <h2 className="mt-6 text-center text-2xl font-extrabold" style={{ color: '#424242' }}>
+        <h2 className="mt-6 text-center text-2xl font-manrope font-medium text-[#590178]">
           Admin Portal
         </h2>
         
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="username" className="block text-sm font-medium" style={{ color: '#616161' }}>
+              <label htmlFor="username" className="block text-sm font-medium text-[#590178]">
                 Username
               </label>
               <input
@@ -71,19 +71,13 @@ function AdminLogin() {
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="mt-1 block w-full px-4 py-3 rounded-md focus:outline-none focus:ring-2 border transition-colors"
-                style={{ 
-                  backgroundColor: '#F3F1EB', 
-                  borderColor: '#9FA8DA',
-                  color: '#424242',
-                  outlineColor: '#9FA8DA' 
-                }}
+                className="mt-1 block w-full px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#590178] border border-[#590178]  text-[#590178] placeholder-gray-400 transition-colors"
                 placeholder="Enter your username"
               />
             </div>
             
             <div className="relative">
-              <label htmlFor="password" className="block text-sm font-medium" style={{ color: '#616161' }}>
+              <label htmlFor="password" className="block text-sm font-medium text-[#590178]">
                 Password
               </label>
               <div className="relative">
@@ -94,19 +88,12 @@ function AdminLogin() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="mt-1 block w-full px-4 py-3 rounded-md focus:outline-none focus:ring-2 border transition-colors"
-                  style={{ 
-                    backgroundColor: '#F3F1EB', 
-                    borderColor: '#9FA8DA',
-                    color: '#424242',
-                    outlineColor: '#9FA8DA' 
-                  }}
+                  className="mt-1 block w-full px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#590178] border border-[#590178] text-[#590178] placeholder-gray-400 transition-colors"
                   placeholder="Enter your password"
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-3 flex items-center hover:text-gray-700"
-                  style={{ color: '#9FA8DA' }}
+                  className="absolute inset-y-0 right-3 flex items-center text-[#590178] hover:text-[#4a0166] transition-colors"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? <EyeOffIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
@@ -119,10 +106,7 @@ function AdminLogin() {
             <button
               type="submit"
               disabled={isLoading}
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-150 ease-in-out disabled:opacity-50 hover:bg-[#7986CB]"
-              style={{ 
-                backgroundColor: '#9FA8DA'
-              }}
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#590178] hover:bg-[#4a0166] focus:outline-none focus:ring-2 focus:ring-[#590178] focus:ring-offset-2 transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <span className="flex items-center">
@@ -140,14 +124,14 @@ function AdminLogin() {
           
           <div className="flex items-center justify-end">
             <div className="text-sm">
-              <a href="#" className="font-medium hover:underline" style={{ color: '#9FA8DA' }}>
+              <a href="#" className="font-medium text-[#590178] hover:text-[#4a0166] hover:underline transition-colors">
                 Forgot your password?
               </a>
             </div>
           </div>
         </form>
         
-        <div className="mt-6 text-center text-xs" style={{ color: '#9E9E9E' }}>
+        <div className="mt-6 text-center text-xs text-gray-500">
           © 2025 Scalixity. All rights reserved.
         </div>
       </div>

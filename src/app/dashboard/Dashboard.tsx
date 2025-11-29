@@ -37,13 +37,26 @@ const Dashboard = () => {
     <Box>
       {/* Dropdown menu */}
       <FormControl fullWidth sx={{ mb: 3, mt: 2 }}>
-        <InputLabel id="dashboard-component-select-label">Dashboard Component</InputLabel>
+        <InputLabel id="dashboard-component-select-label" sx={{ color: '#590178' }}>
+          Dashboard Component
+        </InputLabel>
         <Select
           labelId="dashboard-component-select-label"
           id="dashboard-component-select"
           value={selectedComponent}
           label="Dashboard Component"
           onChange={handleChange}
+          sx={{
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: '#590178',
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: '#590178',
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: '#590178',
+            },
+          }}
         >
           <MenuItem value="userAnalytics">User Analytics</MenuItem>
           {/* <MenuItem value="acquisitionMatrix">Acquisition Matrix</MenuItem> */}

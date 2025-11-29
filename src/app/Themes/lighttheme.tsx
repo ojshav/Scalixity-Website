@@ -4,23 +4,23 @@ const lightTheme: ThemeOptions = {
     palette: {
         mode: 'light',
         primary: {
-            main: '#9FA8DA', // Light purple/indigo from WhatWeOffer section
-            contrastText: '#000000'
+            main: '#590178', // Purple from new color theme
+            contrastText: '#FFFFFF'
         },
         secondary: {
             main: '#2C2C2C', // Dark gray from Hero section
         },
         background: {
-            default: '#F3F1EB', // Light beige/cream from Hero section
+            default: '#FFF2D5', // Cream from new color theme
             paper: '#FFFFFF',  // White background for content areas
         },
         text: {
-            primary: '#2C2C2C', // Dark gray text from Hero
+            primary: '#590178', // Purple text from new color theme
             secondary: '#666666',
         },
         action: {
-            active: '#9FA8DA',
-            hover: '#f4f4f4', // Light gray hover from WhatWeOffer
+            active: '#590178',
+            hover: '#FFF2D5', // Cream hover
         },
         success: {
             main: '#4CAF50',
@@ -48,10 +48,10 @@ const lightTheme: ThemeOptions = {
                 root: {
                     borderRadius: 24, // Full rounded buttons like in your Hero section
                     textTransform: 'none',
-                    backgroundColor: '#000000',
+                    backgroundColor: '#590178',
                     color: '#FFFFFF',
                     '&:hover': {
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        backgroundColor: '#4a0166',
                     }
                 }
             }
@@ -60,8 +60,15 @@ const lightTheme: ThemeOptions = {
             styleOverrides: {
                 root: {
                     borderRadius: 12, // Rounded cards like in WhatWeOffer section
-                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-                    border: '1px solid rgba(128, 128, 128, 0.2)',
+                    boxShadow: '0px 4px 20px rgba(89, 1, 120, 0.1)',
+                    border: '1px solid rgba(89, 1, 120, 0.2)',
+                }
+            }
+        },
+        MuiAppBar: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#590178',
                 }
             }
         }
