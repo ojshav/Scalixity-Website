@@ -124,6 +124,7 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
   const [heroImagePreview, setHeroImagePreview] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Array<{ field: string; message: string }>>([]);
   const [hasPricing, setHasPricing] = useState(false);
   const [hasPricingPlans, setHasPricingPlans] = useState(false);
 
@@ -178,6 +179,7 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
       setHeroImageFile(null);
     }
     setError(null);
+    setFieldErrors([]);
   }, [service, mode, isOpen]);
 
   const handleInputChange = (field: keyof ServiceFormData, value: string | number | boolean | File | null) => {
@@ -316,6 +318,7 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setFieldErrors([]);
 
     try {
       const token = localStorage.getItem('adminToken');
@@ -381,17 +384,24 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
         body: formDataObj,
       });
 
+      const responseData = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        // Check if there are detailed validation errors
+        if (responseData.errors && Array.isArray(responseData.errors)) {
+          setFieldErrors(responseData.errors);
+          setError(responseData.message || 'Validation error. Please check the fields below.');
+        } else {
+          setError(responseData.message || `HTTP error! status: ${response.status}`);
+        }
+        return;
       }
 
-      const data = await response.json();
-      if (data.success) {
+      if (responseData.success) {
         onSuccess();
         onClose();
       } else {
-        setError(data.message || 'Operation failed');
+        setError(responseData.message || 'Operation failed');
       }
     } catch (error: unknown) {
       console.error(`Error ${mode === 'create' ? 'creating' : 'updating'} service:`, error);
@@ -399,6 +409,15 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
     } finally {
       setLoading(false);
     }
+  };
+
+  // Helper function to get error message for a specific field
+  const getFieldError = (fieldName: string): string | undefined => {
+    const error = fieldErrors.find(err => 
+      err.field.toLowerCase() === fieldName.toLowerCase() || 
+      err.field.toLowerCase().includes(fieldName.toLowerCase())
+    );
+    return error?.message;
   };
 
   if (!isOpen) return null;
@@ -420,7 +439,19 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
 
         {error && (
           <div className="mb-4 bg-red-50 border border-red-200 rounded-md p-4">
-            <div className="text-sm text-red-700">{error}</div>
+            <div className="text-sm font-medium text-red-800 mb-2">{error}</div>
+            {fieldErrors.length > 0 && (
+              <div className="mt-3 space-y-2">
+                <div className="text-xs font-semibold text-red-700 uppercase tracking-wide">Field Errors:</div>
+                <ul className="list-disc list-inside space-y-1">
+                  {fieldErrors.map((err, index) => (
+                    <li key={index} className="text-sm text-red-700">
+                      <span className="font-semibold capitalize">{err.field.replace(/\./g, ' → ')}:</span> {err.message}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
 
@@ -435,9 +466,14 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
                 type="text"
                 value={formData.title}
                 onChange={(e) => handleTitleChange(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className={`w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 ${
+                  getFieldError('title') ? 'border-red-300' : 'border-gray-300'
+                }`}
                 required
               />
+              {getFieldError('title') && (
+                <p className="mt-1 text-sm text-red-600">{getFieldError('title')}</p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -447,9 +483,14 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
                 type="text"
                 value={formData.slug}
                 onChange={(e) => handleInputChange('slug', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className={`w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 ${
+                  getFieldError('slug') ? 'border-red-300' : 'border-gray-300'
+                }`}
                 required
               />
+              {getFieldError('slug') && (
+                <p className="mt-1 text-sm text-red-600">{getFieldError('slug')}</p>
+              )}
             </div>
           </div>
 
@@ -462,10 +503,15 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
               type="text"
               value={formData.shortDescription}
               onChange={(e) => handleInputChange('shortDescription', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className={`w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 ${
+                getFieldError('shortDescription') ? 'border-red-300' : 'border-gray-300'
+              }`}
               placeholder="Brief one-line description"
               required
             />
+            {getFieldError('shortDescription') && (
+              <p className="mt-1 text-sm text-red-600">{getFieldError('shortDescription')}</p>
+            )}
           </div>
 
           {/* Description */}
@@ -478,10 +524,15 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
               onChange={(e) => handleInputChange('description', e.target.value)}
               rows={4}
               data-lenis-prevent
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className={`w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 ${
+                getFieldError('description') ? 'border-red-300' : 'border-gray-300'
+              }`}
               placeholder="Detailed description of the service"
               required
             />
+            {getFieldError('description') && (
+              <p className="mt-1 text-sm text-red-600">{getFieldError('description')}</p>
+            )}
           </div>
 
           {/* Images */}
