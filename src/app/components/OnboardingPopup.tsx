@@ -14,6 +14,9 @@ export default function OnboardingPopup({ onClose }: OnboardingPopupProps) {
     email: "",
     phone: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
   const overlayRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -110,11 +113,13 @@ export default function OnboardingPopup({ onClose }: OnboardingPopupProps) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleClose = () => {
+  const handleClose = (shouldSetFlag: boolean = false) => {
     // Exit animation
     const tl = gsap.timeline({
       onComplete: () => {
-        localStorage.setItem("hasSeenOnboarding", "true");
+        if (shouldSetFlag) {
+          localStorage.setItem("hasSeenOnboarding", "true");
+        }
         onClose();
       }
     });
@@ -153,11 +158,40 @@ export default function OnboardingPopup({ onClose }: OnboardingPopupProps) {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here (e.g., send to API)
-    console.log("Form submitted:", formData);
-    handleClose();
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch(`${baseURL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || null,
+          message: "lead generated"
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit form');
+      }
+
+      const result = await response.json();
+      console.log("Form submitted successfully:", result);
+      // Only set localStorage flag after successful submission
+      handleClose(true);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setError(error instanceof Error ? error.message : 'An unexpected error occurred');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -179,7 +213,7 @@ export default function OnboardingPopup({ onClose }: OnboardingPopupProps) {
 
         <button
           ref={closeButtonRef}
-          onClick={handleClose}
+          onClick={() => handleClose(false)}
           className="absolute right-4 top-4 z-10 rounded-full bg-white/80 p-2 text-[#590178] hover:bg-white transition-colors"
         >
           <X size={20} />
@@ -250,12 +284,18 @@ export default function OnboardingPopup({ onClose }: OnboardingPopupProps) {
               />
             </div>
 
+            {error && (
+              <div className="text-red-600 text-sm text-center bg-red-50 p-2 rounded-lg">
+                {error}
+              </div>
+            )}
             <button
               ref={(el) => { if (el) formElementsRef.current[3] = el; }}
               type="submit"
-              className="w-full bg-[#590178] text-white font-semibold py-3 rounded-lg hover:bg-[#4a0163] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
+              disabled={isLoading}
+              className="w-full bg-[#590178] text-white font-semibold py-3 rounded-lg hover:bg-[#4a0163] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
-              Get Started
+              {isLoading ? "Submitting..." : "Get Started"}
             </button>
           </form>
         </div>

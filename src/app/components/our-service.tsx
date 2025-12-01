@@ -119,6 +119,15 @@ export function OurService() {
           </div>
         </div>
 
+        {/* View All Services Button */}
+        <div className="flex justify-center py-8">
+          <Link href="/services">
+            <button className="bg-[#590178] text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-[#4a0163] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0">
+              View All Our Services
+            </button>
+          </Link>
+        </div>
+
         <div className=" bg-[#590178] py-20 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl max-w-6xl mx-auto w-full relative z-10">
           <div className="text-center md:text-left">
             <h3 className="text-4xl md:text-6xl font-bold font-playfair text-white mb-2">
