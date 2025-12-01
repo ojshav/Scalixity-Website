@@ -241,20 +241,11 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
                   </div>
                 )}
                 <h2 className="text-3xl font-bold font-playfair mb-2">{tier.name}</h2>
-                {/* Price Display */}
-                <div className="mt-4">
-                  <div className="flex items-baseline justify-center gap-1 flex-wrap">
-                    <span className="text-4xl md:text-3Sxl font-bold font-playfair break-words">{tier.price || '$0'}</span>
-                    {tier.period && (
-                      <span className="text-lg md:text-xl opacity-90 whitespace-nowrap">{tier.period}</span>
-                    )}
-                  </div>
-                </div>
               </div>
 
               {/* Card Body */}
               <div className="p-8 relative z-10 group-hover:text-white transition-colors duration-500">
-                {/* Description */}
+                {/* Description (Price hidden) */}
                 <div className="text-center mb-6">
                   <p className="text-gray-600 group-hover:text-white text-sm transition-colors duration-500">
                     {tier.description}
@@ -329,4 +320,3 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
     </div>
   );
 }
-
