@@ -11,6 +11,7 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import scss from "@/styles/SideMenu.module.scss";
 import {
   Divider,
@@ -89,6 +90,7 @@ interface SideMenuProps {
 
 const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMenuProps) => {
   const [open, setOpen] = React.useState(false);
+  const pathname = usePathname();
 
   const handleDrawerToggle = () => {
     if (isMobile) {
@@ -102,45 +104,56 @@ const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMen
     <>
       {!isMobile && (
         <div className={scss.drawerHeader}>
-          <IconButton onClick={handleDrawerToggle}>
+          <IconButton onClick={handleDrawerToggle} sx={{ color: 'white' }}>
             {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
       )}
-      <Divider />
+      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.2)' }} />
       <List>
-        {menuListTranslations.map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
-            <NextLink className={scss.link} href={menuRouteList[index]}>
-              <ListItemButton
-                onClick={() => (isMobile || isTablet) && onMenuClose()}
-                title={text}
-                aria-label={text}
-                sx={{
-                  minHeight: 48,
-                  justifyContent: isMobile ? "flex-start" : open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+        {menuListTranslations.map((text, index) => {
+          const isActive = pathname === menuRouteList[index];
+          
+          return (
+            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+              <NextLink className={scss.link} href={menuRouteList[index]}>
+                <ListItemButton
+                  onClick={() => (isMobile || isTablet) && onMenuClose()}
+                  title={text}
+                  aria-label={text}
                   sx={{
-                    minWidth: 0,
-                    mr: isMobile || open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: isMobile ? "flex-start" : open ? "initial" : "center",
+                    px: 2.5,
+                    color: isActive ? '#590178' : 'white',
+                    backgroundColor: isActive ? 'white' : 'transparent',
+                    '&:hover': {
+                      backgroundColor: isActive ? 'white' : 'rgba(255, 255, 255, 0.1)',
+                    },
                   }}
                 >
-                  {menuListIcons[index]}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  sx={{
-                    opacity: isMobile || open ? 1 : 0,
-                  }}
-                />
-              </ListItemButton>
-            </NextLink>
-          </ListItem>
-        ))}
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: isMobile || open ? 3 : "auto",
+                      justifyContent: "center",
+                      color: isActive ? '#590178' : 'white',
+                    }}
+                  >
+                    {menuListIcons[index]}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={text}
+                    sx={{
+                      opacity: isMobile || open ? 1 : 0,
+                      color: isActive ? '#590178' : 'white',
+                    }}
+                  />
+                </ListItemButton>
+              </NextLink>
+            </ListItem>
+          );
+        })}
       </List>
     </>
   );
@@ -162,6 +175,8 @@ const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMen
               boxSizing: 'border-box', 
               width: drawerWidth,
               top: 56,
+              backgroundColor: '#590178',
+              color: 'white',
             },
           }}
         >
@@ -181,6 +196,8 @@ const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMen
             '& .MuiDrawer-paper': {
               top: 64,
               width: open ? drawerWidth : 64,
+              backgroundColor: '#590178',
+              color: 'white',
               ...(open ? openedMixin : closedMixin),
             },
           }}

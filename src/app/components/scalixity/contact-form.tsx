@@ -183,6 +183,7 @@ export default function ContactForm() {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
+                    data-lenis-prevent
                     className="w-full px-3 sm:px-4 py-4 sm:py-6 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all duration-300 resize-none text-base sm:text-lg bg-white"
                     style={{ height: '100px' }}
                     required

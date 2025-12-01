@@ -1,7 +1,7 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Check, Phone, Mail, MapPin, Twitter, MessageCircle, X } from 'lucide-react'
+import { Check, Phone, Mail, MapPin, Twitter, Instagram, Linkedin, X } from 'lucide-react'
 import { WhatWeOffer } from "@/src/app/components/what-we-offer"
 import CoreValue from "@/src/app/components/About-us/corevalue"
 import { CTA } from '../components/cta'
@@ -18,6 +18,8 @@ export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+  const [selectedSubject, setSelectedSubject] = useState('General Inquiry')
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
     document.body.style.overflow = isCalendarOpen ? 'hidden' : ''
@@ -26,12 +28,32 @@ export default function ContactPage() {
     }
   }, [isCalendarOpen])
 
+  // Reset textarea height when form is submitted
+  useEffect(() => {
+    if (isSubmitted && textareaRef.current) {
+      textareaRef.current.style.height = 'auto'
+    }
+  }, [isSubmitted])
+
+  const autoResizeTextarea = () => {
+    const textarea = textareaRef.current
+    if (textarea) {
+      textarea.style.height = 'auto'
+      textarea.style.height = `${textarea.scrollHeight}px`
+    }
+  }
+
   const handleInputChange = (e: { target: { name: string; value: number | string | boolean } }) => {
     const { name, value } = e.target
     setFormData({
       ...formData,
       [name]: value
     })
+    
+    // Auto-resize textarea for message field
+    if (name === 'message') {
+      autoResizeTextarea()
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -113,15 +135,32 @@ export default function ContactPage() {
               <div className="space-y-6 mb-8">
                 <div className="flex items-start gap-4">
                   <Phone className="h-5 w-5 text-white mt-1 flex-shrink-0" />
-                  <span className="text-white text-sm md:text-base">+1012 3456 789</span>
+                  <span className="text-white text-sm md:text-base">+91 9424710030</span>
                 </div>
                 <div className="flex items-start gap-4">
                   <Mail className="h-5 w-5 text-white mt-1 flex-shrink-0" />
-                  <span className="text-white text-sm md:text-base">demo@gmail.com</span>
+                  <span className="text-white text-sm md:text-base">info@scalixity.com</span>
                 </div>
-                <div className="flex items-start gap-4">
-                  <MapPin className="h-5 w-5 text-white mt-1 flex-shrink-0" />
-                  <span className="text-white text-sm md:text-base">132 Dartmouth Street Boston, Massachusetts 02156 United States</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-start gap-4">
+                    <MapPin className="h-5 w-5 text-white mt-1 flex-shrink-0" />
+                    <span className="text-white text-sm md:text-base">
+                      66, House, Lashkar, Block A<br />
+                      Sindhi Colony<br />
+                      Gwalior, Madhya Pradesh<br />
+                      474001, India
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <MapPin className="h-5 w-5 text-white mt-1 flex-shrink-0" />
+                    <span className="text-white text-sm md:text-base">
+                      71-75 Shelton Street<br />
+                      Covent Garden<br />
+                      London<br />
+                      WC2H 9JQ<br />
+                      United Kingdom
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -145,15 +184,15 @@ export default function ContactPage() {
 
               {/* Social Media Icons */}
               <div className="flex gap-4 mt-auto">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
+                <a href="https://twitter.com/scalixity" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
                   <Twitter className="h-5 w-5 text-white" />
-                </div>
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
-                  <MessageCircle className="h-5 w-5 text-white" />
-                </div>
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
-                  <MessageCircle className="h-5 w-5 text-white" />
-                </div>
+                </a>
+                <a href="https://www.instagram.com/scalixity?igsh=MTZjYTh4eWE1YTlyZA==" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
+                  <Instagram className="h-5 w-5 text-white" />
+                </a>
+                <a href="https://linkedin.com/company/Scalixity" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer">
+                  <Linkedin className="h-5 w-5 text-white" />
+                </a>
               </div>
             </motion.div>
 
@@ -253,18 +292,25 @@ export default function ContactPage() {
                     <label className="block text-sm font-medium text-gray-900 mb-3 font-poppins">
                       Select Subject?
                     </label>
-                    <div className="flex flex-wrap gap-4">
-                      {[0, 1, 2, 3].map((index) => (
-                        <label key={index} className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="subject"
-                            value="General Inquiry"
-                            defaultChecked={index === 0}
-                            className="w-5 h-5 text-[#590178] border-gray-300 focus:ring-[#590178] focus:ring-2 accent-[#590178]"
-                          />
-                          <span className="text-sm text-gray-700 font-poppins">General Inquiry</span>
-                        </label>
+                    <div className="flex flex-wrap gap-3">
+                      {[
+                        { value: "General Inquiry", label: "General Inquiry" },
+                        { value: "Service Inquiry", label: "Service Inquiry" },
+                        { value: "Pricing Inquiry", label: "Pricing Inquiry" },
+                        { value: "Feedback", label: "Feedback" }
+                      ].map((subject) => (
+                        <button
+                          key={subject.value}
+                          type="button"
+                          onClick={() => setSelectedSubject(subject.value)}
+                          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 font-poppins ${
+                            selectedSubject === subject.value
+                              ? 'bg-[#590178] text-white shadow-md'
+                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {subject.label}
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -274,14 +320,17 @@ export default function ContactPage() {
                       Message
                     </label>
                     <textarea
+                      ref={textareaRef}
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={1}
+                      data-lenis-prevent
                       className="w-full px-0 py-2 border-0 border-b-2 border-gray-300 hover:border-[#590178] focus:outline-none focus:ring-0 focus:border-[#590178] bg-transparent resize-none rounded-none shadow-none overflow-y-auto max-h-[8rem] transition-colors font-poppins"
                       placeholder="Write your message.."
                       required
+                      onInput={autoResizeTextarea}
                     />
                   </div>
 
@@ -329,7 +378,7 @@ export default function ContactPage() {
             </button>
             <div className="flex-1 mt-12 overflow-hidden rounded-2xl border border-gray-100 shadow-inner">
               <InlineWidget
-                url="https://calendly.com/awasthirishabh56/30min"
+                url="https://calendly.com/scalixitydevops/meet"
                 styles={{
                   height: "100%",
                   width: "100%",

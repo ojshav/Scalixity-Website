@@ -282,6 +282,7 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
                       placeholder="Tell us about your project or how we can help you..."
                       value={formData.message}
                       onChange={handleInputChange}
+                      data-lenis-prevent
                       className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all duration-300 text-lg resize-none"
                       rows={4}
                       required

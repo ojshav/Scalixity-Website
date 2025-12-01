@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, X } from 'lucide-react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -31,6 +31,7 @@ export function WorkProjects() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+    const [showDemoModal, setShowDemoModal] = useState(false);
     const containerRef = React.useRef<HTMLDivElement>(null);
     const contentRef = React.useRef<HTMLDivElement>(null);
     const imageRef = React.useRef<HTMLImageElement>(null);
@@ -195,16 +196,32 @@ export function WorkProjects() {
 
                 {/* Large Card Below All Cards */}
                 <div id="aoin-project" className="mt-28 relative scroll-mt-20" ref={containerRef}>
-                    <div className="bg-white p-12 rounded-lg rounded-br-[8rem] md:rounded-br-[12rem] shadow-lg overflow-hidden min-h-[600px] transition-all duration-500 ease-in-out">
-                        {/* Image Placeholder */}
-                        <div ref={imageRef} className="w-full h-96 overflow-hidden rounded-lg mb-8 relative">
-                            <Image
-                                src={activeProject.image}
-                                alt={activeProject.title}
-                                fill
-                                className="object-cover"
-                            />
-                        </div>
+                    <div className="bg-white p-12 rounded-lg rounded-br-[8rem] md:rounded-br-[12rem] shadow-lg overflow-visible min-h-[600px] transition-all duration-500 ease-in-out">
+                        {/* Image/Iframe Placeholder */}
+                        {activeProject.id === 'aoin' ? (
+                            <div 
+                                ref={imageRef} 
+                                className="w-full h-[450px] overflow-hidden rounded-lg mb-8 relative cursor-pointer"
+                                onClick={() => setShowDemoModal(true)}
+                            >
+                                <iframe 
+                                    src="https://app.supademo.com/embed/cmielh911b27wb7b43c4nsisn?v_email=EMAIL&embed_v=2&utm_source=embed" 
+                                    loading="lazy" 
+                                    title="Browse Aoin and add men's wear to cart" 
+                                    allow="clipboard-write" 
+                                    className="w-full h-full rounded-lg border-0 pointer-events-none"
+                                />
+                            </div>
+                        ) : (
+                            <div ref={imageRef} className="w-full h-96 overflow-hidden rounded-lg mb-8 relative">
+                                <Image
+                                    src={activeProject.image}
+                                    alt={activeProject.title}
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        )}
 
                         {/* Content Section - Below Image */}
                         <div ref={contentRef} className="py-8 flex flex-col md:flex-row gap-8">
@@ -213,12 +230,21 @@ export function WorkProjects() {
                                 <h3 className="font-playfair text-2xl md:text-3xl font-semibold text-[#0D0C0C] mb-6">
                                     {activeProject.title}
                                 </h3>
-                                <Link
-                                    href="/work"
-                                    className="px-4 py-3 bg-[#590178] text-white rounded-lg font-semibold hover:bg-[#6A0188] transition-colors text-sm md:text-base w-fit inline-block"
-                                >
-                                    {activeProject.buttonText}
-                                </Link>
+                                {activeProject.id === 'aoin' ? (
+                                    <button
+                                        onClick={() => setShowDemoModal(true)}
+                                        className="px-4 py-3 bg-[#590178] text-white rounded-lg font-semibold hover:bg-[#6A0188] transition-colors text-sm md:text-base w-fit"
+                                    >
+                                        {activeProject.buttonText}
+                                    </button>
+                                ) : (
+                                    <Link
+                                        href="/work"
+                                        className="px-4 py-3 bg-[#590178] text-white rounded-lg font-semibold hover:bg-[#6A0188] transition-colors text-sm md:text-base w-fit inline-block"
+                                    >
+                                        {activeProject.buttonText}
+                                    </Link>
+                                )}
                             </div>
 
                             {/* Right Side - Description */}
@@ -242,6 +268,43 @@ export function WorkProjects() {
                     </div>
                 </div>
             </div>
+
+            {/* Demo Modal */}
+            {showDemoModal && (
+                <div 
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4 overflow-y-auto"
+                    onClick={() => setShowDemoModal(false)}
+                >
+                    <div 
+                        className="relative w-full max-w-7xl bg-white rounded-lg p-4 md:p-8 my-auto"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setShowDemoModal(false)}
+                            className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-[#590178] text-white rounded-full hover:bg-[#6A0188] transition-colors"
+                        >
+                            <X className="w-4 h-4" />
+                        </button>
+
+                        {/* Demo Title */}
+                        <h3 className="font-playfair text-xl md:text-2xl font-semibold text-[#0D0C0C] mb-4 text-center">
+                            AOIN - Live Demo
+                        </h3>
+
+                        {/* Iframe Container */}
+                        <div className="relative box-content w-full h-[70vh] md:h-[75vh]">
+                            <iframe 
+                                src="https://app.supademo.com/embed/cmielh911b27wb7b43c4nsisn?v_email=EMAIL&embed_v=2&utm_source=embed" 
+                                loading="lazy" 
+                                title="Browse Aoin and add men's wear to cart" 
+                                allow="clipboard-write" 
+                                className="w-full h-full rounded-lg border-0"
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

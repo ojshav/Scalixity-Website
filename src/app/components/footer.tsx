@@ -99,7 +99,7 @@ export function Footer() {
               <li>
                 <a href="mailto:contact@scalixity.com" className="flex items-center space-x-3 text-gray-200 hover:text-white transition-colors group">
                   <Mail className="h-5 w-5 flex-shrink-0 group-hover:text-white" />
-                  <span className="text-sm">scalixity@gmail.com</span>
+                  <span className="text-sm">info@scalixity.com</span>
                 </a>
               </li>
               <li>
@@ -112,8 +112,22 @@ export function Footer() {
                 <div className="flex items-start space-x-3 text-gray-200">
                   <MapPin className="h-5 w-5 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                  Comfort Medows,78,Vijay Nagar<br />
-                  Indore,MP, India 452010
+                  71-75 Shelton Street<br />
+                  Covent Garden<br />
+                  London<br />
+                  WC2H 9JQ<br />
+                  United Kingdom
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div className="flex items-start space-x-3 text-gray-200">
+                  <MapPin className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">
+                  66, House, Lashkar, Block A<br />
+                  Sindhi Colony<br />
+                  Gwalior, Madhya Pradesh<br />
+                  474001, India
                   </span>
                 </div>
               </li>

@@ -81,6 +81,28 @@ const Chatbot: React.FC = () => {
     { id: '5', name: 'Manufacturing' }
   ];
 
+  // Suggested questions based on section
+  const suggestedQuestions = {
+    general: [
+      "What services does Scalixity offer?",
+      "Tell me about your company",
+      "What industries do you serve?",
+      "How can Scalixity help my business?",
+      "What makes Scalixity different?",
+      "Do you offer custom solutions?",
+    ],
+    services: [
+      "What services are available in my industry?",
+      "Tell me about your pricing",
+      "Do you offer consulting services?",
+    ],
+    contact: [
+      "What are your business hours?",
+      "How can I schedule a consultation?",
+      "Where is your office located?",
+    ]
+  };
+
   // Fetch services from API
   const fetchServices = async () => {
     setIsLoading(true);
@@ -415,6 +437,19 @@ const Chatbot: React.FC = () => {
     }
   };
 
+  const handleSuggestedQuestion = (question: string) => {
+    addUserMessage(question);
+
+    if (activeSection === 'general') {
+      handleGeneralQuery(question.toLowerCase());
+    } else if (activeSection === 'contact') {
+      handleContactFlow();
+    } else if (activeSection === 'services') {
+      // For services section, treat it like a general query
+      handleGeneralQuery(question.toLowerCase());
+    }
+  };
+
   return (
     <div className="fixed bottom-5 right-5 z-50">
       <button
@@ -436,7 +471,7 @@ const Chatbot: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4" data-lenis-prevent>
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -448,7 +483,7 @@ const Chatbot: React.FC = () => {
                   className={`max-w-[80%] p-3 rounded-lg ${
                     message.sender === 'user'
                       ? 'bg-[#590178] text-white rounded-tr-none'
-                      : 'bg-[#FFF2D5] text-[#590178] rounded-tl-none'
+                      : 'bg-gray-100 text-[#590178] rounded-tl-none'
                   }`}
                 >
                   {message.type === 'text' && <p className="whitespace-pre-line">{message.content}</p>}
@@ -496,6 +531,21 @@ const Chatbot: React.FC = () => {
                 </div>
               </div>
             ))}
+            
+            {/* Suggested Questions - shown directly in chat */}
+            {messages.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {suggestedQuestions[activeSection].slice(0, 4).map((question, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSuggestedQuestion(question)}
+                    className="text-xs px-3 py-2 rounded-full bg-white border border-[#590178] text-[#590178] hover:bg-[#590178] hover:text-white transition-colors duration-200 shadow-sm"
+                  >
+                    {question}
+                  </button>
+                ))}
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
 

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { SiteHeader } from "@/src/app/components/site-header";
 import { Footer } from "@/src/app/components/footer";
 import Chatbot from "@/src/app/components/Chatbot";
+import OnboardingPopup from "@/src/app/components/OnboardingPopup";
 import { v4 as uuidv4 } from "uuid";
 import Lenis from "lenis";
 import { gsap } from "gsap";
@@ -19,6 +20,19 @@ if (typeof window !== "undefined") {
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [country, setCountry] = useState<string | null>(null);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+
+  // Check if user should see onboarding popup (only first time)
+  useEffect(() => {
+    const isLandingPage = pathname === "/";
+    const hasSeenOnboarding = localStorage.getItem("hasSeenOnboarding");
+    
+    if (isLandingPage && !hasSeenOnboarding) {
+      setTimeout(() => {
+        setShowOnboarding(true);
+      }, 1500);
+    }
+  }, [pathname]);
 
   // Initialize Lenis smooth scrolling
   useEffect(() => {
@@ -399,7 +413,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <>
-    <Chatbot />
+      {showOnboarding && <OnboardingPopup onClose={() => setShowOnboarding(false)} />}
+      <Chatbot />
       {!hideLayout && !hideHeaderOnly && <SiteHeader />}
       <main className="flex-1">
         {children}

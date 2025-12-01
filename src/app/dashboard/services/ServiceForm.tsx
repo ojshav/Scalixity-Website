@@ -477,6 +477,7 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
               value={formData.description}
               onChange={(e) => handleInputChange('description', e.target.value)}
               rows={4}
+              data-lenis-prevent
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
               placeholder="Detailed description of the service"
               required

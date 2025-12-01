@@ -37,7 +37,7 @@ const manrope = Manrope({
 });
 
 export const metadata = {
-
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://scalixity.com'),
   title: 'Scalixity- AI Solutions for Data-Driven Companies',
   description: 'We help data-driven companies build measurable generative AI solutions',
   keywords: 'AI, artificial intelligence, machine learning, data science, consulting',
