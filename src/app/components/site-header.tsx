@@ -276,7 +276,7 @@ export function SiteHeader() {
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Industries</span>
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </button>
-                <div className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[600px] max-h-[80vh] overflow-y-auto rounded-2xl border border-[#E4E7EC] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div data-lenis-prevent className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[600px] max-h-[80vh] overflow-y-auto rounded-2xl border border-[#E4E7EC] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                   <div className="px-3 py-3 grid grid-cols-1 md:grid-cols-2 gap-4">
                     {industries.map((industry) => (
                       <div key={industry.category} className="space-y-2">
