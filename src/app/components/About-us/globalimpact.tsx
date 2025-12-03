@@ -59,7 +59,7 @@ function AnimatedCounter({ end, duration = 2000, suffix = '' }: AnimatedCounterP
   }, [isVisible, end, duration]);
 
   return (
-    <div ref={counterRef} className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#5B1A7D] mb-2">
+    <div ref={counterRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#5B1A7D] mb-2">
       {count}{suffix}
     </div>
   );
@@ -67,28 +67,28 @@ function AnimatedCounter({ end, duration = 2000, suffix = '' }: AnimatedCounterP
 
 export default function GlobalImpact() {
   return (
-    <section className="bg-[#FFF2D5] py-16 px-6 md:px-12 lg:px-24">
+    <section className="bg-[#FFF2D5] py-12 sm:py-14 md:py-16 px-4 sm:px-6 md:px-12 lg:px-24">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold font-playfair text-[#5B1A7D] text-center mb-6">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-playfair text-[#5B1A7D] text-center mb-4 sm:mb-5 md:mb-6">
           Global Impact. Tangible Results.
         </h2>
 
         {/* Description */}
-        <p className="text-center text-black/80 text-base md:text-2xl max-w-5xl mx-auto mb-16">
+        <p className="text-center text-black/80 text-sm sm:text-base md:text-xl lg:text-2xl max-w-5xl mx-auto mb-10 sm:mb-12 md:mb-14 lg:mb-16 px-2">
           We are a collective of thinkers, makers, and innovators dedicated to solving the toughest 
           challenges through artificial intelligence and machine learning.
         </p>
 
         {/* Top Horizontal Line */}
-        <div className="w-full h-px bg-black/10 mb-12"></div>
+        <div className="w-full h-px bg-black/10 mb-8 sm:mb-10 md:mb-12"></div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-8 lg:gap-12">
           {/* Stat 1 */}
           <div className="text-center">
             <AnimatedCounter end={10} suffix="+" />
-            <div className="text-xs md:text-sm font-semibold text-black tracking-wider">
+            <div className="text-xs sm:text-sm md:text-sm font-semibold text-black tracking-wider px-2">
               SUCCESSFUL PROJECTS DELIVERED
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function GlobalImpact() {
           {/* Stat 2 */}
           <div className="text-center">
             <AnimatedCounter end={8} suffix="+" />
-            <div className="text-xs md:text-sm font-semibold text-black tracking-wider">
+            <div className="text-xs sm:text-sm md:text-sm font-semibold text-black tracking-wider px-2">
             ACTIVE CLIENTS ACROSS DIFFERENT INDUSTRIES
             </div>
           </div>
@@ -104,7 +104,7 @@ export default function GlobalImpact() {
           {/* Stat 3 */}
           <div className="text-center">
             <AnimatedCounter end={5} suffix="+" />
-            <div className="text-xs md:text-sm font-semibold text-black tracking-wider">
+            <div className="text-xs sm:text-sm md:text-sm font-semibold text-black tracking-wider px-2">
               INDUSTRIES SERVED
             </div>
           </div>
@@ -112,16 +112,15 @@ export default function GlobalImpact() {
           {/* Stat 4 */}
           <div className="text-center">
             <AnimatedCounter end={1} suffix="+" />
-            <div className="text-xs md:text-sm font-semibold text-black tracking-wider">
+            <div className="text-xs sm:text-sm md:text-sm font-semibold text-black tracking-wider px-2">
             SHIPPING SCALABLE DIGITAL SOLUTIONS
             </div>
           </div>
         </div>
 
         {/* Bottom Horizontal Line */}
-        <div className="w-full h-px bg-black/10 mt-12"></div>
+        <div className="w-full h-px bg-black/10 mt-8 sm:mt-10 md:mt-12"></div>
       </div>
     </section>
   );
 }
-

@@ -153,7 +153,7 @@ const industries = [
 export function ContactButton() {
   return (
     <Link href="/contact">
-      <Button className="bg-[#590178] hover:bg-[#6D0489] text-white w-full sm:w-auto">
+      <Button className="bg-[#590178] hover:bg-[#6D0489] text-white w-full sm:w-auto text-sm sm:text-base py-2 sm:py-2.5 px-4 sm:px-6 touch-manipulation">
         Get Started
       </Button>
     </Link>
@@ -209,12 +209,12 @@ export function SiteHeader() {
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       <div className="container-fluid w-full px-0 mx-0">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-14 sm:h-16 items-center justify-between">
           {/* Logo at the far left corner */}
-          <div className="flex items-center pl-4 sm:pl-6 lg:pl-8">
+          <div className="flex items-center pl-3 sm:pl-4 md:pl-6 lg:pl-8">
             <Link href="/" className="group flex items-center hover:no-underline">
               <motion.span
-                className="text-xl sm:text-2xl font-bold text-black hover:text-[#590178] transition-colors font-playfair"
+                className="text-lg sm:text-xl md:text-2xl font-bold text-black hover:text-[#590178] transition-colors font-playfair"
                 style={{ opacity: 1, transform: 'none' }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -230,7 +230,7 @@ export function SiteHeader() {
           {/* Desktop Navigation - centered (only show when not scrolled) */}
           {!isScrolled && (
             <motion.nav
-              className="hidden md:flex items-center justify-center space-x-1 lg:space-x-6"
+              className="hidden lg:flex items-center justify-center space-x-1 xl:space-x-6"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -243,11 +243,11 @@ export function SiteHeader() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
-                <button className="group flex items-center px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                <button className="group flex items-center px-1 lg:px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-sm lg:text-base font-medium hover:no-underline whitespace-nowrap">
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Services</span>
-                  <ChevronDown className="ml-1 h-4 w-4" />
+                  <ChevronDown className="ml-1 h-3 w-3 lg:h-4 lg:w-4" />
                 </button>
-                <div className="absolute left-0 mt-2 w-[230px] rounded-2xl border border-[#E4E7EC] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="absolute left-0 mt-2 w-[200px] lg:w-[230px] rounded-2xl border border-[#E4E7EC] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                   <div className="px-3 py-3 space-y-2">
                     <ul className="space-y-1">
                       {services.map((item) => (
@@ -272,11 +272,11 @@ export function SiteHeader() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.15 }}
               >
-                <button className="group flex items-center px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                <button className="group flex items-center px-1 lg:px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-sm lg:text-base font-medium hover:no-underline whitespace-nowrap">
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Industries</span>
-                  <ChevronDown className="ml-1 h-4 w-4" />
+                  <ChevronDown className="ml-1 h-3 w-3 lg:h-4 lg:w-4" />
                 </button>
-                <div data-lenis-prevent className="absolute left-0 mt-2 w-[90vw] md:w-[95vw] lg:w-[600px] max-h-[80vh] overflow-y-auto rounded-2xl border border-[#E4E7EC] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div data-lenis-prevent className="absolute left-0 mt-2 w-[500px] xl:w-[600px] max-h-[80vh] overflow-y-auto rounded-2xl border border-[#E4E7EC] bg-white shadow-[0_18px_40px_rgba(15,23,42,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                   <div className="px-3 py-3 grid grid-cols-1 md:grid-cols-2 gap-4">
                     {industries.map((industry) => (
                       <div key={industry.category} className="space-y-2">
@@ -307,7 +307,7 @@ export function SiteHeader() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
               >
-                <Link href="/work" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                <Link href="/work" className="group px-1 lg:px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-sm lg:text-base font-medium hover:no-underline whitespace-nowrap">
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Our Work</span>
                 </Link>
               </motion.div>
@@ -316,7 +316,7 @@ export function SiteHeader() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.25 }}
               >
-                <Link href="/company" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                <Link href="/company" className="group px-1 lg:px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-sm lg:text-base font-medium hover:no-underline whitespace-nowrap">
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">About us</span>
                 </Link>
               </motion.div>
@@ -325,7 +325,7 @@ export function SiteHeader() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
-                <Link href="/contact" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                <Link href="/contact" className="group px-1 lg:px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-sm lg:text-base font-medium hover:no-underline whitespace-nowrap">
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Contact</span>
                 </Link>
               </motion.div>
@@ -334,7 +334,7 @@ export function SiteHeader() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
-                <Link href="/blog" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                <Link href="/blog" className="group px-1 lg:px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-sm lg:text-base font-medium hover:no-underline whitespace-nowrap">
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Blog</span>
                 </Link>
               </motion.div>
@@ -343,7 +343,7 @@ export function SiteHeader() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.35 }}
               >
-                <Link href="/resources" className="group px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-base font-medium hover:no-underline">
+                <Link href="/resources" className="group px-1 lg:px-2 py-1 text-[#0D0C0C] hover:text-[#590178] transition-colors text-sm lg:text-base font-medium hover:no-underline whitespace-nowrap">
                   <span className="relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#590178] after:transition-all after:duration-300 group-hover:after:w-full">Resources</span>
                 </Link>
               </motion.div>
@@ -368,11 +368,11 @@ export function SiteHeader() {
           )}
 
           {/* Right side - Contact Button / Toggle and Mobile Menu Toggle */}
-          <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
+          <div className="flex items-center pr-3 sm:pr-4 md:pr-6 lg:pr-8 gap-2">
             {/* Desktop Menu Toggle (only show when scrolled) */}
             {isScrolled && (
               <motion.div
-                className="hidden md:flex items-center"
+                className="hidden lg:flex items-center"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
@@ -382,7 +382,7 @@ export function SiteHeader() {
                   aria-label="Toggle menu"
                   className="p-2 hover:bg-accent rounded-md transition-colors"
                 >
-                  {isDesktopMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                  {isDesktopMenuOpen ? <X className="h-5 w-5 lg:h-6 lg:w-6" /> : <Menu className="h-5 w-5 lg:h-6 lg:w-6" />}
                 </button>
               </motion.div>
             )}
@@ -395,18 +395,18 @@ export function SiteHeader() {
                 transition={{ duration: 0.4, delay: 0.5 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="hidden md:block"
+                className="hidden lg:block"
               >
                 <ContactButton />
               </motion.div>
             )}
 
-            {/* Mobile Menu Button */}
-            <div className="flex items-center md:hidden">
+            {/* Tablet/Mobile Menu Button */}
+            <div className="flex items-center lg:hidden">
               <button
                 onClick={toggleMenu}
                 aria-label="Toggle menu"
-                className="p-2"
+                className="p-2 hover:bg-accent rounded-md transition-colors touch-manipulation"
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
@@ -418,14 +418,14 @@ export function SiteHeader() {
       {/* Desktop Menu Dropdown (when scrolled) */}
       {isScrolled && isDesktopMenuOpen && (
         <motion.div
-          className="hidden md:block fixed top-16 left-0 right-0 bg-[#FFF2D5] shadow-xl overflow-hidden z-40"
+          className="hidden lg:block fixed top-14 sm:top-16 left-0 right-0 bg-[#FFF2D5] shadow-xl overflow-hidden z-40"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -20, opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          <div className="container mx-auto px-8 py-8 max-h-[80vh] overflow-y-auto">
-            <div className="grid grid-cols-4 gap-8">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-h-[80vh] overflow-y-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
               {/* Services */}
               <motion.div
                 className="space-y-4"
@@ -609,36 +609,36 @@ export function SiteHeader() {
         </motion.div>
       )}
 
-      {/* Mobile Menu */}
+      {/* Mobile and Tablet Menu */}
       {isMenuOpen && (
         <motion.div
-          className="md:hidden bg-background border-t border-border/40 max-h-[85vh] overflow-y-auto"
+          className="lg:hidden bg-[#FFF2D5] border-t border-border/40 max-h-[85vh] overflow-y-auto"
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="px-4 py-4 space-y-4">
+          <div className="px-4 sm:px-6 py-4 sm:py-6 space-y-4">
             {/* Services Section */}
             <div className="space-y-3">
               <button
                 onClick={() => toggleCategory('services')}
-                className="flex items-center justify-between w-full font-medium text-foreground text-base"
+                className="flex items-center justify-between w-full font-medium text-foreground text-base sm:text-lg py-2 touch-manipulation"
               >
                 <span>Services</span>
                 {openCategories['services'] ?
-                  <ChevronDown className="h-5 w-5" /> :
-                  <ChevronRight className="h-5 w-5" />
+                  <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" /> :
+                  <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
                 }
               </button>
 
               {openCategories['services'] && (
-                <div className="pl-2 space-y-2">
+                <div className="pl-2 sm:pl-4 space-y-2">
                   {services.map((item) => (
                     <div key={item.name}>
                       <Link
                         href={item.href}
-                        className="block py-1 px-2 rounded-md text-sm text-foreground transition-colors duration-200  hover:text-[#590178]"
+                        className="block py-2 sm:py-2.5 px-3 rounded-md text-sm sm:text-base text-foreground transition-colors duration-200 hover:text-[#590178] hover:bg-[#F4EEFF] touch-manipulation"
                         onClick={toggleMenu}
                       >
                         {item.name}
@@ -653,40 +653,40 @@ export function SiteHeader() {
             <div className="space-y-3">
               <button
                 onClick={() => toggleCategory('industries')}
-                className="flex items-center justify-between w-full font-medium text-foreground text-base"
+                className="flex items-center justify-between w-full font-medium text-foreground text-base sm:text-lg py-2 touch-manipulation"
               >
                 <span>Industries</span>
                 {openCategories['industries'] ?
-                  <ChevronDown className="h-5 w-5" /> :
-                  <ChevronRight className="h-5 w-5" />
+                  <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" /> :
+                  <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
                 }
               </button>
 
               {openCategories['industries'] && (
-                <div className="pl-2 space-y-3">
+                <div className="pl-2 sm:pl-4 space-y-3">
                   {industries.map((industry) => (
                     <div key={industry.category} className="space-y-2">
                       <button
                         onClick={() => toggleCategory(`industry-${industry.category}`)}
-                        className="flex items-center justify-between w-full font-medium text-base"
+                        className="flex items-center justify-between w-full font-medium text-sm sm:text-base py-2 touch-manipulation"
                       >
-                        <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
-                          <industry.icon className="mr-2 h-4 w-4 text-primary" />
-                          {industry.category}
+                        <div className="flex items-center gap-2">
+                          <industry.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0" />
+                          <span>{industry.category}</span>
                         </div>
                         {openCategories[`industry-${industry.category}`] ?
-                          <ChevronDown className="h-4 w-4" /> :
-                          <ChevronRight className="h-4 w-4" />
+                          <ChevronDown className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" /> :
+                          <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                         }
                       </button>
 
                       {openCategories[`industry-${industry.category}`] && (
-                        <ul className="pl-6 space-y-2">
+                        <ul className="pl-4 sm:pl-6 space-y-2">
                           {industry.items.map((item) => (
                             <li key={item.name}>
                               <Link
                                 href={item.href}
-                                className="block py-1 px-2 rounded-md text-sm text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178]"
+                                className="block py-2 sm:py-2.5 px-3 rounded-md text-sm sm:text-base text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] touch-manipulation"
                                 onClick={toggleMenu}
                               >
                                 {item.name}
@@ -702,32 +702,30 @@ export function SiteHeader() {
             </div>
 
             {/* Other Links */}
-            <div className="space-y-3">
-              <Link href="/work" className="block py-1 px-2 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base font-medium" onClick={toggleMenu}>
+            <div className="space-y-2 border-t border-border/40 pt-4">
+              <Link href="/work" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 Our Work
               </Link>
-              <Link href="/company" className="block py-1 px-2 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base font-medium" onClick={toggleMenu}>
+              <Link href="/company" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 About us
               </Link>
-              <Link href="/contact" className="block py-1 px-2 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base font-medium" onClick={toggleMenu}>
+              <Link href="/contact" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 Contact
               </Link>
-              <Link href="/blog" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
+              <Link href="/blog" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 Blog
               </Link>
-              <Link href="/resources" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
+              <Link href="/resources" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 Resources
               </Link>
               {/* 
-              <Link href="/campaign" className="block py-1 text-foreground hover:text-primary text-base font-medium" onClick={toggleMenu}>
+              <Link href="/campaign" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 UI/UX Competition
               </Link> */}
-
-
             </div>
 
-            {/* Mobile Contact Button */}
-            <div className="pt-2">
+            {/* Mobile/Tablet Contact Button */}
+            <div className="pt-4 pb-2">
               <ContactButton />
             </div>
           </div>

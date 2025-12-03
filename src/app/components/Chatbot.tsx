@@ -451,27 +451,27 @@ const Chatbot: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50">
+    <div className="fixed bottom-4 right-4 md:bottom-5 md:right-5 z-50">
       <button
         onClick={toggleChat}
-        className="p-4 bg-[#590178] text-white rounded-full shadow-lg hover:bg-[#4a0166] transition-all duration-300"
+        className="p-3 md:p-4 bg-[#590178] text-white rounded-full shadow-lg hover:bg-[#4a0166] transition-all duration-300"
       >
-        {isOpen ? <FiX size={24} /> : <FiMessageSquare size={24} />}
+        {isOpen ? <FiX size={20} className="md:w-6 md:h-6" /> : <FiMessageSquare size={20} className="md:w-6 md:h-6" />}
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-96 h-[500px] bg-white rounded-lg shadow-xl overflow-hidden flex flex-col">
-          <div className="bg-[#590178] text-white py-6 px-4 flex justify-between items-center">
-            <h3 className="font-semibold m-0 leading-none">Virtual Assistant</h3>
+        <div className="absolute bottom-14 right-0 md:bottom-16 md:right-0 w-[calc(100vw-2rem)] max-w-[384px] h-[calc(100vh-8rem)] max-h-[500px] md:w-96 md:h-[500px] bg-white rounded-lg shadow-xl overflow-hidden flex flex-col">
+          <div className="bg-[#590178] text-white py-4 px-3 md:py-6 md:px-4 flex justify-between items-center">
+            <h3 className="font-semibold m-0 leading-none text-sm md:text-base">Virtual Assistant</h3>
             <button 
               onClick={toggleChat}
               className="text-white hover:text-[#FFF2D5] transition-colors"
             >
-              <FiX size={20} />
+              <FiX size={18} className="md:w-5 md:h-5" />
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-4" data-lenis-prevent>
+          <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4" data-lenis-prevent>
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -480,20 +480,20 @@ const Chatbot: React.FC = () => {
                 }`}
               >
                 <div
-                  className={`max-w-[80%] p-3 rounded-lg ${
+                  className={`max-w-[85%] md:max-w-[80%] p-2.5 md:p-3 rounded-lg text-sm md:text-base ${
                     message.sender === 'user'
                       ? 'bg-[#590178] text-white rounded-tr-none'
                       : 'bg-gray-100 text-[#590178] rounded-tl-none'
                   }`}
                 >
-                  {message.type === 'text' && <p className="whitespace-pre-line">{message.content}</p>}
+                  {message.type === 'text' && <p className="whitespace-pre-line leading-relaxed">{message.content}</p>}
                   
                   {message.type === 'dropdown' && message.data && 'items' in message.data && (
                     <div className="space-y-2">
-                      <p>{message.content}</p>
+                      <p className="leading-relaxed">{message.content}</p>
                       <div className="relative mt-2 bg-white rounded-md shadow-sm">
                         <select
-                          className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-[#590178] focus:border-[#590178] sm:text-sm rounded-md text-[#590178]"
+                          className="block w-full pl-2 pr-8 md:pl-3 md:pr-10 py-1.5 md:py-2 text-sm md:text-base border-gray-300 focus:outline-none focus:ring-[#590178] focus:border-[#590178] rounded-md text-[#590178]"
                           onChange={(e) => 
                             message.data && 'type' in message.data && message.data.type === 'industry' 
                               ? handleIndustrySelect(e.target.value) 
@@ -509,7 +509,7 @@ const Chatbot: React.FC = () => {
                           ))}
                         </select>
                         <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                          <FiChevronDown className="h-4 w-4 text-gray-400" />
+                          <FiChevronDown className="h-3 w-3 md:h-4 md:w-4 text-gray-400" />
                         </div>
                       </div>
                     </div>
@@ -517,10 +517,10 @@ const Chatbot: React.FC = () => {
                   
                   {message.type === 'service-info' && message.data && 'service' in message.data && (
                     <div className="space-y-2">
-                      <p>{message.content}</p>
+                      <p className="leading-relaxed">{message.content}</p>
                       <a
                         href={message.data.service.url}
-                        className="inline-block mt-2 bg-[#590178] text-white px-4 py-2 rounded-md hover:bg-[#4a0166] transition-colors"
+                        className="inline-block mt-2 bg-[#590178] text-white px-3 py-1.5 md:px-4 md:py-2 rounded-md hover:bg-[#4a0166] transition-colors text-sm md:text-base"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -534,12 +534,12 @@ const Chatbot: React.FC = () => {
             
             {/* Suggested Questions - shown directly in chat */}
             {messages.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 md:gap-2">
                 {suggestedQuestions[activeSection].slice(0, 4).map((question, index) => (
                   <button
                     key={index}
                     onClick={() => handleSuggestedQuestion(question)}
-                    className="text-xs px-3 py-2 rounded-full bg-white border border-[#590178] text-[#590178] hover:bg-[#590178] hover:text-white transition-colors duration-200 shadow-sm"
+                    className="text-[10px] md:text-xs px-2 py-1.5 md:px-3 md:py-2 rounded-full bg-white border border-[#590178] text-[#590178] hover:bg-[#590178] hover:text-white transition-colors duration-200 shadow-sm"
                   >
                     {question}
                   </button>
@@ -549,7 +549,7 @@ const Chatbot: React.FC = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="border-t p-4 bg-white">
+          <div className="border-t p-3 md:p-4 bg-white">
             <div className="flex items-stretch">
               <input
                 type="text"
@@ -564,53 +564,53 @@ const Chatbot: React.FC = () => {
                   "Type your message..."
                 }
                 disabled={isInputDisabled()}
-                className="flex-1 p-2 border border-gray-300 border-r-0 rounded-l-md rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#590178] focus:border-[#590178] disabled:bg-gray-100 disabled:text-gray-400 text-[#590178]"
+                className="flex-1 p-1.5 md:p-2 border border-gray-300 border-r-0 rounded-l-md rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#590178] focus:border-[#590178] disabled:bg-gray-100 disabled:text-gray-400 text-[#590178] text-sm md:text-base"
               />
               <button
                 onClick={handleSendMessage}
                 disabled={isInputDisabled()}
-                className="bg-[#590178] text-white p-2 px-4 rounded-r-md rounded-l-none hover:bg-[#4a0166] transition-colors disabled:bg-gray-400 disabled:hover:bg-gray-400 flex items-center justify-center"
+                className="bg-[#590178] text-white p-2 md:px-4 rounded-r-md rounded-l-none hover:bg-[#4a0166] transition-colors disabled:bg-gray-400 disabled:hover:bg-gray-400 flex items-center justify-center"
               >
-                <FiSend size={20} />
+                <FiSend size={18} className="md:w-5 md:h-5" />
               </button>
             </div>
             
             {/* Section Navigation */}
-            <div className="mt-4 border-t border-[#590178] pt-3 grid grid-cols-3 gap-2">
+            <div className="mt-3 md:mt-4 border-t border-[#590178] pt-2 md:pt-3 grid grid-cols-3 gap-1.5 md:gap-2">
               <button
                 onClick={() => setActiveSection('general')}
-                className={`flex flex-col items-center justify-center p-2 rounded-md transition-colors ${
+                className={`flex flex-col items-center justify-center p-1.5 md:p-2 rounded-md transition-colors ${
                   activeSection === 'general' ? 'bg-[#590178] text-white' : 'hover:bg-white text-[#590178]'
                 }`}
               >
-                <FiHelpCircle size={20} />
-                <span className="text-xs mt-1">General</span>
+                <FiHelpCircle size={16} className="md:w-5 md:h-5" />
+                <span className="text-[10px] md:text-xs mt-0.5 md:mt-1">General</span>
               </button>
               <button
                 onClick={() => setActiveSection('services')}
-                className={`flex flex-col items-center justify-center p-2 rounded-md transition-colors ${
+                className={`flex flex-col items-center justify-center p-1.5 md:p-2 rounded-md transition-colors ${
                   activeSection === 'services' ? 'bg-[#590178] text-white' : 'hover:bg-white text-[#590178]'
                 }`}
               >
-                <FiGrid size={20} />
-                <span className="text-xs mt-1">Services</span>
+                <FiGrid size={16} className="md:w-5 md:h-5" />
+                <span className="text-[10px] md:text-xs mt-0.5 md:mt-1">Services</span>
               </button>
               <button
                 onClick={() => setActiveSection('contact')}
-                className={`flex flex-col items-center justify-center p-2 rounded-md transition-colors ${
+                className={`flex flex-col items-center justify-center p-1.5 md:p-2 rounded-md transition-colors ${
                   activeSection === 'contact' ? 'bg-[#590178] text-white' : 'hover:bg-white text-[#590178]'
                 }`}
               >
-                <FiMail size={20} />
-                <span className="text-xs mt-1">Contact</span>
+                <FiMail size={16} className="md:w-5 md:h-5" />
+                <span className="text-[10px] md:text-xs mt-0.5 md:mt-1">Contact</span>
               </button>
             </div>
             
             {/* Reset button */}
-            <div className="mt-2 text-center">
+            <div className="mt-1.5 md:mt-2 text-center">
               <button
                 onClick={resetChat}
-                className="text-[#590178] hover:text-[#4a0166] text-sm"
+                className="text-[#590178] hover:text-[#4a0166] text-xs md:text-sm"
               >
                 Reset conversation
               </button>

@@ -59,18 +59,18 @@ export function WhatWeOffer({
   ctaLink = "/contact"
 }: WhatWeOfferProps = {}) {
   return (
-    <section className="bg-[#590178] py-24 px-4 md:px-8">
+    <section className="bg-[#590178] py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
+        <div className="text-center mb-8 sm:mb-12 md:mb-14 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-3 sm:mb-4">
             {title}
           </h2>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto font-light">
+          <p className="text-white/90 text-base sm:text-lg md:text-lg lg:text-xl max-w-2xl mx-auto font-light px-2 sm:px-4 md:px-0">
             {subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-8 sm:mb-12 md:mb-14 lg:mb-16">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -78,15 +78,15 @@ export function WhatWeOffer({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#FFF8E1] rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300"
+              className="bg-[#FFF8E1] rounded-2xl p-5 sm:p-6 md:p-7 lg:p-8 hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="mb-6">
-                <feature.icon strokeWidth={1.5} className="w-12 h-12 text-black" />
+              <div className="mb-4 sm:mb-5 md:mb-6">
+                <feature.icon strokeWidth={1.5} className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 text-black" />
               </div>
-              <h3 className="text-xl font-bold text-black mb-3 font-serif">
+              <h3 className="text-lg sm:text-xl font-bold text-black mb-2 sm:mb-3 font-serif">
                 {feature.title}
               </h3>
-              <p className="text-gray-800 leading-relaxed">
+              <p className="text-gray-800 leading-relaxed text-sm sm:text-base">
                 {feature.description}
               </p>
             </motion.div>
@@ -96,7 +96,7 @@ export function WhatWeOffer({
         <div className="text-center">
           <Link
             href={ctaLink}
-            className="inline-block bg-white text-[#4A0E78] font-bold text-lg px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg"
+            className="inline-block bg-white text-[#4A0E78] font-bold text-base sm:text-lg px-6 py-2.5 sm:px-8 sm:py-3 rounded-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg"
           >
             {ctaText}
           </Link>

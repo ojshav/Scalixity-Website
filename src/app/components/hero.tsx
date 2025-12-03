@@ -338,9 +338,9 @@ export function Hero() {
   }, [rectangleConfigs]);
 
   return (
-    <section className="relative min-h-[70vh] sm:min-h-[100vh] py-4 sm:py-6 bg-[#FFF2D5] overflow-hidden">
+    <section className="relative min-h-[70vh] sm:min-h-[80vh] py-4 sm:py-6 bg-[#FFF2D5] overflow-hidden">
       {/* SCALIXITY Text Section */}
-      <div className="relative h-[25vh] sm:h-[30vh] md:h-[55vh] lg:h-[55vh] flex items-center justify-center w-full">
+      <div className="relative h-[25vh] sm:h-[30vh] lg:h-[55vh] flex items-center justify-center w-full">
         <div className="relative w-full">
           {/* SCALIXITY Text */}
           <h1
@@ -369,7 +369,7 @@ export function Hero() {
       </div>
 
       {/* Video Section */}
-      <div ref={videoContainerRef} className="relative w-full min-h-[40vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[150vh] 2xl:min-h-[150vh]">
+      <div ref={videoContainerRef} className="relative w-full min-h-[40vh]  md:min-h-[50vh] lg:min-h-[150vh] 2xl:min-h-[150vh]">
         <video
           ref={videoRef}
           className="w-full h-full object-cover transform-gpu will-change-transform"

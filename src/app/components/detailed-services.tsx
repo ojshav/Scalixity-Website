@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { CTA } from './cta';
+import { useEffect, useState } from 'react';
 
 const services = [
     {
@@ -86,25 +87,56 @@ const services = [
 ];
 
 export function DetailedServices() {
+    const [isDesktop, setIsDesktop] = useState(true);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsDesktop(window.innerWidth >= 1024);
+        };
+        
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
+    const getAnimationProps = (initial: Record<string, number | string>, animate: Record<string, number | string>, transition: Record<string, number | string>) => {
+        if (!isDesktop) {
+            return {};
+        }
+        return { initial, animate, transition };
+    };
+
+    const getWhileInViewProps = (initial: Record<string, number | string>, whileInView: Record<string, number | string>, transition: Record<string, number | string | { delay?: number }>) => {
+        if (!isDesktop) {
+            return {};
+        }
+        return { initial, whileInView, viewport: { once: true }, transition };
+    };
+
     return (
         <section className="bg-[#FFF2D5] min-h-screen flex flex-col">
-            <div className="container mx-auto px-4 md:px-8 pt-28">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 pt-20 md:pt-24 lg:pt-28">
 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-10">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-14 lg:mb-10">
                     <motion.h2 
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="text-5xl md:text-7xl font-bold font-playfair text-black mb-8 md:mb-0"
+                        {...getAnimationProps(
+                            { opacity: 0, y: 30 },
+                            { opacity: 1, y: 0 },
+                            { duration: 0.8, ease: "easeOut" }
+                        )}
+                        className="text-4xl md:text-5xl lg:text-7xl font-bold font-playfair text-black mb-4 md:mb-6 lg:mb-0"
                     >
                         Our Services
                     </motion.h2>
                     <motion.p 
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                        className="text-[#590178] text-lg md:text-xl max-w-md font-inter leading-relaxed"
+                        {...getAnimationProps(
+                            { opacity: 0, y: 30 },
+                            { opacity: 1, y: 0 },
+                            { duration: 0.8, delay: 0.2, ease: "easeOut" }
+                        )}
+                        className="text-[#590178] text-base md:text-lg lg:text-xl max-w-full md:max-w-md font-inter leading-relaxed"
                     >
                         At Scalixity, we deliver cutting-edge digital solutions tailored to your business needs. From web applications to AI-powered chatbots, we&apos;ve got you covered.
                     </motion.p>
@@ -115,32 +147,34 @@ export function DetailedServices() {
                     {services.map((service, index) => (
                         <div
                             key={service.id}
-                            className={`sticky top-24 md:top-20 ${index === 5 ? 'min-h-screen' : 'min-h-[80vh]'} bg-[#FFF2D5] border-t-2 border-black/40 pt-12 mb-12 last:mb-0`}
+                            className={`lg:sticky lg:top-20 lg:${index === 5 ? 'min-h-screen' : 'min-h-[80vh]'} bg-[#FFF2D5] border-t-2 border-black/40 pt-8 md:pt-10 lg:pt-12 mb-8 md:mb-10 lg:mb-12 last:mb-0`}
                             style={{
-                                zIndex: index + 1,
+                                zIndex: isDesktop ? index + 1 : 'auto',
                                 // Optional: subtle scale effect could be added here with scroll-driven animations if desired later
                             }}
                         >
-                            <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 h-full">
+                            <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-12 h-full">
                                 {/* Left Sidebar - Service Number & All Service Titles */}
-                                <div className="lg:w-1/5 flex flex-col gap-6">
+                                <div className="lg:w-1/5 flex flex-row md:flex-row lg:flex-col gap-4 md:gap-6 lg:gap-6 items-center lg:items-start">
                                     <motion.div 
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.6, ease: "easeOut" }}
-                                        className="text-7xl md:text-5xl font-bold font-playfair text-[#590178] mb-4"
+                                        {...getWhileInViewProps(
+                                            { opacity: 0, scale: 0.5 },
+                                            { opacity: 1, scale: 1 },
+                                            { duration: 0.6, ease: "easeOut" }
+                                        )}
+                                        className="text-5xl md:text-6xl lg:text-5xl font-bold font-playfair text-[#590178] mb-0 lg:mb-4 shrink-0"
                                     >
                                         {service.id}
                                     </motion.div>
-                                    <div className="flex flex-col gap-3">
+                                    <div className="hidden lg:flex flex-col gap-3">
                                         {services.map((s, sIndex) => (
                                             <motion.div
                                                 key={s.id}
-                                                initial={{ opacity: 0, x: -20 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.5, delay: sIndex * 0.1 }}
+                                                {...getWhileInViewProps(
+                                                    { opacity: 0, x: -20 },
+                                                    { opacity: 1, x: 0 },
+                                                    { duration: 0.5, delay: sIndex * 0.1 }
+                                                )}
                                                 className={`text-base md:text-lg font-semibold font-playfair transition-colors duration-300 ${sIndex === index ? 'text-[#590178]' : 'text-black'
                                                     }`}
                                             >
@@ -154,41 +188,43 @@ export function DetailedServices() {
                                 <div className="lg:w-4/5 flex flex-col">
                                     {/* Service Title */}
                                     <motion.h3 
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.6, ease: "easeOut" }}
-                                        className="text-4xl md:text-5xl font-bold font-playfair text-[#590178] mb-6"
+                                        {...getWhileInViewProps(
+                                            { opacity: 0, y: 20 },
+                                            { opacity: 1, y: 0 },
+                                            { duration: 0.6, ease: "easeOut" }
+                                        )}
+                                        className="text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-[#590178] mb-4 md:mb-5 lg:mb-6"
                                     >
                                         {service.title}
                                     </motion.h3>
 
                                     {/* Service Description */}
                                     <motion.p 
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                                        className="text-black/80 text-base md:text-lg leading-relaxed mb-12 font-inter"
+                                        {...getWhileInViewProps(
+                                            { opacity: 0, y: 20 },
+                                            { opacity: 1, y: 0 },
+                                            { duration: 0.6, delay: 0.2, ease: "easeOut" }
+                                        )}
+                                        className="text-black/80 text-sm md:text-base lg:text-lg leading-relaxed mb-8 md:mb-10 lg:mb-12 font-inter"
                                     >
                                         {service.fullDescription}
                                     </motion.p>
 
-                                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 items-start">
+                                    <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-24 items-start">
                                         {/* Illustration - Centered */}
-                                        <div className="w-full lg:w-1/2 flex items-center justify-center">
+                                        <div className="w-full lg:w-1/2 flex items-center justify-center order-1 lg:order-1">
                                             <div className={`relative w-full ${
-                                                index === 0 ? 'max-w-[450px]' : 
-                                                index === 4 ? 'max-w-[400px]' :
-                                                index === 5 ? 'max-w-[380px]' :
-                                                'max-w-[500px]'
+                                                index === 0 ? 'max-w-[300px] md:max-w-[350px] lg:max-w-[450px]' : 
+                                                index === 4 ? 'max-w-[280px] md:max-w-[320px] lg:max-w-[400px]' :
+                                                index === 5 ? 'max-w-[260px] md:max-w-[300px] lg:max-w-[380px]' :
+                                                'max-w-[320px] md:max-w-[380px] lg:max-w-[500px]'
                                             } aspect-square flex items-center justify-center`}>
                                                 {/* GIF Images for all services */}
                                                 <div className={`relative w-full h-full ${
-                                                    index === 0 ? 'scale-150 -translate-y-12' :
-                                                    index === 4 ? 'scale-150 -translate-y-6' :
-                                                    index === 5 ? 'scale-100 -translate-y-8' :
-                                                    'scale-150 -translate-y-20'
+                                                    index === 0 ? 'scale-125 md:scale-150 -translate-y-8 md:-translate-y-12' :
+                                                    index === 4 ? 'scale-125 md:scale-150 -translate-y-4 md:-translate-y-6' :
+                                                    index === 5 ? 'scale-100 -translate-y-6 md:-translate-y-8' :
+                                                    'scale-125 md:scale-150 -translate-y-12 md:-translate-y-20'
                                                 }`}>
                                                     <Image
                                                         src={`/${index + 1}.gif`}
@@ -202,18 +238,19 @@ export function DetailedServices() {
                                         </div>
 
                                         {/* Features List - Right Side */}
-                                        <div className="w-full lg:w-1/2 flex flex-col gap-1">
+                                        <div className="w-full lg:w-1/2 flex flex-col gap-1 order-2 lg:order-2">
                                             {service.features.map((feature, fIndex) => (
                                                 <motion.div 
                                                     key={fIndex} 
-                                                    initial={{ opacity: 0, x: 20 }}
-                                                    whileInView={{ opacity: 1, x: 0 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ duration: 0.5, delay: 0.3 + fIndex * 0.15 }}
-                                                    whileHover={{ x: 5 }}
-                                                    className="pb-1"
+                                                    {...getWhileInViewProps(
+                                                        { opacity: 0, x: 20 },
+                                                        { opacity: 1, x: 0 },
+                                                        { duration: 0.5, delay: 0.3 + fIndex * 0.15 }
+                                                    )}
+                                                    whileHover={isDesktop ? { x: 5 } : {}}
+                                                    className="pb-1 md:pb-2"
                                                 >
-                                                    <h4 className="text-[#590178] font-bold text-lg md:text-xl mb-2 font-playfair">
+                                                    <h4 className="text-[#590178] font-bold text-base md:text-lg lg:text-xl mb-1 md:mb-2 font-playfair">
                                                         {feature.title}
                                                     </h4>
                                                     <p className="text-black/70 text-sm md:text-base leading-relaxed">
@@ -223,17 +260,18 @@ export function DetailedServices() {
                                             ))}
 
                                             <motion.div 
-                                                initial={{ opacity: 0, y: 20 }}
-                                                whileInView={{ opacity: 1, y: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.5, delay: 0.9 }}
-                                                className="mt-4"
+                                                {...getWhileInViewProps(
+                                                    { opacity: 0, y: 20 },
+                                                    { opacity: 1, y: 0 },
+                                                    { duration: 0.5, delay: 0.9 }
+                                                )}
+                                                className="mt-3 md:mt-4"
                                             >
                                                 <Link href={service.link}>
                                                     <motion.button 
-                                                        whileHover={{ scale: 1.05 }}
-                                                        whileTap={{ scale: 0.95 }}
-                                                        className="bg-[#590178] text-white px-8 py-3 rounded-lg font-bold font-playfair hover:bg-[#4a0b63] transition-colors"
+                                                        whileHover={isDesktop ? { scale: 1.05 } : {}}
+                                                        whileTap={isDesktop ? { scale: 0.95 } : {}}
+                                                        className="bg-[#590178] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-lg font-bold font-playfair hover:bg-[#4a0b63] transition-colors text-sm md:text-base"
                                                     >
                                                         Learn More
                                                     </motion.button>

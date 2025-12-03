@@ -139,42 +139,42 @@ export function Process() {
 
   return (
     <section ref={containerRef} className="bg-[#FFF2D5] min-h-screen flex flex-col">
-      <div className="container mx-auto px-4 md:px-8 py-24 flex-grow">
-        <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-24 flex-grow">
+        <div className="flex flex-col md:flex-row gap-8 sm:gap-12 md:gap-24">
           {/* Left Column - Sticky Title */}
           <div className="md:w-1/3">
-            <div className="sticky top-32">
-              <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#1A1A1A] mb-4">
+            <div className="sticky top-20 sm:top-24 md:top-32">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#1A1A1A] mb-3 sm:mb-4">
                 Our Process
               </h2>
-              <div className="w-20 h-1 bg-[#1A1A1A] rounded-full hidden md:block mb-6"></div>
-              <p className="text-lg text-[#590178] font-medium max-w-md">
+              <div className="w-16 sm:w-20 h-1 bg-[#1A1A1A] rounded-full mb-4 sm:mb-6 hidden md:block"></div>
+              <p className="text-base sm:text-lg md:text-lg text-[#590178] font-medium max-w-md">
               Our process is structured to deliver high-quality digital solutions efficiently from understanding your goals to launching and continuously improving your product.
               </p>
             </div>
           </div>
 
           {/* Right Column - Scrollable Steps */}
-          <div className="md:w-2/3 flex flex-col gap-24 md:gap-32 pb-24">
+          <div className="md:w-2/3 flex flex-col gap-16 sm:gap-20 md:gap-32 pb-0 sm:pb-16 md:pb-24">
             {steps.map((step, index) => (
               <div
                 key={index}
                 ref={el => { stepsRef.current[index] = el }}
-                className="flex items-start gap-6 md:gap-8 group"
+                className="flex items-start gap-4 sm:gap-6 md:gap-8 group"
               >
-                <div className="flex-shrink-0 mt-2">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-[#1A1A1A] flex items-center justify-center bg-transparent transition-colors duration-300 group-hover:bg-[#1A1A1A] group-hover:text-[#FEFBF0]">
-                    <step.icon strokeWidth={1.5} className="w-10 h-10 md:w-12 md:h-12 text-[#1A1A1A] group-hover:text-[#FEFBF0] transition-colors duration-300" />
+                <div className="flex-shrink-0 mt-1 sm:mt-2">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-2 border-[#1A1A1A] flex items-center justify-center bg-transparent transition-colors duration-300 group-hover:bg-[#1A1A1A] group-hover:text-[#FEFBF0]">
+                    <step.icon strokeWidth={1.5} className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#1A1A1A] group-hover:text-[#FEFBF0] transition-colors duration-300" />
                   </div>
                 </div>
-                <div className="flex flex-col pt-4">
-                  <h3 className="text-2xl md:text-4xl font-serif font-bold text-[#4A4A4A] mb-2">
+                <div className="flex flex-col pt-2 sm:pt-4">
+                  <h3 className="text-xl sm:text-2xl md:text-4xl font-serif font-bold text-[#4A4A4A] mb-1 sm:mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-lg md:text-xl text-[#666666] font-medium">
+                  <p className="text-base sm:text-lg md:text-xl text-[#666666] font-medium">
                     {step.description}
                   </p>
-                  <p className="text-lg md:text-xl text-[#666666] font-medium">{step.duration}</p>
+                  <p className="text-base sm:text-lg md:text-xl text-[#666666] font-medium mt-1">{step.duration}</p>
                 </div>
               </div>
             ))}

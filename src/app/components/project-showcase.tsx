@@ -39,9 +39,9 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <div
       ref={ref}
-      className={`relative h-[80vh] w-screen flex-shrink-0 flex flex-col justify-between p-2 md:p-4 `}
+      className={`relative h-[80vh] w-screen flex-shrink-0 flex flex-col justify-between p-2 md:p-3 lg:p-4 `}
     >
-      <div className={`w-full h-full ${project.color || "bg-[#590178]"} rounded-3xl flex flex-col justify-between relative overflow-hidden`}>
+      <div className={`w-full h-full ${project.color || "bg-[#590178]"} rounded-2xl md:rounded-3xl flex flex-col justify-between relative overflow-hidden`}>
         {/* Project Image Area */}
         <div className="relative h-full w-full overflow-hidden rounded-lg bg-gray-800/20">
           <motion.div
@@ -54,7 +54,7 @@ function ProjectCard({ project }: { project: Project }) {
               src={project.image}
               alt={project.title}
               fill
-              className="object-cover"
+              className="object-contain lg:object-cover"
               sizes="(max-width: 768px) 100vw, 80vw"
               priority={project.id === 1}
             />
@@ -62,20 +62,20 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         {/* Project Info */}
-        <div className="flex items-end p-10 justify-between text-white ">
-          <div className="flex flex-col gap-2">
+        <div className="flex items-end p-4 md:p-6 lg:p-10 justify-between text-white ">
+          <div className="flex flex-col gap-1 md:gap-2">
             {project.category && (
-              <div className="flex items-center gap-4 text-sm font-medium uppercase tracking-wider opacity-80">
+              <div className="flex items-center gap-2 md:gap-4 text-xs md:text-sm font-medium uppercase tracking-wider opacity-80">
                 <span>{project.category}</span>
               </div>
             )}
-            <h2 className="text-4xl font-bold md:text-5xl tracking-tighter">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter">
               {project.title}
             </h2>
           </div>
 
-          <Link href="/work" className="group rounded-full border border-current p-3 md:p-4 transition-colors hover:bg-white hover:text-black">
-            <ArrowUpRight className="h-6 w-6 md:h-8 md:w-8 transition-transform group-hover:rotate-45" />
+          <Link href="/work" className="group rounded-full border border-current p-2 md:p-3 lg:p-4 transition-colors hover:bg-white hover:text-black">
+            <ArrowUpRight className="h-5 w-5 md:h-6 md:w-6 lg:h-8 lg:w-8 transition-transform group-hover:rotate-45" />
           </Link>
         </div>
       </div>
@@ -138,11 +138,11 @@ export function ProjectShowcase() {
       <div className="sticky -top-6 flex h-screen flex-col overflow-hidden">
 
         {/* Header */}
-        <div className="flex flex-col items-center justify-center pt-8 pb-4 z-10">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0D0C0C] mb-2">
+        <div className="flex flex-col items-center justify-center pt-4 md:pt-6 lg:pt-8 pb-3 md:pb-4 z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#0D0C0C] mb-1 md:mb-2">
             Featured Projects
           </h2>
-          <p className="text-[#590178] text-sm md:text-base max-w-xl text-center px-4">
+          <p className="text-[#590178] text-xs md:text-sm lg:text-base max-w-xl text-center px-4">
             Explore our portfolio of successful projects that have transformed businesses
           </p>
         </div>
@@ -151,15 +151,15 @@ export function ProjectShowcase() {
         <div className="flex-1 flex items-center ">
           {loading ? (
             <div className="w-full flex items-center justify-center">
-              <p className="text-[#4A0E78] text-lg">Loading projects...</p>
+              <p className="text-[#4A0E78] text-base md:text-lg">Loading projects...</p>
             </div>
           ) : error ? (
             <div className="w-full flex items-center justify-center">
-              <p className="text-red-600 text-lg">Error: {error}</p>
+              <p className="text-red-600 text-base md:text-lg">Error: {error}</p>
             </div>
           ) : projects.length === 0 ? (
             <div className="w-full flex items-center justify-center">
-              <p className="text-[#4A0E78] text-lg">No projects found</p>
+              <p className="text-[#4A0E78] text-base md:text-lg">No projects found</p>
             </div>
           ) : (
             <motion.div style={{ x }} className="flex gap-0">

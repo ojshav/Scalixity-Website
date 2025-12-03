@@ -68,7 +68,7 @@ export function YouTubeProjects() {
   };
 
   return (
-    <section ref={sectionRef} className="py-24 bg-[#FFF2D5]">
+    <section ref={sectionRef} className=" sm:py-4 lg:py-24 bg-[#FFF2D5]">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">

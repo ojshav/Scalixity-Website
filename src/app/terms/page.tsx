@@ -333,7 +333,7 @@ export default function TermsPage() {
               <p>For questions or concerns regarding these Terms and Conditions, please contact:</p>
               <div className="bg-gray-100 p-4 rounded-lg space-y-2">
                 <p><strong>Email:</strong> <a href="mailto:Info@scalixity.com" className="text-gray-800 hover:underline">Info@scalixity.com</a></p>
-                <p><strong>Phone:</strong> <a href="tel:+918269444130" className="text-gray-800 hover:underline">+91 8269444130</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+919424710030" className="text-gray-800 hover:underline">+91 9424710030</a></p>
                 <p><strong>Website:</strong> <a href="https://www.scalixity.com" className="text-gray-800 hover:underline" target="_blank" rel="noopener noreferrer">www.scalixity.com</a></p>
               </div>
             </div>

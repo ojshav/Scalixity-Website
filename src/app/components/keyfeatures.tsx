@@ -120,11 +120,11 @@ const KeyFeatures = ({ features }: KeyFeaturesProps) => {
     );
 
     return (
-        <section className="w-full py-16 md:py-2 bg-[#FFF2D5] overflow-hidden" ref={containerRef}>
-            <div className="container mx-auto px-4 md:px-8">
+        <section className="w-full py-12 sm:py-16 lg:py-2 bg-[#FFF2D5] overflow-hidden" ref={containerRef}>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="mb-16 md:mb-20 text-center">
-                    <h2 className="text-3xl md:text-5xl font-bold text-[#1A1A1A] leading-tight">
+                <div className="mb-12 sm:mb-14 lg:mb-20 text-center">
+                    <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-[#1A1A1A] leading-tight">
                         Key Features
                     </h2>
                 </div>
@@ -132,12 +132,12 @@ const KeyFeatures = ({ features }: KeyFeaturesProps) => {
                 {/* Timeline Container */}
                 <div className="relative max-w-6xl mx-auto">
                     {/* Central Vertical Line */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gray-300 rounded-full h-full z-0">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 sm:w-1 bg-gray-300 rounded-full h-full z-0">
                         <div ref={lineRef} className="w-full bg-gray-400 rounded-full origin-top" />
                     </div>
 
                     {/* Features */}
-                    <div className="space-y-16 md:space-y-20 relative z-10">
+                    <div className="space-y-10 sm:space-y-14 lg:space-y-20 relative z-10">
                         {displayFeatures.map((feature, index) => {
                             const isEven = index % 2 !== 0; // Alternating pattern
 
@@ -147,17 +147,16 @@ const KeyFeatures = ({ features }: KeyFeaturesProps) => {
                                     ref={(el) => {
                                         if (el) itemsRef.current[index] = el;
                                     }}
-                                    className={`flex flex-col md:flex-row items-center w-full gap-8 md:gap-4`}
+                                    className="flex items-center w-full gap-2 sm:gap-3 lg:gap-4"
                                 >
                                     {/* Left Side */}
-                                    <div className={`w-full md:w-[45%] flex ${isEven ? 'md:justify-end' : 'md:justify-end'} justify-center order-2 md:order-1`}>
+                                    <div className={`w-[40%] sm:w-[42%] lg:w-[45%] flex justify-end`}>
                                         {isEven && (
-                                            // Even rows: Description on Left
                                             <div
-                                                className="px-6 md:px-8 py-4 rounded-xl shadow-md w-full max-w-sm flex items-center justify-center min-h-[70px]"
+                                                className="px-3 py-2 sm:px-5 sm:py-3 lg:px-8 lg:py-4 rounded-lg sm:rounded-xl shadow-md w-full max-w-[180px] sm:max-w-xs lg:max-w-sm flex items-center justify-center min-h-[50px] sm:min-h-[60px] lg:min-h-[70px]"
                                                 style={{ backgroundColor: feature.lightColor }}
                                             >
-                                                <p className="text-gray-800 text-sm md:text-base text-center mb-0">
+                                                <p className="text-gray-800 text-xs sm:text-sm lg:text-base text-center mb-0 leading-snug sm:leading-relaxed">
                                                     {feature.description}
                                                 </p>
                                             </div>
@@ -165,24 +164,23 @@ const KeyFeatures = ({ features }: KeyFeaturesProps) => {
                                     </div>
 
                                     {/* Center Node */}
-                                    <div className="relative z-20 order-1 md:order-2 flex-shrink-0">
+                                    <div className="relative z-20 flex-shrink-0">
                                         <div
-                                            className="feature-node w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center border-4 md:border-[6px] border-white shadow-xl"
+                                            className="feature-node w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center border-[3px] sm:border-4 lg:border-[6px] border-white shadow-lg sm:shadow-xl"
                                             style={{ backgroundColor: feature.color }}
                                         >
-                                            <span className="text-white text-2xl md:text-3xl font-bold">{feature.number}</span>
+                                            <span className="text-white text-base sm:text-2xl lg:text-3xl font-bold">{feature.number}</span>
                                         </div>
                                     </div>
 
                                     {/* Right Side */}
-                                    <div className={`w-full md:w-[45%] flex ${isEven ? 'md:justify-start' : 'md:justify-start'} justify-center order-3`}>
+                                    <div className={`w-[40%] sm:w-[42%] lg:w-[45%] flex justify-start`}>
                                         {!isEven && (
-                                            // Odd rows: Description on Right
                                             <div
-                                                className="px-6 md:px-8 py-4 rounded-xl shadow-md w-full max-w-sm flex items-center justify-center min-h-[70px]"
+                                                className="px-3 py-2 sm:px-5 sm:py-3 lg:px-8 lg:py-4 rounded-lg sm:rounded-xl shadow-md w-full max-w-[180px] sm:max-w-xs lg:max-w-sm flex items-center justify-center min-h-[50px] sm:min-h-[60px] lg:min-h-[70px]"
                                                 style={{ backgroundColor: feature.lightColor }}
                                             >
-                                                <p className="text-gray-800 text-sm md:text-base text-center mb-0">
+                                                <p className="text-gray-800 text-xs sm:text-sm lg:text-base text-center mb-0 leading-snug sm:leading-relaxed">
                                                     {feature.description}
                                                 </p>
                                             </div>

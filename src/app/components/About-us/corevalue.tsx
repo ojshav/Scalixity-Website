@@ -6,7 +6,7 @@ const CoreValue = () => {
     {
       icon: Target,
       title: 'Customer-Centric Delivery',
-      description: 'We build every solution around the client&apos;s goals, ensuring clarity, transparency, and measurable impact at every step.',
+      description: 'We build every solution around the client\'s goals, ensuring clarity, transparency, and measurable impact at every step.',
     },
     {
       icon: Scale,
