@@ -102,24 +102,33 @@ export function DetailedServices() {
 
     const getAnimationProps = (initial: Record<string, number | string>, animate: Record<string, number | string>, transition: Record<string, number | string>) => {
         if (!isDesktop) {
-            return {};
+            // For mobile/tablet, skip animations but ensure content is visible
+            return { 
+                initial: { opacity: 1, y: 0, x: 0, scale: 1 },
+                animate: { opacity: 1, y: 0, x: 0, scale: 1 }
+            };
         }
         return { initial, animate, transition };
     };
 
     const getWhileInViewProps = (initial: Record<string, number | string>, whileInView: Record<string, number | string>, transition: Record<string, number | string | { delay?: number }>) => {
         if (!isDesktop) {
-            return {};
+            // For mobile/tablet, skip animations but ensure content is visible
+            return { 
+                initial: { opacity: 1, y: 0, x: 0, scale: 1 },
+                whileInView: { opacity: 1, y: 0, x: 0, scale: 1 },
+                viewport: { once: true }
+            };
         }
         return { initial, whileInView, viewport: { once: true }, transition };
     };
 
     return (
         <section className="bg-[#FFF2D5] min-h-screen flex flex-col">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8 pt-20 md:pt-24 lg:pt-28">
+            <div className="container mx-auto pb-10 lg:pb-0 px-4 md:px-6 lg:px-8 pt-20 md:pt-24 lg:pt-28">
 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-14 lg:mb-10">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-4 md:mb-14 lg:mb-10">
                     <motion.h2 
                         {...getAnimationProps(
                             { opacity: 0, y: 30 },
@@ -150,7 +159,6 @@ export function DetailedServices() {
                             className={`lg:sticky lg:top-20 lg:${index === 5 ? 'min-h-screen' : 'min-h-[80vh]'} bg-[#FFF2D5] border-t-2 border-black/40 pt-8 md:pt-10 lg:pt-12 mb-8 md:mb-10 lg:mb-12 last:mb-0`}
                             style={{
                                 zIndex: isDesktop ? index + 1 : 'auto',
-                                // Optional: subtle scale effect could be added here with scroll-driven animations if desired later
                             }}
                         >
                             <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-12 h-full">
@@ -212,19 +220,19 @@ export function DetailedServices() {
 
                                     <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-24 items-start">
                                         {/* Illustration - Centered */}
-                                        <div className="w-full lg:w-1/2 flex items-center justify-center order-1 lg:order-1">
+                                        <div className="w-full lg:w-1/2 flex items-center justify-center order-1 lg:order-1 min-h-[250px] md:min-h-[300px] lg:min-h-0">
                                             <div className={`relative w-full ${
-                                                index === 0 ? 'max-w-[300px] md:max-w-[350px] lg:max-w-[450px]' : 
-                                                index === 4 ? 'max-w-[280px] md:max-w-[320px] lg:max-w-[400px]' :
-                                                index === 5 ? 'max-w-[260px] md:max-w-[300px] lg:max-w-[380px]' :
-                                                'max-w-[320px] md:max-w-[380px] lg:max-w-[500px]'
+                                                index === 0 ? 'max-w-[280px] md:max-w-[350px] lg:max-w-[450px]' : 
+                                                index === 4 ? 'max-w-[260px] md:max-w-[320px] lg:max-w-[400px]' :
+                                                index === 5 ? 'max-w-[240px] md:max-w-[300px] lg:max-w-[380px]' :
+                                                'max-w-[300px] md:max-w-[380px] lg:max-w-[500px]'
                                             } aspect-square flex items-center justify-center`}>
                                                 {/* GIF Images for all services */}
                                                 <div className={`relative w-full h-full ${
-                                                    index === 0 ? 'scale-125 md:scale-150 -translate-y-8 md:-translate-y-12' :
-                                                    index === 4 ? 'scale-125 md:scale-150 -translate-y-4 md:-translate-y-6' :
-                                                    index === 5 ? 'scale-100 -translate-y-6 md:-translate-y-8' :
-                                                    'scale-125 md:scale-150 -translate-y-12 md:-translate-y-20'
+                                                    index === 0 ? 'scale-110 md:scale-125 lg:scale-150 -translate-y-4 md:-translate-y-8 lg:-translate-y-12' :
+                                                    index === 4 ? 'scale-110 md:scale-125 lg:scale-150 -translate-y-2 md:-translate-y-4 lg:-translate-y-6' :
+                                                    index === 5 ? 'scale-100 -translate-y-3 md:-translate-y-6 lg:-translate-y-8' :
+                                                    'scale-110 md:scale-125 lg:scale-150 -translate-y-6 md:-translate-y-12 lg:-translate-y-20'
                                                 }`}>
                                                     <Image
                                                         src={`/${index + 1}.gif`}

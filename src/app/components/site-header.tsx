@@ -380,7 +380,7 @@ export function SiteHeader() {
                 <button
                   onClick={toggleDesktopMenu}
                   aria-label="Toggle menu"
-                  className="p-2 hover:bg-accent rounded-md transition-colors"
+                  className={`p-2 hover:bg-accent rounded-md transition-colors ${isDesktopMenuOpen ? 'text-[#590178]' : 'text-black'}`}
                 >
                   {isDesktopMenuOpen ? <X className="h-5 w-5 lg:h-6 lg:w-6" /> : <Menu className="h-5 w-5 lg:h-6 lg:w-6" />}
                 </button>
@@ -406,7 +406,7 @@ export function SiteHeader() {
               <button
                 onClick={toggleMenu}
                 aria-label="Toggle menu"
-                className="p-2 hover:bg-accent rounded-md transition-colors touch-manipulation"
+                className={`p-2 hover:bg-accent rounded-md transition-colors touch-manipulation ${isMenuOpen ? 'text-[#590178]' : 'text-black'}`}
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>

@@ -288,10 +288,10 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
             {displayPricingData.map((tier, index) => (
               <div
                 key={index}
-                className="snap-center flex-shrink-0 w-full"
+                className="snap-center flex-shrink-0 w-full h-[580px]"
               >
                 <div
-                  className={`group bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl cursor-pointer relative ${
+                  className={`group bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl cursor-pointer relative h-full flex flex-col ${
                     tier.popular ? 'ring-2 ring-[#6B2D8F] ring-opacity-50' : ''
                   }`}
                 >
@@ -299,7 +299,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
                   <div className="absolute inset-0 bg-[#6B2D8F] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
                   
                   {/* Card Header */}
-                  <div className="bg-[#6B2D8F] text-white py-6 px-4 text-center relative z-10">
+                  <div className="bg-[#6B2D8F] text-white py-6 px-4 text-center relative z-10 flex-shrink-0">
                     {tier.popular && (
                       <div className="absolute top-2 right-2 bg-yellow-400 text-[#6B2D8F] text-xs font-bold px-2 py-1 rounded-full">
                         POPULAR
@@ -309,7 +309,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
                   </div>
 
                   {/* Card Body */}
-                  <div className="p-5 relative z-10 group-hover:text-white transition-colors duration-500">
+                  <div className="p-5 relative z-10 group-hover:text-white transition-colors duration-500 flex flex-col flex-grow">
                     {/* Description (Price hidden) */}
                     <div className="text-center mb-5">
                       <p className="text-gray-600 group-hover:text-white text-xs transition-colors duration-500">
@@ -318,7 +318,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
                     </div>
 
                     {/* Features List */}
-                    <ul className="space-y-3 mb-6">
+                    <ul className="space-y-3 mb-6 flex-grow">
                       {tier.features.map((feature, featureIndex) => (
                         <li
                           key={featureIndex}
@@ -364,7 +364,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
                     </ul>
 
                     {/* CTA Button */}
-                    <Link href="/contact">
+                    <Link href="/contact" className="mt-auto">
                       <button
                         className={`w-full py-3 px-4 rounded-lg font-semibold text-base transition-all duration-500 ${
                           tier.popular
@@ -401,7 +401,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
           {displayPricingData.map((tier, index) => (
             <div
               key={index}
-              className={`group bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden transition-all duration-500 lg:hover:scale-110 hover:shadow-2xl lg:hover:z-10 cursor-pointer relative ${
+              className={`group bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden transition-all duration-500 lg:hover:scale-110 hover:shadow-2xl lg:hover:z-10 cursor-pointer relative flex flex-col ${
                 tier.popular ? 'ring-2 sm:ring-4 ring-[#6B2D8F] ring-opacity-50' : ''
               }`}
             >
@@ -409,7 +409,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
               <div className="absolute inset-0 bg-[#6B2D8F] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl sm:rounded-3xl"></div>
               
               {/* Card Header */}
-              <div className="bg-[#6B2D8F] text-white py-6 sm:py-8 px-4 sm:px-6 text-center relative z-10">
+              <div className="bg-[#6B2D8F] text-white py-6 sm:py-8 px-4 sm:px-6 text-center relative z-10 flex-shrink-0">
                 {tier.popular && (
                   <div className="absolute top-2 right-2 bg-yellow-400 text-[#6B2D8F] text-xs font-bold px-2 sm:px-3 py-1 rounded-full">
                     POPULAR
@@ -419,7 +419,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
               </div>
 
               {/* Card Body */}
-              <div className="p-5 sm:p-6 md:p-8 relative z-10 group-hover:text-white transition-colors duration-500">
+              <div className="p-5 sm:p-6 md:p-8 relative z-10 group-hover:text-white transition-colors duration-500 flex flex-col flex-grow">
                 {/* Description (Price hidden) */}
                 <div className="text-center mb-5 sm:mb-6">
                   <p className="text-gray-600 group-hover:text-white text-xs sm:text-sm transition-colors duration-500">
@@ -428,7 +428,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
                 </div>
 
                 {/* Features List */}
-                <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-grow">
                   {tier.features.map((feature, featureIndex) => (
                     <li
                       key={featureIndex}
@@ -474,7 +474,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
                 </ul>
 
                 {/* CTA Button */}
-                <Link href="/contact">
+                <Link href="/contact" className="mt-auto">
                   <button
                     className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg transition-all duration-500 ${
                       tier.popular

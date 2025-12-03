@@ -72,7 +72,7 @@ export function YouTubeProjects() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0D0C0C] mb-4">
+          <h2 className="text-2xl  md:text-4xl lg:text-5xl font-serif font-bold text-[#0D0C0C] mb-4">
             Project Showcases
           </h2>
           <p className="text-[#4A0E78] text-lg md:text-xl max-w-2xl mx-auto">
@@ -83,7 +83,7 @@ export function YouTubeProjects() {
         {/* Main Card */}
         <div className="relative w-full max-w-6xl mx-auto">
           {/* Purple Card Container */}
-          <div className="relative bg-[#4A0E78] rounded-3xl rounded-br-[8rem] md:rounded-br-[12rem] overflow-hidden aspect-video md:aspect-[16/9] shadow-xl">
+          <div className="relative bg-[#4A0E78] rounded-3xl rounded-br-[8rem] md:rounded-br-[12rem] overflow-hidden aspect-[4/3] md:aspect-[16/9] shadow-xl">
             {/* Mock Video Content */}
             <div className="w-full h-full">
               <iframe

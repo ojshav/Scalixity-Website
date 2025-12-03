@@ -93,7 +93,13 @@ export function ProjectShowcase() {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-75%"]);
+  // Calculate the end position based on number of projects
+  // For n projects, we need to scroll -(n-1)/n * 100% to show all cards
+  const scrollEndPercentage = projects.length > 0 
+    ? -((projects.length - 1) / projects.length) * 100 
+    : -75;
+  
+  const x = useTransform(scrollYProgress, [0, 1], ["1%", `${scrollEndPercentage}%`]);
 
   useEffect(() => {
     const fetchProjects = async () => {
