@@ -261,7 +261,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
           {/* Left Arrow */}
           <button
             onClick={handlePrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-[#6B2D8F] rounded-full p-2 shadow-lg hover:bg-[#6B2D8F] hover:text-white transition-all duration-300"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white text-[#6B2D8F] rounded-full p-2 hover:bg-[#6B2D8F] hover:text-white transition-all duration-300"
             aria-label="Previous plan"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -272,7 +272,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
           {/* Right Arrow */}
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-[#6B2D8F] rounded-full p-2 shadow-lg hover:bg-[#6B2D8F] hover:text-white transition-all duration-300"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white text-[#6B2D8F] rounded-full p-2 hover:bg-[#6B2D8F] hover:text-white transition-all duration-300"
             aria-label="Next plan"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -288,10 +288,10 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
             {displayPricingData.map((tier, index) => (
               <div
                 key={index}
-                className="snap-center flex-shrink-0 w-full h-[580px]"
+                className="snap-center flex-shrink-0 w-full h-[580px] mb-8"
               >
                 <div
-                  className={`group bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl cursor-pointer relative h-full flex flex-col ${
+                  className={`group bg-white rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer relative h-full flex flex-col ${
                     tier.popular ? 'ring-2 ring-[#6B2D8F] ring-opacity-50' : ''
                   }`}
                 >
@@ -368,7 +368,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
                       <button
                         className={`w-full py-3 px-4 rounded-lg font-semibold text-base transition-all duration-500 ${
                           tier.popular
-                            ? 'bg-[#6B2D8F] text-white hover:bg-[#5A2478] shadow-lg group-hover:bg-white group-hover:text-[#6B2D8F]'
+                            ? 'bg-[#6B2D8F] text-white hover:bg-[#5A2478] group-hover:bg-white group-hover:text-[#6B2D8F]'
                             : 'bg-[#6B2D8F] bg-opacity-10 text-[#6B2D8F] hover:bg-opacity-20 border-2 border-[#6B2D8F] group-hover:bg-white group-hover:border-white group-hover:text-[#6B2D8F]'
                         }`}
                       >
@@ -401,7 +401,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
           {displayPricingData.map((tier, index) => (
             <div
               key={index}
-              className={`group bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden transition-all duration-500 lg:hover:scale-110 hover:shadow-2xl lg:hover:z-10 cursor-pointer relative flex flex-col ${
+              className={`group bg-white rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-500 lg:hover:scale-110 lg:hover:z-10 cursor-pointer relative flex flex-col ${
                 tier.popular ? 'ring-2 sm:ring-4 ring-[#6B2D8F] ring-opacity-50' : ''
               }`}
             >
@@ -478,7 +478,7 @@ export default function PricingPlan({ pricingPlans, pricing }: PricingPlanProps 
                   <button
                     className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg transition-all duration-500 ${
                       tier.popular
-                        ? 'bg-[#6B2D8F] text-white hover:bg-[#5A2478] shadow-lg group-hover:bg-white group-hover:text-[#6B2D8F]'
+                        ? 'bg-[#6B2D8F] text-white hover:bg-[#5A2478] group-hover:bg-white group-hover:text-[#6B2D8F]'
                         : 'bg-[#6B2D8F] bg-opacity-10 text-[#6B2D8F] hover:bg-opacity-20 border-2 border-[#6B2D8F] group-hover:bg-white group-hover:border-white group-hover:text-[#6B2D8F]'
                     }`}
                   >
