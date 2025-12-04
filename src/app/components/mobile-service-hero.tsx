@@ -57,7 +57,7 @@ export function MobileServiceHero({
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "center center",
+        start: "center 60%",
         end: "+=2800",
         pin: true,
         scrub: 1,

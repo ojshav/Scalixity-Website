@@ -111,7 +111,7 @@ export function ServiceHero({
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="bg-[#FFF2D5] h-[600px] sm:h-[800px] lg:h-full lg:min-h-screen flex flex-col items-center justify-center overflow-hidden  lg:pt-28 lg:pb-20">
+    <section ref={containerRef} className="bg-[#FFF2D5] h-full lg:h-full lg:min-h-screen flex flex-col items-center justify-center overflow-hidden  lg:pt-28 lg:pb-20">
       <div className="container mx-auto px-4 md:px-8 text-center max-w-6xl mb-16 md:mb-16 lg:mb-16">
         <h1 ref={titleRef} className="text-3xl md:text-5xl lg:text-7xl font-playfair font-bold text-[#590178] mb-2 md:mb-3 lg:mb-4 leading-tight">
           {title}
