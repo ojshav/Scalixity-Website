@@ -380,7 +380,7 @@ export function SiteHeader() {
                 <button
                   onClick={toggleDesktopMenu}
                   aria-label="Toggle menu"
-                  className={`p-2 hover:bg-accent rounded-md transition-colors ${isDesktopMenuOpen ? 'text-[#590178]' : 'text-black'}`}
+                  className={`p-2 hover:bg-[#590178] rounded-md transition-colors ${isDesktopMenuOpen ? 'text-black' : 'text-black'}`}
                 >
                   {isDesktopMenuOpen ? <X className="h-5 w-5 lg:h-6 lg:w-6" /> : <Menu className="h-5 w-5 lg:h-6 lg:w-6" />}
                 </button>
@@ -406,7 +406,7 @@ export function SiteHeader() {
               <button
                 onClick={toggleMenu}
                 aria-label="Toggle menu"
-                className={`p-2 hover:bg-accent rounded-md transition-colors touch-manipulation ${isMenuOpen ? 'text-[#590178]' : 'text-black'}`}
+                className={`p-2 hover:bg-[#590178] rounded-md transition-colors touch-manipulation ${isMenuOpen ? 'text-black' : 'text-black'}`}
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
@@ -623,7 +623,7 @@ export function SiteHeader() {
             <div className="space-y-3">
               <button
                 onClick={() => toggleCategory('services')}
-                className="flex items-center justify-between w-full font-medium text-foreground text-base sm:text-lg py-2 touch-manipulation"
+                className="flex items-center justify-between w-full font-medium text-black text-base sm:text-lg py-2 touch-manipulation"
               >
                 <span>Services</span>
                 {openCategories['services'] ?
@@ -638,7 +638,7 @@ export function SiteHeader() {
                     <div key={item.name}>
                       <Link
                         href={item.href}
-                        className="block py-2 sm:py-2.5 px-3 rounded-md text-sm sm:text-base text-foreground transition-colors duration-200 hover:text-[#590178] hover:bg-[#F4EEFF] touch-manipulation"
+                        className="block py-2 sm:py-2.5 px-3 rounded-md text-sm sm:text-base text-black transition-colors duration-200 hover:text-[#590178] hover:bg-[#F4EEFF] touch-manipulation"
                         onClick={toggleMenu}
                       >
                         {item.name}
@@ -653,7 +653,7 @@ export function SiteHeader() {
             <div className="space-y-3">
               <button
                 onClick={() => toggleCategory('industries')}
-                className="flex items-center justify-between w-full font-medium text-foreground text-base sm:text-lg py-2 touch-manipulation"
+                className="flex items-center justify-between w-full font-medium text-black text-base sm:text-lg py-2 touch-manipulation"
               >
                 <span>Industries</span>
                 {openCategories['industries'] ?
@@ -668,7 +668,7 @@ export function SiteHeader() {
                     <div key={industry.category} className="space-y-2">
                       <button
                         onClick={() => toggleCategory(`industry-${industry.category}`)}
-                        className="flex items-center justify-between w-full font-medium text-sm sm:text-base py-2 touch-manipulation"
+                        className="flex items-center justify-between w-full font-medium text-black text-sm sm:text-base py-2 touch-manipulation"
                       >
                         <div className="flex items-center gap-2">
                           <industry.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0" />
@@ -686,7 +686,7 @@ export function SiteHeader() {
                             <li key={item.name}>
                               <Link
                                 href={item.href}
-                                className="block py-2 sm:py-2.5 px-3 rounded-md text-sm sm:text-base text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] touch-manipulation"
+                                className="block py-2 sm:py-2.5 px-3 rounded-md text-sm sm:text-base text-black transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] touch-manipulation"
                                 onClick={toggleMenu}
                               >
                                 {item.name}
@@ -703,23 +703,23 @@ export function SiteHeader() {
 
             {/* Other Links */}
             <div className="space-y-2 border-t border-border/40 pt-4">
-              <Link href="/work" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
+              <Link href="/work" className="block py-2 sm:py-2.5 px-3 rounded-md text-black transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 Our Work
               </Link>
-              <Link href="/company" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
+              <Link href="/company" className="block py-2 sm:py-2.5 px-3 rounded-md text-black transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 About us
               </Link>
-              <Link href="/contact" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
+              <Link href="/contact" className="block py-2 sm:py-2.5 px-3 rounded-md text-black transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 Contact
               </Link>
-              <Link href="/blog" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
+              <Link href="/blog" className="block py-2 sm:py-2.5 px-3 rounded-md text-black transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 Blog
               </Link>
-              <Link href="/resources" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
+              <Link href="/resources" className="block py-2 sm:py-2.5 px-3 rounded-md text-black transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 Resources
               </Link>
               {/* 
-              <Link href="/campaign" className="block py-2 sm:py-2.5 px-3 rounded-md text-foreground transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
+              <Link href="/campaign" className="block py-2 sm:py-2.5 px-3 rounded-md text-black transition-colors duration-200 hover:bg-[#F4EEFF] hover:text-[#590178] text-base sm:text-lg font-medium touch-manipulation" onClick={toggleMenu}>
                 UI/UX Competition
               </Link> */}
             </div>
