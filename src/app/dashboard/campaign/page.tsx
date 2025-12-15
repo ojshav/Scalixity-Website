@@ -1,5 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+
+export const dynamic = 'force-dynamic';
 import { 
   Box, 
   Typography, 
@@ -66,7 +68,7 @@ function formatISTDateTime(dateString: string) {
   });
 }
 
-export default function DashboardCampaignPage() {
+function DashboardCampaignPageContent() {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const [open, setOpen] = useState(false);
@@ -883,5 +885,23 @@ export default function DashboardCampaignPage() {
         loading={loading}
       />
     </Box>
+  );
+}
+
+export default function DashboardCampaignPage() {
+  return (
+    <Suspense fallback={
+      <Box sx={{ 
+        minHeight: '100vh', 
+        backgroundColor: '#FFF2D5', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+      }}>
+        <CircularProgress sx={{ color: '#590178' }} />
+      </Box>
+    }>
+      <DashboardCampaignPageContent />
+    </Suspense>
   );
 }

@@ -1,5 +1,6 @@
 import { CSSObject } from "@mui/system";
 import * as React from "react";
+import { Suspense } from "react";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -26,7 +27,6 @@ import {
   ListItemText,
   Theme,
   Collapse,
-  Typography,
 } from "@mui/material";
 
 const drawerWidth = 240;
@@ -92,7 +92,7 @@ interface SideMenuProps {
   onMenuClose: () => void;
 }
 
-const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMenuProps) => {
+const SideMenuContent = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMenuProps) => {
   const [open, setOpen] = React.useState(false);
   const [homeMenuOpen, setHomeMenuOpen] = React.useState(false);
   const pathname = usePathname();
@@ -473,6 +473,14 @@ const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMen
         </Drawer>
       )}
     </>
+  );
+};
+
+const SideMenu = (props: SideMenuProps) => {
+  return (
+    <Suspense fallback={null}>
+      <SideMenuContent {...props} />
+    </Suspense>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { Box, Typography, CircularProgress } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import UserAnalytics from "../components/dashboard/useranalytics/page";
@@ -7,7 +7,7 @@ import Demographics from "../components/dashboard/demographic/page";
 import EngagementMetrics from "../components/dashboard/engagementmetrices/page";
 // import AcquisitionMatrix from "../components/dashboard/AcquistionMatrix/page";
 
-const Dashboard = () => {
+const DashboardContent = () => {
   const searchParams = useSearchParams();
   const viewParam = searchParams.get('view');
   const selectedComponent = viewParam || "userAnalytics";
@@ -37,22 +37,6 @@ const Dashboard = () => {
         return <Demographics />;
       default:
         return <UserAnalytics />;
-    }
-  };
-
-  // Get display name for current view
-  const getViewName = () => {
-    switch (selectedComponent) {
-      case "userAnalytics":
-        return "User Analytics";
-      case "engagementMetrics":
-        return "Engagement Metrics";
-      case "technicalMetrics":
-        return "Technical Metrics";
-      case "demographics":
-        return "Demographics";
-      default:
-        return "User Analytics";
     }
   };
 
@@ -91,6 +75,44 @@ const Dashboard = () => {
         renderComponent()
       )}
     </Box>
+  );
+};
+
+const Dashboard = () => {
+  return (
+    <Suspense
+      fallback={
+        <Box
+          sx={{
+            minHeight: '100vh',
+            backgroundColor: '#FFF2D5',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 2
+          }}
+        >
+          <CircularProgress
+            size={60}
+            sx={{
+              color: '#590178',
+            }}
+          />
+          <Typography
+            variant="body1"
+            sx={{
+              color: '#666',
+              fontWeight: 500,
+            }}
+          >
+            Loading dashboard...
+          </Typography>
+        </Box>
+      }
+    >
+      <DashboardContent />
+    </Suspense>
   );
 };
 
