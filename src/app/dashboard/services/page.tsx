@@ -1,17 +1,33 @@
+
 'use client'
 import '@/src/app/globals.css';
 import React, { useState, useEffect } from 'react';
-import { 
-  Plus, 
-  Edit, 
-  Trash2, 
-  Search, 
-  Filter, 
-  Eye
-} from 'lucide-react';
+import {
+  Box,
+  Typography,
+  Button,
+  TextField,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  CircularProgress,
+  IconButton,
+  InputAdornment,
+  Chip,
+  Card,
+  CardContent,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import { Edit, Delete, Add, Search, Visibility } from '@mui/icons-material';
 import Image from 'next/image';
 import ServiceForm from './ServiceForm';
 import ServiceViewModal from './ServiceViewModal';
+import DeleteConfirmationDialog from '@/src/app/components/dashboard/DeleteConfirmationDialog';
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
@@ -71,6 +87,11 @@ interface Service {
 }
 
 export default function AdminServicesPage() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const isMobileOrTablet = isMobile || isTablet;
+  
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -79,26 +100,21 @@ export default function AdminServicesPage() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [deleteConfirmation, setDeleteConfirmation] = useState<{
-    isOpen: boolean;
-    serviceId: string | null;
-    serviceName: string;
-  }>({
-    isOpen: false,
-    serviceId: null,
-    serviceName: ''
-  });
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [serviceToDelete, setServiceToDelete] = useState<Service | null>(null);
 
   useEffect(() => {
     fetchServices();
   }, []);
 
   const fetchServices = async () => {
+    setLoading(true);
+    setError(null);
     try {
-      setLoading(true);
       const token = localStorage.getItem('adminToken');
       if (!token) {
         setError('No authentication token found');
+        setLoading(false);
         return;
       }
 
@@ -118,25 +134,35 @@ export default function AdminServicesPage() {
       if (data.success) {
         setServices(data.data);
       } else {
-        setError(data.message || 'Failed to fetch services');
+        throw new Error(data.message || 'Failed to fetch services');
       }
-    } catch (error) {
-      console.error('Error fetching services:', error);
-      setError('Failed to fetch services');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch services');
+      console.error('Error fetching services:', err);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDeleteService = async (serviceId: string) => {
+  const openDeleteConfirmDialog = (service: Service) => {
+    setServiceToDelete(service);
+    setOpenDeleteDialog(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!serviceToDelete) return;
+    
+    setLoading(true);
+    setError(null);
     try {
       const token = localStorage.getItem('adminToken');
       if (!token) {
         setError('No authentication token found');
+        setLoading(false);
         return;
       }
 
-      const response = await fetch(`${baseURL}/api/admin/services/${serviceId}`, {
+      const response = await fetch(`${baseURL}/api/admin/services/${serviceToDelete.id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -145,24 +171,29 @@ export default function AdminServicesPage() {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errData = await response.json();
+        throw new Error(errData.error || 'Failed to delete service');
       }
 
       const data = await response.json();
       if (data.success) {
-        setServices(prev => prev.filter(service => service.id !== serviceId));
-        setDeleteConfirmation({
-          isOpen: false,
-          serviceId: null,
-          serviceName: ''
-        });
+        fetchServices();
+        setOpenDeleteDialog(false);
+        setServiceToDelete(null);
       } else {
-        setError(data.message || 'Failed to delete service');
+        throw new Error(data.message || 'Failed to delete service');
       }
-    } catch (error) {
-      console.error('Error deleting service:', error);
-      setError('Failed to delete service');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Error deleting service');
+      console.error('Error deleting service:', err);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const handleDeleteCancel = () => {
+    setOpenDeleteDialog(false);
+    setServiceToDelete(null);
   };
 
   const filteredServices = services.filter(service => {
@@ -184,286 +215,631 @@ export default function AdminServicesPage() {
     });
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
+  return (
+    <Box sx={{ 
+      minHeight: '100vh', 
+      backgroundColor: '#FFF2D5',
+      px: { xs: 0, md: 0 },
+      pb: { xs: 2, md: 0 }
+    }}>
+      {/* Header */}
+      <Box sx={{ mb: { xs: 3, md: 4 }, px: { xs: 1, sm: 0 } }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { xs: 'flex-start', md: 'center' }, 
+          justifyContent: 'space-between', 
+          mb: 2,
+          gap: { xs: 2, md: 0 }
+        }}>
+          <Box>
+            <Typography variant="h4" sx={{
+              fontWeight: 700,
+              color: '#1a1a1a',
+              mb: 1,
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
+            }}>
+              Services
+            </Typography>
+            <Typography variant="body1" sx={{ 
+              color: '#666',
+              fontSize: { xs: '0.875rem', md: '1rem' }
+            }}>
+              Manage your service offerings, descriptions, and pricing
+            </Typography>
+          </Box>
+          <Button 
+            onClick={() => setIsCreateModalOpen(true)}
+            variant="contained"
+            sx={{
+              backgroundColor: '#590178',
+              color: '#fff',
+              px: { xs: 2, md: 3 },
+              py: { xs: 1, md: 1.5 },
+              borderRadius: '8px',
+              textTransform: 'none',
+              fontSize: { xs: '0.875rem', md: '0.95rem' },
+              fontWeight: 600,
+              width: { xs: '100%', md: 'auto' },
+              '&:hover': {
+                backgroundColor: '#4a0166',
+              }
+            }}
+            startIcon={<Add />}
+          >
+            Add New Service
+          </Button>
+        </Box>
+      </Box>
 
-  if (error) {
-    return (
-      <div className="bg-red-50 border border-red-200 rounded-md p-4">
-        <div className="flex">
-          <div className="ml-3">
-            <h3 className="text-sm font-medium text-red-800">Error</h3>
-            <div className="mt-2 text-sm text-red-700">
-              <p>{error}</p>
-            </div>
-            <div className="mt-4">
-              <button
+      {/* Search */}
+      <Box sx={{ mb: { xs: 3, md: 4 }, px: { xs: 1, sm: 0 } }}>
+        <TextField
+          placeholder="Search services..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          fullWidth
+          variant="outlined"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search sx={{ color: '#666' }} />
+              </InputAdornment>
+            ),
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              borderRadius: '8px',
+              backgroundColor: 'white',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+              height: { xs: '48px', md: '56px' },
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white !important',
+                outline: 'none !important',
+              },
+              '&.Mui-focused': {
+                outline: 'none !important',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1) !important',
+              },
+              '& .MuiInputBase-input': {
+                padding: { xs: '12px 14px', md: '16.5px 14px' },
+                fontSize: { xs: '0.875rem', md: '1rem' },
+              },
+              '& .MuiInputBase-input::placeholder': {
+                color: 'rgba(0, 0, 0, 0.4)',
+                opacity: 1,
+              },
+            },
+            '& .MuiOutlinedInput-root.Mui-focused': {
+              '& fieldset': {
+                borderColor: 'white !important',
+                borderWidth: '1px !important',
+              },
+            }
+          }}
+        />
+      </Box>
+
+      {/* Services Table */}
+      <Paper 
+        elevation={0}
+        sx={{
+          backgroundColor: '#fff',
+          borderRadius: '16px',
+          boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05)',
+          overflow: 'hidden',
+          mx: { xs: 1, sm: 0 }
+        }}
+      >
+        <Box sx={{ p: { xs: 1.5, md: 3 } }}>
+          <Typography variant="h6" sx={{ 
+            fontWeight: 600, 
+            color: '#1a1a1a', 
+            mb: 3,
+            fontSize: { xs: '1.125rem', md: '1.25rem' }
+          }}>
+            All Services
+          </Typography>
+          
+          {loading ? (
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: '400px',
+                gap: 2
+              }}
+            >
+              <CircularProgress
+                size={60}
+                sx={{
+                  color: '#590178',
+                }}
+              />
+              <Typography
+                variant="body1"
+                sx={{
+                  color: '#666',
+                  fontWeight: 500,
+                }}
+              >
+                Loading services...
+              </Typography>
+            </Box>
+          ) : error ? (
+            <Box sx={{ textAlign: 'center', py: 8 }}>
+              <Typography variant="body1" sx={{ color: '#d32f2f', fontWeight: 500, mb: 2 }}>
+                {error}
+              </Typography>
+              <Button
                 onClick={fetchServices}
-                className="bg-red-600 text-white px-4 py-2 rounded-md text-sm hover:bg-red-700"
+                variant="contained"
+                sx={{
+                  backgroundColor: '#590178',
+                  color: '#fff',
+                  '&:hover': {
+                    backgroundColor: '#4a0166',
+                  }
+                }}
               >
                 Try Again
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="sm:flex sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Services Management</h1>
-          <p className="mt-2 text-sm text-gray-700">
-            Manage your service offerings, descriptions, and pricing
-          </p>
-        </div>
-        <div className="mt-4 sm:mt-0">
-          <button
-            onClick={() => setIsCreateModalOpen(true)}
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            Add New Service
-          </button>
-        </div>
-      </div>
-
-      {/* Search and Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="flex-1">
-            <div className="relative">
-              <Search className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search services..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-          </div>
-          <button className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-            <Filter className="h-4 w-4 mr-2" />
-            Filter
-          </button>
-        </div>
-      </div>
-
-      {/* Services List */}
-      <div className="bg-white shadow-sm rounded-lg border border-gray-200 overflow-hidden">
-        {filteredServices.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="text-gray-400 mb-4">
-              <svg className="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-2M4 13h2m13 0a1 1 0 00-1-1H7a1 1 0 00-1 1" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No services found</h3>
-            <p className="text-gray-500 mb-4">
-              {searchTerm ? 'Try adjusting your search terms' : 'Get started by creating your first service'}
-            </p>
-            {!searchTerm && (
-              <button
-                onClick={() => setIsCreateModalOpen(true)}
-                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
-              >
-                <Plus className="h-4 w-4 mr-2" />
-                Add Your First Service
-              </button>
-            )}
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Service
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Description
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Technologies
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Pricing
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Updated
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredServices.map((service) => (
-                  <tr key={service.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-12 w-12">
+              </Button>
+            </Box>
+          ) : filteredServices.length === 0 ? (
+            <Box sx={{ textAlign: 'center', py: 8 }}>
+              <Typography variant="body1" sx={{ color: '#666', mb: 2 }}>
+                {searchTerm ? 'No services found matching your search' : 'No services yet. Click "Add New Service" to create one.'}
+              </Typography>
+              {!searchTerm && (
+                <Button
+                  onClick={() => setIsCreateModalOpen(true)}
+                  variant="contained"
+                  sx={{
+                    backgroundColor: '#590178',
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#4a0166',
+                    }
+                  }}
+                  startIcon={<Add />}
+                >
+                  Add Your First Service
+                </Button>
+              )}
+            </Box>
+          ) : isMobileOrTablet ? (
+            // Mobile/Tablet Card View
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {filteredServices.map((service) => (
+                <Card
+                  key={service.id}
+                  sx={{
+                    borderRadius: '12px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                    '&:hover': {
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.12)',
+                    }
+                  }}
+                >
+                  <CardContent sx={{ p: 2 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                      {/* Service Header with Image and Title */}
+                      <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+                        <Box sx={{ position: 'relative', width: 64, height: 64, flexShrink: 0 }}>
                           {service.imageUrl ? (
                             <Image
                               src={service.imageUrl}
                               alt={service.title}
-                              width={48}
-                              height={48}
-                              className="h-12 w-12 rounded-lg object-cover"
+                              fill
+                              style={{ objectFit: 'cover', borderRadius: '8px' }}
                             />
                           ) : (
-                            <div className="h-12 w-12 rounded-lg bg-gray-200 flex items-center justify-center">
-                              <svg className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                              </svg>
-                            </div>
+                            <Box sx={{ 
+                              width: 64, 
+                              height: 64, 
+                              borderRadius: '8px', 
+                              bgcolor: '#f5f5f5', 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              justifyContent: 'center' 
+                            }}>
+                              <Typography variant="body2" sx={{ color: '#999', fontSize: '0.75rem' }}>No Image</Typography>
+                            </Box>
                           )}
-                        </div>
-                        <div className="ml-4">
-                          <div className="text-sm font-medium text-gray-900">{service.title}</div>
-                          <div className="text-sm text-gray-500">/{service.slug}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-gray-900 max-w-xs truncate">
-                        {service.shortDescription}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {service.features.length} features
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-wrap gap-1">
-                        {service.technologies.slice(0, 3).map((tech) => (
-                          <span
-                            key={tech.id}
-                            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
-                          >
-                            {tech.technology}
-                          </span>
-                        ))}
-                        {service.technologies.length > 3 && (
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                            +{service.technologies.length - 3} more
-                          </span>
+                        </Box>
+                        <Box sx={{ flex: 1, minWidth: 0 }}>
+                          <Typography variant="h6" sx={{ 
+                            fontWeight: 600, 
+                            color: '#1a1a1a',
+                            fontSize: '1rem',
+                            mb: 0.5,
+                            wordBreak: 'break-word'
+                          }}>
+                            {service.title}
+                          </Typography>
+                          <Typography variant="caption" sx={{ color: '#666', fontSize: '0.75rem' }}>
+                            /{service.slug}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      
+                      {/* Description */}
+                      <Box>
+                        <Typography variant="body2" sx={{ 
+                          color: '#1a1a1a',
+                          fontSize: '0.875rem',
+                          lineHeight: 1.5,
+                          mb: 0.5,
+                          wordBreak: 'break-word'
+                        }}>
+                          {service.shortDescription}
+                        </Typography>
+                        <Typography variant="caption" sx={{ color: '#666', fontSize: '0.75rem' }}>
+                          {service.features.length} features
+                        </Typography>
+                      </Box>
+                      
+                      {/* Technologies */}
+                      <Box>
+                        <Typography variant="caption" sx={{ 
+                          color: '#999',
+                          fontSize: '0.75rem',
+                          display: 'block',
+                          mb: 0.5
+                        }}>
+                          Technologies:
+                        </Typography>
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                          {service.technologies.slice(0, 3).map((tech) => (
+                            <Chip
+                              key={tech.id}
+                              label={tech.technology}
+                              size="small"
+                              sx={{
+                                backgroundColor: '#e3f2fd',
+                                color: '#1976d2',
+                                fontWeight: 500,
+                                fontSize: '0.7rem',
+                                height: '22px'
+                              }}
+                            />
+                          ))}
+                          {service.technologies.length > 3 && (
+                            <Chip
+                              label={`+${service.technologies.length - 3} more`}
+                              size="small"
+                              sx={{
+                                backgroundColor: '#f5f5f5',
+                                color: '#666',
+                                fontWeight: 500,
+                                fontSize: '0.7rem',
+                                height: '22px'
+                              }}
+                            />
+                          )}
+                        </Box>
+                      </Box>
+                      
+                      {/* Pricing */}
+                      <Box>
+                        <Typography variant="caption" sx={{ 
+                          color: '#999',
+                          fontSize: '0.75rem',
+                          display: 'block',
+                          mb: 0.5
+                        }}>
+                          Pricing:
+                        </Typography>
+                        {service.pricingPlans ? (
+                          <Box>
+                            <Typography variant="body2" sx={{ 
+                              fontWeight: 500, 
+                              color: '#1a1a1a',
+                              fontSize: '0.875rem'
+                            }}>
+                              3 Plan Tiers
+                            </Typography>
+                            <Typography variant="caption" sx={{ color: '#666', fontSize: '0.75rem' }}>
+                              {service.pricingPlans.beginner.priceRange} - {service.pricingPlans.pro.priceRange}
+                            </Typography>
+                          </Box>
+                        ) : service.pricing ? (
+                          <Box>
+                            <Typography variant="body2" sx={{ 
+                              fontWeight: 500, 
+                              color: '#1a1a1a',
+                              fontSize: '0.875rem'
+                            }}>
+                              {service.pricing.starting}
+                            </Typography>
+                            <Typography variant="caption" sx={{ color: '#666', fontSize: '0.75rem' }}>
+                              {service.pricing.description}
+                            </Typography>
+                          </Box>
+                        ) : (
+                          <Typography variant="body2" sx={{ color: '#999', fontSize: '0.875rem' }}>
+                            No pricing set
+                          </Typography>
                         )}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      {service.pricingPlans ? (
-                        <div>
-                          <div className="text-sm font-medium text-gray-900">
-                            3 Plan Tiers
-                          </div>
-                          <div className="text-sm text-gray-500">
-                            {service.pricingPlans.beginner.priceRange} - {service.pricingPlans.pro.priceRange}
-                          </div>
-                        </div>
-                      ) : service.pricing ? (
-                        <div>
-                          <div className="text-sm font-medium text-gray-900">
-                            {service.pricing.starting}
-                          </div>
-                          <div className="text-sm text-gray-500">
-                            {service.pricing.description}
-                          </div>
-                        </div>
-                      ) : (
-                        <span className="text-sm text-gray-400">No pricing set</span>
-                      )}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {formatDate(service.updatedAt)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <div className="flex items-center justify-end space-x-2">
-                        <button
+                      </Box>
+                      
+                      {/* Updated Date */}
+                      <Box>
+                        <Typography variant="caption" sx={{ 
+                          color: '#999',
+                          fontSize: '0.75rem',
+                          display: 'block',
+                          mb: 0.5
+                        }}>
+                          Updated:
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: '#666', fontSize: '0.875rem' }}>
+                          {formatDate(service.updatedAt)}
+                        </Typography>
+                      </Box>
+                      
+                      {/* Actions */}
+                      <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end', pt: 1, borderTop: '1px solid #f0f0f0' }}>
+                        <IconButton 
+                          size="small"
                           onClick={() => {
                             setSelectedService(service);
                             setIsViewModalOpen(true);
                           }}
-                          className="text-gray-400 hover:text-blue-600 transition-colors"
+                          sx={{
+                            color: '#1976d2',
+                            '&:hover': {
+                              backgroundColor: '#e3f2fd',
+                            }
+                          }}
                           title="View service details"
                         >
-                          <Eye className="h-4 w-4" />
-                        </button>
-                        <button
+                          <Visibility fontSize="small" />
+                        </IconButton>
+                        <IconButton 
+                          size="small"
                           onClick={() => {
                             setSelectedService(service);
                             setIsEditModalOpen(true);
                           }}
-                          className="text-gray-400 hover:text-blue-600 transition-colors"
+                          sx={{
+                            color: '#590178',
+                            '&:hover': {
+                              backgroundColor: '#f0e6f5',
+                            }
+                          }}
                           title="Edit service"
                         >
-                          <Edit className="h-4 w-4" />
-                        </button>
-                        <button
-                          onClick={() => setDeleteConfirmation({
-                            isOpen: true,
-                            serviceId: service.id,
-                            serviceName: service.title
-                          })}
-                          className="text-gray-400 hover:text-red-600 transition-colors"
+                          <Edit fontSize="small" />
+                        </IconButton>
+                        <IconButton 
+                          size="small"
+                          onClick={() => openDeleteConfirmDialog(service)}
+                          sx={{
+                            color: '#d32f2f',
+                            '&:hover': {
+                              backgroundColor: '#ffebee',
+                            }
+                          }}
                           title="Delete service"
                         >
-                          <Trash2 className="h-4 w-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+                          <Delete fontSize="small" />
+                        </IconButton>
+                      </Box>
+                    </Box>
+                  </CardContent>
+                </Card>
+              ))}
+            </Box>
+          ) : (
+            // Desktop Table View
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow sx={{ backgroundColor: '#590178' }}>
+                    <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem', borderTopLeftRadius: '8px' }}>Service</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem' }}>Description</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem' }}>Technologies</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem' }}>Pricing</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem' }}>Updated</TableCell>
+                    <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem', borderTopRightRadius: '8px' }}>Actions</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {filteredServices.map((service) => (
+                    <TableRow 
+                      key={service.id}
+                      sx={{
+                        '&:hover': {
+                          backgroundColor: '#f8f9fa',
+                        }
+                      }}
+                    >
+                      <TableCell>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                          <Box sx={{ position: 'relative', width: 48, height: 48, flexShrink: 0 }}>
+                            {service.imageUrl ? (
+                              <Image
+                                src={service.imageUrl}
+                                alt={service.title}
+                                fill
+                                style={{ objectFit: 'cover', borderRadius: '8px' }}
+                              />
+                            ) : (
+                              <Box sx={{ 
+                                width: 48, 
+                                height: 48, 
+                                borderRadius: '8px', 
+                                bgcolor: '#f5f5f5', 
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                justifyContent: 'center' 
+                              }}>
+                                <Typography variant="body2" sx={{ color: '#999' }}>No Image</Typography>
+                              </Box>
+                            )}
+                          </Box>
+                          <Box>
+                            <Typography variant="body2" sx={{ fontWeight: 500, color: '#1a1a1a' }}>
+                              {service.title}
+                            </Typography>
+                            <Typography variant="caption" sx={{ color: '#666' }}>
+                              /{service.slug}
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </TableCell>
+                      <TableCell sx={{ maxWidth: '300px' }}>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            color: '#1a1a1a',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap',
+                            mb: 0.5
+                          }}
+                        >
+                          {service.shortDescription}
+                        </Typography>
+                        <Typography variant="caption" sx={{ color: '#666' }}>
+                          {service.features.length} features
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                          {service.technologies.slice(0, 3).map((tech) => (
+                            <Chip
+                              key={tech.id}
+                              label={tech.technology}
+                              size="small"
+                              sx={{
+                                backgroundColor: '#e3f2fd',
+                                color: '#1976d2',
+                                fontWeight: 500,
+                                fontSize: '0.75rem',
+                                height: '24px'
+                              }}
+                            />
+                          ))}
+                          {service.technologies.length > 3 && (
+                            <Chip
+                              label={`+${service.technologies.length - 3} more`}
+                              size="small"
+                              sx={{
+                                backgroundColor: '#f5f5f5',
+                                color: '#666',
+                                fontWeight: 500,
+                                fontSize: '0.75rem',
+                                height: '24px'
+                              }}
+                            />
+                          )}
+                        </Box>
+                      </TableCell>
+                      <TableCell>
+                        {service.pricingPlans ? (
+                          <Box>
+                            <Typography variant="body2" sx={{ fontWeight: 500, color: '#1a1a1a' }}>
+                              3 Plan Tiers
+                            </Typography>
+                            <Typography variant="caption" sx={{ color: '#666' }}>
+                              {service.pricingPlans.beginner.priceRange} - {service.pricingPlans.pro.priceRange}
+                            </Typography>
+                          </Box>
+                        ) : service.pricing ? (
+                          <Box>
+                            <Typography variant="body2" sx={{ fontWeight: 500, color: '#1a1a1a' }}>
+                              {service.pricing.starting}
+                            </Typography>
+                            <Typography variant="caption" sx={{ color: '#666' }}>
+                              {service.pricing.description}
+                            </Typography>
+                          </Box>
+                        ) : (
+                          <Typography variant="body2" sx={{ color: '#999' }}>
+                            No pricing set
+                          </Typography>
+                        )}
+                      </TableCell>
+                      <TableCell sx={{ color: '#666', fontSize: '0.875rem' }}>
+                        {formatDate(service.updatedAt)}
+                      </TableCell>
+                      <TableCell>
+                        <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
+                          <IconButton 
+                            size="small"
+                            onClick={() => {
+                              setSelectedService(service);
+                              setIsViewModalOpen(true);
+                            }}
+                            sx={{
+                              color: '#1976d2',
+                              '&:hover': {
+                                backgroundColor: '#e3f2fd',
+                              }
+                            }}
+                            title="View service details"
+                          >
+                            <Visibility fontSize="small" />
+                          </IconButton>
+                          <IconButton 
+                            size="small"
+                            onClick={() => {
+                              setSelectedService(service);
+                              setIsEditModalOpen(true);
+                            }}
+                            sx={{
+                              color: '#590178',
+                              '&:hover': {
+                                backgroundColor: '#f0e6f5',
+                              }
+                            }}
+                            title="Edit service"
+                          >
+                            <Edit fontSize="small" />
+                          </IconButton>
+                          <IconButton 
+                            size="small"
+                            onClick={() => openDeleteConfirmDialog(service)}
+                            sx={{
+                              color: '#d32f2f',
+                              '&:hover': {
+                                backgroundColor: '#ffebee',
+                              }
+                            }}
+                            title="Delete service"
+                          >
+                            <Delete fontSize="small" />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        </Box>
+      </Paper>
 
-      {/* Delete Confirmation Modal */}
-      {deleteConfirmation.isOpen && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-          <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-            <div className="mt-3 text-center">
-              <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
-                <Trash2 className="h-6 w-6 text-red-600" />
-              </div>
-              <h3 className="text-lg font-medium text-gray-900 mt-4">Delete Service</h3>
-              <div className="mt-2 px-7 py-3">
-                <p className="text-sm text-gray-500">
-                  Are you sure you want to delete &quot;{deleteConfirmation.serviceName}&quot;? This action cannot be undone.
-                </p>
-              </div>
-              <div className="flex gap-3 justify-center mt-4">
-                <button
-                  onClick={() => setDeleteConfirmation({
-                    isOpen: false,
-                    serviceId: null,
-                    serviceName: ''
-                  })}
-                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={() => deleteConfirmation.serviceId && handleDeleteService(deleteConfirmation.serviceId)}
-                  className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Delete Confirmation Dialog */}
+      <DeleteConfirmationDialog
+        open={openDeleteDialog}
+        onClose={handleDeleteCancel}
+        onConfirm={handleDeleteConfirm}
+        title="Delete Service"
+        itemName={serviceToDelete?.title}
+        loading={loading}
+      />
 
       {/* Service Form Modals */}
       <ServiceForm
@@ -493,6 +869,6 @@ export default function AdminServicesPage() {
         }}
         service={selectedService}
       />
-    </div>
+    </Box>
   );
 }

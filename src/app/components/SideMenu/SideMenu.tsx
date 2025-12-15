@@ -10,10 +10,13 @@ import WorkIcon from "@mui/icons-material/Work";
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import NextLink from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import scss from "@/styles/SideMenu.module.scss";
 import {
+  Box,
   Divider,
   Drawer,
   List,
@@ -22,7 +25,8 @@ import {
   ListItemIcon,
   ListItemText,
   Theme,
- 
+  Collapse,
+  Typography,
 } from "@mui/material";
 
 const drawerWidth = 240;
@@ -30,7 +34,7 @@ const drawerWidth = 240;
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
+    easing: theme.transitions.easing.easeInOut,
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: "hidden",
@@ -38,7 +42,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
 
 const closedMixin = (theme: Theme): CSSObject => ({
   transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
+    easing: theme.transitions.easing.easeInOut,
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
@@ -90,29 +94,203 @@ interface SideMenuProps {
 
 const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMenuProps) => {
   const [open, setOpen] = React.useState(false);
+  const [homeMenuOpen, setHomeMenuOpen] = React.useState(false);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentView = searchParams.get('view') || 'userAnalytics';
 
   const handleDrawerToggle = () => {
-    if (isMobile) {
-      onMenuClose();
-    } else {
-      setOpen(!open);
-    }
+    setOpen(!open);
   };
+
+  const handleHomeMenuToggle = () => {
+    setHomeMenuOpen(!homeMenuOpen);
+  };
+
+  // Dashboard submenu options
+  const dashboardOptions = [
+    { value: 'userAnalytics', label: 'User Analytics' },
+    { value: 'engagementMetrics', label: 'Engagement Metrics' },
+    { value: 'technicalMetrics', label: 'Technical Metrics' },
+    { value: 'demographics', label: 'Demographics' },
+  ];
+
+  // Auto-expand home menu when navigating to home page (but allow manual toggle)
+  const prevPathnameRef = React.useRef(pathname);
+  React.useEffect(() => {
+    const isHomeActive = pathname === '/dashboard/home';
+    const wasOnHome = prevPathnameRef.current === '/dashboard/home';
+    const navigatedToHome = isHomeActive && !wasOnHome;
+    
+    if (navigatedToHome) {
+      setHomeMenuOpen(true);
+    }
+    
+    prevPathnameRef.current = pathname;
+  }, [pathname]);
 
   const DrawerContent = () => (
     <>
-      {!isMobile && (
-        <div className={scss.drawerHeader}>
-          <IconButton onClick={handleDrawerToggle} sx={{ color: 'white' }}>
-            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
+      {!isMobile && !isTablet && (
+        <>
+          <div className={scss.drawerHeader}>
+            <IconButton 
+              onClick={handleDrawerToggle} 
+              sx={{ 
+                color: 'white',
+                transition: (theme) => theme.transitions.create('transform', {
+                  easing: theme.transitions.easing.easeInOut,
+                  duration: theme.transitions.duration.short,
+                }),
+                '&:hover': {
+                  transform: 'scale(1.1)',
+                },
+              }}
+            >
+              {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.2)' }} />
+        </>
       )}
-      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.2)' }} />
+      {(isMobile || isTablet) && (
+        <Box sx={{ py: 1 }} />
+      )}
       <List>
         {menuListTranslations.map((text, index) => {
           const isActive = pathname === menuRouteList[index];
+          const isHome = index === 0;
+          const isHomeActive = pathname === '/dashboard/home';
+          
+          if (isHome) {
+            return (
+              <React.Fragment key={text}>
+                <ListItem disablePadding sx={{ display: "block" }}>
+                  <NextLink 
+                    className={scss.link} 
+                    href="/dashboard/home?view=userAnalytics"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <ListItemButton
+                      onClick={(e) => {
+                        if (isHomeActive) {
+                          e.preventDefault();
+                          handleHomeMenuToggle();
+                        }
+                        if (isMobile || isTablet) {
+                          // Don't close menu on mobile/tablet when expanding submenu
+                        }
+                      }}
+                      title={text}
+                      aria-label={text}
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: (isMobile || isTablet) ? "flex-start" : open ? "initial" : "center",
+                        px: 2.5,
+                        mx: 1,
+                        my: 0.5,
+                        borderRadius: isHomeActive ? '24px' : '8px',
+                        color: isHomeActive ? '#590178' : 'white',
+                        backgroundColor: isHomeActive ? '#FFF2D5' : 'transparent',
+                        transition: (theme) => theme.transitions.create(['background-color', 'border-radius', 'transform'], {
+                          easing: theme.transitions.easing.easeInOut,
+                          duration: theme.transitions.duration.short,
+                        }),
+                        '&:hover': {
+                          backgroundColor: isHomeActive ? '#FFF2D5' : 'rgba(255, 242, 213, 0.15)',
+                          borderRadius: '24px',
+                          transform: 'translateX(4px)',
+                        },
+                      }}
+                    >
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: (isMobile || isTablet || open) ? 3 : "auto",
+                          justifyContent: "center",
+                          color: isHomeActive ? '#590178' : 'white',
+                          transition: (theme) => theme.transitions.create('margin-right', {
+                            easing: theme.transitions.easing.easeInOut,
+                            duration: theme.transitions.duration.standard,
+                          }),
+                        }}
+                      >
+                        {menuListIcons[index]}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={text}
+                        sx={{
+                          opacity: (isMobile || isTablet || open) ? 1 : 0,
+                          color: isHomeActive ? '#590178' : 'white',
+                          transition: (theme) => theme.transitions.create('opacity', {
+                            easing: theme.transitions.easing.easeInOut,
+                            duration: theme.transitions.duration.standard,
+                          }),
+                          '& .MuiTypography-root': {
+                            fontWeight: isHomeActive ? 600 : 400,
+                          }
+                        }}
+                      />
+                      {(isMobile || isTablet || open) && (
+                        homeMenuOpen ? <ExpandLess sx={{ color: isHomeActive ? '#590178' : 'white' }} /> : <ExpandMore sx={{ color: isHomeActive ? '#590178' : 'white' }} />
+                      )}
+                    </ListItemButton>
+                  </NextLink>
+                </ListItem>
+                <Collapse in={homeMenuOpen && (isMobile || isTablet || open)} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {dashboardOptions.map((option) => {
+                      const isOptionActive = isHomeActive && currentView === option.value;
+                      return (
+                        <ListItem key={option.value} disablePadding sx={{ display: "block" }}>
+                          <NextLink 
+                            className={scss.link} 
+                            href={`/dashboard/home?view=${option.value}`}
+                            style={{ textDecoration: 'none' }}
+                          >
+                            <ListItemButton
+                              onClick={() => (isMobile || isTablet) && onMenuClose()}
+                              sx={{
+                                pl: (isMobile || isTablet || open) ? 6 : 2.5,
+                                pr: 2.5,
+                                minHeight: 40,
+                                mx: 1,
+                                my: 0.25,
+                                borderRadius: isOptionActive ? '16px' : '8px',
+                                color: isOptionActive ? '#590178' : 'rgba(255, 255, 255, 0.85)',
+                                backgroundColor: isOptionActive ? '#FFF2D5' : 'transparent',
+                                transition: (theme) => theme.transitions.create(['background-color', 'border-radius', 'transform'], {
+                                  easing: theme.transitions.easing.easeInOut,
+                                  duration: theme.transitions.duration.short,
+                                }),
+                                '&:hover': {
+                                  backgroundColor: isOptionActive ? '#FFF2D5' : 'rgba(255, 242, 213, 0.15)',
+                                  borderRadius: '16px',
+                                  transform: 'translateX(4px)',
+                                },
+                              }}
+                            >
+                              <ListItemText
+                                primary={option.label}
+                                sx={{
+                                  opacity: (isMobile || isTablet || open) ? 1 : 0,
+                                  '& .MuiTypography-root': {
+                                    fontSize: '0.9rem',
+                                    fontWeight: isOptionActive ? 600 : 400,
+                                    color: isOptionActive ? '#590178' : 'rgba(255, 255, 255, 0.85)',
+                                  }
+                                }}
+                              />
+                            </ListItemButton>
+                          </NextLink>
+                        </ListItem>
+                      );
+                    })}
+                  </List>
+                </Collapse>
+              </React.Fragment>
+            );
+          }
           
           return (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
@@ -123,21 +301,34 @@ const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMen
                   aria-label={text}
                   sx={{
                     minHeight: 48,
-                    justifyContent: isMobile ? "flex-start" : open ? "initial" : "center",
+                    justifyContent: (isMobile || isTablet) ? "flex-start" : open ? "initial" : "center",
                     px: 2.5,
+                    mx: 1,
+                    my: 0.5,
+                    borderRadius: isActive ? '24px' : '8px',
                     color: isActive ? '#590178' : 'white',
-                    backgroundColor: isActive ? 'white' : 'transparent',
+                    backgroundColor: isActive ? '#FFF2D5' : 'transparent',
+                    transition: (theme) => theme.transitions.create(['background-color', 'border-radius', 'transform'], {
+                      easing: theme.transitions.easing.easeInOut,
+                      duration: theme.transitions.duration.short,
+                    }),
                     '&:hover': {
-                      backgroundColor: isActive ? 'white' : 'rgba(255, 255, 255, 0.1)',
+                      backgroundColor: isActive ? '#FFF2D5' : 'rgba(255, 242, 213, 0.15)',
+                      borderRadius: '24px',
+                      transform: 'translateX(4px)',
                     },
                   }}
                 >
                   <ListItemIcon
                     sx={{
                       minWidth: 0,
-                      mr: isMobile || open ? 3 : "auto",
+                      mr: (isMobile || isTablet || open) ? 3 : "auto",
                       justifyContent: "center",
                       color: isActive ? '#590178' : 'white',
+                      transition: (theme) => theme.transitions.create('margin-right', {
+                        easing: theme.transitions.easing.easeInOut,
+                        duration: theme.transitions.duration.standard,
+                      }),
                     }}
                   >
                     {menuListIcons[index]}
@@ -145,8 +336,15 @@ const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMen
                   <ListItemText
                     primary={text}
                     sx={{
-                      opacity: isMobile || open ? 1 : 0,
+                      opacity: (isMobile || isTablet || open) ? 1 : 0,
                       color: isActive ? '#590178' : 'white',
+                      transition: (theme) => theme.transitions.create('opacity', {
+                        easing: theme.transitions.easing.easeInOut,
+                        duration: theme.transitions.duration.standard,
+                      }),
+                      '& .MuiTypography-root': {
+                        fontWeight: isActive ? 600 : 400,
+                      }
                     }}
                   />
                 </ListItemButton>
@@ -165,18 +363,37 @@ const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMen
         <Drawer
           variant="temporary"
           open={isMobileMenuOpen}
-          onClose={handleDrawerToggle}
+          onClose={onMenuClose}
           ModalProps={{
             keepMounted: true,
           }}
+          transitionDuration={{
+            enter: 300,
+            exit: 250,
+          }}
           sx={{
             display: { xs: 'block', sm: 'none' },
+            zIndex: 1099,
             '& .MuiDrawer-paper': { 
               boxSizing: 'border-box', 
               width: drawerWidth,
-              top: 56,
               backgroundColor: '#590178',
               color: 'white',
+              transition: (theme) => theme.transitions.create('transform', {
+                easing: theme.transitions.easing.easeInOut,
+                duration: theme.transitions.duration.enteringScreen,
+              }),
+              marginTop: '56px',
+              height: 'calc(100vh - 56px)',
+              zIndex: 1099,
+            },
+            '& .MuiBackdrop-root': {
+              transition: (theme) => theme.transitions.create('opacity', {
+                easing: theme.transitions.easing.easeInOut,
+                duration: theme.transitions.duration.enteringScreen,
+              }),
+              marginTop: '56px',
+              zIndex: 1098,
             },
           }}
         >
@@ -184,20 +401,70 @@ const SideMenu = ({ isMobile, isTablet, isMobileMenuOpen, onMenuClose }: SideMen
         </Drawer>
       )}
 
-      {/* Desktop/Tablet Drawer */}
-      {!isMobile && (
+      {/* Tablet Drawer */}
+      {isTablet && (
+        <Drawer
+          variant="temporary"
+          open={isMobileMenuOpen}
+          onClose={onMenuClose}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          transitionDuration={{
+            enter: 300,
+            exit: 250,
+          }}
+          sx={{
+            display: { xs: 'none', sm: 'block', md: 'none' },
+            zIndex: 1099,
+            '& .MuiDrawer-paper': { 
+              boxSizing: 'border-box', 
+              width: drawerWidth,
+              backgroundColor: '#590178',
+              color: 'white',
+              transition: (theme) => theme.transitions.create('transform', {
+                easing: theme.transitions.easing.easeInOut,
+                duration: theme.transitions.duration.enteringScreen,
+              }),
+              marginTop: '64px',
+              height: 'calc(100vh - 64px)',
+              zIndex: 1099,
+            },
+            '& .MuiBackdrop-root': {
+              transition: (theme) => theme.transitions.create('opacity', {
+                easing: theme.transitions.easing.easeInOut,
+                duration: theme.transitions.duration.enteringScreen,
+              }),
+              marginTop: '64px',
+              zIndex: 1098,
+            },
+          }}
+        >
+          <DrawerContent />
+        </Drawer>
+      )}
+
+      {/* Desktop Drawer */}
+      {!isMobile && !isTablet && (
         <Drawer
           variant="permanent"
           open={open}
           className={scss.sideMenu}
           sx={{
-            display: { xs: 'none', sm: 'block' },
+            display: { xs: 'none', sm: 'none', md: 'block' },
             width: open ? drawerWidth : 64,
+            flexShrink: 0,
             '& .MuiDrawer-paper': {
-              top: 64,
+              position: 'fixed',
               width: open ? drawerWidth : 64,
               backgroundColor: '#590178',
               color: 'white',
+              border: 'none',
+              height: 'calc(100vh - 80px)',
+              top: '80px',
+              left: 0,
+              overflowX: 'hidden',
+              overflowY: 'auto',
               ...(open ? openedMixin : closedMixin),
             },
           }}

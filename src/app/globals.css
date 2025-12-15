@@ -127,6 +127,17 @@ textarea:focus {
   .scrollbar-hide::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
   }
+
+  /* Hide scrollbar on desktop only */
+  @media (min-width: 900px) {
+    .hide-scrollbar-desktop {
+      -ms-overflow-style: none;  /* Internet Explorer 10+ */
+      scrollbar-width: none;  /* Firefox */
+    }
+    .hide-scrollbar-desktop::-webkit-scrollbar {
+      display: none;  /* Safari and Chrome */
+    }
+  }
   .container {
     @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
     max-width: min(100%, 1400px);
@@ -488,12 +499,18 @@ input:focus, textarea:focus, select:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9FA8DA;
+  background: #590178;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #AAB2E0;
+  background: #4a0166;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #590178 #F5F3ED;
 }
 
 /* Modal scrollable content */
@@ -501,7 +518,7 @@ input:focus, textarea:focus, select:focus {
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: #9FA8DA #F5F3ED;
+  scrollbar-color: #590178 #F5F3ED;
 }
 
 .modal-scrollable::-webkit-scrollbar {
@@ -514,12 +531,12 @@ input:focus, textarea:focus, select:focus {
 }
 
 .modal-scrollable::-webkit-scrollbar-thumb {
-  background: #9FA8DA;
+  background: #590178;
   border-radius: 3px;
 }
 
 .modal-scrollable::-webkit-scrollbar-thumb:hover {
-  background: #AAB2E0;
+  background: #4a0166;
 }
 
 /* Dialog content scrollable */
@@ -527,7 +544,7 @@ input:focus, textarea:focus, select:focus {
   overflow-y: auto !important;
   overflow-x: hidden !important;
   scrollbar-width: thin;
-  scrollbar-color: #9FA8DA #F5F3ED;
+  scrollbar-color: #590178 #F5F3ED;
 }
 
 .dialog-scrollable::-webkit-scrollbar {
@@ -540,12 +557,12 @@ input:focus, textarea:focus, select:focus {
 }
 
 .dialog-scrollable::-webkit-scrollbar-thumb {
-  background: #9FA8DA;
+  background: #590178;
   border-radius: 4px;
 }
 
 .dialog-scrollable::-webkit-scrollbar-thumb:hover {
-  background: #AAB2E0;
+  background: #4a0166;
 }
 
 ::selection {

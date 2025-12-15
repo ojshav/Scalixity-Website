@@ -16,28 +16,24 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-const pages = ["Blog"];
+const pages: string[] = [];
 
 interface HeaderProps {
-    isDarkMode: boolean;
-    onThemeToggle: () => void;
     onMenuToggle: () => void;
-    isMobileMenuOpen: boolean;
+    isMobile?: boolean;
 }
 
-const Header = ({ isDarkMode, onThemeToggle, onMenuToggle }: HeaderProps) => {
+const Header = ({ onMenuToggle, isMobile: isMobileProp }: HeaderProps) => {
     const [adminUsername, setAdminUsername] = useState<string | null>(null);
     const [, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const router = useRouter();
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+    const isMobileQuery = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMobile = isMobileProp !== undefined ? isMobileProp : isMobileQuery;
 
     useEffect(() => {
         const storedUsername = localStorage.getItem("adminUsername");
@@ -46,7 +42,7 @@ const Header = ({ isDarkMode, onThemeToggle, onMenuToggle }: HeaderProps) => {
         } else {
             router.push("/login");
         }
-    }, []);
+    }, [router]);
 
     const handleLogout = () => {
         localStorage.removeItem("adminUsername");
@@ -67,43 +63,57 @@ const Header = ({ isDarkMode, onThemeToggle, onMenuToggle }: HeaderProps) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <AppBar position="static">
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters sx={{ flexWrap: 'wrap' }}>
-                        {/* Mobile menu toggle */}
-                        <Box sx={{ display: { xs: 'flex', sm: 'none' }, mr: 2 }}>
+            <AppBar position="sticky" sx={{ 
+                bgcolor: '#590178',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                zIndex: 1100
+            }}>
+                <Container maxWidth={false} sx={{ 
+                    px: { xs: 1.5, sm: 3, md: 6 },
+                    maxWidth: '100% !important'
+                }}>
+                    <Toolbar disableGutters sx={{ 
+                        flexWrap: 'nowrap',
+                        py: { xs: 1.5, sm: 2, md: 3 },
+                        minHeight: { xs: '56px', sm: '64px', md: '80px' }
+                    }}>
+                        {/* Mobile & Tablet menu toggle */}
+                        <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: { xs: 1, sm: 2 } }}>
                             <IconButton
-                                size="large"
+                                size={isMobile ? "medium" : "large"}
                                 aria-label="toggle side menu"
                                 onClick={onMenuToggle}
-                                color="inherit"
+                                sx={{ 
+                                    color: '#FFFFFF',
+                                    p: { xs: 1, sm: 1.5 }
+                                }}
                             >
-                                <MenuIcon />
+                                <MenuIcon sx={{ fontSize: { xs: '1.5rem', sm: '1.75rem' } }} />
                             </IconButton>
                         </Box>
 
                         {/* Logo - desktop */}
                         <Typography
-                            variant="h6"
+                            variant="h5"
                             noWrap
                             component="a"
                             href="/"
                             sx={{
-                                mr: 2,
+                                mr: 4,
                                 display: { xs: 'none', md: 'flex' },
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
+                                letterSpacing: '.2rem',
+                                color: '#FFFFFF',
                                 textDecoration: 'none',
                             }}
                         >
                             SCALIXITY
                         </Typography>
 
-                        {/* Logo - mobile */}
+                        {/* Logo - mobile & tablet */}
                         <Typography
-                            variant="h5"
+                            variant={isMobile ? "subtitle1" : "h6"}
                             noWrap
                             component="a"
                             href="/"
@@ -113,8 +123,9 @@ const Header = ({ isDarkMode, onThemeToggle, onMenuToggle }: HeaderProps) => {
                                 flexGrow: 1,
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
+                                letterSpacing: { xs: '.1rem', sm: '.15rem' },
+                                fontSize: { xs: '1rem', sm: '1.25rem' },
+                                color: '#FFFFFF',
                                 textDecoration: 'none',
                             }}
                         >
@@ -127,37 +138,33 @@ const Header = ({ isDarkMode, onThemeToggle, onMenuToggle }: HeaderProps) => {
                                 <Button
                                     key={page}
                                     onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                    sx={{ 
+                                        my: 1, 
+                                        color: '#FFFFFF', 
+                                        display: 'block',
+                                        fontSize: '1rem',
+                                        '&:hover': {
+                                            bgcolor: 'rgba(255, 255, 255, 0.1)'
+                                        }
+                                    }}
                                 >
                                     {page}
                                 </Button>
                             ))}
                         </Box>
 
-                        {/* Theme toggle */}
-                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <IconButton 
-                                onClick={onThemeToggle} 
-                                color="inherit"
-                                size={isMobile ? "small" : "medium"}
-                                sx={{ mr: isMobile ? 1 : 2 }}
-                            >
-                                {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-                            </IconButton>
-                        </Box>
-
                         {/* Welcome message */}
                         <Box 
                             sx={{ 
-                                display: { xs: 'none', sm: 'flex' }, 
-                                mr: 2,
+                                display: { xs: 'none', sm: 'none', md: 'flex' }, 
+                                mr: { md: 3 },
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
-                                maxWidth: isTablet ? '120px' : '200px'
+                                maxWidth: '200px'
                             }}
                         >
-                            <Typography noWrap>
+                            <Typography noWrap sx={{ color: '#FFFFFF', fontSize: '1rem' }}>
                                 Welcome, {adminUsername || "admin"}!
                             </Typography>
                         </Box>
@@ -165,11 +172,15 @@ const Header = ({ isDarkMode, onThemeToggle, onMenuToggle }: HeaderProps) => {
                         {/* User menu */}
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open profile settings">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: { xs: 0.5, sm: 0.75, md: 0 } }}>
                                     <Avatar 
                                         alt={adminUsername || "admin"} 
                                         src="public\S_logo.svg" 
-                                        sx={{ width: isMobile ? 32 : 40, height: isMobile ? 32 : 40 }}
+                                        sx={{ 
+                                            width: { xs: 32, sm: 36, md: 44 }, 
+                                            height: { xs: 32, sm: 36, md: 44 },
+                                            border: { xs: '1.5px solid #FFFFFF', md: '2px solid #FFFFFF' }
+                                        }}
                                     />
                                 </IconButton>
                             </Tooltip>
@@ -188,17 +199,56 @@ const Header = ({ isDarkMode, onThemeToggle, onMenuToggle }: HeaderProps) => {
                                 }}
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
+                                PaperProps={{
+                                    sx: {
+                                        borderRadius: '12px',
+                                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                                        marginTop: '8px',
+                                        border: '1px solid rgba(0, 0, 0, 0.08)',
+                                        minWidth: '180px',
+                                        padding: '4px',
+                                    }
+                                }}
                             >
-                                <MenuItem onClick={() => {
-                                    handleCloseUserMenu();
-                                    router.push("/profile");
-                                }}>
-                                    <AccountCircleIcon sx={{ mr: 1 }} />
-                                    <Typography textAlign="center">Profile</Typography>
+                                <MenuItem 
+                                    onClick={() => {
+                                        handleCloseUserMenu();
+                                        router.push("/dashboard/profile");
+                                    }}
+                                    sx={{
+                                        borderRadius: '8px',
+                                        margin: '4px 8px',
+                                        padding: '10px 16px',
+                                        fontSize: '0.875rem',
+                                        transition: 'all 0.2s ease',
+                                        '&:hover': {
+                                            backgroundColor: 'rgba(89, 1, 120, 0.08)',
+                                            transform: 'translateX(4px)',
+                                        },
+                                    }}
+                                >
+                                    <AccountCircleIcon sx={{ mr: 1, color: '#590178', fontSize: '20px' }} />
+                                    <Typography textAlign="center" sx={{ fontWeight: 500 }}>Profile</Typography>
                                 </MenuItem>
-                                <MenuItem onClick={handleLogout}>
-                                    <LogoutIcon sx={{ mr: 1 }} />
-                                    <Typography textAlign="center">Logout</Typography>
+                                <MenuItem 
+                                    onClick={() => {
+                                        handleCloseUserMenu();
+                                        handleLogout();
+                                    }}
+                                    sx={{
+                                        borderRadius: '8px',
+                                        margin: '4px 8px',
+                                        padding: '10px 16px',
+                                        fontSize: '0.875rem',
+                                        transition: 'all 0.2s ease',
+                                        '&:hover': {
+                                            backgroundColor: 'rgba(89, 1, 120, 0.08)',
+                                            transform: 'translateX(4px)',
+                                        },
+                                    }}
+                                >
+                                    <LogoutIcon sx={{ mr: 1, color: '#590178', fontSize: '20px' }} />
+                                    <Typography textAlign="center" sx={{ fontWeight: 500 }}>Logout</Typography>
                                 </MenuItem>
                             </Menu>
                         </Box>

@@ -1,10 +1,31 @@
 'use client'
 import '@/src/app/globals.css';
 import { useState, useEffect } from 'react'
-import { Download, Search, ChevronLeft, ChevronRight, ArrowUpDown } from 'lucide-react'
+import {
+  Box,
+  Typography,
+  Button,
+  TextField,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  CircularProgress,
+  InputAdornment,
+  IconButton,
+  Chip,
+  useMediaQuery,
+  useTheme,
+  Divider,
+} from '@mui/material';
+import { Download, Search, ChevronLeft, ChevronRight, UnfoldMore, ArrowUpward, ArrowDownward, Person, Email, Phone, Message, CalendarToday } from '@mui/icons-material'
 import ExcelJS from 'exceljs'
+
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
-// Update the interface to match API response
+
 interface ContactSubmission {
   id: number;
   name: string;
@@ -12,12 +33,15 @@ interface ContactSubmission {
   phone: string;
   message: string;
   status: string;
-  createdAt: string; // Changed to match API field name
+  createdAt: string;
 }
 
 export default function AdminContactDashboard() {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [sortField, setSortField] = useState<keyof ContactSubmission>('createdAt')
@@ -27,6 +51,8 @@ export default function AdminContactDashboard() {
 
   useEffect(() => {
     const fetchSubmissions = async () => {
+      setIsLoading(true)
+      setError(null)
       try {
         const response = await fetch(`${baseURL}/api/contact`, {
           headers: {
@@ -39,10 +65,10 @@ export default function AdminContactDashboard() {
         }
         
         const responseData = await response.json()
-        // Extract the data array from the response
-        setSubmissions(responseData.data)
+        setSubmissions(responseData.data || [])
       } catch (error) {
         console.error('Error fetching contact submissions:', error)
+        setError(error instanceof Error ? error.message : 'Failed to fetch submissions')
       } finally {
         setIsLoading(false)
       }
@@ -86,32 +112,27 @@ export default function AdminContactDashboard() {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Contacts');
 
-    // Add headers
     worksheet.columns = [
       { header: 'Name', key: 'name' },
       { header: 'Email', key: 'email' },
       { header: 'Phone', key: 'phone' },
       { header: 'Message', key: 'message' },
-      { header: 'Service', key: 'service' },
+      { header: 'Status', key: 'status' },
       { header: 'Submission Date', key: 'submissionDate' }
     ];
 
-    // Add data
     filteredSubmissions.forEach(s => {
       worksheet.addRow({
         name: s.name,
         email: s.email,
         phone: s.phone,
         message: s.message,
-        service: s.status,
+        status: s.status,
         submissionDate: s.createdAt
       });
     });
 
-    // Generate buffer
     const buffer = await workbook.xlsx.writeBuffer();
-
-    // Create blob and download
     const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     const url = window.URL.createObjectURL(blob);
     const anchor = document.createElement('a');
@@ -140,157 +161,608 @@ export default function AdminContactDashboard() {
       return 'Invalid Date';
     }
   }
+
+  const getSortIcon = (field: keyof ContactSubmission) => {
+    if (sortField !== field) return <UnfoldMore sx={{ fontSize: '1rem', opacity: 0.3 }} />;
+    return sortDirection === 'asc' 
+      ? <ArrowUpward sx={{ fontSize: '1rem' }} />
+      : <ArrowDownward sx={{ fontSize: '1rem' }} />;
+  }
   
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Contact Form Submissions</h1>
-          
-          <button
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#FFF2D5', px: { xs: 2, sm: 3, md: 0 }, py: { xs: 2, sm: 3, md: 0 } }}>
+      {/* Header */}
+      <Box sx={{ mb: { xs: 3, md: 4 } }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { xs: 'flex-start', md: 'center' }, 
+          justifyContent: 'space-between', 
+          mb: 2,
+          gap: { xs: 2, md: 0 }
+        }}>
+          <Box sx={{ width: { xs: '100%', md: 'auto' } }}>
+            <Typography variant="h4" sx={{
+              fontWeight: 700,
+              color: '#1a1a1a',
+              mb: 1,
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
+            }}>
+              Contact Form Submissions
+            </Typography>
+            <Typography variant="body1" sx={{ 
+              color: '#666',
+              fontSize: { xs: '0.875rem', md: '1rem' }
+            }}>
+              View and manage all contact form submissions from your website
+            </Typography>
+          </Box>
+          <Button 
             onClick={handleDownloadExcel}
-            className="inline-flex items-center px-4 py-2 bg-[#9FA8DA] text-white rounded-lg hover:bg-[#7986CB] transition-colors"
+            variant="contained"
+            sx={{
+              backgroundColor: '#590178',
+              color: '#fff',
+              px: { xs: 2, md: 3 },
+              py: { xs: 1, md: 1.5 },
+              borderRadius: '8px',
+              textTransform: 'none',
+              fontSize: { xs: '0.875rem', md: '0.95rem' },
+              fontWeight: 600,
+              width: { xs: '100%', sm: 'auto' },
+              '&:hover': {
+                backgroundColor: '#4a0166',
+              }
+            }}
+            startIcon={<Download />}
           >
-            <Download className="mr-2 h-5 w-5" />
             Export to Excel
-          </button>
-        </div>
-        
-        <div className="bg-white rounded-xl shadow-md overflow-hidden">
-          <div className="p-6 border-b border-gray-200">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-              <input
-                type="text"
-                placeholder="Search by name, email, phone or message..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#9FA8DA] focus:border-transparent"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-          </div>
+          </Button>
+        </Box>
+      </Box>
+
+      {/* Search */}
+      <Box sx={{ mb: { xs: 3, md: 4 } }}>
+        <TextField
+          placeholder="Search by name, email, phone or message..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          fullWidth
+          variant="outlined"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search sx={{ color: '#666', fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+              </InputAdornment>
+            ),
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              borderRadius: '8px',
+              backgroundColor: 'white',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+              height: { xs: '48px', md: '56px' },
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'white',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white !important',
+                outline: 'none !important',
+              },
+              '&.Mui-focused': {
+                outline: 'none !important',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1) !important',
+              },
+              '& .MuiInputBase-input': {
+                padding: { xs: '12px 14px', md: '16.5px 14px' },
+                fontSize: { xs: '0.875rem', md: '1rem' },
+              },
+              '& .MuiInputBase-input::placeholder': {
+                color: 'rgba(0, 0, 0, 0.4)',
+                opacity: 1,
+                fontSize: { xs: '0.875rem', md: '1rem' },
+              },
+            },
+          }}
+        />
+      </Box>
+
+      {/* Submissions Table */}
+      <Paper 
+        elevation={0}
+        sx={{
+          backgroundColor: '#fff',
+          borderRadius: { xs: '12px', md: '16px' },
+          boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05)',
+          overflow: 'hidden'
+        }}
+      >
+        <Box sx={{ p: { xs: 2, sm: 2.5, md: 3 } }}>
+          <Typography variant="h6" sx={{ 
+            fontWeight: 600, 
+            color: '#1a1a1a', 
+            mb: { xs: 2, md: 3 },
+            fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem' }
+          }}>
+            All Submissions ({filteredSubmissions.length})
+          </Typography>
           
           {isLoading ? (
-            <div className="flex justify-center items-center p-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#9FA8DA]"></div>
-            </div>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: { xs: '300px', md: '400px' },
+                gap: 2
+              }}
+            >
+              <CircularProgress
+                size={60}
+                sx={{
+                  color: '#590178',
+                }}
+              />
+              <Typography
+                variant="body1"
+                sx={{
+                  color: '#666',
+                  fontWeight: 500,
+                  fontSize: { xs: '0.875rem', md: '1rem' }
+                }}
+              >
+                Loading submissions...
+              </Typography>
+            </Box>
+          ) : error ? (
+            <Box sx={{ textAlign: 'center', py: { xs: 4, md: 8 } }}>
+              <Typography variant="body1" sx={{ 
+                color: '#d32f2f', 
+                fontWeight: 500, 
+                mb: 2,
+                fontSize: { xs: '0.875rem', md: '1rem' }
+              }}>
+                {error}
+              </Typography>
+              <Button
+                onClick={() => window.location.reload()}
+                variant="contained"
+                sx={{
+                  backgroundColor: '#590178',
+                  color: '#fff',
+                  fontSize: { xs: '0.875rem', md: '1rem' },
+                  px: { xs: 2, md: 3 },
+                  py: { xs: 1, md: 1.5 },
+                  '&:hover': {
+                    backgroundColor: '#4a0166',
+                  }
+                }}
+              >
+                Try Again
+              </Button>
+            </Box>
+          ) : filteredSubmissions.length === 0 ? (
+            <Box sx={{ textAlign: 'center', py: { xs: 4, md: 8 } }}>
+              <Typography variant="body1" sx={{ 
+                color: '#666', 
+                mb: 2,
+                fontSize: { xs: '0.875rem', md: '1rem' }
+              }}>
+                {searchTerm ? 'No submissions found matching your search' : 'No contact submissions yet.'}
+              </Typography>
+            </Box>
           ) : (
             <>
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th 
-                        scope="col" 
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                        onClick={() => handleSort('name')}
-                      >
-                        <div className="flex items-center">
-                          Name
-                          <ArrowUpDown className="ml-1 h-4 w-4" />
-                        </div>
-                      </th>
-                      <th 
-                        scope="col" 
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                        onClick={() => handleSort('email')}
-                      >
-                        <div className="flex items-center">
-                          Email
-                          <ArrowUpDown className="ml-1 h-4 w-4" />
-                        </div>
-                      </th>
-                      <th 
-                        scope="col" 
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                        onClick={() => handleSort('phone')}
-                      >
-                        <div className="flex items-center">
-                          Phone
-                          <ArrowUpDown className="ml-1 h-4 w-4" />
-                        </div>
-                      </th>
-                      <th 
-                        scope="col" 
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Message
-                      </th>
-                      <th 
-                        scope="col" 
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                        onClick={() => handleSort('createdAt')}
-                      >
-                        <div className="flex items-center">
-                          Date
-                          <ArrowUpDown className="ml-1 h-4 w-4" />
-                        </div>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {paginatedSubmissions.length > 0 ? (
-                      paginatedSubmissions.map((submission) => (
-                        <tr key={submission.id} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            {submission.name}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {submission.email}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {submission.phone || 'N/A'}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                            {submission.message || 'N/A'}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {formatDate(submission.createdAt)}
-                          </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
-                          No submissions found
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
+              {/* Mobile Card View */}
+              {isMobile ? (
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  {/* Sort Options for Mobile */}
+                  <Box sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: 1, 
+                    flexWrap: 'wrap',
+                    mb: 1
+                  }}>
+                    <Typography variant="body2" sx={{ color: '#666', fontSize: '0.875rem' }}>
+                      Sort by:
+                    </Typography>
+                    <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
+                      {(['name', 'email', 'phone', 'createdAt'] as const).map((field) => (
+                        <Button
+                          key={field}
+                          onClick={() => handleSort(field)}
+                          size="small"
+                          variant={sortField === field ? 'contained' : 'outlined'}
+                          sx={{
+                            minWidth: 'auto',
+                            px: 1.5,
+                            py: 0.5,
+                            fontSize: '0.75rem',
+                            textTransform: 'none',
+                            backgroundColor: sortField === field ? '#590178' : 'transparent',
+                            color: sortField === field ? '#fff' : '#666',
+                            borderColor: sortField === field ? '#590178' : '#e0e0e0',
+                            '&:hover': {
+                              backgroundColor: sortField === field ? '#4a0166' : '#f5f5f5',
+                              borderColor: sortField === field ? '#4a0166' : '#d0d0d0',
+                            }
+                          }}
+                          endIcon={getSortIcon(field)}
+                        >
+                          {field.charAt(0).toUpperCase() + field.slice(1)}
+                        </Button>
+                      ))}
+                    </Box>
+                  </Box>
+
+                  {/* Cards */}
+                  {paginatedSubmissions.map((submission) => (
+                    <Paper
+                      key={submission.id}
+                      elevation={0}
+                      sx={{
+                        p: 2,
+                        borderRadius: '12px',
+                        border: '1px solid #e0e0e0',
+                        backgroundColor: '#fff',
+                        '&:hover': {
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                        }
+                      }}
+                    >
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+                        <Box sx={{ flex: 1 }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                            <Person sx={{ fontSize: '1rem', color: '#590178' }} />
+                            <Typography variant="body1" sx={{ fontWeight: 600, color: '#1a1a1a', fontSize: '0.95rem' }}>
+                              {submission.name}
+                            </Typography>
+                          </Box>
+                          <Chip
+                            label={submission.status || 'New'}
+                            size="small"
+                            sx={{
+                              backgroundColor: submission.status === 'Read' ? '#e8f5e9' : '#e3f2fd',
+                              color: submission.status === 'Read' ? '#2e7d32' : '#1976d2',
+                              fontWeight: 500,
+                              fontSize: '0.7rem',
+                              height: '22px'
+                            }}
+                          />
+                        </Box>
+                      </Box>
+
+                      <Divider sx={{ my: 1.5 }} />
+
+                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                          <Email sx={{ fontSize: '1rem', color: '#666', mt: 0.25, flexShrink: 0 }} />
+                          <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography variant="caption" sx={{ color: '#999', fontSize: '0.7rem', display: 'block', mb: 0.25 }}>
+                              Email
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#1a1a1a', fontSize: '0.875rem', wordBreak: 'break-all' }}>
+                              {submission.email}
+                            </Typography>
+                          </Box>
+                        </Box>
+
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                          <Phone sx={{ fontSize: '1rem', color: '#666', mt: 0.25, flexShrink: 0 }} />
+                          <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography variant="caption" sx={{ color: '#999', fontSize: '0.7rem', display: 'block', mb: 0.25 }}>
+                              Phone
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#666', fontSize: '0.875rem' }}>
+                              {submission.phone || 'N/A'}
+                            </Typography>
+                          </Box>
+                        </Box>
+
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                          <Message sx={{ fontSize: '1rem', color: '#666', mt: 0.25, flexShrink: 0 }} />
+                          <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography variant="caption" sx={{ color: '#999', fontSize: '0.7rem', display: 'block', mb: 0.25 }}>
+                              Message
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#1a1a1a', fontSize: '0.875rem', wordBreak: 'break-word' }}>
+                              {submission.message || 'N/A'}
+                            </Typography>
+                          </Box>
+                        </Box>
+
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                          <CalendarToday sx={{ fontSize: '1rem', color: '#666', mt: 0.25, flexShrink: 0 }} />
+                          <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography variant="caption" sx={{ color: '#999', fontSize: '0.7rem', display: 'block', mb: 0.25 }}>
+                              Date
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#666', fontSize: '0.875rem' }}>
+                              {formatDate(submission.createdAt)}
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </Paper>
+                  ))}
+                </Box>
+              ) : (
+                /* Desktop Table View */
+                <Box sx={{ overflowX: 'auto', width: '100%' }}>
+                  <TableContainer>
+                    <Table>
+                      <TableHead>
+                        <TableRow sx={{ backgroundColor: '#590178' }}>
+                          <TableCell 
+                            sx={{ 
+                              fontWeight: 600, 
+                              color: 'white', 
+                              fontSize: '0.875rem', 
+                              borderTopLeftRadius: '8px',
+                              cursor: 'pointer',
+                              whiteSpace: 'nowrap',
+                              px: 2,
+                              py: 1.5,
+                              '&:hover': { backgroundColor: '#6a0188' }
+                            }}
+                            onClick={() => handleSort('name')}
+                          >
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                              Name
+                              {getSortIcon('name')}
+                            </Box>
+                          </TableCell>
+                          <TableCell 
+                            sx={{ 
+                              fontWeight: 600, 
+                              color: 'white', 
+                              fontSize: '0.875rem',
+                              cursor: 'pointer',
+                              whiteSpace: 'nowrap',
+                              px: 2,
+                              py: 1.5,
+                              '&:hover': { backgroundColor: '#6a0188' }
+                            }}
+                            onClick={() => handleSort('email')}
+                          >
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                              Email
+                              {getSortIcon('email')}
+                            </Box>
+                          </TableCell>
+                          <TableCell 
+                            sx={{ 
+                              fontWeight: 600, 
+                              color: 'white', 
+                              fontSize: '0.875rem',
+                              cursor: 'pointer',
+                              whiteSpace: 'nowrap',
+                              px: 2,
+                              py: 1.5,
+                              '&:hover': { backgroundColor: '#6a0188' }
+                            }}
+                            onClick={() => handleSort('phone')}
+                          >
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                              Phone
+                              {getSortIcon('phone')}
+                            </Box>
+                          </TableCell>
+                          <TableCell sx={{ 
+                            fontWeight: 600, 
+                            color: 'white', 
+                            fontSize: '0.875rem',
+                            whiteSpace: 'nowrap',
+                            px: 2,
+                            py: 1.5
+                          }}>
+                            Message
+                          </TableCell>
+                          <TableCell 
+                            sx={{ 
+                              fontWeight: 600, 
+                              color: 'white', 
+                              fontSize: '0.875rem',
+                              cursor: 'pointer',
+                              whiteSpace: 'nowrap',
+                              px: 2,
+                              py: 1.5,
+                              '&:hover': { backgroundColor: '#6a0188' }
+                            }}
+                            onClick={() => handleSort('createdAt')}
+                          >
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                              Date
+                              {getSortIcon('createdAt')}
+                            </Box>
+                          </TableCell>
+                          <TableCell sx={{ 
+                            fontWeight: 600, 
+                            color: 'white', 
+                            fontSize: '0.875rem', 
+                            borderTopRightRadius: '8px',
+                            whiteSpace: 'nowrap',
+                            px: 2,
+                            py: 1.5
+                          }}>
+                            Status
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {paginatedSubmissions.map((submission) => (
+                          <TableRow 
+                            key={submission.id}
+                            sx={{
+                              '&:hover': {
+                                backgroundColor: '#f8f9fa',
+                              }
+                            }}
+                          >
+                            <TableCell sx={{ px: 2, py: 1.5 }}>
+                              <Typography variant="body2" sx={{ 
+                                fontWeight: 500, 
+                                color: '#1a1a1a',
+                                fontSize: '0.875rem'
+                              }}>
+                                {submission.name}
+                              </Typography>
+                            </TableCell>
+                            <TableCell sx={{ px: 2, py: 1.5 }}>
+                              <Typography variant="body2" sx={{ 
+                                color: '#1a1a1a',
+                                fontSize: '0.875rem'
+                              }}>
+                                {submission.email}
+                              </Typography>
+                            </TableCell>
+                            <TableCell sx={{ px: 2, py: 1.5 }}>
+                              <Typography variant="body2" sx={{ 
+                                color: '#666',
+                                fontSize: '0.875rem'
+                              }}>
+                                {submission.phone || 'N/A'}
+                              </Typography>
+                            </TableCell>
+                            <TableCell sx={{ 
+                              maxWidth: '300px',
+                              px: 2,
+                              py: 1.5
+                            }}>
+                              <Typography 
+                                variant="body2" 
+                                sx={{ 
+                                  color: '#1a1a1a',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                  whiteSpace: 'nowrap',
+                                  fontSize: '0.875rem'
+                                }}
+                                title={submission.message || 'N/A'}
+                              >
+                                {submission.message || 'N/A'}
+                              </Typography>
+                            </TableCell>
+                            <TableCell sx={{ 
+                              color: '#666', 
+                              fontSize: '0.875rem',
+                              px: 2,
+                              py: 1.5,
+                              whiteSpace: 'nowrap'
+                            }}>
+                              {formatDate(submission.createdAt)}
+                            </TableCell>
+                            <TableCell sx={{ px: 2, py: 1.5 }}>
+                              <Chip
+                                label={submission.status || 'New'}
+                                size="small"
+                                sx={{
+                                  backgroundColor: submission.status === 'Read' ? '#e8f5e9' : '#e3f2fd',
+                                  color: submission.status === 'Read' ? '#2e7d32' : '#1976d2',
+                                  fontWeight: 500,
+                                  fontSize: '0.75rem',
+                                  height: '24px'
+                                }}
+                              />
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </Box>
+              )}
               
               {filteredSubmissions.length > 0 && (
-                <div className="px-6 py-4 flex items-center justify-between border-t border-gray-200">
-                  <div className="text-sm text-gray-700">
-                    Showing <span className="font-medium">{startIndex + 1}</span> to <span className="font-medium">
+                <Box sx={{ 
+                  px: { xs: 2, md: 3 }, 
+                  py: { xs: 2, md: 3 }, 
+                  display: 'flex', 
+                  flexDirection: { xs: 'column', md: 'row' },
+                  alignItems: { xs: 'center', md: 'center' }, 
+                  justifyContent: { xs: 'center', md: 'space-between' }, 
+                  borderTop: '1px solid #e0e0e0',
+                  mt: 2,
+                  gap: { xs: 2, md: 0 }
+                }}>
+                  <Typography variant="body2" sx={{ 
+                    color: '#666',
+                    fontSize: { xs: '0.75rem', md: '0.875rem' },
+                    textAlign: { xs: 'center', md: 'left' }
+                  }}>
+                    Showing <Box component="span" sx={{ fontWeight: 600, color: '#1a1a1a' }}>
+                      {startIndex + 1}
+                    </Box> to <Box component="span" sx={{ fontWeight: 600, color: '#1a1a1a' }}>
                       {Math.min(startIndex + itemsPerPage, filteredSubmissions.length)}
-                    </span> of <span className="font-medium">{filteredSubmissions.length}</span> results
-                  </div>
+                    </Box> of <Box component="span" sx={{ fontWeight: 600, color: '#1a1a1a' }}>
+                      {filteredSubmissions.length}
+                    </Box> results
+                  </Typography>
                   
-                  <div className="flex space-x-2">
-                    <button
+                  <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <IconButton
                       onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                       disabled={currentPage === 1}
-                      className="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                      sx={{
+                        border: '1px solid #e0e0e0',
+                        borderRadius: '8px',
+                        color: '#1a1a1a',
+                        width: { xs: '36px', md: '40px' },
+                        height: { xs: '36px', md: '40px' },
+                        '&:hover': {
+                          backgroundColor: '#f5f5f5',
+                        },
+                        '&:disabled': {
+                          opacity: 0.5,
+                          cursor: 'not-allowed'
+                        }
+                      }}
                     >
-                      <ChevronLeft className="h-5 w-5" />
-                    </button>
+                      <ChevronLeft sx={{ fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                    </IconButton>
                     
-                    <button
+                    <Box sx={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      px: { xs: 1.5, md: 2 },
+                      color: '#666',
+                      fontSize: { xs: '0.75rem', md: '0.875rem' }
+                    }}>
+                      Page {currentPage} of {totalPages}
+                    </Box>
+                    
+                    <IconButton
                       onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                       disabled={currentPage === totalPages}
-                      className="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                      sx={{
+                        border: '1px solid #e0e0e0',
+                        borderRadius: '8px',
+                        color: '#1a1a1a',
+                        width: { xs: '36px', md: '40px' },
+                        height: { xs: '36px', md: '40px' },
+                        '&:hover': {
+                          backgroundColor: '#f5f5f5',
+                        },
+                        '&:disabled': {
+                          opacity: 0.5,
+                          cursor: 'not-allowed'
+                        }
+                      }}
                     >
-                      <ChevronRight className="h-5 w-5" />
-                    </button>
-                  </div>
-                </div>
+                      <ChevronRight sx={{ fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                    </IconButton>
+                  </Box>
+                </Box>
               )}
             </>
           )}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Paper>
+    </Box>
   )
 }

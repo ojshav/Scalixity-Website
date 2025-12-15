@@ -1,12 +1,20 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Button } from "@/src/app/components/ui/button";
-import { Input } from "@/src/app/components/ui/input";
-import { Textarea } from "@/src/app/components/ui/textarea";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/src/app/components/ui/select";
-import { Label } from "@/src/app/components/ui/label";
-import { X, Plus, ArrowUp, ArrowDown } from "lucide-react";
+import {
+  Box,
+  Typography,
+  Button,
+  TextField,
+  Paper,
+  CircularProgress,
+  IconButton,
+  Alert,
+  Divider,
+} from "@mui/material";
+import { Add, Delete, ArrowUpward, ArrowDownward, Close } from "@mui/icons-material";
 import { useParams } from "next/navigation";
+import DeleteConfirmationDialog from "@/src/app/components/dashboard/DeleteConfirmationDialog";
+import CustomSelect from '@/src/app/components/common/CustomSelect';
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
@@ -40,6 +48,8 @@ export default function CampaignFormBuilder() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [questionToDelete, setQuestionToDelete] = useState<string | null>(null);
 
   // Fetch questions on mount
   useEffect(() => {
@@ -79,8 +89,22 @@ export default function CampaignFormBuilder() {
     ]);
   };
 
-  const removeQuestion = (qid: string) => {
-    setQuestions(questions.filter((q) => q.id !== qid));
+  const openDeleteConfirmDialog = (qid: string) => {
+    setQuestionToDelete(qid);
+    setOpenDeleteDialog(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (questionToDelete) {
+      setQuestions(questions.filter((q) => q.id !== questionToDelete));
+      setOpenDeleteDialog(false);
+      setQuestionToDelete(null);
+    }
+  };
+
+  const handleDeleteCancel = () => {
+    setOpenDeleteDialog(false);
+    setQuestionToDelete(null);
   };
 
   const moveQuestion = (qid: string, dir: "up" | "down") => {
@@ -184,170 +208,447 @@ export default function CampaignFormBuilder() {
   };
 
   return (
-    <div className="bg-white min-h-screen py-10">
-      <div className="max-w-3xl mx-auto px-4">
-        <h1 className="text-2xl font-bold mb-6">Edit Campaign Form</h1>
-        {loading ? (
-          <div className="text-center text-gray-500 py-12">Loading...</div>
-        ) : error ? (
-          <div className="text-center text-red-500 py-12">{error}</div>
-        ) : (
-          <>
-            <div className="space-y-6">
-              {questions.map((q, idx) => (
-                <div key={q.id} className="bg-gray-50 border rounded-lg p-4 relative">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Label className="flex-1">
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#FFF2D5', px: { xs: 1, sm: 2, md: 0 }, py: { xs: 2, sm: 3, md: 0 } }}>
+      <Box sx={{ mb: { xs: 3, md: 4 } }}>
+        <Typography variant="h4" sx={{ 
+          fontWeight: 700, 
+          color: '#1a1a1a', 
+          mb: 1,
+          fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
+        }}>
+          Edit Campaign Form
+        </Typography>
+        <Typography variant="body1" sx={{ 
+          color: '#666',
+          fontSize: { xs: '0.875rem', md: '1rem' }
+        }}>
+          Build and customize your campaign form questions
+        </Typography>
+      </Box>
+
+      {loading ? (
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          minHeight: { xs: '300px', md: '400px' }, 
+          gap: 2 
+        }}>
+          <CircularProgress size={60} sx={{ color: '#590178' }} />
+          <Typography variant="body1" sx={{ 
+            color: '#666', 
+            fontWeight: 500,
+            fontSize: { xs: '0.875rem', md: '1rem' }
+          }}>
+            Loading form...
+          </Typography>
+        </Box>
+      ) : error ? (
+        <Box sx={{ textAlign: 'center', py: { xs: 4, md: 8 } }}>
+          <Typography variant="body1" sx={{ 
+            color: '#d32f2f', 
+            fontWeight: 500,
+            fontSize: { xs: '0.875rem', md: '1rem' }
+          }}>
+            {error}
+          </Typography>
+        </Box>
+      ) : (
+        <>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 2, md: 3 }, mb: { xs: 3, md: 4 } }}>
+            {questions.map((q, idx) => (
+              <Paper
+                key={q.id}
+                elevation={0}
+                sx={{
+                  backgroundColor: '#fff',
+                  borderRadius: { xs: '12px', md: '16px' },
+                  boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05)',
+                  p: { xs: 2, md: 3 },
+                }}
+              >
+                <Box sx={{ 
+                  display: 'flex', 
+                  flexDirection: { xs: 'column', md: 'row' },
+                  alignItems: { xs: 'stretch', md: 'flex-end' }, 
+                  gap: { xs: 2, md: 2 }, 
+                  mb: 2 
+                }}>
+                  <Box sx={{ flex: 1, width: { xs: '100%', md: 'auto' } }}>
+                    <Typography variant="body2" sx={{ 
+                      color: '#666', 
+                      mb: 1, 
+                      fontWeight: 500,
+                      fontSize: { xs: '0.75rem', md: '0.875rem' }
+                    }}>
                       Question {idx + 1}
-                      <Input
-                        className="mt-1"
-                        placeholder="Enter question text"
-                        value={q.label}
-                        onChange={(e) => updateQuestion(q.id, "label", e.target.value)}
-                      />
-                    </Label>
-                    <Select value={q.type} onValueChange={(val) => updateQuestion(q.id, "type", val)}>
-                      <SelectTrigger className="w-40">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {QUESTION_TYPES.map((t) => (
-                          <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <Button size="icon" variant="ghost" onClick={() => moveQuestion(q.id, "up")} disabled={idx === 0}><ArrowUp /></Button>
-                    <Button size="icon" variant="ghost" onClick={() => moveQuestion(q.id, "down")} disabled={idx === questions.length - 1}><ArrowDown /></Button>
-                    <Button size="icon" variant="destructive" onClick={() => removeQuestion(q.id)}><X /></Button>
-                  </div>
-                  {/* Options for multiple/checkbox */}
-                  {(q.type === "multiple" || q.type === "checkbox") && (
-                    <div className="space-y-2 mt-2">
-                      <Label>Options</Label>
+                    </Typography>
+                    <TextField
+                      fullWidth
+                      placeholder="Enter question text"
+                      value={q.label}
+                      onChange={(e) => updateQuestion(q.id, "label", e.target.value)}
+                      variant="outlined"
+                      sx={{
+                        '& .MuiOutlinedInput-root': {
+                          borderRadius: '8px',
+                        },
+                        '& .MuiInputBase-input': {
+                          fontSize: { xs: '0.875rem', md: '1rem' },
+                        }
+                      }}
+                    />
+                  </Box>
+                  <Box sx={{ width: { xs: '100%', md: 'auto' } }}>
+                    <Typography variant="body2" sx={{ 
+                      color: '#666', 
+                      mb: 1, 
+                      fontWeight: 500, 
+                      visibility: { xs: 'visible', md: 'hidden' },
+                      fontSize: { xs: '0.75rem', md: '0.875rem' }
+                    }}>
+                      Type
+                    </Typography>
+                    <CustomSelect
+                      label=""
+                      value={q.type}
+                      onChange={(value) => updateQuestion(q.id, "type", value)}
+                      options={QUESTION_TYPES}
+                      minWidth={{ xs: '100%', md: '180px' }}
+                    />
+                  </Box>
+                  <Box sx={{ 
+                    display: 'flex', 
+                    gap: { xs: 1, md: 0 },
+                    alignItems: 'center',
+                    justifyContent: { xs: 'flex-end', md: 'flex-start' }
+                  }}>
+                    <IconButton
+                      onClick={() => moveQuestion(q.id, "up")}
+                      disabled={idx === 0}
+                      sx={{
+                        color: '#590178',
+                        width: { xs: '40px', md: '48px' },
+                        height: { xs: '40px', md: '48px' },
+                        '&:hover': { backgroundColor: '#f0e6f5' },
+                        '&:disabled': { color: '#ccc' }
+                      }}
+                    >
+                      <ArrowUpward sx={{ fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => moveQuestion(q.id, "down")}
+                      disabled={idx === questions.length - 1}
+                      sx={{
+                        color: '#590178',
+                        width: { xs: '40px', md: '48px' },
+                        height: { xs: '40px', md: '48px' },
+                        '&:hover': { backgroundColor: '#f0e6f5' },
+                        '&:disabled': { color: '#ccc' }
+                      }}
+                    >
+                      <ArrowDownward sx={{ fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => openDeleteConfirmDialog(q.id)}
+                      sx={{
+                        color: '#d32f2f',
+                        width: { xs: '40px', md: '48px' },
+                        height: { xs: '40px', md: '48px' },
+                        '&:hover': { backgroundColor: '#ffebee' }
+                      }}
+                    >
+                      <Delete sx={{ fontSize: { xs: '1.2rem', md: '1.5rem' } }} />
+                    </IconButton>
+                  </Box>
+                </Box>
+                {/* Options for multiple/checkbox */}
+                {(q.type === "multiple" || q.type === "checkbox") && (
+                  <Box sx={{ mt: { xs: 1.5, md: 2 } }}>
+                    <Typography variant="body2" sx={{ 
+                      color: '#666', 
+                      mb: 1, 
+                      fontWeight: 500,
+                      fontSize: { xs: '0.75rem', md: '0.875rem' }
+                    }}>
+                      Options
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                       {(q.options && q.options.length > 0 ? q.options : ['']).map((opt, i) => (
-                        <div key={i} className="flex items-center gap-2 mt-1">
-                          <Input
-                            className="flex-1"
+                        <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <TextField
+                            fullWidth
                             placeholder={`Option ${i + 1}`}
                             value={opt}
                             onChange={(e) => updateOption(q.id, i, e.target.value)}
+                            variant="outlined"
+                            size="small"
+                            sx={{
+                              '& .MuiOutlinedInput-root': {
+                                borderRadius: '8px',
+                              },
+                              '& .MuiInputBase-input': {
+                                fontSize: { xs: '0.875rem', md: '1rem' },
+                              }
+                            }}
                           />
-                          <Button 
-                            size="icon" 
-                            variant="ghost" 
+                          <IconButton
                             onClick={() => removeOption(q.id, i)}
                             disabled={q.options?.length === 1}
+                            sx={{
+                              color: '#d32f2f',
+                              width: { xs: '36px', md: '40px' },
+                              height: { xs: '36px', md: '40px' },
+                              '&:hover': { backgroundColor: '#ffebee' },
+                              '&:disabled': { color: '#ccc' }
+                            }}
                           >
-                            <X />
-                          </Button>
-                        </div>
+                            <Close sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }} />
+                          </IconButton>
+                        </Box>
                       ))}
-                      <Button size="sm" variant="outline" onClick={() => addOption(q.id)} className="mt-1">
-                        <Plus className="w-4 h-4 mr-1" /> Add Option
-                      </Button>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-            <Button className="mt-6" onClick={addQuestion} variant="secondary">
-              <Plus className="w-4 h-4 mr-1" /> Add Question
+                    </Box>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      startIcon={<Add />}
+                      onClick={() => addOption(q.id)}
+                      sx={{
+                        mt: 1,
+                        borderRadius: '8px',
+                        textTransform: 'none',
+                        backgroundColor: '#590178',
+                        color: '#fff',
+                        fontSize: { xs: '0.75rem', md: '0.875rem' },
+                        py: { xs: 0.5, md: 0.5 },
+                        px: { xs: 1.5, md: 2 },
+                        '&:hover': {
+                          backgroundColor: '#4a0166',
+                        }
+                      }}
+                    >
+                      Add Option
+                    </Button>
+                  </Box>
+                )}
+              </Paper>
+            ))}
+          </Box>
+
+          <Box sx={{ 
+            display: 'flex', 
+            flexDirection: { xs: 'column', sm: 'row' },
+            justifyContent: 'space-between', 
+            alignItems: { xs: 'stretch', sm: 'center' }, 
+            gap: { xs: 2, sm: 0 },
+            mb: { xs: 3, md: 4 } 
+          }}>
+            <Button
+              variant="contained"
+              startIcon={<Add />}
+              onClick={addQuestion}
+              sx={{
+                borderRadius: '8px',
+                textTransform: 'none',
+                backgroundColor: '#590178',
+                color: '#fff',
+                px: { xs: 2, md: 3 },
+                py: { xs: 1.25, md: 1 },
+                fontWeight: 600,
+                fontSize: { xs: '0.875rem', md: '0.95rem' },
+                width: { xs: '100%', sm: 'auto' },
+                '&:hover': {
+                  backgroundColor: '#4a0166',
+                }
+              }}
+            >
+              Add Question
             </Button>
-            <div className="mt-10 flex justify-end">
-              <Button onClick={handleSave} disabled={saving}>
-                {saving ? "Saving..." : "Save Form"}
-              </Button>
-            </div>
-            {success && <div className="text-green-600 text-center mt-4">{success}</div>}
-            {error && <div className="text-red-600 text-center mt-4">{error}</div>}
-            
-            {/* Live Preview */}
-            <div className="mt-12 border-t pt-8">
-              <h2 className="text-xl font-semibold mb-4">Live Preview</h2>
-              <div className="bg-gray-50 p-6 rounded-lg border">
-                <div className="space-y-6">
-                  {questions.length === 0 ? (
-                    <div className="text-gray-500 text-center py-8">
+            <Button
+              variant="contained"
+              onClick={handleSave}
+              disabled={saving}
+              sx={{
+                backgroundColor: '#590178',
+                color: '#fff',
+                px: { xs: 2, md: 3 },
+                py: { xs: 1.25, md: 1 },
+                borderRadius: '8px',
+                textTransform: 'none',
+                fontWeight: 600,
+                fontSize: { xs: '0.875rem', md: '0.95rem' },
+                width: { xs: '100%', sm: 'auto' },
+                '&:hover': {
+                  backgroundColor: '#4a0166',
+                },
+                '&:disabled': {
+                  backgroundColor: '#ccc',
+                }
+              }}
+            >
+              {saving ? 'Saving...' : 'Save Form'}
+            </Button>
+          </Box>
+
+          {success && (
+            <Alert severity="success" sx={{ 
+              mb: { xs: 2, md: 3 }, 
+              borderRadius: '8px',
+              fontSize: { xs: '0.875rem', md: '1rem' }
+            }}>
+              {success}
+            </Alert>
+          )}
+          {error && (
+            <Alert severity="error" sx={{ 
+              mb: { xs: 2, md: 3 }, 
+              borderRadius: '8px',
+              fontSize: { xs: '0.875rem', md: '1rem' }
+            }}>
+              {error}
+            </Alert>
+          )}
+          
+          {/* Live Preview */}
+          <Divider sx={{ my: { xs: 4, md: 6 } }} />
+          <Box>
+            <Typography variant="h5" sx={{ 
+              fontWeight: 600, 
+              color: '#1a1a1a', 
+              mb: { xs: 2, md: 3 },
+              fontSize: { xs: '1.25rem', md: '1.5rem' }
+            }}>
+              Live Preview
+            </Typography>
+            <Paper
+              elevation={0}
+              sx={{
+                backgroundColor: '#f8f9fa',
+                borderRadius: { xs: '12px', md: '16px' },
+                boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05)',
+                p: { xs: 2, md: 4 },
+              }}
+            >
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 2, md: 3 } }}>
+                {questions.length === 0 ? (
+                  <Box sx={{ textAlign: 'center', py: { xs: 4, md: 8 } }}>
+                    <Typography variant="body1" sx={{ 
+                      color: '#666',
+                      fontSize: { xs: '0.875rem', md: '1rem' }
+                    }}>
                       No questions added yet. Add some questions to see the preview.
-                    </div>
-                  ) : (
-                    questions.map((q, idx) => (
-                      <div key={q.id} className="space-y-3 bg-white p-4 rounded border">
-                        <Label className="text-base font-medium text-gray-900">
+                    </Typography>
+                  </Box>
+                ) : (
+                  questions.map((q, idx) => (
+                    <Paper
+                      key={q.id}
+                      elevation={0}
+                      sx={{
+                        backgroundColor: '#fff',
+                        borderRadius: '8px',
+                        border: '1px solid #e0e0e0',
+                        p: { xs: 2, md: 3 },
+                      }}
+                    >
+                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 1.5, md: 2 } }}>
+                        <Typography variant="body1" sx={{ 
+                          fontWeight: 500, 
+                          color: '#1a1a1a',
+                          fontSize: { xs: '0.875rem', md: '1rem' }
+                        }}>
                           {q.label || `Question ${idx + 1}`}
-                        </Label>
+                        </Typography>
                         
                         {q.type === "short" && (
-                          <Input 
-                            placeholder="Short answer text will appear here..." 
-                            disabled 
-                            className="bg-gray-100"
+                          <TextField
+                            placeholder="Short answer text will appear here..."
+                            disabled
+                            fullWidth
+                            variant="outlined"
+                            sx={{
+                              '& .MuiOutlinedInput-root': {
+                                backgroundColor: '#f5f5f5',
+                                borderRadius: '8px',
+                              }
+                            }}
                           />
                         )}
                         
                         {q.type === "paragraph" && (
-                          <Textarea 
-                            placeholder="Long form text will appear here..." 
-                            disabled 
-                            className="bg-gray-100 min-h-[100px]"
+                          <TextField
+                            placeholder="Long form text will appear here..."
+                            disabled
+                            fullWidth
+                            multiline
+                            rows={4}
+                            variant="outlined"
+                            sx={{
+                              '& .MuiOutlinedInput-root': {
+                                backgroundColor: '#f5f5f5',
+                                borderRadius: '8px',
+                              }
+                            }}
                           />
                         )}
                         
                         {q.type === "multiple" && (
-                          <div className="space-y-2">
+                          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                             {q.options && q.options.length > 0 && q.options.some(opt => opt.trim() !== '') ? (
                               q.options
                                 .filter(opt => opt.trim() !== '')
                                 .map((opt, i) => (
-                                  <div key={i} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded">
-                                    <input 
-                                      type="radio" 
-                                      name={`preview_${q.id}`}
-                                      disabled 
-                                      className="text-blue-600"
-                                    />
-                                    <span className="text-gray-700">{opt}</span>
-                                  </div>
+                                  <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: 1, p: 1, borderRadius: '4px', '&:hover': { backgroundColor: '#f5f5f5' } }}>
+                                    <input type="radio" name={`preview_${q.id}`} disabled style={{ color: '#590178' }} />
+                                    <Typography variant="body2" sx={{ color: '#666' }}>{opt}</Typography>
+                                  </Box>
                                 ))
                             ) : (
-                              <div className="text-gray-400 italic p-2">
+                              <Typography variant="body2" sx={{ color: '#999', fontStyle: 'italic', p: 1 }}>
                                 Add options to see them in the preview
-                              </div>
+                              </Typography>
                             )}
-                          </div>
+                          </Box>
                         )}
                         
                         {q.type === "checkbox" && (
-                          <div className="space-y-2">
+                          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                             {q.options && q.options.length > 0 && q.options.some(opt => opt.trim() !== '') ? (
                               q.options
                                 .filter(opt => opt.trim() !== '')
                                 .map((opt, i) => (
-                                  <div key={i} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded">
-                                    <input 
-                                      type="checkbox" 
-                                      disabled 
-                                      className="text-blue-600"
-                                    />
-                                    <span className="text-gray-700">{opt}</span>
-                                  </div>
+                                  <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: 1, p: 1, borderRadius: '4px', '&:hover': { backgroundColor: '#f5f5f5' } }}>
+                                    <input type="checkbox" disabled style={{ color: '#590178' }} />
+                                    <Typography variant="body2" sx={{ color: '#666' }}>{opt}</Typography>
+                                  </Box>
                                 ))
                             ) : (
-                              <div className="text-gray-400 italic p-2">
+                              <Typography variant="body2" sx={{ color: '#999', fontStyle: 'italic', p: 1 }}>
                                 Add options to see them in the preview
-                              </div>
+                              </Typography>
                             )}
-                          </div>
+                          </Box>
                         )}
-                      </div>
-                    ))
-                  )}
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+                      </Box>
+                    </Paper>
+                  ))
+                )}
+              </Box>
+            </Paper>
+          </Box>
+
+          {/* Delete Confirmation Dialog */}
+          <DeleteConfirmationDialog
+            open={openDeleteDialog}
+            onClose={handleDeleteCancel}
+            onConfirm={handleDeleteConfirm}
+            title="Delete Question"
+            itemName={questionToDelete ? questions.find(q => q.id === questionToDelete)?.label || `Question ${questions.findIndex(q => q.id === questionToDelete) + 1}` : undefined}
+            loading={false}
+          />
+        </>
+      )}
+    </Box>
   );
 }

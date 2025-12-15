@@ -1,12 +1,35 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/src/app/components/ui/card";
-import { Button } from "@/src/app/components/ui/button";
-import { Input } from "@/src/app/components/ui/input";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/src/app/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/src/app/components/ui/dialog";
-import { Label } from "@/src/app/components/ui/label";
+import { 
+  Box, 
+  Typography, 
+  Button, 
+  TextField, 
+  Dialog, 
+  DialogTitle, 
+  DialogContent, 
+  DialogActions,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  CircularProgress,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  IconButton,
+  Chip,
+  useMediaQuery,
+  useTheme,
+  Divider
+} from "@mui/material";
+import { Edit, Delete, Description, Assessment, Close, Campaign, CalendarToday, Update, Info } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
+import DeleteConfirmationDialog from "@/src/app/components/dashboard/DeleteConfirmationDialog";
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
 
@@ -44,7 +67,11 @@ function formatISTDateTime(dateString: string) {
 }
 
 export default function DashboardCampaignPage() {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const [open, setOpen] = useState(false);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [campaignToDelete, setCampaignToDelete] = useState<Campaign | null>(null);
   const [editingCampaign, setEditingCampaign] = useState<Campaign | null>(null);
   const [form, setForm] = useState({
     name: "",
@@ -114,15 +141,18 @@ export default function DashboardCampaignPage() {
     setOpen(true);
   };
 
-  const deleteCampaign = async (campaignId: number) => {
-    if (!confirm("Are you sure you want to delete this campaign? This action cannot be undone.")) {
-      return;
-    }
+  const openDeleteConfirmDialog = (campaign: Campaign) => {
+    setCampaignToDelete(campaign);
+    setOpenDeleteDialog(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!campaignToDelete) return;
     
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${baseURL}/api/campaigns/${campaignId}`, {
+      const response = await fetch(`${baseURL}/api/campaigns/${campaignToDelete.id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -130,6 +160,8 @@ export default function DashboardCampaignPage() {
         throw new Error(errData.error || "Failed to delete campaign");
       }
       fetchCampaigns();
+      setOpenDeleteDialog(false);
+      setCampaignToDelete(null);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Error deleting campaign");
     } finally {
@@ -137,11 +169,23 @@ export default function DashboardCampaignPage() {
     }
   };
 
+  const handleDeleteCancel = () => {
+    setOpenDeleteDialog(false);
+    setCampaignToDelete(null);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     try {
+      // Validate required fields
+      if (!form.name || !form.startDate || !form.endDate || !form.type) {
+        setError("Name, start date, end date, and type are required.");
+        setLoading(false);
+        return;
+      }
+
       // Format dates as YYYY-MM-DD for database
       const start = form.startDate;
       const end = form.endDate;
@@ -157,9 +201,9 @@ export default function DashboardCampaignPage() {
         body: JSON.stringify({
           name: form.name,
           description: form.description || null,
-          imageUrl: form.image_url || null,
-          startDate: start,
-          endDate: end,
+          image_url: form.image_url || null,
+          start_date: start,
+          end_date: end,
           type: form.type,
         }),
       });
@@ -179,156 +223,665 @@ export default function DashboardCampaignPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen pt-10">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-black">Campaigns</h1>
-          <Button onClick={openAddModal} className="px-6 py-2 text-base">Add Campaign</Button>
-        </div>
-        <Card className="bg-white">
-          <CardHeader>
-            <CardTitle>All Campaigns</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {loading ? (
-              <div className="text-center py-12 text-gray-500">Loading...</div>
-            ) : error ? (
-              <div className="text-center py-12 text-red-500">{error}</div>
-            ) : campaigns.length === 0 ? (
-              <div className="text-gray-500 py-12 text-center">No campaigns yet. Click &quot;Add Campaign&quot; to create one.</div>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Date</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">End Date</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {campaigns.map((c) => (
-                      <tr key={c.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{c.name}</td>
-                        <td className="px-6 py-4 text-sm text-gray-700 max-w-xs truncate">
-                          {c.description || "No description"}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{c.type}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatISTDateTime(c.startDate)}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatISTDateTime(c.endDate)}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(c.createdAt).toLocaleDateString()}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm">
-                          <div className="flex gap-2">
-                            <Button 
-                              size="sm" 
-                              variant="outline" 
-                              onClick={() => openEditModal(c)}
-                              className="text-blue-600 hover:text-blue-800"
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#FFF2D5', px: { xs: 1, sm: 2, md: 0 }, py: { xs: 2, sm: 3, md: 0 } }}>
+      <Box sx={{ mb: { xs: 3, md: 4 } }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { xs: 'flex-start', md: 'center' }, 
+          justifyContent: 'space-between', 
+          mb: 2,
+          gap: { xs: 2, md: 0 }
+        }}>
+          <Box sx={{ width: { xs: '100%', md: 'auto' } }}>
+            <Typography variant="h4" sx={{
+              fontWeight: 700,
+              color: '#1a1a1a',
+              mb: 1,
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
+            }}>
+              Campaigns
+            </Typography>
+            <Typography variant="body1" sx={{ 
+              color: '#666',
+              fontSize: { xs: '0.875rem', md: '1rem' }
+            }}>
+              Manage and track your marketing campaigns
+            </Typography>
+          </Box>
+          <Button 
+            onClick={openAddModal}
+            variant="contained"
+            sx={{
+              backgroundColor: '#590178',
+              color: '#fff',
+              px: { xs: 2, md: 3 },
+              py: { xs: 1, md: 1.5 },
+              borderRadius: '8px',
+              textTransform: 'none',
+              fontSize: { xs: '0.875rem', md: '0.95rem' },
+              fontWeight: 600,
+              width: { xs: '100%', sm: 'auto' },
+              '&:hover': {
+                backgroundColor: '#4a0166',
+              }
+            }}
+          >
+            Add Campaign
+          </Button>
+        </Box>
+      </Box>
+
+      <Paper 
+        elevation={0}
+        sx={{
+          backgroundColor: '#fff',
+          borderRadius: { xs: '12px', md: '16px' },
+          boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05)',
+          overflow: 'hidden'
+        }}
+      >
+        <Box sx={{ p: { xs: 2, sm: 2.5, md: 3 } }}>
+          <Typography variant="h6" sx={{ 
+            fontWeight: 600, 
+            color: '#1a1a1a', 
+            mb: { xs: 2, md: 3 },
+            fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem' }
+          }}>
+            All Campaigns
+          </Typography>
+          
+          {loading ? (
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: { xs: '300px', md: '400px' },
+                gap: 2
+              }}
+            >
+              <CircularProgress
+                size={60}
+                sx={{
+                  color: '#590178',
+                }}
+              />
+              <Typography
+                variant="body1"
+                sx={{
+                  color: '#666',
+                  fontWeight: 500,
+                  fontSize: { xs: '0.875rem', md: '1rem' }
+                }}
+              >
+                Loading campaigns...
+              </Typography>
+            </Box>
+          ) : error ? (
+            <Box sx={{ textAlign: 'center', py: { xs: 4, md: 8 } }}>
+              <Typography variant="body1" sx={{ 
+                color: '#d32f2f', 
+                fontWeight: 500,
+                fontSize: { xs: '0.875rem', md: '1rem' }
+              }}>
+                {error}
+              </Typography>
+            </Box>
+          ) : campaigns.length === 0 ? (
+            <Box sx={{ textAlign: 'center', py: { xs: 4, md: 8 } }}>
+              <Typography variant="body1" sx={{ 
+                color: '#666',
+                fontSize: { xs: '0.875rem', md: '1rem' }
+              }}>
+                No campaigns yet. Click &quot;Add Campaign&quot; to create one.
+              </Typography>
+            </Box>
+          ) : (
+            <>
+              {/* Mobile Card View */}
+              {isMobile ? (
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  {campaigns.map((c) => (
+                    <Paper
+                      key={c.id}
+                      elevation={0}
+                      sx={{
+                        p: 2,
+                        borderRadius: '12px',
+                        border: '1px solid #e0e0e0',
+                        backgroundColor: '#fff',
+                        '&:hover': {
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                        }
+                      }}
+                    >
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+                        <Box sx={{ flex: 1 }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                            <Campaign sx={{ fontSize: '1rem', color: '#590178' }} />
+                            <Typography variant="body1" sx={{ fontWeight: 600, color: '#1a1a1a', fontSize: '0.95rem' }}>
+                              {c.name}
+                            </Typography>
+                          </Box>
+                          <Chip 
+                            label={c.type} 
+                            size="small"
+                            sx={{
+                              backgroundColor: '#f0e6f5',
+                              color: '#590178',
+                              fontWeight: 500,
+                              fontSize: '0.7rem',
+                              height: '22px'
+                            }}
+                          />
+                        </Box>
+                        <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
+                          <IconButton 
+                            size="small"
+                            onClick={() => openEditModal(c)}
+                            sx={{
+                              color: '#590178',
+                              width: '32px',
+                              height: '32px',
+                              '&:hover': {
+                                backgroundColor: '#f0e6f5',
+                              }
+                            }}
+                            title="Edit"
+                          >
+                            <Edit fontSize="small" />
+                          </IconButton>
+                          <IconButton 
+                            size="small"
+                            onClick={() => openDeleteConfirmDialog(c)}
+                            sx={{
+                              color: '#d32f2f',
+                              width: '32px',
+                              height: '32px',
+                              '&:hover': {
+                                backgroundColor: '#ffebee',
+                              }
+                            }}
+                            title="Delete"
+                          >
+                            <Delete fontSize="small" />
+                          </IconButton>
+                        </Box>
+                      </Box>
+
+                      <Divider sx={{ my: 1.5 }} />
+
+                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                          <Info sx={{ fontSize: '1rem', color: '#666', mt: 0.25, flexShrink: 0 }} />
+                          <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography variant="caption" sx={{ color: '#999', fontSize: '0.7rem', display: 'block', mb: 0.25 }}>
+                              Description
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#1a1a1a', fontSize: '0.875rem', wordBreak: 'break-word' }}>
+                              {c.description || "No description"}
+                            </Typography>
+                          </Box>
+                        </Box>
+
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                          <CalendarToday sx={{ fontSize: '1rem', color: '#666', mt: 0.25, flexShrink: 0 }} />
+                          <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography variant="caption" sx={{ color: '#999', fontSize: '0.7rem', display: 'block', mb: 0.25 }}>
+                              Start Date
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#666', fontSize: '0.875rem' }}>
+                              {formatISTDateTime(c.startDate)}
+                            </Typography>
+                          </Box>
+                        </Box>
+
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                          <CalendarToday sx={{ fontSize: '1rem', color: '#666', mt: 0.25, flexShrink: 0 }} />
+                          <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography variant="caption" sx={{ color: '#999', fontSize: '0.7rem', display: 'block', mb: 0.25 }}>
+                              End Date
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#666', fontSize: '0.875rem' }}>
+                              {formatISTDateTime(c.endDate)}
+                            </Typography>
+                          </Box>
+                        </Box>
+
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                          <Update sx={{ fontSize: '1rem', color: '#666', mt: 0.25, flexShrink: 0 }} />
+                          <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography variant="caption" sx={{ color: '#999', fontSize: '0.7rem', display: 'block', mb: 0.25 }}>
+                              Created
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#999', fontSize: '0.875rem' }}>
+                              {new Date(c.createdAt).toLocaleDateString()}
+                            </Typography>
+                          </Box>
+                        </Box>
+
+                        <Box sx={{ display: 'flex', gap: 1, mt: 1, flexWrap: 'wrap' }}>
+                          <Button
+                            size="small"
+                            variant="contained"
+                            onClick={() => router.push(`/dashboard/campaign/${c.id}/form`)}
+                            startIcon={<Description />}
+                            sx={{
+                              fontSize: '0.75rem',
+                              py: 0.5,
+                              px: 1.5,
+                              textTransform: 'none',
+                              backgroundColor: '#1976d2',
+                              color: '#fff',
+                              '&:hover': {
+                                backgroundColor: '#1565c0',
+                              }
+                            }}
+                          >
+                            Form
+                          </Button>
+                          <Button
+                            size="small"
+                            variant="contained"
+                            onClick={() => router.push(`/dashboard/campaign/${c.id}/responses`)}
+                            startIcon={<Assessment />}
+                            sx={{
+                              fontSize: '0.75rem',
+                              py: 0.5,
+                              px: 1.5,
+                              textTransform: 'none',
+                              backgroundColor: '#2e7d32',
+                              color: '#fff',
+                              '&:hover': {
+                                backgroundColor: '#1b5e20',
+                              }
+                            }}
+                          >
+                            Responses
+                          </Button>
+                        </Box>
+                      </Box>
+                    </Paper>
+                  ))}
+                </Box>
+              ) : (
+                /* Desktop Table View */
+                <TableContainer>
+                  <Table>
+                    <TableHead>
+                      <TableRow sx={{ backgroundColor: '#590178' }}>
+                        <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem', borderTopLeftRadius: '8px' }}>Name</TableCell>
+                        <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem' }}>Description</TableCell>
+                        <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem' }}>Type</TableCell>
+                        <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem' }}>Start Date</TableCell>
+                        <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem' }}>End Date</TableCell>
+                        <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem' }}>Created</TableCell>
+                        <TableCell sx={{ fontWeight: 600, color: 'white', fontSize: '0.875rem', borderTopRightRadius: '8px' }}>Actions</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {campaigns.map((c) => (
+                        <TableRow 
+                          key={c.id}
+                          sx={{
+                            '&:hover': {
+                              backgroundColor: '#f8f9fa',
+                            }
+                          }}
+                        >
+                          <TableCell sx={{ fontWeight: 500, color: '#1a1a1a' }}>{c.name}</TableCell>
+                          <TableCell sx={{ color: '#666', maxWidth: '300px' }}>
+                            <Typography 
+                              variant="body2" 
+                              sx={{ 
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap'
+                              }}
                             >
-                              Edit
-                            </Button>
-                            <Button 
-                              size="sm" 
-                              variant="destructive" 
-                              onClick={() => deleteCampaign(c.id)}
-                              className="text-red-600 hover:text-red-800"
-                            >
-                              Delete
-                            </Button>
-                            <Button size="sm" variant="outline" onClick={() => router.push(`/dashboard/campaign/${c.id}/form`)}>
-                              Edit Form
-                            </Button>
-                            <Button size="sm" variant="secondary" onClick={() => router.push(`/dashboard/campaign/${c.id}/responses`)}>
-                              Responses
-                            </Button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
+                              {c.description || "No description"}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Chip 
+                              label={c.type} 
+                              size="small"
+                              sx={{
+                                backgroundColor: '#f0e6f5',
+                                color: '#590178',
+                                fontWeight: 500,
+                                fontSize: '0.75rem'
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell sx={{ color: '#666', fontSize: '0.875rem' }}>{formatISTDateTime(c.startDate)}</TableCell>
+                          <TableCell sx={{ color: '#666', fontSize: '0.875rem' }}>{formatISTDateTime(c.endDate)}</TableCell>
+                          <TableCell sx={{ color: '#999', fontSize: '0.875rem' }}>
+                            {new Date(c.createdAt).toLocaleDateString()}
+                          </TableCell>
+                          <TableCell>
+                            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                              <IconButton 
+                                size="small"
+                                onClick={() => openEditModal(c)}
+                                sx={{
+                                  color: '#590178',
+                                  '&:hover': {
+                                    backgroundColor: '#f0e6f5',
+                                  }
+                                }}
+                                title="Edit"
+                              >
+                                <Edit fontSize="small" />
+                              </IconButton>
+                              <IconButton 
+                                size="small"
+                                onClick={() => openDeleteConfirmDialog(c)}
+                                sx={{
+                                  color: '#d32f2f',
+                                  '&:hover': {
+                                    backgroundColor: '#ffebee',
+                                  }
+                                }}
+                                title="Delete"
+                              >
+                                <Delete fontSize="small" />
+                              </IconButton>
+                              <IconButton 
+                                size="small"
+                                onClick={() => router.push(`/dashboard/campaign/${c.id}/form`)}
+                                sx={{
+                                  color: '#1976d2',
+                                  '&:hover': {
+                                    backgroundColor: '#e3f2fd',
+                                  }
+                                }}
+                                title="Edit Form"
+                              >
+                                <Description fontSize="small" />
+                              </IconButton>
+                              <IconButton 
+                                size="small"
+                                onClick={() => router.push(`/dashboard/campaign/${c.id}/responses`)}
+                                sx={{
+                                  color: '#2e7d32',
+                                  '&:hover': {
+                                    backgroundColor: '#e8f5e9',
+                                  }
+                                }}
+                                title="Responses"
+                              >
+                                <Assessment fontSize="small" />
+                              </IconButton>
+                            </Box>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              )}
+            </>
+          )}
+        </Box>
+      </Paper>
+
       {/* Add Campaign Modal */}
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-md w-full bg-white border border-primary/30">
-          <DialogHeader>
-            <DialogTitle className="text-black">
-              {editingCampaign ? "Edit Campaign" : "Add Campaign"}
-            </DialogTitle>
-            <DialogDescription className="text-gray-900">
+      <Dialog 
+        open={open} 
+        onClose={() => setOpen(false)}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: { xs: '12px', md: '16px' },
+            boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)',
+            m: { xs: 1, md: 2 }
+          }
+        }}
+      >
+        <DialogTitle sx={{ 
+          fontWeight: 700, 
+          color: '#1a1a1a',
+          pb: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          pr: { xs: 0.5, md: 1 },
+          px: { xs: 2, md: 3 },
+          pt: { xs: 2, md: 3 },
+          fontSize: { xs: '1.125rem', md: '1.25rem' }
+        }}>
+          {editingCampaign ? "Edit Campaign" : "Add Campaign"}
+          <IconButton
+            onClick={() => setOpen(false)}
+            size="small"
+            sx={{
+              color: '#666',
+              '&:hover': {
+                backgroundColor: '#f5f5f5',
+                color: '#1a1a1a',
+              }
+            }}
+          >
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <Box component="form" onSubmit={handleSubmit}>
+          <DialogContent sx={{ 
+            overflowY: 'auto',
+            maxHeight: { xs: 'calc(100vh - 150px)', md: 'calc(100vh - 200px)' },
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            },
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            pr: { xs: 2, md: 3 },
+            px: { xs: 2, md: 3 },
+          }}>
+            <Typography variant="body2" sx={{ 
+              color: '#666', 
+              mb: { xs: 2, md: 3 },
+              fontSize: { xs: '0.875rem', md: '0.875rem' }
+            }}>
               {editingCampaign ? "Update campaign details below." : "Enter campaign details below."}
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleSubmit} className="space-y-4 mt-2">
-            <div>
-              <Label htmlFor="name">Campaign Name</Label>
-              <Input id="name" name="name" placeholder="Campaign Name" value={form.name} onChange={handleChange} required />
-            </div>
-            <div>
-              <Label htmlFor="description">Description</Label>
-              <textarea 
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: { xs: 2, md: 3 } }}>
+              <TextField
+                id="name"
+                name="name"
+                label="Campaign Name"
+                placeholder="Campaign Name"
+                value={form.name}
+                onChange={handleChange}
+                required
+                fullWidth
+                variant="outlined"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '8px',
+                  }
+                }}
+              />
+              <TextField
                 id="description" 
                 name="description" 
+                label="Description"
                 placeholder="Enter campaign description..." 
                 value={form.description} 
                 onChange={handleChange}
-                data-lenis-prevent
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                multiline
                 rows={3}
+                fullWidth
+                variant="outlined"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '8px',
+                  }
+                }}
               />
-            </div>
-            <div>
-              <Label htmlFor="image_url">Image URL</Label>
-              <Input id="image_url" name="image_url" placeholder="https://example.com/image.jpg" value={form.image_url} onChange={handleChange} />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="startDate">Start Date</Label>
-                <Input id="startDate" name="startDate" type="date" value={form.startDate} onChange={handleChange} required />
-              </div>
-              <div>
-                <Label htmlFor="startTime">Start Time</Label>
-                <Input id="startTime" name="startTime" type="time" value={form.startTime} onChange={handleChange} required />
-              </div>
-              <div>
-                <Label htmlFor="endDate">End Date</Label>
-                <Input id="endDate" name="endDate" type="date" value={form.endDate} onChange={handleChange} required />
-              </div>
-              <div>
-                <Label htmlFor="endTime">End Time</Label>
-                <Input id="endTime" name="endTime" type="time" value={form.endTime} onChange={handleChange} required />
-              </div>
-            </div>
-            <div>
-              <Label htmlFor="type">Type</Label>
-              <Select value={form.type} onValueChange={handleTypeChange}>
-                <SelectTrigger id="type" className="w-full">
-                  <SelectValue placeholder="Select type" />
-                </SelectTrigger>
-                <SelectContent>
+              <TextField
+                id="image_url"
+                name="image_url"
+                label="Image URL"
+                placeholder="https://example.com/image.jpg"
+                value={form.image_url}
+                onChange={handleChange}
+                fullWidth
+                variant="outlined"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '8px',
+                  }
+                }}
+              />
+              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 2 }}>
+                <TextField
+                  id="startDate"
+                  name="startDate"
+                  label="Start Date"
+                  type="date"
+                  value={form.startDate}
+                  onChange={handleChange}
+                  required
+                  fullWidth
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '8px',
+                    }
+                  }}
+                />
+                <TextField
+                  id="startTime"
+                  name="startTime"
+                  label="Start Time"
+                  type="time"
+                  value={form.startTime}
+                  onChange={handleChange}
+                  required
+                  fullWidth
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '8px',
+                    }
+                  }}
+                />
+                <TextField
+                  id="endDate"
+                  name="endDate"
+                  label="End Date"
+                  type="date"
+                  value={form.endDate}
+                  onChange={handleChange}
+                  required
+                  fullWidth
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '8px',
+                    }
+                  }}
+                />
+                <TextField
+                  id="endTime"
+                  name="endTime"
+                  label="End Time"
+                  type="time"
+                  value={form.endTime}
+                  onChange={handleChange}
+                  required
+                  fullWidth
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  variant="outlined"
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '8px',
+                    }
+                  }}
+                />
+              </Box>
+              <FormControl fullWidth>
+                <InputLabel id="type-label">Type</InputLabel>
+                <Select
+                  labelId="type-label"
+                  id="type"
+                  value={form.type}
+                  label="Type"
+                  onChange={(e) => handleTypeChange(e.target.value)}
+                  sx={{
+                    borderRadius: '8px',
+                  }}
+                >
                   {campaignTypes.map((t) => (
-                    <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
+                    <MenuItem key={t.value} value={t.value}>{t.label}</MenuItem>
                   ))}
-                </SelectContent>
               </Select>
-            </div>
-            <Button type="submit" className="w-full mt-4" disabled={loading}>
-              {editingCampaign ? "Update Campaign" : "Create Campaign"}
+              </FormControl>
+              {error && (
+                <Typography variant="body2" sx={{ color: '#d32f2f', mt: -2 }}>
+                  {error}
+                </Typography>
+              )}
+            </Box>
+          </DialogContent>
+          <DialogActions sx={{ 
+            px: { xs: 2, md: 3 }, 
+            pb: { xs: 2, md: 3 },
+            pt: { xs: 1, md: 0 },
+            justifyContent: 'flex-end' 
+          }}>
+            <Button 
+              type="submit"
+              variant="contained"
+              disabled={loading}
+              fullWidth={isMobile}
+              sx={{
+                backgroundColor: '#590178',
+                color: '#fff',
+                px: { xs: 2, md: 3 },
+                py: { xs: 1.25, md: 1 },
+                borderRadius: '8px',
+                textTransform: 'none',
+                fontWeight: 600,
+                fontSize: { xs: '0.875rem', md: '0.95rem' },
+                '&:hover': {
+                  backgroundColor: '#4a0166',
+                },
+                '&:disabled': {
+                  backgroundColor: '#ccc',
+                }
+              }}
+            >
+              {loading ? 'Processing...' : editingCampaign ? 'Update Campaign' : 'Create Campaign'}
             </Button>
-            {error && (
-              <div className="text-red-500 text-sm mt-2">{error}</div>
-            )}
-          </form>
-        </DialogContent>
+          </DialogActions>
+        </Box>
       </Dialog>
-    </div>
+
+      {/* Delete Confirmation Dialog */}
+      <DeleteConfirmationDialog
+        open={openDeleteDialog}
+        onClose={handleDeleteCancel}
+        onConfirm={handleDeleteConfirm}
+        title="Delete Campaign"
+        itemName={campaignToDelete?.name}
+        loading={loading}
+      />
+    </Box>
   );
 }

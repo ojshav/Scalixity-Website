@@ -1,6 +1,21 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Upload, Plus, Trash2, Save } from 'lucide-react';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Button,
+  Box,
+  Typography,
+  IconButton,
+  Alert,
+  CircularProgress,
+  Checkbox,
+  FormControlLabel,
+} from '@mui/material';
+import { Close, Upload, Add, Delete, Save } from '@mui/icons-material';
 import Image from 'next/image';
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
@@ -357,20 +372,22 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
         formDataObj.append('pricingPlans', JSON.stringify(formData.pricingPlans));
       }
       
-          {/* Add image files */}
-          if (imageFile) {
-            formDataObj.append('image', imageFile);
-          }
-          if (heroImageFile) {
-            formDataObj.append('heroImage', heroImageFile);
-          }
+      // Add image files
+      if (imageFile) {
+        formDataObj.append('image', imageFile);
+      }
+      if (heroImageFile) {
+        formDataObj.append('heroImage', heroImageFile);
+      }
 
-          // Add technology icon files
-          formData.technologies.forEach((tech, index) => {
-            if (tech.iconFile) {
-              formDataObj.append(`techIcon-${index}`, tech.iconFile);
-            }
-          });      const url = mode === 'create' 
+      // Add technology icon files
+      formData.technologies.forEach((tech, index) => {
+        if (tech.iconFile) {
+          formDataObj.append(`techIcon-${index}`, tech.iconFile);
+        }
+      });
+      
+      const url = mode === 'create' 
         ? `${baseURL}/api/admin/services`
         : `${baseURL}/api/admin/services/${service?.id}`;
       
@@ -420,425 +437,611 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
     return error?.message;
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-      <div className="relative top-4 mx-auto p-5 border max-w-4xl shadow-lg rounded-md bg-white mb-8">
-        <div className="flex justify-between items-center mb-6">
-          <h3 className="text-lg font-medium text-gray-900">
-            {mode === 'create' ? 'Create New Service' : 'Edit Service'}
-          </h3>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            <X className="h-6 w-6" />
-          </button>
-        </div>
+    <Dialog 
+      open={isOpen} 
+      onClose={onClose}
+      maxWidth="lg"
+      fullWidth
+      PaperProps={{
+        'data-lenis-prevent': true,
+        sx: {
+          borderRadius: '16px',
+          boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)',
+          maxHeight: '90vh',
+        }
+      }}
+    >
+      <DialogTitle sx={{ 
+        fontWeight: 700, 
+        color: '#1a1a1a',
+        pb: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        pr: 1
+      }}>
+        {mode === 'create' ? 'Create New Service' : 'Edit Service'}
+        <IconButton
+          onClick={onClose}
+          size="small"
+          sx={{
+            color: '#666',
+            '&:hover': {
+              backgroundColor: '#f5f5f5',
+              color: '#1a1a1a',
+            }
+          }}
+        >
+          <Close />
+        </IconButton>
+      </DialogTitle>
+      <Box component="form" onSubmit={handleSubmit}>
+        <DialogContent 
+          data-lenis-prevent
+          sx={{ 
+            overflowY: 'auto',
+            maxHeight: 'calc(90vh - 200px)',
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            },
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            pr: 3,
+          }}
+        >
+          {error && (
+            <Alert severity="error" sx={{ mb: 3 }}>
+              <Typography variant="body2" sx={{ fontWeight: 600, mb: fieldErrors.length > 0 ? 1 : 0 }}>
+                {error}
+              </Typography>
+              {fieldErrors.length > 0 && (
+                <Box sx={{ mt: 2 }}>
+                  <Typography variant="caption" sx={{ fontWeight: 600, textTransform: 'uppercase', display: 'block', mb: 1 }}>
+                    Field Errors:
+                  </Typography>
+                  <Box component="ul" sx={{ pl: 2, m: 0 }}>
+                    {fieldErrors.map((err, index) => (
+                      <Box component="li" key={index} sx={{ mb: 0.5 }}>
+                        <Typography variant="body2">
+                          <Box component="span" sx={{ fontWeight: 600, textTransform: 'capitalize' }}>
+                            {err.field.replace(/\./g, ' → ')}:
+                          </Box>{' '}
+                          {err.message}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Box>
+                </Box>
+              )}
+            </Alert>
+          )}
 
-        {error && (
-          <div className="mb-4 bg-red-50 border border-red-200 rounded-md p-4">
-            <div className="text-sm font-medium text-red-800 mb-2">{error}</div>
-            {fieldErrors.length > 0 && (
-              <div className="mt-3 space-y-2">
-                <div className="text-xs font-semibold text-red-700 uppercase tracking-wide">Field Errors:</div>
-                <ul className="list-disc list-inside space-y-1">
-                  {fieldErrors.map((err, index) => (
-                    <li key={index} className="text-sm text-red-700">
-                      <span className="font-semibold capitalize">{err.field.replace(/\./g, ' → ')}:</span> {err.message}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Basic Information */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Service Title
-              </label>
-              <input
-                type="text"
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            {/* Basic Information */}
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 2 }}>
+              <TextField
+                label="Service Title"
                 value={formData.title}
                 onChange={(e) => handleTitleChange(e.target.value)}
-                className={`w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 ${
-                  getFieldError('title') ? 'border-red-300' : 'border-gray-300'
-                }`}
                 required
-              />
-              {getFieldError('title') && (
-                <p className="mt-1 text-sm text-red-600">{getFieldError('title')}</p>
-              )}
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Slug
-              </label>
-              <input
-                type="text"
-                value={formData.slug}
-                onChange={(e) => handleInputChange('slug', e.target.value)}
-                className={`w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 ${
-                  getFieldError('slug') ? 'border-red-300' : 'border-gray-300'
-                }`}
-                required
-              />
-              {getFieldError('slug') && (
-                <p className="mt-1 text-sm text-red-600">{getFieldError('slug')}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Short Description */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Short Description
-            </label>
-            <input
-              type="text"
-              value={formData.shortDescription}
-              onChange={(e) => handleInputChange('shortDescription', e.target.value)}
-              className={`w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 ${
-                getFieldError('shortDescription') ? 'border-red-300' : 'border-gray-300'
-              }`}
-              placeholder="Brief one-line description"
-              required
-            />
-            {getFieldError('shortDescription') && (
-              <p className="mt-1 text-sm text-red-600">{getFieldError('shortDescription')}</p>
-            )}
-          </div>
-
-          {/* Description */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Full Description
-            </label>
-            <textarea
-              value={formData.description}
-              onChange={(e) => handleInputChange('description', e.target.value)}
-              rows={4}
-              data-lenis-prevent
-              className={`w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 ${
-                getFieldError('description') ? 'border-red-300' : 'border-gray-300'
-              }`}
-              placeholder="Detailed description of the service"
-              required
-            />
-            {getFieldError('description') && (
-              <p className="mt-1 text-sm text-red-600">{getFieldError('description')}</p>
-            )}
-          </div>
-
-          {/* Images */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Service Image
-              </label>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
-                {imagePreview ? (
-                  <div className="relative">
-                    <Image
-                      src={imagePreview}
-                      alt="Service preview"
-                      width={200}
-                      height={120}
-                      className="w-full h-32 object-cover rounded"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setImageFile(null);
-                        setImagePreview(null);
-                        if (imageInputRef.current) imageInputRef.current.value = '';
-                      }}
-                      className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 hover:bg-red-700"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  </div>
-                ) : (
-                  <div
-                    className="text-center cursor-pointer"
-                    onClick={() => imageInputRef.current?.click()}
-                  >
-                    <Upload className="mx-auto h-8 w-8 text-gray-400" />
-                    <p className="mt-2 text-sm text-gray-600">Click to upload image</p>
-                  </div>
-                )}
-                <input
-                  ref={imageInputRef}
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => handleImageChange(e.target.files?.[0] || null, 'image')}
-                  className="hidden"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Hero Image
-              </label>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
-                {heroImagePreview ? (
-                  <div className="relative">
-                    <Image
-                      src={heroImagePreview}
-                      alt="Hero preview"
-                      width={200}
-                      height={120}
-                      className="w-full h-32 object-cover rounded"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setHeroImageFile(null);
-                        setHeroImagePreview(null);
-                        if (heroImageInputRef.current) heroImageInputRef.current.value = '';
-                      }}
-                      className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 hover:bg-red-700"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  </div>
-                ) : (
-                  <div
-                    className="text-center cursor-pointer"
-                    onClick={() => heroImageInputRef.current?.click()}
-                  >
-                    <Upload className="mx-auto h-8 w-8 text-gray-400" />
-                    <p className="mt-2 text-sm text-gray-600">Click to upload hero image</p>
-                  </div>
-                )}
-                <input
-                  ref={heroImageInputRef}
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => handleImageChange(e.target.files?.[0] || null, 'heroImage')}
-                  className="hidden"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Features */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Features
-            </label>
-            <div className="space-y-2">
-              {formData.features.map((feature, index) => (
-                <div key={index} className="flex gap-2">
-                  <input
-                    type="text"
-                    value={feature}
-                    onChange={(e) => handleArrayChange('features', index, e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter feature"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeArrayItem('features', index)}
-                    className="text-red-600 hover:text-red-800"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={() => addArrayItem('features')}
-                className="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50"
-              >
-                <Plus className="h-4 w-4 mr-1" />
-                Add Feature
-              </button>
-            </div>
-          </div>
-
-          {/* Technologies */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Technologies
-            </label>
-            <div className="space-y-4">
-              {formData.technologies.map((tech, index) => (
-                <div key={index} className="flex gap-2 p-4 border border-gray-200 rounded-lg">
-                  <div className="flex-1">
-                    <input
-                      type="text"
-                      value={tech.name}
-                      onChange={(e) => handleTechnologyChange(index, 'name', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Enter technology name"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-2">
-                      {tech.iconUrl || tech.iconFile ? (
-                        <div className="relative">
-                          <Image
-                            src={tech.iconFile ? URL.createObjectURL(tech.iconFile) : tech.iconUrl || ''}
-                            alt="Technology icon"
-                            width={40}
-                            height={40}
-                            className="w-10 h-10 object-cover rounded mx-auto"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => handleTechnologyIconChange(index, null)}
-                            className="absolute -top-1 -right-1 bg-red-600 text-white rounded-full p-1 hover:bg-red-700"
-                          >
-                            <X className="h-3 w-3" />
-                          </button>
-                        </div>
-                      ) : (
-                        <div
-                          className="text-center cursor-pointer"
-                          onClick={() => {
-                            const input = document.createElement('input');
-                            input.type = 'file';
-                            input.accept = 'image/*';
-                            input.onchange = (e) => {
-                              const file = (e.target as HTMLInputElement).files?.[0];
-                              handleTechnologyIconChange(index, file || null);
-                            };
-                            input.click();
-                          }}
-                        >
-                          <Upload className="mx-auto h-6 w-6 text-gray-400" />
-                          <p className="mt-1 text-xs text-gray-600">Click to upload icon</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => removeTechnology(index)}
-                    className="text-red-600 hover:text-red-800"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={addTechnology}
-                className="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50"
-              >
-                <Plus className="h-4 w-4 mr-1" />
-                Add Technology
-              </button>
-            </div>
-          </div>
-
-          {/* Benefits */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Benefits
-            </label>
-            <div className="space-y-2">
-              {formData.benefits.map((benefit, index) => (
-                <div key={index} className="flex gap-2">
-                  <input
-                    type="text"
-                    value={benefit}
-                    onChange={(e) => handleArrayChange('benefits', index, e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter benefit"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeArrayItem('benefits', index)}
-                    className="text-red-600 hover:text-red-800"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={() => addArrayItem('benefits')}
-                className="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50"
-              >
-                <Plus className="h-4 w-4 mr-1" />
-                Add Benefit
-              </button>
-            </div>
-          </div>
-
-          {/* Keywords */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Keywords (Optional)
-            </label>
-            <div className="space-y-2">
-              {formData.keywords.map((keyword, index) => (
-                <div key={index} className="flex gap-2">
-                  <input
-                    type="text"
-                    value={keyword}
-                    onChange={(e) => handleArrayChange('keywords', index, e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter keyword"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeArrayItem('keywords', index)}
-                    className="text-red-600 hover:text-red-800"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={() => addArrayItem('keywords')}
-                className="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50"
-              >
-                <Plus className="h-4 w-4 mr-1" />
-                Add Keyword
-              </button>
-            </div>
-          </div>
-
-          {/* Pricing Plans */}
-          <div>
-            <div className="flex items-center mb-4">
-              <input
-                type="checkbox"
-                id="hasPricingPlans"
-                checked={hasPricingPlans}
-                onChange={(e) => {
-                  setHasPricingPlans(e.target.checked);
-                  if (e.target.checked && !formData.pricingPlans) {
-                    setFormData(prev => ({
-                      ...prev,
-                      pricingPlans: {
-                        beginner: { priceRange: '', description: '', bulletPoints: [''] },
-                        professional: { priceRange: '', description: '', bulletPoints: [''] },
-                        pro: { priceRange: '', description: '', bulletPoints: [''] }
-                      }
-                    }));
+                fullWidth
+                error={!!getFieldError('title')}
+                helperText={getFieldError('title')}
+                variant="outlined"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '8px',
                   }
                 }}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
               />
-              <label htmlFor="hasPricingPlans" className="ml-2 block text-sm text-gray-900">
-                Add dynamic pricing plans (Beginner, Professional, Pro)
-              </label>
-            </div>
+              <TextField
+                label="Slug"
+                value={formData.slug}
+                onChange={(e) => handleInputChange('slug', e.target.value)}
+                required
+                fullWidth
+                error={!!getFieldError('slug')}
+                helperText={getFieldError('slug')}
+                variant="outlined"
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '8px',
+                  }
+                }}
+              />
+            </Box>
+
+            {/* Short Description */}
+            <TextField
+              label="Short Description"
+              value={formData.shortDescription}
+              onChange={(e) => handleInputChange('shortDescription', e.target.value)}
+              placeholder="Brief one-line description"
+              required
+              fullWidth
+              error={!!getFieldError('shortDescription')}
+              helperText={getFieldError('shortDescription')}
+              variant="outlined"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '8px',
+                }
+              }}
+            />
+
+            {/* Description */}
+            <TextField
+              label="Full Description"
+              value={formData.description}
+              onChange={(e) => handleInputChange('description', e.target.value)}
+              placeholder="Detailed description of the service"
+              required
+              fullWidth
+              multiline
+              rows={4}
+              error={!!getFieldError('description')}
+              helperText={getFieldError('description')}
+              variant="outlined"
+              data-lenis-prevent
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '8px',
+                }
+              }}
+            />
+
+            {/* Images */}
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 2 }}>
+              <Box>
+                <Typography variant="body2" sx={{ color: '#666', mb: 2, fontWeight: 500 }}>
+                  Service Image
+                </Typography>
+                <Box
+                  sx={{
+                    border: '2px dashed #e0e0e0',
+                    borderRadius: '8px',
+                    p: 2,
+                    cursor: 'pointer',
+                    '&:hover': {
+                      borderColor: '#590178',
+                    }
+                  }}
+                  onClick={() => imageInputRef.current?.click()}
+                >
+                  {imagePreview ? (
+                    <Box sx={{ position: 'relative' }}>
+                      <Image
+                        src={imagePreview}
+                        alt="Service preview"
+                        width={200}
+                        height={120}
+                        style={{ width: '100%', height: '128px', objectFit: 'cover', borderRadius: '8px' }}
+                      />
+                      <IconButton
+                        size="small"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setImageFile(null);
+                          setImagePreview(null);
+                          if (imageInputRef.current) imageInputRef.current.value = '';
+                        }}
+                        sx={{
+                          position: 'absolute',
+                          top: 8,
+                          right: 8,
+                          bgcolor: '#d32f2f',
+                          color: '#fff',
+                          '&:hover': {
+                            bgcolor: '#c62828',
+                          }
+                        }}
+                      >
+                        <Close fontSize="small" />
+                      </IconButton>
+                    </Box>
+                  ) : (
+                    <Box sx={{ textAlign: 'center', py: 2 }}>
+                      <Upload sx={{ fontSize: 32, color: '#999', mb: 1 }} />
+                      <Typography variant="body2" sx={{ color: '#666' }}>
+                        Click to upload image
+                      </Typography>
+                    </Box>
+                  )}
+                  <input
+                    ref={imageInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleImageChange(e.target.files?.[0] || null, 'image')}
+                    style={{ display: 'none' }}
+                  />
+                </Box>
+              </Box>
+
+              <Box>
+                <Typography variant="body2" sx={{ color: '#666', mb: 2, fontWeight: 500 }}>
+                  Hero Image
+                </Typography>
+                <Box
+                  sx={{
+                    border: '2px dashed #e0e0e0',
+                    borderRadius: '8px',
+                    p: 2,
+                    cursor: 'pointer',
+                    '&:hover': {
+                      borderColor: '#590178',
+                    }
+                  }}
+                  onClick={() => heroImageInputRef.current?.click()}
+                >
+                  {heroImagePreview ? (
+                    <Box sx={{ position: 'relative' }}>
+                      <Image
+                        src={heroImagePreview}
+                        alt="Hero preview"
+                        width={200}
+                        height={120}
+                        style={{ width: '100%', height: '128px', objectFit: 'cover', borderRadius: '8px' }}
+                      />
+                      <IconButton
+                        size="small"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setHeroImageFile(null);
+                          setHeroImagePreview(null);
+                          if (heroImageInputRef.current) heroImageInputRef.current.value = '';
+                        }}
+                        sx={{
+                          position: 'absolute',
+                          top: 8,
+                          right: 8,
+                          bgcolor: '#d32f2f',
+                          color: '#fff',
+                          '&:hover': {
+                            bgcolor: '#c62828',
+                          }
+                        }}
+                      >
+                        <Close fontSize="small" />
+                      </IconButton>
+                    </Box>
+                  ) : (
+                    <Box sx={{ textAlign: 'center', py: 2 }}>
+                      <Upload sx={{ fontSize: 32, color: '#999', mb: 1 }} />
+                      <Typography variant="body2" sx={{ color: '#666' }}>
+                        Click to upload hero image
+                      </Typography>
+                    </Box>
+                  )}
+                  <input
+                    ref={heroImageInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleImageChange(e.target.files?.[0] || null, 'heroImage')}
+                    style={{ display: 'none' }}
+                  />
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Features */}
+            <Box>
+              <Typography variant="body2" sx={{ color: '#666', mb: 2, fontWeight: 500 }}>
+                Features
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                {formData.features.map((feature, index) => (
+                  <Box key={index} sx={{ display: 'flex', gap: 1 }}>
+                    <TextField
+                      value={feature}
+                      onChange={(e) => handleArrayChange('features', index, e.target.value)}
+                      placeholder="Enter feature"
+                      fullWidth
+                      variant="outlined"
+                      size="small"
+                      sx={{
+                        '& .MuiOutlinedInput-root': {
+                          borderRadius: '8px',
+                        }
+                      }}
+                    />
+                    <IconButton
+                      onClick={() => removeArrayItem('features', index)}
+                      sx={{
+                        color: '#d32f2f',
+                        '&:hover': {
+                          backgroundColor: '#ffebee',
+                        }
+                      }}
+                    >
+                      <Delete fontSize="small" />
+                    </IconButton>
+                  </Box>
+                ))}
+                <Button
+                  type="button"
+                  onClick={() => addArrayItem('features')}
+                  variant="contained"
+                  startIcon={<Add />}
+                  sx={{
+                    alignSelf: 'flex-start',
+                    borderRadius: '8px',
+                    textTransform: 'none',
+                    backgroundColor: '#590178',
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#4a0166',
+                    }
+                  }}
+                >
+                  Add Feature
+                </Button>
+              </Box>
+            </Box>
+
+            {/* Technologies */}
+            <Box>
+              <Typography variant="body2" sx={{ color: '#666', mb: 2, fontWeight: 500 }}>
+                Technologies
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {formData.technologies.map((tech, index) => (
+                  <Box key={index} sx={{ display: 'flex', gap: 1, p: 2, border: '1px solid #e0e0e0', borderRadius: '8px' }}>
+                    <Box sx={{ flex: 1 }}>
+                      <TextField
+                        value={tech.name}
+                        onChange={(e) => handleTechnologyChange(index, 'name', e.target.value)}
+                        placeholder="Enter technology name"
+                        fullWidth
+                        variant="outlined"
+                        size="small"
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            borderRadius: '8px',
+                          }
+                        }}
+                      />
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
+                      <Box
+                        sx={{
+                          border: '2px dashed #e0e0e0',
+                          borderRadius: '8px',
+                          p: 1,
+                          cursor: 'pointer',
+                          '&:hover': {
+                            borderColor: '#590178',
+                          }
+                        }}
+                        onClick={() => {
+                          const input = document.createElement('input');
+                          input.type = 'file';
+                          input.accept = 'image/*';
+                          input.onchange = (e) => {
+                            const file = (e.target as HTMLInputElement).files?.[0];
+                            handleTechnologyIconChange(index, file || null);
+                          };
+                          input.click();
+                        }}
+                      >
+                        {tech.iconUrl || tech.iconFile ? (
+                          <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+                            <Image
+                              src={tech.iconFile ? URL.createObjectURL(tech.iconFile) : tech.iconUrl || ''}
+                              alt="Technology icon"
+                              width={40}
+                              height={40}
+                              style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '8px' }}
+                            />
+                            <IconButton
+                              size="small"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleTechnologyIconChange(index, null);
+                              }}
+                              sx={{
+                                position: 'absolute',
+                                top: -4,
+                                right: -4,
+                                bgcolor: '#d32f2f',
+                                color: '#fff',
+                                '&:hover': {
+                                  bgcolor: '#c62828',
+                                }
+                              }}
+                            >
+                              <Close fontSize="small" />
+                            </IconButton>
+                          </Box>
+                        ) : (
+                          <Box sx={{ textAlign: 'center' }}>
+                            <Upload sx={{ fontSize: 24, color: '#999', mb: 0.5 }} />
+                            <Typography variant="caption" sx={{ color: '#666', display: 'block' }}>
+                              Click to upload icon
+                            </Typography>
+                          </Box>
+                        )}
+                      </Box>
+                    </Box>
+                    <IconButton
+                      type="button"
+                      onClick={() => removeTechnology(index)}
+                      sx={{
+                        color: '#d32f2f',
+                        '&:hover': {
+                          backgroundColor: '#ffebee',
+                        }
+                      }}
+                    >
+                      <Delete fontSize="small" />
+                    </IconButton>
+                  </Box>
+                ))}
+                <Button
+                  type="button"
+                  onClick={addTechnology}
+                  variant="contained"
+                  startIcon={<Add />}
+                  sx={{
+                    alignSelf: 'flex-start',
+                    borderRadius: '8px',
+                    textTransform: 'none',
+                    backgroundColor: '#590178',
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#4a0166',
+                    }
+                  }}
+                >
+                  Add Technology
+                </Button>
+              </Box>
+            </Box>
+
+            {/* Benefits */}
+            <Box>
+              <Typography variant="body2" sx={{ color: '#666', mb: 2, fontWeight: 500 }}>
+                Benefits
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                {formData.benefits.map((benefit, index) => (
+                  <Box key={index} sx={{ display: 'flex', gap: 1 }}>
+                    <TextField
+                      value={benefit}
+                      onChange={(e) => handleArrayChange('benefits', index, e.target.value)}
+                      placeholder="Enter benefit"
+                      fullWidth
+                      variant="outlined"
+                      size="small"
+                      sx={{
+                        '& .MuiOutlinedInput-root': {
+                          borderRadius: '8px',
+                        }
+                      }}
+                    />
+                    <IconButton
+                      onClick={() => removeArrayItem('benefits', index)}
+                      sx={{
+                        color: '#d32f2f',
+                        '&:hover': {
+                          backgroundColor: '#ffebee',
+                        }
+                      }}
+                    >
+                      <Delete fontSize="small" />
+                    </IconButton>
+                  </Box>
+                ))}
+                <Button
+                  type="button"
+                  onClick={() => addArrayItem('benefits')}
+                  variant="contained"
+                  startIcon={<Add />}
+                  sx={{
+                    alignSelf: 'flex-start',
+                    borderRadius: '8px',
+                    textTransform: 'none',
+                    backgroundColor: '#590178',
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#4a0166',
+                    }
+                  }}
+                >
+                  Add Benefit
+                </Button>
+              </Box>
+            </Box>
+
+            {/* Keywords */}
+            <Box>
+              <Typography variant="body2" sx={{ color: '#666', mb: 2, fontWeight: 500 }}>
+                Keywords (Optional)
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                {formData.keywords.map((keyword, index) => (
+                  <Box key={index} sx={{ display: 'flex', gap: 1 }}>
+                    <TextField
+                      value={keyword}
+                      onChange={(e) => handleArrayChange('keywords', index, e.target.value)}
+                      placeholder="Enter keyword"
+                      fullWidth
+                      variant="outlined"
+                      size="small"
+                      sx={{
+                        '& .MuiOutlinedInput-root': {
+                          borderRadius: '8px',
+                        }
+                      }}
+                    />
+                    <IconButton
+                      onClick={() => removeArrayItem('keywords', index)}
+                      sx={{
+                        color: '#d32f2f',
+                        '&:hover': {
+                          backgroundColor: '#ffebee',
+                        }
+                      }}
+                    >
+                      <Delete fontSize="small" />
+                    </IconButton>
+                  </Box>
+                ))}
+                <Button
+                  type="button"
+                  onClick={() => addArrayItem('keywords')}
+                  variant="contained"
+                  startIcon={<Add />}
+                  sx={{
+                    alignSelf: 'flex-start',
+                    borderRadius: '8px',
+                    textTransform: 'none',
+                    backgroundColor: '#590178',
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#4a0166',
+                    }
+                  }}
+                >
+                  Add Keyword
+                </Button>
+              </Box>
+            </Box>
+
+            {/* Pricing Plans */}
+            <Box>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={hasPricingPlans}
+                    onChange={(e) => {
+                      setHasPricingPlans(e.target.checked);
+                      if (e.target.checked && !formData.pricingPlans) {
+                        setFormData(prev => ({
+                          ...prev,
+                          pricingPlans: {
+                            beginner: { priceRange: '', description: '', bulletPoints: [''] },
+                            professional: { priceRange: '', description: '', bulletPoints: [''] },
+                            pro: { priceRange: '', description: '', bulletPoints: [''] }
+                          }
+                        }));
+                      }
+                    }}
+                    sx={{
+                      color: '#590178',
+                      '&.Mui-checked': {
+                        color: '#590178',
+                      }
+                    }}
+                  />
+                }
+                label="Add dynamic pricing plans (Beginner, Professional, Pro)"
+                sx={{ mb: 2 }}
+              />
             {hasPricingPlans && formData.pricingPlans && (
-              <div className="space-y-6">
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                 {(['beginner', 'professional', 'pro'] as const).map((plan) => (
-                  <div key={plan} className="border border-gray-200 rounded-lg p-4">
+                  <Box key={plan} sx={{ border: '1px solid #e0e0e0', borderRadius: '8px', p: 2 }}>
                     <h4 className="text-lg font-medium text-gray-900 mb-4 capitalize">{plan} Plan</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div>
@@ -880,47 +1083,66 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
                               className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                               placeholder="Enter bullet point"
                             />
-                            <button
+                            <IconButton
                               type="button"
                               onClick={() => removePricingPlanBullet(plan, index)}
-                              className="text-red-600 hover:text-red-800"
+                              sx={{
+                                color: '#d32f2f',
+                                '&:hover': {
+                                  backgroundColor: '#ffebee',
+                                }
+                              }}
                             >
-                              <Trash2 className="h-4 w-4" />
-                            </button>
+                              <Delete fontSize="small" />
+                            </IconButton>
                           </div>
                         ))}
-                        <button
+                        <Button
                           type="button"
                           onClick={() => addPricingPlanBullet(plan)}
-                          className="inline-flex items-center px-3 py-1 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50"
+                          variant="contained"
+                          startIcon={<Add />}
+                          sx={{
+                            alignSelf: 'flex-start',
+                            borderRadius: '8px',
+                            textTransform: 'none',
+                            backgroundColor: '#590178',
+                            color: '#fff',
+                            '&:hover': {
+                              backgroundColor: '#4a0166',
+                            }
+                          }}
                         >
-                          <Plus className="h-4 w-4 mr-1" />
                           Add Bullet Point
-                        </button>
+                        </Button>
                       </div>
                     </div>
-                  </div>
+                  </Box>
                 ))}
-              </div>
+              </Box>
             )}
-          </div>
+            </Box>
 
-          {/* Legacy Pricing */}
-          <div>
-            <div className="flex items-center mb-4">
-              <input
-                type="checkbox"
-                id="hasPricing"
-                checked={hasPricing}
-                onChange={(e) => setHasPricing(e.target.checked)}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            {/* Legacy Pricing */}
+            <Box>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={hasPricing}
+                    onChange={(e) => setHasPricing(e.target.checked)}
+                    sx={{
+                      color: '#590178',
+                      '&.Mui-checked': {
+                        color: '#590178',
+                      }
+                    }}
+                  />
+                }
+                label="Add pricing information"
+                sx={{ mb: 2 }}
               />
-              <label htmlFor="hasPricing" className="ml-2 block text-sm text-gray-900">
-                Add pricing information
-              </label>
-            </div>
             {hasPricing && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 2 }}>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Starting Price
@@ -957,39 +1179,37 @@ export default function ServiceForm({ isOpen, onClose, onSuccess, service, mode 
                     placeholder="e.g., Starting from £5,000"
                   />
                 </div>
-              </div>
+              </Box>
             )}
-          </div>
-
-          {/* Submit Buttons */}
-          <div className="flex gap-3 justify-end pt-4 border-t">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={loading}
-              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  {mode === 'create' ? 'Creating...' : 'Updating...'}
-                </>
-              ) : (
-                <>
-                  <Save className="h-4 w-4 mr-2" />
-                  {mode === 'create' ? 'Create Service' : 'Update Service'}
-                </>
-              )}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+            </Box>
+          </Box>
+        </DialogContent>
+        <DialogActions sx={{ px: 3, pb: 3, justifyContent: 'flex-end' }}>
+          <Button 
+            type="submit"
+            variant="contained"
+            disabled={loading}
+            sx={{
+              backgroundColor: '#590178',
+              color: '#fff',
+              px: 3,
+              py: 1,
+              borderRadius: '8px',
+              textTransform: 'none',
+              fontWeight: 600,
+              '&:hover': {
+                backgroundColor: '#4a0166',
+              },
+              '&:disabled': {
+                backgroundColor: '#ccc',
+              }
+            }}
+            startIcon={loading ? <CircularProgress size={16} sx={{ color: '#fff' }} /> : <Save />}
+          >
+            {loading ? (mode === 'create' ? 'Creating...' : 'Updating...') : (mode === 'create' ? 'Create Service' : 'Update Service')}
+          </Button>
+        </DialogActions>
+      </Box>
+    </Dialog>
   );
 }

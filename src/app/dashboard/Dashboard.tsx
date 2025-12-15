@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, Typography, CircularProgress } from "@mui/material";
+import { useSearchParams } from "next/navigation";
 import UserAnalytics from "../components/dashboard/useranalytics/page";
 import TechnicalMetrics from "../components/dashboard/technicalmetric/page";
 import Demographics from "../components/dashboard/demographic/page";
@@ -7,13 +8,19 @@ import EngagementMetrics from "../components/dashboard/engagementmetrices/page";
 // import AcquisitionMatrix from "../components/dashboard/AcquistionMatrix/page";
 
 const Dashboard = () => {
-  // State to track which component is selected
-  const [selectedComponent, setSelectedComponent] = useState("userAnalytics");
+  const searchParams = useSearchParams();
+  const viewParam = searchParams.get('view');
+  const selectedComponent = viewParam || "userAnalytics";
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Handle dropdown change
-  const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-    setSelectedComponent(event.target.value);
-  };
+  // Initial load and when view changes
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [selectedComponent]);
 
   // Render the selected component
   const renderComponent = () => {
@@ -33,41 +40,56 @@ const Dashboard = () => {
     }
   };
 
+  // Get display name for current view
+  const getViewName = () => {
+    switch (selectedComponent) {
+      case "userAnalytics":
+        return "User Analytics";
+      case "engagementMetrics":
+        return "Engagement Metrics";
+      case "technicalMetrics":
+        return "Technical Metrics";
+      case "demographics":
+        return "Demographics";
+      default:
+        return "User Analytics";
+    }
+  };
+
   return (
-    <Box>
-      {/* Dropdown menu */}
-      <FormControl fullWidth sx={{ mb: 3, mt: 2 }}>
-        <InputLabel id="dashboard-component-select-label" sx={{ color: '#590178' }}>
-          Dashboard Component
-        </InputLabel>
-        <Select
-          labelId="dashboard-component-select-label"
-          id="dashboard-component-select"
-          value={selectedComponent}
-          label="Dashboard Component"
-          onChange={handleChange}
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#FFF2D5' }}>
+      
+      {/* Render the selected component */}
+      {isLoading ? (
+        <Box
           sx={{
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#590178',
-            },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#590178',
-            },
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#590178',
-            },
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '400px',
+            gap: 2
           }}
         >
-          <MenuItem value="userAnalytics">User Analytics</MenuItem>
-          {/* <MenuItem value="acquisitionMatrix">Acquisition Matrix</MenuItem> */}
-          <MenuItem value="engagementMetrics">Engagement Metrics</MenuItem>
-          <MenuItem value="technicalMetrics">Technical Metrics</MenuItem>
-          <MenuItem value="demographics">Demographics</MenuItem>
-        </Select>
-      </FormControl>
-
-      {/* Render the selected component */}
-      {renderComponent()}
+          <CircularProgress
+            size={60}
+            sx={{
+              color: '#590178',
+            }}
+          />
+          <Typography
+            variant="body1"
+            sx={{
+              color: '#666',
+              fontWeight: 500,
+            }}
+          >
+            Loading dashboard data...
+          </Typography>
+        </Box>
+      ) : (
+        renderComponent()
+      )}
     </Box>
   );
 };

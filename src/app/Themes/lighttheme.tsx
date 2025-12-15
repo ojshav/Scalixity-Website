@@ -71,6 +71,24 @@ const lightTheme: ThemeOptions = {
                     backgroundColor: '#590178',
                 }
             }
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    '& .MuiInputBase-input': {
+                        color: '#000000',
+                    },
+                }
+            }
+        },
+        MuiInputBase: {
+            styleOverrides: {
+                root: {
+                    '& .MuiInputBase-input': {
+                        color: '#000000',
+                    },
+                }
+            }
         }
     }
 }

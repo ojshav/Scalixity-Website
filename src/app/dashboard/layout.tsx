@@ -2,35 +2,22 @@
 import * as React from 'react';
 import Header from '@/src/app/components/Header/Header';
 import SideMenu from '@/src/app/components/SideMenu';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import darkTheme from '@/src/app/Themes/darktheme';
 import lightTheme from '@/src/app/Themes/lighttheme';
 import Head from "next/head";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('themeMode');
-    setIsDarkMode(savedTheme === 'dark');
-  }, []);
-  
   const theme = React.useMemo(
-    () => createTheme(isDarkMode ? darkTheme : lightTheme),
-    [isDarkMode]
+    () => createTheme(lightTheme),
+    []
   );
   
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  
-  const handleThemeToggle = () => {
-    const newThemeMode = !isDarkMode;
-    setIsDarkMode(newThemeMode);
-    localStorage.setItem('themeMode', newThemeMode ? 'dark' : 'light');
-  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -50,21 +37,28 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         display: 'flex', 
         flexDirection: 'column', 
         height: '100vh',
-        bgcolor: theme.palette.background.default
+        bgcolor: '#FFF2D5',
+        overflow: 'hidden',
+        width: '100%',
+        maxWidth: '100vw'
       }}>
-        <Header 
-          isDarkMode={isDarkMode} 
-          onThemeToggle={handleThemeToggle} 
-          onMenuToggle={toggleMobileMenu}
-          isMobileMenuOpen={isMobileMenuOpen}
-        />
+        {/* Sticky Header */}
+        <Box sx={{ position: 'sticky', top: 0, zIndex: 1100 }}>
+          <Header 
+            onMenuToggle={toggleMobileMenu}
+            isMobile={isMobile}
+          />
+        </Box>
         
         {/* Main Content */}
         <Box sx={{ 
           display: 'flex', 
-          flex: 1, 
+          flex: 1,
           overflow: 'hidden',
-          flexDirection: { xs: 'column', sm: 'row' }
+          overflowX: 'hidden',
+          width: '100%',
+          maxWidth: '100%',
+          position: 'relative'
         }}>
           {/* Side Menu */}
           <SideMenu 
@@ -74,16 +68,24 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             onMenuClose={() => setIsMobileMenuOpen(false)}
           />
           
-          {/* Content Area */}
-          <Box sx={{ 
-            flexGrow: 1, 
-            p: { xs: 2, sm: 3 },
-            overflowY: 'auto',
-            bgcolor: theme.palette.background.paper,
-            width: { xs: '100%', sm: 'calc(100% - 64px)' },
-            ml: { xs: 0, sm: '64px' },
-            transition: 'all 0.3s ease'
-          }}>
+          {/* Content Area - Only this scrolls */}
+          <Box 
+            data-lenis-prevent
+            className="hide-scrollbar-desktop"
+            sx={{ 
+              flexGrow: 1, 
+              p: { xs: 2, sm: 3, md: 6 },
+              bgcolor: '#FFF2D5',
+              overflowY: 'auto',
+              overflowX: 'hidden',
+              height: '100%',
+              width: '100%',
+              maxWidth: '100%',
+              transition: 'all 0.3s ease',
+              // Adjust margin for tablet when sidebar is present
+              ml: { xs: 0, sm: 0, md: 0 },
+            }}
+          >
             {children}
           </Box>
         </Box>

@@ -32,7 +32,7 @@ function AdminLogin() {
         localStorage.setItem('adminUsername', username); // Store admin username
         localStorage.setItem('adminToken', data.token); // Store JWT token
         console.log('Login successful');
-        router.push('/dashboard');
+        router.push('/dashboard/home');
       } else {
         const errorData = await response.json();
         console.error('Login failed:', errorData.message || 'Invalid credentials');
