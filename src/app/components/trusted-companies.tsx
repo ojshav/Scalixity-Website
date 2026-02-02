@@ -2,12 +2,12 @@ import React from 'react';
 import Image from 'next/image';
 
 const companies = [
-    { name: 'AOIN', logo: '/images/clients/aoin.png', width: 120, height: 48, mobileWidth: 80 },
-    { name: 'Pinegap', logo: '/images/clients/pinegap.png', width: 190, height: 60, mobileWidth: 100 },
-    { name: 'Ambitio', logo: '/images/clients/ambitio.png', width: 145, height: 44, mobileWidth: 90 },
-    { name: 'Antis Overseas', logo: '/images/clients/AnjisOverseas.png', width: 72, height: 72, mobileWidth: 50 },
-    { name: 'Kyari', logo: '/images/clients/Kyari.png', width: 120, height: 44, mobileWidth: 80 },
-    { name: 'Nakshatra Gyaan', logo: '/images/clients/NakshatraGyaan.png', width: 145, height: 85, mobileWidth: 80 },
+    { name: 'AOIN', logo: '/images/clients/aoin.png', width: 120, height: 48 },
+    { name: 'Pinegap', logo: '/images/clients/pinegap.png', width: 190, height: 60 },
+    { name: 'Ambitio', logo: '/images/clients/ambitio.png', width: 145, height: 44 },
+    { name: 'Antis Overseas', logo: '/images/clients/AnjisOverseas.png', width: 72, height: 72 },
+    { name: 'Kyari', logo: '/images/clients/Kyari.png', width: 120, height: 44 },
+    { name: 'Nakshatra Gyaan', logo: '/images/clients/NakshatraGyaan.png', width: 145, height: 85 },
 ];
 
 export function TrustedCompanies() {
@@ -19,8 +19,8 @@ export function TrustedCompanies() {
                     Trusted by data driven companies
                 </h2>
 
-                {/* Company Logos - Grid layout for mobile, flex for larger screens */}
-                <div className="grid grid-cols-3 gap-4 sm:gap-6 mt-6 sm:mt-8 md:flex md:flex-wrap md:items-center md:justify-center md:gap-12 lg:gap-20">
+                {/* Mobile: 2x3 grid */}
+                <div className="grid grid-cols-2 gap-4 mt-6 lg:hidden">
                     {companies.map((company) => (
                         <div
                             key={company.name}
@@ -31,10 +31,25 @@ export function TrustedCompanies() {
                                 alt={company.name}
                                 width={company.width}
                                 height={company.height}
-                                className="object-contain w-full h-auto md:w-auto md:h-auto"
-                                style={{
-                                    maxWidth: `${company.mobileWidth}px`,
-                                }}
+                                className="object-contain w-20 h-auto"
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                {/* Desktop: Original flex layout - unchanged */}
+                <div className="hidden lg:flex flex-wrap items-center justify-center gap-20 mt-8">
+                    {companies.map((company) => (
+                        <div
+                            key={company.name}
+                            className="flex items-center justify-center"
+                        >
+                            <Image
+                                src={company.logo}
+                                alt={company.name}
+                                width={company.width}
+                                height={company.height}
+                                className="object-contain"
                             />
                         </div>
                     ))}
