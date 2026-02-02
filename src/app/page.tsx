@@ -1,4 +1,7 @@
-import { Hero } from "@/src/app/components/hero"
+import { LandingHero } from "@/src/app/components/landing-hero"
+import { TrustedCompanies } from "@/src/app/components/trusted-companies"
+import { SuccessStories } from "@/src/app/components/success-stories"
+import { GrowthPartner } from "@/src/app/components/growth-partner"
 import { WhatWeOffer } from "@/src/app/components/what-we-offer"
 import { Process } from "@/src/app/components/process"
 import { ProjectShowcase } from "@/src/app/components/project-showcase"
@@ -9,10 +12,10 @@ import { YouTubeProjects } from "@/src/app/components/youtube-projects"
 export default function Home() {
   return (
     <main>
-      <div className="w-full">
-
-      </div>
-      <Hero />
+      <LandingHero />
+      <TrustedCompanies />
+      <SuccessStories />
+      <GrowthPartner />
       <OurService />
       <WhatWeOffer />
       <ProjectShowcase />
