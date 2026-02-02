@@ -95,10 +95,10 @@ export function ProjectShowcase() {
 
   // Calculate the end position based on number of projects
   // For n projects, we need to scroll -(n-1)/n * 100% to show all cards
-  const scrollEndPercentage = projects.length > 0 
-    ? -((projects.length - 1) / projects.length) * 100 
+  const scrollEndPercentage = projects.length > 0
+    ? -((projects.length - 1) / projects.length) * 100
     : -75;
-  
+
   const x = useTransform(scrollYProgress, [0, 1], ["1%", `${scrollEndPercentage}%`]);
 
   useEffect(() => {
@@ -107,13 +107,13 @@ export function ProjectShowcase() {
         setLoading(true);
         setError(null);
         const response = await fetch(`${baseURL}/api/work/projects`);
-        
+
         if (!response.ok) {
           throw new Error('Failed to fetch projects');
         }
 
         const data = await response.json();
-        
+
         // Map backend data to component format
         const mappedProjects: Project[] = data.map((project: ApiProject) => ({
           id: project.id,

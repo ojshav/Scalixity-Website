@@ -149,7 +149,7 @@ export function Process() {
               </h2>
               <div className="w-16 sm:w-20 h-1 bg-[#1A1A1A] rounded-full mb-4 sm:mb-6 hidden md:block"></div>
               <p className="text-base sm:text-lg md:text-lg text-[#590178] font-medium max-w-md">
-              Our process is structured to deliver high-quality digital solutions efficiently from understanding your goals to launching and continuously improving your product.
+                Our process is structured to deliver high-quality digital solutions efficiently from understanding your goals to launching and continuously improving your product.
               </p>
             </div>
           </div>
@@ -182,8 +182,6 @@ export function Process() {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <CTA />
     </section>
   )
 }
