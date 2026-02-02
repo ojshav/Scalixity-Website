@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react'
 import { Rocket, Puzzle, CheckCircle, Bot, Wrench } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { CTA } from './cta'
 
 // Register ScrollTrigger
 if (typeof window !== 'undefined') {
